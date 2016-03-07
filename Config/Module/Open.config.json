@@ -1,0 +1,102 @@
+{
+    "routes": [
+        {
+            "rule": "\/front-api-entry",
+            "option": {
+                "module": "Open",
+                "controller": "FrontApiEntry",
+                "action": "index"
+            }
+        },
+        {
+            "rule": "\/mobile-api-entry",
+            "option": {
+                "module": "Open",
+                "controller": "MobileApiEntry",
+                "action": "index"
+            }
+        },
+        {
+            "rule": "\/edit-api-entry",
+            "option": {
+                "module": "Open",
+                "controller": "EditApiEntry",
+                "action": "index"
+            }
+        }
+    ],
+    "front_api_map": {
+        "Product": [
+            "\\FrontApi\\Product",
+            1
+        ],
+        "User": [
+            "\\FrontApi\\User",
+            2
+        ],
+        "MobileUser": [
+            "\\FrontApi\\MobileUser",
+            2
+        ],
+        "Utils": [
+            "\\FrontApi\\Utils",
+            1
+        ],
+        "Cart": [
+            "\\FrontApi\\Cart",
+            2
+        ]
+    },
+    "mobile_api_map": {
+        "User": [
+            "\\MobileApi\\User",
+            2
+        ],
+        "Goods": [
+            "\\MobileApi\\Goods",
+            2
+        ],
+        "Category": [
+            "\\MobileApi\\Category",
+            2
+        ],
+        "Coupon": [
+            "\\MobileApi\\Coupon",
+            2
+        ],
+        "Bargain": [
+            "\\MobileApi\\Bargain",
+            2
+        ],
+        "Trademark": [
+            "\\MobileApi\\Trademark",
+            2
+        ],
+        "Goods": [
+            "\\MobileApi\\Goods",
+            2
+        ],
+        "Order": [
+            "\\MobileApi\\Order",
+            2
+        ],
+        "Discount": [
+            "\\MobileApi\\Discount",
+            2
+        ],
+        "MobileUpload": [
+            "\\MobileApi\\MobileUpload",
+            2
+        ],
+        "Merchant": [
+            "\\MobileApi\\Merchant",
+            2
+        ]
+    },
+    "edit_api_map": {
+        "Phone": [
+            "\\EditApi\\Phone",
+            2
+        ]
+    }
+}

@@ -1,0 +1,60 @@
+{
+   "db": {
+      "host": "127.0.0.1",
+      "username": "root",
+      "dbname": "zhuchao_devel",
+      "password": "cntysoft",
+      "charset": "utf8"
+   },
+   "lang": {
+      "webos": "zh_CN",
+      "sys": "zh_CN"
+   },
+   "modules": {
+        "Pages": {
+            "className": "Pages\\Module",
+            "path": "Modules\/Pages\/Module.php",
+            "hasConfig": true
+        },
+        "Sys": {
+            "className": "Sys\\Module",
+            "path": "Modules\/Sys\/Module.php",
+            "hasConfig": true
+        },
+        "Utils": {
+            "className": "Utils\\Module",
+            "path": "Modules\/Utils\/Module.php",
+            "hasConfig": false
+        },
+        "Open": {
+            "className": "\\Open\\Module",
+            "path": "Modules\/Open\/Module.php",
+            "hasConfig": true
+        },
+        "User": {
+            "className": "\\User\\Module",
+            "path": "Modules\/User\/Module.php",
+            "hasConfig": true
+        }
+   },
+   "systemMode": 2,
+   "sysEntry": "system",
+   "venderFramework": [
+      "VsImage"
+   ],
+   "session": {
+      "name": "sWSwr3asd@#$@#kjakj2",
+      "cookie_httponly": false
+   },
+   "cookie": {
+      "prefix": "op-",
+      "encrypt": true,
+      "encryptKey": "obl0.wtYF/knDy3O",
+      "path": "/",
+      "domain": null
+   },
+   "supportedModules": [
+      "Sys",
+      "ZhuChao"
+   ]
+}

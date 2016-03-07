@@ -1,0 +1,192 @@
+{
+    "routes": [
+        {
+            "key": "Category",
+            "rule": "\/category\/{nodeIdentifier:[a-z]+}.html",
+            "option": {
+                "module": "Front",
+                "controller": "Index",
+                "action": "category"
+            }
+        },
+        {
+            "key": "CategoryWithPage",
+            "rule": "\/category\/{nodeIdentifier:[a-z]+}\/{pageid:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Front",
+                "controller": "Index",
+                "action": "category"
+            }
+        },
+        {
+            "key": "Item",
+            "rule": "\/item\/{itemid:[0-9]+}.html",
+            "option": {
+                "module": "Front",
+                "controller": "Index",
+                "action": "item"
+            }
+        },
+        {
+            "key": "404",
+            "rule": "\/404.html",
+            "option": {
+                "module": "Front",
+                "controller": "Exception",
+                "action": "pageNotExist"
+            }
+        },
+        {
+            "key": "ProductClassifyList",
+            "rule": "\/productclassify\/{categoryId:[1-9][0-9]*}\/{pageId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Front",
+                "controller": "Product",
+                "action": "productclassifylist",
+                "querycond": null
+            }
+        },
+        {
+            "key": "Product",
+            "rule": "\/product\/{productid:[0-9]+}.html",
+            "option": {
+                "module": "Front",
+                "controller": "Product",
+                "action": "product"
+            }
+        },
+        {
+            "key": "addToCart",
+            "rule": "\/addtocart.html",
+            "option": {
+                "module": "Front",
+                "controller": "Cart",
+                "action": "addToCart"
+            }
+        },
+        {
+            "key": "Cart",
+            "rule": "\/cart.html",
+            "option": {
+                "module": "Front",
+                "controller": "Cart",
+                "action": "cart"
+            }
+        },
+        {
+            "key": "SubmitOrder",
+            "rule": "\/submit.html",
+            "option": {
+                "module": "Front",
+                "controller": "Cart",
+                "action": "submit"
+            }
+        },
+        {
+            "key": "Pay",
+            "rule": "\/pay.html",
+            "option": {
+                "module": "Front",
+                "controller": "Cart",
+                "action": "pay"
+            }
+        },
+        {
+            "key": "DoPay",
+            "rule": "\/dopay.html",
+            "option": {
+                "module": "Front",
+                "controller": "Cart",
+                "action": "dopay"
+            }
+        },
+        {
+            "key": "AliPayNotify",
+            "rule": "\/notify\/alipay.html",
+            "option": {
+                "module": "Front",
+                "controller": "Notify",
+                "action": "alipay"
+            }
+        },
+        {
+            "key": "WeChatNotify",
+            "rule": "\/notify\/wechat.html",
+            "option": {
+                "module": "Front",
+                "controller": "Notify",
+                "action": "wechat"
+            }
+        },
+        {
+            "key": "WxGrant",
+            "rule": "\/notify\/wxgrant.html",
+            "option": {
+                "module": "Front",
+                "controller": "Notify",
+                "action": "wxgrant"
+            }
+        },
+        {
+            "key": "Print",
+            "rule": "\/print\/{oid:[0-9]+}.html",
+            "option": {
+                "module": "Front",
+                "controller": "Index",
+                "action": "print"
+            }
+        },
+        {
+            "key": "Search",
+            "rule": "\/query.html",
+            "option": {
+                "module": "Front",
+                "controller": "Index",
+                "action": "search"
+            }
+        },
+        {
+            "key": "SearchPage",
+            "rule": "\/searchpage.html",
+            "option": {
+                "module": "Front",
+                "controller": "Product",
+                "action": "searchpage"
+            }
+        },
+        {
+            "key": "ClassifyList",
+            "rule": "\/classifylist.html",
+            "option": {
+                "module": "Front",
+                "controller": "Product",
+                "action": "classifylist"
+            }
+        },
+        {
+            "key": "Edit",
+            "rule": "\/edit\/{type:[a-z]+}.html",
+            "option": {
+                "module": "Front",
+                "controller": "Index",
+                "action": "edit"
+            }
+        }
+    ],
+    "tplMap": {
+        "index": "首页.phtml",
+        "category": "文章列表模板.phtml",
+        "item": "文章内容模板.phtml",
+        "helpcenter": "帮助中心模板.phtml",
+        "productclassifylist": "商品类\/分类商品列表.phtml",
+        "product": "商品类\/商品内容页.phtml",
+        "addtocart": "购物流程\/加入购物车成功页.phtml",
+        "cart": "购物流程\/购物车内容页.phtml",
+        "submit": "购物流程\/结算页.phtml",
+        "pay": "购物流程\/支付页.phtml",
+        "print": "其他模板\/订单打印页模板.phtml",
+        "search": "商品类\/搜索商品列表.phtml",
+        "classifylist": "商品类\/商品分类列表.phtml",
+        "searchpage": "商品类\/搜索页.phtml"
+    }
+}
