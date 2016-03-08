@@ -112,8 +112,8 @@ Ext.define('ZhuChao.Os.Widget.UserInfo', {
             },
             items : [{
                   xtype : 'textfield',
-                  name : 'phone',
-                  fieldLabel : LABEL.PHONE,
+                  name : 'name',
+                  fieldLabel : LABEL.NAME,
                   editable : false
                }, {
                   xtype : 'textfield',

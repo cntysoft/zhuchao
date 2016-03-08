@@ -26,7 +26,7 @@ Ext.define('ZhuChao.Lang.zh_CN', {
             ACCOUNT : '账号信息',
             MODIFY_PWD : '修改密码',
             SETTING : '系统设置',
-            ABOUT_KELE_SHOP : '关于可乐云商',
+            ABOUT_KELE_SHOP : '关于凤凰筑巢',
             HELP_CENTER : '帮助中心',
             APP_STORE : '应用商店',
             LOGOUT : '退出系统'
@@ -62,7 +62,7 @@ Ext.define('ZhuChao.Lang.zh_CN', {
                SAVE_SUCCESS : '数据保存成功!'
             },
             LABEL : {
-               PHONE : '用户手机号',
+               NAME : '用户名称',
                NICKNAME : '用户昵称',
                ENABLE_MULTI_LOGIN : '是否允许多人登陆',
                ALLOW : '允许',
