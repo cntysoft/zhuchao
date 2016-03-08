@@ -54,7 +54,8 @@
       "domain": null
    },
    "supportedModules": [
-      "Sys",
-      "ZhuChao"
+      "ZhuChao",
+      "Site",
+      "Sys"
    ]
 }

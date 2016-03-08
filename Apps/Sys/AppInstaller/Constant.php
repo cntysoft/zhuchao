@@ -17,6 +17,8 @@ final class Constant
    const APP_API_RES_MOUNTER = 'PermResMounter';
    const APP_API_MODULE_MGR = 'ModuleMgr';
 
+   const PK_PERM_MGR = 'PermResMgr';
+   
    const M_ON = 0;
    const M_OFF = 1;
    const L_TYPE_ALL = 0;

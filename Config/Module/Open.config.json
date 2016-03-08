@@ -15,14 +15,6 @@
                 "controller": "MobileApiEntry",
                 "action": "index"
             }
-        },
-        {
-            "rule": "\/edit-api-entry",
-            "option": {
-                "module": "Open",
-                "controller": "EditApiEntry",
-                "action": "index"
-            }
         }
     ],
     "front_api_map": {
@@ -90,12 +82,6 @@
         ],
         "Merchant": [
             "\\MobileApi\\Merchant",
-            2
-        ]
-    },
-    "edit_api_map": {
-        "Phone": [
-            "\\EditApi\\Phone",
             2
         ]
     }

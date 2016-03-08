@@ -14,7 +14,10 @@ Ext.define('AppRegs', {
       'Daemon.Init.Main',
       'App.Site.Category.Main',
       'App.Site.Content.Main',
+      'App.Site.CmMgr.Main',
+      'App.Site.Setting.Main',
       'App.Sys.AppInstaller.Main',
-      'App.Sys.User.Main'
+      'App.Sys.User.Main',
+      'App.Sys.Searcher.Main'
    ]
 });

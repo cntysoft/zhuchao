@@ -8,15 +8,6 @@
             "action": "index",
             "type": 1
          }
-      },
-      {
-         "key": "Test",
-         "rule": "/test",
-         "option": {
-            "module": "Sys",
-            "controller": "Test",
-            "action": "index"
-         }
       }
    ]
 }

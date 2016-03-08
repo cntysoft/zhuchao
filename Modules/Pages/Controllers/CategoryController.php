@@ -40,7 +40,7 @@ class CategoryController extends AbstractController
       //暂时不处理节点不存在的情况
       if (!$node) {
          $this->dispatcher->forward(array(
-            'module'     => 'Front',
+            'module'     => 'Pages',
             'controller' => 'Exception',
             'action'     => 'pageNotExist'
          ));
@@ -55,6 +55,11 @@ class CategoryController extends AbstractController
       ));
    }
 
+   public function testAction()
+   {
+      var_dump('test');exit;
+   }
+   
    /**
     * 文章模板
     * 
@@ -65,7 +70,7 @@ class CategoryController extends AbstractController
       $itemId = $this->dispatcher->getParam('itemid');
       if (null === $itemId) {
          $this->dispatcher->forward(array(
-            'module'     => 'Front',
+            'module'     => 'Pages',
             'controller' => 'Exception',
             'action'     => 'pageNotExist'
          ));
@@ -79,7 +84,7 @@ class CategoryController extends AbstractController
          );
          if (!$info) {
             $this->dispatcher->forward(array(
-               'module'     => 'Front',
+               'module'     => 'Pages',
                'controller' => 'Exception',
                'action'     => 'pageNotExist'
             ));
@@ -88,7 +93,7 @@ class CategoryController extends AbstractController
          $status = $info->getStatus();
          if ($status != CONTENT_CONST::INFO_S_VERIFY) {
             $this->dispatcher->forward(array(
-               'module'     => 'Front',
+               'module'     => 'Pages',
                'controller' => 'Exception',
                'action'     => 'pageNotExist'
             ));
@@ -100,7 +105,7 @@ class CategoryController extends AbstractController
                  CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNode', array($info->getNodeId()));
          if (!$node) {
             $this->dispatcher->forward(array(
-               'module'     => 'Front',
+               'module'     => 'Pages',
                'controller' => 'Exception',
                'action'     => 'pageNotExist'
             ));
@@ -123,7 +128,7 @@ class CategoryController extends AbstractController
          ));
       } catch (\Exception $ex) {
          $this->dispatcher->forward(array(
-            'module'     => 'Front',
+            'module'     => 'Pages',
             'controller' => 'Exception',
             'action'     => 'pageNotExist'
          ));
