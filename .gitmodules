@@ -25,3 +25,6 @@
 [submodule "JsLibrary/WebUploader"]
 	path = JsLibrary/WebUploader
 	url = cntysoft-server:WebUploader
+[submodule "JsLibrary/Jquery"]
+	path = JsLibrary/Jquery
+	url = cntysoft-server:Jquery

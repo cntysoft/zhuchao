@@ -6,5 +6,6 @@ return array (
    array ('name' => '栏目管理', 'moduleKey' => 'Site', 'appKey' => 'Category', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time()),
    array ('name' => '站点管理员管理', 'moduleKey' => 'Sys', 'appKey' => 'User', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time() ),
    array ('name' => '应用商店', 'moduleKey' => 'Sys', 'appKey' => 'AppInstaller', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time()),
-   array ('name' => '搜索引擎', 'moduleKey' => 'Sys', 'appKey' => 'Searcher', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time())
+   array ('name' => '搜索引擎', 'moduleKey' => 'Sys', 'appKey' => 'Searcher', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time()),
+   array ('name' => '商品分类管理', 'moduleKey' => 'ZhuChao', 'appKey' => 'CategoryMgr', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time())
 );

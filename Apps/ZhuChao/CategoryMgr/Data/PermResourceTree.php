@@ -1,18 +1,14 @@
 <?php
 /**
  * Cntysoft Cloud Software Team
- *
- * @author SOFTBOY <cntysoft@163.com>
+ * 
+ * @author Changwang <chenyongwang1104@163.com>
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
 return array(
-   'Sys.AppInstaller',
-   'Sys.User',
-   'Sys.Searcher',
-   'Site.Category',
-   'Site.CmMgr',
-   'Site.Content',
-   'Site.Setting',
-   'ZhuChao.CategoryMgr'
+   'text'        => '商品分类管理',
+   'internalKey' => 'CategoryMgr',
+   'isApp'       => true,
+   'hasDetail'   => false
 );

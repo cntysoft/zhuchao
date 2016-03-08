@@ -18,6 +18,7 @@ Ext.define('AppRegs', {
       'App.Site.Setting.Main',
       'App.Sys.AppInstaller.Main',
       'App.Sys.User.Main',
-      'App.Sys.Searcher.Main'
+      'App.Sys.Searcher.Main',
+      'App.ZhuChao.CategoryMgr.Main'
    ]
 });
