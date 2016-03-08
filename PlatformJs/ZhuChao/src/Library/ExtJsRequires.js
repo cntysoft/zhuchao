@@ -20,6 +20,7 @@ Ext.define('ZhuChao.ExtJsRequires', {
       'Ext.layout.container.Border',
       'Ext.layout.container.Table',
       'Ext.layout.container.Fit',
+      'Ext.layout.container.Accordion',
       'Ext.grid.column.Action',
       'Ext.menu.ColorPicker',
       'Ext.grid.column.RowNumberer',
