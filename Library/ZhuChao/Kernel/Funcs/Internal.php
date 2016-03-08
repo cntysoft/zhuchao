@@ -41,6 +41,21 @@ function is_devel_mode()
 }
 
 /**
+ * 判断是否本地模式
+ * 
+ * @return boolean
+ */
+function is_local_deploy()
+{
+   if(\Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_DEVEL ||
+      \Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_LOCAL_DEBUG ||
+      \Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_LOCAL_PRODUCT){
+      return true;
+   }
+   return false;
+}
+
+/**
  * 这个函数主要是用于服务器图片的读取
  * 
  * @return string

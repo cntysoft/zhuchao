@@ -260,6 +260,7 @@ this file in most cases.
     ===============================================================
     -->
     <import file="${basedir}/.sencha/app/js-impl.xml"/>
+    <import file="${basedir}/.sencha/app/kele-js-impl.xml"/>
     <target name="js"
             depends="init"
             description="Builds the output javascript file(s)">

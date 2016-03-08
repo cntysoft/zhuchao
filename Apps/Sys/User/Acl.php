@@ -12,7 +12,7 @@ use Cntysoft\Kernel;
 use Cntysoft\Kernel\ConfigProxy;
 use Cntysoft\Stdlib\Filesystem;
 use App\Sys\User\RoleMgr;
-use CloudController\Kernel\StdHtmlPath;
+use ZhuChao\Kernel\StdHtmlPath;
 use App\Sys\AppInstaller\Constant as APP_INSTALL_CONST;
 use App\Sys\User\Model\BasicInfo as UserModel;
 /**
@@ -692,9 +692,9 @@ class Acl extends AbstractLib
       //设置凤凰筑巢OSS服务器地址
       $cfg = ConfigProxy::getFrameworkConfig('Net');
       if(Kernel\is_local_deploy()){
-         $imgOssServer = 'http://'.\Cntysoft\RT_CLOUD_CONTROLLER_OSS_IMG_BUCKET.'.'.\Cntysoft\OSS_PUBLIC_ENTRY;
+         $imgOssServer = 'http://'.\Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET.'.'.\Cntysoft\OSS_PUBLIC_ENTRY;
       }else{
-         $imgOssServer = 'http://'.\Cntysoft\RT_CLOUD_CONTROLLER_OSS_IMG_BUCKET.'.'.\Cntysoft\OSS_PUBLIC_ENTRY;
+         $imgOssServer = 'http://'.\Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET.'.'.\Cntysoft\OSS_PUBLIC_ENTRY;
       }
       
       $data['sysSetting'] = array(
@@ -707,8 +707,6 @@ class Acl extends AbstractLib
             'img' => \Cntysoft\Kernel\get_image_cdn_server_url()
          )
       );
-      $gcfg = ConfigProxy::getGlobalConfig();
-      $data["websocket"] = $gcfg->websocket->toArray();
    }
 
    protected function getPhpSetting(array &$data)

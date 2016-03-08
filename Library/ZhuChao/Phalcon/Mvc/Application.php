@@ -11,7 +11,7 @@ use Cntysoft\Phalcon\Mvc\Application as BaseApplication;
 use ZhuChao\InitFlow\Listeners;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 /**
- * @package FengHuang\Phalcon\Mvc
+ * @package ZhuChao\Phalcon\Mvc
  */
 class Application extends BaseApplication
 {
@@ -56,6 +56,7 @@ class Application extends BaseApplication
       parent::loadCoreFiles();
       $files = array(
          ZHUCHAO_SYS_LIB_DIR . DS . 'Const.php',
+         ZHUCHAO_SYS_LIB_DIR . DS . 'DistConst.php',
          ZHUCHAO_SYS_LIB_DIR . DS . 'Kernel' . DS . 'Funcs' . DS . 'Internal.php',
          ZHUCHAO_SYS_LIB_DIR . DS . 'Version.php'
       );

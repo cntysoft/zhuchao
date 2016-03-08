@@ -27,12 +27,16 @@
             restore
                 page
         </property>
-        
-        
-        
+
+
+
         <x-compile refid="${compiler.ref.id}">
             <![CDATA[
                 ${sass.name.filter}
+                and
+                include
+                -file=${kele.applist.file.js}
+                -r
                 and
                 #only set variables for used classes eg. $include-class-name
                 sass
@@ -44,6 +48,10 @@
                 include
                     -all
                 and
+                include
+                -file=${kele.applist.file.js}
+                -r
+                and
                 # include etc and vars from all classes
                 sass
                     +etc
@@ -54,11 +62,20 @@
                 ${sass.name.filter}
                 and
                 #only include rules from used classes
+                include
+                -file=${kele.applist.file.js}
+                -r
+                and
                 sass
                     +rules
                     +append
                     -output=${app.out.scss.tmp}
                 and
+                include
+                -file=${kele.applist.file.js}
+                -r
+                and
+
                 sass
                     +ruby
                     -sassCacheDir=${compass.cache.dir}

@@ -11,7 +11,7 @@ use Cntysoft\Kernel\App\AbstractHandler;
 use Cntysoft\Kernel;
 use App\Sys\User\Constant;
 use App\Sys\User\RoleMgr;
-use CloudController\Mixin\EnsurePermAbout;
+use ZhuChao\Mixin\EnsurePermAbout;
 class Member extends AbstractHandler
 {
    use EnsurePermAbout;

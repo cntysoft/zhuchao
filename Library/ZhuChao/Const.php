@@ -31,7 +31,7 @@ const FRONT_USER_S_KEY_INFO = 'front_user_s_key_info';
 
 
 //标准异常上下文
-const FENG_HUANG_STD_EXCEPTION_CONTEXT = 'FengHuang/Kernel/StdErrorType';
+const ZHU_CHAO_STD_EXCEPTION_CONTEXT = 'ZhuChao/Kernel/StdErrorType';
 
 //商家的默认域名
 const MERCHANT_DOMAIN = 'fhzc.com';
@@ -41,7 +41,7 @@ const ZHUCHAO_DB_NAME = 'fenghuang';
 const SYS_DOMAIN = 'fhzc.com';
 const SYS_DOMAIN_DEVEL = 'fhzc.cn';
 
-const OTS_INTERNAL_API = 'http://fhzc-ots.cn-beijing.ots-internal.aliyuncs.com';
+const OTS_INTERNAL_API = 'http://fhzc-ots.cn-beijing.ots-internal.aliyuncs.com';  
 const OTS_PUB_API = 'http://fhzc-ots.cn-beijing.ots.aliyuncs.com';
 //阿里的API服务器
 const ALI_SEARCH_API_PUB_ENTRY = 'http://opensearch-cn-beijing.aliyuncs.com';

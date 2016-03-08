@@ -6,7 +6,7 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-namespace FengHuang\Mixin;
+namespace ZhuChao\Mixin;
 use App\Sys\User\Constant;
 trait EnsurePermAbout
 {
