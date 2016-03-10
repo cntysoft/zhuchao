@@ -65,6 +65,6 @@
    ],
    "moduleHostNames" : {
        "Provider" : "provider.abc.com",
-       "Buyer" : "buyer.abc.com"
+       "Buyer" : "i.abc.com"
    }
 }

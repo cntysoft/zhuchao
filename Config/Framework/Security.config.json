@@ -8,9 +8,13 @@
          "authKey": "@#$!Qasdhj23eqw!",
          "authStatusKey": "asj23r$%SAjhasd"
       },
-      "frontuser": {
+      "provider": {
          "authKey": "#$%ERsss564##!",
          "authStatusKey": "*&HTrfgtr#$543"
+      },
+      "buyer": {
+         "authKey": "#$%uUsxcAQ252233##!",
+         "authStatusKey": "*&SHcDUzsXHy#$543"
       }
    }
 }

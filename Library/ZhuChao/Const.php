@@ -27,8 +27,9 @@ const FRONT_USER_S_KEY_REG_MSG_CODE = 'front_user_s_key_reg_msg_code';
 //忘记密码发送短信验证或者邮件验证码的session键值
 const FRONT_USER_S_KEY_FORGET_MSG_CODE = 'front_user_s_key_forget_msg_code';
 //前台用户信息session键值
-const FRONT_USER_S_KEY_INFO = 'front_user_s_key_info';
-
+const FRONT_USER_BUYER_S_KEY_INFO = 'front_user_buyer_s_key_info';
+//采购会员的session键值
+const FRONT_USER_PROVIDER_S_KEY_INFO = 'front_user_provider_s_key_info';
 
 //标准异常上下文
 const ZHU_CHAO_STD_EXCEPTION_CONTEXT = 'ZhuChao/Kernel/StdErrorType';
@@ -39,7 +40,7 @@ const MERCHANT_DOMAIN_DEBUG = 'fhzc.cn';
 const ZHUCHAO_DB_NAME = 'fenghuang';
 
 const SYS_DOMAIN = 'fhzc.com';
-const SYS_DOMAIN_DEVEL = 'fhzc.cn';
+const SYS_DOMAIN_DEVEL = 'abc.com';
 
 const OTS_INTERNAL_API = 'http://fhzc-ots.cn-beijing.ots-internal.aliyuncs.com';  
 const OTS_PUB_API = 'http://fhzc-ots.cn-beijing.ots.aliyuncs.com';
