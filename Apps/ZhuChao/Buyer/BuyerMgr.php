@@ -152,4 +152,15 @@ class BuyerMgr extends AbstractLib
          )
       )) > 0 ? true : false;
    }
+   
+   /**
+    * 获取指定采购会员的信息
+    * 
+    * @param integer $id
+    * @return 
+    */
+   public function getBuyerById($id)
+   {
+      return BaseInfoModel::findFirst($id);
+   }
 }

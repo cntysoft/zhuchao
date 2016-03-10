@@ -36,4 +36,10 @@ class Constant
    //用户登陆的方式
    const FRONT_USER_NAME_LOGIN = 1;
    const FRONT_USER_PHONE_LOGIN = 2;
+   
+   const ADDRESS_MAX_NUM = 6;  //收获地址最大数量
+   
+   //收获地址状态
+   const ADDRESS_STATUS_NOT_DEFAULT = 0;
+   const ADDRESS_STATUS_DEFAULT = 1; 
 }

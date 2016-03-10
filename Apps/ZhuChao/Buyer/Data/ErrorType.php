@@ -24,7 +24,9 @@ return array(
    'E_BUYER_ACL_COOKIE_ERROR'        => array(10015, 'The user cookie is wrong'),
    'E_BUYER_ACL_DELETE_AVATAR_ERROR' => array(10016, 'Delete user old avatar fail'),
    'E_BUYER_ACL_SAVE_AVATAR_ERROR'   => array(10017, 'Save user avatar fail'),
-   'E_BUYER_ACL_SMS_TYPE_ERROR'      => array(10018, 'The sms type %s is wrong')
+   'E_BUYER_ACL_SMS_TYPE_ERROR'      => array(10018, 'The sms type %s is wrong'),
+   'E_BUYER_ADDRESS_MAXIMUM'         => array(10019, 'The address is maximum'),
+   'E_BUYER_ADDRESS_NOT_EXIST'       => array(10020, 'The address is not exist')
 //   
 //   'E_UC_LEVEL_NOT_EXIST'         => array(10001, 'the level is not exist'),
 //   'E_UC_ADDRESS_NOT_EXIST'       => array(10002, 'the address is not exist'),
