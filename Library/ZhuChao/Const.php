@@ -22,6 +22,8 @@ const SITEMANAGER_CUSTOM_FORM_ADD_CHK_CODE = 'sitemanager_custom_form_add_chk_co
 const FRONT_USER_S_KEY_REG_CHK_CODE = 'front_user_s_key_reg_chk_code';
 //前台用户忘记密码时图片验证码session键值
 const FRONT_USER_S_KEY_FORGET_CHK_CODE = 'front_user_s_key_reg_forget_chk_code';
+//前台用户登陆时图片验证码的session的键值
+const FRONT_USER_S_KEY_LOGIN_CHK_CODE = 'front_user_s_key_reg_login_chk_code';
 //注册时发送短信验证或者邮件验证码的session键值
 const FRONT_USER_S_KEY_REG_MSG_CODE = 'front_user_s_key_reg_msg_code';
 //忘记密码发送短信验证或者邮件验证码的session键值

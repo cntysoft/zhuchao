@@ -108,6 +108,8 @@ class Acl extends AbstractLib
             return \Cntysoft\FRONT_USER_S_KEY_REG_MSG_CODE;
          case Constant::PIC_CODE_TYPE_FORGET:
             return \Cntysoft\FRONT_USER_S_KEY_FORGET_MSG_CODE;
+         case Constant::PIC_CODE_TYPE_LOGIN:
+            return \Cntysoft\FRONT_USER_S_KEY_LOGIN_CHK_CODE;
          case Constant::PIC_CODE_TYPE_SITEMANAGER:
             return \Cntysoft\SITEMANAGER_S_KEY_CHK_CODE;
          default:
@@ -150,6 +152,15 @@ class Acl extends AbstractLib
     */
    public function sendSmsCode($phone, $type = Constant::SMS_TYPE_REG)
    {
+      if(!in_array($type, array(
+         Constant::SMS_TYPE_REG,
+         Constant::SMS_TYPE_FORGET
+      ))){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_BUYER_ACL_SMS_TYPE_ERROR', $type), $errorType->code('E_BUYER_ACL_SMS_TYPE_ERROR') 
+         ), $this->getErrorTypeContext());
+      }
       $code = $this->getVerifyCode(6);
       //首先发送短信验证码
       $tplValue = '#code#=' . $code;

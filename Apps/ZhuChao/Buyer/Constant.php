@@ -13,6 +13,7 @@ class Constant
    const MODULE_NAME = 'ZhuChao';
    const APP_NAME = 'Buyer';
    const APP_API_BUYER_MGR = 'BuyerMgr';
+   const APP_API_BUYER_ACL = 'Acl';
    
    //手机短信验证码的类型
    const SMS_TYPE_REG = 1;
@@ -21,7 +22,8 @@ class Constant
    //图片验证码的类型
    const PIC_CODE_TYPE_REG = 1;
    const PIC_CODE_TYPE_FORGET = 2;
-   const PIC_CODE_TYPE_SITEMANAGER = 3;
+   const PIC_CODE_TYPE_LOGIN = 3;
+   const PIC_CODE_TYPE_SITEMANAGER = 4;
    
    //用户的状态
    const USER_STATUS_NORMAL = 1;

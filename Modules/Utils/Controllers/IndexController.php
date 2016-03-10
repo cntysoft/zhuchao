@@ -38,6 +38,18 @@ class IndexController extends AbstractController
       $drawer->draw();
       exit;
    }
+   
+   /**
+    * 前台用户注册发送短信或者邮件验证码的时候验证码
+    * 
+    * @return void
+    */
+   public function frontLoginChkAction()
+   {
+      $drawer = new CheckCode(\Cntysoft\FRONT_USER_S_KEY_LOGIN_CHK_CODE, 12, 4);
+      $drawer->draw();
+      exit;
+   }
 
    /**
     * 前台用户忘记密码发送短信或者邮件验证码的时候验证码
