@@ -29,128 +29,128 @@ class IndexController extends AbstractController
    public function indexAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/index',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/index',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function avatarAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/avatar',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/avatar',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function modifyAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/modify',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/modify',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function passwordAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/password',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/password',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function collectionAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/collection',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/collection',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function couponAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/coupon',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/coupon',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function messageAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/message',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/message',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function addressAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/address',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/address',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function changeaddressAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/changeaddress',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/changeaddress',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function orderAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/order',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/order',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function orderlistAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/orderlist',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/orderlist',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function commentAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/comment',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/comment',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function commentlistAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/commentlist',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/commentlist',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function reAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/re',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/re',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function reapplyAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/reapply',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/reapply',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
    public function relistAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/relist',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+         View::KEY_RESOLVE_DATA => 'user/relist',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 

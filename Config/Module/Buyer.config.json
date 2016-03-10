@@ -206,28 +206,36 @@
                 "controller" : "Index",
                 "action" : "index"
             }
+        },
+        {
+            "rule": "\/front-api-entry",
+            "option": {
+                "module": "Buyer",
+                "controller": "FrontApiEntry",
+                "action": "index"
+            }
         }
     ],
     "hostName" : true,
     "tplMap" : {
-        "login" : "登录注册\/登录.phtml",
-        "register" : "登录注册\/注册.phtml",
-        "forget" : "登录注册\/忘记密码.phtml",
-        "buyer\/index" : "用户中心\/用户中心首页.phtml",
-        "buyer\/avatar" : "用户中心\/修改头像.phtml",
-        "buyer\/password" : "用户中心\/修改密码.phtml",
-        "buyer\/modify" : "用户中心\/我的信息.phtml",
-        "buyer\/coupon" : "用户中心\/我的优惠券.phtml",
-        "buyer\/collection" : "用户中心\/我的收藏.phtml",
-        "buyer\/address" : "用户中心\/收货地址.phtml",
-        "buyer\/changeaddress" : "用户中心\/修改地址.phtml",
-        "buyer\/order" : "用户中心\/订单内容页.phtml",
-        "buyer\/orderlist" : "用户中心\/订单列表页.phtml",
-        "buyer\/comment" : "用户中心\/评论内容页.phtml",
-        "buyer\/commentlist" : "用户中心\/评论列表页.phtml",
-        "buyer\/re" : "用户中心\/退货详情.phtml",
-        "buyer\/reapply" : "用户中心\/退货申请.phtml",
-        "buyer\/relist" : "用户中心\/退货列表.phtml",
-        "buyer\/message" : "用户中心\/消息通知.phtml"
+        "login" : "采购会员\/登录页模板.phtml",
+        "register" : "采购会员\/注册页模板.phtml",
+        "forget" : "采购会员\/找回密码页模板.phtml",
+        "buyer\/index" : "采购会员\/用户中心\/用户中心首页.phtml",
+        "buyer\/avatar" : "采购会员\/用户中心\/修改头像.phtml",
+        "buyer\/password" : "采购会员\/用户中心\/修改密码.phtml",
+        "buyer\/modify" : "采购会员\/用户中心\/我的信息.phtml",
+        "buyer\/coupon" : "采购会员\/用户中心\/我的优惠券.phtml",
+        "buyer\/collection" : "采购会员\/用户中心\/我的收藏.phtml",
+        "buyer\/address" : "采购会员\/用户中心\/收货地址.phtml",
+        "buyer\/changeaddress" : "采购会员\/用户中心\/修改地址.phtml",
+        "buyer\/order" : "采购会员\/用户中心\/订单内容页.phtml",
+        "buyer\/orderlist" : "采购会员\/用户中心\/订单列表页.phtml",
+        "buyer\/comment" : "采购会员\/用户中心\/评论内容页.phtml",
+        "buyer\/commentlist" : "采购会员\/用户中心\/评论列表页.phtml",
+        "buyer\/re" : "采购会员\/用户中心\/退货详情.phtml",
+        "buyer\/reapply" : "采购会员\/用户中心\/退货申请.phtml",
+        "buyer\/relist" : "采购会员\/用户中心\/退货列表.phtml",
+        "buyer\/message" : "采购会员\/用户中心\/消息通知.phtml"
     }
 }

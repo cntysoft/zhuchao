@@ -71,7 +71,7 @@ class Acl extends AbstractLib
       return $this->getAppCaller()->call(
          Constant::MODULE_NAME, 
          Constant::APP_NAME, 
-         Constant::APP_API_USER, 
+         Constant::APP_API_BUYER_MGR, 
          'addUser', 
          array($userInfo)
       );
@@ -297,7 +297,7 @@ class Acl extends AbstractLib
       $user = $this->getAppCaller()->call(
          Constant::MODULE_NAME, 
          Constant::APP_NAME, 
-         Constant::APP_API_USER, 
+         Constant::APP_API_BUYER_MGR, 
          $method, 
          array($key)
       );
@@ -366,7 +366,7 @@ class Acl extends AbstractLib
          $this->curUser = $this->getAppCaller()->call(
             Constant::MODULE_NAME, 
             Constant::APP_NAME, 
-            Constant::APP_API_USER, 
+            Constant::APP_API_BUYER_MGR, 
             $method, 
             array($key)
          );
@@ -462,7 +462,7 @@ class Acl extends AbstractLib
       $user = $user = $this->getAppCaller()->call(
          Constant::MODULE_NAME, 
          Constant::APP_NAME, 
-         Constant::APP_API_USER, 
+         Constant::APP_API_BUYER_MGR, 
          'getUserByPhone', 
          array($phone)
       );

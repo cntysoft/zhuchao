@@ -24,6 +24,9 @@ class Module implements ModuleDefinitionInterface
    {
       $di = Kernel\get_global_di();
       $loader = $di->getShared('loader');
+      $loader->registerNamespaces(array(
+         'FrontApi'  => __DIR__ . DS . 'FrontApi'
+              ), true);
       $loader->registerDirs(array(
          __DIR__.DS.'Controllers'
       ))->register();

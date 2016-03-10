@@ -12,7 +12,7 @@ class Constant
 {
    const MODULE_NAME = 'ZhuChao';
    const APP_NAME = 'Buyer';
-   const APP_API_BUY_MGR = 'BuyerMgr';
+   const APP_API_BUYER_MGR = 'BuyerMgr';
    
    //手机短信验证码的类型
    const SMS_TYPE_REG = 1;
@@ -26,6 +26,10 @@ class Constant
    //用户的状态
    const USER_STATUS_NORMAL = 1;
    const USER_STATUS_LOCK = 2;
+   
+   //Cookie键值
+   const AUTH_KEY = 'authKey';
+   const STATUS_KEY = 'authStatusKey';
    
    //用户登陆的方式
    const FRONT_USER_NAME_LOGIN = 1;
