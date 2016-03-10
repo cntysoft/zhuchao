@@ -9,7 +9,6 @@
  */
 use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Kernel;
-use App\Shop\UserCenter\Constant;
 use Cntysoft\Framework\Qs\View;
 /**
  * 处理前端用户的验证
@@ -61,7 +60,7 @@ class AuthorizerController extends AbstractController
 
     protected function checkLogin()
     {
-        $acl = $this->di->get('FrontUserAcl');
+        $acl = $this->di->get('ProviderAcl');
         if(!$acl->isLogin()) {
             return false;
         }else {

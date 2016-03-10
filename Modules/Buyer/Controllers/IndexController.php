@@ -18,7 +18,7 @@ class IndexController extends AbstractController
     */
    public function initialize()
    {
-      $acl = $this->di->get('FrontUserAcl');
+      $acl = $this->di->get('BuyerAcl');
       if (!$acl->isLogin()) {
          $path = $this->request->getURI();
          Kernel\goto_route('login.html?returnUrl=' . urlencode($path));

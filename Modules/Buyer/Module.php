@@ -6,10 +6,10 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-namespace User;
+namespace Buyer;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Cntysoft\Kernel;
-use App\Shop\UserCenter\Acl;
+use App\ZhuChao\Buyer\Acl;
 /**
  * 前端模块初始化代码
  */
@@ -36,7 +36,7 @@ class Module implements ModuleDefinitionInterface
     */
    public function registerServices(\Phalcon\DiInterface $dependencyInjector)
    {
-        $dependencyInjector->set('FrontUserAcl', function() {
+        $dependencyInjector->set('BuyerAcl', function() {
             return new Acl();
         });
    }

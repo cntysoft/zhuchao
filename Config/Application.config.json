@@ -31,9 +31,14 @@
             "path": "Modules\/Open\/Module.php",
             "hasConfig": true
         },
-        "User": {
-            "className": "\\User\\Module",
-            "path": "Modules\/User\/Module.php",
+        "Buyer": {
+            "className": "\\Buyer\\Module",
+            "path": "Modules\/Buyer\/Module.php",
+            "hasConfig": true
+        },
+        "Provider" : {
+            "className": "\\Provider\\Module",
+            "path": "Modules\/Provider\/Module.php",
             "hasConfig": true
         }
    },
@@ -57,5 +62,9 @@
       "ZhuChao",
       "Site",
       "Sys"
-   ]
+   ],
+   "moduleHostNames" : {
+       "Provider" : "provider.abc.com",
+       "Buyer" : "buyer.abc.com"
+   }
 }

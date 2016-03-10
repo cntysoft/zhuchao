@@ -1,0 +1,233 @@
+{
+    "routes": [
+        {
+            "key": "Login",
+            "rule": "\/login.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Authorizer",
+                "action": "login"
+            }
+        },
+        {
+            "key": "Register",
+            "rule": "\/register.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Authorizer",
+                "action": "register"
+            }
+        },
+        {
+            "key": "Forget",
+            "rule": "\/forget.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Authorizer",
+                "action": "forget"
+            }
+        },
+        {
+            "key": "ProviderIndex",
+            "rule": "\/provider\/index.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "index"
+            }
+        },
+        {
+            "key": "ProviderAvatar",
+            "rule": "\/provider\/avatar.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "avatar"
+            }
+        },
+        {
+            "key": "ProviderPassword",
+            "rule": "\/provider\/password.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "password"
+            }
+        },
+        {
+            "key": "ProviderMessage",
+            "rule": "\/provider\/message.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "message"
+            }
+        },
+        {
+            "key": "ProviderModify",
+            "rule": "\/provider\/modify.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "modify"
+            }
+        },
+        {
+            "key": "ProviderCoupon",
+            "rule": "\/provider\/coupon.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "coupon"
+            }
+        },
+        {
+            "key": "ProviderCollection",
+            "rule": "\/provider\/collection.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "collection"
+            }
+        },
+        {
+            "key": "ProviderAddress",
+            "rule": "\/provider\/address.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "address"
+            }
+        },
+        {
+            "key": "ProviderAddress",
+            "rule": "\/provider\/address\/{addrId:[1-9][0-9]*|0}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "changeaddress"
+            }
+        },
+        {
+            "key": "ProviderOrder",
+            "rule": "\/provider\/order\/{orderId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "order"
+            }
+        },
+        {
+            "key": "ProviderOrderList",
+            "rule": "\/provider\/orderlist.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "orderlist"
+            }
+        },
+        {
+            "key": "ProviderOrderListWithPage",
+            "rule": "\/provider\/orderlist\/page\/{pageId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "orderlist"
+            }
+        },
+        {
+            "key": "ProviderComment",
+            "rule": "\/provider\/comment\/{commentId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "comment"
+            }
+        },
+        {
+            "key": "ProviderCommentList",
+            "rule": "\/provider\/commentlist.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "commentlist"
+            }
+        },
+        {
+            "key": "ProviderCommentListWithPage",
+            "rule": "\/provider\/commentlist\/page\/{pageId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "commentlist"
+            }
+        },
+        {
+            "key": "ProviderRe",
+            "rule": "\/provider\/re\/{orderId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "re"
+            }
+        },
+        {
+            "key": "ProviderReApply",
+            "rule": "\/provider\/reapply\/{ordergoodsId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "reapply"
+            }
+        },
+        {
+            "key": "ProviderReList",
+            "rule": "\/provider\/relist.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "relist"
+            }
+        },
+        {
+            "key": "ProviderReListWithPage",
+            "rule": "\/provider\/relist\/page\/{pageId:[1-9][0-9]*}.html",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "relist"
+            }
+        },
+        {
+            "key": "Index",
+            "rule": "\/",
+            "option": {
+                "module": "Provider",
+                "controller": "Index",
+                "action": "index"
+            }
+        }
+    ],
+    "hostName" : true,
+    "tplMap": {
+        "login": "登录注册\/登录.phtml",
+        "register": "登录注册\/注册.phtml",
+        "forget": "登录注册\/忘记密码.phtml",
+        "provider\/index": "用户中心\/用户中心首页.phtml",
+        "provider\/avatar": "用户中心\/修改头像.phtml",
+        "provider\/password": "用户中心\/修改密码.phtml",
+        "provider\/modify": "用户中心\/我的信息.phtml",
+        "provider\/coupon": "用户中心\/我的优惠券.phtml",
+        "provider\/collection": "用户中心\/我的收藏.phtml",
+        "provider\/address": "用户中心\/收货地址.phtml",
+        "provider\/changeaddress": "用户中心\/修改地址.phtml",
+        "provider\/order": "用户中心\/订单内容页.phtml",
+        "provider\/orderlist": "用户中心\/订单列表页.phtml",
+        "provider\/comment": "用户中心\/评论内容页.phtml",
+        "provider\/commentlist": "用户中心\/评论列表页.phtml",
+        "provider\/re": "用户中心\/退货详情.phtml",
+        "provider\/reapply": "用户中心\/退货申请.phtml",
+        "provider\/relist": "用户中心\/退货列表.phtml",
+        "provider\/message": "用户中心\/消息通知.phtml"
+    }
+}
