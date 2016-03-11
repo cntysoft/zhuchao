@@ -64,7 +64,7 @@ class AuthorizerController extends AbstractController
         if(!$acl->isLogin()) {
             return false;
         }else {
-           Kernel\dispatch_action('User', 'Index', 'index');
+           Kernel\dispatch_action('Provider', 'Index', 'index');
         }
     }
 }

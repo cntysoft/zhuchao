@@ -29,127 +29,87 @@ class IndexController extends AbstractController
    public function indexAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/index',
+                 View::KEY_RESOLVE_DATA => 'provider/index',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function avatarAction()
+   public function addproductAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/avatar',
+                 View::KEY_RESOLVE_DATA => 'provider/addproduct',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function modifyAction()
+   public function inquiryAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/modify',
+                 View::KEY_RESOLVE_DATA => 'provider/inquiry',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function passwordAction()
+   public function accountAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/password',
+                 View::KEY_RESOLVE_DATA => 'provider/account',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function collectionAction()
+   public function accountsafeAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/collection',
+                 View::KEY_RESOLVE_DATA => 'provider/accountsafe',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function couponAction()
+   public function companyAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/coupon',
+                 View::KEY_RESOLVE_DATA => 'provider/company',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function messageAction()
+   public function albumAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/message',
+                 View::KEY_RESOLVE_DATA => 'provider/album',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function addressAction()
+   public function videoAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/address',
+                 View::KEY_RESOLVE_DATA => 'provider/video',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function changeaddressAction()
+   public function msgAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/changeaddress',
+                 View::KEY_RESOLVE_DATA => 'provider/msg',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function orderAction()
+   public function sysmsgAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/order',
+                 View::KEY_RESOLVE_DATA => 'provider/sysmsg',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
 
-   public function orderlistAction()
+   public function businessmsgAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/orderlist',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
-   }
-
-   public function commentAction()
-   {
-      return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/comment',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
-   }
-
-   public function commentlistAction()
-   {
-      return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/commentlist',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
-   }
-
-   public function reAction()
-   {
-      return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/re',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
-   }
-
-   public function reapplyAction()
-   {
-      return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/reapply',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
-   }
-
-   public function relistAction()
-   {
-      return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'user/relist',
+                 View::KEY_RESOLVE_DATA => 'provider/businessmsg',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
