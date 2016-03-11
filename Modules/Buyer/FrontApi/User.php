@@ -12,14 +12,14 @@ use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use Cntysoft\Kernel;
 
 /**
- * 主要是处理采购会员相关的的Ajax调用
+ * 主要是处理采购商相关的的Ajax调用
  * 
  * @package FrontApi
  */
 class User extends AbstractScript
 {
    /**
-    * 采购会员注册
+    * 采购商注册
     * <code>
     *    array(
     *       'phone' => 15522222222,
@@ -45,7 +45,7 @@ class User extends AbstractScript
    }
    
    /**
-    * 采购会员登陆的方法
+    * 采购商登陆的方法
     * 
     * @param array $params
     * @return boolean
@@ -70,7 +70,7 @@ class User extends AbstractScript
    }
    
    /**
-    * 修改采购会员的信息
+    * 修改采购商的信息
     * 
     * @param array $params
     */

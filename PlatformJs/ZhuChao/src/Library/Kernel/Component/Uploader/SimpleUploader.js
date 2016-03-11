@@ -10,7 +10,7 @@
  */
 Ext.define('ZhuChao.Kernel.Component.Uploader.SimpleUploader', {
    extend : 'WebOs.Component.Uploader.SimpleUploader',
-   alias : 'widget.keleshopsimpleuploader',
+   alias : 'widget.zhuchaosimpleuploader',
    /**
     * 设置最大的上传
     * 

@@ -485,7 +485,7 @@ Ext.define('App.Site.Category.Ui.Structure.AbstractSettingPanel', {
       var STD_PATH = WebOs.Kernel.StdPath;
       var basePath = STD_PATH.getStdUploadPath();
       return {
-         xtype : 'keleshopsimpleuploader',
+         xtype : 'zhuchaosimpleuploader',
          uploadPath : basePath,
          createSubDir : true,
          enableFileRef : true,

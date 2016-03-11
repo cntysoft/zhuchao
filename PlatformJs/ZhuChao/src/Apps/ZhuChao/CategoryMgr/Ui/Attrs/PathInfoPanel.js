@@ -201,7 +201,7 @@ Ext.define('App.ZhuChao.CategoryMgr.Ui.Attrs.PathInfoPanel', {
                                 scope : this
                             }
                         }, {
-                            xtype : 'keleshopsimpleuploader',
+                            xtype : 'zhuchaosimpleuploader',
                             uploadPath : this.mainPanelRef.appRef.getUploadFilesPath(),
                             useOss : ZC.getUseOss(),
                             createSubDir : true,

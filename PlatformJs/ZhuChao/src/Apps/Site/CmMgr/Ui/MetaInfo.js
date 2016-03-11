@@ -393,7 +393,7 @@ Ext.define('App.Site.CmMgr.Ui.MetaInfo', {
                   disabled: true
                }
 //            {
-//                xtype : 'keleshopsimpleuploader',
+//                xtype : 'zhuchaosimpleuploader',
 //                uploadPath : 'sadasdfasdas',//this.mainPanel.getIconBasePath(),
 //                createSubDir : false,
 //                randomize : false,

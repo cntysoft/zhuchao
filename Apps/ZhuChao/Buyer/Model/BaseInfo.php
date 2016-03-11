@@ -30,7 +30,7 @@ class BaseInfo extends BaseModel
       return 'app_zhuchao_buyer_base_info';
    }
 
-   public function initilize()
+   public function initialize()
    {
       $this->belongsTo('profileId', 'App\ZhuChao\Buyer\Model\Profile', 'id', array(
          'alias' => 'profile'

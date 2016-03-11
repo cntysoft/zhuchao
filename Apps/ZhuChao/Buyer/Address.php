@@ -14,7 +14,7 @@ use Cntysoft\Kernel;
 class Address extends AbstractLib
 {
    /**
-    * 为指定的采购会员添加收获地址
+    * 为指定的采购商添加收获地址
     * 
     * @param integer $buyerId 
     * @param array $params
@@ -51,7 +51,7 @@ class Address extends AbstractLib
    }
 
    /**
-    * 删除采购会员的一条收货地址
+    * 删除采购商的一条收货地址
     * 
     * @param integer $buyerId
     * @param integer $addressId
@@ -65,7 +65,7 @@ class Address extends AbstractLib
    }
    
    /**
-    * 更改采购会员的收货地址
+    * 更改采购商的收货地址
     * 
     * @param integer $buyerId
     * @param type $addressId
@@ -135,7 +135,7 @@ class Address extends AbstractLib
    }
    
    /**
-    * 获取指定采购会员的全部收货地址
+    * 获取指定采购商的全部收货地址
     * 
     * @param integer $buyerId
     * @return 

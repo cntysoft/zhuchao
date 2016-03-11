@@ -53,7 +53,7 @@ class Acl extends AbstractLib
    }
    
    /**
-    * 采购会员注册
+    * 采购商注册
     * 
     * @param string $phone
     * @param string $password
@@ -105,15 +105,15 @@ class Acl extends AbstractLib
    {
       switch ($type) {
          case Constant::PIC_CODE_TYPE_REG:
-            return \Cntysoft\FRONT_USER_S_KEY_REG_MSG_CODE;
+            return \Cntysoft\FRONT_USER_S_KEY_REG_CHK_CODE;
          case Constant::PIC_CODE_TYPE_FORGET:
-            return \Cntysoft\FRONT_USER_S_KEY_FORGET_MSG_CODE;
+            return \Cntysoft\FRONT_USER_S_KEY_FORGET_CHK_CODE;
          case Constant::PIC_CODE_TYPE_LOGIN:
             return \Cntysoft\FRONT_USER_S_KEY_LOGIN_CHK_CODE;
          case Constant::PIC_CODE_TYPE_SITEMANAGER:
             return \Cntysoft\SITEMANAGER_S_KEY_CHK_CODE;
          default:
-            return \Cntysoft\FRONT_USER_S_KEY_REG_MSG_CODE;
+            return \Cntysoft\FRONT_USER_S_KEY_REG_CHK_CODE;
       }
    }
    
@@ -315,7 +315,7 @@ class Acl extends AbstractLib
       if (!$user) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_ACL_USER_NOT_EXIST', $key), $errorType->code('E_BUYER_ACL_USER_NOT_EXIST')
+            $errorType->msg('E_BUYER_USER_NOT_EXIST', $key), $errorType->code('E_BUYER_USER_NOT_EXIST')
          ), $this->getErrorTypeContext());
       }
       if (Constant::USER_STATUS_LOCK == $user->getStatus()) {
@@ -443,7 +443,7 @@ class Acl extends AbstractLib
             $this->logout();
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
-               $errorType->msg('E_BUYER_ACL_USER_NOT_EXIST'), $errorType->code('E_BUYER_ACL_USER_NOT_EXIST')
+               $errorType->msg('E_BUYER_USER_NOT_EXIST'), $errorType->code('E_BUYER_USER_NOT_EXIST')
                ), $this->getErrorTypeContext()
             );
          }
@@ -481,13 +481,14 @@ class Acl extends AbstractLib
       if(!$user){
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_ACL_USER_NOT_EXIST'), $errorType->code('E_BUYER_ACL_USER_NOT_EXIST')
+            $errorType->msg('E_BUYER_USER_NOT_EXIST'), $errorType->code('E_BUYER_USER_NOT_EXIST')
          ), $this->getErrorTypeContext());
       }
       
       $hasher = $this->di->getShared('security');
       $password = $hasher->hash($password);
       $user->setPassword($password);
+      $user->setLastModifyPwdTime(time());
       return $user->save();
    }
    
@@ -515,6 +516,7 @@ class Acl extends AbstractLib
       //将新密码写入数据库
       $password = $hasher->hash($newPassword);
       $user->setPassword($password);
+      $user->setLastModifyPwdTime(time());
       return $user->save();
    }
 
