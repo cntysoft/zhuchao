@@ -8,7 +8,8 @@
  */
 namespace FrontApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
-use App\ZhuChao\Buyer\Constant as BUYER_CONST;   
+use App\ZhuChao\Buyer\Constant as BUYER_CONST;  
+use Cntysoft\Kernel;
 
 /**
  * 主要是处理采购会员相关的的Ajax调用
@@ -22,7 +23,7 @@ class User extends AbstractScript
     * <code>
     *    array(
     *       'phone' => 15522222222,
-    *       'password' => 'dwadawdwadadawd',
+    *       'password' => 'dwadawdwadadawd',  加密之后的密码
     *       'smsCode' => 222222
     *    )
     * </code>
@@ -65,6 +66,106 @@ class User extends AbstractScript
          BUYER_CONST::APP_API_BUYER_ACL,
          'login',
          array($params['key'], $params['password'], $type)
+      );
+   }
+   
+   /**
+    * 修改采购会员的信息
+    * 
+    * @param array $params
+    */
+   public function updateBuyer(array $params)
+   {
+      $curUser = $this->getCurUser();
+      Kernel\unset_array_values($params, array('id', 'buyerId', 'avatar', 'password', 'profileId', 'status', 'experience', 'level', 'point'));
+   
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_MGR,
+         'updateBuyer',
+         array($curUser->getId(), $params)
+      );
+   }
+   
+   /**
+    * 添加一个收货地址
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function addAddress(array $params)
+   {
+      $this->checkRequireFields($params, array('username', 'phone', 'province', 'city', 'district', 'address', 'postCode'));
+      $curUser = $this->getCurUser();
+      
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_ADDRESS,
+         'addAddress',
+         array($curUser->getId(), $params)
+      );
+   }
+   
+   /**
+    * 修改一个收货地址
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function updateAddress(array $params)
+   {
+      $this->checkRequireFields($params, array('id', 'username', 'phone', 'province', 'city', 'district', 'address', 'postCode'));
+      $curUser = $this->getCurUser();
+      $id = (int)$params['id'];
+      unset($params['id']);
+      
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_ADDRESS,
+         'updateAddress',
+         array($curUser->getId(), $id, $params)
+      );
+   }
+   
+   /**
+    * 删除一条地址记录
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function deleteAddress(array $params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      $curUser = $this->getCurUser();
+      
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_ADDRESS,
+         'deleteAddress',
+         array($curUser->getId(), (int)$params['id'])
+      );
+   }
+   
+   /**
+    * 设置一个地址为默认地址
+    * 
+    * @param array $params
+    */
+   public function setDefaultAddress(array $params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      $curUser = $this->getCurUser();
+      
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_ADDRESS,
+         'setDefaultAddress',
+         array($curUser->getId(), (int)$params['id'])
       );
    }
    
@@ -175,6 +276,58 @@ class User extends AbstractScript
          BUYER_CONST::APP_API_BUYER_ACL,
          'checkPicCode',
          array($params['code'], (int)$params['type'])
+      );
+   }
+   
+   /**
+    * 检查手机号码是否存在
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function checkPhoneExist(array $params)
+   {
+      $this->checkRequireFields($params, array('phone'));
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,  
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_MGR,
+         'checkPhoneExist',
+         array($params['phone'])
+      );
+   }
+   
+   /**
+    * 检测用户名是否存在
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function checkNameExist(array $params)
+   {
+      $this->checkRequireFields($params, array('name'));
+      
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_MGR,
+         'checkNameExist',
+         array($params['name'])
+      );
+   }
+   
+   /**
+    * 获取当前登陆的会员信息
+    * 
+    * @return type
+    */
+   public function getCurUser()
+   {
+      return $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_ACL,
+         'getCurUser'
       );
    }
    

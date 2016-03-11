@@ -72,7 +72,7 @@ class Acl extends AbstractLib
          Constant::MODULE_NAME, 
          Constant::APP_NAME, 
          Constant::APP_API_BUYER_MGR, 
-         'addUser', 
+         'addBuyer', 
          array($userInfo)
       );
    }

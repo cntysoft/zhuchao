@@ -20,21 +20,37 @@ class BuyerMgr extends AbstractLib
     * @param array $params
     * @return boolean
     */
-   public function addUser(array $params)
+   public function addBuyer(array $params)
    {
-      if(!$params['phone']){
+      if(!isset($params['phone']) || !$params['phone']){
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
             $errorType->msg('E_BUYER_PHONE_EMPTY'), $errorType->code('E_BUYER_PHONE_EMPTY')
          ), $this->getErrorTypeContext());
       }
-      if(!$params['password']){
+      if(isset($params['password']) || !$params['password']){
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
             $errorType->msg('E_BUYER_PASSWORD_EMPTY'), $errorType->code('E_BUYER_PASSWORD_EMPTY')
          ), $this->getErrorTypeContext());
       }
+      
+      if($params['name'] && $this->checkNameExist($params['name'])){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_BUYER_NAME_EXIST', $params['name']), $errorType->code('E_BUYER_NAME_EXIST')
+         ), $this->getErrorTypeContext());
+      }
+      if($this->checkPhoneExist($params['phone'])){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_BUYER_PHONE_EXIST', $params['name']), $errorType->code('E_BUYER_PHONE_EXIST')
+         ), $this->getErrorTypeContext());
+      }
+      
       $data['phone'] = $params['phone'];
+      $pwdHasher = $this->di->getShared('security');
+      $data['password'] = $pwdHasher->hash($params['password']);
       $data['password'] = $params['password'];
       $data['name']  = $params['name'];
       $data['status'] = isset($params['status']) ? (int)$params['status'] : Constant::USER_STATUS_NORMAL;
@@ -51,19 +67,6 @@ class BuyerMgr extends AbstractLib
       $baseInfo = new BaseInfoModel();
       $requires = $baseInfo->getRequireFields(array('id', 'profileId'));
       $this->checkRequireFields($data, $requires);
-
-      if($data['name'] && $this->checkNameExist($data['name'])){
-         $errorType = $this->getErrorType();
-         Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_NAME_EXIST', $data['name']), $errorType->code('E_BUYER_NAME_EXIST')
-         ), $this->getErrorTypeContext());
-      }
-      if($this->checkPhoneExist($data['phone'])){
-         $errorType = $this->getErrorType();
-         Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_PHONE_EXIST', $data['name']), $errorType->code('E_BUYER_PHONE_EXIST')
-         ), $this->getErrorTypeContext());
-      }
       
       $profile = new ProfileModel();
       $pdata = array(
@@ -121,6 +124,91 @@ class BuyerMgr extends AbstractLib
          )
       ));
    }
+   
+   /**
+    * 更新一个采购会员的信息
+    * 
+    * @param integer $id
+    * @param array $params
+    * @return boolean
+    */
+   public function updateBuyer($id, array $params)
+   {
+      $buyer = $this->getBuyerById($id);
+      if(!$buyer){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_BUYER_ACL_USER_NOT_EXIST', $id), $errorType->code('E_BUYER_ACL_USER_NOT_EXIST')
+         ), $this->getErrorTypeContext());
+      }
+      Kernel\unset_array_values($params, array('id', 'profileId'));
+      if(isset($params['name']) && $params['name'] && $params['name'] != $buyer->getName() && $this->checkNameExist($params['name'])){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_BUYER_NAME_EXIST'), $errorType->code('E_BUYER_NAME_EXIST')
+         ), $this->getErrorTypeContext());
+      }
+      
+      if(isset($params['phone']) && $params['phone'] && $params['phone'] != $buyer->getPhone() && $this->checkPhoneExist($params['phone'])){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_BUYER_PHONE_EXIST'), $errorType->code('E_BUYER_PHONE_EXIST')
+         ), $this->getErrorTypeContext());
+      }
+      
+      $db = Kernel\get_db_adapter();
+      try{
+         $db->begin();
+         $profile = $buyer->getProfile();
+         $pfields = $profile->getDataFields();
+         $pdata = $data = array();
+         foreach($params as $key => $val){
+            if(in_array($key, $pfields)){
+               $pdata[$key] = $val;
+               unset($params[$key]);
+            }
+         }
+         $profile->assignBySetter($pdata);
+         $profile->update();
+         
+         $fields = $buyer->getDataFields();
+         foreach($params as $key => $val){
+            if(in_array($key, $fields)){
+               $data[$key] = $val;
+            }
+         }
+         
+         $buyer->assignBySetter($data);
+         $buyer->update();
+         return $db->commit();
+      } catch (Exception $ex) {
+         $db->rollback();
+         
+         Kernel\throw_exception($ex, $this->getErrorTypeContext());
+      }
+   }
+   
+   /**
+    * 更改采购会员的手机号码
+    * 
+    * @param integer $id
+    * @param string $phone
+    */
+   public function changePhone($id, $phone)
+   {
+      $buyer = $this->getBuyerById($id);
+      
+      if(!$buyer){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_BUYER_ACL_USER_NOT_EXIST', $buyerId), $errorType->code('E_BUYER_ACL_USER_NOT_EXIST')
+         ), $this->getErrorTypeContext());
+      }
+      
+      $buyer->setPhone($phone);
+      return $buyer->update();
+   }
+   
    /**
     * 判断用户名是否存在，存在返回true，不存在返回false
     * 

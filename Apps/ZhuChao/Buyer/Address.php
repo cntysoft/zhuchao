@@ -77,11 +77,11 @@ class Address extends AbstractLib
       $address = $this->getAddressByBuyerAndId((int)$buyerId, (int)$addressId);
       
       Kernel\unset_array_values($params, array('id', 'buyerId', 'inputTime'));
-      $address->assignBySetter($params);
-      $address->update();
       if(isset($params['isDefault']) && $params['isDefault']){
-         return $this->setDefaultAddress($buyerId, $addressId);
+         $this->setDefaultAddress($buyerId, $addressId);
       }
+      $address->assignBySetter($params);
+      return $address->update();
    }
    
    /**
