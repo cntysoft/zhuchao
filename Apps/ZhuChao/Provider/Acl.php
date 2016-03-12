@@ -125,11 +125,11 @@ class Acl extends AbstractLib
       if (!$chkCode) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-                 $errorType->msg('E_BUYER_ACL_PIC_CODE_EXPIRE', $code), $errorType->code('E_BUYER_ACL_PIC_CODE_EXPIRE')));
+                 $errorType->msg('E_PROVIDER_ACL_PIC_CODE_EXPIRE', $code), $errorType->code('E_PROVIDER_ACL_PIC_CODE_EXPIRE')));
       } elseif (strtoupper($code) !== $chkCode) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-                 $errorType->msg('E_BUYER_ACL_PIC_CODE_ERROR', $code), $errorType->code('E_BUYER_ACL_PIC_CODE_ERROR')));
+                 $errorType->msg('E_PROVIDER_ACL_PIC_CODE_ERROR', $code), $errorType->code('E_PROVIDER_ACL_PIC_CODE_ERROR')));
       }
 
       //删除Session
@@ -192,13 +192,13 @@ class Acl extends AbstractLib
       $token = $this->sessionManager->offsetGet($sessionKey);
       if (!$token) {
          $errorType = $this->getErrorType();
-         Kernel\throw_exception(new Exception($errorType->msg('E_BUYER_ACL_SMS_EXPIRE', $code), $errorType->code('E_BUYER_ACL_SMS_EXPIRE')), $this->getErrorTypeContext());
+         Kernel\throw_exception(new Exception($errorType->msg('E_PROVIDER_ACL_SMS_EXPIRE', $code), $errorType->code('E_PROVIDER_ACL_SMS_EXPIRE')), $this->getErrorTypeContext());
       }
       $token = explode('|', $token);
 
       if ($token[0] != $phone || $token[1] != $code) {
          $errorType = $this->getErrorType();
-         Kernel\throw_exception(new Exception($errorType->msg('E_BUYER_ACL_SMS_ERROR', $code), $errorType->code('E_BUYER_ACL_SMS_ERROR')), $this->getErrorTypeContext());
+         Kernel\throw_exception(new Exception($errorType->msg('E_PROVIDER_ACL_SMS_ERROR', $code), $errorType->code('E_PROVIDER_ACL_SMS_ERROR')), $this->getErrorTypeContext());
       }
 
       $this->sessionManager->offsetUnset($sessionKey);
@@ -299,12 +299,7 @@ class Acl extends AbstractLib
    {
       //如果传入了验证码，首先验证登录的验证码
       if ($chkCode) {
-         $sysChkCode = $this->sessionManager->offsetGet(\Cntysoft\PROVIDER_USER_S_KEY_LOGIN_CHK_CODE);
-         if (strtoupper($chkCode) !== $sysChkCode) {
-            $errorType = $this->getErrorType();
-            Kernel\throw_exception(new Exception(
-                    $errorType->msg('E_CHECK_CODE_ERROR'), $errorType->code('E_CHECK_CODE_ERROR')), $this->getErrorTypeContext());
-         }
+         $this->checkPicCode($chkCode, Constant::PIC_CODE_TYPE_LOGIN);
       }
       $method = $this->getLoginMethod($type);
       //获取用户信息
@@ -351,7 +346,7 @@ class Acl extends AbstractLib
             $cookieLife = 7 * 24 * 60 * 60;
          }
          $this->cookieManager->setCookie($authKey, $token, $cookieLife, \Cntysoft\SYS_DOMAIN_DEVEL);
-         $this->sessionManager->offsetSet(\Cntysoft\FRONT_USER_BUYER_S_KEY_INFO, $key . '|' . $type);
+         $this->sessionManager->offsetSet(\Cntysoft\FRONT_USER_PROVIDER_S_KEY_INFO, $key . '|' . $type);
          return true;
       } catch (\Exception $ex) {
          //登陆失败，记录信息
@@ -393,7 +388,7 @@ class Acl extends AbstractLib
          $type = $data[1];
          $method = $this->getLoginMethod($type);
          $this->curUser = $this->getAppCaller()->call(
-                 Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_BUYER_MGR, $method, array($key)
+                 Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_MANAGER, $method, array($key)
          );
       }
 
@@ -489,7 +484,7 @@ class Acl extends AbstractLib
          $this->checkSmsCode($phone, $code, Constant::SMS_TYPE_FORGET);
       }
       $user = $user = $this->getAppCaller()->call(
-              Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_BUYER_MGR, 'getUserByPhone', array($phone)
+              Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_MANAGER, 'getUserByPhone', array($phone)
       );
 
       if (!$user) {
@@ -549,7 +544,7 @@ class Acl extends AbstractLib
 
       $ret;
       //创建文件夹
-      $targetDir = CNTY_UPLOAD_DIR . DS . 'Apps' . DS . 'ZhuChao' . DS . 'Buyer' . DS . 'Avatar';
+      $targetDir = CNTY_UPLOAD_DIR . DS . 'Apps' . DS . 'ZhuChao' . DS . 'Provider' . DS . 'Avatar';
       if (!file_exists($targetDir)) {
          Filesystem::createDir($targetDir, 0755, true);
       }
@@ -623,7 +618,7 @@ class Acl extends AbstractLib
       $keys = $this->getCookieKeys();
       $key = $keys[Constant::AUTH_KEY];
       $this->cookieManager->deleteCookie($key, \Cntysoft\SYS_DOMAIN_DEVEL);
-      $this->sessionManager->offsetUnset(\Cntysoft\FRONT_USER_BUYER_S_KEY_INFO);
+      $this->sessionManager->offsetUnset(\Cntysoft\FRONT_USER_PROVIDER_S_KEY_INFO);
    }
 
    /**

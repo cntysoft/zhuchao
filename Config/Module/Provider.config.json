@@ -28,6 +28,33 @@
             }
         },
         {
+            "key" : "LoginCheckCode",
+            "rule" : "\/loginchkcode",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Utils",
+                "action" : "loginchk"
+            }
+        },
+        {
+            "key" : "RegisterCheckCode",
+            "rule" : "\/registerchkcode",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Utils",
+                "action" : "registerchk"
+            }
+        },
+        {
+            "key" : "ForgetCheckCode",
+            "rule" : "\/forgetchkcode",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Utils",
+                "action" : "forgetchk"
+            }
+        },
+        {
             "key" : "ProviderIndex",
             "rule" : "\/",
             "option" : {
