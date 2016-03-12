@@ -39,12 +39,12 @@ class Mgr extends AbstractLib
       if ($this->providerNameExist($data['name'])) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-                 $errorType->msg('E_USER_NAME_EXIST'), $errorType->code('E_USER_NAME_EXIST')), $this->getErrorTypeContext());
+                 $errorType->msg('E_PROVIDER_NAME_EXIST'), $errorType->code('E_PROVIDER_NAME_EXIST')), $this->getErrorTypeContext());
       }
       if ($this->providerPhoneExist($data['phone'])) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-                 $errorType->msg('E_USER_PHONE_EXIST'), $errorType->code('E_USER_PHONE_EXIST')), $this->getErrorTypeContext());
+                 $errorType->msg('E_PROVIDER_PHONE_EXIST'), $errorType->code('E_PROVIDER_PHONE_EXIST')), $this->getErrorTypeContext());
       }
 
       $di = Kernel\get_global_di();
