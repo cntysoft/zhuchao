@@ -2,7 +2,7 @@
     "routes" : [
         {
             "key" : "Category",
-            "rule" : "\/category\/{nodeIdentifier:[a-z]+}.html",
+            "rule" : "/category/{nodeIdentifier:[a-z]+}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Index",
@@ -11,7 +11,7 @@
         },
         {
             "key" : "CategoryWithPage",
-            "rule" : "\/category\/{nodeIdentifier:[a-z]+}\/{pageid:[1-9][0-9]*}.html",
+            "rule" : "/category/{nodeIdentifier:[a-z]+}/{pageid:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Index",
@@ -20,7 +20,7 @@
         },
         {
             "key" : "Item",
-            "rule" : "\/item\/{itemid:[0-9]+}.html",
+            "rule" : "/item/{itemid:[0-9]+}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Index",
@@ -29,7 +29,7 @@
         },
         {
             "key" : "404",
-            "rule" : "\/404.html",
+            "rule" : "/404.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Exception",
@@ -38,7 +38,7 @@
         },
         {
             "key" : "ProductClassifyList",
-            "rule" : "\/productclassify\/{categoryId:[1-9][0-9]*}\/{pageId:[1-9][0-9]*}.html",
+            "rule" : "/productclassify/{categoryId:[1-9][0-9]*}/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Product",
@@ -48,7 +48,7 @@
         },
         {
             "key" : "Product",
-            "rule" : "\/product\/{productid:[0-9]+}.html",
+            "rule" : "/product/{productid:[0-9]+}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Product",
@@ -57,7 +57,7 @@
         },
         {
             "key" : "addToCart",
-            "rule" : "\/addtocart.html",
+            "rule" : "/addtocart.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Cart",
@@ -66,7 +66,7 @@
         },
         {
             "key" : "Cart",
-            "rule" : "\/cart.html",
+            "rule" : "/cart.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Cart",
@@ -75,7 +75,7 @@
         },
         {
             "key" : "SubmitOrder",
-            "rule" : "\/submit.html",
+            "rule" : "/submit.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Cart",
@@ -84,7 +84,7 @@
         },
         {
             "key" : "Pay",
-            "rule" : "\/pay.html",
+            "rule" : "/pay.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Cart",
@@ -93,7 +93,7 @@
         },
         {
             "key" : "DoPay",
-            "rule" : "\/dopay.html",
+            "rule" : "/dopay.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Cart",
@@ -102,7 +102,7 @@
         },
         {
             "key" : "AliPayNotify",
-            "rule" : "\/notify\/alipay.html",
+            "rule" : "/notify/alipay.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Notify",
@@ -111,7 +111,7 @@
         },
         {
             "key" : "WeChatNotify",
-            "rule" : "\/notify\/wechat.html",
+            "rule" : "/notify/wechat.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Notify",
@@ -120,7 +120,7 @@
         },
         {
             "key" : "WxGrant",
-            "rule" : "\/notify\/wxgrant.html",
+            "rule" : "/notify/wxgrant.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Notify",
@@ -129,7 +129,7 @@
         },
         {
             "key" : "Print",
-            "rule" : "\/print\/{oid:[0-9]+}.html",
+            "rule" : "/print/{oid:[0-9]+}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Index",
@@ -138,7 +138,7 @@
         },
         {
             "key" : "Search",
-            "rule" : "\/query.html",
+            "rule" : "/query.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Index",
@@ -147,7 +147,7 @@
         },
         {
             "key" : "SearchPage",
-            "rule" : "\/searchpage.html",
+            "rule" : "/searchpage.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Product",
@@ -156,7 +156,7 @@
         },
         {
             "key" : "ClassifyList",
-            "rule" : "\/classifylist.html",
+            "rule" : "/classifylist.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Product",
@@ -169,15 +169,15 @@
         "category" : "文章列表模板.phtml",
         "item" : "文章内容模板.phtml",
         "helpcenter" : "帮助中心模板.phtml",
-        "productclassifylist" : "商品类\/分类商品列表.phtml",
-        "product" : "商品类\/商品内容页.phtml",
-        "addtocart" : "购物流程\/加入购物车成功页.phtml",
-        "cart" : "购物流程\/购物车内容页.phtml",
-        "submit" : "购物流程\/结算页.phtml",
-        "pay" : "购物流程\/支付页.phtml",
-        "print" : "其他模板\/订单打印页模板.phtml",
-        "search" : "商品类\/搜索商品列表.phtml",
-        "classifylist" : "商品类\/商品分类列表.phtml",
-        "searchpage" : "商品类\/搜索页.phtml"
+        "productclassifylist" : "商品类/分类商品列表.phtml",
+        "product" : "商品类/商品内容页.phtml",
+        "addtocart" : "购物流程/加入购物车成功页.phtml",
+        "cart" : "购物流程/购物车内容页.phtml",
+        "submit" : "购物流程/结算页.phtml",
+        "pay" : "购物流程/支付页.phtml",
+        "print" : "其他模板/订单打印页模板.phtml",
+        "search" : "商品类/搜索商品列表.phtml",
+        "classifylist" : "商品类/商品分类列表.phtml",
+        "searchpage" : "商品类/搜索页.phtml"
     }
 }

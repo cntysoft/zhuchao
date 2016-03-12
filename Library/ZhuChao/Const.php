@@ -50,10 +50,16 @@ const ZHU_CHAO_STD_EXCEPTION_CONTEXT = 'ZhuChao/Kernel/StdErrorType';
 //商家的默认域名
 const MERCHANT_DOMAIN = 'fhzc.com';
 const MERCHANT_DOMAIN_DEBUG = 'fhzc.cn';
-const ZHUCHAO_DB_NAME = 'fenghuang';
+const ZHUCHAO_PLATFORM_DBNAME = 'zhuchao_devel';
 
+//系统的主域名
 const SYS_DOMAIN = 'fhzc.com';
 const SYS_DOMAIN_DEVEL = 'abc.com';
+
+//站点系统的主域名
+const ZHUCHAO_SITE_DOMAIN = 'site.fhzc.com';
+const ZHUCHAO_SITE_DOMAIN_DEVEL = 'site.abc.com';
+const ZHUCHAO_SITE_DB_PREFIX = 'zhuchao_site_';
 
 const OTS_INTERNAL_API = 'http://fhzc-ots.cn-beijing.ots-internal.aliyuncs.com';  
 const OTS_PUB_API = 'http://fhzc-ots.cn-beijing.ots.aliyuncs.com';

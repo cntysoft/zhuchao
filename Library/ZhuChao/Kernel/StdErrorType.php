@@ -22,7 +22,8 @@ class StdErrorType
       'E_OPENAPI_PERMISSION_DENY' => array(4, 'api : %s invoke fail, permission deny'),
       'E_API_NEED_LOGIN' => array(5, 'api need login'),
       'E_MOBILE_API_META_ILLEGAL' => array(6, 'mobile api meta illegal'),
-      'E_MOBILE_API_NO_PERM' => array(7, 'mobile api no permission')
+      'E_MOBILE_API_NO_PERM' => array(7, 'mobile api no permission'),
+      'E_SITE_NOT_EXIST' => array(8, 'site not exist')
    );
 
    /**

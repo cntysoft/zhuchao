@@ -47,9 +47,9 @@ function is_devel_mode()
  */
 function is_local_deploy()
 {
-   if(\Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_DEVEL ||
-      \Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_LOCAL_DEBUG ||
-      \Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_LOCAL_PRODUCT){
+   if (\Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_DEVEL ||
+           \Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_LOCAL_DEBUG ||
+           \Cntysoft\RT_DEPLOY_TYPE == \Cntysoft\DEPLOY_TYPE_LOCAL_PRODUCT) {
       return true;
    }
    return false;
@@ -87,7 +87,7 @@ function get_image_oss_bucket_name()
  */
 function get_image_cdn_server_url()
 {
-   return 'http://'.\Cntysoft\RT_ZHUCHAO_IMG_CDN_SERVER;
+   return 'http://' . \Cntysoft\RT_ZHUCHAO_IMG_CDN_SERVER;
 }
 
 /**
@@ -100,7 +100,7 @@ function get_image_cdn_server_url()
 function get_image_cdn_url($resource, $width = null, $height = null)
 {
    $resource = trim($resource);
-   if('' == $resource){
+   if ('' == $resource) {
       return $resource;
    }
    if ($resource[0] == '/') {
@@ -150,7 +150,7 @@ function get_image_cdn_url($resource, $width = null, $height = null)
 function get_image_cdn_url_operate($resource, $arguments = array(), $watermark = false)
 {
    $resource = trim($resource);
-   if('' == $resource){
+   if ('' == $resource) {
       return $resource;
    }
    if ($resource[0] == '/') {
@@ -159,40 +159,40 @@ function get_image_cdn_url_operate($resource, $arguments = array(), $watermark =
    } else {
       $url = get_image_cdn_server_url() . '/' . $resource;
       $style = '';
-      if(array_key_exists('c', $arguments)){
+      if (array_key_exists('c', $arguments)) {
          $arguments['e'] = 1;
       }
-      if(array_key_exists('bgc', $arguments)){
+      if (array_key_exists('bgc', $arguments)) {
          $arguments['e'] = 4;
       }
-      if(!array_key_exists('t', $arguments)){
+      if (!array_key_exists('t', $arguments)) {
          $arguments['t'] = 'src';
       }
-      foreach($arguments as $key => $val){
-         if('2ci' == $key){
+      foreach ($arguments as $key => $val) {
+         if ('2ci' == $key) {
             $style .= '_' . $val . '2ci';
-         }else if('q' == $key){
-            $style .= '_'. $val . 'Q';
-         }else if('t' == $key){
-            $style .= '_.'. $val;
-         }else{
-            $style .= '_'. $val . $key;
+         } else if ('q' == $key) {
+            $style .= '_' . $val . 'Q';
+         } else if ('t' == $key) {
+            $style .= '_.' . $val;
+         } else {
+            $style .= '_' . $val . $key;
          }
       }
       if ('' != $style) {
          $url .= '@' . substr($style, 1);
       }
       $encodeObject = url_safe_base64_encode('Static/watermark.png');
-      if(isset($arguments['h']) && $arguments['h'] < 150){
-         $encodeObject = url_safe_base64_encode('Static/watermark.png@'. floor($arguments['h']/3).'h');
+      if (isset($arguments['h']) && $arguments['h'] < 150) {
+         $encodeObject = url_safe_base64_encode('Static/watermark.png@' . floor($arguments['h'] / 3) . 'h');
       }
-      
-      if($watermark){
-         if('' == $style){
-            $url.='@watermark=1&&object='.$encodeObject.'&p=3|watermark=1&&object='.$encodeObject.'&p=5|watermark=1&&object='.$encodeObject.'&p=7';
-         }else{
-            $url.='|watermark=1&&object='.$encodeObject.'&p=3|watermark=1&&object='.$encodeObject.'&p=5|watermark=1&&object='.$encodeObject.'&p=7';
-         } 
+
+      if ($watermark) {
+         if ('' == $style) {
+            $url.='@watermark=1&&object=' . $encodeObject . '&p=3|watermark=1&&object=' . $encodeObject . '&p=5|watermark=1&&object=' . $encodeObject . '&p=7';
+         } else {
+            $url.='|watermark=1&&object=' . $encodeObject . '&p=3|watermark=1&&object=' . $encodeObject . '&p=5|watermark=1&&object=' . $encodeObject . '&p=7';
+         }
       }
       return $url;
    }
@@ -201,16 +201,37 @@ function get_image_cdn_url_operate($resource, $arguments = array(), $watermark =
 function url_safe_base64_encode($string)
 {
    $data = base64_encode($string);
-   $data = str_replace(array('+','/','='),array('-','_',''),$data);
+   $data = str_replace(array('+', '/', '='), array('-', '_', ''), $data);
    return $data;
 }
 
-function url_safe_base64_decode($string) {
-   $data = str_replace(array('-','_'),array('+','/'),$string);
+function url_safe_base64_decode($string)
+{
+   $data = str_replace(array('-', '_'), array('+', '/'), $string);
    $mod4 = strlen($data) % 4;
    if ($mod4) {
-       $data .= substr('====', $mod4);
+      $data .= substr('====', $mod4);
    }
    return base64_decode($data);
- }
+}
 
+/**
+ * 获取当前访问的站点的ID
+ * 
+ * @staticvar int $siteId
+ * @param int $id
+ * @return int
+ */
+function get_site_id($id = null)
+{
+   static $siteId = null;
+   if (null == $siteId && is_int($id) && $id > 0) {
+      $siteId = $id;
+   }
+   return $siteId;
+}
+
+function get_site_db_name()
+{
+   return ZHUCHAO_SITE_DB_PREFIX . get_site_id();
+}
