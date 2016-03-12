@@ -31,7 +31,7 @@ class Mgr extends AbstractLib
          'status'                 => Constant::PROVIDER_STATUS_NORMAL, //默认正常
          'loginErrorTimes'        => 0,
          'registerTime'           => time(),
-         'lastLoginTime'        => time(),
+         'lastLoginTime'          => time(),
          'currentLoginErrorTimes' => 0,
          'lastLoginIp'            => ''
       );
@@ -47,7 +47,9 @@ class Mgr extends AbstractLib
                  $errorType->msg('E_USER_PHONE_EXIST'), $errorType->code('E_USER_PHONE_EXIST')), $this->getErrorTypeContext());
       }
 
-      $data['password'] = Kernel\generate_password($data['password']);
+      $di = Kernel\get_global_di();
+      $security = $di->getShared('security');
+      $data['password'] = $security->hash($data['password']);
       //处理用户的基本信息和详细信息
       $profile = new ProfileModel();
       $profileDataFields = $profile->getDataFields();
@@ -104,7 +106,9 @@ class Mgr extends AbstractLib
       try {
          $db->begin();
          if (isset($data['password'])) {
-            $data['password'] = Kernel\generate_password($data['password']);
+            $di = Kernel\get_global_di();
+            $security = $di->getShared('security');
+            $data['password'] = $security->hash($data['password']);
          }
          $profile->assignBySetter($profileData);
          $profile->save();
@@ -180,4 +184,25 @@ class Mgr extends AbstractLib
       return $provider;
    }
 
+   /**
+    * 根据名称获取供应商
+    * 
+    * @param string $name
+    * @return 
+    */
+   public function getProviderByName($name)
+   {
+      return BaseModel::findFirst("name = '$name'");
+   }
+   
+   /**
+    * 根据手机号码获取供应商
+    * 
+    * @param string $phone
+    * @return 
+    */
+   public function getProviderByPhone($phone)
+   {
+      return BaseModel::findFirst("phone = '$phone'");
+   }
 }

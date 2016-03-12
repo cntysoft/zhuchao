@@ -35,6 +35,10 @@ class Mgr extends AbstractHandler
          }
       }
 
+      $password = $params['password'];
+      unset($params['password']);
+      $params['password'] = hash('sha256', $password);
+
       return $this->getAppCaller()->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'addProvider', array($params));
    }
 
@@ -55,6 +59,12 @@ class Mgr extends AbstractHandler
             unset($values[$key]);
             $values[$key] = strtotime($time);
          }
+      }
+
+      if (isset($values['password'])) {
+         $password = $values['password'];
+         unset($values['password']);
+         $values['password'] = hash('sha256', $password);
       }
       return $this->getAppCaller()->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProvider', array($params['id'], $values));
    }
