@@ -65,7 +65,7 @@ class User extends AbstractScript
          BUYER_CONST::APP_NAME,
          BUYER_CONST::APP_API_BUYER_ACL,
          'login',
-         array($params['key'], $params['password'], $type)
+         array($params['key'], $params['password'], $type, $params['remember'])
       );
    }
    
@@ -192,6 +192,9 @@ class User extends AbstractScript
     * 找回密码的操作
     * 
     * @param array $params
+    * <code>
+    *    password 加密之后的密码
+    * </code>
     * @return boolean
     */
    public function findPassword(array $params)
