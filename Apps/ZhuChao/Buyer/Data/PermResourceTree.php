@@ -8,7 +8,7 @@
 */
 return array(
    'text'        => '采购商管理',
-   'internalKey' => 'BuyerMgr',
+   'internalKey' => 'Buyer',
    'isApp'       => true,
    'hasDetail'   => false,
    'children'    => array()

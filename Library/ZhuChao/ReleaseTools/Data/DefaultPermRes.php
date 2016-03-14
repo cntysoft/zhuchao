@@ -14,5 +14,6 @@ return array(
    'Site.CmMgr',
    'Site.Content',
    'Site.Setting',
-   'ZhuChao.CategoryMgr'
+   'ZhuChao.CategoryMgr',
+   'ZhuChao.Buyer'
 );
