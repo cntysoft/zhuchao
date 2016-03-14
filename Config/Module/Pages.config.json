@@ -5,7 +5,7 @@
             "rule" : "/category/{nodeIdentifier:[a-z]+}.html",
             "option" : {
                 "module" : "Pages",
-                "controller" : "Index",
+                "controller" : "Category",
                 "action" : "category"
             }
         },
@@ -14,7 +14,7 @@
             "rule" : "/category/{nodeIdentifier:[a-z]+}/{pageid:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Pages",
-                "controller" : "Index",
+                "controller" : "Category",
                 "action" : "category"
             }
         },
@@ -23,7 +23,7 @@
             "rule" : "/item/{itemid:[0-9]+}.html",
             "option" : {
                 "module" : "Pages",
-                "controller" : "Index",
+                "controller" : "Category",
                 "action" : "item"
             }
         },
@@ -56,92 +56,11 @@
             }
         },
         {
-            "key" : "addToCart",
-            "rule" : "/addtocart.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Cart",
-                "action" : "addToCart"
-            }
-        },
-        {
-            "key" : "Cart",
-            "rule" : "/cart.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Cart",
-                "action" : "cart"
-            }
-        },
-        {
-            "key" : "SubmitOrder",
-            "rule" : "/submit.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Cart",
-                "action" : "submit"
-            }
-        },
-        {
-            "key" : "Pay",
-            "rule" : "/pay.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Cart",
-                "action" : "pay"
-            }
-        },
-        {
-            "key" : "DoPay",
-            "rule" : "/dopay.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Cart",
-                "action" : "dopay"
-            }
-        },
-        {
-            "key" : "AliPayNotify",
-            "rule" : "/notify/alipay.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Notify",
-                "action" : "alipay"
-            }
-        },
-        {
-            "key" : "WeChatNotify",
-            "rule" : "/notify/wechat.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Notify",
-                "action" : "wechat"
-            }
-        },
-        {
-            "key" : "WxGrant",
-            "rule" : "/notify/wxgrant.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Notify",
-                "action" : "wxgrant"
-            }
-        },
-        {
-            "key" : "Print",
-            "rule" : "/print/{oid:[0-9]+}.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Index",
-                "action" : "print"
-            }
-        },
-        {
             "key" : "Search",
             "rule" : "/query.html",
             "option" : {
                 "module" : "Pages",
-                "controller" : "Index",
+                "controller" : "Category",
                 "action" : "search"
             }
         },
@@ -152,15 +71,6 @@
                 "module" : "Pages",
                 "controller" : "Product",
                 "action" : "searchpage"
-            }
-        },
-        {
-            "key" : "ClassifyList",
-            "rule" : "/classifylist.html",
-            "option" : {
-                "module" : "Pages",
-                "controller" : "Product",
-                "action" : "classifylist"
             }
         }
     ],

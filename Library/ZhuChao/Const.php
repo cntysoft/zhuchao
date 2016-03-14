@@ -61,21 +61,23 @@ const ZHUCHAO_SITE_DOMAIN = 'site.fhzc.com';
 const ZHUCHAO_SITE_DOMAIN_DEVEL = 'site.abc.com';
 const ZHUCHAO_SITE_DB_PREFIX = 'zhuchao_site_';
 
+//阿里OTS配置
 const OTS_INTERNAL_API = 'http://fhzc-ots.cn-beijing.ots-internal.aliyuncs.com';  
 const OTS_PUB_API = 'http://fhzc-ots.cn-beijing.ots.aliyuncs.com';
+const ZHUCHAO_OTS_INSTANCE_NAME = 'fhzc-b2b-ots';
+
 //阿里的API服务器
 const ALI_SEARCH_API_PUB_ENTRY = 'http://opensearch-cn-beijing.aliyuncs.com';
 const ALI_SEARCH_INTERNAL_ENTRY = 'http://intranet.opensearch-cn-beijing.aliyuncs.com';
-const ZHUCHAO_OTS_INSTANCE_NAME = 'fhzc-ots';
 //OSS相关常量的定义
 const OSS_INTERNAL_ENTRY = 'oss-cn-beijing-internal.aliyuncs.com';
 const OSS_PUBLIC_ENTRY = 'oss-cn-beijing.aliyuncs.com';
-const ZHUCHAO_OSS_IMG_BUCKET = 'fhzc-img';
-const ZHUCHAO_OSS_IMG_BUCKET_DEVEL = 'fhzc-img-devel';
-const ZHUCHAO_OSS_IMG_BUCKET_DEBUG = 'fhzc-img-debug';
-const ZHUCHAO_IMG_CDN_SERVER = 'img.cdn.fhzc.com';
-const ZHUCHAO_IMG_CDN_SERVER_DEVEL = 'img-devel.cdn.fhzc.com';
-const ZHUCHAO_IMG_CDN_SERVER_DEBUG = 'img-debug.cdn.fhzc.com';
+const ZHUCHAO_OSS_IMG_BUCKET = 'fhzc-b2b-img';
+const ZHUCHAO_OSS_IMG_BUCKET_DEVEL = 'fhzc-b2b-img-devel';
+const ZHUCHAO_OSS_IMG_BUCKET_DEBUG = 'fhzc-b2b-img-debug';
+const ZHUCHAO_IMG_CDN_SERVER = 'img-b2b.cdn.fhzc.com';
+const ZHUCHAO_IMG_CDN_SERVER_DEVEL = 'img-b2b-devel.cdn.fhzc.com';
+const ZHUCHAO_IMG_CDN_SERVER_DEBUG = 'img-b2b-debug.cdn.fhzc.com';
 const STORAGE_BACKEND_OSS = 1;
 const STORAGE_BACKEND_LOCAL = 2;
 //部署模式

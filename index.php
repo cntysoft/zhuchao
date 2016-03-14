@@ -5,6 +5,8 @@
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
 chdir(__DIR__);
+//定义系统开始时间
+define('SYS_START_TIME', microtime(true));
 // 定义一些系统范围里面的常量
 define('DS', DIRECTORY_SEPARATOR);
 define('CNTY_ROOT_DIR', getcwd());

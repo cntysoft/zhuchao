@@ -33,6 +33,7 @@ return array(
    'app_zhuchao_provider_company_info',
    'app_zhuchao_provider_company_profile',
    'app_zhuchao_provider_profile',
+   'app_zhuchao_sitemgr_site',
    'join_category_content_model_template',
    'join_product_group',
    'join_sysuser_role',
