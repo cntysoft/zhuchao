@@ -1,12 +1,12 @@
 /*
  * Cntysoft Cloud Software Team
  *
- * @author Chanwang <chenyongwang1104@163.com>
+ * @author ZhiHui <liuyan2526@qq.com>
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
 /**
- * 供应商管理入口WIDGET
+ * 消息管理入口程序
  */
 Ext.define('App.ZhuChao.MessageMgr.Widget.Entry', {
    extend : 'WebOs.OsWidget.TreeNavWidget',
