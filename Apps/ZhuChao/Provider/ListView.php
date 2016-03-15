@@ -84,5 +84,23 @@ class ListView extends AbstractLib
       }
       return $items;
    }
+   
+   /**
+    * 获取全部的企业信息
+    * 
+    * @return 
+    */
+   public function getProviderCompanyListAll($name = '')
+   {
+      $cond = array();
+      if(!$name){
+         $cond[] = "name like '%".$name."%'";
+      }
+      $cond = implode(' and ', $cond);
+      
+      return CompanyModel::find(array(
+         $cond
+      ));
+   }
 
 }

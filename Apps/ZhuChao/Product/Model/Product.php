@@ -29,11 +29,28 @@ class Product extends BaseModel
    protected $isBatch;
    protected $inputTime;
    protected $updateTime;
+   protected $detailId;
    protected $status;
    
    public function getSource()
    {
       return 'app_zhuchao_product_base_info';
+   }
+   
+   public function initialize()
+   {
+      $this->belongsTo('categoryId', 'App\ZhuChao\CategoryMgr\Model\Category', 'id', array(
+         'alias' => 'category'
+      ));
+      $this->belongsTo('providerId', 'App\ZhuChao\Provider\Model\BaseInfo', 'id', array(
+         'alias' => 'provider'
+      ));
+      $this->belongsTo('companyId', 'App\ZhuChao\Provider\Model\Company', 'id', array(
+         'alias' => 'company'
+      ));
+      $this->hasOne('detailId', 'App\ZhuChao\Product\Model\ProductDetail', 'id', array(
+         'alias' => 'detail'
+      ));
    }
    
    public function getId()
@@ -124,6 +141,11 @@ class Product extends BaseModel
    public function getUpdateTime()
    {
       return (int)$this->updateTime;
+   }
+   
+   public function getDetailId()
+   {
+      return $this->detailId;
    }
 
    public function getStatus()
@@ -221,6 +243,11 @@ class Product extends BaseModel
       $this->updateTime = (int)$updateTime;
    }
 
+   public function setDetailId($detailId)
+   {
+      $this->detailId = $detailId;
+   }
+   
    public function setStatus($status)
    {
       $this->status = (int)$status;

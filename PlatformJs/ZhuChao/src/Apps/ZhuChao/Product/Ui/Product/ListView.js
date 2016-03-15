@@ -6,12 +6,12 @@
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
 /*
- * 供应商列表
+ * 产品列表
  */
-Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
+Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
     extend : 'Ext.grid.Panel',
     requires : [
-        'App.ZhuChao.Buyer.Const'
+        'App.ZhuChao.Product.Const'
     ],
     mixins : {
         langTextProvider : 'WebOs.Mixin.RunableLangTextProvider'
@@ -21,7 +21,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
      *
      * @property {String} runableLangKey
      */
-    runableLangKey : 'App.ZhuChao.Buyer',
+    runableLangKey : 'App.ZhuChao.Product',
     /*
      * @inheritdoc
      */
@@ -46,7 +46,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
     constructor : function (config)
     {
         config = config || {};
-        this.LANG_TEXT = this.GET_LANG_TEXT('UI.LIST_VIEW');
+        this.LANG_TEXT = this.GET_LANG_TEXT('UI.PRODUCT.LIST_VIEW');
         this.applyConstraintConfig(config);
         this.callParent([config]);
     },
@@ -67,10 +67,10 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
             columns : [
                 {text : COLS.ID, dataIndex : 'id', width : 80, resizable : false, menuDisabled : true},
                 {text : COLS.NAME, dataIndex : 'name', flex : 1, resizable : false, sortable : false, menuDisabled : true},
-                {text : COLS.PHONE, dataIndex : 'phone', width : 300, resizable : false, sortable : false, menuDisabled : true},
-                {text : COLS.SEX, dataIndex : 'sex', width : 100, resizable : false, sortable : false, menuDisabled : true, renderer : Ext.bind(this.sexRenderer, this)},
-                {text : COLS.REGTIME, dataIndex : 'registerTime', width : 240, resizable : false, sortable : false, menuDisabled : true},
-                {text : COLS.LAST_LOGIN_TIME, dataIndex : 'lastLoginTime', width : 240, resizable : false, sortable : false, menuDisabled : true},
+                {text : COLS.NUMBER, dataIndex : 'number', width : 300, resizable : false, sortable : false, menuDisabled : true},
+                {text : COLS.PRICE, dataIndex : 'price', width : 100, resizable : false, sortable : false, menuDisabled : true},
+                {text : COLS.GRADE, dataIndex : 'grade', width : 240, resizable : false, sortable : false, menuDisabled : true},
+                {text : COLS.INPUT_TIME, dataIndex : 'inputTime', width : 240, resizable : false, sortable : false, menuDisabled : true},
                 {text : COLS.STATUS, dataIndex : 'status', width : 140, resizable : false, sortable : false, menuDisabled : true, renderer : Ext.bind(this.statusRenderer, this)}
             ],
             store : store,
@@ -111,9 +111,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
             }, {
                 xtype : 'textfield',
                 width : 400,
-                name : 'phone',
-                regex : /1[3,5,7,8][0-9]{9}/,
-                regexText : L.ERROR_TEXT,
+                name : 'name',
                 emptyText : L.TIP
             }, {
                 xtype : 'button',
@@ -128,7 +126,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
     {
         this.mainPanelRef.renderNewTabPanel('Editor', {
             mode : WebOs.Kernel.Const.MODIFY_MODE, /*修改模式*/
-            targetId : record.get('id')
+            targetLoadId : record.get('id')
         });
     },
     createDataStore : function ()
@@ -138,19 +136,19 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
             fields : [
                 {name : 'id', type : 'integer', persist : false},
                 {name : 'name', type : 'string', persist : false},
-                {name : 'phone', type : 'string', persist : false},
-                {name : 'registerTime', type : 'string', persist : false},
-                {name : 'lastLoginTime', type : 'string', persist : false},
-                {name : 'status', type : 'integer', persist : false},
-                {name : 'sex', type : 'integer', persist : false}
+                {name : 'number', type : 'string', persist : false},
+                {name : 'price', type : 'string', persist : false},
+                {name : 'grade', type : 'string', persist : false},
+                {name : 'inputTime', type : 'string', persist : false},
+                {name : 'status', type : 'integer', persist : false}
             ],
             proxy : {
                 type : 'apigateway',
                 callType : 'App',
                 invokeMetaInfo : {
                     module : 'ZhuChao',
-                    name : 'Buyer',
-                    method : 'Buyer/getBuyerList'
+                    name : 'Product',
+                    method : 'Product/getProductList'
                 },
                 reader : {
                     type : 'json',
@@ -201,17 +199,11 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
     {
         var CODE = this.self.A_CODES;
         var L = this.LANG_TEXT.MENU;
-        var C = App.ZhuChao.Buyer.Const;
+        var C = App.ZhuChao.Product.Const;
         if(null == this.contextMenuRef){
             var items = [{
                     text : L.MODIFY,
                     code : CODE.MODIFY
-                }, {
-                    text : L.LOCK,
-                    code : CODE.LOCK_USER
-                }, {
-                    text : L.UNLOCK,
-                    code : CODE.UNLOCK_USER
                 }];
             
             this.contextMenuRef = new Ext.menu.Menu({
@@ -225,13 +217,13 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
         }
 
         var status = record.get('status');
-        if(C.BUYER_STATUS_NORMAL == status) {
-            this.contextMenuRef.items.getAt(1).setDisabled(false);
-            this.contextMenuRef.items.getAt(2).setDisabled(true);
-        }else {
-            this.contextMenuRef.items.getAt(1).setDisabled(true);
-            this.contextMenuRef.items.getAt(2).setDisabled(false);
-        }
+//        if(C.PRODUCT_STATUS_NORMAL == status) {
+//            this.contextMenuRef.items.getAt(1).setDisabled(false);
+//            this.contextMenuRef.items.getAt(2).setDisabled(true);
+//        }else {
+//            this.contextMenuRef.items.getAt(1).setDisabled(true);
+//            this.contextMenuRef.items.getAt(2).setDisabled(false);
+//        }
         this.contextMenuRef.record = record;
         return this.contextMenuRef;
     },
@@ -241,7 +233,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
     changUserStatus : function (record, status)
     {
         this.setLoading(Cntysoft.GET_LANG_TEXT('MSG.SAVE'));
-        this.mainPanelRef.appRef.changBuyerStatus({id : record.get('id'), 'status' : status}, function (response){
+        this.mainPanelRef.appRef.changProductStatus({id : record.get('id'), 'status' : status}, function (response){
             this.loadMask.hide();
             if(response.status){
                 record.set('status', status);
@@ -255,19 +247,13 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
         if(item){
             var C = this.self.A_CODES;
             var code = item.code;
-            var CONST = App.ZhuChao.Buyer.Const;
+            var CONST = App.ZhuChao.Product.Const;
             switch (code) {
                 case C.MODIFY:
-                    this.mainPanelRef.renderPanel('Editor', {
+                    this.mainPanelRef.renderNewTabPanel('Editor', {
                         mode : WebOs.Kernel.Const.MODIFY_MODE,
                         targetLoadId : menu.record.get('id')
                     });
-                    break;
-                case C.UNLOCK_USER:
-                    this.changUserStatus(menu.record, CONST.BUYER_STATUS_NORMAL);
-                    break;
-                case C.LOCK_USER:
-                    this.changUserStatus(menu.record, CONST.BUYER_STATUS_LOCK);
                     break;
             }
         }
@@ -293,18 +279,18 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
     statusRenderer : function (value)
     {
         var U_TEXT = this.LANG_TEXT.STATUS;
-        var C = App.ZhuChao.Buyer.Const;
+        var C = App.ZhuChao.Product.Const;
         switch (value) {
-            case C.BUYER_STATUS_NORMAL:
+            case C.PRODUCT_STATUS_NORMAL:
                 return '<span style = "color:green">' + U_TEXT.NORMAL + '</span>';
-            case C.BUYER_STATUS_LOCK:
+            case C.PRODUCT_STATUS_LOCK:
                 return '<span style = "color:red">' + U_TEXT.LOCK + '</span>';
         }
     },
     sexRenderer : function(value)
     {
       var U_TEXT = this.LANG_TEXT.SEX;
-        var C = App.ZhuChao.Buyer.Const;
+        var C = App.ZhuChao.Product.Const;
         switch (value) {
             case C.SEX_MAN:
                 return '<span style = "color:green">' + U_TEXT.MAN + '</span>';

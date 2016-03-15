@@ -21,6 +21,7 @@ Ext.define('AppRegs', {
       'App.Sys.Searcher.Main',
       'App.ZhuChao.CategoryMgr.Main',
       'App.ZhuChao.Provider.Main',
-      'App.ZhuChao.MessageMgr.Main'
+      'App.ZhuChao.MessageMgr.Main',
+      'App.ZhuChao.Product.Main'
    ]
 });

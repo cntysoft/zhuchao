@@ -8,7 +8,7 @@
 */
 return array(
    'text'        => '产品管理',
-   'internalKey' => 'ProductMgr',
+   'internalKey' => 'Product',
    'isApp'       => true,
    'hasDetail'   => false,
    'children'    => array()

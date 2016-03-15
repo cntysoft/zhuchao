@@ -6,21 +6,20 @@
  * @copyright Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
 */
-namespace App\ZhuChao\Buyer\Model;
+namespace App\ZhuChao\Product\Model;
 use Cntysoft\Phalcon\Mvc\Model as BaseModel;
 
 class ProductDetail extends BaseModel
 {
    protected $id;
-   protected $productId;
-   protected $adverText;
-   protected $keyWords;
+   protected $advertText;
+   protected $keywords;
    protected $attribute;
    protected $unit;
    protected $minimum;
    protected $stock;
    protected $images;
-   protected $description;
+   protected $introduction;
    protected $imgRefMap;
    protected $fileRefs;
 
@@ -34,24 +33,19 @@ class ProductDetail extends BaseModel
       return (int)$this->id;
    }
 
-   public function getProductId()
+   public function getAdvertText()
    {
-      return (int)$this->productId;
+      return $this->advertText;
    }
 
-   public function getAdverText()
+   public function getKeywords()
    {
-      return $this->adverText;
-   }
-
-   public function getKeyWords()
-   {
-      return $this->keyWords;
+      return explode(',', $this->keywords);
    }
 
    public function getAttribute()
    {
-      return $this->attribute;
+      return unserialize($this->attribute);
    }
 
    public function getUnit()
@@ -71,22 +65,22 @@ class ProductDetail extends BaseModel
 
    public function getImages()
    {
-      return $this->images;
+      return unserialize($this->images);
    }
 
-   public function getDescription()
+   public function getIntroduction()
    {
-      return $this->description;
+      return $this->introduction;
    }
 
    public function getImgRefMap()
    {
-      return $this->imgRefMap;
+      return unserialize($this->imgRefMap);
    }
 
    public function getFileRefs()
    {
-      return $this->fileRefs;
+      return explode(',', $this->fileRefs);
    }
 
    public function setId($id)
@@ -94,24 +88,19 @@ class ProductDetail extends BaseModel
       $this->id = (int)$id;
    }
 
-   public function setProductId($productId)
+   public function setAdvertText($advertText)
    {
-      $this->productId = (int)$productId;
+      $this->advertText = $advertText;
    }
 
-   public function setAdverText($adverText)
+   public function setKeywords($keywords)
    {
-      $this->adverText = $adverText;
-   }
-
-   public function setKeyWords($keyWords)
-   {
-      $this->keyWords = $keyWords;
+      $this->keywords = implode(',', $keywords);
    }
 
    public function setAttribute($attribute)
    {
-      $this->attribute = $attribute;
+      $this->attribute = serialize($attribute);
    }
 
    public function setUnit($unit)
@@ -131,22 +120,22 @@ class ProductDetail extends BaseModel
 
    public function setImages($images)
    {
-      $this->images = $images;
+      $this->images = serialize($images);
    }
 
-   public function setDescription($description)
+   public function setIntroduction($introduction)
    {
-      $this->description = $description;
+      $this->introduction = $introduction;
    }
 
    public function setImgRefMap($imgRefMap)
    {
-      $this->imgRefMap = $imgRefMap;
+      $this->imgRefMap = serialize($imgRefMap);
    }
 
    public function setFileRefs($fileRefs)
    {
-      $this->fileRefs = $fileRefs;
+      $this->fileRefs = implode(',', $fileRefs);
    }
 
 }
