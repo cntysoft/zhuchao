@@ -208,8 +208,7 @@ Ext.define('App.Site.Category.Lang.zh_CN', {
                MSG : {
                   CONTENT_MODEL : '选择内容模型对应的内容页模板',
                   MODELS_TPL_EMPTY : '必须为普通节点至少选择一个信息模型！'
-               },
-               DEFAULT_LIST_TPL : '文章列表页模板.phtml'
+               }
             }
          },
          STARTUP : {

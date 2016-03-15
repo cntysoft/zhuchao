@@ -28,3 +28,6 @@
 [submodule "JsLibrary/Jquery"]
 	path = JsLibrary/Jquery
 	url = cntysoft-server:Jquery
+[submodule "Library/Vender/VsImage"]
+	path = Library/Vender/VsImage
+	url = cntysoft-server:VsImage

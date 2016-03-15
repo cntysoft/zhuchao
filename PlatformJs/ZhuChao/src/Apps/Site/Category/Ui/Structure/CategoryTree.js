@@ -91,6 +91,7 @@ Ext.define('App.Site.Category.Ui.Structure.CategoryTree', {
     */
    getContextMenu : function(type, node)
    {
+      var C = App.Site.Category.Lib.Const;
       var M_TEXT = this.GET_LANG_TEXT('STRUCTURE.CATEGORY_TREE.MENU');
       var S = this.self;
       var NODE_TYPE = S.NODE_TYPE;
@@ -98,7 +99,8 @@ Ext.define('App.Site.Category.Ui.Structure.CategoryTree', {
       var menus;
       var menu;
       //加入权限判断
-      var listeners = {
+      var nid = node.get('id');
+      listeners = {
          click : this.menuItemClickHandler,
          scope : this
       },
@@ -118,12 +120,12 @@ Ext.define('App.Site.Category.Ui.Structure.CategoryTree', {
                   items : [{
                      text : M_TEXT.ADD_GENERAL_NODE,
                      aCode : AMAP.ADD_GENERAL_NODE
-//                  }, {
-//                     text : M_TEXT.ADD_SINGLE_NODE,
-//                     aCode : AMAP.ADD_SINGLE_NODE
-//                  }, {
-//                     text : M_TEXT.ADD_LINK_NODE,
-//                     aCode : AMAP.ADD_LINK_NODE
+                  }, {
+                     text : M_TEXT.ADD_SINGLE_NODE,
+                     aCode : AMAP.ADD_SINGLE_NODE
+                  }, {
+                     text : M_TEXT.ADD_LINK_NODE,
+                     aCode : AMAP.ADD_LINK_NODE
                   }],
                   listeners : listeners
                });
@@ -137,9 +139,9 @@ Ext.define('App.Site.Category.Ui.Structure.CategoryTree', {
                   items : [{
                      text : M_TEXT.MODIFY_NODE,
                      aCode : AMAP.MODIFY_NODE
-//                  }, {
-//                     text : M_TEXT.VIEW_NODE,
-//                     aCode : AMAP.VIEW_NODE
+                  }, {
+                     text : M_TEXT.VIEW_NODE,
+                     aCode : AMAP.VIEW_NODE
                   }],
                   listeners : listeners
                });
@@ -157,9 +159,9 @@ Ext.define('App.Site.Category.Ui.Structure.CategoryTree', {
                   }, {
                      text : M_TEXT.RM_NODE,
                      aCode : AMAP.RM_NODE
-//                  }, {
-//                     text : M_TEXT.VIEW_NODE,
-//                     aCode : AMAP.VIEW_NODE
+                  }, {
+                     text : M_TEXT.VIEW_NODE,
+                     aCode : AMAP.VIEW_NODE
                   }],
                   listeners : listeners
                });
@@ -176,19 +178,19 @@ Ext.define('App.Site.Category.Ui.Structure.CategoryTree', {
                   }, {
                      text : M_TEXT.ADD_GENERAL_NODE,
                      aCode : AMAP.ADD_GENERAL_NODE
-//                  }, {
-//                     text : M_TEXT.ADD_SINGLE_NODE,
-//                     aCode : AMAP.ADD_SINGLE_NODE
-//                  }, {
-//                     text : M_TEXT.ADD_LINK_NODE,
-//                     aCode : AMAP.ADD_LINK_NODE
-//
-//                  }, {
-//                     text : M_TEXT.RM_NODE,
-//                     aCode : AMAP.RM_NODE
-//                  }, {
-//                     text : M_TEXT.VIEW_NODE,
-//                     aCode : AMAP.VIEW_NODE
+                  }, {
+                     text : M_TEXT.ADD_SINGLE_NODE,
+                     aCode : AMAP.ADD_SINGLE_NODE
+                  }, {
+                     text : M_TEXT.ADD_LINK_NODE,
+                     aCode : AMAP.ADD_LINK_NODE
+
+                  }, {
+                     text : M_TEXT.RM_NODE,
+                     aCode : AMAP.RM_NODE
+                  }, {
+                     text : M_TEXT.VIEW_NODE,
+                     aCode : AMAP.VIEW_NODE
                   }],
                   listeners : listeners
                });

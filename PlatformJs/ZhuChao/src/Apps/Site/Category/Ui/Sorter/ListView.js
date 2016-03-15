@@ -77,9 +77,9 @@ Ext.define('App.Site.Category.Ui.Sorter.ListView', {
       var record;
       var len = store.getCount();
 
-      for(var i = 0; i < len; i++) {
+      for(var i = len - 1; i >= 0;i--) {
          record = store.getAt(i);
-         record.set('priority', i + 1);
+         record.set('priority', len - i);
       }
 
    },

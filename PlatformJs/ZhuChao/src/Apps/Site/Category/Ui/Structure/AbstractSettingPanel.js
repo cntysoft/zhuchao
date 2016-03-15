@@ -12,7 +12,7 @@ Ext.define('App.Site.Category.Ui.Structure.AbstractSettingPanel', {
    extend: 'Ext.tab.Panel',
    requires: [
       'Cntysoft.Kernel.Utils',
-      'ZhuChao.Kernel.Component.Uploader.SimpleUploader'
+      'WebOs.Component.Uploader.SimpleUploader'
    ],
    mixins : {
       langTextProvider : 'WebOs.Mixin.RunableLangTextProvider',
@@ -485,7 +485,7 @@ Ext.define('App.Site.Category.Ui.Structure.AbstractSettingPanel', {
       var STD_PATH = WebOs.Kernel.StdPath;
       var basePath = STD_PATH.getStdUploadPath();
       return {
-         xtype : 'zhuchaosimpleuploader',
+         xtype : 'webossimpleuploader',
          uploadPath : basePath,
          createSubDir : true,
          enableFileRef : true,

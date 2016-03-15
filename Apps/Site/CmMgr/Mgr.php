@@ -930,8 +930,7 @@ TPL;
 
    protected function getTargetDbName()
    {
-      $cfg = ConfigProxy::getGlobalConfig();
-      return $cfg->db->dbname;
+      return \Cntysoft\ZHUCHAO_PLATFORM_DBNAME;
    }
 
    /**

@@ -116,6 +116,8 @@ Ext.define('App.Site.Category.Ui.Structure.General.CategoryOption', {
       var C = this.COMMON_TEXT;
       var L = this.LANG_TEXT;
       var C_LABEL_TEXT = C.LABEL;
+      var TOOLTIP_TEXT = C.TOOLTIP;
+      var LABEL_TEXT = L.LABEL;
       var BTN_TEXT = Cntysoft.GET_LANG_TEXT('UI.BTN');
       return [{
          xtype : 'fieldcontainer',

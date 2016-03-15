@@ -22,6 +22,21 @@ Ext.define('ZhuChao.Utils',{
       {
          var base = ZhuChao.Kernel.StdPath.getTplBasePath();
          return base + '/Pc';
+      },
+      /**
+       * 转换图片的网址
+       * 
+       * @param {Srtring} img
+       * @returns {String}
+       */
+      processImgSrc : function(img)
+      {
+          var useOss = ZC.getUseOss();
+          if(useOss) {
+              return ZC.getImgOssServer() + '/' + img;
+          }
+          
+          return img;
       }
    }
 });

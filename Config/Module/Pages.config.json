@@ -10,6 +10,15 @@
             }
         },
         {
+            "key" : "Test",
+            "rule" : "/test",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "Test",
+                "action" : "index"
+            }
+        },
+        {
             "key" : "CategoryWithPage",
             "rule" : "/category/{nodeIdentifier:[a-z]+}/{pageid:[1-9][0-9]*}.html",
             "option" : {
@@ -76,16 +85,10 @@
     ],
     "tplMap" : {
         "index" : "首页.phtml",
-        "category" : "文章列表模板.phtml",
         "item" : "文章内容模板.phtml",
         "helpcenter" : "帮助中心模板.phtml",
         "productclassifylist" : "商品类/分类商品列表.phtml",
         "product" : "商品类/商品内容页.phtml",
-        "addtocart" : "购物流程/加入购物车成功页.phtml",
-        "cart" : "购物流程/购物车内容页.phtml",
-        "submit" : "购物流程/结算页.phtml",
-        "pay" : "购物流程/支付页.phtml",
-        "print" : "其他模板/订单打印页模板.phtml",
         "search" : "商品类/搜索商品列表.phtml",
         "classifylist" : "商品类/商品分类列表.phtml",
         "searchpage" : "商品类/搜索页.phtml"

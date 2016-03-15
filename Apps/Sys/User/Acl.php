@@ -701,6 +701,7 @@ class Acl extends AbstractLib
          'upload' => array(
             'allowedPaths' => $cfg->upload->allowedDirs->toArray()
          ),
+         'useOss' => $cfg->upload->useOss,
          'uploadRootPath' => StdHtmlPath::getUploadFilesPath(),
          'ossImgServer' => $imgOssServer,
          'cdnServer' => array(

@@ -123,6 +123,8 @@ Ext.define('App.Site.Category.Comp.CategoryTree', {
       Ext.each(records, function(record){
          record.set('iconCls', 'app-site-category-'+S.getNodeIcon(record.get('nodeType')).toLowerCase() +'-type-icon');
          this.extrNodeRecordSetter(record);
+         //record.set('qtip', '您可以在节点名称上点击右键，在弹出菜单上进行操作');
+
       }, this);
    },
 

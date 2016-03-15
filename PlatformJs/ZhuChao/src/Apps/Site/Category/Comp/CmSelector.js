@@ -151,22 +151,21 @@ Ext.define('App.Site.Category.Comp.CmSelector', {
                   width : 450,
                   margin : '0 5 0 0',
                   value : item.defaultTemplateFile,
-                  editable : false,
                   allowBlank : false,
                   blankText : this.LANG_TEXT.BLANK_TEXT.CONTENT_TPL,
                   name : 'modelTpl_' + item.id
-//               }, {
-//                  xtype : 'button',
-//                  width : 80,
-//                  text : BTN_TEXT.SELECT,
-//                  margin : '0 5 0 0',
-//                  listeners : {
-//                     click : function(btn)
-//                     {
-//                        this.mainPanelRef.tplSelectHandler(btn.previousSibling());
-//                     },
-//                     scope : this
-//                  }
+               }, {
+                  xtype : 'button',
+                  width : 80,
+                  text : BTN_TEXT.SELECT,
+                  margin : '0 5 0 0',
+                  listeners : {
+                     click : function(btn)
+                     {
+                        this.mainPanelRef.tplSelectHandler(btn.previousSibling());
+                     },
+                     scope : this
+                  }
                }]
             });
          }, this);

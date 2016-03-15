@@ -14,5 +14,33 @@ Ext.define('App.Site.Category.Widget.Entry', {
    initPmTextRef : function()
    {
       this.pmText = this.GET_PM_TEXT('ENTRY');
+   },
+
+   applyConstraintConfig : function(config)
+   {
+      this.callParent([config]);
+      Ext.apply(config,{
+         width : 600,
+         height : 300,
+         maximizable : false
+      });
+   },
+   getNavTreeData : function()
+   {
+      var U_NAMES = this.GET_LANG_TEXT('WIDGET_NAMES');
+      var me = this;
+      return {
+         id : 'root',
+         name : this.pmText.DISPLAY_TEXT,
+         children : [{
+            text : U_NAMES.STRUCTURE,
+            id : 'Structure',
+            leaf : true
+         },{
+            text : U_NAMES.SORTER,
+            id : 'Sorter',
+            leaf : true
+         }]
+      };
    }
 });

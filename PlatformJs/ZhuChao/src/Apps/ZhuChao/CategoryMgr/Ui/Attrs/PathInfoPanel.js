@@ -238,7 +238,8 @@ Ext.define('App.ZhuChao.CategoryMgr.Ui.Attrs.PathInfoPanel', {
     {
         var file = file.pop();
         this.iconSrc = file.filename;
-        this.imageRef.setSrc(file.filename);
+        var imgSrc = ZhuChao.Utils.processImgSrc(file.filename);
+        this.imageRef.setSrc(imgSrc);
     },
     destroy : function ()
     {
