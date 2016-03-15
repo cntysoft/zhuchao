@@ -11,6 +11,8 @@
 Ext.define('App.ZhuChao.Provider.Const', {
    statics : {
       PROVIDER_STATUS_NORMAL : 1,
-      PROVIDER_STATUS_LOCK: 2
+      PROVIDER_STATUS_LOCK : 2,
+      COMPANY_STATUS_NORMAL : 1,
+      COMPANY_STATUS_LOCK : 2
    }
 });

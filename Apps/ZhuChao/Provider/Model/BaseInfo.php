@@ -38,11 +38,14 @@ class BaseInfo extends BaseModel
             'action' => Relation::ACTION_CASCADE
          )
       ));
+      $this->belongsTo('id', 'App\ZhuChao\Provider\Model\Company', 'providerId', array(
+         'alias' => 'company'
+      ));
    }
 
    public function getId()
    {
-      return (int)$this->id;
+      return (int) $this->id;
    }
 
    public function getName()

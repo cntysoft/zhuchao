@@ -5,10 +5,10 @@
  * @author Arvin <cntyfeng@163.com>
  * @copyright Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.sheneninfo.com>
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
-*/
+ */
 namespace App\ZhuChao\Provider\Model;
 use Cntysoft\Phalcon\Mvc\Model as BaseModel;
-
+use Phalcon\Mvc\Model\Relation;
 class Company extends BaseModel
 {
    protected $id;
@@ -28,20 +28,33 @@ class Company extends BaseModel
    protected $status;
    protected $inputTime;
    protected $profileId;
-   
+
    public function getSource()
    {
       return 'app_zhuchao_provider_company_info';
    }
-   
+
+   public function initialize()
+   {
+      $this->hasOne('profileId', 'App\ZhuChao\Provider\Model\CompanyProfile', 'id', array(
+         'alias'      => 'profile',
+         'foreignKey' => array(
+            'action' => Relation::ACTION_CASCADE
+         )
+      ));
+      $this->hasOne('providerId', 'App\ZhuChao\Provider\Model\BaseInfo', 'id', array(
+         'alias' => 'provider'
+      ));
+   }
+
    public function getId()
    {
-      return (int)$this->id;
+      return (int) $this->id;
    }
 
    public function getProviderId()
    {
-      return (int)$this->providerId;
+      return (int) $this->providerId;
    }
 
    public function getName()
@@ -51,12 +64,12 @@ class Company extends BaseModel
 
    public function getType()
    {
-      return (int)$this->type;
+      return (int) $this->type;
    }
 
    public function getTradeMode()
    {
-      return (int)$this->tradeMode;
+      return (int) $this->tradeMode;
    }
 
    public function getProducts()
@@ -66,17 +79,17 @@ class Company extends BaseModel
 
    public function getProvince()
    {
-      return (int)$this->province;
+      return (int) $this->province;
    }
 
    public function getCity()
    {
-      return (int)$this->city;
+      return (int) $this->city;
    }
 
    public function getDistrict()
    {
-      return (int)$this->district;
+      return (int) $this->district;
    }
 
    public function getAddress()
@@ -86,7 +99,7 @@ class Company extends BaseModel
 
    public function getPostCode()
    {
-      return (int)$this->postCode;
+      return (int) $this->postCode;
    }
 
    public function getWebsite()
@@ -106,27 +119,27 @@ class Company extends BaseModel
 
    public function getStatus()
    {
-      return (int)$this->status;
+      return (int) $this->status;
    }
 
    public function getInputTime()
    {
-      return (int)$this->inputTime;
+      return (int) $this->inputTime;
    }
 
    public function getProfileId()
    {
-      return (int)$this->profileId;
+      return (int) $this->profileId;
    }
 
    public function setId($id)
    {
-      $this->id = (int)$id;
+      $this->id = (int) $id;
    }
 
    public function setProviderId($providerId)
    {
-      $this->providerId = (int)$providerId;
+      $this->providerId = (int) $providerId;
    }
 
    public function setName($name)
@@ -136,12 +149,12 @@ class Company extends BaseModel
 
    public function setType($type)
    {
-      $this->type = (int)$type;
+      $this->type = (int) $type;
    }
 
    public function setTradeMode($tradeMode)
    {
-      $this->tradeMode = (int)$tradeMode;
+      $this->tradeMode = (int) $tradeMode;
    }
 
    public function setProducts($products)
@@ -151,17 +164,17 @@ class Company extends BaseModel
 
    public function setProvince($province)
    {
-      $this->province = (int)$province;
+      $this->province = (int) $province;
    }
 
    public function setCity($city)
    {
-      $this->city = (int)$city;
+      $this->city = (int) $city;
    }
 
    public function setDistrict($district)
    {
-      $this->district = (int)$district;
+      $this->district = (int) $district;
    }
 
    public function setAddress($address)
@@ -171,7 +184,7 @@ class Company extends BaseModel
 
    public function setPostCode($postCode)
    {
-      $this->postCode = (int)$postCode;
+      $this->postCode = (int) $postCode;
    }
 
    public function setWebsite($website)
@@ -191,17 +204,17 @@ class Company extends BaseModel
 
    public function setStatus($status)
    {
-      $this->status = (int)$status;
+      $this->status = (int) $status;
    }
 
    public function setInputTime($inputTime)
    {
-      $this->inputTime = (int)$inputTime;
+      $this->inputTime = (int) $inputTime;
    }
 
    public function setProfileId($profileId)
    {
-      $this->profileId = (int)$profileId;
+      $this->profileId = (int) $profileId;
    }
 
 }

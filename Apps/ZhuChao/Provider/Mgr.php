@@ -9,13 +9,23 @@
 namespace App\ZhuChao\Provider;
 use Cntysoft\Kernel\App\AbstractLib;
 use Cntysoft\Kernel;
+use Cntysoft\Framework\Utils\ChinaArea;
 use App\ZhuChao\Provider\Model\BaseInfo as BaseModel;
 use App\ZhuChao\Provider\Model\Profile as ProfileModel;
+use App\ZhuChao\Provider\Model\Company as CompanyModel;
+use App\ZhuChao\Provider\Model\CompanyProfile as CompanyProfileModel;
 /**
  * 站点管理员角色管理
  */
 class Mgr extends AbstractLib
 {
+   /**
+    * 保存中国省市区编码处理对象的静态属性
+    * 
+    * @var Cntysoft\Framework\Utils\ChinaArea
+    */
+   protected static $chinaArea = null;
+
    /**
     * 添加供应商信息
     * 
@@ -185,6 +195,44 @@ class Mgr extends AbstractLib
    }
 
    /**
+    * 修改供应商企业的状态
+    * 
+    * @param int $id
+    * @param int $status
+    * @return boolean
+    */
+   public function changeCompanyStatus($id, $status)
+   {
+      $providercom = CompanyModel::findFirst($id);
+      if (!$providercom) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_PROVIDER_COMPANY_NOT_EXIST'), $errorType->code('E_PROVIDER_COMPANY_NOT_EXIST')), $this->getErrorTypeContext());
+      }
+
+      $providercom->setStatus($status);
+      return $providercom->save();
+   }
+
+   /**
+    * 获取供应商企业信息
+    * 
+    * @param integer $id
+    * @return App\ZhuChao\Provider\Model\Company
+    */
+   public function getProviderCompany($id)
+   {
+      $providercom = CompanyModel::findFirst($id);
+      if (!$providercom) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_PROVIDER_COMPANY_NOT_EXIST'), $errorType->code('E_PROVIDER_COMPANY_NOT_EXIST')), $this->getErrorTypeContext());
+      }
+
+      return $providercom;
+   }
+
+   /**
     * 根据名称获取供应商
     * 
     * @param string $name
@@ -194,7 +242,7 @@ class Mgr extends AbstractLib
    {
       return BaseModel::findFirst("name = '$name'");
    }
-   
+
    /**
     * 根据手机号码获取供应商
     * 
@@ -205,4 +253,124 @@ class Mgr extends AbstractLib
    {
       return BaseModel::findFirst("phone = '$phone'");
    }
+
+   /**
+    * 添加供应商企业信息
+    * 
+    * @param array $data
+    */
+   public function addProviderCompany($data)
+   {
+      unset($data['id']);
+      $companyInfo = new CompanyModel();
+      $requires = $companyInfo->getRequireFields(array('id', 'profileId'));
+      $data += array(
+         'inputTime' => time()
+      );
+      Kernel\ensure_array_has_fields($data, $requires);
+      //处理用户的基本信息和详细信息
+      $profile = new CompanyProfileModel();
+      $profileDataFields = $profile->getDataFields();
+      $profileData = array();
+      foreach ($profileDataFields as $key) {
+         if (array_key_exists($key, $data)) {
+            $profileData[$key] = $data[$key];
+            unset($data[$key]);
+         }
+      }
+
+      $db = Kernel\get_db_adapter();
+      try {
+         $db->begin();
+         $profile->assignBySetter($profileData);
+         $profile->create();
+         $companyInfo->setProfileId($profile->getId());
+         $companyInfo->assignBySetter($data);
+         $companyInfo->create();
+
+         $db->commit();
+      } catch (\Exception $ex) {
+         $db->rollback();
+         Kernel\throw_exception($ex, $this->getErrorTypeContext());
+      }
+   }
+
+   /**
+    * 修改供应商企业信息
+    * 
+    * @param int $id
+    * @param array $data
+    */
+   public function updateProviderCompany($id, $data)
+   {
+      $id = (int) $id;
+      unset($data['id']);
+      $providercom = $this->getProviderCompany($id);
+      if (!$providercom) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_PROVIDER_COMPANY_NOT_EXIST', $id), $errorType->code('E_PROVIDER_COMPANY_NOT_EXIST')
+                 ), $this->getErrorTypeContext());
+      }
+      $profile = $providercom->getProfile();
+      $profileDataFields = $profile->getDataFields();
+      $profileData = array();
+      foreach ($profileDataFields as $key) {
+         if (array_key_exists($key, $data)) {
+            $profileData[$key] = $data[$key];
+            unset($data[$key]);
+         }
+      }
+      $db = Kernel\get_db_adapter();
+      try {
+         $db->begin();
+         $profile->assignBySetter($profileData);
+         $profile->save();
+
+         $providercom->assignBySetter($data);
+         $providercom->save();
+         $db->commit();
+      } catch (\Exception $ex) {
+         $db->rollback();
+         Kernel\throw_exception($ex, $this->getErrorTypeContext());
+      }
+   }
+
+   /**
+    * 获取所有的省份编码信息
+    * 
+    * @return array
+    */
+   public function getProvinces()
+   {
+      $chinaArea = $this->getChinaArea();
+      return $chinaArea->getProvinces();
+   }
+
+   /**
+    * 获取指定code的下级地区信息
+    * 
+    * @param integer $code
+    * @return array
+    */
+   public function getArea($code)
+   {
+      $chinaArea = $this->getChinaArea();
+      return $chinaArea->getChildArea((int) $code);
+   }
+
+   /**
+    * 获取省市区管理对象
+    * 
+    * @return Cntysoft\Framework\Utils\ChinaArea
+    */
+   protected function getChinaArea()
+   {
+      if (null == self::$chinaArea) {
+         self::$chinaArea = new ChinaArea();
+      }
+
+      return self::$chinaArea;
+   }
+
 }

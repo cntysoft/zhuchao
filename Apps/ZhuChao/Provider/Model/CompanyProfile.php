@@ -5,11 +5,10 @@
  * @author Arvin <cntyfeng@163.com>
  * @copyright Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.sheneninfo.com>
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
-*/
+ */
 namespace App\ZhuChao\Provider\Model;
 use Cntysoft\Phalcon\Mvc\Model as BaseModel;
-
-class Company extends BaseModel
+class CompanyProfile extends BaseModel
 {
    protected $id;
    protected $customer;
@@ -22,15 +21,15 @@ class Company extends BaseModel
    protected $legalPerson;
    protected $bank;
    protected $bankAccount;
-   
+
    public function getSource()
    {
-      return 'app_zhuchao_provider_company_info';
+      return 'app_zhuchao_provider_company_profile';
    }
 
    public function getId()
    {
-      return (int)$this->id;
+      return (int) $this->id;
    }
 
    public function getCustomer()
@@ -45,7 +44,7 @@ class Company extends BaseModel
 
    public function getRegisterCapital()
    {
-      return (int)$this->registerCapital;
+      return (int) $this->registerCapital;
    }
 
    public function getRegisterYear()
@@ -55,17 +54,17 @@ class Company extends BaseModel
 
    public function getRegisterProvince()
    {
-      return (int)$this->registerProvince;
+      return (int) $this->registerProvince;
    }
 
    public function getRegisterCity()
    {
-      return (int)$this->registerCity;
+      return (int) $this->registerCity;
    }
 
    public function getRegisterDistrict()
    {
-      return (int)$this->registerDistrict;
+      return (int) $this->registerDistrict;
    }
 
    public function getLegalPerson()
@@ -85,7 +84,7 @@ class Company extends BaseModel
 
    public function setId($id)
    {
-      $this->id = (int)$id;
+      $this->id = (int) $id;
    }
 
    public function setCustomer($customer)
@@ -100,7 +99,7 @@ class Company extends BaseModel
 
    public function setRegisterCapital($registerCapital)
    {
-      $this->registerCapital = (int)$registerCapital;
+      $this->registerCapital = (int) $registerCapital;
    }
 
    public function setRegisterYear($registerYear)
@@ -110,17 +109,17 @@ class Company extends BaseModel
 
    public function setRegisterProvince($registerProvince)
    {
-      $this->registerProvince = (int)$registerProvince;
+      $this->registerProvince = (int) $registerProvince;
    }
 
    public function setRegisterCity($registerCity)
    {
-      $this->registerCity = (int)$registerCity;
+      $this->registerCity = (int) $registerCity;
    }
 
    public function setRegisterDistrict($registerDistrict)
    {
-      $this->registerDistrict = (int)$registerDistrict;
+      $this->registerDistrict = (int) $registerDistrict;
    }
 
    public function setLegalPerson($legalPerson)
@@ -137,5 +136,5 @@ class Company extends BaseModel
    {
       $this->bankAccount = $bankAccount;
    }
-   
+
 }
