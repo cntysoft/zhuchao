@@ -47,6 +47,7 @@ Ext.define('App.Site.CmMgr.Lib.FieldWidget.WordEditor', {
          toobarType : this.toobarType,
          defaultUploadPath : basePath,
          uploadMaxSize : phpSetting.uploadMaxFileSize,
+         useOss : ZC.getUseOss(),
          listeners : {
             blur : function()
             {
