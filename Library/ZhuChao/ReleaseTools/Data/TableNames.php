@@ -26,6 +26,8 @@ return array(
    'app_zhuchao_categorymgr_category_query_attrs',
    'app_zhuchao_categorymgr_category_std_attrs',
    'app_zhuchao_categorymgr_goods_category',
+   'app_zhuchao_messagemgr_inquiry',
+   'app_zhuchao_messagemgr_offer',
    'app_zhuchao_product_base_info',
    'app_zhuchao_product_detail',
    'app_zhuchao_product_group',

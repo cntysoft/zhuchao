@@ -15,4 +15,6 @@ class Constant
    const APP_API_OFFER = 'InquiryOffer';
    
    const NOT_HAVE_PRICE = '<b style="color : red;">暂无报价</b>';
+   
+   const PK_OFFER = 'Offer';
 }
