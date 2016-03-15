@@ -28,7 +28,7 @@ Ext.define('App.ZhuChao.MessageMgr.Ui.Offer.Offer', {
          bbar : Ext.create('Ext.PagingToolbar', {
             store : store,
             displayInfo : true,
-            emptyMsg : 'this.emptyText'
+            emptyMsg : this.LANG_TEXT.EMPTYTEXT
          }),
          store : store,
          columns : [

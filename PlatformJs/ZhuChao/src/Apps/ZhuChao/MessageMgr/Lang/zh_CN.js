@@ -37,7 +37,8 @@ Ext.define('App.ZhuChao.MessageMgr.Lang.zh_CN', {
                  OFFER : '报价方',
                  LOWPRICE : '最低价',
                  HIGHPRICE : '最高价',
-                 OFFERTIME : '报价时间'
+                 OFFERTIME : '报价时间',
+                 EMPTYTEXT : '没有记录'
               }
            }
         }
