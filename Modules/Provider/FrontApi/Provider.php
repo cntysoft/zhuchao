@@ -61,4 +61,30 @@ class Provider extends AbstractScript
       $acl->checkPhoneExist($params['phone']);
       $acl->sendSmsCode($params['phone'], P_CONST::SMS_TYPE_REG);
    }
+   
+   /**
+    * 发送忘记密码验证短信
+    * 
+    * @param array $params
+    */
+   public function checkForgetAuthCode($params)
+   {
+      $this->checkRequireFields($params, array('phone', 'chkcode'));
+      $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
+      $acl->checkPicCode($params['chkcode'], P_CONST::PIC_CODE_TYPE_FORGET);
+      $acl->checkPhoneExist($params['phone'], true);
+      $acl->sendSmsCode($params['phone'], P_CONST::SMS_TYPE_FORGET);
+   }
+   
+   /**
+    * 忘记密码，重置密码
+    * 
+    * @param array $params
+    */
+   public function resetPasswordWithCode($params)
+   {
+      $this->checkRequireFields($params, array('phone', 'code', 'password'));
+      $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
+      $acl->findPassword($params['phone'], $params['password'], $params['code']);
+   }
 }

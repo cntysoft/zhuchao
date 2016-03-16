@@ -78,10 +78,10 @@ class Acl extends AbstractLib
     * 
     * @param string $phone
     */
-   public function checkPhoneExist($phone)
+   public function checkPhoneExist($phone, $needExist = false)
    {
       $exist = $this->getAppCaller()->call(Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_MANAGER, 'providerPhoneExist', array($phone));
-      if ($exist) {
+      if ($exist !== $needExist) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
                  $errorType->msg('E_PROVIDER_PHONE_EXIST'), $errorType->code('E_PROVIDER_PHONE_EXIST')));
@@ -499,7 +499,7 @@ class Acl extends AbstractLib
          $this->checkSmsCode($phone, $code, Constant::SMS_TYPE_FORGET);
       }
       $user = $user = $this->getAppCaller()->call(
-              Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_MANAGER, 'getUserByPhone', array($phone)
+              Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_MANAGER, 'getProviderByPhone', array($phone)
       );
 
       if (!$user) {

@@ -105,7 +105,7 @@ class FrontApiServer
            'Provider.checkEmailExist', //检查邮箱是否存在
            'Provider.checkPhoneExist', //检查手机号码是否存在
            'Provider.checkNameExist', //检查用户名是否存在
-           'Provider.resetPasswordWithCode', //重置密码
+           'Provider.resetPasswordWithCode', //忘记密码重置密码
            'Provider.checkLogin' //验证是否登陆
         );
     }
