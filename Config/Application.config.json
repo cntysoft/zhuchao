@@ -28,7 +28,7 @@
         "Open" : {
             "className" : "\\Open\\Module",
             "path" : "Modules\/Open\/Module.php",
-            "hasConfig" : true
+            "hasConfig" : false
         },
         "Buyer" : {
             "className" : "\\Buyer\\Module",
