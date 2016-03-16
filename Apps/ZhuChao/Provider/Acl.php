@@ -168,9 +168,9 @@ class Acl extends AbstractLib
                  ), $this->getErrorTypeContext());
       }
 
-      //发送成功, 保存Session, 默认保存时间为2分钟
+      //发送成功, 保存Session, 默认保存时间为5分钟
       $value = $phone . '|' . $code;
-      $life = 2 * 60;
+      $life = 5 * 60;
       $sessionKey = $this->getSmsSessionKey($type);
       $this->sessionManager->setExpirationSeconds($life, array(
          $sessionKey

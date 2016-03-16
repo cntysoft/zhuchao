@@ -11,5 +11,6 @@ return array(
    'E_PROVIDER_ACL_PIC_CODE_EXPIRE' => array(10009, 'check code expire'),
    'E_PROVIDER_ACL_SMS_EXPIRE'      => array(10010, 'sms code expire'),
    'E_PROVIDER_ACL_SMS_ERROR'       => array(10011, 'sms code error'),
-   'E_PROVIDER_COMPANY_NOT_EXIST'   => array(10012, 'provider company not exist')
+   'E_PROVIDER_COMPANY_NOT_EXIST'   => array(10012, 'provider company not exist'),
+   'E_PROVIDER_ACL_SMS_SEND_ERROR' => array(10013, 'sms send error')
 );

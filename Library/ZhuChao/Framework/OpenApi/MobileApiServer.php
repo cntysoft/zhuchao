@@ -74,7 +74,7 @@ class MobileApiServer
       if (!isset($this->apis[$clsKey])) {
          Kernel\throw_exception(new Exception(
                  StdErrorType::msg('E_OPENAPI_NOT_EXIST', $key), StdErrorType::code('E_OPENAPI_NOT_EXIST')
-                 ), \Cntysoft\FENG_HUANG_STD_EXCEPTION_CONTEXT);
+                 ), \Cntysoft\ZHU_CHAO_STD_EXCEPTION_CONTEXT);
       }
       $clsinfo = $this->apis[$clsKey];
       $cls = $clsinfo[0];
@@ -82,14 +82,14 @@ class MobileApiServer
       if (!$this->authApiMeta($auth, $key, $meta)) {
          Kernel\throw_exception(new Exception(
                  StdErrorType::msg('E_OPENAPI_NOT_EXIST', $key), StdErrorType::code('E_OPENAPI_NOT_EXIST')
-                 ), \Cntysoft\FENG_HUANG_STD_EXCEPTION_CONTEXT);
+                 ), \Cntysoft\ZHU_CHAO_STD_EXCEPTION_CONTEXT);
       }
       //这个地方需要进行验证逻辑
       $handler = $this->scriptBroker->get($cls);
       //判断函数存在不
       if (!method_exists($handler, $method)) {
          Kernel\throw_exception(new Exception(
-                 StdErrorType::msg('E_OPENAPI_PERMISSION_DENY', $key), StdErrorType::code('E_OPENAPI_PERMISSION_DENY')), \Cntysoft\FENG_HUANG_STD_EXCEPTION_CONTEXT);
+                 StdErrorType::msg('E_OPENAPI_PERMISSION_DENY', $key), StdErrorType::code('E_OPENAPI_PERMISSION_DENY')), \Cntysoft\ZHU_CHAO_STD_EXCEPTION_CONTEXT);
       }
       $ret = (array) $handler->$method($params);
       return $ret;
@@ -145,7 +145,7 @@ class MobileApiServer
 
          if (!$auth->isLogin()) {
             Kernel\throw_exception(new Exception(
-                    StdErrorType::msg('E_API_NEED_LOGIN', $key), StdErrorType::code('E_API_NEED_LOGIN')), \Cntysoft\FENG_HUANG_STD_EXCEPTION_CONTEXT);
+                    StdErrorType::msg('E_API_NEED_LOGIN', $key), StdErrorType::code('E_API_NEED_LOGIN')), \Cntysoft\ZHU_CHAO_STD_EXCEPTION_CONTEXT);
          }
 
          return true;

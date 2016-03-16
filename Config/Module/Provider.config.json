@@ -200,6 +200,9 @@
         "provider\/sysmsg" : "供应商\/系统消息.phtml"
     },
     "front_api_map" : {
-        
+        "Provider": [
+            "\\ProviderFrontApi\\Provider",
+            2
+        ]
     }
 }
