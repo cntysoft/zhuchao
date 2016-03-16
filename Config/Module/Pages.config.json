@@ -24,16 +24,16 @@
             "option" : {
                 "module" : "Pages",
                 "controller" : "Category",
-                "action" : "category"
+                "action" : "categorylist"
             }
         },
         {
-            "key" : "Item",
-            "rule" : "/item/{itemid:[0-9]+}.html",
+            "key" : "Article",
+            "rule" : "/article/{articleId:[0-9]+}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Category",
-                "action" : "item"
+                "action" : "article"
             }
         },
         {
@@ -56,12 +56,12 @@
             }
         },
         {
-            "key" : "Product",
-            "rule" : "/product/{productid:[0-9]+}.html",
+            "key" : "Item",
+            "rule" : "/item/{itemId:[0-9]+}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Product",
-                "action" : "product"
+                "action" : "item"
             }
         },
         {

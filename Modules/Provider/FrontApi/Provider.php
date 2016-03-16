@@ -58,6 +58,7 @@ class Provider extends AbstractScript
       $this->checkRequireFields($params, array('phone', 'code'));
       $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
       $acl->checkPicCode($params['code'], P_CONST::PIC_CODE_TYPE_REG);
+      $acl->checkPhoneExist($params['phone']);
       $acl->sendSmsCode($params['phone'], P_CONST::SMS_TYPE_REG);
    }
 }

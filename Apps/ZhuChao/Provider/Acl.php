@@ -74,6 +74,21 @@ class Acl extends AbstractLib
    }
 
    /**
+    * 检测用户手机号码是否存在
+    * 
+    * @param string $phone
+    */
+   public function checkPhoneExist($phone)
+   {
+      $exist = $this->getAppCaller()->call(Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_MANAGER, 'providerPhoneExist', array($phone));
+      if ($exist) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_PROVIDER_PHONE_EXIST'), $errorType->code('E_PROVIDER_PHONE_EXIST')));
+      }
+   }
+
+   /**
     * 获取短信验证码存的sessionkey值
     * 
     * @param integer $type
@@ -357,7 +372,7 @@ class Acl extends AbstractLib
          $user->save();
 
          //当前错误次数超过3次开始需要验证码
-         if (2 < $loginErrorTimes) {
+         if (2 < $currentLoginErrorTimes) {
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
                     $errorType->msg('E_ERROR_TIMES_ENOUGH'), $errorType->code('E_ERROR_TIMES_ENOUGH')

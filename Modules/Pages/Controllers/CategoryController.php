@@ -49,25 +49,52 @@ class CategoryController extends AbstractController
       //设置nid
       $this->view->setRouteInfoItem('nid', $node->getId());
       $this->view->setRouteInfoItem('nodeIdentifier', $nodeIdentifier);
+      $tpl = $node->getCoverTemplateFile();
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP,
-                 View::KEY_RESOLVE_DATA => 'category'
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_FINDER,
+                 View::KEY_RESOLVE_DATA => $tpl
       ));
    }
 
-   public function testAction()
+   /**
+    * 
+    * 
+    * @return 
+    */
+   public function categorylistAction()
    {
-      var_dump('test');exit;
+      $nodeIdentifier = $this->dispatcher->getParam('nodeIdentifier');
+      $appCaller = $this->getAppCaller();
+      $node = $appCaller->call(
+              CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
+      );
+      //暂时不处理节点不存在的情况
+      if (!$node) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+      //设置nid
+      $this->view->setRouteInfoItem('nid', $node->getId());
+      $this->view->setRouteInfoItem('nodeIdentifier', $nodeIdentifier);
+      $tpl = $node->getListTemplateFile();
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_FINDER,
+                 View::KEY_RESOLVE_DATA => $tpl
+      ));
    }
-   
+
    /**
     * 文章模板
     * 
     * @return boolean
     */
-   public function itemAction()
+   public function articleAction()
    {
-      $itemId = $this->dispatcher->getParam('itemid');
+      $itemId = $this->dispatcher->getParam('articleId');
       if (null === $itemId) {
          $this->dispatcher->forward(array(
             'module'     => 'Pages',
@@ -116,12 +143,6 @@ class CategoryController extends AbstractController
                  CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeModelTpl', array((int) $info->getNodeId(), $info->getCmodelId())
          );
          $this->view->setRouteInfoItem('nodeIdentifier', $node->getNodeIdentifier());
-         if (in_array($node->getNodeIdentifier(), array('bangzhuzhongxin', 'fuwuzhichi', 'guanyuwomen', 'guanzhuwomen'))) {
-            return $this->setupRenderOpt(array(
-                       View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP,
-                       View::KEY_RESOLVE_DATA => 'helpcenter'
-            ));
-         }
          $this->setupRenderOpt(array(
             View::KEY_RESOLVE_DATA => $tpl,
             View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_FINDER
