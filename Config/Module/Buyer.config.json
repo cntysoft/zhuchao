@@ -237,5 +237,8 @@
         "buyer\/reapply" : "采购会员\/用户中心\/退货申请.phtml",
         "buyer\/relist" : "采购会员\/用户中心\/退货列表.phtml",
         "buyer\/message" : "采购会员\/用户中心\/消息通知.phtml"
+    },
+    "front_api_map" : {
+        
     }
 }

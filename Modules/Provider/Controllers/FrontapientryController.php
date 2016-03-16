@@ -2,23 +2,23 @@
 /**
  * 前台跟后台进行数据交流的接口
  *
- * @author Arvin <cntyfeng@163.com>
+ * @author Changwang <chenyongwang1104@163.com>
  * @copyright  Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.sheneninfo.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
 use Cntysoft\Phalcon\Mvc\AbstractController;
-use ZhuChao\Framework\OpenApi\Buyer\FrontApiServer as ApiServer;
+use ZhuChao\Framework\OpenApi\Provider\FrontApiServer as ApiServer;
 use Cntysoft\Kernel;
 use Cntysoft\Kernel\StdErrorType;
 use Zend\Json\Json;
 use Cntysoft\Kernel\ConfigProxy;
-use FrontApi\ApiAuthorizer;
+use ProviderFrontApi\ApiAuthorizer;
 
 class FrontApiEntryController extends AbstractController
 {
    /**
     *
-    * @var \KeleShop\Framework\OpenApi\Server $apiServer
+    * @var \ZhuChao\Framework\OpenApi\Provider\FrontApiServer $apiServer
     */
    protected $apiServer = null;
 
@@ -27,7 +27,7 @@ class FrontApiEntryController extends AbstractController
     */
    public function initialize()
    {
-      $gconf = ConfigProxy::getModuleConfig('Buyer');
+      $gconf = ConfigProxy::getModuleConfig('Provider');
       $this->apiServer = new ApiServer($gconf->front_api_map->toArray(), new ApiAuthorizer());
    }
 

@@ -24,8 +24,11 @@ class Module implements ModuleDefinitionInterface
    {
       $di = Kernel\get_global_di();
       $loader = $di->getShared('loader');
+      $loader->registerNamespaces(array(
+         'ProviderFrontApi' => __DIR__ . DS . 'FrontApi'
+              ), true);
       $loader->registerDirs(array(
-         __DIR__.DS.'Controllers'
+         __DIR__ . DS . 'Controllers'
       ))->register();
    }
 
@@ -36,8 +39,9 @@ class Module implements ModuleDefinitionInterface
     */
    public function registerServices(\Phalcon\DiInterface $dependencyInjector)
    {
-        $dependencyInjector->set('ProviderAcl', function() {
-            return new Acl();
-        });
+      $dependencyInjector->set('ProviderAcl', function() {
+         return new Acl();
+      });
    }
+
 }
