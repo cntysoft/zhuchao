@@ -22,4 +22,7 @@ class Constant
    const PRODUCT_STATUS_SHELF = 5; //下架
    const PRODUCT_STATUS_DELETE = 6; //删除
 
+   //权限相关
+   const PK_APP_KEY = 'Product';
+   const PK_WIDGET_PRODUCT = 'ProductMgr';
 }

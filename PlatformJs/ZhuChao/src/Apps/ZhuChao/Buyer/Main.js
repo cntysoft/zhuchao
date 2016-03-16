@@ -12,7 +12,9 @@ Ext.define('App.ZhuChao.Buyer.Main', {
    extend: 'WebOs.Kernel.ProcessModel.App',
    requires: [
       'App.ZhuChao.Buyer.Lang.zh_CN',
-      'App.ZhuChao.Buyer.Const'
+      'App.ZhuChao.Buyer.Const',
+      'App.ZhuChao.Buyer.Widget.Entry',
+      'App.ZhuChao.Buyer.Widget.Buyer'
    ],
    /**
     * @inheritdoc
@@ -22,7 +24,8 @@ Ext.define('App.ZhuChao.Buyer.Main', {
     * @inheritdoc
     */
    widgetMap: {
-      Entry: 'App.ZhuChao.Buyer.Widget.Entry'
+      Entry: 'App.ZhuChao.Buyer.Widget.Entry',
+      BuyerMgr: 'App.ZhuChao.Buyer.Widget.Buyer'
    },
    createBuyer : function(values, callback, scope)
    {

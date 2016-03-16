@@ -17,5 +17,6 @@ return array(
    'ZhuChao.CategoryMgr',
    'ZhuChao.Provider',
    'ZhuChao.Buyer',
-   'ZhuChao.MessageMgr'
+   'ZhuChao.MessageMgr',
+   'ZhuChao.Product'
 );

@@ -8,7 +8,7 @@
 /*
  * 供应商列表
  */
-Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
+Ext.define('App.ZhuChao.Buyer.Ui.Buyer.ListView', {
     extend : 'Ext.grid.Panel',
     requires : [
         'App.ZhuChao.Buyer.Const'
@@ -46,7 +46,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
     constructor : function (config)
     {
         config = config || {};
-        this.LANG_TEXT = this.GET_LANG_TEXT('UI.LIST_VIEW');
+        this.LANG_TEXT = this.GET_LANG_TEXT('UI.BUYER.LIST_VIEW');
         this.applyConstraintConfig(config);
         this.callParent([config]);
     },
@@ -258,7 +258,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.ListView', {
             var CONST = App.ZhuChao.Buyer.Const;
             switch (code) {
                 case C.MODIFY:
-                    this.mainPanelRef.renderPanel('Editor', {
+                    this.mainPanelRef.renderNewTabPanel('Editor', {
                         mode : WebOs.Kernel.Const.MODIFY_MODE,
                         targetLoadId : menu.record.get('id')
                     });

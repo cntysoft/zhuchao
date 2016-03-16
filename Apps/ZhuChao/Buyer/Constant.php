@@ -43,4 +43,8 @@ class Constant
    //收获地址状态
    const ADDRESS_STATUS_NOT_DEFAULT = 0;
    const ADDRESS_STATUS_DEFAULT = 1; 
+   
+   //权限相关
+   const PK_APP_KEY = 'Buyer';
+   const PK_WIDGET_BUYER = 'BuyerMgr';
 }

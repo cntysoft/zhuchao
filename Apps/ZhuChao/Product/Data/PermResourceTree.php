@@ -6,10 +6,18 @@
  * @copyright Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
 */
+use App\ZhuChao\Product\Constant;
 return array(
    'text'        => '产品管理',
-   'internalKey' => 'Product',
+   'internalKey' => Constant::PK_APP_KEY,
    'isApp'       => true,
    'hasDetail'   => false,
-   'children'    => array()
+   'children'    => array(
+      array(
+         'text'        => '产品管理',
+         'internalKey' => Constant::PK_WIDGET_PRODUCT,
+         'hasDetail'   => false,
+         'codes'       => array()
+      )
+   )
 );

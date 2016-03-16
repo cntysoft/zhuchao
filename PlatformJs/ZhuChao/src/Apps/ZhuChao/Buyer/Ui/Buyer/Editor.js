@@ -8,7 +8,7 @@
 /*
  * 采购商信息编辑器
  */
-Ext.define('App.ZhuChao.Buyer.Ui.Editor', {
+Ext.define('App.ZhuChao.Buyer.Ui.Buyer.Editor', {
     extend : 'Ext.form.Panel',
     requires : [
         'App.ZhuChao.Buyer.Const',
@@ -36,7 +36,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.Editor', {
     constructor : function (config)
     {
         config = config || {};
-        this.LANG_TEXT = this.GET_LANG_TEXT('UI.EDITOR');
+        this.LANG_TEXT = this.GET_LANG_TEXT('UI.BUYER.EDITOR');
         this.applyConstraintConfig(config);
         if(config.mode == ZhuChao.Const.MODIFY_MODE){
             if(!Ext.isDefined(config.targetLoadId) || !Ext.isNumber(config.targetLoadId)){

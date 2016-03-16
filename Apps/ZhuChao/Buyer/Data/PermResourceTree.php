@@ -6,10 +6,18 @@
  * @copyright Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
 */
+use App\ZhuChao\Buyer\Constant;
 return array(
    'text'        => '采购商管理',
-   'internalKey' => 'Buyer',
+   'internalKey' => Constant::PK_APP_KEY,
    'isApp'       => true,
    'hasDetail'   => false,
-   'children'    => array()
+   'children'    => array(
+      array(
+         'text'        => '采购商管理',
+         'internalKey' => Constant::PK_WIDGET_BUYER,
+         'hasDetail'   => false,
+         'codes'       => array()
+      )
+   )
 );
