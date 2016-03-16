@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>登录</title>
-    <?php Qs::Sys('loadCss',array('usercenter/style.css','usercenter/login.css'))?>
-</head>
-<body>
-<div class="wrap">
-    <div class="wrap_inner">
-        <!--logo-->
-        <div class="logo_register">
-            <div class="icon_logo fl">
-                <img src="<?php Qs::Sys('loadImage','login/icon/icon_logo_fff.png')?>" alt="凤凰筑巢LOGO">
-            </div>
-            <h3 class="fl">后台管理系统</h3>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>登录</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')) ?>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="wrap_inner">
+                <!--logo-->
+                <div class="logo_register">
+                    <div class="icon_logo fl">
+                        <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                    </div>
+                    <h3 class="fl">后台管理系统</h3>
 
-            <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
-        </div>
-        <div class="login_box">
-            <div class="login_header">
-                <h4 class="login_title">账户登录</h4>
+                    <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
+                </div>
+                <div class="login_box">
+                    <div class="login_header">
+                        <h4 class="login_title">账户登录</h4>
 
-                <div class="login_form">
-                    <form action="">
-                        <div class="login_form_input">
-                            <input class="form_text" type="text" name="user" id="username" placeholder="请输入用户名/手机号">
-                            <!--错误提示-->
-                            <div class="error_tip tl">
-                                <i></i>
-                                <span>用户名/手机号错误</span>
-                            </div>
-                            <input type="password" placeholder="请输入密码" name="pwd" id="pwd">
-                            <!--错误提示-->
-                            <div class="error_tip tl">
-                                <i></i>
-                                <span>请输入密码</span>
-                            </div>
+                        <div class="login_form">
+                            <form action="">
+                                <div class="login_form_input">
+                                    <input class="form_text" type="text" fh-type="name"  id="name" placeholder="请输入用户名/手机号" required>
+                                    <!--错误提示-->
+                                    <div class="error_tip tl">
+                                        <i></i>
+                                        <span>用户名/手机号错误</span>
+                                    </div>
+                                    <input type="password" placeholder="请输入密码" fh-type="password" id="password" required>
+                                    <!--错误提示-->
+                                    <div class="error_tip tl">
+                                        <i></i>
+                                        <span>请输入密码</span>
+                                    </div>
+                                    <div class="input_code clearfix hide">
+                                        <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
+                                        <a class="icode_image" >
+                                            <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
+                                            <i class="icon-svgupdate" id="changeCodeImg"></i>
+                                        </a>
+                                    </div>
+                                    <div class="error_tip tl hide">
+                                        <i></i>
+                                        <span>请输入验证码</span>
+                                    </div>
+                                </div>
+                                <!--忘记密码-->
+                                <div class="login_forget clearfix tr">
+                                    <div class="login_auto fl checked">
+                                        <i class="icon-checked main_light" id="remember"></i><span>两周内自动登陆</span>
+                                    </div>
+                                    <a href="" class="main_light">忘记密码？</a>
+                                </div>
+                                <!--提交-->
+                                <input class="submit_btn main_bg_light" id="submit" type="submit" value="立即登录"/>
+                            </form>
                         </div>
-                        <!--忘记密码-->
-                        <div class="login_forget clearfix tr">
-                            <div class="login_auto fl checked">
-                                <i class="icon-checked main_light"></i><span>两周内自动登陆</span>
-                            </div>
-                            <a href="" class="main_light">忘记密码？</a>
-                        </div>
-                        <!--提交-->
-                        <input class="submit_btn main_bg_light" type="submit" value="立即登录"/>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--版权 begin-->
-<div class="login_footer">
-    <ul class="copy_nav clearfix">
-        <li>
-            <a href="" target="_blank">关于我们</a>
-            <span></span>
-        </li>
-        <li>
-            <a href="" target="_blank">联系我们</a>
-            <span></span>
-        </li>
-        <li>
-            <a href="" target="_blank">友情链接</a>
-            <span></span>
-        </li>
-        <li>
-            <a href="" target="_blank">帮助中心</a>
-            <span></span>
-        </li>
-        <li>
-            <a href="" target="_blank">意见反馈</a>
-            <span></span>
-        </li>
-        <li>
-            <a href="" target="_blank">高薪聘请</a>
-            <span></span>
-        </li>
-        <li>
-            <a href="" target="_blank">法律声明</a>
-        </li>
-    </ul>
-    <div class="copyright">© 2015 LaoKeBa.com 凤凰筑巢 保留所有权利</div>
-    <div class="copy_icp">Copyright 2008-2016 GongChang.com All Rights Reserved 豫ICP备11020782号-15- 23.77ms</div>
-</div>
-</body>
+        <!--版权 begin-->
+        <div class="login_footer">
+            <ul class="copy_nav clearfix">
+                <li>
+                    <a href="" target="_blank">关于我们</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="" target="_blank">联系我们</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="" target="_blank">友情链接</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="" target="_blank">帮助中心</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="" target="_blank">意见反馈</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="" target="_blank">高薪聘请</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="" target="_blank">法律声明</a>
+                </li>
+            </ul>
+            <div class="copyright">© 2015 LaoKeBa.com 凤凰筑巢 保留所有权利</div>
+            <div class="copy_icp">Copyright 2008-2016 GongChang.com All Rights Reserved 豫ICP备11020782号-15- 23.77ms</div>
+            <script data-main="/Statics/Skins/Pc/Js/requireenter.js" id="require" app="provider/login" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
+        </div>
+    </body>
 </html>

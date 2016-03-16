@@ -1,30 +1,31 @@
-define(['exports', 'jquery'], function (exports){
+define(['exports', 'jquery', 'layer'], function (exports){
     $(function (){
         var reg = {
             emial : /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
             phone : /^(1[0-9]{10})$/,
             qq : /^[1-9][0-9]{4,10}$/,
             nickname : /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,8}$/,
-            name : /^[\w]{5,15}$/,
+            name : /^[\w]{5,11}$/,
             noNum : /^[\d]*$/,
             password : /^[\w~`\!@#\$%\^&\*\(\)_\-\=\+\[\]\{\}\:"\|;'\\<>\?,\.\/"]{6,15}$/,
             phoneAuthCode : /^[\d]{6}$/,
-            imgCode : /^[\w]{4}$/
+            imgCode : /^[\w]{4}$/,
         },
         message = {
             email : '请输入正确的邮箱',
             phone : '请输入正确的手机号',
             qq : '请输入正确的qq',
             nickname : '请输入3-8位昵称',
-            name : '请输入5-15位字母数字组成的用户名',
+            name : '请输入手机号或用户名',
             noNum : '请输入非数字',
             password : '请输入6-15位密码',
             phoneAuthCode : '请输入6位数字验证码',
             imgCode : '请输入4位图片验证码',
-            passwordNotEqual:'两次密码输入不一致'
+            passwordNotEqual : '两次密码输入不一致'
         };
         var errorArray = new Array();
         function checkFields($fields){
+            layer.closeAll();
             errorArray = new Array();
             $.each($fields, function (index, item){
                 var $item = $(item);
@@ -46,9 +47,13 @@ define(['exports', 'jquery'], function (exports){
                             ele : $item,
                             msg : message[type]
                         });
+                        layer.tips(message[type], $item, {
+                            tipsMore : true,
+                            tips:[2,'#63bf82']
+                        });
                     }
                 } else{
-                    throw new Error( 'no fh-type of ' + $item.attr('fh-type') + 'from');
+                    throw new Error('no fh-type of ' + $item.attr('fh-type') + 'from');
                 }
             } else if($item.attr('reg')){
                 var reg2 = new RegExp($item.attr('reg'));

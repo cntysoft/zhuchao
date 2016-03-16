@@ -8,7 +8,7 @@
 /**
  * 前台用户中心用户登录相关的API
  */
-define(['jquery', 'Core'], function (){
+define(['jquery', 'Core', 'layer'], function (){
     (function (window, undefined){
         var _emptyFn = function (){
         };
@@ -18,8 +18,12 @@ define(['jquery', 'Core'], function (){
             REQUEST_META_KEY : "REQUEST_META",
             REQUEST_DATA_KEY : "REQUEST_DATA",
             REQUEST_SECURITY_KEY : "REQUEST_SECURITY",
-            callApi : function (name, method, params, callback, scope)
+            callApi : function (name, method, params, callback, load, scope)
             {
+                var layerIndex;
+                if(load){
+                    layerIndex = layer.load();
+                }
                 callback = callback || Cntysoft.emptyFn;
                 scope = scope || Cntysoft.Front;
                 var requestObject = {};
@@ -35,6 +39,7 @@ define(['jquery', 'Core'], function (){
                 {
                     //@TODO 是否要加入code参数
                     callback.call(scope, data);
+                    layerIndex ? layer.close(layerIndex) : '';
                 };
                 requestObject[this.REQUEST_META_KEY] = Cntysoft.Json.encode({
                     cls : name,
@@ -55,5 +60,6 @@ define(['jquery', 'Core'], function (){
             }
         });
         Cntysoft.Front.imgCodeUrl = '/registerchkcode?v_';
+        Cntysoft.Front.loginImgCodeUrl = '/loginchkcode?v_';
     })(window);
 });
