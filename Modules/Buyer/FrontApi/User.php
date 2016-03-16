@@ -273,13 +273,19 @@ class User extends AbstractScript
    {
       $this->checkRequireFields($params, array('code', 'type'));
       
-      return $this->appCaller->call(
+      $flag = $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,
          BUYER_CONST::APP_NAME,
          BUYER_CONST::APP_API_BUYER_ACL,
          'checkPicCode',
          array($params['code'], (int)$params['type'])
       );
+      
+      if($flag && isset($params['phone']) && $params['phone']){
+         return $this->sendSmsCode(array('phone' => $params['phone'], 'type' => $params['type']));
+      }
+      
+      return $flag;
    }
    
    /**

@@ -99,13 +99,7 @@ class FrontApiServer
         $this->whiteList = array(
            'User.login',
            'User.register',
-           'User.loginByCookie',
-           'User.checkRegAuthCode', //用户注册发送短信验证码之前的图片验证码
-           'User.checkForgetAuthCode', //用户找回密码发送短信验证码之前的图片验证码
-           'User.checkEmailExist', //检查邮箱是否存在
-           'User.checkPhoneExist', //检查手机号码是否存在
-           'User.checkNameExist', //检查用户名是否存在
-           'User.resetPasswordWithCode', //重置密码
+           'User.checkPicCode', //用户注册发送短信验证码之前的图片验证码
            'User.checkLogin', //验证是否登陆
         );
     }

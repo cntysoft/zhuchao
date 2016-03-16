@@ -35,7 +35,7 @@ class BuyerMgr extends AbstractLib
          ), $this->getErrorTypeContext());
       }
       
-      if($params['name'] && $this->checkNameExist($params['name'])){
+      if(isset($params['name']) && $params['name'] && $this->checkNameExist($params['name'])){
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
             $errorType->msg('E_BUYER_NAME_EXIST', $params['name']), $errorType->code('E_BUYER_NAME_EXIST')

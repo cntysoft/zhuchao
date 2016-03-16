@@ -1,0 +1,97 @@
+define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
+    $(function (){
+        var sendMessageCode = false;
+        $('#codeImg').attr('src', Cntysoft.Front.imgCodeUrl + (new Date()).getTime());
+        $('#changeCodeImg').click(function (){
+            $('#codeImg').attr('src', Cntysoft.Front.imgCodeUrl + (new Date()).getTime());
+        });
+        $('#phone,#password,#password2,#imgCode').blur(function(){
+           validate.checkFields($(this));
+        });
+        $('#sendMessage').click(function (){
+            var $this = $(this);
+            var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
+            if(validateMsg.length){
+                $.each(validateMsg, function (index, item){
+                    layer.tips(item.msg,item.ele,{
+                        tipsMore:true
+                    });
+                });
+                return false;
+            }
+            if($('#password').val() != $('#password2').val()){
+                layer.tips(validate.message.passwordNotEqual,$('#password2'));
+                return false;
+            }
+            if(sendMessageCode){
+                return false;
+            }
+            Cntysoft.Front.callApi('User', 'checkPicCode', {
+               phone : $('#phone').val(),
+               code : $('#imgCode').val(),
+               type : 1
+            }, function(response){
+               if(!response.status){
+                  if(10001 == response.errorCode){//过期
+                     layer.alert('图片验证码已经过期！');
+                  }else if(10002 == response.errorCode){//错误
+                     layer.alert('图片验证码错误！');
+                  }else if(10003 == response.errorCode){//发送短信失败
+                     layer.alert('短信发送失败！');
+                  }
+               }else{
+                  sendMessageCode = true;
+                  $this.html('重新发送(120)');
+                  var n = 120;
+                  setTime = setInterval(function (){
+                     n -= 1;
+                     $this.html('重新发送(' + n + ')');
+                     if(n == 0){
+                        clearInterval(setTime);
+                        $this.html('重新发送');
+                        sendMessageCode = false;
+                     }
+                  }, 1000);
+               }
+            });
+        });
+
+        $('#submit').click(function (event){
+            event.preventDefault();
+            var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
+            if(validateMsg.length){
+                $.each(validateMsg, function (index, item){
+                    layer.tips(item.msg,item.ele,{
+                        tipsMore:true
+                    });
+                });
+                return false;
+            }
+            if($('#password').val() != $('#password2').val()){
+                layer.tips(validate.message.passwordNotEqual,$('#password2'));
+                return false;
+            }
+
+            if(!sendMessageCode){
+               return false;
+            }
+            
+            Cntysoft.Front.callApi('User', 'register', {
+               phone : $('#phone').val(),
+               password : $('#password').val(),
+               smsCode : $('#phoneAuthCode').val()
+            }, function(response){
+               if(!response.status){
+                  if(10004 == response.errorCode){//过期
+                     layer.alert('短信验证码已经过期！');
+                  }else if(10005 == response.errorCode){//错误
+                     layer.alert('短信验证码错误！');
+                  }
+                  sendMessageCode = false;
+               }else{
+                  
+               }
+            });
+        });
+    });
+});

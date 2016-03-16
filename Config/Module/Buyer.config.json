@@ -73,15 +73,6 @@
             }
         },
         {
-            "key" : "BuyerCoupon",
-            "rule" : "\/Buyer\/coupon.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "coupon"
-            }
-        },
-        {
             "key" : "BuyerCollection",
             "rule" : "\/Buyer\/collection.html",
             "option" : {
@@ -109,93 +100,12 @@
             }
         },
         {
-            "key" : "BuyerOrder",
-            "rule" : "\/Buyer\/order\/{orderId:[1-9][0-9]*}.html",
+            "key" : "Index",
+            "rule" : "\/",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
-                "action" : "order"
-            }
-        },
-        {
-            "key" : "BuyerOrderList",
-            "rule" : "\/Buyer\/orderlist.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "orderlist"
-            }
-        },
-        {
-            "key" : "BuyerOrderListWithPage",
-            "rule" : "\/Buyer\/orderlist\/page\/{pageId:[1-9][0-9]*}.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "orderlist"
-            }
-        },
-        {
-            "key" : "BuyerComment",
-            "rule" : "\/Buyer\/comment\/{commentId:[1-9][0-9]*}.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "comment"
-            }
-        },
-        {
-            "key" : "BuyerCommentList",
-            "rule" : "\/Buyer\/commentlist.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "commentlist"
-            }
-        },
-        {
-            "key" : "BuyerCommentListWithPage",
-            "rule" : "\/Buyer\/commentlist\/page\/{pageId:[1-9][0-9]*}.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "commentlist"
-            }
-        },
-        {
-            "key" : "BuyerRe",
-            "rule" : "\/Buyer\/re\/{orderId:[1-9][0-9]*}.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "re"
-            }
-        },
-        {
-            "key" : "BuyerReApply",
-            "rule" : "\/Buyer\/reapply\/{ordergoodsId:[1-9][0-9]*}.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "reapply"
-            }
-        },
-        {
-            "key" : "BuyerReList",
-            "rule" : "\/Buyer\/relist.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "relist"
-            }
-        },
-        {
-            "key" : "BuyerReListWithPage",
-            "rule" : "\/Buyer\/relist\/page\/{pageId:[1-9][0-9]*}.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "relist"
+                "action" : "index"
             }
         },
         {
@@ -208,6 +118,16 @@
             }
         },
         {
+            "key" : "RegisterChkCode",
+            "rule" : "/registerchkcode",
+            "option" : {
+                "module" : "Buyer",
+                "controller" : "Utils",
+                "action" : "registerChkCode"
+            }
+        },
+        {
+            "key" : "FrontApi",
             "rule": "\/front-api-entry",
             "option": {
                 "module": "Buyer",
@@ -239,6 +159,6 @@
         "buyer\/message" : "采购会员\/用户中心\/消息通知.phtml"
     },
     "front_api_map" : {
-        
+        "User" : ["\\FrontApi\\User", 2]
     }
 }
