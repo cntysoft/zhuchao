@@ -10,7 +10,9 @@
         enter: function (a) {
             13 === a.keyCode && a.preventDefault()
         },
-        config: {},
+        config: {
+            move:false
+        },
         end: {},
         btn: ["&#x786E;&#x5B9A;", "&#x53D6;&#x6D88;"],
         type: ["dialog", "page", "iframe", "loading", "tips"]
@@ -328,8 +330,8 @@
             return b.index
         }
     }, "function" == typeof define ? define(['jquery'], function () {
-        return e.run(), f
+        return e.run(), $('head').append('<link type="text/css" charset="utf-8" rel="stylesheet" href="/Statics/Skins/Pc/Css/layer.css">');
     }) : function () {
-        e.run(), f.use("skin/layer.css")
+        e.run(), $('head').append('<link type="text/css" charset="utf-8" rel="stylesheet" href="/Statics/Skins/Pc/Css/layer.css">');
     }()
 }(window);
