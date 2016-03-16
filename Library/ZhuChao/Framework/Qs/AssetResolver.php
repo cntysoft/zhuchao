@@ -12,6 +12,16 @@ use ZhuChao\Kernel\StdHtmlPath;
 use Cntysoft;
 class AssetResolver implements AssetResolverInterface
 {
+   const DEVICE_PC = 'Pc';
+   const DEVICE_MOBILE = 'Mobile';
+
+   /**
+    * 当前请求的设备类型
+    * 
+    * @var string
+    */
+   protected $deviceType = null;
+
    /**
     *  静态文件的基本路径
     *
@@ -19,7 +29,11 @@ class AssetResolver implements AssetResolverInterface
     */
    public function getAssetBasePath()
    {
-      return 'http://statics-res.fhzc.com';
+      if (SYS_RUNTIME_MODE == SYS_RUNTIME_MODE_DEBUG) {
+         return StdHtmlPath::getSkinPath();
+      } else {
+         return 'http://statics-res.fhzc.com';
+      }
    }
 
    /**
@@ -30,7 +44,8 @@ class AssetResolver implements AssetResolverInterface
    public function getCssBasePath()
    {
       $basePath = $this->getAssetBasePath();
-      return $basePath . '/' . Cntysoft\CSS;
+      $deviceType = $this->detactDeviceType();
+      return $basePath . '/' . $deviceType . '/' . Cntysoft\CSS;
    }
 
    /**
@@ -41,7 +56,8 @@ class AssetResolver implements AssetResolverInterface
    public function getImageBasePath()
    {
       $basePath = $this->getAssetBasePath();
-      return $basePath . '/' . Cntysoft\IMAGE;
+      $deviceType = $this->detactDeviceType();
+      return $basePath . '/' . $deviceType . '/' . Cntysoft\IMAGE;
    }
 
    /**
@@ -52,7 +68,38 @@ class AssetResolver implements AssetResolverInterface
    public function getJsBasePath()
    {
       $basePath = StdHtmlPath::getSkinPath();
-      return $basePath . '/' . Cntysoft\JS;
+      $deviceType = $this->detactDeviceType();
+      return $basePath . '/' . $deviceType . '/' . Cntysoft\JS;
+   }
+
+   /**
+    * 探测访问设备的类型
+    *
+    * @return string
+    */
+   protected function detactDeviceType()
+   {
+      if (null == $this->deviceType) {
+         $agent = $_SERVER['HTTP_USER_AGENT'];
+         $iphone = strstr(strtolower($agent), 'mobile');
+         $android = strstr(strtolower($agent), 'android');
+         $windowsPhone = strstr(strtolower($agent), 'phone');
+         $androidTablet = false;
+         if (strstr(strtolower($agent), 'android')) {
+            if (!strstr(strtolower($agent), 'mobile')) {
+               $androidTablet = true;
+            }
+         }
+         $ipad = strstr(strtolower($agent), 'ipad');
+         if ($androidTablet || $ipad) {
+            $this->deviceType = self::DEVICE_MOBILE;
+         } elseif ($iphone && !$ipad || $android && !$androidTablet || $windowsPhone) { //If it's a phone and NOT a tablet
+            $this->deviceType = self::DEVICE_MOBILE;
+         } else {
+            $this->deviceType = self::DEVICE_PC;
+         }
+      }
+      return $this->deviceType;
    }
 
 }
