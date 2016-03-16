@@ -1,23 +1,16 @@
 define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
-       var imgCodeUrl = '/registerchkcode?v_';
-       var codeType = 1;
+       var imgCodeUrl = '/forgetchkcode?v_';
+       var codeType = 2, phone = '', phoneChecked = false;
         var sendMessageCode = false;
         $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
         $('#changeCodeImg').click(function (){
             $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
         });
-        $('#phone,#password,#password2,#imgCode').blur(function(){
-           validate.checkFields($(this));
-        });
-        $('#sendMessage').click(function (){
+        $('#sendMessage').click(function(){
             var $this = $(this);
-            var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
+            var validateMsg = validate.checkFields($('#phone,#imgCode'));
             if(validateMsg.length){
-                return false;
-            }
-            if($('#password').val() != $('#password2').val()){
-                layer.tips(validate.message.passwordNotEqual,$('#password2'));
                 return false;
             }
             if(sendMessageCode){
@@ -53,25 +46,21 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
             });
         });
 
-        $('#submit').click(function (event){
+        $('#submit_first').click(function (event){
             event.preventDefault();
-            var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
+            var validateMsg = validate.checkFields($('#phone,#imgCode'));
             if(validateMsg.length){
                 return false;
             }
-            if($('#password').val() != $('#password2').val()){
-                layer.tips(validate.message.passwordNotEqual,$('#password2'));
-                return false;
-            }
-
+            
             if(!sendMessageCode){
                return false;
             }
             
-            Cntysoft.Front.callApi('User', 'register', {
+            Cntysoft.Front.callApi('User', 'checkSmsCode', {
                phone : $('#phone').val(),
-               password : Cntysoft.Core.sha256($('#password').val()),
-               smsCode : $('#phoneAuthCode').val()
+               code : $('#phoneAuthCode').val(),
+               type : codeType
             }, function(response){
                if(!response.status){
                   if(10004 == response.errorCode){//过期
@@ -81,7 +70,42 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
                   }
                   sendMessageCode = false;
                }else{
-                  layer.alert('注册成功，页面即将跳转！', {
+                  phone = $('#phone').val();
+                  phoneChecked = true;
+                  $('.login_form.check_form').hide();
+                  $('.login_form.reset_form').show();
+               }
+            });
+        });
+        
+        $('#submit_second').click(function(event){
+            event.preventDefault();
+            var validateMsg = validate.checkFields($('#password', '#password2'));
+            if(validateMsg.length){
+                return false;
+            }
+            
+            if($('#password').val() != $('#password2').val()){
+                layer.tips(validate.message.passwordNotEqual,$('#password2'));
+                return false;
+            }
+            
+            if(!phoneChecked){
+               layer.alert('请重新验证手机号码！');
+               return false;
+            }
+            
+            Cntysoft.Front.callApi('User', 'findPassword', {
+               phone : phone,
+               password : Cntysoft.Core.sha256($('#password').val())
+            }, function(response){
+               if(!response.status){
+                  if(10011 == response.errorCode){//不存在
+                     layer.alert('手机号码错误，请重新验证！');
+                  }
+                  sendMessageCode = false;
+               }else{
+                  layer.alert('成功找回密码，即将跳转到登陆页面！', {
                      btn : '',
                      success : function(){
                         var redirect = function(){

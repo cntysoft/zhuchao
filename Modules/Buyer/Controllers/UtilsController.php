@@ -12,11 +12,19 @@ use Cntysoft\Framework\Utils\CheckCode;
 class UtilsController extends AbstractController
 {
    /**
-    * 站点验证码生成
+    * 注册页图片验证码生成
     */
    public function registerChkCodeAction()
    {
       $drawer = new CheckCode(\Cntysoft\FRONT_USER_S_KEY_REG_CHK_CODE, 12, 4);
+      $drawer->draw();
+   }
+   /**
+    * 找回密码页图片验证码生成
+    */
+   public function forgetChkCodeAction()
+   {
+      $drawer = new CheckCode(\Cntysoft\FRONT_USER_S_KEY_FORGET_CHK_CODE, 12, 4);
       $drawer->draw();
    }
 }

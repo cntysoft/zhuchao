@@ -29,7 +29,7 @@ class IndexController extends AbstractController
    public function indexAction()
    {
       return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'user/index',
+         View::KEY_RESOLVE_DATA => 'buyer/index',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
@@ -37,7 +37,7 @@ class IndexController extends AbstractController
    public function avatarAction()
    {
       return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'user/avatar',
+         View::KEY_RESOLVE_DATA => 'buyer/avatar',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
@@ -45,7 +45,7 @@ class IndexController extends AbstractController
    public function modifyAction()
    {
       return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'user/modify',
+         View::KEY_RESOLVE_DATA => 'buyer/modify',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
@@ -53,7 +53,7 @@ class IndexController extends AbstractController
    public function passwordAction()
    {
       return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'user/password',
+         View::KEY_RESOLVE_DATA => 'buyer/password',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
@@ -61,7 +61,7 @@ class IndexController extends AbstractController
    public function collectionAction()
    {
       return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'user/collection',
+         View::KEY_RESOLVE_DATA => 'buyer/collection',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
@@ -69,7 +69,7 @@ class IndexController extends AbstractController
    public function messageAction()
    {
       return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'user/message',
+         View::KEY_RESOLVE_DATA => 'buyer/message',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
@@ -77,7 +77,7 @@ class IndexController extends AbstractController
    public function addressAction()
    {
       return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'user/address',
+         View::KEY_RESOLVE_DATA => 'buyer/address',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }

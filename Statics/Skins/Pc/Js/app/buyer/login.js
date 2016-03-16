@@ -8,17 +8,12 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
             event.preventDefault();
             var validateMsg = validate.checkFields($('#username,#password'));
             if(validateMsg.length){
-                $.each(validateMsg, function (index, item){
-                    layer.tips(item.msg,item.ele,{
-                        tipsMore:true
-                    });
-                });
                 return false;
             }
             
             Cntysoft.Front.callApi('User', 'login', {
-               key : $('#username').val(),
-               password : $('#password').val(),
+               key : $('#name').val(),
+               password : Cntysoft.Core.sha256($('#password').val()),
                remember : $('.login_auto').hasClass('checked') ? 1 : 0
             }, function(response){
                if(!response.status){
@@ -30,7 +25,20 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
                      layer.alert('用户名或者密码错误！');
                   }
                }else{
-                  layer.alert('登陆成功！');
+                  layer.alert('登陆成功！', {
+                     btn : '',
+                     success : function(){
+                        var redirect = function(){
+                           var query = Cntysoft.fromQueryString(window.location.search, true);
+                           if(query.returnUrl){
+                              window.location = query.returnUrl;
+                           } else{
+                              window.location = '/';
+                           }
+                        };
+                        setTimeout(redirect, 300);
+                     }
+                  });
                }
             });
         });

@@ -8,7 +8,7 @@
 */
 return array(
    'E_BUYER_ACL_PIC_CODE_EXPIRE'     => array(10001, 'The pic code %s is expired'),
-   'E_BUYER_ACL_PIC_CODE_ERROR'      => array(10002, 'The pic code $s is wrong'),
+   'E_BUYER_ACL_PIC_CODE_ERROR'      => array(10002, 'The pic code %s is wrong'),
    'E_BUYER_ACL_SMS_SEND_ERROR'      => array(10003, 'The sms send fail'),
    'E_BUYER_ACL_SMS_EXPIRE'          => array(10004, 'The sms %s is expired'),
    'E_BUYER_ACL_SMS_ERROR'           => array(10005, 'The sms %s is wrong'),

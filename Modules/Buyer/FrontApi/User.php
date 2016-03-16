@@ -237,7 +237,7 @@ class User extends AbstractScript
     */
    public function checkSmsCode(array $params)
    {
-      $this->checkSmsCode($params, array('phone', 'code', 'type'));
+      $this->checkRequireFields($params, array('phone', 'code', 'type'));
       
       return $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,

@@ -28,8 +28,8 @@
             }
         },
         {
-            "key" : "BuyerIndex",
-            "rule" : "\/Buyer\/index.html",
+            "key" : "Index",
+            "rule" : "\/",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -38,7 +38,7 @@
         },
         {
             "key" : "BuyerAvatar",
-            "rule" : "\/Buyer\/avatar.html",
+            "rule" : "\/avatar.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -47,7 +47,7 @@
         },
         {
             "key" : "BuyerPassword",
-            "rule" : "\/Buyer\/password.html",
+            "rule" : "\/password.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -56,7 +56,7 @@
         },
         {
             "key" : "BuyerMessage",
-            "rule" : "\/Buyer\/message.html",
+            "rule" : "\/message.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -65,7 +65,7 @@
         },
         {
             "key" : "BuyerModify",
-            "rule" : "\/Buyer\/modify.html",
+            "rule" : "\/modify.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -74,7 +74,7 @@
         },
         {
             "key" : "BuyerCollection",
-            "rule" : "\/Buyer\/collection.html",
+            "rule" : "\/collection.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -83,7 +83,7 @@
         },
         {
             "key" : "BuyerAddress",
-            "rule" : "\/Buyer\/address.html",
+            "rule" : "\/address.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -92,29 +92,11 @@
         },
         {
             "key" : "BuyerAddress",
-            "rule" : "\/Buyer\/address\/{addrId:[1-9][0-9]*|0}.html",
+            "rule" : "\/address\/{addrId:[1-9][0-9]*|0}.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
                 "action" : "changeaddress"
-            }
-        },
-        {
-            "key" : "Index",
-            "rule" : "\/",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "index"
-            }
-        },
-        {
-            "key" : "Index",
-            "rule" : "\/",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "index"
             }
         },
         {
@@ -124,6 +106,15 @@
                 "module" : "Buyer",
                 "controller" : "Utils",
                 "action" : "registerChkCode"
+            }
+        },
+        {
+            "key" : "ForgetChkCode",
+            "rule" : "/forgetchkcode",
+            "option" : {
+                "module" : "Buyer",
+                "controller" : "Utils",
+                "action" : "forgetChkCode"
             }
         },
         {
@@ -145,17 +136,9 @@
         "buyer\/avatar" : "采购会员\/用户中心\/修改头像.phtml",
         "buyer\/password" : "采购会员\/用户中心\/修改密码.phtml",
         "buyer\/modify" : "采购会员\/用户中心\/我的信息.phtml",
-        "buyer\/coupon" : "采购会员\/用户中心\/我的优惠券.phtml",
         "buyer\/collection" : "采购会员\/用户中心\/我的收藏.phtml",
         "buyer\/address" : "采购会员\/用户中心\/收货地址.phtml",
         "buyer\/changeaddress" : "采购会员\/用户中心\/修改地址.phtml",
-        "buyer\/order" : "采购会员\/用户中心\/订单内容页.phtml",
-        "buyer\/orderlist" : "采购会员\/用户中心\/订单列表页.phtml",
-        "buyer\/comment" : "采购会员\/用户中心\/评论内容页.phtml",
-        "buyer\/commentlist" : "采购会员\/用户中心\/评论列表页.phtml",
-        "buyer\/re" : "采购会员\/用户中心\/退货详情.phtml",
-        "buyer\/reapply" : "采购会员\/用户中心\/退货申请.phtml",
-        "buyer\/relist" : "采购会员\/用户中心\/退货列表.phtml",
         "buyer\/message" : "采购会员\/用户中心\/消息通知.phtml"
     },
     "front_api_map" : {
