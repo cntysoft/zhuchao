@@ -242,7 +242,7 @@ class BuyerMgr extends AbstractLib
       if (!$buyer) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_USER_NOT_EXIST'), $errorType->code('E_BUYER_USER_NOT_EXIST')
+            $errorType->msg('E_BUYER_USER_NOT_EXIST', $id), $errorType->code('E_BUYER_USER_NOT_EXIST')
          ), $this->getErrorTypeContext());
       }
 
@@ -263,7 +263,7 @@ class BuyerMgr extends AbstractLib
       if(!$buyer){
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_USER_NOT_EXIST', $buyerId), $errorType->code('E_BUYER_USER_NOT_EXIST')
+            $errorType->msg('E_BUYER_USER_NOT_EXIST', $id), $errorType->code('E_BUYER_USER_NOT_EXIST')
          ), $this->getErrorTypeContext());
       }
       

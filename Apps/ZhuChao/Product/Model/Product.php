@@ -51,6 +51,9 @@ class Product extends BaseModel
       $this->hasOne('detailId', 'App\ZhuChao\Product\Model\ProductDetail', 'id', array(
          'alias' => 'detail'
       ));
+      $this->hasManyToMany('id', 'App\ZhuChao\Product\Model\Product2Group', 'productId', 'groupId', 'App\ZhuChao\Product\Model\Group', 'id', array(
+         'alias' => 'groups'
+      ));
    }
    
    public function getId()

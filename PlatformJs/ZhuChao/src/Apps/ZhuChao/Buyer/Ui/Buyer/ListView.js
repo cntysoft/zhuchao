@@ -246,7 +246,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.Buyer.ListView', {
             if(response.status){
                 record.set('status', status);
             } else{
-                Cntysoft.Kernel.Utils.processApiError(response);
+                Cntysoft.Kernel.Utils.processApiError(response, this.LANG_TEXT.ERROR_MAP);
             }
         }, this);
     },

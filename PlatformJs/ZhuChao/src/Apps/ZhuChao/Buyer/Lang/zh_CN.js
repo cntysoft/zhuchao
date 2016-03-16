@@ -52,13 +52,16 @@ Ext.define('App.ZhuChao.Buyer.Lang.zh_CN', {
                   LOCK : '锁定用户',
                   UNLOCK : '解锁用户',
                   MODIFY : '修改用户信息'
+               },
+               ERROR_MAP : {
+                  "App/ZhuChao/Buyer/BuyerMgr" : {
+                     10011 : '指定的用户不存在！'
+                  }
                }
             },
             EDITOR : {
                TITLE : '采购商信息编辑器',
                FIELD : {
-                  BASEINFO : '基本信息',
-                  PROFILE : '详细信息',
                   ID : '采购商ID',
                   NAME : '用户名',
                   PHONE : '手机号码',
@@ -66,18 +69,10 @@ Ext.define('App.ZhuChao.Buyer.Lang.zh_CN', {
                   RE_PASSWORD : '重复密码',
                   REGISTE_TIME : '注册时间',
                   LAST_LOGIN_TIME : '上次登录时间',
-                  LAST_LOGIN_IP : '上次登录IP',
-                  REAL_NAME : '真实姓名',
                   SEX : '性别',
-                  DEPARTMENT : '所在部门',
-                  POSITION : '职位名称',
-                  EMAIL : '邮箱信息',
-                  SHOW_PHONE : '展示手机',
-                  QQ : 'QQ号码',
-                  TEL : '联系电话',
-                  FAX : '传真号码',
                   STATUS : '用户状态',
                   AVATAR : '头像',
+                  EXPERIENCE : '经验值',
                   SEX_NAME : {
                      MAN : '男',
                      WOMAN : '女',
@@ -97,9 +92,15 @@ Ext.define('App.ZhuChao.Buyer.Lang.zh_CN', {
                   NOT_DIRTY : '没有任何修改'
                },
                ERROR_MAP : {
-                  "App/ZhuChao/Buyer/Mgr" : {
-                     10001 : '手机号码已经存在！',
-                     10002 : '用户名称已经存在！'
+                  "App/ZhuChao/Buyer/AjaxHandler/Buyer" : {
+                     10011 : '指定的用户信息不存在！'
+                  },
+                  "App/ZhuChao/Buyer/BuyerMgr" : {
+                     10006 : '手机号码必须填写！',
+                     10007 : '用户密码必须填写！',
+                     10008 : '填写的用户名已经存在！',
+                     10009 : '填写的手机号码已经存在！',
+                     10011 : '指定的用户不存在！'
                   }
                }
             }

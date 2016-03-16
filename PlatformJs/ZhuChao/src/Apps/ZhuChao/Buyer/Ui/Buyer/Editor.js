@@ -103,7 +103,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.Buyer.Editor', {
     {
         this.loadMask.hide();
         if(!response.status){
-            Cntysoft.Kernel.Utils.processApiError(response);
+            Cntysoft.Kernel.Utils.processApiError(response, this.LANG_TEXT.ERROR_MAP);
         } else{
             this.currentNodeInfo = response.data;
             this.getForm().setValues(this.currentNodeInfo);
@@ -169,7 +169,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.Buyer.Editor', {
             } else if(C.MODIFY_MODE == this.mode){
                 var id = this.targetLoadId;
                 var values = form.getValues();
-                var rawData = this.currentNodeInfo;console.log(values, rawData)
+                var rawData = this.currentNodeInfo;
                 Ext.each(values, function (name){
                     if(rawData[name] == values[name]){
                         delete values[name];
@@ -204,7 +204,6 @@ Ext.define('App.ZhuChao.Buyer.Ui.Buyer.Editor', {
     {
         var F = this.LANG_TEXT.FIELD;
         var M = this.LANG_TEXT.MSG;
-        var d = new Date();
         return [{
             xtype : 'fieldcontainer',
             fieldLabel : F.AVATAR,
@@ -256,7 +255,7 @@ Ext.define('App.ZhuChao.Buyer.Ui.Buyer.Editor', {
                 }
             }, {
                xtype : 'numberfield',
-               fieldLabel : '经验值',
+               fieldLabel : F.EXPERIENCE,
                name : 'experience',
                minValue : 0,
                value : 0

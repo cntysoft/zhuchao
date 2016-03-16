@@ -141,7 +141,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
    {
       this.loadMask.hide();
       if(!response.status){
-         Cntysoft.Kernel.Utils.processApiError(response);
+         Cntysoft.Kernel.Utils.processApiError(response, this.LANG_TEXT.ERROR_MAP);
       } else{
          var data = response.data;
          this.basicFormRef.getForm().setValues(data);
@@ -336,7 +336,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
    {
       this.loadMask.hide();
       if(!response.status){
-         Cntysoft.Kernel.Utils.processApiError(response);
+         Cntysoft.Kernel.Utils.processApiError(response, this.LANG_TEXT.ERROR_MAP);
       } else{
          this.mainPanelRef.gotoPrev();
          var panel = this.mainPanelRef.getCurrentActivePanel();

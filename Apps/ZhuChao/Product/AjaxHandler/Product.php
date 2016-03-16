@@ -282,4 +282,23 @@ class Product extends AbstractHandler
       return $ret;
    }
    
+   /**
+    * 修改产品的状态
+    * 
+    * @param array $params
+    * @return boolean
+    */
+   public function changeStatus(array $params)
+   {
+      $this->checkRequireFields($params, array('id', 'status'));
+      
+      return $this->getAppCaller()->call(
+         PRODUCT_CONST::MODULE_NAME,
+         PRODUCT_CONST::APP_NAME,
+         PRODUCT_CONST::APP_API_PRODUCT_MGR,
+         'changeStatus',
+         array((int)$params['id'], (int)$params['status'])
+      );
+   }
+   
 }

@@ -34,8 +34,9 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
     statics : {
         A_CODES : {
             MODIFY : 1,
-            LOCK_USER : 2,
-            UNLOCK_USER : 3
+            VERIFY : 2,
+            REJECTION : 3,
+            SHELF : 4
         }
     },
     /*
@@ -204,8 +205,17 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
             var items = [{
                     text : L.MODIFY,
                     code : CODE.MODIFY
+                }, {
+                    text : L.MODIFY,
+                    code : CODE.VERIFY
+                }, {
+                    text : L.MODIFY,
+                    code : CODE.REJECTION
+                }, {
+                    text : L.MODIFY,
+                    code : CODE.SHELF
                 }];
-            
+
             this.contextMenuRef = new Ext.menu.Menu({
                 ignoreParentClicks : true,
                 items : items,
@@ -217,20 +227,31 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
         }
 
         var status = record.get('status');
-//        if(C.PRODUCT_STATUS_NORMAL == status) {
-//            this.contextMenuRef.items.getAt(1).setDisabled(false);
-//            this.contextMenuRef.items.getAt(2).setDisabled(true);
-//        }else {
-//            this.contextMenuRef.items.getAt(1).setDisabled(true);
-//            this.contextMenuRef.items.getAt(2).setDisabled(false);
-//        }
+        if(C.PRODUCT_STATUS_DRAFT == status || C.PRODUCT_STATUS_DELETE == status || C.PRODUCT_STATUS_SHELF == status) {
+            this.contextMenuRef.items.getAt(1).setDisabled(false);
+            this.contextMenuRef.items.getAt(2).setDisabled(false);
+            this.contextMenuRef.items.getAt(3).setDisabled(false);
+        }else if(C.PRODUCT_STATUS_PEEDING == status){
+            this.contextMenuRef.items.getAt(1).setDisabled(true);
+            this.contextMenuRef.items.getAt(2).setDisabled(true);
+            this.contextMenuRef.items.getAt(3).setDisabled(true);
+        }else if(C.PRODUCT_STATUS_VERIFY == status){
+            this.contextMenuRef.items.getAt(1).setDisabled(false);
+            this.contextMenuRef.items.getAt(2).setDisabled(true);
+            this.contextMenuRef.items.getAt(3).setDisabled(true);
+        }else if(C.PRODUCT_STATUS_REJECTION == status){
+            this.contextMenuRef.items.getAt(1).setDisabled(true);
+            this.contextMenuRef.items.getAt(2).setDisabled(false);
+            this.contextMenuRef.items.getAt(3).setDisabled(true);
+        }
+        
         this.contextMenuRef.record = record;
         return this.contextMenuRef;
     },
     /*
      * 更改用户的状态
      */
-    changUserStatus : function (record, status)
+    changStatus : function (record, status)
     {
         this.setLoading(Cntysoft.GET_LANG_TEXT('MSG.SAVE'));
         this.mainPanelRef.appRef.changProductStatus({id : record.get('id'), 'status' : status}, function (response){
@@ -238,23 +259,31 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
             if(response.status){
                 record.set('status', status);
             } else{
-                Cntysoft.Kernel.Utils.processApiError(response);
+                Cntysoft.Kernel.Utils.processApiError(response, this.LANG_TEXT.ERROR_MAP);
             }
         }, this);
     },
     menuItemClickHandler : function (menu, item)
     {
         if(item){
-            var C = this.self.A_CODES;
+            var C = this.self.A_CODES, CONST = App.ZhuChao.Product.Const;
             var code = item.code;
-            var CONST = App.ZhuChao.Product.Const;
             switch (code) {
-                case C.MODIFY:
-                    this.mainPanelRef.renderNewTabPanel('Editor', {
-                        mode : WebOs.Kernel.Const.MODIFY_MODE,
-                        targetLoadId : menu.record.get('id')
-                    });
-                    break;
+               case C.MODIFY:
+                  this.mainPanelRef.renderNewTabPanel('Editor', {
+                      mode : WebOs.Kernel.Const.MODIFY_MODE,
+                      targetLoadId : menu.record.get('id')
+                  });
+                  break;
+               case C.VERIFY:
+                  this.changStatus(menu.record.get('id'), CONST.PRODUCT_STATUS_VERIFY);
+                  break;
+               case C.REJECTION:
+                  this.changStatus(menu.record.get('id'), CONST.PRODUCT_STATUS_REJECTION);
+                  break;
+               case C.SHELF:
+                  this.changStatus(menu.record.get('id'), CONST.PRODUCT_STATUS_SHELF);
+                  break;
             }
         }
     },
@@ -281,10 +310,18 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
         var U_TEXT = this.LANG_TEXT.STATUS;
         var C = App.ZhuChao.Product.Const;
         switch (value) {
-            case C.PRODUCT_STATUS_NORMAL:
-                return '<span style = "color:green">' + U_TEXT.NORMAL + '</span>';
-            case C.PRODUCT_STATUS_LOCK:
-                return '<span style = "color:red">' + U_TEXT.LOCK + '</span>';
+            case C.PRODUCT_STATUS_DRAFT:
+                return '<span>' + U_TEXT.DRAFT + '</span>';
+            case C.PRODUCT_STATUS_PEEDING:
+                return '<span>' + U_TEXT.PEEDING + '</span>';
+            case C.PRODUCT_STATUS_VERIFY:
+                return '<span>' + U_TEXT.VERIFY + '</span>';
+            case C.PRODUCT_STATUS_REJECTION:
+                return '<span>' + U_TEXT.REJECTION + '</span>';
+            case C.PRODUCT_STATUS_SHELF:
+                return '<span>' + U_TEXT.SHELF + '</span>';
+            case C.PRODUCT_STATUS_DELETE:
+                return '<span>' + U_TEXT.DELETE + '</span>';
         }
     },
     sexRenderer : function(value)

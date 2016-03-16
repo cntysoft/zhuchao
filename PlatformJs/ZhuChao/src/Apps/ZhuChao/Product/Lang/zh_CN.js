@@ -34,8 +34,12 @@ Ext.define('App.ZhuChao.Product.Lang.zh_CN', {
                   STATUS : '状态'
                },
                STATUS : {
-                  NORMAL : '正常',
-                  LOCK : '锁定'
+                  DRAFT : '草稿',
+                  PEEDING : '审核中',
+                  VERIFY : '已审核',
+                  REJECTION : '已拒绝',
+                  SHELF : '已下架',
+                  DELETE : '已删除'
                },
                SEX : {
                   MAN : '男',
@@ -51,6 +55,11 @@ Ext.define('App.ZhuChao.Product.Lang.zh_CN', {
                   LOCK : '锁定用户',
                   UNLOCK : '解锁用户',
                   MODIFY : '修改用户信息'
+               },
+               ERROR_MAP : {
+                  "App/ZhuChao/Product/ProductMgr" : {
+                     10001 : '选择的产品信息不存在！'
+                  }
                }
             },
             EDITOR : {
@@ -151,9 +160,8 @@ Ext.define('App.ZhuChao.Product.Lang.zh_CN', {
                   LOAD_ATTRS : '正在加载属性数据 ... '
                },
                ERROR_MAP : {
-                  "App/ZhuChao/Product/Mgr" : {
-                     10001 : '手机号码已经存在！',
-                     10002 : '用户名称已经存在！'
+                  "App/ZhuChao/Provider/Mgr" : {
+                     10012 : '选择的企业信息不存在！'
                   }
                }
             }

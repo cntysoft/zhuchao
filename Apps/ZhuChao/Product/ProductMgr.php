@@ -178,6 +178,12 @@ class ProductMgr extends AbstractLib
                $group = array($group);
             }
             
+            $modelsManager = Kernel\get_models_manager();
+            $query = sprintf('DELETE FROM %s WHERE productId = ?0', 'App\ZhuChao\Product\Model\Product2Group');
+            $modelsManager->executeQuery($query, array(
+               0 => $productId
+            ));
+            
             foreach($group as $one){
                $join = new PGModel();
                $join->setProductId($productId);
@@ -191,8 +197,7 @@ class ProductMgr extends AbstractLib
          $db->rollback();
          
          Kernel\throw_exception($ex, $this->getErrorTypeContext());
-      }
-      
+      } 
    }
    
    /**
@@ -277,5 +282,27 @@ class ProductMgr extends AbstractLib
          CATEGORY_CONST::APP_NAME, 
          CATEGORY_CONST::APP_API_MGR
       );
+   }
+   
+   /**
+    * 修改指定产品的状态
+    * 
+    * @param integer $productId
+    * @param integer $status
+    * @return boolean
+    */
+   public function changeStatus($productId, $status)
+   {
+      $product = $this->getProductById($productId);
+      
+      if(!$product){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')
+         ), $this->getErrorTypeContext());
+      }
+      
+      $product->setStatus($status);
+      return $product->update();
    }
 }

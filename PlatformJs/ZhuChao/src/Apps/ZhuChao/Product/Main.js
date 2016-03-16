@@ -47,5 +47,9 @@ Ext.define('App.ZhuChao.Product.Main', {
    getCompanyList : function(callback, scope)
    {
       this.callApp('Product/getCompanyList', {}, callback, scope);
+   },
+   changProductStatus : function(values, callback, scope)
+   {
+      this.callApp('Product/changeStatus', values, callback, scope);
    }
 });

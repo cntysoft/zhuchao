@@ -10,8 +10,12 @@
  */
 Ext.define('App.ZhuChao.Product.Const', {
    statics : {
-      PRODUCT_STATUS_NORMAL : 1,
-      PRODUCT_STATUS_LOCK: 2,
+      PRODUCT_STATUS_DRAFT : 1,
+      PRODUCT_STATUS_PEEDING : 2,
+      PRODUCT_STATUS_VERIFY : 3,
+      PRODUCT_STATUS_REJECTION : 4,
+      PRODUCT_STATUS_SHELF : 5,
+      PRODUCT_STATUS_DELETE : 6,
       
       SEX_MAN : 1,
       SEX_WOMAN : 2,
