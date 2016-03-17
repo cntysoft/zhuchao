@@ -100,5 +100,8 @@ class Utils extends BaseApiScript
                  $errorType->msg('E_FRONT_INPUTDATA_CODE_ERROR'), $errorType->code('E_FRONT_INPUTDATA_CODE_ERROR')));
       }
    }
-
+	
+	public function getArticle(array $params) {
+		var_dump($params);exit;
+	}
 }

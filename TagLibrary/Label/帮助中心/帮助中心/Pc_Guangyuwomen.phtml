@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html>
-	 <head lang="en">
-		  <meta charset="UTF-8">
-		  <title>帮助中心首页--内容页</title>
-		  <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/aboutus.css')); ?>
-	 </head>
-	 <body>
-		  <!--站点指示-->
-		  <div class="site conwidth">
-				<a href="/index.html">首页</a>
-				<span>&gt;</span>
-				<a href="/category/guanyuwomen.html">关于我们</a>
-		  </div>
-		  <!--帮助中心-->
-		  <div class="main_content clearfix conwidth">
+<?php
+$identifier = $this->getRouteInfo()['nodeIdentifier'];
+$nodeInfo = $this->getNodeInfoByIdentifier($identifier);
+$generalInfos = $this->getInfoListByNodeAndStatus($nodeInfo->getId());
+
+?>
+<div class="main_content clearfix conwidth">
 				<!--左侧内容-->
 				<div class="help_left_nav fl">
 					 <ul class="left_menu">
@@ -35,6 +26,14 @@
 					 </ul>
 				</div>
 				<!--右侧内容-->
+				<div class="right_content fr" style="display: none;">
+					 <div class="right_content_title">
+						  <h3 class="title">11111</h3>
+					 </div>
+					 <div class="about_content">
+
+					 </div>
+				</div>
 				<div class="right_content fr">
 					 <div class="right_content_title">
 						  <h3 class="title">22222</h3>
@@ -44,6 +43,3 @@
 					 </div>
 				</div>
 		  </div>
-		  <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="help/help" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
-	 </body>
-</html>
