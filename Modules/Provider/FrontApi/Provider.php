@@ -25,13 +25,13 @@ class Provider extends AbstractScript
    public function login($params)
    {
       $this->checkRequireFields($params, array('key', 'password', 'remember', 'type'));
-      if(!isset($params['code'])) {
+      if (!isset($params['code'])) {
          $params['code'] = null;
       }
-      
+
       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'login', array($params['key'], $params['password'], $params['type'], $params['code'], $params['remember']));
    }
-   
+
    /**
     * 注册用户
     * 
@@ -40,14 +40,14 @@ class Provider extends AbstractScript
     */
    public function register($params)
    {
-     $this->checkRequireFields($params, array('phone', 'password', 'code'));
-     if(!isset($params['name'])) {
-        $params['name'] = $params['phone'];
-     }
-     
-     return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'register', array($params['phone'], $params['name'], $params['password'], $params['code']));
+      $this->checkRequireFields($params, array('phone', 'password', 'code'));
+      if (!isset($params['name'])) {
+         $params['name'] = $params['phone'];
+      }
+
+      return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'register', array($params['phone'], $params['name'], $params['password'], $params['code']));
    }
-   
+
    /**
     * 发送注册验证短信
     * 
@@ -61,7 +61,7 @@ class Provider extends AbstractScript
       $acl->checkPhoneExist($params['phone']);
       $acl->sendSmsCode($params['phone'], P_CONST::SMS_TYPE_REG);
    }
-   
+
    /**
     * 发送忘记密码验证短信
     * 
@@ -75,7 +75,7 @@ class Provider extends AbstractScript
       $acl->checkPhoneExist($params['phone'], true);
       $acl->sendSmsCode($params['phone'], P_CONST::SMS_TYPE_FORGET);
    }
-   
+
    /**
     * 忘记密码，重置密码
     * 
@@ -87,13 +87,48 @@ class Provider extends AbstractScript
       $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
       $acl->findPassword($params['phone'], $params['password'], $params['code']);
    }
+
    /**
     * 检查手机号是否注册
     * @param type $params
     * @return type
     */
-   public  function checkPhoneExist($params){
-       $this->checkRequireFields($params, array('phone'));
-       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'providerPhoneExist',array($params['phone']));
+   public function checkPhoneExist($params)
+   {
+      $this->checkRequireFields($params, array('phone'));
+      return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'providerPhoneExist', array($params['phone']));
    }
+
+   /**
+    * 更新供应商的信息
+    * 
+    * @param array $params
+    * @return boolean
+    */
+   public function updateUserInfo($params)
+   {
+      unset($params['id']);
+      unset($params['password']);
+      $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
+      //判断是否可以修改用户名
+      if (isset($params['name'])) {
+         if ($user->getPhone() != $user->getName()) {//已经修改过用户名称
+            unset($params['name']);
+         }
+      }
+      return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProvider', array($user->getId(), $params));
+   }
+   
+   /**
+    * 用户中信修改密码
+    * 
+    * @param array $params
+    * @return boolean
+    */
+   public function changePassword($params)
+   {
+      $this->checkRequireFields($params, array('oldPwd', 'newPwd'));
+      return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'resetPassword', array($params['oldPwd'], $params['newPwd']));
+   }
+
 }
