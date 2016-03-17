@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>忘记密码</title>
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')); ?>
+
     </head>
     <body>
         <div class="wrap">
@@ -60,14 +61,12 @@
                                         <i></i>
                                         <span>请输入正确的密码</span>
                                     </div>
-                                    <!--再次输入密码-->
                                     <input class="form_text" type="password" fh-type="password" id="passwordAgain" placeholder="请再次输入新密码" required>
                                     <div class="error_tip tl">
                                         <i></i>
                                         <span>请检查输入的密码与上面的是否一致</span>
                                     </div>
                                 </div>
-                                <!--提交-->
                                 <input class="submit_btn main_bg_light" type="submit" id="passwordFormSubmit" value="重置密码"/>
                             </form>
                         </div>

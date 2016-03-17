@@ -2,11 +2,12 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
         var sendMessageCode = false;  //标识是否发送短信
         var checkMessageCode = false;  //标识图片验证码是否通过
+        Cntysoft.Front.imgCodeUrl = '/registerchkcode?v_';
         $('#codeImg').attr('src', Cntysoft.Front.imgCodeUrl + (new Date()).getTime());
         $('#changeCodeImg').click(function (){
             $('#codeImg').attr('src', Cntysoft.Front.imgCodeUrl + (new Date()).getTime());
         });
-        $('#phone,#password,#password2,#imgCode,#phoneAuthCode').blur(function (){
+        $('#phone,#password,#password2').blur(function (){
             validate.checkFields($(this));
         });
         $('#sendMessage').click(function (){
@@ -51,8 +52,8 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
                         layer.alert('发送短信次数过多,请稍候注册!');
                     }
                     if(response.errorCode === 10001){
-                        layer.confirm('手机号已注册,去登录?',{
-                            yes:function(){
+                        layer.confirm('手机号已注册,去登录?', {
+                            yes : function (){
                                 window.location.href = '/login.html';
                             }
                         });

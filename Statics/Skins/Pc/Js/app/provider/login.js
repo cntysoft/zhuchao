@@ -2,6 +2,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
     $(function (){
         var checkArea = '#name,#password';
         var checkImgCode = false;
+        Cntysoft.Front.loginImgCodeUrl = '/loginchkcode?v_';
         $('#submit').click(function (event){
             event.preventDefault();
             var validation = validate.checkFields($(checkArea));
@@ -54,7 +55,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
         $('#changeCodeImg').click(function (){
             $('#codeImg').attr('src', Cntysoft.Front.loginImgCodeUrl + (new Date()).getTime());
         });
-        $('#remember').click(function(){
+        $('#remember').click(function (){
             $(this).toggleClass('icon-checked');
         });
     });

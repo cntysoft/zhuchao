@@ -59,8 +59,5 @@ define(['jquery', 'Core', 'layer'], function (){
                 $.ajax(this.FRONT_API_GATEWAY, ajaxOpt);
             }
         });
-        Cntysoft.Front.imgCodeUrl = '/registerchkcode?v_';
-        Cntysoft.Front.loginImgCodeUrl = '/loginchkcode?v_';
-        Cntysoft.Front.forgetCodeUrl = '/forgetchkcode?v_';
     })(window);
 });
