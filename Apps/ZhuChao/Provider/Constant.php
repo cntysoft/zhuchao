@@ -43,4 +43,7 @@ class Constant
    //用户登陆的方式
    const FRONT_USER_NAME_LOGIN = 1;
    const FRONT_USER_PHONE_LOGIN = 2;
+   
+   //用户网站的域名映射缓存键值
+   const SITE_CACHE_KEY = 'site_name_map_cache_key';
 }

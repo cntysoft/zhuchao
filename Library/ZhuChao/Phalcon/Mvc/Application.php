@@ -10,7 +10,7 @@ namespace ZhuChao\Phalcon\Mvc;
 use Cntysoft\Phalcon\Mvc\Application as BaseApplication;
 use ZhuChao\InitFlow\Listeners;
 use Phalcon\Db\Adapter\Pdo\Mysql;
-use App\ZhuChao\SiteMgr\Mgr as SiteMgr;
+use App\ZhuChao\Provider\ListView as SiteMgr;
 use Cntysoft\Kernel;
 use ZhuChao\Kernel\Exception;
 use ZhuChao\Kernel\StdErrorType;
@@ -85,7 +85,7 @@ class Application extends BaseApplication
          if (implode('.', $parts) === \Cntysoft\ZHUCHAO_SITE_DOMAIN_DEVEL) {
             //查看域名是否存在
             $siteMaper = new SiteMgr();
-            $siteId = $siteMaper->getSiteIdByName($siteName);
+            $siteId = $siteMaper->getSiteIdBySubAttr($siteName);
             if ($siteId > 0) {
                Kernel\get_site_id($siteId);
             } else {

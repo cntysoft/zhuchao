@@ -84,7 +84,7 @@ class ListView extends AbstractLib
       }
       return $items;
    }
-   
+
    /**
     * 获取全部的企业信息
     * 
@@ -92,15 +92,39 @@ class ListView extends AbstractLib
     */
    public function getProviderCompanyListAll($name = '')
    {
-      $cond = array();
-      if(!$name){
-         $cond[] = "name like '%".$name."%'";
+      $cond = '';
+      if ($name) {
+         $cond = "name like '%" . $name . "%'";
       }
-      $cond = implode(' and ', $cond);
-      
+
       return CompanyModel::find(array(
-         $cond
+                 $cond
       ));
+   }
+
+   /**
+    * 获取域名对应的站点ID
+    * 
+    * @param string $attr
+    * @return int
+    */
+   public function getSiteIdBySubAttr($attr)
+   {
+      $name = strtolower($attr);
+      $cacher = $this->getAppObject()->getCacheObject();
+      $map = $cacher->get(Constant::SITE_CACHE_KEY);
+      if (null == $map) {
+         $map = array();
+         $set = $this->getProviderCompanyListAll();
+         foreach ($set as $site) {
+            $attr = $site->getSubAttr();
+            if (isset($attr)) {
+               $map[$site->getSubAttr()] = $site->getId();
+            }
+         }
+         $cacher->save(Constant::SITE_CACHE_KEY, $map);
+      }
+      return isset($map[$name]) ? $map[$name] : -1;
    }
 
 }

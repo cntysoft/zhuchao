@@ -28,6 +28,7 @@ class Company extends BaseModel
    protected $status;
    protected $inputTime;
    protected $profileId;
+   protected $subAttr;
 
    public function getSource()
    {
@@ -215,6 +216,17 @@ class Company extends BaseModel
    public function setProfileId($profileId)
    {
       $this->profileId = (int) $profileId;
+   }
+
+   public function getSubAttr()
+   {
+      return $this->subAttr;
+   }
+
+   public function setSubAttr($subAttr)
+   {
+      $this->subAttr = $subAttr;
+      return $this;
    }
 
 }

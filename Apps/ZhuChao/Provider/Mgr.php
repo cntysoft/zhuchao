@@ -279,6 +279,12 @@ class Mgr extends AbstractLib
          }
       }
 
+      //新添加企业信息的时候需要更新缓存
+      if(isset($data['subAttr'])) {
+         $cacher = $this->getAppObject()->getCacheObject();
+         $cacher->delete(Constant::SITE_CACHE_KEY);
+      }
+      
       $db = Kernel\get_db_adapter();
       try {
          $db->begin();
