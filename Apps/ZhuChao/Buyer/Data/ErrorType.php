@@ -26,6 +26,8 @@ return array(
    'E_BUYER_ACL_SAVE_AVATAR_ERROR'   => array(10017, 'Save user avatar fail'),
    'E_BUYER_ACL_SMS_TYPE_ERROR'      => array(10018, 'The sms type %s is wrong'),
    'E_BUYER_ADDRESS_MAXIMUM'         => array(10019, 'The address is maximum'),
-   'E_BUYER_ADDRESS_NOT_EXIST'       => array(10020, 'The address is not exist')
+   'E_BUYER_ADDRESS_NOT_EXIST'       => array(10020, 'The address is not exist'),
+   'E_BUYER_COLLECT_NOT_EXIST'       => array(10021, 'The collect is not exist'),
+   'E_BUYER_FOLLOW_NOT_EXIST'        => array(10021, 'The follow is not exist')
 );
 

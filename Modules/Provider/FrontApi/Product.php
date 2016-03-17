@@ -19,6 +19,29 @@ use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 class Product extends AbstractScript
 {
    protected $categoryTree = null;
+   
+   /**
+    * 添加一个商品
+    * 
+    * @param array $params
+    * @return 
+    */
+   public function addProduct(array $params)
+   {
+      $this->checkRequireFields($params, array('categoryId', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
+      $provider = $this->getCurUser();
+      $company = $provider->getCompany();
+      $companyId = $company ? $company->getId() : 0;
+      
+      return $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_PRODUCT_MGR,
+         'addProduct',
+         array($provider->getId(), $$companyId, $params)
+      );
+   }
+   
    /**
     * 获取指定分类的子分类列表
     * 
