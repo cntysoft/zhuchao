@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布产品</title>
+    <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/publish.css'));?>
+</head>
+<body>
+<!--个人中心头部-->
+<div class="head_wrap main_bg_light">
+    <div class="head_box conwidth clearfix">
+        <a class="logo_img fl" href="#"><img src="<?php Qs::Sys('loadImage', 'mall/icon/icon_logo_white.png')?>"> </a>
+        <ul class="fr clearfix">
+            <li><a class="mainbg_hover" href="#">首页</a></li>
+            <li><a class="mainbg_hover" href="#">产品中心</a></li>
+            <li><a class="mainbg_hover" href="#">询价单</a></li>
+            <li><a class="mainbg_hover" href="#">账号中心</a></li>
+            <li><a class="mainbg_hover" href="#">店铺设置</a></li>
+        </ul>
+    </div>
+</div>
+<!--个人中心-->
+<div class="content conwidth clearfix">
+    <!--左侧列表-->
+    <div class="items_wrap fl">
+        <dl>
+            <dt><i class="icon-product main"></i>产品中心</dt>
+            <dd><a class="main_bg_light" href="#">发布产品</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">产品管理</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">产品分组</a></dd>
+        </dl>
+        <dl>
+            <dt><i class="icon-xunjia main"></i>询价单</dt>
+            <dd><a class="mainbg_hover_light" href="#">全部</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">未回复</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">已回复</a></dd>
+        </dl>
+        <dl>
+            <dt><i class="icon-zhanghao main"></i>账户中心</dt>
+            <dd><a class="mainbg_hover_light" href="#">基本信息</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">我的地址</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">修改密码</a></dd>
+        </dl>
+    </div>
+    <!--右侧内容-->
+    <div class="content_wrap fr">
+				<h1 class="items_title">收到的询价单<a class="main_bg_light fr" href="#">发布新闻</a></h1>
+				<div class="notice main_bg_light">
+					<i class="main icon-notice"></i> 世界工厂网关于处理站内低质量信息的公告
+				</div>
+				<div class="search_type">
+					<a class="main_bg" href="#">搜索类目</a>
+					<!--<a href="#">我的常用类目</a>-->
+				</div>
+				<div class="search_btn">
+					<div class="input_text fl"><input type="text" placeholder="搜索分类关键词" class="search_key"><i class="icon-sousuo"></i></div>
+					<input class="input_btn main_bg fl category_search" type="submit" value="类目搜索">
+					<a class="main category_select">手动选择分类>></a>
+				</div>
+				<!--搜索后选择框-->
+				<div class="searched_wrap hide">
+					<ul>
+						<li>
+							<label>
+								<input type="radio"  name="searched" />
+							<span><em>消费品</em><b>&gt;</b><em>新型家装建材</em><b>&gt;</b><em>灯具灯饰</em><b>&gt;</b><em>普通照明台灯</em></span>
+							</label>
+
+						</li>
+						<li>
+							<label>
+								<input type="radio"  name="searched" />
+							<span><em>消费品</em><b>&gt;</b><em>新型家装建材</em><b>&gt;</b><em>灯具灯饰</em><b>&gt;</b><em>普通照明台灯</em></span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio"  name="searched" />
+							<span><em>消费品</em><b>&gt;</b><em>新型家装建材</em><b>&gt;</b><em>灯具灯饰</em><b>&gt;</b><em>普通照明台灯</em></span>
+							</label>
+						</li>
+					</ul>
+				</div>
+				<!--选择-->
+					<?php Qs::Label('供应商/产品分类', array('renderTpl' => 'CategorySelect'));?>
+				<!--已选择提示条-->
+				<!--下一步信息-->
+				<p class="next_step"><a class="main_bg submit_next">下一步，填写产品信息</a></p>
+			</div>
+</div>
+<?php Qs::Sys('loadRequireJs', 'provider/publish')?>
+</body>
+</html>

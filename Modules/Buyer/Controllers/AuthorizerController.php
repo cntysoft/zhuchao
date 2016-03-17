@@ -69,7 +69,7 @@ class AuthorizerController extends AbstractController
       if (!$acl->isLogin()) {
          return false;
       } else {
-         Kernel\dispatch_action('Buyer', 'Index', 'index');
+         Kernel\goto_route('');
       }
    }
 

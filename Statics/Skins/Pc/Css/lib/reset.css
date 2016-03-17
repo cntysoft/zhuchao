@@ -1,0 +1,43 @@
+.ke-toolbar-icon-url {
+    background-image: url("../../Images/mall/icon/icon_kindeditor_byself.png")!important
+}
+
+.ke-icon-gcimage {
+    background-position: 0 -496px;
+    width: 49px;
+    height: 16px
+}
+
+.ke-icon-gcvideo {
+    background-image: url("../../Images/mall/icon/icon_vedio.png")!important;
+    background-position: 0 0;
+    width: 68px;
+    height: 15px
+}
+
+.ke-icon-table {
+    background-position: 0 -784px!important;
+    width: 49px!important
+}
+
+.ke-icon-quickformat {
+    background-position: 0 -1056px!important;
+    width: 69px!important
+}
+
+.ke-icon-fontname {
+    background-position: 0 -352px!important;
+    width: 48px!important
+}
+
+.ke-icon-fontsize {
+    background-position: 0 -368px!important;
+    width: 50px!important
+}
+
+.ke-container .ke-icon-source {
+    background: url("../../Images/mall/icon/icon_html.png") 0 0 no-repeat!important;
+    width: 18px;
+    height: 18px;
+    margin: -1px
+}

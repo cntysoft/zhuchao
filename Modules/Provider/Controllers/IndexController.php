@@ -34,14 +34,6 @@ class IndexController extends AbstractController
       ));
    }
 
-   public function addproductAction()
-   {
-      return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'provider/addproduct',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
-   }
-
    public function inquiryAction()
    {
       return $this->setupRenderOpt(array(

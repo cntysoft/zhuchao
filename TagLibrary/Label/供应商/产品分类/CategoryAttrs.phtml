@@ -1,0 +1,40 @@
+<?php
+$query = $this->getQuery();
+$attrs = $this->getCategoryaAttrs((int)$query['category']);
+$out = '<div class="attr_wrap">';
+
+foreach($attrs as $attr){
+   $name = $attr->getName();
+   $optValue = explode(',', $attr->getOptValue());
+   $optValue = array_filter($optValue, function($val){
+      if('' == $val){
+         return false;
+      }else{
+         return true;
+      }
+   });
+   $required = $attr->getRequired() ? 'required' : '';
+   $star = $attr->getRequired() ? '*' : '';
+   $tip = $attr->getRequired() ? '<em class="error_tips"><i class="icon-error"></i>该项为必选项！</em>' : '';
+   if(count($optValue)){
+      $out.='<div class="attr_list clearfix">
+            <span class="attr_title">'.$star.$name.'：</span>
+            <div class="attr_info select_brand">
+                <select '.$required.'>';
+      foreach($optValue as $one){
+         $out.='<option>'.$one.'</option>';
+      }              
+      $out.='</select>'.$tip.'</div></div>';
+   }else{
+      $out.='<div class="attr_list clearfix">
+            <span class="attr_title">'.$star.$name.'：</span>
+            <input class="attr_info input_text" type="text">'.$tip.'</div>';
+   }
+}
+$out.='<p class="attr_add">
+         <a href="#">+添加属性</a>
+         如果我们提供的产品属性无法满足你的需求，你可以自定义最多3个产品属性信息
+     </p>';
+$out.='</div>';
+
+echo $out;

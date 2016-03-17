@@ -1,0 +1,17 @@
+<?php
+$query = $this->getQuery();
+$ret = array();
+$categories = $this->getParentCategory((int)$query['category'], $ret);
+
+if(count($categories)){
+   $len = count($categories);
+   $out = '<div class="site" index="'.$categories[$len-1]['id'].'">';
+   for($i = $len - 1; $i >= 0; $i--){
+      $list[] = '<a>' .$categories[$i]['text'] .'</a>';
+   }
+   
+   $out.= implode('<span>&gt;</span>', $list);
+   $out.='</div>';
+}
+
+echo $out;

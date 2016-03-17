@@ -65,7 +65,7 @@
         },
         {
             "key" : "ProviderAddProduct",
-            "rule" : "\/product\/add.html",
+            "rule" : "\/product\/addproduct\/{stage:[1-2]}.html",
             "option" : {
                 "module" : "Provider",
                 "controller" : "Product",
@@ -186,6 +186,7 @@
         "register" : "供应商\/注册.phtml",
         "forget" : "供应商\/忘记密码.phtml",
         "provider\/index" : "供应商\/首页.phtml",
+        "provider\/categoryselect" : "供应商\/分类选择.phtml",
         "provider\/addproduct" : "供应商\/发布产品.phtml",
         "provider\/inquiry" : "供应商\/询价单.phtml",
         "provider\/productlist" : "供应商\/管理产品.phtml",
@@ -203,6 +204,10 @@
         "Provider": [
             "\\ProviderFrontApi\\Provider",
             2
+        ],
+        "Product": [
+            "\\ProviderFrontApi\\Product",
+            1
         ]
     }
 }

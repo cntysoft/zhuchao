@@ -5,7 +5,7 @@ requirejs.config({
     baseUrl : '/Statics/Skins/Pc/Js/lib',
     paths : {
         app : '/Statics/Skins/Pc/Js/app',
-        'kindEditor' : 'kindeditor-all',
+        'kindEditor' : 'kindeditor',
     },
     shim : {
         'zh_CN' : ['kindEditor']
