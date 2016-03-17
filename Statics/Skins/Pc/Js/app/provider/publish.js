@@ -12,18 +12,44 @@ define(['jquery', 'layer', 'Core', 'Front'], function (){
       });
       
       $('.category_search').click(function(){
-         if($('.search_key').val()){
+         var key = $('.search_key').val();
+         if(key){
             if($search.is(':hidden')){
                $search.show();
                $select.hide();
             }
-            Cntysoft.Front.callApi('Product', 'getChildCategory', {
-               categoryId : $this.attr('index')
+            Cntysoft.Front.callApi('Product', 'searchCategory', {
+               key : key
             }, function (response){
-               
+               if(response.status){
+                  var data = response.data, len = data.length, ul = $search.find('ul');
+                  var out='';
+                  ul.empty();
+                  if(len > 0){
+                     for(var i = 0; i < len; i++){
+                        var len1 = data[i].length, list = [];
+                        var cate = data[i], categoryId = 0;
+                        for(var j = 0; j < len1; j++){
+                           list.push('<em index='+cate[j]['id']+'>'+cate[j]['text']+'</em>');
+                           categoryId = cate[j]['id'];
+                        }
+                        out+='<li index='+categoryId+'><label><input type="radio"  name="searched" /><span>';
+                        out +=list.join('<b>&gt;</b>');
+                        out +='</span></label></li>';
+                     }
+                     ul.append($(out));
+                  }else{
+                     ul.append($('<span>抱歉，没有找到您想要的类目，请去手动选择</span>'));
+                  }
+               }
             });
          }
       });
+      
+      $search.delegate('li', 'click', function(){
+         $('.selected_tips p').html('选择的类目是：'+$(this).find('span').html());
+      });
+      
       //分类选择
       $('.select_wrap').delegate('.select_list li', 'click', function(){
          var $this = $(this);
@@ -76,7 +102,11 @@ define(['jquery', 'layer', 'Core', 'Front'], function (){
                window.location.href='/product/addproduct/2.html?category='+categoryId;
             }
          }else{
-            
+            var checked = $search.find('li input:checked');
+            if(checked.length > 0){
+               var categoryId = checked.parents('li').attr('index');
+               window.location.href='/product/addproduct/2.html?category='+categoryId;
+            }
          }
       });
       

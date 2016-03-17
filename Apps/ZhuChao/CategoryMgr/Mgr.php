@@ -898,5 +898,51 @@ class Mgr extends AbstractLib
       }
       return trim($optvalue, ',');
    }
+   
+   /**
+    * 根据关键字获取分类
+    * 
+    * @param string $key
+    * @param integer $nodeType
+    * @param boolean $total
+    * @param string $orderBy
+    * @param integer $offset
+    * @param integer $limit
+    * @return 
+    */
+   public function searchCategory($key, $nodeType = 2, $total = false, $orderBy = 'id DESC', $offset = 0, $limit = 15)
+   {
+      $cond = array();
+      $cond[] = "name like '%".$key."%'";
+      $cond[] = 'nodeType=?0';
+      $bind = array(
+         0 => (int)$nodeType
+      );
+      $cond = implode(' and ', $cond);
+      
+      if($limit){
+         $items = CategoryModel::find(array(
+            $cond,
+            'bind' => $bind,
+            'order' => $orderBy,
+            'limit' => array(
+               'offset' => $offset,
+               'number' => $limit
+            )
+         ));
+      }else{
+         $items = CategoryModel::find(array(
+            $cond,
+            'bind' => $bind,
+            'order' => $orderBy
+         ));
+      }
+      
+      if($total){
+         return array($items, CategoryModel::count(array($cond)));
+      }
+      
+      return $items;
+   }
 
 }
