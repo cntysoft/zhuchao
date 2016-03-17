@@ -35,7 +35,7 @@ class Uploader extends AbstractScript
       header("Pragma: no-cache");
       @set_time_limit(5 * 60);
       $this->processParams($params);
-      $request = $this->getDi()->get('request');
+      $request = $this->di->get('request');
       //这里不做检查，相关参数没指定已经有默认的参数了
       //探测分片信息
       $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
@@ -51,7 +51,12 @@ class Uploader extends AbstractScript
       $uploader = new Upload($params);
       $files = $request->getUploadedFiles();
       //在这里是否需要检测是否有错误, 探测到错误的时候抛出异常
-      return $uploader->saveUploadFile(array_shift($files));
+      $ret = $uploader->saveUploadFile(array_shift($files));
+      
+      foreach ($ret as &$file) {
+         $file['filename'] = Kernel\get_image_cdn_url($file['filename']);
+      }
+      return $ret;
    }
 
    /**

@@ -209,8 +209,8 @@
             "\\ProviderFrontApi\\Product",
             2
         ],
-        "Upload" : [
-            "\\ProviderFrontApi\\Upload",
+        "Uploader" : [
+            "\\ProviderFrontApi\\Uploader",
             2
         ],
         "Company" : [

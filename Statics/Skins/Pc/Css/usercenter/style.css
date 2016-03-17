@@ -29,6 +29,7 @@
 
 .main_hover:hover {
   color: #2e93d7 !important; }
+
 .main_hover a:hover {
   color: #2e93d7 !important; }
 
@@ -163,7 +164,8 @@
   -ms-filter: grayscale(100%);
   -o-filter: grayscale(100%);
   filter: grayscale(100%);
-  filter: gray; }
+  -webkit-filter: gray;
+          filter: gray; }
 
 html {
   width: 100%;
@@ -224,6 +226,7 @@ ul, ol {
   /* IE9*/
   src: url("../font/iconfont.eot?#iefix") format("embedded-opentype"), url("../font/iconfont.woff") format("woff"), url("../font/iconfont.ttf") format("truetype"), url("../font/iconfont.svg#iconfont") format("svg");
   /* iOS 4.1- */ }
+
 [class^="icon-"], [class*=" icon-"] {
   display: inline-block;
   font-family: "iconfont";
@@ -237,6 +240,9 @@ ul, ol {
 
 .icon-rili:before {
   content: "\e603"; }
+
+.icon-xinfeng:before {
+  content: "\e643"; }
 
 .icon-sousuo:before {
   content: "\e622"; }
@@ -252,6 +258,9 @@ ul, ol {
 
 .icon-diangongdianqi:before {
   content: "\e609"; }
+
+.icon-fenxiang:before {
+  content: "\e641"; }
 
 .icon-feature:before {
   content: "\e632"; }
@@ -292,8 +301,14 @@ ul, ol {
 .icon-dianziyuanqijian:before {
   content: "\e613"; }
 
+.icon-renzheng:before {
+  content: "\e644"; }
+
 .icon-youxiang:before {
   content: "\e63f"; }
+
+.icon-shangpu:before {
+  content: "\e645"; }
 
 .icon-wujingongju:before {
   content: "\e614"; }
@@ -301,11 +316,17 @@ ul, ol {
 .icon-notice:before {
   content: "\e629"; }
 
+.icon-shui:before {
+  content: "\e646"; }
+
 .icon-yijian:before {
   content: "\e60b"; }
 
 .icon-xunjia:before {
   content: "\e628"; }
+
+.icon-zhizhao:before {
+  content: "\e647"; }
 
 .icon-1:before {
   content: "\e636"; }
@@ -337,6 +358,9 @@ ul, ol {
 .icon-duihaoyuanquan:before {
   content: "\e640"; }
 
+.icon-star:before {
+  content: "\e642"; }
+
 .icon-biaoqian:before {
   content: "\e621"; }
 
@@ -367,7 +391,7 @@ ul, ol {
 .icon-jiantou-copy:before {
   content: "\e617"; }
 
-.icon-fenxiang:before {
+.icon-fenxiang1:before {
   content: "\e62f"; }
 
 .icon-black-down:before {
@@ -436,13 +460,14 @@ ul, ol {
 
 .head_box .logo_img {
   display: block;
-  width: 192px;
-  height: 70px;
-  margin-top: 5px; }
+  width: 163px;
+  height: 60px;
+  float: left;
+  margin-top: 10px; }
   .head_box .logo_img img {
     display: inline-block;
     max-width: 100%;
-    height: 70px; }
+    height: 60px; }
 
 .head_box ul li {
   float: left; }
@@ -483,7 +508,7 @@ ul, ol {
 
 .content_wrap {
   width: 1010px;
-  background-color: #fff;
+  min-height: 458px;
   padding: 0 20px; }
   .content_wrap .items_title {
     font-size: 18px;
@@ -504,7 +529,8 @@ span.circle_radio {
     line-height: 12px;
     text-align: center;
     border: 1px solid #b3b3b3;
-    border-radius: 50%;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
     vertical-align: -2px;
     margin-right: 12px;
     -webkit-box-sizing: border-box;
@@ -515,13 +541,14 @@ span.circle_radio {
       display: inline-block;
       width: 6px;
       height: 6px;
-      border-radius: 50%;
+      -webkit-border-radius: 50%;
+              border-radius: 50%;
       background-color: transparent;
       vertical-align: 4px;
-      -webkit-transition: all .2s;
-      -moz-transition: all .2s;
-      -o-transition: all .2s;
-      transition: all .2s; }
+      -webkit-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      transition: all 0.2s; }
   span.circle_radio .active:before {
     background-color: #b0b0b0; }
 
@@ -534,14 +561,16 @@ span.square_radio em {
   display: inline-block;
   width: 12px;
   height: 12px;
-  border-radius: 3px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
   border: 1px solid #b0b0b0;
   margin-right: 12px;
   vertical-align: -2px; }
+
 span.square_radio .icon-checked {
   position: absolute;
   top: -1px;
-  left: 0px;
+  left: 0;
   font-size: 14px;
   color: #b0b0b0; }
 
@@ -562,6 +591,7 @@ span.square_radio .icon-checked {
   letter-spacing: 2px; }
   .drop_menu label em {
     vertical-align: middle; }
+
 .drop_menu select {
   width: 140px;
   height: 40px;
@@ -592,7 +622,8 @@ select {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
 
-input[type='text'], input[type='password'] {
+input[type='text'],
+input[type='password'] {
   height: 40px;
   line-height: 40px;
   padding-left: 20px;
@@ -602,12 +633,16 @@ input[type='text'], input[type='password'] {
   box-sizing: border-box;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+  -moz-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
   font-family: '\5fae\8f6f\96c5\9ed1'; }
 
-input[type='text']:focus, input[type='password']:focus {
+input[type='text']:focus,
+input[type='password']:focus {
   border-color: rgba(0, 153, 51, 0.3);
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 10px rgba(0, 153, 51, 0.6);
@@ -652,7 +687,8 @@ div.radio {
     height: 16px\9\0;
     *width: 0;
     *height: 0;
-    border-radius: 16px;
+    -webkit-border-radius: 16px;
+            border-radius: 16px;
     margin-top: -2px;
     margin-right: 4px;
     margin-left: 3px;
@@ -685,7 +721,8 @@ div.radio {
     left: 4px;
     width: 8px;
     height: 8px;
-    border-radius: 8px;
+    -webkit-border-radius: 8px;
+            border-radius: 8px;
     background-color: #093; }
 
 div.sex.margin-left {
@@ -703,5 +740,3 @@ div.sex.margin-left {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
   .select_box .drop_menu .drop_list li:hover {
     color: #093; }
-
-/*# sourceMappingURL=style.css.map */

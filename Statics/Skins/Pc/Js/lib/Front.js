@@ -59,5 +59,6 @@ define(['jquery', 'Core', 'layer'], function (){
                 $.ajax(this.FRONT_API_GATEWAY, ajaxOpt);
             }
         });
+        Cntysoft.Front.lazyload = '/Statics/Skins/Pc/Images/lazyicon.png';
     })(window);
 });

@@ -1,7 +1,176 @@
-<?php
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <?php Qs::Sys('loadCss',array('usercenter/style.css','usercenter/user_index1.css'))?>
+</head>
+<body>
+<!--个人中心头部-->
+<div class="head_wrap main_bg_light">
+    <div class="head_box conwidth clearfix">
+        <a class="logo_img fl" href="#"><img src="../../Images/test/test_iocn_logo.png"> </a>
+        <ul class="fr clearfix">
+            <li><a class="mainbg_hover" href="#">首页</a></li>
+            <li><a class="mainbg_hover" href="#">产品中心</a></li>
+            <li><a class="mainbg_hover" href="#">询价单</a></li>
+            <li><a class="mainbg_hover" href="#">账号中心</a></li>
+            <li><a class="mainbg_hover" href="#">店铺设置</a></li>
+        </ul>
+    </div>
+</div>
+<!--个人中心-->
+<div class="content conwidth clearfix">
+    <!--左侧列表-->
+    <div class="items_wrap fl">
+        <dl>
+            <dt><i class="icon-caozuochenggong"></i>产品中心</dt>
+            <dd><a class="main_bg_light" href="#">发布产品</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">产品管理</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">产品分组</a></dd>
+        </dl>
+        <dl>
+            <dt><i class="icon-caozuochenggong"></i>询价单</dt>
+            <dd><a class="mainbg_hover_light" href="#">全部</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">未回复</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">已回复</a></dd>
+        </dl>
+        <dl>
+            <dt><i class="icon-caozuochenggong"></i>账户中心</dt>
+            <dd><a class="mainbg_hover_light" href="/account/index.html">基本信息</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">我的地址</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">修改密码</a></dd>
+        </dl>
+    </div>
+    <!--右侧内容-->
+    <div class="content_wrap fr">
+        <h1 class="items_title">个人信息</h1>
+        <div class="form_box">
+            <div class="form_list">
+                <label>用&nbsp;户&nbsp;名:</label>
+                <input type="text" disabled="disabled" value="chagnwang">
+            </div>
+            <div class="form_list">
+                <label><em class="main">*</em>真实姓名:</label>
+                <input type="text">
+            </div>
+            <div class="form_list">
+                <label><em class="main">*</em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
+                <div class="radio margin-left">
+                    <label for="sex1">
+                        <input id="sex1" name="sex" type="radio" tabindex="2" value="0" checked>
+                        <i></i>
+                        <span>男</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label for="sex2">
+                        <input id="sex2" name="sex" type="radio" tabindex="3" value="0">
+                        <i></i>
+                        <span>女</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label for="sex3">
+                        <input id="sex3" name="sex" type="radio" tabindex="4" value="0">
+                        <i></i>
+                        <span>保密</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form_list">
+                <label><em class="main">*</em>手机号码:</label>
+                <input type="text">
+                <span class="error_tips"><i class="icon-notice"></i>手机号码格式不正确！</span>
+            </div>
 
+            <!--下拉信息-->
+            <div class="form_list">
+                <label><em class="main">*</em>地址:</label>
+                <div class="select_box clearfix">
+                    <div class="drop_menu">
+                        <div class="drop_show">省份</div>
+                        <div class="drop_arrow"></div>
+                        <ul class="drop_list">
+                            <li>河南省</li>
+                            <li>安徽安徽安徽安徽省</li>
+                            <li>山东省</li>
+                            <li>江西省</li>
+                            <li>广西省</li>
+                            <li>广东省</li>
+                            <li>福建省</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                        </ul>
+                    </div>
+                    <div class="drop_menu">
+                        <div class="drop_show">省份</div>
+                        <div class="drop_arrow"></div>
+                        <ul class="drop_list">
+                            <li>河南省</li>
+                            <li>安徽安徽安徽安徽省</li>
+                            <li>山东省</li>
+                            <li>江西省</li>
+                            <li>广西省</li>
+                            <li>广东省</li>
+                            <li>福建省</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                        </ul>
+                    </div>
+                    <div class="drop_menu no_mr">
+                        <div class="drop_show">省份</div>
+                        <div class="drop_arrow"></div>
+                        <ul class="drop_list">
+                            <li>河南省</li>
+                            <li>安徽安徽安徽安徽省</li>
+                            <li>山东省</li>
+                            <li>江西省</li>
+                            <li>广西省</li>
+                            <li>广东省</li>
+                            <li>福建省</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                            <li>上海市</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!--按钮-->
+            <div class="action_btn">
+                <a class="main_bg">可选</a>
+                <a class="disable">不可选</a>
+            </div>
+
+            <!--方形按钮-->
+            <span class="square_radio"><em><i></i></em>商城基本</span>
+            <span class="square_radio"><em ><i class="icon-checked"></i></em>商城基本</span>
+            <!--弹框-->
+            <div class="msg_wrap">
+                <div class="msg_tip  bounceIn">
+                    <p class="msg_tip_detail">你确定要删除该信息吗？</p>
+                    <p class="clearfix">
+                        <span class="del_msg ">确认</span>
+                        <span class="cancel_del main_bg">取消</span>
+                    </p>
+                    <span class="msg_tip_arrow"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-main="../../Js/requireenter" id="require" app="usercenter/user_index1" src="../../Js/lib/require.js"></script>
+</body>
+</html>

@@ -1,190 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>发布信息</title>
-    <?php Qs::Sys('loadCss', array('usercenter/style.css', 'lib/default.css', 'lib/reset.css', 'usercenter/publish_info.css'))?>
-</head>
-<body>
-<!--个人中心头部-->
-<div class="head_wrap main_bg_light">
-    <div class="head_box conwidth clearfix">
-        <a class="logo_img fl" href="#"><img src="<?php Qs::Sys('loadImage', 'mall/icon/icon_logo_white.png')?>"> </a>
-        <ul class="fr clearfix">
-            <li><a class="mainbg_hover" href="#">首页</a></li>
-            <li><a class="mainbg_hover" href="#">产品中心</a></li>
-            <li><a class="mainbg_hover" href="#">询价单</a></li>
-            <li><a class="mainbg_hover" href="#">账号中心</a></li>
-            <li><a class="mainbg_hover" href="#">店铺设置</a></li>
-        </ul>
-    </div>
-</div>
-<!--个人中心-->
-<div class="content conwidth clearfix">
-    <!--右侧内容-->
-    <div class="content_wrap fr">
-        <h1 class="items_title">上架产品信息</h1>
-        <div class="itmes_form">
-            <div class="itmes_lsit clearfix">
-                <label>当前类目:</label>
-                <!--站点指示-->
-                <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'PublishInfo'));?>
+    <head>
+        <meta charset="UTF-8">
+        <title>发布信息</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'lib/default.css', 'lib/reset.css', 'usercenter/publish_info.css')) ?>
+        <style type="text/css" rel="stylesheet">
+            .ke-icon-upload {
+                background-position: 0px -496px;
+                width: 50px;
+                height: 16px;
+                height: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--个人中心头部-->
+        <div class="head_wrap main_bg_light">
+            <div class="head_box conwidth clearfix">
+                <a class="logo_img fl" href="#"><img src="<?php Qs::Sys('loadImage', 'mall/icon/icon_logo_white.png') ?>"> </a>
+                <ul class="fr clearfix">
+                    <li><a class="mainbg_hover" href="#">首页</a></li>
+                    <li><a class="mainbg_hover" href="#">产品中心</a></li>
+                    <li><a class="mainbg_hover" href="#">询价单</a></li>
+                    <li><a class="mainbg_hover" href="#">账号中心</a></li>
+                    <li><a class="mainbg_hover" href="#">店铺设置</a></li>
+                </ul>
             </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>产品标题:</label>
-                <div class="input_wrap product_title">
-                    <input class="ipt1 brand" type="text" placeholder="请填写产品品牌" maxlength="10" required>
-                    <span><em>0</em>/10</span>
-                    <input class="ipt2 title" type="text" placeholder="请填写产品名称+型号" maxlength="15" required>
-                    <span><em>0</em>/15</span>
-                    <input class="ipt3 description" type="text" placeholder="请填写产品特征及具体描述" maxlength="20" required>
-                    <span><em>0</em>/20</span>
-                    <p><a class="main_hover" href="">如何填写标题？</a></p>
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>产品广告语:</label>
-                <div class="input_wrap add_slogan">
-                    <input type="text" class="advertText" placeholder="请填写产品宣传广告语及促销优惠活动等信息" maxlength="45" required><span><em>0</em>/45</span>
-                    <a class="main_hover" href="">如何填写广告语？</a>
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>效果预览:</label>
-                <div class="input_wrap preview">
-                   <dl>
-                   	<dt>
-                   		<strong >产品品牌  </strong>
-                   		<strong >产品名称+型号 </strong>
-                   		<strong >产品描述</strong>
-                   	</dt>
-                  <dd>产品广告语</dd>
-                   </dl>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>产品关键词:</label>
-                <div class="input_wrap keywords">
-                    <input type="text" placeholder="" maxlength="8">
-                    <input type="text" placeholder="" maxlength="8">
-                    <input class="no_mr" type="text" placeholder="" maxlength="8">
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label>选择产品分组:</label>
-                <div class="input_wrap select_group">
-                    <select>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                        <option>内资企业</option>
-                    </select>
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label>产品属性:</label>
-                <div class="input_wrap select_attr">
-                    <p class="attr_tips">产品属性越完整，目标客户越容易搜索到</p>
-                    <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'CategoryAttrs'))?>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>最小起订量:</label>
-                <div class="input_wrap least_book">
-                    <input type="text" placeholder="">件
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>可售数量:</label>
-                <div class="input_wrap sale_num">
-                    <input type="text" placeholder="">件
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label>价格:</label>
-                <div class="input_wrap set_price">
-                    <input type="text" placeholder="">元/件
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label>批发采购:</label>
-                <div class="input_wrap input_radio">
-                    <div class="radio">
-                        <label for="yes2">
-                            <input id="yes2" name="yesorno" type="radio" tabindex="2" value="0" >
-                            <i></i>
-                            <span>是</span>
-                        </label>
+        </div>
+        <!--个人中心-->
+        <div class="content conwidth clearfix">
+            <!--右侧内容-->
+            <div class="content_wrap fr">
+                <h1 class="items_title">上架产品信息</h1>
+                <div class="itmes_form">
+                    <div class="itmes_lsit clearfix">
+                        <label>当前类目:</label>
+                        <!--站点指示-->
+                        <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'PublishInfo')); ?>
                     </div>
-                    <div class="radio">
-                        <label for="no2">
-                            <input id="no2" name="yesorno" type="radio" tabindex="2" value="0" >
-                            <i></i>
-                            <span>否</span>
-                        </label>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>产品标题:</label>
+                        <div class="input_wrap product_title">
+                            <input class="ipt1 brand" type="text" id="brand" placeholder="请填写产品品牌" fh-type="length" minlength="2" maxlength="10" required>
+                            <span><em>0</em>/10</span>
+                            <input class="ipt2 title" type="text" id="title" placeholder="请填写产品名称+型号" fh-type="length" minlength="2" maxlength="15" required>
+                            <span><em>0</em>/15</span>
+                            <input class="ipt3 description" type="text" id="description" placeholder="请填写产品特征及具体描述" fh-type="length" minlength="2" maxlength="20" required>
+                            <span><em>0</em>/20</span>
+                            <p><a class="main_hover" href="">如何填写标题？</a></p>
+                        </div>
                     </div>
-                    <em class="error_tips"><i class="icon-error"></i>请填写产品品牌</em>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>产品广告语:</label>
+                        <div class="input_wrap add_slogan">
+                            <input type="text" class="advertText" placeholder="请填写产品宣传广告语及促销优惠活动等信息" fh-type="length" id="advertText" minlength="5" maxlength="45" required><span><em>0</em>/45</span>
+                            <a class="main_hover" href="">如何填写广告语？</a>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>效果预览:</label>
+                        <div class="input_wrap preview" id="preview">
+                            <dl>
+                                <dt>
+                                <strong >产品品牌  </strong>
+                                <strong >产品名称+型号 </strong>
+                                <strong >产品描述</strong>
+                                </dt>
+                                <dd>产品广告语</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>产品关键词:</label>
+                        <div class="input_wrap keywords">
+                            <input type="text" placeholder="关键字" id="keyword" minlength="1" maxlength="8" fh-type="length" required>
+                            <input type="text" placeholder="关键字" id="keyword2" minlength="1" maxlength="8" fh-type="length">
+                            <input class="no_mr" type="text" placeholder="关键字"  id="keyword3"  maxlength="8" minlength="1" fh-type="length">
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label>产品属性:</label>
+                        <div class="input_wrap select_attr">
+                            <p class="attr_tips">产品属性越完整，目标客户越容易搜索到</p>
+                            <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'CategoryAttrs')) ?>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label>计量单位:</label>
+                        <div class="input_wrap select_group">
+                            <select class="ui-form-select" name="unit" id="proUnit">
+                                <option value="件">件</option>
+                                <option value="个">个</option>
+                                <option value="台">台</option>
+                                <option value="套">套</option>
+                                <option value="箱">箱</option>
+                                <option value="吨">吨</option>
+                                <option value="公斤">公斤</option>
+                                <option value="米">米</option>
+                                <option value="平方米">平方米</option>
+                                <option value="立方米">立方米</option>
+                                <option value="千米">千米</option>
+                                <option value="克">克</option>
+                                <option value="千克">千克</option>
+                                <option value="升">升</option>
+                                <option value="毫升">毫升</option>
+                                <option value="张">张</option>
+                                <option value="提">提</option>
+                                <option value="筐">筐</option>
+                                <option value="批">批</option>
+                                <option value="盒">盒</option>
+                                <option value="桶">桶</option>
+                                <option value="片">片</option>
+                                <option value="斤">斤</option>
+                                <option value="根">根</option>
+                                <option value="头">头</option>
+                                <option value="只">只</option>
+                                <option value="毫克">毫克</option>
+                                <option value="微克">微克</option>
+                                <option value="双">双</option>
+                                <option value="支">支</option>
+                                <option value="瓶">瓶</option>
+                                <option value="卷">卷</option>
+                                <option value="份">份</option>
+                                <option value="包">包</option>
+                                <option value="袋">袋</option>
+                                <option value="盆">盆</option>
+                                <option value="棵">棵</option>
+                                <option value="条">条</option>
+                                <option value="瓦">瓦</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>最小起订量:</label>
+                        <div class="input_wrap least_book">
+                            <input type="text" fh-type="number" id="minimum" required>件
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>可售数量:</label>
+                        <div class="input_wrap sale_num">
+                            <input type="text" fh-type="number" id="stock" required>件
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label>价格:</label>
+                        <div class="input_wrap set_price">
+                            <input type="text" fh-type="float" id="price" fh-type="number">元/件
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label>批发采购:</label>
+                        <div class="input_wrap input_radio">
+                            <div class="radio">
+                                <label for="yes2">
+                                    <input id="yes2" name="isBatch" type="radio" value="1" checked>
+                                    <i></i>
+                                    <span>是</span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="no2">
+                                    <input id="no2" name="isBatch" type="radio" value="0" >
+                                    <i></i>
+                                    <span>否</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>产品图片:</label>
+                        <div class="input_wrap img_uploading">
+                            <p class="img_tips">最多可上传5张。支持jpg、jpeg、gif、png格式，单张最大1M</p>
+                            <ul class="clearfix">
+                                <li class="img_plus" id="uploadBtn">
+                                    <p>+</p>
+                                    <span>添加照片</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>产品详情:</label>
+                        <div class="input_wrap product_info">
+                            <p class="product_info_tips">插入产品图片、文字数量200以上都可以提升产品星级哦。<a class="main_hover" href="#">如何填写产品详情？</a>
+                            </p>
+                            <textarea id="info_editor" name="content" style="width:700px;height:300px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
+                        <p class="next_operate">
+                            <a class="operate_btn1 main_bg" id="submit">发布产品</a>
+                            <a class="operate_btn2" id="draft">保存到草稿箱</a>
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>产品图片:</label>
-                <div class="input_wrap up_img">
-                    <p>最多可上传5张。支持jpg、jpeg、gif、png格式，单张最大5M</p>
-                    <ul class="clearfix">
-                        <li>
-                            <img src="../../Images/test/test_upimg.png">
-                            <span>上传图片</span>
-                        </li>
-                        <li>
-                            <img src="../../Images/test/test_upimg.png">
-                            <span>上传图片</span>
-                        </li>
-                        <li>
-                            <img src="../../Images/test/test_upimg.png">
-                            <span>上传图片</span>
-                        </li>
-                        <li>
-                            <img src="../../Images/test/test_upimg.png">
-                            <span>上传图片</span>
-                        </li>
-                        <li>
-                            <img src="../../Images/test/test_upimg.png">
-                            <span>上传图片</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <label><em class="main">*</em>产品详情:</label>
-                <div class="input_wrap product_info">
-                    <p class="product_info_tips">插入产品图片、文字数量200以上都可以提升产品星级哦。<a class="main_hover" href="#">如何填写产品详情？</a>
-                    </p>
-                    <textarea id="info_editor" name="content" style="width:700px;height:300px;"></textarea>
-                </div>
-            </div>
-            <div class="itmes_lsit clearfix">
-                <p class="next_operate">
-                    <a class="operate_btn1 main_bg" href="#">发布产品</a>
-                    <a class="operate_btn2" href="#">保存到草稿箱</a>
-                </p>
             </div>
         </div>
     </div>
-</div>
-</div>
-<?php Qs::Sys('loadRequireJs', 'provider/publish_info')?>
+    <div class="hide" id="editorUpload"></div>
+    <?php Qs::Sys('loadRequireJs', 'provider/publishproduct') ?>
 </body>
 </html>

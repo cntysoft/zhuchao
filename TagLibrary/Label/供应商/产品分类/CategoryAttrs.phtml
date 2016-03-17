@@ -15,24 +15,23 @@ foreach($attrs as $attr){
    });
    $required = $attr->getRequired() ? 'required' : '';
    $star = $attr->getRequired() ? '*' : '';
-   $tip = $attr->getRequired() ? '<em class="error_tips"><i class="icon-error"></i>该项为必选项！</em>' : '';
    if(count($optValue)){
-      $out.='<div class="attr_list clearfix">
+      $out.='<div class="attr_list clearfix basic">
             <span class="attr_title">'.$star.$name.'：</span>
             <div class="attr_info select_brand">
-                <select '.$required.'>';
+                <select class="attrSelect" id="'.$attr->getName().'"  '.$required.'>';
       foreach($optValue as $one){
-         $out.='<option>'.$one.'</option>';
+         $out.='<option value="'.$one.'">'.$one.'</option>';
       }              
-      $out.='</select>'.$tip.'</div></div>';
+      $out.='</select></div></div>';
    }else{
-      $out.='<div class="attr_list clearfix">
+      $out.='<div class="attr_list clearfix basic">
             <span class="attr_title">'.$star.$name.'：</span>
-            <input class="attr_info input_text" type="text">'.$tip.'</div>';
+            <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$attr->getName().'" fh-type="length" minlength="1" maxlength="10"></div>';
    }
 }
 $out.='<p class="attr_add">
-         <a href="#">+添加属性</a>
+         <a>+添加属性</a>
          如果我们提供的产品属性无法满足你的需求，你可以自定义最多3个产品属性信息
      </p>';
 $out.='</div>';
