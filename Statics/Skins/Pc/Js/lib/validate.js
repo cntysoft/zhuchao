@@ -21,7 +21,13 @@ define(['exports', 'jquery', 'layer'], function (exports){
             password : '请输入6-15位密码',
             phoneAuthCode : '请输入6位数字验证码',
             imgCode : '请输入4位图片验证码',
-            passwordNotEqual : '两次密码输入不一致'
+            passwordNotEqual : '两次密码输入不一致!',
+            imgCodeError:'图片验证码错误!',
+            imgCodeExpire:'图片验证码过期!',
+            userNotExist:'用户不存在!',
+            phoneNotExist:'该手机号未注册!',
+            phoneCodeError:'短信验证码错误!',
+            phoneCodeExpire:'短信验证码过期!'
         };
         var errorArray = new Array();
         function checkFields($fields){

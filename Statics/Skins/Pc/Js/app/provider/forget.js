@@ -1,7 +1,28 @@
 define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
     $(function (){
-        var curPhone = null;
+        var curPhone = null, phoneExist = false;
+        Cntysoft.Front.forgetCodeUrl = '/forgetchkcode?v_';
         $('#codeImg').attr('src', Cntysoft.Front.forgetCodeUrl + (new Date()).getTime());
+
+        $('#username').change(function (){
+            var validation = validate.checkFields($('#username'));
+
+            if(!validation.length){
+                Cntysoft.Front.callApi('Provider', 'checkPhoneExist', {
+                    phone : $('#username').val()
+                }, function (response){
+                    if(response.status && response.data[0] === false){
+                        layer.tips(validate.message.phoneNotExist, $('#username'), {
+                            tips : [2, '#63bf82']
+                        });
+                        phoneExist = false;
+                    } else{
+                        phoneExist = true;
+                    }
+                });
+            }
+        });
+
         //第一步，发送短信验证
         $('#nameFormSubmit').click(function (event){
             event.preventDefault();
@@ -10,7 +31,12 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
             if(validation.length){
                 return false;
             }
-
+            if(!phoneExist){
+                layer.tips(validate.message.phoneNotExist, $('#username'), {
+                    tips : [2, '#63bf82']
+                });
+                return false;
+            }
             var name = $('#username').val();
             var chkcode = $('#imgCode').val();
             var params = {
@@ -57,6 +83,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
                     tipsMore : true,
                     tips : [2, '#63bf82']
                 });
+                return false;
             }
             var params = {
                 code : code,
@@ -84,8 +111,8 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
         //显示指定的面板
         function showForm(form)
         {
-            $('#nameForm,#passwordForm,#successForm').addClass('hide');
-            form.removeClass('hide');
+            $('#nameForm,#passwordForm,#successForm').hide();
+            $(form).show();
         }
     });
 });

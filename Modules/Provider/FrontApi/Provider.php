@@ -87,4 +87,13 @@ class Provider extends AbstractScript
       $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
       $acl->findPassword($params['phone'], $params['password'], $params['code']);
    }
+   /**
+    * 检查手机号是否注册
+    * @param type $params
+    * @return type
+    */
+   public  function checkPhoneExist($params){
+       $this->checkRequireFields($params, array('phone'));
+       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'providerPhoneExist',array($params['phone']));
+   }
 }

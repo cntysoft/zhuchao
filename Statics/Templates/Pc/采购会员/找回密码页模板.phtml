@@ -1,96 +1,89 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>忘记密码</title>
-    <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css'));?>
-</head>
-<body>
-<div class="wrap">
-    <div class="wrap_inner">
-        <!--logo-->
-        <div class="logo_register">
-            <div class="icon_logo fl">
-                <img src="<?php Qs::Sys('loadImage','login/icon/icon_logo_fff.png')?>" alt="凤凰筑巢LOGO">
-            </div>
-            <h3 class="fl">后台管理系统</h3>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>忘记密码</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')); ?>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="wrap_inner">
+                <!--logo-->
+                <div class="logo_register">
+                    <div class="icon_logo fl">
+                        <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                    </div>
+                    <h3 class="fl">后台管理系统</h3>
 
-            <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
-        </div>
-        <div class="login_box">
-            <div class="login_header">
-                <h4 class="login_title">忘记密码</h4>
-                <div class="login_form check_form">
-                    <form action="">
-                        <div class="login_form_input">
-                            <input class="form_text" type="text" name="user" id="phone" fh-type="phone" placeholder="请输入注册时使用的手机号" required>
-                            <!--错误提示-->
-                            <div class="error_tip tl">
-                                <i></i>
-                                <span>注册时使用的手机号是否正确</span>
-                            </div>
-                            <!--验证码-->
-                            <div class="input_code clearfix">
-                                <input class="fl code" type="text" name="code" autocomplete="off"  fh-type="imgCode" id="imgCode" placeholder="图片验证码" required>
-                                <a class="icode_image" >
-                                    <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
-                                    <i class="icon-svgupdate" id="changeCodeImg"></i>
-                                </a>
-                            </div>
-                            <div class="error_tip tl">
-                                <i></i>
-                                <span>请输入验证码</span>
-                            </div>
-                            <!--短信验证码-->
-                            <div class="input_code clearfix">
-                                <input class="fl code" type="text" name="code" id="phoneAuthCode" fh-type="phoneAuthCode" autocomplete="off" placeholder="请输入短信验证码" required>
-                                <a class="icode_image tc main_bg_light main_border_light" id="sendMessage" >
-                                    <span>获取短信验证码</span>
-                                </a>
-                            </div>
-                            <div class="error_tip tl">
-                                <i></i>
-                                <span>请输入短信验证码</span>
-                            </div>
-
-                        </div>
-                        <!--提交-->
-                        <input class="submit_btn main_bg_light" type="submit" value="找回密码" id="submit_first"/>
-                    </form>
+                    <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
                 </div>
-                <div class="login_form reset_form hide">
-                    <form action="">
-                        <div class="login_form_input">
-                            <!--密码-->
-                            <input class="form_text" type="password" name="user" fh-type="password" id="password" placeholder="请输入6-15位字母、数字、符号的新密码">
-                            <div class="error_tip tl">
-                                <i></i>
-                                <span>请输入正确的密码</span>
-                            </div>
-                            <!--再次输入密码-->
-                            <input class="form_text" type="password" name="user" fh-type="password" id="password2" placeholder="请再次输入新密码">
-                            <div class="error_tip tl">
-                                <i></i>
-                                <span>请检查输入的密码与上面的是否一致</span>
-                            </div>
+                <div class="login_box">
+                    <div class="login_header">
+                        <h4 class="login_title">忘记密码</h4>
+                        <div class="login_form check_form">
+                            <form action="">
+                                <div class="login_form_input">
+                                    <input class="form_text" type="text" name="user" id="phone" fh-type="phone" placeholder="请输入注册时使用的手机号" required>
+                                    <!--错误提示-->
+                                    <div class="error_tip tl">
+                                        <i></i>
+                                        <span>注册时使用的手机号是否正确</span>
+                                    </div>
+                                    <!--验证码-->
+                                    <div class="input_code clearfix">
+                                        <input class="fl code" type="text" name="code" autocomplete="off"  fh-type="imgCode" id="imgCode" placeholder="图片验证码" required>
+                                        <a class="icode_image" >
+                                            <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
+                                            <i class="icon-svgupdate" id="changeCodeImg"></i>
+                                        </a>
+                                    </div>
+                                    <div class="error_tip tl">
+                                        <i></i>
+                                        <span>请输入验证码</span>
+                                    </div>
+                                </div>
+                                <!--提交-->
+                                <input class="submit_btn main_bg_light" type="submit" value="找回密码" id="submit_first"/>
+                            </form>
                         </div>
-                        <!--提交-->
-                        <input class="submit_btn main_bg_light" type="submit" id="submit_second" value="确认"/>
-                    </form>
-                </div>
-                <!--成功-->
-                <div class="login_form tc success hide">
-                    <i class="icon-duihaoyuanquan main_light"></i>
-                    <p>新密码设置成功，请您牢记新密码</p>
-                    <!--返回首页-->
-                    <a class="main_border_light return_btn mainbg_hover_light" href="/login.html">返回登陆页</a>
+                        <div class="login_form reset_form hide">
+                            <form action="">
+                                <div class="login_form_input">
+                                    <input class="fl code" type="text" fh-type="phoneAuthCode" id="phoneAuthCode" autocomplete="off" placeholder="请输入短信验证码" required>
+                                    <div class="error_tip tl">
+                                        <i></i>
+                                        <span>请输入短信验证码</span>
+                                    </div>
+                                    <!--密码-->
+                                    <input class="form_text" type="password" name="user" fh-type="password" id="password" placeholder="请输入6-15位字母、数字、符号的新密码">
+                                    <div class="error_tip tl">
+                                        <i></i>
+                                        <span>请输入正确的密码</span>
+                                    </div>
+                                    <!--再次输入密码-->
+                                    <input class="form_text" type="password" name="user" fh-type="password" id="password2" placeholder="请再次输入新密码">
+                                    <div class="error_tip tl">
+                                        <i></i>
+                                        <span>请检查输入的密码与上面的是否一致</span>
+                                    </div>
+                                </div>
+                                <!--提交-->
+                                <input class="submit_btn main_bg_light" type="submit" id="submit_second" value="确认"/>
+                            </form>
+                        </div>
+                        <!--成功-->
+                        <div class="login_form tc success hide">
+                            <i class="icon-duihaoyuanquan main_light"></i>
+                            <p>新密码设置成功，请您牢记新密码</p>
+                            <!--返回首页-->
+                            <a class="main_border_light return_btn mainbg_hover_light" href="/login.html">返回登陆页</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--版权 begin-->
-<?php Qs::Label('静态类/登陆注册网站底部');?>
-<?php Qs::Sys('loadRequireJs', 'buyer/forget');?>
-</body>
+        <!--版权 begin-->
+        <?php Qs::Label('静态类/登陆注册网站底部'); ?>
+        <?php Qs::Sys('loadRequireJs', 'buyer/forget'); ?>
+    </body>
 </html>

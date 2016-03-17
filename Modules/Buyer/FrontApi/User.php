@@ -199,14 +199,14 @@ class User extends AbstractScript
     */
    public function findPassword(array $params)
    {
-      $this->checkRequireFields($params, array('phone', 'password'));
+      $this->checkRequireFields($params, array('phone', 'password','code'));
       
       return $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,
          BUYER_CONST::APP_NAME,
          BUYER_CONST::APP_API_BUYER_ACL,
          'findPassword',
-         array($params['phone'], $params['password'])
+         array($params['phone'], $params['password'],$params['code'])
       );
    }
    

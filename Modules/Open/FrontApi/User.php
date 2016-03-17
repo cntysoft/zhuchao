@@ -190,6 +190,7 @@ class User extends AbstractScript
 
       //删除Session
       $sessionManager->offsetUnset(\Cntysoft\FRONT_USER_S_KEY_FORGET_CHK_CODE);
+      
    }
 
    /**

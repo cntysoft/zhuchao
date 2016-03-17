@@ -1,120 +1,97 @@
 define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
-       var imgCodeUrl = '/forgetchkcode?v_';
-       var codeType = 2, phone = '', phoneChecked = false;
+        var imgCodeUrl = '/forgetchkcode?v_';
+        var codeType = 2, phone = '', phoneChecked = false, phoneExist = false;
         var sendMessageCode = false;
         $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
         $('#changeCodeImg').click(function (){
             $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
         });
-        $('#sendMessage').click(function(){
-            var $this = $(this);
-            var validateMsg = validate.checkFields($('#phone,#imgCode'));
-            if(validateMsg.length){
-                return false;
-            }
-            if(sendMessageCode){
-                return false;
-            }
-            Cntysoft.Front.callApi('User', 'checkPicCode', {
-               phone : $('#phone').val(),
-               code : $('#imgCode').val(),
-               type : codeType
-            }, function(response){
-               if(!response.status){
-                  if(10001 == response.errorCode){//过期
-                     layer.alert('图片验证码已经过期！');
-                  }else if(10002 == response.errorCode){//错误
-                     layer.alert('图片验证码错误！');
-                  }else if(10003 == response.errorCode){//发送短信失败
-                     layer.alert('短信发送失败！');
-                  }
-               }else{
-                  sendMessageCode = true;
-                  $this.html('重新发送(120)');
-                  var n = 120;
-                  setTime = setInterval(function (){
-                     n -= 1;
-                     $this.html('重新发送(' + n + ')');
-                     if(n == 0){
-                        clearInterval(setTime);
-                        $this.html('重新发送');
-                        sendMessageCode = false;
-                     }
-                  }, 1000);
-               }
-            });
-        });
 
+        $('#phone').change(function (){
+            var validation = validate.checkFields($('#phone'));
+
+            if(!validation.length){
+                Cntysoft.Front.callApi('User', 'checkPhoneExist', {
+                    phone : $('#phone').val()
+                }, function (response){
+                    if(response.status && response.data[0] === false){
+                        layer.tips(validate.message.phoneNotExist, $('#phone'), {
+                            tips : [2, '#63bf82']
+                        });
+                        phoneExist = false;
+                    } else{
+                        phoneExist = true;
+                    }
+                });
+            }
+        });
         $('#submit_first').click(function (event){
             event.preventDefault();
             var validateMsg = validate.checkFields($('#phone,#imgCode'));
             if(validateMsg.length){
                 return false;
             }
-            
-            if(!sendMessageCode){
-               return false;
+            if(!phoneExist){
+                layer.tips(validate.message.phoneNotExist, $('#phone'), {
+                    tips : [2, '#63bf82']
+                });
+                return false;
             }
-            
-            Cntysoft.Front.callApi('User', 'checkSmsCode', {
-               phone : $('#phone').val(),
-               code : $('#phoneAuthCode').val(),
-               type : codeType
-            }, function(response){
-               if(!response.status){
-                  if(10004 == response.errorCode){//过期
-                     layer.alert('短信验证码已经过期！');
-                  }else if(10005 == response.errorCode){//错误
-                     layer.alert('短信验证码错误！');
-                  }
-                  sendMessageCode = false;
-               }else{
-                  phone = $('#phone').val();
-                  phoneChecked = true;
-                  $('.login_form.check_form').hide();
-                  $('.login_form.reset_form').show();
-               }
+            Cntysoft.Front.callApi('User', 'checkPicCode', {
+                code : $('#imgCode').val(),
+                type : codeType,
+                phone : $('#phone').val()
+            }, function (response){
+                if(!response.status){
+                    if(10002 == response.errorCode){
+                        layer.alert(validate.message.imgCodeError);
+                        $('#changeCodeImg').click();
+                    } else if(10001 == response.errorCode){//错误
+                        layer.alert(validate.message.imgCodeExpire);
+                    }
+                    sendMessageCode = false;
+                } else{
+                    phone = $('#phone').val();
+                    phoneChecked = true;
+                    $('.login_form.check_form,.login_form.success').hide();
+                    $('.login_form.reset_form').show();
+                }
             });
         });
-        
-        $('#submit_second').click(function(event){
+
+        $('#submit_second').click(function (event){
             event.preventDefault();
-            var validateMsg = validate.checkFields($('#password', '#password2'));
-            if(validateMsg.length){
+            var validateMsg = validate.checkFields($('#password,#password2,#phoneAuthCode'));
+            if(validateMsg.length || !phoneExit){
                 return false;
             }
-            
             if($('#password').val() != $('#password2').val()){
-                layer.tips(validate.message.passwordNotEqual,$('#password2'));
+                layer.tips(validate.message.passwordNotEqual, $('#password2'), {
+                    tips : [2, '#63bf82']
+                });
                 return false;
             }
-            
+
             if(!phoneChecked){
-               layer.alert('请重新验证手机号码！');
-               return false;
+                layer.alert('请先验证手机号！');
+                return false;
             }
-            
+
             Cntysoft.Front.callApi('User', 'findPassword', {
-               phone : phone,
-               password : Cntysoft.Core.sha256($('#password').val())
-            }, function(response){
-               if(!response.status){
-                  if(10011 == response.errorCode){//不存在
-                     layer.alert('手机号码错误，请重新验证！');
-                  }
-                  sendMessageCode = false;
-               }else{
-                  layer.alert('成功找回密码，即将跳转到登陆页面！', {
-                     btn : '',
-                     success : function(){
-                        var redirect = function(){
-                           window.location = '/login.html';
-                        };
-                        setTimeout(redirect, 300);
-                     }
-                  });
-               }
+                phone : phone,
+                password : Cntysoft.Core.sha256($('#password').val()),
+                code : $('#phoneAuthCode').val()
+            }, function (response){
+                if(!response.status){
+                    if(10011 == response.errorCode){//不存在
+                        layer.alert('手机号码错误，请重新验证！');
+                    }
+                    sendMessageCode = false;
+                } else{
+                    $('.login_form.check_form,.login_form.reset_form').hide();
+                    $('.login_form.success').show();
+                }
             });
         });
     });

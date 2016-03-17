@@ -443,7 +443,7 @@ class Acl extends AbstractLib
             $this->logout();
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
-               $errorType->msg('E_BUYER_USER_NOT_EXIST'), $errorType->code('E_BUYER_USER_NOT_EXIST')
+               $errorType->msg('E_BUYER_USER_NOT_EXIST', $token[1]), $errorType->code('E_BUYER_USER_NOT_EXIST')
                ), $this->getErrorTypeContext()
             );
          }
@@ -481,7 +481,7 @@ class Acl extends AbstractLib
       if(!$user){
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_USER_NOT_EXIST'), $errorType->code('E_BUYER_USER_NOT_EXIST')
+            $errorType->msg('E_BUYER_USER_NOT_EXIST', $phone), $errorType->code('E_BUYER_USER_NOT_EXIST')
          ), $this->getErrorTypeContext());
       }
       
