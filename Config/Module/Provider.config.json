@@ -201,13 +201,21 @@
         "provider\/sysmsg" : "供应商\/系统消息.phtml"
     },
     "front_api_map" : {
-        "Provider": [
+        "Provider" : [
             "\\ProviderFrontApi\\Provider",
             2
         ],
-        "Product": [
+        "Product" : [
             "\\ProviderFrontApi\\Product",
-            1
+            2
+        ],
+        "Upload" : [
+            "\\ProviderFrontApi\\Upload",
+            2
+        ],
+        "Company" : [
+            "\\ProviderFrontApi\\Company",
+            2
         ]
     }
 }
