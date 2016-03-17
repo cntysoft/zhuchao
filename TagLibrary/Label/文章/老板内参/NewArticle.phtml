@@ -1,0 +1,10 @@
+<?php
+$items = $this->getArticleList('id desc');
+$out = '';
+foreach ($items as $info) {
+   $out .= '<li>
+                    <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0]) . '">
+                    <a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a>
+                </li>';
+}
+echo $out;

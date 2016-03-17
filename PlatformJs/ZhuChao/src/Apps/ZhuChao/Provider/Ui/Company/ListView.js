@@ -124,7 +124,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.ListView', {
    {
       this.mainPanelRef.renderPanel('Editor', {
          mode : WebOs.Kernel.Const.MODIFY_MODE, /*修改模式*/
-         targetId : record.get('id')
+         targetLoadId : record.get('id')
       });
    },
    createDataStore : function ()

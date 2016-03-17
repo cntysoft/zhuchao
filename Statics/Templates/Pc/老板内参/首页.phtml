@@ -1,1 +1,77 @@
-老板内参首页
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>老板内参列表</title>    
+        <?php Qs::Sys('loadCss', array('reference/style.css', 'slick.css', 'reference/referenceindex.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <!--导航-->
+        <div class="head main_bg_light">
+            <div class="head_box conwidth1100 clearfix">
+                <a class="logo_img fl" href="/category/laobanneican.html">
+                    <img src="<?php Qs::Sys('loadImage', 'reference/test_logo_white.png') ?>">
+                    <span><em>|</em>老板内参</span>
+                </a>
+                <ul class="fr clearfix">
+                    <!--                    <li><a class="main_bg mainbg_hover" href="#">首页</a></li>
+                                        <li><a class="mainbg_hover" href="#">论坛</a></li>
+                                        <li><a class="mainbg_hover" href="#">板块</a></li>
+                                        <li><a class="mainbg_hover" href="#">活动</a></li>-->
+                </ul>
+            </div>
+        </div>
+
+        <!--banner -->
+        <div class="banner conwidth1100">
+            <!--            <div class="banner_box">
+                            <div class="item "><a href=""><img src="../../Images/test/test_banner1.jpg"></a></div>
+                            <div class="item "><a href=""><img src="../../Images/test/test_company_new3.jpg"></a></div>
+                        </div>
+            
+                        左右按钮
+                        <div class="prev_btn banner_btn "><i class="icon-jiantou7"></i></div>
+                        <div class="next_btn banner_btn "><i class="icon-jiantou6"></i></div>-->
+        </div>
+        <!--内容-->
+        <div class="content conwidth1100">
+            <!--行业资讯-->
+            <ul class="trade_news clearfix">
+                <?php Qs::Label('文章/老板内参', array('renderTpl' => 'NewArticle', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 3, 'enablePage' => false, 'listSubNode' => true)) ?>
+            </ul>
+            <!--列表-->
+            <div class="news_wrap clearfix">
+                <div class="left_section fl">
+                    <?php Qs::Label('文章/老板内参', array('renderTpl' => 'DefaultList', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 5, 'enablePage' => true, 'listSubNode' => true)) ?>
+                </div>
+                <div class="right_section fr">
+                    <div class="infomation">
+                        <h1>热点资讯</h1>
+                        <ul>
+                            <?php Qs::Label('文章/老板内参', array('renderTpl' => 'HotArticle', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 6, 'enablePage' => false, 'listSubNode' => true)) ?>
+                        </ul>
+                    </div>
+                    <div class="erweima">
+                        <h1>微信扫码关注凤凰筑巢</h1>
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>window._bd_share_config = {
+              "common" : {
+                 "bdSnsKey" : {},
+                 "bdText" : "",
+                 "bdMini" : "2",
+                 "bdPic" : "",
+                 "bdStyle" : "0",
+                 "bdSize" : "16"
+              }, "share" : {}
+           };
+           with (document)
+              0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+        <?php Qs::Sys('loadRequireJs', 'reference/referenceindex') ?>      
+    </body>
+</html>

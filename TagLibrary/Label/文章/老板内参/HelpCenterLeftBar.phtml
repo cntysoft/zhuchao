@@ -1,0 +1,25 @@
+<?php
+$node = $this->getDefalutNode($this->getIvokeNodeIdentifier());
+$out = '<dt>' . $node->getText() . '</dt>';
+$infolist = $this->execute();
+$route = $this->getRoute();
+if (isset($route['itemid'])) {
+   $content = $this->getDetail($route['itemid']);
+   $title = $content[0]->getTitle();
+}
+foreach ($infolist as $info) {
+   $detailinfo = $this->getDetail($info->getId());
+   $url = $cls = '';
+   if ($info->getTitle() == $title) {
+      $cls = 'class="current"';
+   }
+   if ($info->getCmodelId() == 2) {
+      $url = ' href="' . $detailinfo[1]->getLinkUrl() . '" target="out"';
+   } else if ($info->getCmodelId() == 1) {
+      $url = ' href="' . $this->getInfoUrl($info->getId()) . '"';
+   }
+   $out .= '<dd ' . $cls . '>
+                <a ' . $url . '>' . $info->getTitle() . '</a>
+            </dd>';
+}
+echo $out;

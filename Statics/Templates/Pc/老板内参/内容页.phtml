@@ -1,1 +1,119 @@
-老板内参内容也
+<!DOCTYPE html>
+<?php Qs::Ds('内容数据源/标准内容模型', 'AC') ?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>老板内参内容</title>
+        <?php Qs::Sys('loadCss', array('reference/style.css', 'reference/referencedetail.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <!--导航-->
+        <div class="head main_bg_light">
+            <div class="head_box conwidth1100 clearfix">
+                <a class="logo_img fl" href="/category/laobanneican.html">
+                    <img src="<?php Qs::Sys('loadImage', 'reference/test_logo_white.png') ?>">
+                    <span><em>|</em>老板内参</span>
+                </a>
+                <ul class="fr clearfix">
+                    <!--                    <li><a class="main_bg mainbg_hover" href="#">首页</a></li>
+                                        <li><a class="mainbg_hover" href="#">论坛</a></li>
+                                        <li><a class="mainbg_hover" href="#">板块</a></li>
+                                        <li><a class="mainbg_hover" href="#">活动</a></li>-->
+                </ul>
+            </div>
+        </div>
+
+        <!--内容-->
+        <div class="content conwidth1100">
+
+            <!--列表内容-->
+            <div class="news_wrap clearfix">
+                <!--站点指示-->
+                <div class="site">
+                    <a href="/category/laobanneican.html">老板内参</a>
+                    <span>&gt;</span>
+                    <a> <?php Qs::DsField('AC', 'title') ?></a>
+                </div>
+                <div class="left_section fl">
+                    <div class=" article_list  clearfix">
+                        <div class="article">
+                            <h1><a ><?php Qs::DsField('AC', 'title') ?></a></h1>
+                            <div class="article_title clearfix">
+                                <div class="article_date fl">
+                                    <a ><?php Qs::DsField('AC', 'author') ?></a>
+                                    <em>发表于<b><?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></b></em>
+                                </div>
+                                <div class="article_num fr">
+                                    <span>阅读量：<b><?php Qs::DsField('AC', 'hits') ?></b></span>
+                                    <div class="article_share bdsharebuttonbox">
+                                        <i class="icon-fenxiang"></i>
+                                        <a href="#" class="bds_more" data-cmd="more">分享</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="article_summary">
+                                <div class="summary_inner"><?php Qs::DsField('AC', 'content') ?>
+                                    <!--出处-->
+                                    <div class="article_from">
+                                        <span>作者：<?php Qs::DsField('AC', 'author') ?></span> <br>
+                                        <span class="statement">以上内容为原创作品，已获作者独家授权，转载者请注明出处。</span>
+                                    </div>
+                                </div>
+                                <!--上一篇下一篇-->
+                                <div class="prev_next">
+                                    <p><em>上一篇：</em><?php
+                                        $prev = Qs::DsField('AC', 'prev', true);
+                                        if ($prev) {
+                                           echo '<a href="' . $prev[0] . '">' . iconv_substr($prev[1], 0, 18) . '</a>';
+                                        } else {
+                                           echo '木有了';
+                                        }
+                                        ?>
+                                    </p>
+                                    <p><em>下一篇：</em><?php
+                                        $next = Qs::DsField('AC', 'next', true);
+                                        if ($next) {
+                                           echo '<a href="' . $next[0] . '">' . iconv_substr($next[1], 0, 18) . '</a>';
+                                        } else {
+                                           echo '正在更新中，请等待~';
+                                        }
+                                        ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="right_section fr">
+                    <div class="infomation">
+                        <h1>热点资讯</h1>
+                        <ul>
+                            <?php Qs::Label('文章/老板内参', array('renderTpl' => 'HotArticle', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 6, 'enablePage' => false, 'listSubNode' => true)) ?>
+                        </ul>
+                    </div>
+                    <div class="erweima">
+                        <h1>微信扫码关注凤凰筑巢</h1>
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>window._bd_share_config = {
+              "common" : {
+                 "bdSnsKey" : {},
+                 "bdText" : "",
+                 "bdMini" : "2",
+                 "bdPic" : "",
+                 "bdStyle" : "0",
+                 "bdSize" : "16"
+              }, "share" : {}
+           };
+           with (document)
+              0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+
+        <?php Qs::Sys('loadRequireJs', 'reference/referenceindex') ?>      
+    </body>
+</html>

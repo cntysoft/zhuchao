@@ -151,7 +151,7 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
                EMPTY_TEXT : '请选择',
                CUSTOMER : '主要客户群体',
                BRAND : '品牌名称',
-               REGCAPITAL : '注册资本',
+               REGCAPITAL : '注册资本(万)',
                REGYEAR : '注册年份',
                REGADDR : '注册地址',
                LEGALPERSON : '法人/负责人',

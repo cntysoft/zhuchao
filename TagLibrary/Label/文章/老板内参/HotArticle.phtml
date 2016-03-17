@@ -1,0 +1,13 @@
+<?php
+$items = $this->getArticleList('hits desc');
+$out = $last = '';
+foreach ($items as $index => $info) {
+   if ($index == count($items) - 1) {
+      $last = 'no_bb';
+   }
+   $out .= '<li class="clearfix ' . $last . '">
+                    <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0]) . '">
+                    <a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a>
+                </li>';
+}
+echo $out;

@@ -165,7 +165,7 @@ class InfoList extends AbstractLib
     */
    public function getItemUrl($id)
    {
-      return str_replace('{ItemId}', $id, \Cntysoft\CATEGORY_ITEM_ROUTE_N_PAGE);
+      return '/article/' . $id . '.html';
    }
 
    /**

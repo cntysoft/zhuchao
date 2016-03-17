@@ -109,7 +109,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
          this.currentCompany = response.data;
          this.getForm().setValues(this.currentCompany);
          this.iconSrc = this.currentCompany.logo;
-         this.imageRef.setSrc(this.currentCompany.logo);
+         this.imageRef.setSrc(ZC.getZhuChaoImageUrl(this.currentCompany.logo));
       }
    },
    afterRenderHandler : function ()
@@ -535,7 +535,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
    {
       var file = file.pop();
       this.iconSrc = file.filename;
-      this.imageRef.setSrc(file.filename);
+      this.imageRef.setSrc(ZC.getZhuChaoImageUrl(file.filename));
    },
    getIdFieldConfig : function ()
    {
