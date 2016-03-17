@@ -10,6 +10,7 @@ namespace ProviderFrontApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\ZhuChao\Product\Constant as P_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
+use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 /**
  * 主要是处理采购商产品相关的的Ajax调用
  * 
@@ -17,7 +18,7 @@ use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
  */
 class Product extends AbstractScript
 {
-   protected $tree = null;
+   protected $categoryTree = null;
    /**
     * 获取指定分类的子分类列表
     * 
@@ -48,7 +49,7 @@ class Product extends AbstractScript
       
       return $ret;
    }
-   
+           
    /**
     * 搜索分类
     * 
@@ -89,7 +90,7 @@ class Product extends AbstractScript
     */
    public function getParentCategory($categoryId, &$ret)
    {
-      $tree = $this->getNodeTree();
+      $tree = $this->getCategoryTree();
       if(!count($ret)){
          $category = $tree->getValue($categoryId);
          $ret[] = array(
@@ -110,14 +111,80 @@ class Product extends AbstractScript
    }
    
    /**
+    * 获取指定采购商的商品分组信息，支持两层结构
+    */
+   public function getProviderGroup()
+   {
+      $curUser = $this->getCurUser();
+      $groupTree = $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_GROUP_MGR,
+         'getGroupTree',
+         array($curUser->getId())
+      );
+      $ret = array();
+      $firstList = $groupTree->getChildren(0, 1, true);
+      
+      foreach($firstList as $group){
+         $twsList = $groupTree->getChildren($group->getId(), 1, true);
+         $two = array();
+         if(count($twsList)){
+            foreach($twsList as $two){
+               $item = array(
+                  'id' => $two->getId(),
+                  'name' => $two->getName()
+               );
+               
+               $two[] = $item;
+            }
+         }
+         
+         $ret[] = array(
+            'id' => $group->getId(),
+            'name' => $group->getName(),
+            'children' => $two
+         );
+      }
+      
+      return $ret;
+   }
+   
+   /**
+    * 添加一个分组信息
+    * 
+    * @param array $params
+    * @return boolean
+    */
+   public function addGroup(array $params)
+   {
+      $this->checkRequireFields($params, array('name'));
+      $provider = $this->getCurUser();
+      
+      if(isset($params['pid'])){
+         $params['pid'] = (int)$params['pid'];
+      }else{
+         $params['pid'] = 0;
+      }
+      
+      return $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_GROUP_MGR,
+         'addGroup',
+         array($provider->getId(), $params)
+      );
+   }
+   
+   /**
     * 获取分类树
     * 
     * @return 
     */
-   public function getNodeTree()
+   public function getCategoryTree()
    {
       if(null == $this->tree){
-         $this->tree = $this->appCaller->call(
+         $this->categoryTree = $this->appCaller->call(
             CATEGORY_CONST::MODULE_NAME,
             CATEGORY_CONST::APP_NAME,
             CATEGORY_CONST::APP_API_MGR,
@@ -125,6 +192,21 @@ class Product extends AbstractScript
          );
       }
       
-      return $this->tree;
+      return $this->categoryTree;
+   }
+   
+   /**
+    * 获取当前登陆的供应商
+    * 
+    * @return 
+    */
+   public function getCurUser()
+   {
+      return $this->appCaller->call(
+         PROVIDER_CONST::MODULE_NAME,
+         PROVIDER_CONST::APP_NAME,
+         PROVIDER_CONST::APP_API_MGR,
+         'getCurUser'
+      );
    }
 }

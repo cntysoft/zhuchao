@@ -305,4 +305,5 @@ class ProductMgr extends AbstractLib
       $product->setStatus($status);
       return $product->update();
    }
+   
 }

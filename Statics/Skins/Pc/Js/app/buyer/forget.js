@@ -2,7 +2,6 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
         var imgCodeUrl = '/forgetchkcode?v_';
         var codeType = 2, phone = '', phoneChecked = false, phoneExist = false;
-        var sendMessageCode = false;
         $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
         $('#changeCodeImg').click(function (){
             $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
@@ -50,20 +49,19 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
                     } else if(10001 == response.errorCode){//错误
                         layer.alert(validate.message.imgCodeExpire);
                     }
-                    sendMessageCode = false;
                 } else{
                     phone = $('#phone').val();
                     phoneChecked = true;
                     $('.login_form.check_form,.login_form.success').hide();
                     $('.login_form.reset_form').show();
                 }
-            });
+            }, true);
         });
 
         $('#submit_second').click(function (event){
             event.preventDefault();
             var validateMsg = validate.checkFields($('#password,#password2,#phoneAuthCode'));
-            if(validateMsg.length || !phoneExit){
+            if(validateMsg.length || !phoneExist){
                 return false;
             }
             if($('#password').val() != $('#password2').val()){
@@ -87,12 +85,11 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
                     if(10011 == response.errorCode){//不存在
                         layer.alert('手机号码错误，请重新验证！');
                     }
-                    sendMessageCode = false;
                 } else{
                     $('.login_form.check_form,.login_form.reset_form').hide();
                     $('.login_form.success').show();
                 }
-            });
+            }, true);
         });
     });
 });

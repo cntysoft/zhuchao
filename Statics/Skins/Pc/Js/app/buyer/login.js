@@ -1,12 +1,12 @@
 define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
-        $('#username,#password').blur(function(){
+        $('#name, #password').blur(function(){
            validate.checkFields($(this));
         });
 
         $('#submit').click(function (event){
             event.preventDefault();
-            var validateMsg = validate.checkFields($('#username,#password'));
+            var validateMsg = validate.checkFields($('#name,#password'));
             if(validateMsg.length){
                 return false;
             }

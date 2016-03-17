@@ -13,6 +13,7 @@ class Constant
    const MODULE_NAME = 'ZhuChao';
    const APP_NAME = 'Product';
    const APP_API_PRODUCT_MGR = 'ProductMgr';
+   const APP_API_GROUP_MGR = 'GroupMgr';
    
    //产品状态
    const PRODUCT_STATUS_DRAFT = 1; //草稿
