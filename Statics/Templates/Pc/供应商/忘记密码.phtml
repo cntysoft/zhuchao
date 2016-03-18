@@ -24,22 +24,12 @@
                             <form action="">
                                 <div class="login_form_input">
                                     <input class="form_text" type="text" fh-type="phone" id="username" placeholder="请输入注册时使用的手机号" required>
-                                    <!--错误提示-->
-                                    <div class="error_tip tl">
-                                        <i></i>
-                                        <span>注册时使用的手机号是否正确</span>
-                                    </div>
-                                    <!--验证码-->
                                     <div class="input_code clearfix">
                                         <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
                                         <a class="icode_image" >
                                             <img alt="图片验证码" title="看不清换一张" id="codeImg" src="/">
                                             <i class="icon-svgupdate" id="changeCodeImg"></i>
                                         </a>
-                                    </div>
-                                    <div class="error_tip tl">
-                                        <i></i>
-                                        <span>请输入验证码</span>
                                     </div>
                                 </div>
                                 <!--提交-->
@@ -49,23 +39,9 @@
                         <div class="login_form hide" id="passwordForm" >
                             <form action="">
                                 <div class="login_form_input">
-                                    <!--短信验证码-->
                                     <input class="fl code" type="text" fh-type="phoneAuthCode" id="phoneAuthCode" autocomplete="off" placeholder="请输入短信验证码" required>
-                                    <div class="error_tip tl">
-                                        <i></i>
-                                        <span>请输入短信验证码</span>
-                                    </div>
-                                    <!--密码-->
                                     <input class="form_text" type="password" fh-type="password" id="password" placeholder="请输入新密码" required>
-                                    <div class="error_tip tl">
-                                        <i></i>
-                                        <span>请输入正确的密码</span>
-                                    </div>
                                     <input class="form_text" type="password" fh-type="password" id="passwordAgain" placeholder="请再次输入新密码" required>
-                                    <div class="error_tip tl">
-                                        <i></i>
-                                        <span>请检查输入的密码与上面的是否一致</span>
-                                    </div>
                                 </div>
                                 <input class="submit_btn main_bg_light" type="submit" id="passwordFormSubmit" value="重置密码"/>
                             </form>

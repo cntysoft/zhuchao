@@ -364,6 +364,9 @@ ul, ol {
 .icon-biaoqian:before {
   content: "\e621"; }
 
+.icon-yan:before {
+  content: "\e648"; }
+
 .icon-error:before {
   content: "\e62a"; }
 
