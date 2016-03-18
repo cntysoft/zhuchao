@@ -336,12 +336,12 @@ class NewsList extends AbstractLabelScript
     * @param type $height
     * @return string
     */
-   public function getImgcdn($url)
+   public function getImgcdn($url, $width, $height)
    {
       if (!isset($url) || empty($url)) {
          $url = 'Static/lazyicon.png';
       }
-      return \Cntysoft\Kernel\get_image_oss_server_url() . DS . $url;
+      return \Cntysoft\Kernel\get_image_cdn_url($url, $width, $height);
    }
 
 }

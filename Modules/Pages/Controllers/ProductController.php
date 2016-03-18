@@ -8,8 +8,8 @@
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
  */
 use Cntysoft\Phalcon\Mvc\AbstractController;
-use App\Shop\GoodsMgr\Constant as GOODS_CONST;
-use App\Shop\CategoryMgr\Constant as GOODS_CATE_CONST;
+use App\ZhuChao\GoodsMgr\Constant as GOODS_CONST;
+use App\ZhuChao\CategoryMgr\Constant as GOODS_CATE_CONST;
 use Cntysoft\Framework\Qs\View;
 
 /**

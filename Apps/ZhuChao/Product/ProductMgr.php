@@ -5,7 +5,7 @@
  * @author Arvin <cntyfeng@163.com>
  * @copyright Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.sheneninfo.com>
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
-*/
+ */
 namespace App\ZhuChao\Product;
 use Cntysoft\Kernel\App\AbstractLib;
 use App\ZhuChao\Product\Model\Product as ProductModel;
@@ -14,7 +14,6 @@ use App\ZhuChao\Product\Model\Product2Group as PGModel;
 use Cntysoft\Kernel;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 use Cntysoft\Framework\Core\FileRef\Manager as RefManager;
-
 class ProductMgr extends AbstractLib
 {
    /**
@@ -28,7 +27,7 @@ class ProductMgr extends AbstractLib
     */
    public function getProductList(array $cond = array(), $total = false, $orderBy = 'id DESC', $offset = 0, $limit = \Cntysoft\STD_PAGE_SIZE)
    {
-      if($limit){
+      if ($limit) {
          $query = array(
             'order' => $orderBy,
             'limit' => array(
@@ -36,25 +35,25 @@ class ProductMgr extends AbstractLib
                'number' => $limit
             )
          );
-      }else{
+      } else {
          $query = array(
             'order' => $orderBy,
          );
       }
-      
-      if(!empty($cond)){
+
+      if (!empty($cond)) {
          $query += $cond;
       }
-      
+
       $items = ProductModel::find($query);
-      
-      if($total){
+
+      if ($total) {
          return array($items, ProductModel::count($cond));
       }
-      
+
       return $items;
    }
-   
+
    /**
     * 添加一个产品
     * 
@@ -68,32 +67,32 @@ class ProductMgr extends AbstractLib
       $product = new ProductModel();
       $detail = new DetailModel();
       $dfields = $detail->getRequireFields(array('id'));
-      foreach(array('imgRefMap', 'fileRefs') as $val){
-         array_push($dfields, $val);	
+      foreach (array('imgRefMap', 'fileRefs') as $val) {
+         array_push($dfields, $val);
       }
       $this->checkRequireFields($params, $dfields);
       $pfields = $product->getRequireFields(array('id', 'providerId', 'companyId', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
-      foreach(array('price') as $val){
-         array_push($pfields, $val);	
+      foreach (array('price') as $val) {
+         array_push($pfields, $val);
       }
       $this->checkRequireFields($params, $pfields);
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
 
       $db = Kernel\get_db_adapter();
-      try{
+      try {
          $db->begin();
-         if(!empty($ddata['fileRefs'])){
+         if (!empty($ddata['fileRefs'])) {
             $fileRefs = is_array($ddata['fileRefs']) ? $ddata['fileRefs'] : array($ddata['fileRefs']);
             $refManager = new RefManager();
-            foreach($fileRefs as $ref){
+            foreach ($fileRefs as $ref) {
                $refManager->confirmFileRef($ref);
             }
          }
 
          $detail->assignBySetter($ddata);
          $detail->create();
-         
+
          $pdata['providerId'] = $providerId;
          $pdata['companyId'] = $companyId;
          $pdata['number'] = $this->getProductNumber($params['categoryId']);
@@ -106,16 +105,16 @@ class ProductMgr extends AbstractLib
          $pdata['inputTime'] = time();
          $pdata['updateTime'] = 0;
          $pdata['detailId'] = $detail->getId();
-         
+
          $product->assignBySetter($pdata);
-         
-         if(isset($params['group']) && !empty($params['group'])){
+
+         if (isset($params['group']) && !empty($params['group'])) {
             $group = $params['group'];
-            if(!is_array($group)){
+            if (!is_array($group)) {
                $group = array($group);
             }
             $productId = $product->getId();
-            foreach($group as $one){
+            foreach ($group as $one) {
                $join = new PGModel();
                $join->setProductId($productId);
                $join->setGroupId($one);
@@ -127,11 +126,11 @@ class ProductMgr extends AbstractLib
          return $db->commit();
       } catch (Exception $ex) {
          $db->rollback();
-         
+
          Kernel\throw_exception($ex, $this->getErrorTypeContext());
       }
    }
-   
+
    /**
     * 
     * @param integer $productId
@@ -146,53 +145,53 @@ class ProductMgr extends AbstractLib
       $product = $this->getProductById($productId);
       $detail = $product->getDetail();
       $dfields = $detail->getRequireFields(array('id'));
-      foreach(array('imgRefMap', 'fileRefs') as $val){
-         array_push($dfields, $val);	
+      foreach (array('imgRefMap', 'fileRefs') as $val) {
+         array_push($dfields, $val);
       }
       $pfields = $product->getRequireFields(array('id', 'providerId', 'categoryId', 'companyId', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
-      foreach(array('price') as $val){
-         array_push($pfields, $val);	
+      foreach (array('price') as $val) {
+         array_push($pfields, $val);
       }
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
-      
+
       $db = Kernel\get_db_adapter();
-      try{
+      try {
          $db->begin();
-         if(!empty($ddata['fileRefs'])){
+         if (!empty($ddata['fileRefs'])) {
             $oldRefs = $detail->getFileRefs();
             $nowRefs = is_array($ddata['fileRefs']) ? $ddata['fileRefs'] : array($ddata['fileRefs']);
             $deleteRefs = array_diff($oldRefs, $nowRefs);
             $newRefs = array_diff($nowRefs, $oldRefs);
             $refManager = new RefManager();
-            foreach($deleteRefs as $ref){
+            foreach ($deleteRefs as $ref) {
                $refManager->removeFileRef($ref);
             }
-            foreach($newRefs as $ref){
+            foreach ($newRefs as $ref) {
                $refManager->confirmFileRef($ref);
             }
          }
-         
+
          $detail->assignBySetter($ddata);
          $detail->update();
          $product->assignBySetter($pdata);
          $product->setUpdateTime(time());
          $product->setIndexGenerated(0);
          $product->update();
-         
-         if(isset($params['group']) && !empty($params['group'])){
+
+         if (isset($params['group']) && !empty($params['group'])) {
             $group = $params['group'];
-            if(!is_array($group)){
+            if (!is_array($group)) {
                $group = array($group);
             }
-            
+
             $modelsManager = Kernel\get_models_manager();
             $query = sprintf('DELETE FROM %s WHERE productId = ?0', 'App\ZhuChao\Product\Model\Product2Group');
             $modelsManager->executeQuery($query, array(
                0 => $productId
             ));
-            
-            foreach($group as $one){
+
+            foreach ($group as $one) {
                $join = new PGModel();
                $join->setProductId($productId);
                $join->setGroupId($one);
@@ -203,11 +202,11 @@ class ProductMgr extends AbstractLib
          return $db->commit();
       } catch (Exception $ex) {
          $db->rollback();
-         
+
          Kernel\throw_exception($ex, $this->getErrorTypeContext());
-      } 
+      }
    }
-   
+
    /**
     * 获取指定id的产品信息
     * 
@@ -217,7 +216,7 @@ class ProductMgr extends AbstractLib
    {
       return ProductModel::findFirst($productId);
    }
-   
+
    /**
     * 获得产品的编号
     * 
@@ -229,22 +228,22 @@ class ProductMgr extends AbstractLib
    {
       $number = $prefix;
       $len = strlen($categoryId);
-      for($i = $len; $i < 3; $i++){
+      for ($i = $len; $i < 3; $i++) {
          $number.='0';
       }
       $number .= $categoryId;
       $number.=time();
-      
+
       for ($i = 0; $i < 3; $i++) {
          $number .= rand(0, 9);
       }
-      if($this->checkNumberExist($number)){
+      if ($this->checkNumberExist($number)) {
          return $this->getProductNumber($categoryId, $prefix);
-      }else{
+      } else {
          return $number;
       }
    }
-   
+
    /**
     * 获取数据中需要字段的数据
     * 
@@ -255,15 +254,15 @@ class ProductMgr extends AbstractLib
    public function filterData(array $data, array $fields)
    {
       $ret = array();
-      foreach($data as $key => $val){
-         if(in_array($key, $fields)){
+      foreach ($data as $key => $val) {
+         if (in_array($key, $fields)) {
             $ret[$key] = $val;
          }
       }
-      
+
       return $ret;
    }
-   
+
    /**
     * 检查产品编号是否已经存在
     * 
@@ -273,25 +272,23 @@ class ProductMgr extends AbstractLib
    public function checkNumberExist($number)
    {
       return ProductModel::count(array(
-         'number=?0',
-         'bind' => array(
-            0 => $number
-         )
-      )) > 0 ? true : false;
+                 'number=?0',
+                 'bind' => array(
+                    0 => $number
+                 )
+              )) > 0 ? true : false;
    }
-   
-   /** 
+
+   /**
     * @return \App\ZhuChao\CategoryMgr\Mgr
     */
    public function getGoodsCategoryAppObject()
    {
       return $this->getAppCaller()->getAppObject(
-         CATEGORY_CONST::MODULE_NAME, 
-         CATEGORY_CONST::APP_NAME, 
-         CATEGORY_CONST::APP_API_MGR
+                      CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR
       );
    }
-   
+
    /**
     * 修改指定产品的状态
     * 
@@ -303,19 +300,19 @@ class ProductMgr extends AbstractLib
    public function changeStatus($productId, $status, $comment = '')
    {
       $product = $this->getProductById($productId);
-      
-      if(!$product){
+
+      if (!$product) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')
-         ), $this->getErrorTypeContext());
+                 $errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')
+                 ), $this->getErrorTypeContext());
       }
-      
+
       $product->setStatus($status);
       $product->setComment($comment);
       return $product->update();
    }
-   
+
    /**
     * 获取指定分类下面的商品数目
     * 
@@ -326,10 +323,10 @@ class ProductMgr extends AbstractLib
    {
       if (!$withChildren) {
          return ProductModel::count(array(
-            'categoryId = ?0',
-            'bind' => array(
-               0 => (int) $cid
-            )
+                    'categoryId = ?0',
+                    'bind' => array(
+                       0 => (int) $cid
+                    )
          ));
       } else {
          $query = array();
@@ -342,7 +339,7 @@ class ProductMgr extends AbstractLib
          return ProductModel::count($query);
       }
    }
-   
+
    /**
     * 生成商品搜索数据
     * 
@@ -383,9 +380,128 @@ class ProductMgr extends AbstractLib
             }
             $ginfo->setSearchAttrMap(implode(' ', $attrPool));
             $ginfo->setIndexGenerated(1);
-            return $ginfo->save();
+            $ginfo->save();
          }
       }
    }
-   
+
+   /**
+    * 根据商品分类获取商品列表，支持属性过滤
+    * 
+    * @param int $cid
+    * @param int $page
+    * @param int $pageSize
+    * @param array $attrFilter
+    * @param array $sorts
+    * @param boolean $withQueryAttrs
+    */
+   public function queryGoods($cid, $page = 1, $pageSize = \Cntysoft\STD_PAGE_SIZE, array $attrFilter = array(), array $sorts = array(), $withQueryAttrs = false)
+   {
+      $cond = array(
+         'categoryId = ?0'
+      );
+      $bind = array((int) $cid);
+      //设置orderby
+      $orderBy = ' id DESC ';
+      if (!empty($sorts)) {
+         $sortKey = key($sorts);
+         $sortType = current($sorts);
+         if (!in_array($sortKey, array(Constant::SORT_HITS, Constant::SORT_PRICE, Constant::SORT_TIME, Constant::SORT_GRADE))) {
+            $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+                    $errorType->msg('SORT_KEY_NOT_SUPPORT', $sortKey), $errorType->code('SORT_KEY_NOT_SUPPORT')));
+         }
+         if (!in_array($sortType, array(Constant::FLAG_UP, Constant::FLAG_DOWN))) {
+            $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+                    $errorType->msg('SORT_TYPE_NOT_SUPPORT', $sortType), $errorType->code('SORT_TYPE_NOT_SUPPORT')));
+         }
+         if (Constant::FLAG_UP == $sortType) {
+            $sortType = 'asc';
+         } else if (Constant::FLAG_DOWN == $sortType) {
+            $sortType = 'desc';
+         }
+         $orderBy = $sortKey . ' ' . $sortType;
+      }
+      //设置属性过滤
+      if (!empty($attrFilter)) {
+         if (isset($attrFilter['status'])) {
+            $cond[] = sprintf('status = %d', (int) $attrFilter['status']);
+            unset($attrFilter['status']);
+         }
+         if (isset($attrFilter['trademarkid'])) {
+            $cond[] = sprintf('trademarkId = %d', (int) $attrFilter['trademarkid']);
+            unset($attrFilter['trademarkid']);
+         }
+         if (isset($attrFilter['price'])) {
+            $range = $attrFilter['price'];
+            $cond[] = sprintf('price >= %d and price < %d', (int) $range[0], (int) $range[1]);
+            unset($attrFilter['price']);
+         }
+         if (isset($attrFilter['enableprice'])) {
+            if ($attrFilter['enableprice']) {
+               $cond[] = 'price > 0';
+            }
+            unset($attrFilter['enableprice']);
+         }
+         foreach ($attrFilter as $key => $val) {
+            $filtermd5 = md5(strtolower(preg_replace(Constant::ATTR_FILTER_REGEX, '', $key . $val)));
+            $cond[] = sprintf('locate("%s", searchAttrMap) != 0', $filtermd5);
+         }
+      }
+      $cond = implode(' and ', $cond);
+      $query = array(
+         $cond,
+         'bind'  => $bind,
+         'order' => $orderBy,
+         'limit' => array(
+            'number' => $pageSize,
+            'offset' => ($page - 1) * $pageSize
+         )
+      );
+      $list = ProductModel::find($query);
+
+      $ret = array(
+         'total' => ProductModel::count(array(
+            $cond,
+            'bind' => $bind
+         )),
+         'docs'  => $list
+      );
+      if ($withQueryAttrs) {
+         //聚合搜索结果
+         //获取第一个结果的查询属性
+         $catemgr = $this->getAppCaller()->getAppObject(
+                 CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR);
+         $attrs = array();
+         foreach ($list as $doc) {
+            $attrItems = array();
+            $category = $catemgr->getNode($doc->getCategoryId());
+            foreach ($category->queryAttrs as $attr) {
+               $attrItems[$attr->getName()] = explode(',', $attr->getOptValues());
+            }
+//            //增加品牌
+//            $trademarks = array();
+//            foreach ($category->trademarks as $t) {
+//               if (!array_key_exists($t->getId(), $trademarks)) {
+//                  $trademarks[$t->getId()] = array(
+//                     'id'   => $t->getId(),
+//                     'name' => $t->getName(),
+//                     'logo' => $t->getLogo()
+//                  );
+//               }
+//            }
+            $attrs = array_merge_recursive($attrs, $attrItems);
+         }
+         foreach ($attrs as $key => $values) {
+            $attrs[$key] = array_unique($values);
+         }
+//         if (!empty($trademarks)) {
+//            $attrs['品牌'] = $trademarks;
+//         }
+         $ret['queryAttrs'] = $attrs;
+      }
+      return $ret;
+   }
+
 }

@@ -6,7 +6,7 @@ foreach ($items as $index => $info) {
       $last = 'no_bb';
    }
    $out .= '<li class="clearfix ' . $last . '">
-                    <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0]) . '">
+                    <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 60, 40) . '">
                     <a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a>
                 </li>';
 }

@@ -167,12 +167,24 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
                   LOCK : '锁定'
                },
                TYPE_NAME : {
-                  NORMAL : '正常',
-                  LOCK : '锁定'
+                  GUOYOU : '国有企业',
+                  JITI : '集体所有制',
+                  SIYING : '私营企业',
+                  GUFENG : '股份制企业',
+                  LIANYING : '联营企业',
+                  WAISHANG : '外商投资企业',
+                  GOT : '港、澳、台',
+                  GUFENGHEZUO : '股份合作企业'
                },
                TRADEMODE_NAME : {
-                  NORMAL : '正常',
-                  LOCK : '锁定'
+                  SALE : '销售型',
+                  PRODUCE : '生产型',
+                  DESIGN : '设计型',
+                  INFO : '信息服务型',
+                  STOP : '销售+生产型',
+                  STOD : '销售+设计型',
+                  PTOD : '生产+设计型',
+                  DPS : '销售+生产+设计型'
                }
             },
             MSG : {

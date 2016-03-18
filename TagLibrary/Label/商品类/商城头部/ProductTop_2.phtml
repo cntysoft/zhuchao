@@ -1,0 +1,74 @@
+<?php 
+Qs::Label('导航栏/网站顶部', array('renderTpl'=> 'Pc_SiteTop'));
+Qs::Ds('商城数据源/商城信息', 'set');
+?>
+<!--logo 搜索 begin-->
+<div class="header">
+    <div class="w clearfix">
+        <a href="/" class="icon_logo fl">
+            <img src="<?php Qs::DsField('set', 'logo'); ?>" alt=""/>
+        </a>
+        <!--搜索-->
+        <div class="search fr">
+            <form action="" class="search_form">
+                <input id="searchInput" autocomplete="off" class="search_input" type="text" required placeholder="请输入关键字"/><input
+                    class="search_btn" type="button" value="搜索"/>
+            </form>
+        </div>
+    </div>
+</div>
+<!--logo 搜索 end-->
+<!--导航栏 begin-->
+<div class="nav_box">
+    <div class="w nav_box_inner clearfix">
+        <div class="nav_h2 fl">
+            <h2><a>全部商品分类</a></h2>
+
+            <div class="nav_wrap">
+                <ul id="navSubnav" class="nav_subnav">
+                    <li><a href="">家用电器</a><span></span></li>
+                    <li><a href="">手机、数码、京东通信</a><span></span></li>
+                    <li><a href="">电脑、办公</a><span></span></li>
+                    <li><a href="">家居、家具、家装、厨具</a><span></span></li>
+                    <li><a href="">男装、女装、内衣、珠宝</a><span></span></li>
+                    <li><a href="">个护化妆</a><span></span></li>
+                    <li><a href="">鞋靴、箱包、钟表、奢侈品</a><span></span></li>
+                    <li><a href="">运动户外</a><span></span></li>
+                    <li><a href="">汽车、汽车用品</a><span></span></li>
+                    <li><a href="">母婴、玩具乐器</a><span></span></li>
+                    <li><a href="">食品、酒类、生鲜、特产</a><span></span></li>
+                    <li><a href="">营养保健</a><span></span></li>
+                    <li><a href="">理财、众筹、白条、保险</a><span></span></li>
+                </ul>
+                <div class="nav_subnav_item">
+                    <div class="subnav_list">
+                        <div class="subnav_list_title">
+                            <ul class="clearfix">
+                                <li>
+                                    <a href=""><img src="../../Images/test_pro_img.jpg" alt=""/>镜前灯</a>
+                                    <a href=""><img src="../../Images/test_small_logo.png" alt=""/>吸顶灯</a>
+                                    <a href=""><img src="../../Images/test_pro_img.jpg" alt=""/>落地灯</a>
+                                    <a href=""><img class="lazy" src="../../Images/test_pro_pngimg.png" alt=""/>吊灯</a>
+                                    <a href=""><img src="../../Images/test_pro_img.jpg" alt=""/>小夜灯</a>
+                                </li>
+                                <li>
+                                    <a href=""><img src="../../Images/test_pro_img.jpg" alt=""/>壁灯</a>
+                                    <a href=""><img src="../../Images/test_pro_img.jpg" alt=""/>台灯</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav_main fl">
+            <li><a href="/">首页</a></li>
+        <?php
+        $node = $this->load();
+        foreach ($node as $value) {
+           echo '<li><a href="'.$value['url'].'">'.$value['name'].'</a></li>';
+        }
+        ?>
+            </ul>
+    </div>
+</div>

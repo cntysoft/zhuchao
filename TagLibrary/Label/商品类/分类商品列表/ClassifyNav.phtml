@@ -1,0 +1,18 @@
+<?php
+$out = '';
+$categoryId = $this->getRouteInfo()['categoryId'];
+$category = $this->getProductClassifyInfo($categoryId);
+$parents = $this->getNodeParents($categoryId);
+$process = array_reverse($parents);
+array_shift($process);
+$parents = array_reverse($process);
+$res = $category->getName();
+$out .= '<div class="site">
+                <a class="main_hover" href="/">首页</a><span>&gt;</span>';
+foreach ($parents as $parent) {
+   $out.='<a >' . $parent->getName() . '</a>'
+           . '<span>&gt;</span>';
+}
+$out.='<a class="main" href="/productclassify/' . $categoryId . '/1.html">' . $res . '</a>';
+$out.='</div>';
+echo $out;

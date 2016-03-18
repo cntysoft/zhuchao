@@ -13,7 +13,7 @@ foreach ($items as $index => $item) {
    $defpic = $item->getDefaultPicUrl()[0];
    $infourl = $this->getInfoUrl($item->getId());
    if ($defpic) {
-      $imgurl = '<img class="article_img" src="' . $this->getImgcdn($defpic) . '">';
+      $imgurl = '<img class="article_img" src="' . $this->getImgcdn($defpic, 240, 160) . '">';
    } else {
       $imgcls = 'no_images';
    }

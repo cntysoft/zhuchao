@@ -28,4 +28,10 @@ class Constant
    const PK_WIDGET_PRODUCT = 'ProductMgr';
    
    const ATTR_FILTER_REGEX = '/[\s:\/\(\)\*&@!#$%\^\-+~\?]/is';
+    const SORT_HITS = 'hits'; //这种方式程序自己排列
+   const SORT_PRICE = 'price';
+   const SORT_TIME = 'inputTime';
+   const SORT_GRADE = 'grade';
+   const FLAG_UP = '+';
+   const FLAG_DOWN = '-';
 }

@@ -348,32 +348,52 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
                      scope : this
                   }
                }]
-         }, {xtype : 'radiogroup',
-            colspan : 2,
-            width : 1400,
-            columns : 2,
+         }, {
+            xtype : 'combo',
+            name : 'type',
+            allowBlank : false,
+            editable : false,
             fieldLabel : F.TYPE,
-            items : [{
-                  boxLabel : F.TYPE_NAME.NORMAL,
-                  name : 'type',
-                  inputValue : 1,
-                  checked : true
-               }, {boxLabel : F.TYPE_NAME.LOCK,
-                  name : 'type',
-                  inputValue : 2}]
-         }, {xtype : 'radiogroup',
-            columns : 2,
-            width : 1400,
-            colspan : 2,
+            fields : ['code', 'name'],
+            displayField : 'name',
+            valueField : 'code',
+            minChars : 1,
+            store : Ext.create('Ext.data.Store', {
+               fields : ['name', 'code'],
+               data : [
+                  {"code" : "1", "name" : F.TYPE_NAME.GUOYOU},
+                  {"code" : "2", "name" : F.TYPE_NAME.JITI},
+                  {"code" : "3", "name" : F.TYPE_NAME.SIYING},
+                  {"code" : "4", "name" : F.TYPE_NAME.GUFENG},
+                  {"code" : "5", "name" : F.TYPE_NAME.LIANYING},
+                  {"code" : "6", "name" : F.TYPE_NAME.WAISHANG},
+                  {"code" : "7", "name" : F.TYPE_NAME.GOT},
+                  {"code" : "8", "name" : F.TYPE_NAME.GUFENGHEZUO}
+               ]
+            })
+         }, {
+            xtype : 'combo',
+            name : 'tradeMode',
+            allowBlank : false,
+            editable : false,
             fieldLabel : F.TRADEMODE,
-            items : [{
-                  boxLabel : F.TRADEMODE_NAME.NORMAL,
-                  name : 'tradeMode',
-                  inputValue : 1,
-                  checked : true
-               }, {boxLabel : F.TRADEMODE_NAME.LOCK,
-                  name : 'tradeMode',
-                  inputValue : 2}]
+            fields : ['code', 'name'],
+            displayField : 'name',
+            valueField : 'code',
+            minChars : 1,
+            store : Ext.create('Ext.data.Store', {
+               fields : ['name', 'code'],
+               data : [
+                  {"code" : "1", "name" : F.TRADEMODE_NAME.SALE},
+                  {"code" : "2", "name" : F.TRADEMODE_NAME.PRODUCE},
+                  {"code" : "3", "name" : F.TRADEMODE_NAME.DESIGN},
+                  {"code" : "4", "name" : F.TRADEMODE_NAME.INFO},
+                  {"code" : "5", "name" : F.TRADEMODE_NAME.STOP},
+                  {"code" : "6", "name" : F.TRADEMODE_NAME.STOD},
+                  {"code" : "7", "name" : F.TRADEMODE_NAME.PTOD},
+                  {"code" : "8", "name" : F.TRADEMODE_NAME.DPS}
+               ]
+            })
          }, {fieldLabel : F.POSTCODE,
             name : 'postCode'
          }, {fieldLabel : F.WEBSITE,

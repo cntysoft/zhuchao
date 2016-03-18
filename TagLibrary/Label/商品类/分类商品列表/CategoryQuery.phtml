@@ -1,0 +1,74 @@
+<?php
+$categoryId = $this->getRouteInfo()['categoryId'];
+$queryAttrs = $this->getQueryAttrs($categoryId);
+$goodsLists = $this->queryGoods();
+$totalPage = ceil($goodsLists['total'] / $this->invokeParams['outputNum']);
+$currentPage = $this->getRouteInfo()['pageId'];
+$queryUrl = $this->getQueryParams();
+$totalquery = count($queryAttrs);
+$out = '<div class="choose_wrap" cid="' . $categoryId . '">
+                        <div class="choose_list">';
+foreach ($queryAttrs as $index => $queryAttr) {
+   $name = $queryAttr->getName();
+   $attr = $queryAttr->getOptValues();
+   $attrs = explode(',', $attr);
+   $out .= '<dl class="list_item';
+   if ($index == 1) {
+      $out .= ' no_bb';
+   } else if ($index > 1) {
+      $out .=$index == ($totalquery - 1) ? ' no_bb hide' : ' hide';
+   }
+   $out .= '"><dt>' . $name . '：</dt>
+                                <dd>
+                                    <ul class="clearfix">
+                                        ';
+   foreach ($attrs as $value) {
+      $out .= '<li><a  id="' . $name . '" data="' . $value . '">' . $value . '</a></li>';
+   }
+   $out .= '</ul>
+                                    <!--更多-->
+                                    <span class="more"><em>更多</em><i class="i_down icon-jiantou3"></i></span>
+                                </dd>
+                            </dl>';
+}
+$out.='</div>';
+if ($totalquery > 2) {
+   $out.='        <!--显示更多-->
+                        <div class="show_more"><span>更多选项</span><i class="icon-jiantou3"></i></div>';
+}
+$out .= '</div>
+                    <!--排序-->
+
+                    <div class="rank_wrap clearfix">
+                        <ul class="clearfix">
+                            <li id="3"><a >综合<i class="icon-rank-down"></i></a></li>
+                            <li id="4"><a >价格<i class="icon-rank-down"></i></a></li>
+                            <li id="2"><a >人气<i class="icon-rank-down"></i></a></li>
+                            <li id="1"><a class="alink_last" >最新<i class="icon-rank-down"></i></a></li>
+                        </ul>
+                        <!--<span class="check"><i></i><em>工厂认证</em></span>-->
+                        <span class="check price"><i></i><em>有价格</em></span>
+                        <!--页码-->';
+if ($totalPage > 1) {
+   $out.=' <span class="page clearfix">';
+   if ($currentPage == 1 && $currentPage < $totalPage) {
+      $out .= '<i class="icon-jiantou7 fl"></i>
+                            <em class="main">' . $currentPage . '</em>/' . $totalPage . '
+                            <a href="/productclassify/' . $categoryId . '/' . ($currentPage + 1) . '.html' . $queryUrl . '" ><i class="icon-jiantou6 fr"></i></a>';
+   } else if ($currentPage == 1 && 1 == $totalPage) {
+      $out .= '<i class="icon-jiantou7 fl"></i>
+                            <em class="main">' . $currentPage . '</em>/' . $totalPage . '
+                            <i class="icon-jiantou6 fr"></i>';
+   } else if ($currentPage > 1 && $currentPage == $totalPage) {
+      $out .= '<a href="/productclassify/' . $categoryId . '/' . ($currentPage - 1) . '.html' . $queryUrl . '"><i class="icon-jiantou7 fl"></i></a>
+                            <em class="main">' . $currentPage . '</em>/' . $totalPage . '
+                            <i class="icon-jiantou6 fr"></i>';
+   } else if ($currentPage > 1 && $currentPage < $totalPage) {
+      $out .= '<a href="/productclassify/' . $categoryId . '/' . ($currentPage - 1) . '.html' . $queryUrl . '"><i class="icon-jiantou7 fl"></i></a>
+                            <em class="main">' . $currentPage . '</em>/' . $totalPage . '
+                            <a href="/productclassify/' . $categoryId . '/' . ($currentPage + 1) . '.html' . $queryUrl . '"><i class="icon-jiantou6 fr"></i></a>';
+   }
+   $out.='</span>';
+}
+$out .= '</div>';
+echo $out;
