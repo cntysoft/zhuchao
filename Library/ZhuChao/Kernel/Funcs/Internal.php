@@ -233,5 +233,17 @@ function get_site_id($id = null)
 
 function get_site_db_name()
 {
-   return ZHUCHAO_SITE_DB_PREFIX . get_site_id();
+   return \Cntysoft\ZHUCHAO_SITE_DB_PREFIX . get_site_id();
+}
+
+function truncate_site_table($table)
+{
+   $db = get_site_db_adapter();
+   $db->execute(sprintf('TRUNCATE TABLE `%s`', $table));
+}
+
+function get_site_db_adapter()
+{
+   $di = get_global_di();
+   return $di->getShared('siteDb');
 }

@@ -9,6 +9,7 @@
 use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Framework\Qs\View;
 use Cntysoft\Kernel;
+use App\Yunzhan\Category\Constant as CATE_CONST;
 class IndexController extends AbstractController
 {
    public function initialize()
@@ -22,6 +23,11 @@ class IndexController extends AbstractController
       }
    }
 
+   /**
+    * 网站首页路由
+    * 
+    * @return 
+    */
    public function indexAction()
    {
       return $this->setupRenderOpt(array(
@@ -30,7 +36,41 @@ class IndexController extends AbstractController
       ));
    }
 
+   /**
+    * 栏目首页路由
+    */
    public function newslistAction()
+   {
+      $nodeIdentifier = $this->dispatcher->getParam('nodeIdentifier');
+      $appCaller = $this->getAppCaller();
+      $node = $appCaller->call(
+              CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
+      );
+      //暂时不处理节点不存在的情况
+      if (!$node) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+      //设置nid
+      $this->view->setRouteInfoItem('nid', $node->getId());
+      $this->view->setRouteInfoItem('nodeIdentifier', $nodeIdentifier);
+      $tpl = $node->getCoverTemplateFile();
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_FINDER,
+                 View::KEY_RESOLVE_DATA => $tpl
+      ));
+   }
+   
+   /**
+    * 新闻内容页路由
+    * 
+    * @return 
+    */
+   public function newsAction()
    {
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'site/newslist',

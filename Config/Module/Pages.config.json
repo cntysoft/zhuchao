@@ -57,7 +57,7 @@
         },
         {
             "key" : "Item",
-            "rule" : "/item/{itemId:[0-9]+}.html",
+            "rule" : "/item/{itemId:[1-9][0-9]+}.html",
             "option" : {
                 "module" : "Pages",
                 "controller" : "Product",

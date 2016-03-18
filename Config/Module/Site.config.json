@@ -9,7 +9,15 @@
             }
         },
         {
-            "rule" : "/news/{pageId:[1-9][0-9]*}.html",
+            "rule" : "/news/{nodeIdentifier:[a-z]+}.html",
+            "option" : {
+                "module" : "Site",
+                "controller" : "Index",
+                "action" : "newslist"
+            }
+        },
+        {
+            "rule" : "/news/{nodeIdentifier:[a-z]+}/{pageid:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Site",
                 "controller" : "Index",
@@ -23,12 +31,19 @@
                 "controller" : "Exception",
                 "action" : "notfind"
             }
+        },
+        {
+            "rule" : "/news/{newsid:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Site",
+                "controller" : "Index",
+                "action" : "news"
+            }
         }
     ],
     "hostName" : true,
     "tplMap" : {
         "site/index" : "企业网站/首页.phtml",
-        "site/newslist" : "企业网站/新闻列表.phtml",
         "site/404" : "404.phtml"
     }
 }
