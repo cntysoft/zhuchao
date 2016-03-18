@@ -11,5 +11,6 @@ return array (
    array ('name' => '供应商管理', 'moduleKey' => 'ZhuChao', 'appKey' => 'Provider', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time()),
    array ('name' => '采购商管理', 'moduleKey' => 'ZhuChao', 'appKey' => 'Buyer', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time()),
    array ('name' => '消息管理', 'moduleKey' => 'ZhuChao', 'appKey' => 'MessageMgr', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time()),
-   array ('name' => '产品管理', 'moduleKey' => 'ZhuChao', 'appKey' => 'Product', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time())
+   array ('name' => '产品管理', 'moduleKey' => 'ZhuChao', 'appKey' => 'Product', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time()),
+	array ('name' => '营销管理', 'moduleKey' => 'ZhuChao', 'appKey' => 'MarketMgr', 'type' => '0', 'runConfig' =>array(), 'showOnDesktop' => '1', 'installTime' =>time())
 );

@@ -18,5 +18,6 @@ return array(
    'ZhuChao.Provider',
    'ZhuChao.Buyer',
    'ZhuChao.MessageMgr',
-   'ZhuChao.Product'
+   'ZhuChao.Product',
+	'ZhuChao.MarketMgr'
 );

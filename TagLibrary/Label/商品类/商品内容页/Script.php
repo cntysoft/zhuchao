@@ -25,7 +25,20 @@ class Goods extends AbstractLabelScript {
 	public function getProductById() {
 		$gid = $this->getRouteInfo()['itemId'];
 		return $this->appCaller->call(
-							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($gid));
+				  GOODS_CONST::MODULE_NAME, 
+				  GOODS_CONST::APP_NAME, 
+				  GOODS_CONST::APP_API_PRODUCT_MGR, 
+				  'getProductById', 
+				  array($gid));
+	}
+	
+	public function getGoodsList(array $cond,$total,$orderBy,$offset,$limit) {
+		return $this->appCaller->call(
+				  GOODS_CONST::MODULE_NAME, 
+				  GOODS_CONST::APP_NAME, 
+				  GOODS_CONST::APP_API_PRODUCT_MGR, 
+				  'getProductList', 
+				  array($cond, $total, $orderBy, $offset, $limit));
 	}
 	
 	public function checkLogin() {
