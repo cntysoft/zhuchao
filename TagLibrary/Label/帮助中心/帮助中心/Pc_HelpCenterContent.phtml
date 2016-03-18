@@ -13,13 +13,13 @@ $out = '<div class="right_content fr">
         <div class="help_content">
             ' . $info->getIntro() . '
         </div>';
-$pn = $this->getPrevAndNextItem($info->getNodeId(),$info->getId());
+$pn = $this->getPrevAndNextItem($info->getNodeId(), $info->getId());
 $out .= '<div class="up_down">
 	 <div>
-		  上一篇：<a href="'.$pn['prev'][0].'" class="main_hover">'.($pn['prev'][1] ? $pn['prev'][1] : "真的木有了...").'</a>
+		  上一篇：<a href="' . $pn['prev'][0] . '" class="main_hover">' . ($pn['prev'][1] ? $pn['prev'][1] : "真的木有了...") . '</a>
 	 </div>
 	 <div>
-		  下一篇：<a href="'.$pn['next'][0].'" class="main_hover">'.($pn['next'][1] ? $pn['next'][1] : "真的木有了...").'</a>
+		  下一篇：<a href="' . $pn['next'][0] . '" class="main_hover">' . ($pn['next'][1] ? $pn['next'][1] : "真的木有了...") . '</a>
 	 </div>
 </div>
 </div>';

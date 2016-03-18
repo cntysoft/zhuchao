@@ -6,6 +6,7 @@
 	 <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/helpcontent.css')); ?>
 </head>
 <body>
+	 <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
 <!--站点指示-->
 <div class="site conwidth">
     <a href="/index.html">首页</a>
@@ -59,7 +60,7 @@
     <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterContent')) ?>
 </div>
 
-
+<?php Qs::Label('静态类/网站底部') ?>
 <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="help/help" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
 </body>
 </html>

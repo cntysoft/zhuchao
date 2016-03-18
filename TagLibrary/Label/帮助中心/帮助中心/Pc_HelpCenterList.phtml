@@ -38,34 +38,34 @@ if ($totalPage <= 6) {
 	if ($pageId >= 3 && $pageId < $totalPage - 3) {
 		for ($i = $pageId - 2; $i <= $pageId + 3; $i++) {
 			if ($i != $pageId) {
-				$out .= '<a class="" href="/category/' . $identifier . '/'.$i.'.html">' . $i . '</a>';
+				$out .= '<a class="" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
 			} else {
-				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/'.$i.'.html">' . $i . '</a>';
+				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
 			}
 		}
 	} else if ($pageId < 3) {
 		for ($i = 1; $i <= 6; $i++) {
 			if ($i != $pageId) {
-				$out .= '<a class="" href="/category/' . $identifier . '/'.$i.'.html">' . $i . '</a>';
+				$out .= '<a class="" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
 			} else {
-				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/'.$i.'.html">' . $i . '</a>';
+				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
 			}
 		}
 	} else if ($pageId >= $totalPage - 3) {
 		for ($i = $totalPage - 5; $i <= $totalPage; $i++) {
 			if ($i != $pageId) {
-				$out .= '<a class="" href="/category/' . $identifier . '/'.$i.'.html">' . $i . '</a>';
+				$out .= '<a class="" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
 			} else {
-				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/'.$i.'.html">' . $i . '</a>';
+				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
 			}
 		}
 	}
 }
 if ($pageId != $totalPage && $totalPage != 0) {
-	$out .= '<a href="/category/' . $identifier . '/'.($pageId+1).'.html">下一页 &gt;</a>';
+	$out .= '<a href="/category/' . $identifier . '/' . ($pageId + 1) . '.html">下一页 &gt;</a>';
 }
 if (0 != $totalPage) {
-	$out .= '<a href="/category/' . $identifier . '/'.$totalPage.'.html">尾页</a>';
+	$out .= '<a href="/category/' . $identifier . '/' . $totalPage . '.html">尾页</a>';
 }
 $out .= '</p></div></div>';
 echo $out;

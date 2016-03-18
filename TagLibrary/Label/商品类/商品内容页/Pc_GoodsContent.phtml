@@ -1,5 +1,4 @@
 <?php
-
 $goodsInfo = $this->getProductById();
 $goodsDetail = $goodsInfo->getDetail();
 $out = '<div class="l_main conwidth">
@@ -42,7 +41,7 @@ $out .= '</div>
 $out .= '<div class="pro_about fr">
             <div class="pro_about_top">
                 <h4 class="pro_code">产品编号：' . $goodsInfo->getNumber() . '</h4>
-                <p class="pro_price main">￥' . ($goodsInfo->getPrice()>0 ? $goodsInfo->getPrice() : "暂无价格") . '</p>
+                <p class="pro_price main">￥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "暂无价格") . '</p>
                 <div class="pro_content">
                     <p>最小起定量：' . $goodsDetail->getMinimum() . $goodsDetail->getUnit() . '</p>
                     <p>可售量数：' . $goodsDetail->getStock() . '</p>
@@ -81,13 +80,13 @@ $cond = array(
 );
 $goodsLists = $this->getGoodsList($cond, false, 'id DESC', 0, 5);
 foreach ($goodsLists as $goodsList) {
-	if($goodsList->getId() == $goodsInfo->getId()){
+	if ($goodsList->getId() == $goodsInfo->getId()) {
 		continue;
 	}
 	$out .= '<div class="related_pro">
-				<a href="/item/' . $goodsList->getId() . '.html"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(),220,137) . '" alt=""> </a>
+				<a href="/item/' . $goodsList->getId() . '.html"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
 				<p class="pro_intro"><a href="/item/' . $goodsList->getId() . '.html" class="main_hover">' . $goodsList->getTitle() . '</a></p>
-				<p class="pro_price">￥' . ($goodsList->getPrice()>0 ? $goodsList->getPrice() : "暂无价格") . '</p>
+				<p class="pro_price">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "暂无价格") . '</p>
 		  </div>';
 }
 

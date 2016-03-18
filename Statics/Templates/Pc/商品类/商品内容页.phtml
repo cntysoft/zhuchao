@@ -19,6 +19,7 @@
     with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 </head>
 <body>
+	 <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
 <!--导航-->
 <div class="site conwidth">
     <a href="/index.html">首页</a>
@@ -26,6 +27,7 @@
     <a>商品</a>
 </div>
 <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_GoodsContent')) ?>
+<?php Qs::Label('静态类/网站底部') ?>
 <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="mall/proinfo" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
 </body>
 </html>

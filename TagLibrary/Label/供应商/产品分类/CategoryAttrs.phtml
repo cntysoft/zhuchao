@@ -1,23 +1,23 @@
 <?php
 $query = $this->getQuery();
-$attrs = $this->getCategoryaAttrs((int)$query['category']);
+$attrs = $this->getCategoryaAttrs((int) $query['category']);
 $out = '<div class="attr_wrap">';
 
-foreach($attrs as $attr){
-   $name = $attr->getName();
-   $optValue = explode(',', $attr->getOptValue());
-   $optValue = array_filter($optValue, function($val){
-      if('' == $val){
-         return false;
-      }else{
-         return true;
-      }
-   });
-   $required = $attr->getRequired() ? 'required' : '';
-   $star = $attr->getRequired() ? '*' : '';
-   if(count($optValue)){
-      $out.='<div class="attr_list clearfix basic">
-            <span class="attr_title">'.$star.$name.'：</span>
+foreach ($attrs as $attr) {
+	$name = $attr->getName();
+	$optValue = explode(',', $attr->getOptValue());
+	$optValue = array_filter($optValue, function($val) {
+		if ('' == $val) {
+			return false;
+		} else {
+			return true;
+		}
+	});
+	$required = $attr->getRequired() ? 'required' : '';
+	$star = $attr->getRequired() ? '*' : '';
+	if (count($optValue)) {
+		$out.='<div class="attr_list clearfix basic">
+            <span class="attr_title">' . $star . $name . '：</span>
             <div class="attr_info select_brand">
                 <select class="attrSelect" id="'.$name.'"  '.$required.'>';
       foreach($optValue as $one){

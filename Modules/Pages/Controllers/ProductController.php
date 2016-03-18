@@ -99,5 +99,31 @@ class ProductController extends AbstractController
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
+	public function itemAction() {
+		$productId = $this->dispatcher->getParam('itemId');
+		if (null === $productId) {
+			$this->setupRenderOpt(array(
+				View::KEY_RESOLVE_DATA => '404',
+				View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+			));
+			return;
+		}
+		$productId = (int) $productId;
+		$appCaller = $this->getAppCaller();
+		$productInfo = $appCaller->call(
+				  GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($productId)
+		);
+		if ($productInfo) {
+			$this->setupRenderOpt(array(
+				View::KEY_RESOLVE_DATA => 'product',
+				View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+			));
+		} else {
+			$this->setupRenderOpt(array(
+				View::KEY_RESOLVE_DATA => '404',
+				View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+			));
+		}
+	}
 
 }

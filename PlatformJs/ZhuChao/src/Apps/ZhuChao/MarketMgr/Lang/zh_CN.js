@@ -55,14 +55,14 @@ Ext.define('App.ZhuChao.MarketMgr.Lang.zh_CN', {
       ADS : {
          DIRECTFORUSE : {
             TITLE : '使用说明',
-            HTML : '</br></br><h1 style="text-align: center;">欢迎使用</h1></br></br></br><h2>配置项:</h2>' +
-            '</br><p style="font-size: 20px;">广告名称：这个需要填写广告的名称。例如：“双11活动“。<font style="color: red">该项为必填项</font></p>' +
-            '</br><p style="font-size: 20px;">广告网址：这个需要填写广告页面的网址，建议全部用”http://“开头填写绝对网址。<font style="color: red">该项为必填项</font></p>' +
-            '</br><p style="font-size: 20px;">背景颜色：当广告的图片两边需要有颜色的时候在这里填写颜色的六位值即可在前台显示出来,可选可填。</p>' +
-            '</br><p style="font-size: 20px;">开始时间：这个需要填写广告的开始时间，方便自己查看。可以不填写</p>' +
-            '</br><p style="font-size: 20px;">结束时间：这个需要填写广告的结束时间，方便自己查看。可以不填写</p>' +
-            '</br><p style="font-size: 20px;">广告排序：当一个位置有多个广告的时候，就按照这个值排列，1位第一张，2为第二张。<font style="color: red">建议填写</font></p>' +
-            '</br><p style="font-size: 20px;">广告图片：这个需要上传广告的图片，点击上传即可。<font style="color: red">该项为必填项</font></p>'
+            HTML : '<h1 style="text-align: center;">欢迎使用</h1><h2>配置项:</h2>' +
+            '<p style="font-size: 20px;">广告名称：这个需要填写广告的名称。例如：“双11活动“。<font style="color: red">该项为必填项</font></p>' +
+            '<p style="font-size: 20px;">广告网址：这个需要填写广告页面的网址，建议全部用”http://“开头填写绝对网址。<font style="color: red">该项为必填项</font></p>' +
+            '<p style="font-size: 20px;">背景颜色：当广告的图片两边需要有颜色的时候在这里填写颜色的六位值即可在前台显示出来,可选可填。</p>' +
+            '<p style="font-size: 20px;">开始时间：这个需要填写广告的开始时间，方便自己查看。可以不填写</p>' +
+            '<p style="font-size: 20px;">结束时间：这个需要填写广告的结束时间，方便自己查看。可以不填写</p>' +
+            '<p style="font-size: 20px;">广告排序：当一个位置有多个广告的时候，就按照这个值排列，1位第一张，2为第二张。<font style="color: red">建议填写</font></p>' +
+            '<p style="font-size: 20px;">广告图片：这个需要上传广告的图片，点击上传即可。<font style="color: red">该项为必填项</font></p>'
          },
          ADSEDITOR : {
             TITLE : '广告编辑器',

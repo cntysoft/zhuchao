@@ -5,11 +5,11 @@ $subNodes = $this->getSubNodesByIdentifier($identifier);
 $type = $this->invokeParams['type'];
 if ($type == 1) {
 	foreach ($subNodes as $subNode) {
-		$out .= '<li class="sub_item"><a class="sub_link" href="/category/'.$subNode->getNodeIdentifier().'/1.html">' . $subNode->getText() . '</a></li>';
+		$out .= '<li class="sub_item"><a class="sub_link" href="/category/' . $subNode->getNodeIdentifier() . '/1.html">' . $subNode->getText() . '</a></li>';
 	}
 } else if ($type == 2) {
 	foreach ($subNodes as $subNode) {
-		$out .= '<a href="/category/'.$subNode->getNodeIdentifier().'/1.html">' . $subNode->getText() . '</a>';
+		$out .= '<a href="/category/' . $subNode->getNodeIdentifier() . '/1.html">' . $subNode->getText() . '</a>';
 	}
 }
 echo $out;
