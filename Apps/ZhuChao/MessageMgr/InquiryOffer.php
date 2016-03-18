@@ -20,7 +20,7 @@ class InquiryOffer extends AbstractLib
     */
    public function addInquiry(array $params)
    {
-      $this->checkRequireFields($params, array('gid', 'uid', 'expireTime'));
+      $this->checkRequireFields($params, array('gid', 'uid', 'expireTime','providerId'));
       $params['inputTime'] = time();
       $params['expireTime'] = (int) $params['expireTime'] * 24 * 3600 + time();
       $inquiry = new InquiryModel();

@@ -1,0 +1,146 @@
+<?php
+
+$goodsInfo = $this->getProductById();
+$goodsDetail = $goodsInfo->getDetail();
+$out = '<div class="l_main conwidth">
+    <!--商品展示-->
+    <div class="pro_display clearfix">
+        <!--左侧图片展示-->
+        <div class="pro_show fl">
+            <div class="pro_show_content">
+                <h3 class=" clearfix">
+                    <span class="fl">' . $goodsInfo->getTitle() . '</span>';
+
+$out .= '<div class="icon-erweima fr">
+                        <div class="erweima_box">
+                            <p>扫一扫&nbsp;&nbsp;用手机查看此页</p>
+                            <div class="qrcode"> <img src="/Utils/index/wechatQrCode?data=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '" alt=""></div>
+                        </div>
+                    </div></h3>';
+$images = $goodsDetail->getImages();
+$bigImage = $smallImage = '';
+$i = 1;
+foreach ($images as $image) {
+	if ($i == 1) {
+		$bigImage .= '<div class="big_img">
+                    <img src="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt="">
+                    <span class="next icon-jiantou6"></span>
+                    <span class="prev icon-jiantou7"></span>
+                </div>';
+	}
+	$i = 2;
+	$smallImage .= '<div> <img src="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt=""></div>';
+}
+$out .= $bigImage;
+$out .= '</div>
+            <div class="small_img clearfix">' . $smallImage . '</div>
+            <div class="share clearfix">
+                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"><i class="main icon-fenxiang"></i>分享</a></div>
+                <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>收藏</span>
+            </div>
+        </div>';
+$out .= '<div class="pro_about fr">
+            <div class="pro_about_top">
+                <h4 class="pro_code">产品编号：' . $goodsInfo->getNumber() . '</h4>
+                <p class="pro_price main">￥' . $goodsInfo->getPrice() . '</p>
+                <div class="pro_content">
+                    <p>最小起定量：' . $goodsDetail->getMinimum() . $goodsDetail->getUnit() . '</p>
+                    <p>可售量数：' . $goodsDetail->getStock() . '</p>
+                    <p>批发采购：' . ($goodsInfo->getIsBatch() ? "支持" : "不支持") . '</p>
+                </div>
+            </div>';
+$company = $goodsInfo->getCompany();
+if ($company) {
+	$out .= '<div class="pro_about_bottom">
+	 <h4 class="main">' . $company->getName() . '</h4>
+	 <div class="pro_content">
+		  <p class="clearfix"><i></i><span class="pro_detail">' . $this->getAreaFromCode($company->getProvince()) . '&nbsp;&nbsp;' . $this->getAreaFromCode($company->getCity()) . '</span></p>
+		  <p class="clearfix"><i></i><span>主营：</span>
+				<span class="pro_detail">' . $company->getProducts() . '</span>
+		  </p>
+	 </div>
+	 <div class="pro_connect">
+		  <a href="" class="mainbg_hover"><i class="icon-dianhua"></i>联系方式</a>
+		  <a href="" class="mainbg_hover"><i class="icon-dianhua"></i>在线询价</a>
+	 </div>
+</div>';
+}
+
+
+$out .= '</div>
+</div><div class="l_pro_info clearfix">
+	 <!--相关信息-->
+	 <div class="related_info fl">
+		  <h3 class="main_bg">相关信息</h3>
+		  <div class="related_pro">
+				<a href=""> <img src="../../Images/test/test_proinfo2.jpg" alt=""> </a>
+				<p class="pro_intro"><a href="" class="main_hover">品赞 MK-13C01 微型八脚</a></p>
+				<p class="pro_price">￥<i>500</i>.00</p>
+		  </div>
+		  <div class="related_pro">
+				<a href=""> <img src="../../Images/test/test_proinfo2.jpg" alt=""> </a>
+				<p class="pro_intro"><a href="" class="main_hover">品赞 MK-13C01 微型八脚</a></p>
+				<p class="pro_price">￥<i>500</i>.00</p>
+		  </div>
+		  <div class="related_pro">
+				<a href=""> <img src="../../Images/test/test_proinfo2.jpg" alt=""> </a>
+				<p class="pro_intro"><a href="" class="main_hover">品赞 MK-13C01 微型八脚</a></p>
+				<p class="pro_price">￥<i>500</i>.00</p>
+		  </div>
+		  <div class="related_pro">
+				<a href=""> <img src="../../Images/test/test_proinfo2.jpg" alt=""> </a>
+				<p class="pro_intro"><a href="" class="main_hover">品赞 MK-13C01 微型八脚</a></p>
+				<p class="pro_price">￥<i>500</i>.00</p>
+		  </div>
+	 </div>';
+$out .= '<div class="m_pro_info fr">
+		  <h3 class="pro_infor_nav clearfix">
+				<span class="main_bg">商品信息</span>
+				<span>详细属性</span>
+				<span>联系方式</span>
+				<span>评价</span>
+		  </h3>';
+$out .= '<div class="pro_info">' . $goodsDetail->getIntroduction() . '</div>';
+$attribute = $goodsDetail->getAttribute();
+$out .= '<div class="pro_info hide">
+	 <div class="l_parameter">';
+
+foreach ($attribute as $key => $value) {
+	$out .= '<h3><span class="parameter_intro">' . $key . '</span></h3><ul>';
+	foreach ($value as $attrs => $attr) {
+		$out .= '<li>
+					 <span class="parameter_intro">' . $attrs . '：</span>
+					 <span>' . $attr . '</span>
+				</li>';
+	}
+	$out .= '</ul></br>';
+}
+$out .= '</div>
+</div>';
+$provider = $goodsInfo->getProvider();
+if ($provider) {
+	$providerDetail = $provider->getProfile();
+	$out .= '<div class="pro_info hide">
+	 <div class="connect_way">
+		  <div class="pro_name">
+				<h4 class="">' . $provider->getName() . '</h4>
+				
+				<div class="pro_connect">
+					 <p>电&nbsp;&nbsp;话：' . $providerDetail->getTel() . '</p>
+					 <p>邮&nbsp;&nbsp;箱：' . $providerDetail->getEmail() . '</p>
+					 <p>Q&nbsp;&nbsp;Q：' . $providerDetail->getQq() . '</p>
+					 <p>地&nbsp;&nbsp;址：' . $providerDetail->getPosition() . '</p>
+				</div>
+		  </div>
+	 </div>
+</div>';
+}
+$out .= '<div class="pro_info"></div>
+</div>
+</div>
+</div>';
+echo $out;
+?>
+
+
+
