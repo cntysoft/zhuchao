@@ -26,4 +26,6 @@ class Constant
    //权限相关
    const PK_APP_KEY = 'Product';
    const PK_WIDGET_PRODUCT = 'ProductMgr';
+   
+   const ATTR_FILTER_REGEX = '/[\s:\/\(\)\*&@!#$%\^\-+~\?]/is';
 }

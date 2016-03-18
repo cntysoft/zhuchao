@@ -30,6 +30,7 @@ class Product extends BaseModel
    protected $inputTime;
    protected $updateTime;
    protected $detailId;
+   protected $comment;
    protected $status;
    
    public function getSource()
@@ -151,6 +152,11 @@ class Product extends BaseModel
       return $this->detailId;
    }
 
+   public function getComment()
+   {
+      return $this->comment;
+   }
+   
    public function getStatus()
    {
       return (int)$this->status;
@@ -249,6 +255,11 @@ class Product extends BaseModel
    public function setDetailId($detailId)
    {
       $this->detailId = $detailId;
+   }
+   
+   public function setComment($comment)
+   {
+      $this->comment = $comment;
    }
    
    public function setStatus($status)

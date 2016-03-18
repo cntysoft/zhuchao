@@ -306,4 +306,75 @@ class ProductMgr extends AbstractLib
       return $product->update();
    }
    
+   /**
+    * 获取指定分类下面的商品数目
+    * 
+    * @param int $cid
+    * @return int
+    */
+   public function countCategoryProduct($cid, $withChildren = false)
+   {
+      if (!$withChildren) {
+         return ProductModel::count(array(
+                    'categoryId = ?0',
+                    'bind' => array(
+                       0 => (int) $cid
+                    )
+         ));
+      } else {
+         $query = array();
+         if ($cid != 0) {
+            $gcategoryTree = $this->getAppCaller()->call(CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR, 'getNodeTree');
+            $cNodes = $gcategoryTree->getChildren($cid, -1, false);
+            array_unshift($cNodes, $cid);
+            $query[] = \Cntysoft\Phalcon\Mvc\Model::generateRangeCond('categoryId', $cNodes);
+         }
+         return ProductModel::count($query);
+      }
+   }
+   
+   /**
+    * 生成商品搜索数据
+    * 
+    * @param int $cid
+    * @param int $page
+    * @param int $pageSize
+    */
+   public function generateGoodsSearchAtts($cid, $page = 1, $pageSize = \Cntysoft\STD_PAGE_SIZE)
+   {
+      $query = array();
+      if ($cid != 0) {
+         $gcategoryTree = $this->getAppCaller()->call(CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR, 'getNodeTree');
+         $cNodes = $gcategoryTree->getChildren($cid, -1, false);
+         array_unshift($cNodes, $cid);
+         $query[] = \Cntysoft\Phalcon\Mvc\Model::generateRangeCond('categoryId', $cNodes);
+      }
+      $query['limit'] = array(
+         'number' => $pageSize,
+         'offset' => ($page - 1) * $pageSize,
+         'order'  => 'categoryId ASC',
+      );
+      $goods = ProductModel::find($query);
+      if (count($goods) > 0) {
+         $searchKeyPool = array();
+         foreach ($goods as $ginfo) {
+            $attrPool = array();
+            //所有的商品规格和商品属性全部生成
+            $dinfo = $ginfo->getDetail();
+
+            foreach ($dinfo->getAttribute() as $gkey => $normalAttrs) {
+               foreach ($normalAttrs as $akey => $aval) {
+                  //每个属性的值都生成查询条件
+                  $avalAttrs = explode(' ', $aval);
+                  foreach ($avalAttrs as $avalAttr) {
+                     $attrPool[] = md5(strtolower(preg_replace(Constant::ATTR_FILTER_REGEX, '', $akey . $avalAttr)));
+                  }
+               }
+            }
+            $ginfo->setSearchAttrMap(implode(' ', $attrPool));
+            return $ginfo->save();
+         }
+      }
+   }
+   
 }

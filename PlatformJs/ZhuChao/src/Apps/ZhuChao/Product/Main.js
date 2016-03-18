@@ -51,5 +51,19 @@ Ext.define('App.ZhuChao.Product.Main', {
    changProductStatus : function(values, callback, scope)
    {
       this.callApp('Product/changeStatus', values, callback, scope);
-   }
+   },
+   getProductTotalNumByCatgory : function(cid, callback, scope)
+   {
+      this.callApp('Product/getProductTotalNumByCatgory', {
+         cid : cid
+      }, callback, scope);
+   },
+   generateSearchAttrMapByCategory : function(cid, page, pageSize, callback, scope)
+   {
+      this.callApp('Product/generateSearchAttrMapByCategory', {
+         cid : cid,
+         page : page,
+         pageSize : pageSize
+      }, callback, scope);
+   },
 });

@@ -263,6 +263,21 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
             }
         }, this);
     },
+    loadCategoryProduct : function (cid)
+    {
+        if(cid != this.loadedCid){
+            this.loadedCid = cid;
+            var store = this.getStore();
+            //将仓库当前页复位
+            store.currentPage = 1;
+            store.load({
+                params : {
+                    cid : cid
+                }
+            });
+            store.loadedCid = cid;
+        }
+    },
     menuItemClickHandler : function (menu, item)
     {
         if(item){

@@ -19,6 +19,9 @@ Ext.define('App.ZhuChao.Product.Lang.zh_CN', {
          }
       },
       ENTRY : {
+         MENU : {
+            GENERATE : '生成该分类搜索属性数据'
+         }
       },
       UI : {
          PRODUCT : {
@@ -186,6 +189,17 @@ Ext.define('App.ZhuChao.Product.Lang.zh_CN', {
             FIELDS : {
                NAME : '属性名称',
                REQUIRED : '是否必须'
+            }
+         },
+         SEARCH_ATTR_MAP_GENERATOR : {
+            TITLE : '正在生成指定分类下的搜索属性数据，请不要刷新页面，或者关闭本窗口，请稍后 ... ',
+            FIELDS : {
+               CATEGORY_NAME : '分类名称',
+               TOTAL : '所有文档数',
+               CURRENT : '当前操作文档范围'
+            },
+            MSG : {
+               LOAD_CATEGORY_TOTAL : '正在加载本分类文档总数数据 ... '
             }
          }
       }

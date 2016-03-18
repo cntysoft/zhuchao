@@ -23,10 +23,22 @@ class Product extends AbstractHandler
    public function getProductList(array $params)
    {
       $this->checkRequireFields($params, array('start', 'limit'));
-      $query = array();
+      $cond = array();
       if(isset($params['name']) && $params['name']){
-         $query = array("brand like '%".$params['name']."%' or title like '%".$params['name']."%' or description '%".$params['name']."%'");
+         $cond[] = "brand like '%".$params['name']."%' or title like '%".$params['name']."%' or description '%".$params['name']."%'";
       }
+      $cid = (int) $params['cid'];
+      $gcategoryTree = $this->getAppCaller()->call(
+         CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR,
+         'getNodeTree'
+         );
+      if (0 != $cid) {
+         $cNodes = $gcategoryTree->getChildren($cid, -1, false);
+         array_unshift($cNodes, $cid);
+         $cond[] = \Cntysoft\Phalcon\Mvc\Model::generateRangeCond('categoryId', $cNodes);
+      }
+
+      $query = array(implode(' and ', $cond));
       $list = $this->getAppCaller()->call(
          PRODUCT_CONST::MODULE_NAME, 
          PRODUCT_CONST::APP_NAME, 
@@ -299,6 +311,38 @@ class Product extends AbstractHandler
          'changeStatus',
          array((int)$params['id'], (int)$params['status'])
       );
+   }
+   
+   /**
+    * 查找指定商品分类下面的商品数量
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function getProductTotalNumByCatgory(array $params)
+   {
+      $this->checkRequireFields($params, array('cid'));
+      return array('total' => $this->getAppCaller()->call(
+              PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 
+              'countCategoryProduct', 
+              array(
+                 (int) $params['cid'], true
+                 )));
+   }
+
+   /**
+    * 生成指定商品分类下面商品的搜索信息
+    * 
+    * @param array $params
+    */
+   public function generateSearchAttrMapByCategory(array $params)
+   {
+      $this->checkRequireFields($params, array('cid', 'page', 'pageSize'));
+      $this->getAppCaller()->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'generateGoodsSearchAtts', array(
+         (int) $params['cid'],
+         (int) $params['page'],
+         (int) $params['pageSize']
+      ));
    }
    
 }

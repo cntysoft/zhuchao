@@ -82,6 +82,15 @@
             }
         },
         {
+            "key" : "BuyerFollow",
+            "rule" : "\/follow.html",
+            "option" : {
+                "module" : "Buyer",
+                "controller" : "Index",
+                "action" : "follow"
+            }
+        },
+        {
             "key" : "BuyerAddress",
             "rule" : "\/address.html",
             "option" : {
