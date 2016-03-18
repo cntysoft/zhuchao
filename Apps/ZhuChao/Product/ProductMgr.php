@@ -28,13 +28,19 @@ class ProductMgr extends AbstractLib
     */
    public function getProductList(array $cond = array(), $total = false, $orderBy = 'id DESC', $offset = 0, $limit = \Cntysoft\STD_PAGE_SIZE)
    {
-      $query = array(
-         'order' => $orderBy,
-         'limit' => array(
-            'offset' => $offset,
-            'number' => $limit
-         )
-      );
+      if($limit){
+         $query = array(
+            'order' => $orderBy,
+            'limit' => array(
+               'offset' => $offset,
+               'number' => $limit
+            )
+         );
+      }else{
+         $query = array(
+            'order' => $orderBy,
+         );
+      }
       
       if(!empty($cond)){
          $query += $cond;
@@ -170,6 +176,8 @@ class ProductMgr extends AbstractLib
          $detail->assignBySetter($ddata);
          $detail->update();
          $product->assignBySetter($pdata);
+         $product->setUpdateTime(time());
+         $product->setIndexGenerated(0);
          $product->update();
          
          if(isset($params['group']) && !empty($params['group'])){
@@ -217,7 +225,7 @@ class ProductMgr extends AbstractLib
     * @param string $prefix
     * @return string
     */
-   public function getProductNumber($categoryId = 0, $prefix = 'CNC1')
+   public function getProductNumber($categoryId = 0, $prefix = 'ZC')
    {
       $number = $prefix;
       $len = strlen($categoryId);
@@ -289,9 +297,10 @@ class ProductMgr extends AbstractLib
     * 
     * @param integer $productId
     * @param integer $status
+    * @param string $comment
     * @return boolean
     */
-   public function changeStatus($productId, $status)
+   public function changeStatus($productId, $status, $comment = '')
    {
       $product = $this->getProductById($productId);
       
@@ -303,6 +312,7 @@ class ProductMgr extends AbstractLib
       }
       
       $product->setStatus($status);
+      $product->setComment($comment);
       return $product->update();
    }
    
@@ -316,10 +326,10 @@ class ProductMgr extends AbstractLib
    {
       if (!$withChildren) {
          return ProductModel::count(array(
-                    'categoryId = ?0',
-                    'bind' => array(
-                       0 => (int) $cid
-                    )
+            'categoryId = ?0',
+            'bind' => array(
+               0 => (int) $cid
+            )
          ));
       } else {
          $query = array();
@@ -372,6 +382,7 @@ class ProductMgr extends AbstractLib
                }
             }
             $ginfo->setSearchAttrMap(implode(' ', $attrPool));
+            $ginfo->setIndexGenerated(1);
             return $ginfo->save();
          }
       }

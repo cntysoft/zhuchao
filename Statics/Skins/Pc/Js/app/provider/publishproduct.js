@@ -34,16 +34,15 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 params['keywords'].push($('#keyword3').val());
             }
             params['attribute'] = {
-                '基本属性' : {},
+                '基本参数' : {},
                 '自定义属性' : {}
             }
             $.each($('.basic .attrSelect,.basic .attrInput'), function (index, item){
-                params['attribute']['基本属性'][$(item).attr('id')] = $(item).val();
+                params['attribute']['基本参数'][$(item).attr('id')] = $(item).val();
             });
             $.each($('.customAttr'), function (index, item){
                 var key = $(item).find('input').eq(0).val();
                 var val = $(item).find('input').eq(1).val();
-                console.log(key, val);
                 params['attribute']['自定义属性'][key] = val;
             });
             params['images'] = images;
@@ -53,7 +52,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             var imgArray = editorHtml.match(imgReg);
             if(imgArray != null){
                 for(var i = 0, length = imgArray.length; i < length; i++) {
-                    var ridSrc = imgArray[0].match(/<img fh-rid="([\d])*" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
+                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d])*" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
                     imgRefMap.push([ridSrc[2], ridSrc[1]]);
                     fileRefs.push(ridSrc[1]);
                 }
@@ -69,13 +68,21 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             if($(this).attr('id') === 'submit'){
                 params['status'] = 1;
             }else{
-                params['status'] = 2;
+                params['status'] = 3;
             }
             Cntysoft.Front.callApi('Product','addProduct',params,function(response){
                 if(response.status){
-                    
+                    layer.alert('商品发布成功！', {
+                        btn : '',
+                        success : function(){
+                           var redirect = function(){
+                              window.location = '/product/1.html';
+                           };
+                           setTimeout(redirect, 300);
+                        }
+                     });
                 }else{
-                    
+                    layer.alert('商品发布错误，请核对您的信息！');
                 }
             });
         });

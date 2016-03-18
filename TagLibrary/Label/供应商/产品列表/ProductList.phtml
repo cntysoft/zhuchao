@@ -1,0 +1,87 @@
+<?php
+$result = $this->getProductList();
+$list = $result[0];
+$total = $result[1];
+$out='<div class="prolist_wrap">
+         <div class="prolist_operate">
+            <span class="check"><em><i></i></em>全选</span>
+            <span class="btn btn_del">删除</span>
+            <span class="btn btn_del">下架</span>
+            <a class="question">产品上下架问题解答&gt;</a>
+         </div>
+         <!--标题-->
+         <table>
+            <tr class="prolist_items">
+               <th class="pro-code">产品编号</th>
+               <th class="pro_img">图片</th>
+               <th class="pro_title">标题</th>
+               <th class="pro_price">价格</th>
+               <th class="pro_time">上架时间</th>
+               <th class="pro_star">质量星级</th>
+               <th class="pro_operate">操作</th>
+            </tr>';
+if(count($list)){
+   foreach ($list as $product){
+      $name = $product->getBrand() . $product->getTitle() . $product->getDescription();
+      $number = $product->getNumber();
+      $price = !$product->getPrice() ? '￥<em>'.$product->getPrice().'</em>' : '面议';
+      $time = date('Y-m-d', $product->getInputTime());
+      $image = $this->getImageCdnUrl($product->getDefaultImage());
+      $url = $this->getProduct($product->getId());
+      $star = $product->getStar();
+      $out.='<tr class="prolist_list ">
+            <td class="pro-code">
+               <span class="check"><em><i ></i></em></span>
+               <span>'.$number.'</span>
+            </td>
+            <td class="pro_img">
+               <a href="'.$url.'"><img src="'.$image.'"></a>
+            </td>
+            <td class="pro_title">
+               <a href="'.$url.'"><p>'.$name.'</p></a>
+            </td>
+            <td class="pro_price ">'.$price.'</td>
+            <td class="pro_time">'.$time.'</td>
+            <td class="pro_star">';
+      for($i=0; $i<5; $i++){
+         if($i<$star){
+            $out.='<i class="icon-star main"></i>';
+         }else{
+            $out.='<i class="icon-star"></i>';
+         }
+      }
+      $out.='</td>
+            <td class="pro_operate">
+               <a>修改</a>
+               <span>|</span>
+               <a>删除</a>
+            </td>
+         </tr>';
+   }
+}else{
+//   $out.='<tr class="prolist_list "></tr>';
+}
+
+$out.='</table>
+   <div class="prolist_operate prolist_bottom">
+      <span class="check"><em><i ></i></em>全选</span>
+      <span class="btn btn_del">删除</span>
+      <!--分页-->
+      <div class="page_list fr">
+         <p>
+            <a class="prev_page" href="#">上一页</a>
+            <a class="main_bg main_border" href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a class="no_all_b" href="#">......</a>
+            <a href="#">100</a>
+            <a class="next_page no_marginR" href="#">下一页</a>
+         </p>
+      </div>
+
+   </div>
+</div>';
+echo $out;
+?>

@@ -677,12 +677,12 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
                width : 500,
                items : [{
                      boxLabel : F.NORMAL,
-                     inputValue : 1,
+                     inputValue : 3,
                      name : 'status',
                      checked : true
                   }, {
                      boxLabel : F.SHELF,
-                     inputValue : 2,
+                     inputValue : 5,
                      name : 'status'
                   }],
                listeners : {
@@ -928,7 +928,8 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
                   fileTypeExts : ['gif', 'png', 'jpg', 'jpeg'],
                   createSubDir : true,
                   uploadMaxSize : phpSetting.uploadMaxFileSize,
-                  threads : 1
+                  threads : 1,
+                  useOss : ZC.getUseOss(),
                },
                listeners : {
                   fileuploadsuccess : function (file, btn){

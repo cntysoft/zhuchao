@@ -1,7 +1,89 @@
-<?php
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>产品列表页</title>
+      <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/prolist.css'))?>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="header_top">
+			<div class="conwidth header_top_inner clearfix">
+				<div class="fl">
+					欢迎来到凤凰筑巢！ <a class="login_btn main_hover">请登录</a> <a class="register_btn main_hover">注册</a>
+				</div>
+				<ul class="fr header_top_nav main_hover">
+					<li><a href="">我的询价单</a></li>
+					<li class="line"></li>
+					<li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
+					<li class="line"></li>
+					<li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
+					<li class="line"></li>
+					<li><a href="">供应商专区</a></li>
+					<li class="line"></li>
+					<li><a href="">运营商专区</a></li>
+					<li class="line"></li>
+					<li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a></li>
+					<li class="line"></li>
+					<li><a href="">帮助中心</a></li>
+					<li class="line"></li>
+					<li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
+						<div class="pull_more main_bg">
+							<img class="erweima" src="../../Images/test/test_news_img.jpg">
+							<span>扫码下载凤凰筑巢客户端</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--个人中心头部-->
+		<div class="head_wrap main_bg_light">
+			<div class="head_box conwidth clearfix">
+				<a class="logo_img fl" href="#"><img src="../../Images/usercenter/icon/icon_logo_white.png"> </a>
+				<ul class="fr clearfix">
+					<li><a class="mainbg_hover" href="#">首页</a></li>
+					<li><a class="mainbg_hover" href="#">产品中心</a></li>
+					<li><a class="mainbg_hover" href="#">询价单</a></li>
+					<li><a class="mainbg_hover" href="#">账号中心</a></li>
+					<li><a class="mainbg_hover" href="#">店铺设置</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--个人中心-->
+		<div class="content conwidth clearfix">
+			<!--左侧列表-->
+			<div class="items_wrap fl">
+				<dl>
+					<dt><i class="icon-product main"></i>产品中心</dt>
+					<dd><a class="main_bg_light" href="#">发布产品</a></dd>
+					<dd><a class="mainbg_hover_light" href="#">产品管理</a></dd>
+					<dd><a class="mainbg_hover_light" href="#">产品分组</a></dd>
+				</dl>
+				<dl>
+					<dt><i class="icon-xunjia main"></i>询价单</dt>
+					<dd><a class="mainbg_hover_light" href="#">全部</a></dd>
+					<dd><a class="mainbg_hover_light" href="#">未回复</a></dd>
+					<dd><a class="mainbg_hover_light" href="#">已回复</a></dd>
+				</dl>
+				<dl>
+					<dt><i class="icon-zhanghao main"></i>账户中心</dt>
+					<dd><a class="mainbg_hover_light" href="#">基本信息</a></dd>
+					<dd><a class="mainbg_hover_light" href="#">我的地址</a></dd>
+					<dd><a class="mainbg_hover_light" href="#">修改密码</a></dd>
+				</dl>
+			</div>
+			<!--右侧内容-->
+			<div class="content_wrap fr">
+				<h1 class="items_title">发布产品<a class="main_bg_light fr" href="#"><em>+</em>发布新闻</a></h1>
+				<div class="notice main_bg_light">
+					<a href="#"><i class="main icon-notice"></i> 产品上架权限为3条， 剩余2条！如何提升产品上架权限 ？</a>
+				</div>
+				<!--搜索-->
+				<?php Qs::Label('供应商/产品列表', array('renderTpl' => 'Query'))?>
+				<!--产品列表-->
+				<?php Qs::Label('供应商/产品列表', array('renderTpl' => 'ProductList', 'outputNum' => 6, 'enablePage' => true))?>
+		</div>
+		</div>
+      <?php Qs::Sys('loadRequireJs', 'provider/prolist')?>
+	</body>
+</html>

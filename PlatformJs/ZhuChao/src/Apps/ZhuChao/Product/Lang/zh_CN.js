@@ -55,9 +55,10 @@ Ext.define('App.ZhuChao.Product.Lang.zh_CN', {
                   TIP : '输入关键词搜索'
                },
                MENU : {
-                  LOCK : '锁定用户',
-                  UNLOCK : '解锁用户',
-                  MODIFY : '修改用户信息'
+                  MODIFY : '修改产品信息',
+                  SHELF : '产品下架',
+                  REJECTION : '审核失败',
+                  VERIFY : '审核通过'
                },
                ERROR_MAP : {
                   "App/ZhuChao/Product/ProductMgr" : {

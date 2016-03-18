@@ -1,0 +1,60 @@
+<?php
+$list = $this->getProductAll();
+$query = $this->getQuery();
+$cls1 = $cls2 = $cls3 = $cls4 = '';
+if(isset($query['status'])){
+   $status = (int)$query['status'];
+}else{
+   $status = 3;
+}
+$keyword = '';
+if(isset($query['keyword']) && $query['keyword']){
+   $keyword = $query['keyword'];
+}
+switch($status){
+   case 2:
+      $cls1 = 'current';
+      break;
+   case 3:
+      $cls2 = 'current';
+      break;
+   case 4:
+      $cls3 = 'current';
+      break;
+   case 5:
+      $cls4 = 'current';
+      break;
+}
+$num1 = $num2 = $num3 = $num4 = 0;
+if(count($list)){
+   foreach ($list as $one){
+      switch($one->getStatus()){
+         case 2:
+            $num1++;
+            break;
+         case 3:
+            $num2++;
+            break;
+         case 4:
+            $num3++;
+            break;
+         case 5:
+            $num4++;
+            break;
+      }
+   }
+}
+
+echo '<div class="search_wrap clearfix">
+   <div class="search_input fl">
+      <input type="text" placeholder="请输入关键词" class="search_key" value="'.$keyword.'"/>
+      <i class="icon-sousuo"></i>
+   </div>
+   <ul class="clearfix fl pro_status">
+      <li class="'.$cls2.'">已上架'.($num2 > 0 ? '（'.$num2.'）' : '').'</li>
+      <li class="'.$cls1.'">审核中'.($num1 > 0 ? '（'.$num1.'）' : '').'</li>
+      <li class="'.$cls4.'">已下架'.($num4 > 0 ? '（'.$num4.'）' : '').'</li>
+      <li class="'.$cls3.'">被拒审'.($num3 > 0 ? '（'.$num3.'）' : '').'</li>
+   </ul>
+</div>';
+

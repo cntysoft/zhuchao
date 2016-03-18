@@ -11,6 +11,7 @@ use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\ZhuChao\Product\Constant as P_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
+use Cntysoft\Kernel;
 /**
  * 主要是处理采购商产品相关的的Ajax调用
  * 
@@ -32,7 +33,28 @@ class Product extends AbstractScript
       $provider = $this->getCurUser();
       $company = $provider->getCompany();
       $companyId = $company ? $company->getId() : 0;
-      
+      $cndServer = Kernel\get_image_cdn_server_url() .'/';
+
+      if(count($params['images'])){
+         $images = $params['images'];
+         $params['images'] = array();
+         foreach ($images as $image){
+            $item[0] = str_replace($cndServer, '', $image[0]);
+            $item[1] = $image[1];
+            $params['images'][] = $item;
+         }
+      }
+
+      if(count($params['imgRefMap'])){
+         $imgRefMap = $params['imgRefMap'];
+         $params['imgRefMap'] = array();
+         foreach ($imgRefMap as $image){
+            $item[0] = str_replace($cndServer, '', $image[0]);
+            $item[1] = $image[1];
+            $params['imgRefMap'][] = $item;
+         }
+      }
+
       return $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,

@@ -74,7 +74,7 @@
         },
         {
             "key" : "ProviderProductList",
-            "rule" : "\/product\/{pageId : [1-9][0-9]*}.html",
+            "rule" : "\/product\/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Provider",
                 "controller" : "Product",

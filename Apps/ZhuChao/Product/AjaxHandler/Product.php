@@ -25,7 +25,7 @@ class Product extends AbstractHandler
       $this->checkRequireFields($params, array('start', 'limit'));
       $cond = array();
       if(isset($params['name']) && $params['name']){
-         $cond[] = "brand like '%".$params['name']."%' or title like '%".$params['name']."%' or description '%".$params['name']."%'";
+         $cond[] = "(brand like '%".$params['name']."%' or title like '%".$params['name']."%' or description like '%".$params['name']."%')";
       }
       $cid = (int) $params['cid'];
       $gcategoryTree = $this->getAppCaller()->call(
@@ -303,13 +303,26 @@ class Product extends AbstractHandler
    public function changeStatus(array $params)
    {
       $this->checkRequireFields($params, array('id', 'status'));
-      
+      $comment = '系统处理！';
+      $status = (int)$params['status'];
+      switch($status){
+         case PRODUCT_CONST::PRODUCT_STATUS_REJECTION:
+            $comment = '系统审核失败，请修改后重新提交！';
+            break;
+         case PRODUCT_CONST::PRODUCT_STATUS_VERIFY:
+            $comment = '系统审核通过！';
+            break;
+         case PRODUCT_CONST::PRODUCT_STATUS_SHELF:
+            $comment = '系统下架，请联系客服！';
+            break;
+      }
+
       return $this->getAppCaller()->call(
          PRODUCT_CONST::MODULE_NAME,
          PRODUCT_CONST::APP_NAME,
          PRODUCT_CONST::APP_API_PRODUCT_MGR,
          'changeStatus',
-         array((int)$params['id'], (int)$params['status'])
+         array((int)$params['id'], $status, $comment)
       );
    }
    

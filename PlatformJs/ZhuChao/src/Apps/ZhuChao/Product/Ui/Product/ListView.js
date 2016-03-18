@@ -206,13 +206,13 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
                     text : L.MODIFY,
                     code : CODE.MODIFY
                 }, {
-                    text : L.MODIFY,
+                    text : L.VERIFY,
                     code : CODE.VERIFY
                 }, {
-                    text : L.MODIFY,
+                    text : L.REJECTION,
                     code : CODE.REJECTION
                 }, {
-                    text : L.MODIFY,
+                    text : L.SHELF,
                     code : CODE.SHELF
                 }];
 
@@ -228,20 +228,16 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
 
         var status = record.get('status');
         if(C.PRODUCT_STATUS_DRAFT == status || C.PRODUCT_STATUS_DELETE == status || C.PRODUCT_STATUS_SHELF == status) {
+            this.contextMenuRef.items.getAt(1).setDisabled(true);
+            this.contextMenuRef.items.getAt(2).setDisabled(true);
+            this.contextMenuRef.items.getAt(3).setDisabled(true);
+        }else if(C.PRODUCT_STATUS_PEEDING == status){
             this.contextMenuRef.items.getAt(1).setDisabled(false);
             this.contextMenuRef.items.getAt(2).setDisabled(false);
             this.contextMenuRef.items.getAt(3).setDisabled(false);
-        }else if(C.PRODUCT_STATUS_PEEDING == status){
+        }else if(C.PRODUCT_STATUS_VERIFY == status || C.PRODUCT_STATUS_REJECTION == status){
             this.contextMenuRef.items.getAt(1).setDisabled(true);
             this.contextMenuRef.items.getAt(2).setDisabled(true);
-            this.contextMenuRef.items.getAt(3).setDisabled(true);
-        }else if(C.PRODUCT_STATUS_VERIFY == status){
-            this.contextMenuRef.items.getAt(1).setDisabled(false);
-            this.contextMenuRef.items.getAt(2).setDisabled(true);
-            this.contextMenuRef.items.getAt(3).setDisabled(true);
-        }else if(C.PRODUCT_STATUS_REJECTION == status){
-            this.contextMenuRef.items.getAt(1).setDisabled(true);
-            this.contextMenuRef.items.getAt(2).setDisabled(false);
             this.contextMenuRef.items.getAt(3).setDisabled(true);
         }
         
@@ -291,13 +287,13 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
                   });
                   break;
                case C.VERIFY:
-                  this.changStatus(menu.record.get('id'), CONST.PRODUCT_STATUS_VERIFY);
+                  this.changStatus(menu.record, CONST.PRODUCT_STATUS_VERIFY);
                   break;
                case C.REJECTION:
-                  this.changStatus(menu.record.get('id'), CONST.PRODUCT_STATUS_REJECTION);
+                  this.changStatus(menu.record, CONST.PRODUCT_STATUS_REJECTION);
                   break;
                case C.SHELF:
-                  this.changStatus(menu.record.get('id'), CONST.PRODUCT_STATUS_SHELF);
+                  this.changStatus(menu.record, CONST.PRODUCT_STATUS_SHELF);
                   break;
             }
         }
