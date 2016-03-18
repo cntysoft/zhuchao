@@ -172,6 +172,7 @@
             }
         },
         {
+            "key" : "ProviderFrontApiEntry",
             "rule" : "\/front-api-entry",
             "option" : {
                 "module" : "Provider",

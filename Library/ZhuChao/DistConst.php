@@ -16,6 +16,10 @@ const RT_MERCHANT_DOMAIN = MERCHANT_DOMAIN_DEBUG;
  */
 const RT_SYS_DOMAIN = SYS_DOMAIN_DEVEL;
 /**
+ * @var string 系统的主站域名
+ */
+const RT_SYS_SITE_NAME = SYS_SITE_NAME_DEVEL;
+/**
  * @var string
  */
 const RT_ALI_SEARCH_ENTRY = ALI_SEARCH_API_PUB_ENTRY;

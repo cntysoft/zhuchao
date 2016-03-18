@@ -39,11 +39,26 @@
                 "controller" : "Index",
                 "action" : "news"
             }
+        },
+        {
+            "key" : "SiteFrontApiEntry",
+            "rule" : "\/front-api-entry",
+            "option" : {
+                "module" : "Site",
+                "controller" : "FrontApiEntry",
+                "action" : "index"
+            }
         }
     ],
     "hostName" : true,
     "tplMap" : {
         "site/index" : "企业网站/首页.phtml",
         "site/404" : "404.phtml"
+    },
+    "front_api_map" : {
+        "Utils" : [
+            "\\SiteFrontApi\\Utils",
+            1
+        ]
     }
 }
