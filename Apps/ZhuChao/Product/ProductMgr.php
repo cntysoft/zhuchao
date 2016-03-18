@@ -208,6 +208,51 @@ class ProductMgr extends AbstractLib
    }
 
    /**
+    * 删除指定id的产品
+    * 
+    * @param integer $providerId
+    * @param array $productIds
+    * @return boolean
+    */
+   public function setProductDelete($providerId, array $productIds)
+   {
+      $cond[] = ProductModel::generateRangeCond('id', $productIds);
+      $cond[] = 'providerId='.(int)$providerId;
+      $cond = implode(' and ', $cond);
+      $list = $this->getProductList(array($cond), false, 'id DESC', 0, 0);
+      if(count($list)){
+         foreach ($list as $product){
+            $product->setStatus(Constant::PRODUCT_STATUS_DELETE);
+            $product->setUpdateTime(time());
+            $product->update();
+         }
+      }
+   }
+   
+   /**
+    * 下架指定id的产品
+    * 
+    * @param integer $providerId
+    * @param array $productIds
+    * @return boolean
+    */
+   public function setProductShelf($providerId, array $productIds, $comment = '')
+   {
+      $cond[] = ProductModel::generateRangeCond('id', $productIds);
+      $cond[] = 'providerId='.(int)$providerId;
+      $cond = implode(' and ', $cond);
+      $list = $this->getProductList(array($cond), false, 'id DESC', 0, 0);
+      if(count($list)){
+         foreach ($list as $product){
+            $product->setStatus(Constant::PRODUCT_STATUS_SHELF);
+            $product->setComment($comment);
+            $product->setUpdateTime(time());
+            $product->update();
+         }
+      }
+   }
+   
+   /**
     * 获取指定id的产品信息
     * 
     * @param integer $productId
@@ -217,6 +262,21 @@ class ProductMgr extends AbstractLib
       return ProductModel::findFirst($productId);
    }
 
+   /**
+    * 根据商品编号获取商品信息
+    * 
+    * @param string $number
+    * @return 
+    */
+   public function getProductByNumber($number)
+   {
+      return ProductModel::findFirst(array(
+         'number=?0',
+         'bind' => array(
+            0 => $number
+         )
+      ));
+   }
    /**
     * 获得产品的编号
     * 

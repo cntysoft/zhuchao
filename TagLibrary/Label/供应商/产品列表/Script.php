@@ -28,16 +28,13 @@ class ProductList extends AbstractLabelScript
       $page = $this->getPageParam();
       $query = $this->getQuery();
       $cond = array();
+      
       $cond[] = 'providerId='.$curUser->getId();
       if(isset($query['keyword']) && $query['keyword']){
          $cond[] = "(brand like '%".$query['keyword']."%' or title like '%".$query['keyword']."%' or description like '%".$query['keyword']."%' )";
       }
-      if(isset($query['status']) && $query['status']){
-         $status = (int)$query['status'];
-         if(in_array($status, $this->statusEnable)){
-            $cond[] = 'status='.$status;
-         }
-      }
+      $status = $this->getStatus();
+      $cond[] = 'status='.$status;
       $queryCond = array(implode(' and ', $cond));
 
       return $this->appCaller->call(
@@ -47,6 +44,24 @@ class ProductList extends AbstractLabelScript
          'getProductList',
          array($queryCond, true, 'id DESC', $page['offset'], $page['limit'])
       );
+   }
+   
+   public function getStatus()
+   {
+      $status = PRODUCT_CONST::PRODUCT_STATUS_VERIFY;
+      $query = $this->getQuery();
+      if(isset($query['status']) && $query['status']){
+         if(in_array($query['status'], $this->statusEnable)){
+            $status = (int)$query['status'];
+         }
+      }
+      
+      return $status;
+   }
+   
+   public function getPageUrl($pageId)
+   {
+      return '/product/'.$pageId.'.html';
    }
    
    /**

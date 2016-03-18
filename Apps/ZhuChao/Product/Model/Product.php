@@ -8,6 +8,7 @@
 */
 namespace App\ZhuChao\Product\Model;
 use Cntysoft\Phalcon\Mvc\Model as BaseModel;
+use Phalcon\Mvc\Model\Relation;
 
 class Product extends BaseModel
 {
@@ -50,7 +51,10 @@ class Product extends BaseModel
          'alias' => 'company'
       ));
       $this->hasOne('detailId', 'App\ZhuChao\Product\Model\ProductDetail', 'id', array(
-         'alias' => 'detail'
+         'alias' => 'detail',
+         'foreignKey' => array(
+            'action' => Relation::ACTION_CASCADE
+         )
       ));
       $this->hasManyToMany('id', 'App\ZhuChao\Product\Model\Product2Group', 'productId', 'groupId', 'App\ZhuChao\Product\Model\Group', 'id', array(
          'alias' => 'groups'

@@ -73,6 +73,15 @@
             }
         },
         {
+            "key" : "ProviderChangeProduct",
+            "rule" : "\/product\/change\/{number:[0-9A-Z]*}.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Product",
+                "action" : "changeproduct"
+            }
+        },
+        {
             "key" : "ProviderProductList",
             "rule" : "\/product\/{pageId:[1-9][0-9]*}.html",
             "option" : {
@@ -189,6 +198,7 @@
         "provider\/index" : "供应商\/首页.phtml",
         "provider\/categoryselect" : "供应商\/分类选择.phtml",
         "provider\/addproduct" : "供应商\/发布产品.phtml",
+        "provider\/changeproduct" : "供应商\/修改产品.phtml",
         "provider\/inquiry" : "供应商\/询价单.phtml",
         "provider\/productlist" : "供应商\/管理产品.phtml",
         "provider\/productgroup" : "供应商\/产品分组.phtml",

@@ -1,4 +1,4 @@
-define(['jquery'], function() {
+define(['jquery', 'Core', 'Front', 'layer'], function() {
 	$(document).ready(function() {
 		//全選
 		$('.prolist_operate').find('.check').click(function() {
@@ -21,7 +21,6 @@ define(['jquery'], function() {
 			} else {
 				$this.find('i').addClass('icon-checked');
 			}
-
 		});
 		$('.prolist_list ').find('.check').click(function() {
 			var prolistLenght = $('.prolist_list ').length;
@@ -32,6 +31,11 @@ define(['jquery'], function() {
 			} else {
 				$('.prolist_operate').find('.check i').removeClass('icon-checked');
 			}
+         if($('.prolist_list ').has('.icon-checked').length > 0){
+            $('.prolist_operate .btn').removeClass('btn_del');
+         }else{
+            $('.prolist_operate .btn').addClass('btn_del');
+         }
 		});
       
       $('.search_key').blur(function(){
@@ -88,5 +92,90 @@ define(['jquery'], function() {
          }
       }
       
+      $('.pro_operate .delete').click(function(){
+         var $delete = $(this);
+         var ids = $delete.parents('.prolist_list').attr('fh-index');
+         deleteProducts(ids)
+      });
+      
+      $('.prolist_operate .delete').click(function(){
+         if($(this).hasClass('btn_del')){
+            return;
+         }
+         var checkedList = $('.prolist_list ').has('.icon-checked');
+         if(0 == checkedList.length){
+            return;
+         }
+         var ids = [];
+         checkedList.each(function(index, dom){
+            ids.push($(dom).attr('fh-index'));
+         });
+         
+         deleteProducts(ids);
+      });
+      
+      $('.prolist_operate .shelf').click(function(){
+         if($(this).hasClass('btn_del')){
+            return;
+         }
+         var checkedList = $('.prolist_list ').has('.icon-checked');
+         if(0 == checkedList.length){
+            return;
+         }
+         var ids = [];
+         checkedList.each(function(index, dom){
+            ids.push($(dom).attr('fh-index'));
+         });
+         
+         shelfProduct(ids);
+      });
+      
+      function shelfProduct(ids)
+      {
+         layer.confirm('您确定要下架选中的产品吗?', function(index){
+            layer.close(index);
+            Cntysoft.Front.callApi('Product', 'shelfProduct', {
+               ids : ids
+            }, function(response){
+               if(!response.status){
+                  layer.alert('下架失败，请稍后再试！');
+               }else{
+                  layer.alert('下架成功！', {
+                     btn : '',
+                     success : function(){
+                        var redirect = function(){
+                           window.location.href = '/product/1.html';
+                        };
+                        setTimeout(redirect, 300);
+                     }
+                  });
+               }
+            });
+         });
+      }
+      
+      function deleteProducts(ids)
+      {
+         layer.confirm('您确定要删除选中的产品吗?', function(index){
+            layer.close(index);
+            Cntysoft.Front.callApi('Product', 'deleteProduct', {
+               ids : ids
+            }, function(response){
+               if(!response.status){
+                  layer.alert('删除失败，请稍后再试！');
+               }else{
+                  layer.alert('删除成功！', {
+                     btn : '',
+                     success : function(){
+                        var redirect = function(){
+                           window.location.href = '/product/1.html';
+                        };
+                        setTimeout(redirect, 300);
+                     }
+                  });
+               }
+            });
+         });
+      }
 	});
 });

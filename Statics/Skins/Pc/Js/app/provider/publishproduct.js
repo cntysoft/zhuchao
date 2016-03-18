@@ -66,9 +66,9 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             params['unit'] = $('#proUnit').val();
             params['categoryId'] = sendQuery['category'];
             if($(this).attr('id') === 'submit'){
-                params['status'] = 1;
-            }else{
                 params['status'] = 3;
+            }else{
+                params['status'] = 1;
             }
             Cntysoft.Front.callApi('Product','addProduct',params,function(response){
                 if(response.status){

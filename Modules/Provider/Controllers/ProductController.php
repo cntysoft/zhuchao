@@ -10,6 +10,7 @@ use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Kernel;
 use Cntysoft\Framework\Qs\View;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
+use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 
 class ProductController extends AbstractController
 {
@@ -74,6 +75,27 @@ class ProductController extends AbstractController
             Kernel\goto_route('product/addproduct/1.html');
          }
       }
+   }
+   
+   public function changeproductAction()
+   {
+      $number = $this->dispatcher->getParam('number');
       
+      $product = $this->getAppCaller()->call(
+         PRODUCT_CONST::MODULE_NAME,
+         PRODUCT_CONST::APP_NAME,
+         PRODUCT_CONST::APP_API_PRODUCT_MGR,
+         'getProductByNumber',
+         array($number)
+      );
+      
+      if(!$product){
+         Kernel\goto_route('product/1.html');
+      }
+      
+      return $this->setupRenderOpt(array(
+         View::KEY_RESOLVE_DATA => 'provider/changeproduct',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+       ));
    }
 }

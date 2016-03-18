@@ -137,6 +137,54 @@ class Product extends AbstractScript
    }
    
    /**
+    * 删除指定的产品
+    * 
+    * @param array $params
+    * @return boolean
+    */
+   public function deleteProduct(array $params)
+   {
+      $this->checkRequireFields($params, array('ids'));
+      $curUser = $this->getCurUser();
+      $ids = $params['ids'];
+      if(!is_array($ids)){
+         $ids = array((int)$ids);
+      }
+      
+      return $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_PRODUCT_MGR,
+         'setProductDelete',
+         array($curUser->getId(), $ids)
+      );
+   }
+   
+   /**
+    * 下架选中的商品
+    * 
+    * @param array $params
+    * @return 
+    */
+   public function shelfProduct(array $params)
+   {
+      $this->checkRequireFields($params, array('ids'));
+      $curUser = $this->getCurUser();
+      $ids = $params['ids'];
+      if(!is_array($ids)){
+         $ids = array((int)$ids);
+      }
+      
+      return $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_PRODUCT_MGR,
+         'setProductshelf',
+         array($curUser->getId(), $ids, '自主下架')
+      );
+   }
+   
+   /**
     * 获取指定分类的父分类信息
     * 
     * @param integer $categoryId
