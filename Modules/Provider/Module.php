@@ -10,6 +10,8 @@ namespace Provider;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Cntysoft\Kernel;
 use App\ZhuChao\Provider\Acl;
+use Cntysoft\Kernel\ConfigProxy;
+use Phalcon\Db\Adapter\Pdo\Mysql;
 /**
  * 前端模块初始化代码
  */
@@ -39,9 +41,27 @@ class Module implements ModuleDefinitionInterface
     */
    public function registerServices(\Phalcon\DiInterface $dependencyInjector)
    {
-      $dependencyInjector->set('ProviderAcl', function() {
-         return new Acl();
+      $acl = new Acl();
+      $dependencyInjector->set('ProviderAcl', function()use($acl) {
+         return $acl;
       });
+
+      //在这里需要初始化云站系统的数据库，保证前台提交信息能够保存到对应的数据库中
+      if ($acl->isLogin()) {
+         $user = $acl->getCurUser();
+         $company = $user->getCompany();
+         if (isset($company) && $company->getSubAttr()) {
+            Kernel\get_site_id($company->getId());
+            
+            $config = ConfigProxy::getGlobalConfig();
+            $cfg = $config->db->toArray();
+            $dependencyInjector->setShared('siteDb', function() use($cfg) {
+               $cfg['dbname'] = Kernel\get_site_db_name();
+               $db = new Mysql($cfg);
+               return $db;
+            });
+         }
+      }
    }
 
 }

@@ -11,6 +11,7 @@ use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\ZhuChao\Product\Constant as P_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
+use App\Yunzhan\Product\Constant as YUN_P_CONST;
 use Cntysoft\Kernel;
 /**
  * 主要是处理采购商产品相关的的Ajax调用
@@ -55,12 +56,21 @@ class Product extends AbstractScript
          }
       }
 
-      return $this->appCaller->call(
+      $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,
          P_CONST::APP_API_PRODUCT_MGR,
          'addProduct',
-         array($provider->getId(), $$companyId, $params)
+         array($provider->getId(), $companyId, $params)
+      );
+      
+      //插入到商家云站数据库中
+      $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_PRODUCT_MGR,
+         'addProduct',
+         array($params)
       );
    }
    

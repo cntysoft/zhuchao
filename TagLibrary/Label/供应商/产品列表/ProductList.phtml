@@ -24,7 +24,7 @@ if(count($list)){
    foreach ($list as $product){
       $name = $product->getBrand() . $product->getTitle() . $product->getDescription();
       $number = $product->getNumber();
-      $price = !$product->getPrice() ? '￥<em>'.$product->getPrice().'</em>' : '面议';
+      $price = $product->getPrice() ? '￥<em>'.$product->getPrice().'</em>' : '面议';
       $time = date('Y-m-d', $product->getInputTime());
       $image = $this->getImageCdnUrl($product->getDefaultImage());
       $url = $this->getProduct($product->getId());

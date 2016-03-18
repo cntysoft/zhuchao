@@ -83,9 +83,10 @@
             }
         }
     ],
+    "hostName" : true,
     "tplMap" : {
         "index" : "首页.phtml",
-        "item" : "文章内容模板.phtml",
+        "article" : "文章内容模板.phtml",
         "helpcenter" : "帮助中心模板.phtml",
         "productclassifylist" : "商品类/分类商品列表.phtml",
         "product" : "商品类/商品内容页.phtml",
