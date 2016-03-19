@@ -61,7 +61,7 @@
             "option" : {
                 "module" : "Pages",
                 "controller" : "Product",
-                "action" : "item"
+                "action" : "product"
             }
         },
         {
