@@ -1,0 +1,33 @@
+<?php
+$indetifier = $this->invokeParams['nodeIdentifier'][0];
+$node0 = $this->getNodeByNodeIndentifier($indetifier);
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+   $subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $indetifier);
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$items = $this->execute();
+$out = '<ul class="right_list_box main_hover">';
+foreach ($items as $index => $info) {
+   $out .= ' <li class="right_li"><a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a></li>';
+}
+$this->invokeParams['outputNum'] = 2;
+$items2 = $this->getArticleList();
+$out.='</ul>';
+foreach ($items2 as $index => $info2) {
+   $out.=' <div class="right_item">
+                    <div class="right_img">
+                        <a href="' . $this->getInfoUrl($info2->getId()) . '"> <img src="' . $this->getImgcdn($info2->getDefaultPicUrl()[0], 260, 146) . '" alt=""/></a>
+                    </div>
+                    <h3 class="right_item_title text_ellipsis main_hover"><a href="' . $this->getInfoUrl($info2->getId()) . '">' . $info2->getTitle() . '</a></h3>
+                    <p class="right_text">' . $info2->getIntro() . '
+                    </p>
+                    <div class="right_user tr clearfix">
+                        <a class="fl">讲师：' . $info2->getAuthor() . '</a>
+                        <span><i class="main">' . $info2->getHits() . '</i>人已学</span>
+                    </div>
+                </div>';
+}
+echo $out;

@@ -1,0 +1,8 @@
+<?php
+$items = $this->execute();
+$out = $last = '';
+foreach ($items as $index => $info) {
+   $node = $this->getNode($info->getNodeId());
+   $out .= ' <li class="class_sub_li"><a href="' . $this->getInfoUrl($info->getId()) . '"><span>[' . date('m-d', $info->getInputTime()) . ']</span>[' . $node->getText() . ']' . $info->getTitle() . '</a></li>';
+}
+echo $out;

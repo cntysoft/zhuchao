@@ -1,5 +1,9 @@
 <?php
-$items = $this->getArticleList('id desc');
+if ($this->getRouteNodeIdentifier() == 'laobanneican') {
+   $items = $this->execute();
+} else {
+   $items = $this->getArticleList();
+}
 $out = '';
 foreach ($items as $info) {
    $out .= '<li>

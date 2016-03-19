@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>老板内参内容</title>
+        <title>老板内参－信息详情</title>
         <?php Qs::Sys('loadCss', array('reference/style.css', 'reference/referencedetail.css')) ?>
     </head>
     <body>
@@ -17,10 +17,17 @@
                     <span><em>|</em>老板内参</span>
                 </a>
                 <ul class="fr clearfix">
-                    <!--                    <li><a class="main_bg mainbg_hover" href="#">首页</a></li>
-                                        <li><a class="mainbg_hover" href="#">论坛</a></li>
-                                        <li><a class="mainbg_hover" href="#">板块</a></li>
-                                        <li><a class="mainbg_hover" href="#">活动</a></li>-->
+                    <?php
+                    $nodeIdentifier = Qs::DsField('AC', 'nodeIdentifier', true);
+                    $sign1 = $nodeIdentifier == 'laobanneican' ? 'main_bg' : '';
+                    $sign2 = $nodeIdentifier == 'jiancaiqiwen' ? 'main_bg' : '';
+                    $sign3 = $nodeIdentifier == 'shendujiexi' ? 'main_bg' : '';
+                    $sign4 = $nodeIdentifier == 'zhongbangtuijian' ? 'main_bg' : '';
+                    echo '<li><a class=" ' . $sign1 . ' mainbg_hover" href="/category/laobanneican.html">首页</a></li>
+                    <li><a class=" ' . $sign2 . ' mainbg_hover" href="/category/jiancaiqiwen/1.html">建材奇闻</a></li>
+                    <li><a class=" ' . $sign3 . ' mainbg_hover" href="/category/shendujiexi/1.html">深度解析</a></li>
+                    <li><a class=" ' . $sign4 . ' mainbg_hover" href="/category/zhongbangtuijian/1.html">重磅推荐</a></li>';
+                    ?>                    
                 </ul>
             </div>
         </div>
@@ -33,6 +40,12 @@
                 <!--站点指示-->
                 <div class="site">
                     <a href="/category/laobanneican.html">老板内参</a>
+                    <?php
+                    if ($nodeIdentifier != 'laobanneican') {
+                       echo '<span>&gt;</span>
+                    <a href="/category/' . $nodeIdentifier . '/1.html"> ' . Qs::DsField('AC', 'nodeText', true) . '</a>';
+                    }
+                    ?>                    
                     <span>&gt;</span>
                     <a> <?php Qs::DsField('AC', 'title') ?></a>
                 </div>
@@ -55,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="article_summary">
-                                <div class="summary_inner"><?php Qs::DsField('AC', 'content') ?>
+                                <div class="summary_inner" style="min-height: 600px"><?php Qs::DsField('AC', 'content') ?>
                                     <!--出处-->
                                     <div class="article_from">
                                         <span>作者：<?php Qs::DsField('AC', 'author') ?></span> <br>
@@ -91,7 +104,11 @@
                     <div class="infomation">
                         <h1>热点资讯</h1>
                         <ul>
-                            <?php Qs::Label('文章/老板内参', array('renderTpl' => 'HotArticle', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 6, 'enablePage' => false, 'listSubNode' => true)) ?>
+                            <?php
+                            Qs::Label('文章/老板内参', array('renderTpl'      => 'HotArticle', 'nodeIdentifier' => array(
+                                  'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
+                               ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 6, 'enablePage'     => false, 'listSubNode'    => true))
+                            ?>
                         </ul>
                     </div>
                     <div class="erweima">

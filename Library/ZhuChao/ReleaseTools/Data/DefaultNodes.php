@@ -25,6 +25,192 @@ return array(
       'coverTemplateFile' => '电商宝典/首页.phtml',
       'modelsTemplate'    => array(
          1 => '电商宝典/内容页.phtml'
+      ),
+      'children'          => array(
+         array(
+            'text'             => '经典案例',
+            'identifier'       => 'jingdiananli',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '电商宝典/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '电商宝典/内容页.phtml'
+            )
+         ),
+         array(
+            'text'             => '店商资讯',
+            'identifier'       => 'dianshangzixun',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '电商宝典/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '电商宝典/内容页.phtml'
+            )
+         ),
+         array(
+            'text'             => '课程中心',
+            'identifier'       => 'kechengzhongxin',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '电商宝典/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '电商宝典/内容页.phtml'
+            ),
+            'children'         => array(
+               array(
+                  'text'             => '营销推广',
+                  'identifier'       => 'yingxiaotuiguang',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '电商宝典/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '电商宝典/内容页.phtml'
+                  ),
+                  'children'         => array(
+                     array(
+                        'text'             => '社会化营销',
+                        'identifier'       => 'shehuihuayingxiao',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     ),
+                     array(
+                        'text'             => '活动营销',
+                        'identifier'       => 'huodongyingxiao',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     ),
+                     array(
+                        'text'             => '品牌管理',
+                        'identifier'       => 'pinpaiguanli',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     ),
+                     array(
+                        'text'             => 'SEO',
+                        'identifier'       => 'yingxiaoseo',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     )
+                  )
+               ),
+               array(
+                  'text'             => '日常管理',
+                  'identifier'       => 'richangguanli',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '电商宝典/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '电商宝典/内容页.phtml'
+                  ),
+                  'children'         => array(
+                     array(
+                        'text'             => '下架产品',
+                        'identifier'       => 'richangxiajiachanpin',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     ),
+                     array(
+                        'text'             => '上架产品',
+                        'identifier'       => 'richangshangjiachanpin',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     ),
+                     array(
+                        'text'             => '店铺设置',
+                        'identifier'       => 'dianpushezhi',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     )
+                  )
+               ),
+               array(
+                  'text'             => '商铺基础建设',
+                  'identifier'       => 'shangpujichujianshe',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '电商宝典/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '电商宝典/内容页.phtml'
+                  ),
+                  'children'         => array(
+                     array(
+                        'text'             => '上架产品',
+                        'identifier'       => 'shangjiachanpin',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     ),
+                     array(
+                        'text'             => '开通商铺',
+                        'identifier'       => 'kaitongdianpu',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     ),
+                     array(
+                        'text'             => '注册店铺',
+                        'identifier'       => 'zhuceshangpu',
+                        'nodeType'         => 3,
+                        'showOnMenu'       => 1,
+                        'showOnListParent' => 0,
+                        'listTemplateFile' => '电商宝典/列表页.phtml',
+                        'modelsTemplate'   => array(
+                           1 => '电商宝典/内容页.phtml'
+                        )
+                     )
+                  )
+               )
+            )
+         )
       )
    ),
    array(
@@ -37,6 +223,41 @@ return array(
       'coverTemplateFile' => '老板内参/首页.phtml',
       'modelsTemplate'    => array(
          1 => '老板内参/内容页.phtml'
+      ),
+      'children'          => array(
+         array(
+            'text'             => '建材奇闻',
+            'identifier'       => 'jiancaiqiwen',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '老板内参/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '老板内参/内容页.phtml'
+            )
+         ),
+         array(
+            'text'             => '深度解析',
+            'identifier'       => 'shendujiexi',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '老板内参/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '老板内参/内容页.phtml'
+            )
+         ),
+         array(
+            'text'             => '重磅推荐',
+            'identifier'       => 'zhongbangtuijian',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '老板内参/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '老板内参/内容页.phtml'
+            )
+         )
       )
    ),
    array(

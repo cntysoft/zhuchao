@@ -1,5 +1,9 @@
 <?php
-$items = $this->getArticleList('hits desc');
+if ($this->getRouteNodeIdentifier() == 'laobanneican') {
+   $items = $this->execute('hits desc');
+} else {
+   $items = $this->getArticleList('hits desc');
+}
 $out = $last = '';
 foreach ($items as $index => $info) {
    if ($index == count($items) - 1) {

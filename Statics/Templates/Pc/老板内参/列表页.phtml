@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>老板内参列表</title>    
+        <title>老板内参－列表</title>    
         <?php Qs::Sys('loadCss', array('reference/style.css', 'slick.css', 'reference/referenceindex.css')) ?>
     </head>
     <body>
@@ -16,10 +16,10 @@
                     <span><em>|</em>老板内参</span>
                 </a>
                 <ul class="fr clearfix">
-                    <!--                    <li><a class="main_bg mainbg_hover" href="#">首页</a></li>
-                                        <li><a class="mainbg_hover" href="#">论坛</a></li>
-                                        <li><a class="mainbg_hover" href="#">板块</a></li>
-                                        <li><a class="mainbg_hover" href="#">活动</a></li>-->
+                    <li><a class="mainbg_hover" href="/category/laobanneican.html">首页</a></li>
+                    <li><a class="mainbg_hover" href="/category/jiancaiqiwen/1.html">建材奇闻</a></li>
+                    <li><a class="mainbg_hover" href="/category/shendujiexi/1.html">深度解析</a></li>
+                    <li><a class="mainbg_hover" href="/category/zhongbangtuijian/1.html">重磅推荐</a></li>
                 </ul>
             </div>
         </div>
@@ -38,18 +38,30 @@
         <div class="content conwidth1100">
             <!--行业资讯-->
             <ul class="trade_news clearfix">
-                <?php Qs::Label('文章/老板内参', array('renderTpl' => 'NewArticle', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 3, 'enablePage' => false, 'listSubNode' => true)) ?>
+                <?php
+                Qs::Label('文章/老板内参', array('renderTpl'      => 'NewArticle', 'nodeIdentifier' => array(
+                      'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
+                   ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 3, 'enablePage'     => false, 'listSubNode'    => true))
+                ?>
             </ul>
             <!--列表-->
             <div class="news_wrap clearfix">
                 <div class="left_section fl">
-                    <?php Qs::Label('文章/老板内参', array('renderTpl' => 'DefaultList', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 5, 'enablePage' => true, 'listSubNode' => true)) ?>
+                    <?php
+                    Qs::Label('文章/老板内参', array('renderTpl'      => 'DefaultList', 'nodeIdentifier' => array(
+                          'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
+                       ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => true, 'listSubNode'    => true))
+                    ?>
                 </div>
                 <div class="right_section fr">
                     <div class="infomation">
                         <h1>热点资讯</h1>
                         <ul>
-                            <?php Qs::Label('文章/老板内参', array('renderTpl' => 'HotArticle', 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 6, 'enablePage' => false, 'listSubNode' => true)) ?>
+                            <?php
+                            Qs::Label('文章/老板内参', array('renderTpl'      => 'HotArticle', 'nodeIdentifier' => array(
+                                  'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
+                               ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 6, 'enablePage'     => false, 'listSubNode'    => true))
+                            ?>
                         </ul>
                     </div>
                     <div class="erweima">

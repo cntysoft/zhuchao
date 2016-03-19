@@ -1,0 +1,26 @@
+<?php
+$node = $this->getDefalutNode($this->getRouteNodeIdentifier());
+if ($node->getNodeIdentifier() == 'dianshangzixun' || $node->getNodeIdentifier() == 'jingdiananli') {
+   return;
+}
+$indetifier = $this->invokeParams['nodeIdentifier'][0];
+$node0 = $this->getNodeByNodeIndentifier($indetifier);
+$subNodes = $this->getSubNode($node0->getId());
+$out = '<div class="choose_box"> ';
+foreach ($subNodes as $value) {
+   $cls = $node->getNodeIdentifier() == $value->getNodeIdentifier() ? 'main_bg_light' : '';
+   $out .= '    <dl class="choose_list clearfix">                  
+   <a href="/category/' . $value->getNodeIdentifier() . '/1.html"><dt class="choose_key fl ' . $cls . '">' . $value->getText() . '</dt></a>
+                        <dd class="choose_value fl">
+                            <div class="choose_value_info">';
+   $subsubNodes = $this->getSubNodeIds($value->getId());
+   foreach ($subsubNodes as $value2) {
+      $cls = $node->getNodeIdentifier() == $value2->getNodeIdentifier() ? 'main_bg_light' : '';
+      $out.='<a class="' . $cls . '" href="/category/' . $value2->getNodeIdentifier() . '/1.html">' . $value2->getText() . '</a>';
+   }
+   $out.=' </div>
+                        </dd>
+                        </dl>';
+}
+$out .= '</div>';
+echo $out;

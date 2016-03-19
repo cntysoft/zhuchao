@@ -1,5 +1,9 @@
 <?php
-$infoList = $this->getArticleList();
+if ($this->getRouteNodeIdentifier() == 'laobanneican') {
+   $infoList = $this->execute();
+} else {
+   $infoList = $this->getArticleList();
+}
 if (!$infoList) {
 	echo "<script>window.location = '/'</script>";
 	return false;

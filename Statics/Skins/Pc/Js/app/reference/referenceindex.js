@@ -14,6 +14,19 @@ define(['jquery', 'slick'], function (){
          prevArrow : '.prev_btn',
          nextArrow : '.next_btn'
       });
+      var path = window.location.pathname;
+      if(path.indexOf('laobanneican') > 0){
+         $('.head ul li a').eq(0).addClass('main_bg');
+      }
+      if(path.indexOf('jiancaiqiwen') > 0){
+         $('.head ul li a').eq(1).addClass('main_bg');
+      }
+      if(path.indexOf('shendujiexi') > 0){
+         $('.head ul li a').eq(2).addClass('main_bg');
+      }
+      if(path.indexOf('zhongbangtuijian') > 0){
+         $('.head ul li a').eq(3).addClass('main_bg');
+      }
    });
 
 });

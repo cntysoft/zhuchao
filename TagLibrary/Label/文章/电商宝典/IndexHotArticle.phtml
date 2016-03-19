@@ -1,0 +1,24 @@
+<?php
+$indetifier = $this->invokeParams['nodeIdentifier'][0];
+$node0 = $this->getNodeByNodeIndentifier($indetifier);
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+   $subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $indetifier);
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$items = $this->execute('hits desc');
+$out = $last = '';
+foreach ($items as $index => $info) {
+   $node = $this->getNode($info->getNodeId());
+   $out .= ' <li class="sub_item">
+                            <div class="date">
+                                <p>' . date('d', $info->getInputTime()) . '</p>
+                                <span>' . date('Y-m', $info->getInputTime()) . '</span>
+                            </div>
+                            <h4 class="title_h4 text_ellipsis main_hover"><a href="' . $this->getInfoUrl($info->getId()) . '">[' . $node->getText() . ']' . $info->getTitle() . '</a></h4>
+                            <p class="text_info">' . $info->getIntro() . '</p>
+                        </li>';
+}
+echo $out;

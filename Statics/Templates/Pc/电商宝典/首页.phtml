@@ -1,1 +1,137 @@
-电商宝典首页
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>筑巢商学院－首页</title>
+        <?php Qs::Sys('loadCss', array('college/style.css', 'slick.css', 'college/collegeindex.css')) ?>
+    </head>
+    <body>
+        <!--头部--> 
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <!--导航-->
+        <div class="head main_bg_light">
+            <div class="head_box conwidth1100 clearfix">
+                <a class="logo_img fl" href="/category/zhuchaoschool.html">
+                    <img src="<?php Qs::Sys('loadImage', 'reference/test_logo_white.png') ?>">
+                    <span><em>|</em>商学院</span>
+                </a>
+                <ul class="fr clearfix">
+                    <li><a class="mainbg_hover" href="/category/zhuchaoschool.html">首页</a></li>
+                    <li><a class="mainbg_hover" href="/category/kechengzhongxin/1.html">课程中心</a></li>
+                    <li><a class="mainbg_hover" href="/category/dianshangzixun/1.html">店商资讯</a></li>
+                    <li><a class="mainbg_hover" href="/category/jingdiananli/1.html">经典案例</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--banner -->
+        <div class="banner conwidth1100">
+            <div class="banner_box">
+                <div class="item "><a href=""><img src="<?php Qs::Sys('loadImage', 'college/test_banner1.jpg') ?>"></a></div>
+            </div>
+
+            <!--左右按钮-->
+            <a class="prev_btn banner_btn "><i class="icon-jiantou7"></i></a>
+            <a class="next_btn banner_btn "><i class="icon-jiantou6"></i></a>
+        </div>
+        <!--标题-->
+        <div class="module_title conwidth1100">
+            课程安排
+        </div>
+        <!--课程安排列表-->
+        <div class="class_list_box conwidth1100">
+            <ul class="class_items clearfix">
+                <li class="class_li">
+                    <h3><a href="/category/shangpujichujianshe/1.html" class="main_bg_light">商铺基础建设</a></h3>
+                    <div class="class_li_img">
+                        <img src="<?php Qs::Sys('loadImage', 'college/icon/icon_college_class1.jpg') ?>" alt=""/>
+                    </div>
+                    <ul class="class_sub_item main_hover">
+                        <?php
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexArticle', 'nodeIdentifier' => array(
+                              'shangpujichujianshe', 'shangjiachanpin', 'kaitongdianpu', 'zhuceshangpu'
+                           ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => false, 'listSubNode'    => true))
+                        ?>                       
+                    </ul>
+                </li>
+                <li class="class_li">
+                    <h3><a href="/category/richangguanli/1.html" class="main_bg_light">日常管理</a></h3>
+                    <div class="class_li_img">
+                        <img src="<?php Qs::Sys('loadImage', 'college/icon/icon_college_class2.jpg') ?>" alt=""/>
+                    </div>
+                    <ul class="class_sub_item main_hover">
+                        <?php
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexArticle', 'nodeIdentifier' => array(
+                              'richangguanli', 'richangxiajiachanpin', 'richangshangjiachanpin', 'dianpushezhi'
+                           ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => false, 'listSubNode'    => true))
+                        ?>
+                    </ul>
+                </li>
+                <li class="class_li">
+                    <h3><a href="/category/yingxiaotuiguang/1.html" class="main_bg_light">营销推广</a></h3>
+                    <div class="class_li_img">
+                        <img src="<?php Qs::Sys('loadImage', 'college/icon/icon_college_class3.jpg') ?>" alt=""/>
+                    </div>
+                    <ul class="class_sub_item main_hover">
+                        <?php
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexArticle', 'nodeIdentifier' => array(
+                              'yingxiaotuiguang', 'shehuihuayingxiao', 'huodongyingxiao', 'pinpaiguanli', 'yingxiaoseo'
+                           ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => false, 'listSubNode'    => true))
+                        ?>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--标题-->
+        <div class="module_title conwidth1100">
+            大家都在看
+        </div>
+        <!--大家都在看列表-->
+        <div class="all_look_box conwidth1100">
+            <ul class="all_look_items clearfix">
+                <li class="all_look_li">
+                    <h3>大家都在看</h3>
+                    <ul class="all_look_sub">
+                        <?php
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexHotArticle', 'nodeIdentifier' => array(
+                              'zhuchaoschool'
+                           ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 3, 'enablePage'     => false, 'listSubNode'    => true))
+                        ?>
+                    </ul>
+                    <a href="/category/kechengzhongxin/1.html" class="read_more main_bg_light">查看更多</a>
+                </li>
+                <li class="all_look_li">
+                    <h3>店商那些事</h3>
+                    <ul class="all_look_sub">
+                        <?php
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexHotArticle', 'nodeIdentifier' => array(
+                              'dianshangzixun'
+                           ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 3, 'enablePage'     => false, 'listSubNode'    => true))
+                        ?>
+                    </ul>
+                    <a href="/category/dianshangzixun/1.html" class="read_more main_bg_light">查看更多</a>
+                </li>
+            </ul>
+        </div>
+        <!--标题-->
+        <div class="module_title conwidth1100">
+            课程安排
+        </div>
+        <!--课程安排列表-->
+        <div class="class_list_box conwidth1100">
+            <a class="prev_btn class_btn "><i class="icon-jiantou7"></i></a>
+            <a class="next_btn class_btn "><i class="icon-jiantou6"></i></a>
+            <div class="class_items2 clearfix">
+                <div id="class_items2" class="class_items_box">
+                    <?php
+                    Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexRecomentArticle', 'nodeIdentifier' => array(
+                          'kechengzhongxin'
+                       ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 4, 'enablePage'     => false, 'listSubNode'    => true))
+                    ?>
+                </div>
+            </div>
+        </div>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'MallDefault',)) ?>
+        <?php Qs::Sys('loadRequireJs', 'college/collegeindex') ?>
+    </body>
+</html>

@@ -45,49 +45,47 @@ class NewsList extends AbstractLabelScript
 		'hits ASC' //5   : 按照总点击数生序排列
 	);
 
-	/**
-	 * 获取自定义信息列表
-	 */
-	public function execute()
-	{
-		$nodeId = array();
-		$params = $this->invokeParams;
-		$nodeIdentifier = $params['nodeIdentifier'];
-		$modelId = $params['modelId'];
-		$enablePage = $params['enablePage'];
-		$pageParam = $this->getPageParam();
-		$node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodesByIdentifiers', array($nodeIdentifier)
-		);
-		foreach ($node as $item) {
-			array_push($nodeId, $item->getId());
-		}
-		$orderType = 'id asc';
-		return $this->appCaller->call(
-							 ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, $modelId, ContentConst::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
-		);
-	}
+   /**
+    * 获取自定义信息列表
+    */
+   public function execute($orderType = 'id desc')
+   {
+      $nodeId = array();
+      $params = $this->invokeParams;
+      $nodeIdentifier = $params['nodeIdentifier'];
+      $modelId = $params['modelId'];
+      $enablePage = $params['enablePage'];
+      $pageParam = $this->getPageParam();
+      $node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodesByIdentifiers', array($nodeIdentifier)
+      );
+      foreach ($node as $item) {
+         array_push($nodeId, $item->getId());
+      }
+      return $this->appCaller->call(
+                      ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, $modelId, ContentConst::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
+      );
+   }
 
-	/**
-	 * 获取自定义信息列表
-	 */
-	public function getArticleList($orderType = 'id asc')
-	{
-		$nodeId = array();
-		$params = $this->invokeParams;
-		$route = $this->getRoute();
-		if (!isset($route['nodeIdentifier'])) {
-			return false;
-		}
-		$nodeIdentifier = $route['nodeIdentifier'];
-		$modelId = $params['modelId'];
-		$enablePage = $params['enablePage'];
-		$pageParam = $this->getPageParam();
-		$node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
-		);
-		return $this->appCaller->call(
-							 ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array($node->getId()), $modelId, ContentConst::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
-		);
-	}
+   /**
+    * 获取自定义信息列表
+    */
+   public function getArticleList($orderType = 'id desc')
+   {
+      $params = $this->invokeParams;
+      $route = $this->getRoute();
+      if (!isset($route['nodeIdentifier'])) {
+         return false;
+      }
+      $nodeIdentifier = $route['nodeIdentifier'];
+      $modelId = $params['modelId'];
+      $enablePage = $params['enablePage'];
+      $pageParam = $this->getPageParam();
+      $node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
+      );
+      return $this->appCaller->call(
+                      ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array($node->getId()), $modelId, ContentConst::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
+      );
+   }
 
 	/**
 	 * 
