@@ -11,6 +11,13 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
             $.each($('.checkField,.register,.company'), function (index, item){
                 params[$(item).attr('id')] = $(item).val();
             });
+            params.products = '';
+            $.each($('.checkField[id^=product]'),function(index,item){
+                delete params[$(item).attr('id')];
+                if($(item).val() != ''){
+                    params.products == '' ? params.products += $(item).val():params.products += ','+$(item).val();
+                }
+            });
             if($('#logo').length){
                 params['logo'] = $('#logo').attr('src');
             }else{
@@ -19,6 +26,13 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                 return false;
             }
             params['tradeMode'] = getRadioValueByName('tradeMode');
+            Cntysoft.Front.callApi('Company', 'updateCompany', params, function(response) {
+                if(response.status) {
+                    
+                }else {
+                    
+                }
+            });
             console.log(params);
         });
         //上传的默认配置项

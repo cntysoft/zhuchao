@@ -52,7 +52,7 @@ define(['require', 'exports', 'jquery', 'Front'], function (require, exports){
                 if($this.attr('fh-value') > 0){
                     $this.val($this.attr('fh-value'));
                     if($this.siblings('.city').attr('fh-value') > 0){
-                        getChildArea($this.siblings('.city').attr('fh-value'), function (data){
+                        getChildArea($this.attr('fh-value'), function (data){
                             appendDom($this.siblings('.city'), data);
                             $this.siblings('.city').val($this.siblings('.city').attr('fh-value'));
                         });

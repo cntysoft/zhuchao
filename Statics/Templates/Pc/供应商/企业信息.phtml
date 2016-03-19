@@ -50,11 +50,11 @@ Qs::Ds('用户数据源/企业信息', 'User');
                 <h1 class="items_title">个人信息</h1>
                 <div class="form_box">
                     <div class="form_list">
-                        <label>企&nbsp;业&nbsp;名:</label>
+                        <label>企&nbsp;业&nbsp;名：</label>
                         <input type="text" id="name" class="checkField" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
                     </div>
                     <div class="form_list">
-                        <label>企业类型:</label>
+                        <label>企业类型：</label>
                         <select id="tradeMode" id="type">
                             <option value="1">有限责任公司</option>
                             <option value="2">股份有限公司</option>
@@ -79,70 +79,70 @@ Qs::Ds('用户数据源/企业信息', 'User');
                         </select>
                     </div>
                     <div class="form_list">
-                        <label><em class="main">*</em>经营模式:</label>
+                        <label><em class="main">*</em>经营模式：</label>
                         <div class="radio margin-left">
                             <label for="tradeMode1">
-                                <input id="tradeMode1" name="tradeMode" type="radio" tabindex="2" value="0" checked>
+                                <input id="tradeMode1" name="tradeMode" type="radio" tabindex="2" value="1" checked>
                                 <i></i>
                                 <span>生产型</span>
                             </label>
                         </div>
                         <div class="radio">
                             <label for="tradeMode2">
-                                <input id="tradeMode2" name="tradeMode" type="radio" tabindex="3" value="0">
+                                <input id="tradeMode2" name="tradeMode" type="radio" tabindex="3" value="2">
                                 <i></i>
                                 <span>贸易型</span>
                             </label>
                         </div>
                         <div class="radio">
                             <label for="tradeMode3">
-                                <input id="tradeMode3" name="tradeMode" type="radio" tabindex="4" value="0">
+                                <input id="tradeMode3" name="tradeMode" type="radio" tabindex="4" value="3">
                                 <i></i>
                                 <span>服务型</span>
                             </label>
                         </div>
                         <div class="radio">
                             <label for="tradeMode4">
-                                <input id="tradeMode4" name="tradeMode" type="radio" tabindex="4" value="0">
+                                <input id="tradeMode4" name="tradeMode" type="radio" tabindex="4" value="4">
                                 <i></i>
                                 <span>服务型</span>
                             </label>
                         </div>
                     </div>
                     <div class="form_list">
-                        <label><em class="main">*</em>主营产品:</label>
+                        <label><em class="main">*</em>主营产品：</label>
                         <input class="middle_input checkField" id="product1"  type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" required>
-                        <input class="middle_input checkField" id="product2"  type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" required>
-                        <input class="middle_input checkField" id="product3" type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" required>
-                        <input class="middle_input checkField" id="product4" type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6产品名称" required>
+                        <input class="middle_input checkField" id="product2"  type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" >
+                        <input class="middle_input checkField" id="product3" type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" >
+                        <input class="middle_input checkField" id="product4" type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6产品名称" >
                     </div>
 
                     <div class="form_list">
-                        <label><em class="main">*</em>企业地址:</label>
-                        <select class="company province" id="province" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择省份">
+                        <label><em class="main">*</em>企业地址：</label>
+                        <select class="company province" id="province" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择省份" fh-value="<?php Qs::DsField('User', 'province'); ?>">
                             <option value="0">请选择</option>
                         </select>
-                        <select class="company city" id="city" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择城市">
+                        <select class="company city" id="city" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择城市" fh-value="<?php Qs::DsField('User', 'city'); ?>">
                             <option value="0">请选择</option>
                         </select>
-                        <select class="company district" id="district" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择县区">
+                        <select class="company district" id="district" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择县区" fh-value="<?php Qs::DsField('User', 'district'); ?>">
                             <option value="0">请选择</option>
                         </select>
                     </div>
                     <div class="form_list">
-                        <label>详细地址:</label>
+                        <label>详细地址：</label>
                         <input type="text"  class="checkField" id="address" value="<?php Qs::DsField('User', 'address') ?>" reg='^([^<>]){3,15}$' tip-value="请输入3-30位详细地址" required>
                     </div>
                     <div class="form_list">
-                        <label>邮编:</label>
+                        <label>邮编：</label>
                         <input type="text" class="checkField" id="postCode" value="<?php Qs::DsField('User', 'postCode') ?>" reg='^[1-9]\d{5}$' tip-value="请输入正确的邮编" required>
                     </div>
                     <div class="form_list">
-                        <label>公司简介:</label>
+                        <label>公司简介：</label>
                         <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
                     </div>
                     <div class="form_list">
-                        <label class="label_uploading"><em class="main">*</em>公司logo:</label>
+                        <label class="label_uploading"><em class="main">*</em>公司logo：</label>
                         <ul class="img_uploading clearfix">
                             <li class="img_plus">
                                 <p>+</p>
@@ -151,43 +151,43 @@ Qs::Ds('用户数据源/企业信息', 'User');
                         </ul>
                     </div>
                     <div class="form_list">
-                        <label>客户群体:</label>
+                        <label>客户群体：</label>
                         <input type="text" id="customer" class="checkField" value="<?php Qs::DsField('User', 'customer') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-20位主要用户群体" required>
                     </div>
                     <div class="form_list">
-                        <label>品牌:</label>
+                        <label>品牌：</label>
                         <input type="text" id="brand" class="checkField" value="<?php Qs::DsField('User', 'brand') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-20位品牌名称" required>
                     </div>
                     <div class="form_list">
-                        <label>注册资金:</label>
+                        <label>注册资金：</label>
                         <input type="text" id="registerCapital" class="checkField" value="<?php Qs::DsField('User', 'registerCapital') ?>" fh-type="number" required>
                     </div>
                     <div class="form_list">
-                        <label>注册年份:</label>
+                        <label>注册年份：</label>
                         <input type="text" id="registerYear" class="checkField" value="<?php Qs::DsField('User', 'registerYear') ?>" reg='^[12][0-9]{3}$' tip-value="请输入四位数年份" required>
                     </div>
                     <div class="form_list">
-                        <label><em class="main">*</em>注册地址:</label>
-                        <select class="register province" id="registerProvince"  reg="^[\d]{6}$" tip-target="#registerDistrict" tip-value="请选择省份">
+                        <label><em class="main">*</em>注册地址：</label>
+                        <select class="register province" id="registerProvince"  reg="^[\d]{6}$" tip-target="#registerDistrict" tip-value="请选择省份" fh-value="<?php Qs::DsField('User', 'registerProvince'); ?>">
                             <option value="0">请选择</option>
                         </select>
-                        <select class="register city" id="provinceCity" reg="^[\d]{6}$" tip-target="#registerDistrict" tip-value="请选择城市">
+                        <select class="register city" id="registerCity" reg="^[\d]{6}$" tip-target="#registerDistrict" tip-value="请选择城市" fh-value="<?php Qs::DsField('User', 'registerCity'); ?>">
                             <option value="0">请选择</option>
                         </select>
-                        <select class="register district" id="registerDistrict" reg="^[\d]{6}$" tip-target="#registerDistrict" tip-value="请选择区县">
+                        <select class="register district" id="registerDistrict" reg="^[\d]{6}$" tip-target="#registerDistrict" tip-value="请选择区县" fh-value="<?php Qs::DsField('User', 'registerDistrict'); ?>">
                             <option value="0">请选择</option>
                         </select>
                     </div>
                     <div class="form_list">
-                        <label>法人:</label>
-                        <input type="text" id="legalPerson" class="checkField" value="<?php Qs::DsField('User', 'legalPerson') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]){3,15}$' tip-value="请输入2-6位名字" required>
+                        <label>法人：</label>
+                        <input type="text" id="legalPerson" class="checkField" value="<?php Qs::DsField('User', 'legalPerson') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]){2,6}$' tip-value="请输入2-6位名字" required>
                     </div>
                     <div class="form_list">
-                        <label>开户银行:</label>
+                        <label>开户银行：</label>
                         <input type="text" id="bank" class="checkField" value="<?php Qs::DsField('User', 'bank') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位银行名称" required>
                     </div>
                     <div class="form_list">
-                        <label>开户帐号:</label>
+                        <label>开户帐号：</label>
                         <input type="text" id="bankAccount" class="checkField" value="<?php Qs::DsField('User', 'bankAccount') ?>" fh-type="num" tip-value="请输入3-15位企业名称" required>
                     </div>
                     <!--按钮-->

@@ -9,6 +9,7 @@
 namespace ProviderFrontApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\ZhuChao\Provider\Constant as P_CONST;
+use Cntysoft\Kernel;
 /**
  * 主要是处理采购商相关的的Ajax调用
  * 
@@ -27,16 +28,20 @@ class Company extends AbstractScript
       unset($params['id']);
       unset($params['providerId']);
 
+      if(isset($params['logo'])) {
+         $cndServer = Kernel\get_image_cdn_server_url() .'/';
+         $params['logo'] = str_replace($cndServer, '', $params['logo']);
+      }
       $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
       $company = $user->getCompany();
 
       //已经存在企业信息
       if (isset($company)) {
          unset($params['name']); //企业名称不允许修改
-         $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'updateProviderCompany', array($company->getId(), $params));
+         $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProviderCompany', array($company->getId(), $params));
       } else {
          $params['providerId'] = $user->getId();
-         $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'addProviderCompany', array($params));
+         $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'addProviderCompany', array($params));
       }
    }
 
