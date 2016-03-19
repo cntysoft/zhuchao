@@ -227,6 +227,10 @@
         "Company" : [
             "\\ProviderFrontApi\\Company",
             2
+        ],
+        "Utils" : [
+            "\\ProviderFrontApi\\Utils",
+            2
         ]
     }
 }

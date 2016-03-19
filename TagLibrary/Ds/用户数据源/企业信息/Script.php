@@ -50,7 +50,6 @@ class CompanyInfo extends AbstractDsScript
       unset($ret['id']);
       unset($ret['providerId']);
       unset($ret['inputTime']);
-      var_dump($ret);
       return $ret;
    }
 

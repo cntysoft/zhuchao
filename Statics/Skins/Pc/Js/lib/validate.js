@@ -24,7 +24,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
             qq : '请输入正确的qq',
             nickname : '请输入3-8位昵称',
             name : '请输入手机号或用户名',
-            Num : '请输入数字',
+            num : '请输入数字',
             password : '请输入6-15位密码',
             phoneAuthCode : '请输入6位数字验证码',
             imgCode : '请输入4位图片验证码',
@@ -54,7 +54,6 @@ define(['exports', 'jquery', 'layer'], function (exports){
         notEqualMessage = '该内容值不能重复!';
         var errorArray = new Array();
         function checkFields($fields){
-            console.log($fields);
             layer.closeAll();
             errorArray = new Array();
             $.each($fields, function (index, item){
