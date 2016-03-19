@@ -1,0 +1,62 @@
+<?php
+$nodeIdentifier = $this->getRouteNodeIdentifier();
+$parent = -1;
+if (in_array($nodeIdentifier, array('zhuce', 'denglu', 'yanzheng', 'mima', 'huiyuanziliao'))) {
+   $parent = 0;
+}
+if (in_array($nodeIdentifier, array('fabuxinxi', 'caigoubaojia', 'chengjiaoguanli', 'pinglunguanli', 'wodeshoucangguanzhu'))) {
+   $parent = 1;
+}
+if (in_array($nodeIdentifier, array('zhaomaijia', 'gongyingshangfabuxinxi', 'guanlichanpiing'))) {
+   $parent = 2;
+}
+if (in_array($nodeIdentifier, array('chanpinku', 'qiyeku', 'helplaobanneican'))) {
+   $parent = 3;
+}
+if (in_array($nodeIdentifier, array('remenwenti', 'duihuanwenti'))) {
+   $parent = 4;
+}
+if (in_array($nodeIdentifier, array('jiaoyizhapian', 'tupianqinquan', 'zhishichanquan', 'weiguixinxi'))) {
+   $parent = 5;
+}
+echo '<ul class="left_menu" rootnode="' . $parent . '" identifier="' . $nodeIdentifier . '">';
+?>
+<li class="menu_item">
+    <a href="javascript:;" class="menu_head">帐号管理<i class="icon-xiangxiajiantou main"></i></a>
+    <ul class="sub_menu">
+        <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'zhanghaoguanli', 'type' => 1)) ?>
+    </ul>
+</li>
+<li class="menu_item">
+    <a href="javascript:;" class="menu_head">采购中心<i class="icon-xiangxiajiantou main"></i></a>
+    <ul class="sub_menu">
+        <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'caigouzhongxin', 'type' => 1)) ?>
+    </ul>
+</li>
+<li class="menu_item">
+    <a href="javascript:;" class="menu_head">供应商服务<i class="icon-xiangxiajiantou main"></i></a>
+    <ul class="sub_menu">
+        <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'gongyingshangfuwu', 'type' => 1)) ?>
+    </ul>
+</li>
+<li class="menu_item">
+    <a href="javascript:;" class="menu_head">特色栏目<i class="icon-xiangxiajiantou main"></i></a>
+    <ul class="sub_menu">
+        <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'teselanmu', 'type' => 1)) ?>
+    </ul>
+</li>
+<li class="menu_item">
+    <a href="javascript:;" class="menu_head">积分商城<i class="icon-xiangxiajiantou main"></i></a>
+    <ul class="sub_menu">
+        <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'jifenshangcheng', 'type' => 1)) ?>
+    </ul>
+</li>
+<li class="menu_item">
+    <a href="javascript:;" class="menu_head">维权指南<i class="icon-xiangxiajiantou main"></i></a>
+    <ul class="sub_menu">
+        <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'weiquanzhinan', 'type' => 1)) ?>
+    </ul>
+</li>
+<?php
+echo '</ul>';
+?>

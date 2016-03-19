@@ -270,6 +270,323 @@ return array(
       'coverTemplateFile' => '帮助中心/首页.phtml',
       'modelsTemplate'    => array(
          1 => '帮助中心/内容页.phtml'
+      ),
+      'children'          => array(
+         array(
+            'text'             => '帐号管理',
+            'identifier'       => 'zhanghaoguanli',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '帮助中心/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '帮助中心/内容页.phtml'
+            ),
+            'children'         => array(
+               array(
+                  'text'             => '注册',
+                  'identifier'       => 'zhuce',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '登录',
+                  'identifier'       => 'denglu',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '验证',
+                  'identifier'       => 'yanzheng',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '密码',
+                  'identifier'       => 'mima',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '会员资料',
+                  'identifier'       => 'huiyuanziliao',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               )
+            )
+         ), array(
+            'text'             => '采购中心',
+            'identifier'       => 'caigouzhongxin',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '帮助中心/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '帮助中心/内容页.phtml'
+            ),
+            'children'         => array(
+               array(
+                  'text'             => '发布信息',
+                  'identifier'       => 'fabuxinxi',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '采购报价',
+                  'identifier'       => 'caigoubaojia',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '成交管理',
+                  'identifier'       => 'chengjiaoguanli',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '评论管理',
+                  'identifier'       => 'pinglunguanli',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '我的收藏关注',
+                  'identifier'       => 'wodeshoucangguanzhu',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               )
+            )
+         ), array(
+            'text'             => '供应商服务',
+            'identifier'       => 'gongyingshangfuwu',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '帮助中心/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '帮助中心/内容页.phtml'
+            ),
+            'children'         => array(
+               array(
+                  'text'             => '找买家',
+                  'identifier'       => 'zhaomaijia',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '发布信息',
+                  'identifier'       => 'gongyingshangfabuxinxi',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '管理产品',
+                  'identifier'       => 'guanlichanpiing',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               )
+            )
+         ), array(
+            'text'             => '特色栏目',
+            'identifier'       => 'teselanmu',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '帮助中心/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '帮助中心/内容页.phtml'
+            ),
+            'children'         => array(
+               array(
+                  'text'             => '产品库',
+                  'identifier'       => 'chanpinku',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '企业库',
+                  'identifier'       => 'qiyeku',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '老板内参',
+                  'identifier'       => 'helplaobanneican',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               )
+            )
+         ), array(
+            'text'             => '积分商城',
+            'identifier'       => 'jifenshangcheng',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '帮助中心/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '帮助中心/内容页.phtml'
+            ),
+            'children'         => array(
+               array(
+                  'text'             => '热门问题',
+                  'identifier'       => 'remenwenti',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '兑换问题',
+                  'identifier'       => 'duihuanwenti',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               )
+            )
+         ), array(
+            'text'             => '维权指南',
+            'identifier'       => 'weiquanzhinan',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '帮助中心/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '帮助中心/内容页.phtml'
+            ),
+            'children'         => array(
+               array(
+                  'text'             => '交易诈骗',
+                  'identifier'       => 'jiaoyizhapian',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '图片侵权',
+                  'identifier'       => 'tupianqinquan',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '知识产权',
+                  'identifier'       => 'zhishichanquan',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               ),
+               array(
+                  'text'             => '违规信息',
+                  'identifier'       => 'weiguixinxi',
+                  'nodeType'         => 3,
+                  'showOnMenu'       => 1,
+                  'showOnListParent' => 0,
+                  'listTemplateFile' => '帮助中心/列表页.phtml',
+                  'modelsTemplate'   => array(
+                     1 => '帮助中心/内容页.phtml'
+                  )
+               )
+            )
+         )
       )
    ),
    array(

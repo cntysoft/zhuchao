@@ -1,7 +1,7 @@
 <?php
-$infos = $this->getInfoListByNodeAndStatusNotPage(4);
+$infos = $this->getInfoListByNodeAndStatusNotPage(29);
 $out = '';
 foreach ($infos as $info) {
-	$out .= '<li class="hot_item"><a href="/article/' . $info->getId() . '.html">' . $info->getTitle() . '</a></li>';
+   $out .= '<li class="hot_item"><a href="/article/' . $info->getId() . '.html">' . $info->getTitle() . '</a></li>';
 }
 echo $out;
