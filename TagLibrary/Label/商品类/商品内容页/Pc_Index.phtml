@@ -1,0 +1,355 @@
+<?php
+$out = '<div class="banner">
+    <div class="banner_box">';
+$locationId = $this->getAdsLocationId('电脑端', '首页', 'banner');
+$ads = $this->getAds($locationId);
+if (count($ads)) {
+	foreach ($ads as $ad) {
+		$url = $ad->getContentUrl();
+		$image = $this->getImageFromCdn($ad->getImage(), 710, 400);
+		$bgcolor = $ad->getBgcolor();
+		$out .= '<div class="item" style="background-color: #' . $bgcolor . '"><a target="_blank" href="' . $url . '"><img src="' . $image . '"></a></div>';
+	}
+}
+$out .= '</div><div class="banner_login_box">
+            <div class="login_box">
+                <div class="login_user clearfix">
+                    <a href=""><img src="../../Images/test/test_news_img.jpg" alt=""/></a>
+
+                    <h3 class="text_ellipsis">上午好，采购经理</h3>
+
+                    <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
+                </div>
+                <div class="login_action">
+                    <a class="main_bg">登录</a>
+                    <a>注册</a>
+                </div>
+                <!--全球企业库-->
+                <h3 class="login_search_title">全球企业库</h3>
+
+                <div class="login_search_box">
+                    <input type="text" placeholder="">
+                <span class="search_button">
+                    <i class="icon-sousuo"></i>
+                </span>
+                </div>
+            </div>
+            <!--快报-->
+            <div class="login_news">
+                <h3>筑巢快报</h3>
+                <div class="main_hover login_news_list">
+					 <a href=""><i>中钢网春节放假公告 </i><span class="date">01-29</span></a>
+					<a href=""><i>中钢网春节放假公告 </i><span class="date">01-29</span></a>
+<a href=""><i>中钢网春节放假公告</i> <span class="date">01-29</span></a>
+<a href=""><i>中钢网春节放假公告</i> <span class="date">01-29</span></a>
+</div>
+</div>
+</div>
+</div><div class="sale_pro conwidth">
+    <ul class="clearfix">';
+$goodsLists = $this->getGoodsList(array(), false, 'hits DESC', 0, 4);
+foreach ($goodsLists as $list) {
+	$out .= '<li>
+            <a href="/item/' . $list->getId() . '.html">
+                <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 150, 150) . '" alt=""/>
+
+                <div class="pro_text_box">
+                    <h3 class="text_ellipsis">' . $list->getTitle() . '</h3>
+
+                    <p class="text_ellipsis">' . $list->getDescription() . '</p>
+                    <span class="pro_text_tip">￥' . ($list->getPrice() > 0 ? $list->getPrice() : "暂无") . '</span>
+                </div>
+                <span class="sale_tip main_bg">
+                    热
+                </span>
+            </a>
+        </li>';
+}
+$out .= '</ul>
+</div><h3 class="module_title conwidth">
+    <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_aboutus_title.png" alt=""/></a>
+</h3><div class="about_us conwidth clearfix">
+    <!--品牌广告-->
+    <div class="brand_ad fl about_item">
+        <a href="" class="item_title main_bg">品牌广告</a>';
+$locationId = $this->getAdsLocationId('电脑端', '首页', 'body1');
+$ads = $this->getAds($locationId);
+if (count($ads)) {
+	foreach ($ads as $ad) {
+		$url = $ad->getContentUrl();
+		$image = $this->getImageFromCdn($ad->getImage(), 710, 400);
+		$bgcolor = $ad->getBgcolor();
+		$out .= '<a target="_blank" href="' . $url . '" class="brand_ad_img">
+            <img src="' . $image . '" alt=""/>
+            <p class="text_ellipsis">' . $ad->getName() . '</p>
+        </a>';
+		break;
+	}
+}
+
+$out .= '</div>';
+$laobanneicai = $this->getNodeInfoByIdentifier('laobanneican');
+$articles = $this->getInfoListByNodeAndStatusNotPage($laobanneicai->getId());
+$out .= '<div class="about_news fl about_item">
+        <a href="" class="item_title main_bg">老板内参</a>
+
+        <div class="about_news_items main_hover">';
+$i = 1;
+foreach ($articles as $article) {
+	if ($i == 1) {
+		$out .= '<div class="about_news_list">
+                <h4><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
+
+                <p>
+                    ' . $article->getIntro() . '
+                </p>
+                <img src="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 196, 138) . '" alt=""/>
+            </div>';
+	} else {
+		$out .= '<div class="about_news_list">
+                <h4><a href="/article/' . $article->getId() . '.html"><i></i>' . $article->getTitle() . '</a></h4>
+                <span class="date">' . date('Y-m-d', $article->getInputTime()) . '</span>
+            </div>';
+	}
+	$i = 2;
+}
+$out .= '</div>
+    </div>';
+
+$out .= '<div class="about_right_box fl about_item">
+        <a href="" class="item_title main_bg">采购实况</a>
+        <div class="about_right_item">';
+foreach ($goodsLists as $list) {
+	$out .= '<div class="about_right_list">
+                <span class="address text_ellipsis">河南省鹤壁市</span>
+                <span class="time">' . rand(1, 10) . '秒前</span>
+                <h4 class="text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h4>
+            </div>';
+}
+$out .= '</div>
+</div></div><h3 class="module_title conwidth">
+    <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
+</h3><div class="pro_card conwidth">
+    <ul class="clearfix">';
+$goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 4);
+foreach ($goodsLists as $list) {
+	$out .= '<li>
+            <p class="card_price">¥' . ($list->getPrice() > 0 ? ($list->getPrice() / 10000) . "万" : "暂无报价") . '</p>
+            <a href="/item/' . $list->getId() . '.html" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
+
+            <div class="card_text_box">
+                <h3 class="text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
+                <i class="jiantou icon-jiantou-copy"></i>
+            </div>
+            <span class="pro_card_tip">
+                <b>新品</b>
+                <i class="icon-biaoqian main"></i>
+            </span>
+        </li>';
+}
+$out .= '</ul>
+</div><div class="module_title conwidth clearfix">
+    <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
+</div>';
+$cond = array(
+	'categoryId = ?1',
+	'bind' => array(
+		1 => 3
+	)
+);
+
+$out .= '<div class="pro_list clearfix conwidth">';
+$goodsLists = $this->getGoodsList($cond, false, 'inputTime DESC', 0, 4);
+$i = 1;
+foreach ($goodsLists as $list) {
+	$out .= '<div class="pro_item fl">
+        <a class="pro_img" href="/item/' . $list->getId() . '.html">
+            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
+        </a>
+        <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
+        
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥<b>" . ($list->getPrice() / 10000) . "</b>万" : "暂无报价") . '</span>
+    </div>';
+	if ($i == 1) {
+		$out .= '<div class="pro_item fl pro_banner noselect">
+        <a class="switch_btn switch_left_btn left_btn1"><i class="icon-jiantou4"></i></a>
+        <a class="switch_btn switch_right_btn right_btn1"><i class="icon-jiantou2"></i></a>
+        <div class="pro_banner_box" pro-box="pro-box1">';
+		$locationId = $this->getAdsLocationId('电脑端', '首页', 'body2');
+$ads = $this->getAds($locationId);
+if (count($ads)) {
+	foreach ($ads as $ad) {
+		$url = $ad->getContentUrl();
+		$image = $this->getImageFromCdn($ad->getImage(), 310, 310);
+		$bgcolor = $ad->getBgcolor();
+		$out .= '<div class="pro_banner_li clearfix">
+                <div class="fl pro_banner_text">
+                    <h3 class="pro_text text_ellipsis main_hover"><a href="">'.$ad->getName().'</a></h3>
+                </div>
+                <a class="pro_banner_img" href="'.$url.'"><img src="'.$image.'" alt=""/></a>
+            </div>';
+	}
+}
+        $out .= '</div>
+    </div>';
+	}
+	$i = 2;
+}
+$out .= '<div class="pro_item fl noselect">
+        <a class="switch_btn switch_left_btn left_btn2"><i class="icon-jiantou4"></i></a>
+        <a class="switch_btn switch_right_btn right_btn2"><i class="icon-jiantou2"></i></a>
+        <div class="pro_brank"  pro-box="pro-box2">
+            <div class="pro_brank_item">
+                <a href="">
+                    <img src="../../Images/test/test_pro_img.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_banner1.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_brand_ad.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_iocn_logo.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+            </div>
+            <div class="pro_brank_item">
+                <a href="">
+                    <img src="../../Images/test/test_pro_img.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_banner1.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_brand_ad.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_iocn_logo.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+            </div>
+        </div>
+    </div>';
+$out .= '</div>';
+
+$out .= '<div class="module_title conwidth clearfix">
+    <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
+</div>';
+$cond = array(
+	'categoryId = ?1',
+	'bind' => array(
+		1 => 2
+	)
+);
+$out .= '<div class="pro_list clearfix conwidth">';
+$goodsLists = $this->getGoodsList($cond, false, 'inputTime DESC', 0, 4);
+$i = 1;
+foreach ($goodsLists as $list) {
+	$out .= '<div class="pro_item fl">
+        <a class="pro_img" href="/item/' . $list->getId() . '.html">
+            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
+        </a>
+        <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
+        
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥<b>" . ($list->getPrice() / 10000) . "</b>万" : "暂无报价") . '</span>
+    </div>';
+	if ($i == 1) {
+		$out .= '<div class="pro_item fl pro_banner noselect">
+        <a class="switch_btn switch_left_btn left_btn1"><i class="icon-jiantou4"></i></a>
+        <a class="switch_btn switch_right_btn right_btn1"><i class="icon-jiantou2"></i></a>
+        <div class="pro_banner_box" pro-box="pro-box1">';
+		$locationId = $this->getAdsLocationId('电脑端', '首页', 'body3');
+$ads = $this->getAds($locationId);
+if (count($ads)) {
+	foreach ($ads as $ad) {
+		$url = $ad->getContentUrl();
+		$image = $this->getImageFromCdn($ad->getImage(), 310, 310);
+		$bgcolor = $ad->getBgcolor();
+		$out .= '<div class="pro_banner_li clearfix">
+                <div class="fl pro_banner_text">
+                    <h3 class="pro_text text_ellipsis main_hover"><a href="">'.$ad->getName().'</a></h3>
+                </div>
+                <a class="pro_banner_img" href="'.$url.'"><img src="'.$image.'" alt=""/></a>
+            </div>';
+	}
+}
+        $out .= '</div>
+    </div>';
+	}
+	$i = 2;
+}
+$out .= '<div class="pro_item fl noselect">
+        <a class="switch_btn switch_left_btn left_btn2"><i class="icon-jiantou4"></i></a>
+        <a class="switch_btn switch_right_btn right_btn2"><i class="icon-jiantou2"></i></a>
+        <div class="pro_brank"  pro-box="pro-box2">
+            <div class="pro_brank_item">
+                <a href="">
+                    <img src="../../Images/test/test_pro_img.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_banner1.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_brand_ad.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_iocn_logo.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+            </div>
+            <div class="pro_brank_item">
+                <a href="">
+                    <img src="../../Images/test/test_pro_img.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_banner1.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_brand_ad.jpg" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_iocn_logo.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+                <a href="">
+                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
+                </a>
+            </div>
+        </div>
+    </div>';
+$out .= '</div>';
+echo $out;
+?>
+
+
+<!--产品列表-->
+
+
+
+
+
+
+
+
+
+
+
+

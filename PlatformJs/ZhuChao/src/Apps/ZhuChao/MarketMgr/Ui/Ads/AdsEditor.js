@@ -57,7 +57,7 @@ Ext.define('App.ZhuChao.MarketMgr.Ui.Ads.AdsEditor',{
                   form.getForm().setValues(data);
                   this.image = data.image;
                   this.fileRefs = data.fileRefs;
-                  this.imageRef.setSrc(data.image);
+                  this.imageRef.setSrc(ZC.getZhuChaoImageUrl(data.image));
                } else{
                   var data = this.record.getData();
                   var pid = {
@@ -156,7 +156,6 @@ Ext.define('App.ZhuChao.MarketMgr.Ui.Ads.AdsEditor',{
                   createSubDir : false,
                   fileTypeExts : ['gif', 'png', 'jpg', 'jpeg'],
                   margin : '0 0 0 5',
-                  useOss : KS.getUseOss(),
                   maskTarget : this,
                   enableFileRef : true,
                   buttonText : this.LANG_TEXT.UP,
@@ -174,7 +173,7 @@ Ext.define('App.ZhuChao.MarketMgr.Ui.Ads.AdsEditor',{
       var file = file.pop();
       this.fileRefs = parseInt(file.rid);
       this.image = file.filename;
-      this.imageRef.setSrc(file.filename);
+      this.imageRef.setSrc(ZC.getZhuChaoImageUrl(file.filename));
    },
    /**
     * 取消按钮处理

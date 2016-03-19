@@ -1,1 +1,15 @@
-首页
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首 页</title>
+	 <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/index.css','slick.css','layer.css')); ?>
+</head>
+<body>
+<?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
+<!--banner 全屏-->
+<?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_Index')) ?>
+<?php Qs::Label('静态类/网站底部') ?>
+<script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="mall/index" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
+</body>
+</html>

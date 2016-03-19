@@ -10,6 +10,9 @@
 namespace TagLibrary\Label\Goods;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\Product\Constant as GOODS_CONST;
+use App\ZhuChao\MarketMgr\Constant as MAR_CONST;
+use App\Site\Category\Constant as CATEGORY_CONST;
+use App\Site\Content\Constant as CONTENT_CONST;
 use Cntysoft\Framework\Utils\ChinaArea;
 class Goods extends AbstractLabelScript
 {
@@ -68,12 +71,74 @@ class Goods extends AbstractLabelScript
 		}
 	}
 
-	protected function getChinaArea()
+	public function getChinaArea()
 	{
 		if (null == $this->chinaArea) {
 			$this->chinaArea = new ChinaArea();
 		}
 		return $this->chinaArea;
 	}
+	/**
+	 * 检查节点是否存在
+	 * @param string $identifier
+	 * @return boolean
+	 */
+	public function checkNodeIdentifier($identifier)
+	{
+		return $this->appCaller->call(
+							 CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'checkNodeIdentifier', array($identifier));
+	}
+
+	/**
+	 * 获取节点信息
+	 * @param string $identifier
+	 * @return 
+	 */
+	public function getNodeInfoByIdentifier($identifier)
+	{
+		$this->checkNodeIdentifier($identifier);
+		$nodeInfo = $this->appCaller->call(
+				  CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($identifier));
+		return $nodeInfo;
+	}
+	/**
+	 * 获取文章列表（不带分页）
+	 * @param int $nodeId
+	 * @return type
+	 */
+	public function getInfoListByNodeAndStatusNotPage($nodeId)
+	{
+		$limit = 5;
+		$generalInfo = $this->appCaller->call(
+				  CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, 1, 3, false, 'hits DESC', 0, $limit));
+		return $generalInfo;
+	}
+	
+	/**
+    * 获取广告位的位置信息
+    * 
+    * @param string $port 设备端
+    * @param string $module 模块端
+    * @param string $location 位置信息
+    * @return integer 返回该位置的位置id
+    */
+   public function getAdsLocationId($port, $module, $location)
+   {
+      return $this->appCaller->call(
+                      MAR_CONST::MODULE_NAME, MAR_CONST::APP_NAME, MAR_CONST::APP_API_ADS, 'getAdsLocationId', array($port, $module, $location));
+   }
+
+   /**
+    * 根据位置id获取该位置下的广告
+    * 
+    * @param integer $locationId 广告位置id
+    * @return object 广告列表对象
+    */
+   public function getAds($locationId)
+   {
+      $ads = $this->appCaller->call(
+              MAR_CONST::MODULE_NAME, MAR_CONST::APP_NAME, MAR_CONST::APP_API_ADS, 'getAdsList', array($locationId, 'sort asc'));
+      return $ads;
+   }
 
 }
