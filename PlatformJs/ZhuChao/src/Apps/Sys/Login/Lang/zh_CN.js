@@ -12,7 +12,7 @@ Ext.define('App.Sys.Login.Lang.zh_CN', {
          DISPLAY_TEXT : '系统登录程序'
       },
       FIELDS : {
-         TITLE : '凤凰筑巢B2B<i>后台管理系统</i>',
+         TITLE : '凤凰筑巢<i>后台管理系统</i>',
          CHK_CODE_CHANGE : '换一张',
          SIGN_IN : '登录'
       },
