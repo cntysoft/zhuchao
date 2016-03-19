@@ -9,6 +9,7 @@
 namespace Pages;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Cntysoft\Kernel;
+use App\ZhuChao\Buyer\Acl;
 /**
  * 前端模块初始化代码
  */
@@ -23,8 +24,11 @@ class Module implements ModuleDefinitionInterface
    {
       $di = Kernel\get_global_di();
       $loader = $di->getShared('loader');
+      $loader->registerNamespaces(array(
+         'PagesFrontApi' => __DIR__ . DS . 'FrontApi'
+              ), true);
       $loader->registerDirs(array(
-         __DIR__.DS.'Controllers'
+         __DIR__ . DS . 'Controllers'
       ))->register();
    }
 
@@ -35,7 +39,10 @@ class Module implements ModuleDefinitionInterface
     */
    public function registerServices(\Phalcon\DiInterface $dependencyInjector)
    {
-
+      $acl = new Acl();
+      $dependencyInjector->set('BuyerAcl', function()use($acl) {
+         return $acl;
+      });
    }
 
 }

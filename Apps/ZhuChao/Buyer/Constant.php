@@ -15,6 +15,8 @@ class Constant
    const APP_API_BUYER_MGR = 'BuyerMgr';
    const APP_API_BUYER_ACL = 'Acl';
    const APP_API_BUYER_ADDRESS = 'Address';
+   const APP_API_BUYER_COLLECT = 'Collect';
+   const APP_API_BUYER_FOLLOW = 'Follow';
    
    //手机短信验证码的类型
    const SMS_TYPE_REG = 1;

@@ -81,6 +81,15 @@
                 "controller" : "Product",
                 "action" : "searchpage"
             }
+        },
+        {
+            "key" : "PagesFrontApiEntry",
+            "rule" : "\/front-api-entry",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "FrontApiEntry",
+                "action" : "index"
+            }
         }
     ],
     "hostName" : true,
@@ -93,5 +102,15 @@
         "search" : "商品类/搜索商品列表.phtml",
         "classifylist" : "商品类/商品分类列表.phtml",
         "searchpage" : "商品类/搜索页.phtml"
+    },
+    "front_api_map" : {
+        "User" : [
+            "\\PagesFrontApi\\User",
+            2
+        ],
+        "Utils" : [
+            "\\PagesFrontApi\\Utils",
+            1
+        ]
     }
 }

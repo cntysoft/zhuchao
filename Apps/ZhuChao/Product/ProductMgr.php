@@ -250,7 +250,11 @@ class ProductMgr extends AbstractLib
     */
    public function getProductById($productId)
    {
-      return ProductModel::findFirst($productId);
+      $product = ProductModel::findFirst($productId);
+      if(!$product) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_PRODUCT_NOT_EXIST'), $errorType->code('E_PRODUCT_NOT_EXIST')), $this->getErrorTypeContext());
+      }
    }
 
    /**
@@ -553,6 +557,20 @@ class ProductMgr extends AbstractLib
          $ret['queryAttrs'] = $attrs;
       }
       return $ret;
+   }
+   
+   /**
+    * 添加商品的点击量
+    * 
+    * @param int $id
+    * @return boolean
+    */
+   public function addHit($id)
+   {
+      $product = $this->getProductById($id);
+      $hits = $product->getHits();
+      $product->setHits($hits+1);
+      return $product->save();
    }
 
 }

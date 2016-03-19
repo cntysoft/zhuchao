@@ -280,11 +280,11 @@ class Mgr extends AbstractLib
       }
 
       //新添加企业信息的时候需要更新缓存
-      if(isset($data['subAttr'])) {
+      if (isset($data['subAttr'])) {
          $cacher = $this->getAppObject()->getCacheObject();
          $cacher->delete(Constant::SITE_CACHE_KEY);
       }
-      
+
       $db = Kernel\get_db_adapter();
       try {
          $db->begin();
@@ -363,6 +363,24 @@ class Mgr extends AbstractLib
    {
       $chinaArea = $this->getChinaArea();
       return $chinaArea->getChildArea((int) $code);
+   }
+
+   /**
+    * 获取企业信息
+    * 
+    * @param int $id
+    * @return 
+    */
+   public function getCompanyById($id)
+   {
+      $company = CompanyModel::findFirst($id);
+      if (!$company) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_PROVIDER_COMPANY_NOT_EXIST'), $errorType->code('E_PROVIDER_COMPANY_NOT_EXIST')), $this->getErrorTypeContext());
+      }
+
+      return $company;
    }
 
    /**
