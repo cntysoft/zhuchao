@@ -176,7 +176,7 @@ class BuyerMgr extends AbstractLib
          
          $fields = $buyer->getDataFields();
          foreach($params as $key => $val){
-            if(in_array($key, $fields)){
+            if(in_array($key, $fields) && in_array($key, array('level'))){
                $data[$key] = $val;
             }
          }

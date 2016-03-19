@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收货地址</title>
+    <?php Qs::Sys('loadCss', array('buyer/style.css', 'buyer/addr.css'))?>
+</head>
+<body>
+<!--头部-->
+<div class="header_top">
+    <div class="conwidth header_top_inner clearfix">
+        <div class="fl">
+            欢迎来到凤凰筑巢！ <a class="login_btn main_hover">请登录</a> <a class="register_btn main_hover">注册</a>
+        </div>
+        <ul class="fr header_top_nav main_hover">
+            <li><a href="">我的询价单</a></li>
+            <li class="line"></li>
+            <li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">供应商专区</a></li>
+            <li class="line"></li>
+            <li><a href="">运营商专区</a></li>
+            <li class="line"></li>
+            <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">帮助中心</a></li>
+            <li class="line"></li>
+            <li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
+                <div class="pull_more main_bg">
+                    <img class="erweima" src="../../Images/test/test_news_img.jpg">
+                    <span>扫码下载凤凰筑巢客户端</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--个人中心头部-->
+<?php Qs::Label('采购商/用户中心头部')?>
+<!--个人中心-->
+<div class="content conwidth clearfix">
+    <!--左侧列表-->
+    <?php Qs::Label('采购商/用户中心左侧')?>
+    <!--右侧内容-->
+    <div class="content_wrap fr">
+        <h1 class="items_title">收货地址 </h1>
+        <?php Qs::Label('采购商/收货地址列表', array('renderTpl' => 'AddressList'))?>
+        <div class="new_address">
+            <div class="right_top">
+                <h2>新增收货地址</h2>
+            </div>
+            <div class="new_address_content">
+                <form>
+                    <div class="recevier clearfix">
+                        <span class="address_intro"><i class="main">*</i>收货人姓名：</span>
+                        <input type="text" required id="name">
+                        <span class="tip hide">收货人姓名不能为空</span>
+                    </div>
+                    <div class="new_local clearfix">
+                        <span class="address_intro"><i class="main">*</i>收货区域：</span>
+                        <div class="select_address">
+                            <div class="drop_menu ">
+                                <div class="drop_show" id="province">省份</div>
+                                <div class="drop_arrow"></div>
+                                <ul class="drop_list">
+                                </ul>
+                            </div>
+                            <div class="drop_menu ">
+                                <div class="drop_show" id="city">城市</div>
+                                <div class="drop_arrow"></div>
+                                <ul class="drop_list">
+                                </ul>
+                            </div>
+                            <div class="drop_menu">
+                                <div class="drop_show" id="country">地区</div>
+                                <div class="drop_arrow"></div>
+                                <ul class="drop_list">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="new_address_detail clearfix">
+                        <span class="address_intro"><i class="main">*</i>收货地址：</span>
+                        <input type="text" required id="address">
+                        <span class="tip hide">收货地址不能为空</span>
+                    </div>
+                    <div class="new_address_phone clearfix">
+                        <span class="address_intro"><i class="main">*</i>手机：</span>
+                        <input type="text" id="phone" required fh-type="phone">
+                        <span class="tip hide">手机号不能为空</span>
+                    </div>
+                    <div class="new_postal clearfix">
+                        <span class="address_intro">邮编：</span>
+                        <input type="text">
+                    </div>
+                    <p class="new_defult clearfix">
+                        <!--<span><i></i> 设为默认</span>-->
+                        <input type="checkbox" id="new_defult" name="defult">
+                        <label for="new_defult">设为默认</label>
+                    </p>
+                    <p>
+                        <input type="submit" class="submit_address main_light main_border_light" value="保存信息">
+                        <span class="cancel_btn">取消</span>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<?php Qs::Label('采购商/用户中心底部')?>
+<?php Qs::Sys('loadRequireJs', 'buyer/addr')?>
+</body>
+</html>

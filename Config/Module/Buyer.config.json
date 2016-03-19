@@ -74,7 +74,7 @@
         },
         {
             "key" : "BuyerCollection",
-            "rule" : "\/collection.html",
+            "rule" : "\/collection/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -83,7 +83,7 @@
         },
         {
             "key" : "BuyerFollow",
-            "rule" : "\/follow.html",
+            "rule" : "\/follow/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
@@ -97,15 +97,6 @@
                 "module" : "Buyer",
                 "controller" : "Index",
                 "action" : "address"
-            }
-        },
-        {
-            "key" : "BuyerAddress",
-            "rule" : "\/address\/{addrId:[1-9][0-9]*|0}.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "changeaddress"
             }
         },
         {
@@ -145,12 +136,13 @@
         "buyer\/avatar" : "采购会员\/用户中心\/修改头像.phtml",
         "buyer\/password" : "采购会员\/用户中心\/修改密码.phtml",
         "buyer\/modify" : "采购会员\/用户中心\/我的信息.phtml",
-        "buyer\/collection" : "采购会员\/用户中心\/我的收藏.phtml",
+        "buyer\/collection" : "采购会员\/用户中心\/收藏商品.phtml",
         "buyer\/address" : "采购会员\/用户中心\/收货地址.phtml",
         "buyer\/changeaddress" : "采购会员\/用户中心\/修改地址.phtml",
         "buyer\/message" : "采购会员\/用户中心\/消息通知.phtml"
     },
     "front_api_map" : {
-        "User" : ["\\FrontApi\\User", 2]
+        "User" : ["\\FrontApi\\User", 2],
+        "Uploader" : ["\\FrontApi\\Uploader", 2]
     }
 }

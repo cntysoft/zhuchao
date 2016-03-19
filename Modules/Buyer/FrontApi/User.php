@@ -10,6 +10,7 @@ namespace FrontApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;  
 use Cntysoft\Kernel;
+use Cntysoft\Framework\Utils\ChinaArea;
 
 /**
  * 主要是处理采购商相关的的Ajax调用
@@ -18,6 +19,7 @@ use Cntysoft\Kernel;
  */
 class User extends AbstractScript
 {
+   protected $chinaarea = null;
    /**
     * 采购商注册
     * <code>
@@ -289,6 +291,29 @@ class User extends AbstractScript
    }
    
    /**
+    * 删除选定的收藏商品
+    * 
+    * @param array $params
+    */
+   public function deleteCollects(array $params)
+   {
+      $this->checkRequireFields($params, array('ids'));
+      $curUser = $this->getCurUser();
+      $ids = $params['ids'];
+      if(!is_array($params['ids'])){
+         $ids = array($params['ids']);
+      }
+      
+      $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_COLLECT,
+         'deleteCollects',
+         array($curUser->getId(), $ids)
+      );
+   }
+   
+   /**
     * 检查手机号码是否存在
     * 
     * @param array $params
@@ -338,6 +363,36 @@ class User extends AbstractScript
          BUYER_CONST::APP_API_BUYER_ACL,
          'getCurUser'
       );
+   }
+   
+   /**
+    * 获取省份信息
+    * 
+    * @return array <b>获取省份数组信息</b>
+    */
+   public function getProvinces()
+   {
+      if (null == $this->chinaarea) {
+         $this->chinaarea = new ChinaArea;
+      }
+      return $this->chinaarea->getProvinces();
+   }
+
+   /**
+    * 获取指定的地区信息
+    * 
+    * @param integer $param <b>邮编</b>
+    * @return string <b>该邮编的地区信息</b>
+    */
+   public function getArea($param)
+   {
+      if (empty($param)) {
+         return '暂无';
+      }
+      if (null == $this->chinaarea) {
+         $this->chinaarea = new ChinaArea;
+      }
+      return $this->chinaarea->getArea($param);
    }
    
 }

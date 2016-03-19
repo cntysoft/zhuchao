@@ -1,0 +1,34 @@
+<?php
+$routeInfo = $this->getRouteInfo();
+$cls1 = $cls2 = $cls3 = $cls4 ='';
+switch($routeInfo['action']){
+   case 'collection':
+      $cls1 = 'main_bg_light';
+      break;
+   case 'address':
+      $cls2 = 'main_bg_light';
+      break;
+   case 'password':
+      $cls3 = 'main_bg_light';
+      break;
+   case 'modify':
+      $cls4 = 'main_bg_light';
+      break;
+}
+
+$out = '<div class="items_wrap fl">
+        <dl>
+            <dt><i class="icon-product main"></i>采购中心</dt>
+            <dd><a class="mainbg_hover_light '.$cls1.'" href="/collection/1.html">收藏商品</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">产品管理</a></dd>
+            <dd><a class="mainbg_hover_light" href="#">产品分组</a></dd>
+        </dl>
+        <dl>
+            <dt><i class="icon-zhanghao main"></i>账户中心</dt>
+            <dd><a class="mainbg_hover_light '.$cls4.'" href="/modify.html">基本信息</a></dd>
+            <dd><a class="mainbg_hover_light '.$cls2.'" href="/address.html">收货地址</a></dd>
+            <dd><a class="mainbg_hover_light '.$cls3.'" href="/password.html">修改密码</a></dd>
+        </dl>
+    </div>';
+
+echo $out;

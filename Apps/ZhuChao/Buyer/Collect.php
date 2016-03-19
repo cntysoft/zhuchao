@@ -69,21 +69,21 @@ class Collect extends AbstractLib
    /**
     * 删除指定id的收藏信息
     * 
-    * @param integer $collectId
+    * @param integer $buyerId
+    * @param integer $ids
     * @return boolean
     */
-   public function deleteCollect($collectId)
+   public function deleteCollects($buyerId, array $ids)
    {
-      $collect = $this->getCollectById($collectId);
-      
-      if(!$collect){
-         $errorType = $this->getErrorType();
-         Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_COLLECT_NOT_EXIST'), $errorType->code('E_BUYER_COLLECT_NOT_EXIST')
-         ), $this->getErrorTypeContext());
+      $cond[] = CollectModel::generateRangeCond('id', $ids);
+      $cond[] = 'buyerId='.$buyerId;
+      $cond = implode(' and ', $cond);
+      $list = $this->getCollectList(array($cond), false, 'id DESC', 0, 0);
+      if(count($list)){
+         foreach($list as $collect){
+            $collect->delete();
+         }
       }
-      
-      return $collect->delete();
    }
    
    /**

@@ -1,0 +1,58 @@
+<?php
+$list = $this->getAddressList();
+if(count($list)){
+   $out='<div class="address_container clearfix">';
+   foreach($list as $address){
+      $out.='<div class="address_ele">
+                <span class="address_border address_borderT"></span>
+                <span class="address_border address_borderB"></span>
+                <div class="address_title clearfix">
+                    <div class="address_name fl">
+                        <i class="icon-rentou3"></i>
+                        侯景生
+                    </div>
+                    <div class="address_handle fr">
+                        <span class="edit_btn">编辑</span>
+                        <span class="del_addr main_hover ">删除</span>
+                    </div>
+                </div>
+                <div class="address_detail">
+                    <i class="icon-dizhi"></i>
+                    <p>河南省郑州市金水区金水路与郑汴
+                        路交口凤凰北城D区神恩信息</p>
+                </div>
+                <div class="address_phone">
+                    <i class="icon-shouji"></i>
+                    156398023421
+                </div>
+                <i class="icon-duihao1 right_logo main_light" ></i>
+            </div>';
+      
+      $out.='<div class="address_ele">
+                <span class="address_border address_borderT"></span>
+                <span class="address_border address_borderB"></span>
+                <div class="address_title clearfix">
+                    <div class="address_name fl">
+                        <i class="icon-rentou3"></i>
+                        侯景生
+                    </div>
+                    <div class="address_handle fr">
+                        <span class="defult_btn main_bg main_bg_light main_border_light">默认</span>
+                        <span class="edit_btn">编辑</span>
+                        <span class="iconfont">删除</span>
+                    </div>
+                </div>
+                <div class="address_detail">
+                    <i class="icon-dizhi"></i>
+                    <p>河南省郑州市金水区金水路与郑汴
+                        路交口凤凰北城D区神恩信息</p>
+                </div>
+                <div class="address_phone">
+                    <i class="icon-shouji"></i>
+                    156398023421
+                </div>
+                <i class="icon-duihao1 right_logo" ></i>
+            </div>';
+   }
+   $out.='</div>';
+}

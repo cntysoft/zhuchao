@@ -21,6 +21,13 @@ class Collect extends BaseModel
       return 'app_zhuchao_buyer_collect';
    }
    
+   public function initialize()
+   {
+      $this->belongsTo('productId', 'App\ZhuChao\Product\Model\Product', 'id', array(
+         'alias' => 'product'
+      ));
+   }
+   
    public function getId()
    {
       return (int)$this->id;

@@ -1,0 +1,131 @@
+<?php Qs::Ds('用户数据源/采购商', 'User'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <?php Qs::Sys('loadCss', array('buyer/style.css', 'buyer/user.css'))?>
+    <style>
+         div.radio i {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+         }
+    </style>
+</head>
+<body>
+<!--头部-->
+<div class="header_top">
+    <div class="conwidth header_top_inner clearfix">
+        <div class="fl">
+            欢迎来到凤凰筑巢！ <a class="login_btn main_hover">请登录</a> <a class="register_btn main_hover">注册</a>
+        </div>
+        <ul class="fr header_top_nav main_hover">
+            <li><a href="">我的询价单</a></li>
+            <li class="line"></li>
+            <li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">供应商专区</a></li>
+            <li class="line"></li>
+            <li><a href="">运营商专区</a></li>
+            <li class="line"></li>
+            <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">帮助中心</a></li>
+            <li class="line"></li>
+            <li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
+                <div class="pull_more main_bg">
+                    <img class="erweima" src="../../Images/test/test_news_img.jpg">
+                    <span>扫码下载凤凰筑巢客户端</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--个人中心头部-->
+<?php Qs::Label('采购商/用户中心头部')?>
+<!--个人中心-->
+<div class="content conwidth clearfix">
+    <!--左侧列表-->
+    <?php Qs::Label('采购商/用户中心左侧')?>
+    <!--右侧内容-->
+    <div class="content_wrap fr">
+      <h1 class="items_title">个人信息</h1>
+      <div class="form_box">
+          <div class="form_list">
+               <label class="label_uploading"><em class="main">*</em>用户头像:</label>
+               <ul class="img_uploading clearfix">
+                   <li class="img_plus">
+                       <p>+</p>
+                       <span>添加照片</span>
+                   </li>
+               </ul>
+           </div>
+          <?php 
+          $name = Qs::DsField('User', 'name',true);
+          if(!$name){
+             $canChange = '';
+          }else{
+             $canChange = 'disabled';
+          }
+          ?>
+          <div class="form_list">
+              <label><em class="main">*</em>用户名:</label>
+              <input type="text" id='name' value="<?php echo $name; ?>" fh-type="nickname" <?php echo $canChange?>>
+          </div>
+          <div class="form_list">
+              <label><em class="main">*</em>等&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>
+              <input type="text" id='name' value="<?php echo 'LV'.Qs::DsField('User', 'level',true); ?>" fh-type="nickname" disabled>
+          </div>
+          <div class="form_list">
+              <label><em class="main">*</em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
+              <?php
+              $checkArray = array(1 => '', 2 => '', 3 => '');
+              $sex = Qs::DsField('User', 'sex', true);
+              if ($sex == 1) {
+                 $checkArray[1] = 'checked';
+              } elseif ($sex == 2) {
+                 $checkArray[2] = 'checked';
+              } else {
+                 $checkArray[3] = 'checked';
+              }
+              ?>
+              <div class="radio margin-left">
+                  <label for="sex">
+                      <input id="sex" name="sex" type="radio"  value="1" <?php echo $checkArray[1] ?>>
+                      <i></i>
+                      <span>男</span>
+                  </label>
+              </div>
+              <div class="radio">
+                  <label for="sex2">
+                      <input id="sex2" name="sex" type="radio"  value="2" <?php echo $checkArray[2] ?>>
+                      <i></i>
+                      <span>女</span>
+                  </label>
+              </div>
+              <div class="radio">
+                  <label for="sex3">
+                      <input id="sex3" name="sex" type="radio" value="3" <?php echo $checkArray[3] ?>>
+                      <i></i>
+                      <span>保密</span>
+                  </label>
+              </div>
+          </div>
+          <div class="form_list">
+              <label><em class="main">*</em>手机号码:</label>
+              <input type="text" id="phone" value="<?php Qs::DsField('User', 'phone') ?>" disabled>
+          </div>
+
+          <div class="action_btn">
+              <label></label>
+              <a class="main_bg" id="submit">可选</a>
+          </div>
+      </div>
+  </div>
+</div>
+<?php Qs::Sys('loadRequireJs', 'buyer/basic')?>
+</body>
+</html>
