@@ -1,1 +1,197 @@
-供应商首页
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>供应商</title>
+    <?php Qs::Sys('loadCss',array('usercenter/style.css','usercenter/supplier.css'))?>
+</head>
+<body>
+<!--[if lt IE 9]>
+<style type="text/Css" rel="stylesheet">
+    #circle strong{
+        display: none!important;
+    }
+    #circle em{
+        display:block!important;
+    }
+</style>
+<![endif]-->
+<!--头部-->
+<div class="header_top">
+    <div class="conwidth header_top_inner clearfix">
+        <div class="fl">
+            欢迎来到凤凰筑巢！ <a class="login_btn main_hover">请登录</a> <a class="register_btn main_hover">注册</a>
+        </div>
+        <ul class="fr header_top_nav main_hover">
+            <li><a href="">我的询价单</a></li>
+            <li class="line"></li>
+            <li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">供应商专区</a></li>
+            <li class="line"></li>
+            <li><a href="">运营商专区</a></li>
+            <li class="line"></li>
+            <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li class="line"></li>
+            <li><a href="">帮助中心</a></li>
+            <li class="line"></li>
+            <li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
+                <div class="pull_more main_bg">
+                    <img class="erweima" src="../../Images/test/test_news_img.jpg">
+                    <span>扫码下载凤凰筑巢客户端</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--个人中心头部-->
+<div class="head_wrap main_bg_light">
+    <div class="head_box conwidth clearfix">
+        <a class="logo_img fl" href="#"><img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>"> </a>
+        <ul class="fr clearfix">
+            <li><a class="mainbg_hover" href="#">首页</a></li>
+            <li><a class="mainbg_hover" href="#">产品中心</a></li>
+            <li><a class="mainbg_hover" href="#">询价单</a></li>
+            <li><a class="mainbg_hover" href="#">账号中心</a></li>
+            <li><a class="mainbg_hover" href="#">店铺设置</a></li>
+        </ul>
+    </div>
+</div>
+<!--个人中心-->
+<div class="content conwidth clearfix">
+    <!--左侧列表-->
+    <div class="items_wrap fl">
+        <h1 class="company_name">郑州挨打公司</h1>
+        <ul class="company_honor clearfix">
+            <li><img src="../../Images/test/test_company_news1.jpg"></li>
+            <li><img src="../../Images/test/test_company_news1.jpg"></li>
+            <li><img src="../../Images/test/test_company_news1.jpg"></li>
+        </ul>
+        <!--信用值-->
+        <div class="credit_values clearfix">
+            <h2>信用值</h2>
+            <div id="circle">
+                <strong></strong>
+                <!--ie8以下显示 em-->
+                <em>60%</em>
+            </div>
+            <p>（原始信用值为100）</p>
+        </div>
+        <!--基础分数-->
+        <div class="basic_score">
+            <h2>基础评分</h2>
+            <div class="score">
+                <div class="line">
+                    <div class="line_inner"></div>
+                    <em>50</em>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右侧内容-->
+    <div class="content_wrap fr">
+        <div class="company">
+            <!--公司基本信息-->
+            <div class="company_info clearfix">
+                <img class="company_img fl" src="../../Images/test/test_company_news1.jpg">
+                <div class="company_rank fl">
+                    <h1>郑州艾达公司</h1>
+                    <p>
+                        <span>产品质量综合排名</span>
+                        <span class="rank_num">5655252</span>
+                    </p>
+                    <p>
+                        <span>工厂币</span>
+                        <span class="rank_num">15</span>
+                    </p>
+                </div>
+                <div class="company_pro fl">
+                    <p><span>全部产品</span><em>1</em></p>
+                    <p><span>待优化产品</span><em>1</em></p>
+                    <p><span>违规</span><em>0</em>
+                    <p>
+                        <a class="putaway" href="#">上架产品</a>
+                        <a class="question_link" href="#">产品上下架及官方删除问题的解答&gt;</a>
+                    </p>
+                </div>
+            </div>
+            <!--基础评分-->
+            <div class="score_step">
+                <h2>基础评分 30分<em>（完成以下认证增加基础评分）</em></h2>
+                <ul class="clearfix">
+                    <li class="active clearfix">
+                        <div class="step fl">
+                            <div class="icon_circle"><i class="icon-shangpu"></i></div>
+                            <p class="score_plus"></p>
+                            <p class="score_name">开通商铺</p>
+                        </div>
+                        <div class="step_line fl">
+                            <div class="circle"></div>
+                            <div class="line"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </li>
+                    <li class=" clearfix">
+                        <div class="step fl">
+                            <div class="icon_circle"><i class="icon-xinfeng"></i></div>
+                            <p class="score_plus">+10</p>
+                            <p class="score_name">邮箱验证</p>
+                        </div>
+                        <div class="step_line fl">
+                            <div class="circle"></div>
+                            <div class="line"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </li>
+                    <li class=" clearfix">
+                        <div class="step fl">
+                            <div class="icon_circle"><i class="icon-zhizhao"></i></div>
+                            <p class="score_plus">+20</p>
+                            <p class="score_name">营业执照验证</p>
+                        </div>
+                        <div class="step_line fl">
+                            <div class="circle"></div>
+                            <div class="line"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </li>
+                    <li class=" clearfix">
+                        <div class="step fl">
+                            <div class="icon_circle"><i class="icon-renzheng"></i></div>
+                            <p class="score_plus">+30</p>
+                            <p class="score_name">工厂认证</p>
+                        </div>
+                        <div class="step_line fl">
+                            <div class="circle"></div>
+                            <div class="line"></div>
+                            <div class="circle"></div>
+                        </div>
+                    </li>
+                    <li class=" clearfix tallage">
+                        <div class="step fl">
+                            <div class="icon_circle"><i class="icon-shui"></i></div>
+                            <p class="score_plus">+10</p>
+                            <p class="score_name">增值税资格认证</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--广告栏-->
+        <div class="company_ad">
+            <div class="long_ad"><a href="#"><img src="../../Images/test/text_gongyingshagn.png"> </a></div>
+            <div class="block_ad clearfix">
+                <div class="ad fl"><a href="#"><img src="../../Images/test/test_gongyingshagn2.png"> </a></div>
+                <div class="ad fl"><a href="#"><img src="../../Images/test/test_gongyingshagn2.png"> </a></div>
+                <div class="ad fl"><a href="#"><img src="../../Images/test/test_gongyingshagn2.png"> </a></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script data-main="../../Js/requireenter" app="usercenter/supplier" id="require" src="../../Js/lib/require.js"></script>
+</body>
+
+</html>

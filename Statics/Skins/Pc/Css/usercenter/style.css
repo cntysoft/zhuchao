@@ -244,14 +244,26 @@ ul, ol {
 .icon-xinfeng:before {
   content: "\e643"; }
 
+.icon-shanchu:before {
+  content: "\e64a"; }
+
 .icon-sousuo:before {
   content: "\e622"; }
+
+.icon-jiaoyu:before {
+  content: "\e649"; }
 
 .icon-dianhua1:before {
   content: "\e63c"; }
 
+.icon-tubiao:before {
+  content: "\e64b"; }
+
 .icon-101:before {
   content: "\e63d"; }
+
+.icon-dianhua2:before {
+  content: "\e64c"; }
 
 .icon-anquanfanghu:before {
   content: "\e610"; }
@@ -334,6 +346,9 @@ ul, ol {
 .icon-iconfontzuobiao:before {
   content: "\e63e"; }
 
+.icon-dizhi:before {
+  content: "\e64d"; }
+
 .icon-jiantou1:before {
   content: "\e618"; }
 
@@ -358,8 +373,17 @@ ul, ol {
 .icon-duihaoyuanquan:before {
   content: "\e640"; }
 
+.icon-shouji:before {
+  content: "\e64e"; }
+
 .icon-star:before {
   content: "\e642"; }
+
+.icon-rentou3:before {
+  content: "\e64f"; }
+
+.icon-duihao1:before {
+  content: "\e650"; }
 
 .icon-biaoqian:before {
   content: "\e621"; }
@@ -629,7 +653,7 @@ input[type='text'],
 input[type='password'] {
   height: 40px;
   line-height: 40px;
-  padding-left: 20px;
+  padding: 0 15px;
   border: 1px solid #ccc;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

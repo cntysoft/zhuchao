@@ -1,12 +1,14 @@
 define(['exports', 'jquery', 'layer'], function (exports){
     $(function (){
         var reg = {
-            emial : /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
+            email : /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
             phone : /^(1[0-9]{10})$/,
+            tel:/[1-9][0-9]{6,7}/,
+            fax:/[1-9][0-9]{6,7}/,
             qq : /^[1-9][0-9]{4,10}$/,
             nickname : /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,8}$/,
             name : /^[\w]{5,11}$/,
-            noNum : /^[\d]*$/,
+            num : /^[\d]*$/,
             password : /^[\w~`\!@#\$%\^&\*\(\)_\-\=\+\[\]\{\}\:"\|;'\\<>\?,\.\/"]{6,15}$/,
             phoneAuthCode : /^[\d]{6}$/,
             imgCode : /^[\w]{4}$/,
@@ -17,10 +19,12 @@ define(['exports', 'jquery', 'layer'], function (exports){
         message = {
             email : '请输入正确的邮箱',
             phone : '请输入正确的手机号',
+            tel:'座机号为首位不为0的7-8位数字',
+            fax:'传真为首位不为0的7-8位数字',
             qq : '请输入正确的qq',
             nickname : '请输入3-8位昵称',
             name : '请输入手机号或用户名',
-            noNum : '请输入非数字',
+            Num : '请输入数字',
             password : '请输入6-15位密码',
             phoneAuthCode : '请输入6位数字验证码',
             imgCode : '请输入4位图片验证码',
@@ -50,6 +54,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
         notEqualMessage = '该内容值不能重复!';
         var errorArray = new Array();
         function checkFields($fields){
+            console.log($fields);
             layer.closeAll();
             errorArray = new Array();
             $.each($fields, function (index, item){
@@ -114,6 +119,17 @@ define(['exports', 'jquery', 'layer'], function (exports){
             } else if($item.attr('reg')){
                 var reg2 = new RegExp($item.attr('reg'));
                 if(!reg2.test(val)){
+                    var tipMessage = '';
+                    var tipTarget = $($item);
+                    if($($item).attr('tip-value')){
+                        tipMessage = $($item).attr('tip-value');
+                    }else if(message.hasOwnProperty(type)){
+                        tipMessage = message[type];
+                    }
+                    if($item.attr('tip-target')){
+                        tipTarget = $($item.attr('tip-target'));
+                    }
+                    tips(tipMessage,tipTarget);
                     errorArray.push({
                         ele : $item,
                         msg : message[type]
@@ -149,5 +165,6 @@ define(['exports', 'jquery', 'layer'], function (exports){
         exports.message = message;
         exports.checkFields = checkFields;
         exports.notEqual = notEqual;
+        exports.tips = tips;
     });
 });

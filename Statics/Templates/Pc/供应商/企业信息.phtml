@@ -1,7 +1,174 @@
 <?php
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+Qs::Ds('用户数据源/企业信息', 'User');
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>个人中心</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
+    </head>
+    <body>
+        <!--个人中心头部-->
+        <div class="head_wrap main_bg_light">
+            <div class="head_box conwidth clearfix">
+                <a class="logo_img fl" href="#"><img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>"> </a>
+                <ul class="fr clearfix">
+                    <li><a class="mainbg_hover" href="#">首页</a></li>
+                    <li><a class="mainbg_hover" href="#">产品中心</a></li>
+                    <li><a class="mainbg_hover" href="#">询价单</a></li>
+                    <li><a class="mainbg_hover" href="#">账号中心</a></li>
+                    <li><a class="mainbg_hover" href="#">店铺设置</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--个人中心-->
+        <div class="content conwidth clearfix">
+            <!--左侧列表-->
+            <div class="items_wrap fl">
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>产品中心</dt>
+                    <dd><a class="main_bg_light" href="#">发布产品</a></dd>
+                    <dd><a class="mainbg_hover_light" href="#">产品管理</a></dd>
+                    <dd><a class="mainbg_hover_light" href="#">产品分组</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>询价单</dt>
+                    <dd><a class="mainbg_hover_light" href="#">全部</a></dd>
+                    <dd><a class="mainbg_hover_light" href="#">未回复</a></dd>
+                    <dd><a class="mainbg_hover_light" href="#">已回复</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>账户中心</dt>
+                    <dd><a class="mainbg_hover_light" href="#">基本信息</a></dd>
+                    <dd><a class="mainbg_hover_light" href="#">我的地址</a></dd>
+                    <dd><a class="mainbg_hover_light" href="#">修改密码</a></dd>
+                </dl>
+            </div>
+            <!--右侧内容-->
+            <div class="content_wrap fr">
+                <h1 class="items_title">个人信息</h1>
+                <div class="form_box">
+                    <div class="form_list">
+                        <label>企&nbsp;业&nbsp;名:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label>企业类型:</label>
+                        <select id="tradeMode">
+                            <option value="1">有限责任公司</option>
+                            <option value="2">股份有限公司</option>
+                            <option value="3">内资企业</option>
+                            <option value="4">集体企业</option>
+                            <option value="5">股份合作企业</option>
+                            <option value="6">联营企业</option>
+                            <option value="7">私营企业</option>
+                            <option value="8">港，澳，台商投资企业</option>
+                            <option value="9">合资经营企业(港或澳，台资)</option>
+                            <option value="10">合作经营企业(港或澳，台资)</option>
+                            <option value="11">港，澳，台商独资企业</option>
+                            <option value="12">港，澳，台商投资股份有限公司</option>
+                            <option value="13">外商投资企业</option>
+                            <option value="14">中外合资经营企业</option>
+                            <option value="15">中外合作经营企业</option>
+                            <option value="16">外资企业</option>
+                            <option value="17">外商投资股份有限公司</option>
+                            <option value="18">国有企业</option>
+                            <option value="19">其他企业</option>
+                            <option value="20">个体经营</option>
+                        </select>
+                    </div>
+                    <div class="form_list">
+                <label><em class="main">*</em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
+                <div class="radio margin-left">
+                    <label for="sex1">
+                        <input id="sex1" name="sex" type="radio" tabindex="2" value="0" checked>
+                        <i></i>
+                        <span>生产型</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label for="sex2">
+                        <input id="sex2" name="sex" type="radio" tabindex="3" value="0">
+                        <i></i>
+                        <span>贸易型</span>
+                    </label>
+                </div>
+                <div class="radio">
+                    <label for="sex3">
+                        <input id="sex3" name="sex" type="radio" tabindex="4" value="0">
+                        <i></i>
+                        <span>服务型</span>
+                    </label>
+                </div>
+            </div>
+                    <div class="form_list">
+                        <label>主营产品:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label>企&nbsp;业&nbsp;名:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label><em class="main">*</em>地址:</label>
+                        <select>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                        </select>
+                        <select>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                        </select>
+                        <select>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                            <option>asdf</option>
+                        </select>
+                    </div>
+                    <div class="form_list">
+                        <label>详细地址:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label>邮编:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label>公司简介:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label>公司logo:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label>主要客户群体:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label>企&nbsp;业&nbsp;名:</label>
+                        <input type="text" disabled="disabled" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <!--按钮-->
+                    <div class="action_btn">
+                        <a class="main_bg">可选</a>
+                        <a class="disable">不可选</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'provider/companyinfo') ?>
+    </body>
+</html>
