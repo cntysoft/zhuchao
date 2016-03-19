@@ -99,7 +99,7 @@ class ProductMgr extends AbstractLib
          $pdata['hits'] = 0;
          $pdata['defaultImage'] = $ddata['images'][0][0];
          $pdata['star'] = 5;
-         $pdata['grade'] = 1;
+         $pdata['grade'] = 5;
          $pdata['searchAttrMap'] = '';
          $pdata['indexGenerated'] = 0;
          $pdata['inputTime'] = time();
@@ -123,7 +123,8 @@ class ProductMgr extends AbstractLib
             }
          }
          $product->create();
-         return $db->commit();
+         $db->commit();
+         return $product;
       } catch (Exception $ex) {
          $db->rollback();
 
@@ -174,6 +175,8 @@ class ProductMgr extends AbstractLib
 
          $detail->assignBySetter($ddata);
          $detail->update();
+
+         $product->setDefaultImage($ddata['images'][0][0]);
          $product->assignBySetter($pdata);
          $product->setUpdateTime(time());
          $product->setIndexGenerated(0);
@@ -208,50 +211,38 @@ class ProductMgr extends AbstractLib
    }
 
    /**
-    * 删除指定id的产品
+    * 修改多个商品的状态
     * 
     * @param integer $providerId
-    * @param array $productIds
-    * @return boolean
+    * @param array $productNumbers
+    * @param integer $status
+    * @param string $comment
     */
-   public function setProductDelete($providerId, array $productIds)
+   public function changeProductsStauts($providerId, array $productNumbers, $status , $comment = '')
    {
-      $cond[] = ProductModel::generateRangeCond('id', $productIds);
-      $cond[] = 'providerId='.(int)$providerId;
-      $cond = implode(' and ', $cond);
-      $list = $this->getProductList(array($cond), false, 'id DESC', 0, 0);
-      if(count($list)){
-         foreach ($list as $product){
-            $product->setStatus(Constant::PRODUCT_STATUS_DELETE);
-            $product->setUpdateTime(time());
-            $product->update();
-         }
+      if(!in_array($status, array(
+         Constant::PRODUCT_STATUS_VERIFY,
+         Constant::PRODUCT_STATUS_SHELF,
+         Constant::PRODUCT_STATUS_DELETE
+      ))){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_PRODUCT_STATUS_ERROR'), $errorType->code('E_PRODUCT_STATUS_ERROR')
+         ), $this->getErrorTypeContext());
       }
-   }
-   
-   /**
-    * 下架指定id的产品
-    * 
-    * @param integer $providerId
-    * @param array $productIds
-    * @return boolean
-    */
-   public function setProductShelf($providerId, array $productIds, $comment = '')
-   {
-      $cond[] = ProductModel::generateRangeCond('id', $productIds);
-      $cond[] = 'providerId='.(int)$providerId;
+      $cond[] = ProductModel::generateRangeCond('number', $productNumbers);
       $cond = implode(' and ', $cond);
       $list = $this->getProductList(array($cond), false, 'id DESC', 0, 0);
       if(count($list)){
          foreach ($list as $product){
-            $product->setStatus(Constant::PRODUCT_STATUS_SHELF);
+            $product->setStatus($status);
             $product->setComment($comment);
             $product->setUpdateTime(time());
             $product->update();
          }
       }
    }
-   
+
    /**
     * 获取指定id的产品信息
     * 

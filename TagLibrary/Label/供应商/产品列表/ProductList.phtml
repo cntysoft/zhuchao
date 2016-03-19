@@ -29,20 +29,20 @@ if(3 == $status){
    $out.='<th class="pro_time">添加时间</th>';
 }
 $out.='<th class="pro_star">质量星级</th>
-               <th class="pro_operate">操作</th>
-            </tr>';
+         <th class="pro_operate">操作</th>
+      </tr>';
 if(count($list)){
    foreach ($list as $product){
       $name = $product->getBrand() . $product->getTitle() . $product->getDescription();
       $productId = $product->getId();
       $number = $product->getNumber();
-      $price = !$product->getPrice() ? '面议' : '￥<em>'.$product->getPrice().'</em>';
+      $price = (0 == $product->getPrice()) ? '面议' : '￥<em>'.$product->getPrice().'</em>';
       $time = date('Y-m-d', $product->getInputTime());
       $comment = $product->getComment();
       $image = $this->getImageCdnUrl($product->getDefaultImage());
       $url = $this->getProduct($productId);
       $star = $product->getStar();
-      $out.='<tr class="prolist_list " fh-index="'.$productId.'">
+      $out.='<tr class="prolist_list " fh-number="'.$number.'">
             <td class="pro-code">
                <span class="check"><em><i ></i></em></span>
                <span>'.$number.'</span>

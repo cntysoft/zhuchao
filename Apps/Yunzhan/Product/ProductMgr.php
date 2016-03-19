@@ -70,39 +70,39 @@ class ProductMgr extends AbstractLib
       $dfields = $detail->getRequireFields(array('id'));
       $this->checkRequireFields($params, $dfields);
       $pfields = $product->getRequireFields(array('id', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
-      foreach(array('price') as $val){
-         array_push($pfields, $val);	
+      foreach (array('price') as $val) {
+         array_push($pfields, $val);
       }
       $this->checkRequireFields($params, $pfields);
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
 
       $db = Kernel\get_db_adapter();
-      try{
+      try {
          $db->begin();
          $detail->assignBySetter($ddata);
          $detail->create();
-        
-         $pdata['number'] = $this->getProductNumber($params['categoryId']);
+
+         $pdata['number'] = isset($params['number']) ? $params['number'] : $this->getProductNumber($params['categoryId']);
          $pdata['hits'] = 0;
          $pdata['defaultImage'] = $ddata['images'][0][0];
          $pdata['star'] = 5;
-         $pdata['grade'] = 1;
+         $pdata['grade'] = 5;
          $pdata['searchAttrMap'] = '';
          $pdata['indexGenerated'] = 0;
          $pdata['inputTime'] = time();
          $pdata['updateTime'] = 0;
          $pdata['detailId'] = $detail->getId();
-         
+
          $product->assignBySetter($pdata);
-         
-         if(isset($params['group']) && !empty($params['group'])){
+
+         if (isset($params['group']) && !empty($params['group'])) {
             $group = $params['group'];
-            if(!is_array($group)){
+            if (!is_array($group)) {
                $group = array($group);
             }
             $productId = $product->getId();
-            foreach($group as $one){
+            foreach ($group as $one) {
                $join = new PGModel();
                $join->setProductId($productId);
                $join->setGroupId($one);
@@ -114,7 +114,7 @@ class ProductMgr extends AbstractLib
          return $db->commit();
       } catch (Exception $ex) {
          $db->rollback();
-         
+
          Kernel\throw_exception($ex, $this->getErrorTypeContext());
       }
    }
@@ -133,10 +133,7 @@ class ProductMgr extends AbstractLib
       $product = $this->getProductById($productId);
       $detail = $product->getDetail();
       $dfields = $detail->getRequireFields(array('id'));
-      foreach(array('imgRefMap', 'fileRefs') as $val){
-         array_push($dfields, $val);	
-      }
-      $pfields = $product->getRequireFields(array('id', 'providerId', 'categoryId', 'companyId', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
+      $pfields = $product->getRequireFields(array('id', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
       foreach(array('price') as $val){
          array_push($pfields, $val);	
       }
@@ -146,22 +143,10 @@ class ProductMgr extends AbstractLib
       $db = Kernel\get_db_adapter();
       try{
          $db->begin();
-         if(!empty($ddata['fileRefs'])){
-            $oldRefs = $detail->getFileRefs();
-            $nowRefs = is_array($ddata['fileRefs']) ? $ddata['fileRefs'] : array($ddata['fileRefs']);
-            $deleteRefs = array_diff($oldRefs, $nowRefs);
-            $newRefs = array_diff($nowRefs, $oldRefs);
-            $refManager = new RefManager();
-            foreach($deleteRefs as $ref){
-               $refManager->removeFileRef($ref);
-            }
-            foreach($newRefs as $ref){
-               $refManager->confirmFileRef($ref);
-            }
-         }
-         
          $detail->assignBySetter($ddata);
          $detail->update();
+         
+         $product->setDefaultImage($ddata['images'][0][0]);
          $product->assignBySetter($pdata);
          $product->setUpdateTime(time());
          $product->setIndexGenerated(0);
@@ -203,6 +188,51 @@ class ProductMgr extends AbstractLib
    public function getProductById($productId)
    {
       return ProductModel::findFirst($productId);
+   }
+   
+   /**
+    * 修改多个商品的状态
+    * 
+    * @param array $productNumbers
+    * @param integer $status
+    */
+   public function changeProductsStauts(array $productNumbers, $status)
+   {
+      if(!in_array($status, array(
+         Constant::PRODUCT_STATUS_VERIFY,
+         Constant::PRODUCT_STATUS_SHELF,
+         Constant::PRODUCT_STATUS_DELETE
+      ))){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_PRODUCT_STATUS_ERROR'), $errorType->code('E_PRODUCT_STATUS_ERROR')
+         ), $this->getErrorTypeContext());
+      }
+      $cond[] = ProductModel::generateRangeCond('number', $productNumbers);
+      $cond = implode(' and ', $cond);
+      $list = $this->getProductList(array($cond), false, 'id DESC', 0, 0);
+      if(count($list)){
+         foreach ($list as $product){
+            $product->setStatus($status);
+            $product->setUpdateTime(time());
+            $product->update();
+         }
+      }
+   }
+   /**
+    * 根据商品编号获取商品信息
+    * 
+    * @param string $number
+    * @return 
+    */
+   public function getProductByNumber($number)
+   {
+      return ProductModel::findFirst(array(
+         'number=?0',
+         'bind' => array(
+            0 => $number
+         )
+      ));
    }
    
    /**

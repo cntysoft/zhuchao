@@ -19,7 +19,7 @@ foreach($attrs as $attr){
       $out.='<div class="attr_list clearfix basic">
             <span class="attr_title">'.$star.$name.'：</span>
             <div class="attr_info select_brand">
-                <select class="attrSelect" id="'.$attr->getName().'"  '.$required.'>';
+                <select class="attrSelect" id="'.$name.'"  '.$required.'>';
       foreach($optValue as $one){
          $out.='<option value="'.$one.'">'.$one.'</option>';
       }              
@@ -27,7 +27,7 @@ foreach($attrs as $attr){
    }else{
       $out.='<div class="attr_list clearfix basic">
             <span class="attr_title">'.$star.$name.'：</span>
-            <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$attr->getName().'" fh-type="length" minlength="1" maxlength="10"></div>';
+            <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="10"></div>';
    }
 }
 $out.='<p class="attr_add">

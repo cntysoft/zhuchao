@@ -56,7 +56,7 @@ class Product extends AbstractScript
          }
       }
 
-      $this->appCaller->call(
+      $product = $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,
          P_CONST::APP_API_PRODUCT_MGR,
@@ -64,6 +64,7 @@ class Product extends AbstractScript
          array($provider->getId(), $companyId, $params)
       );
       
+      $params['number'] = $product->getNumber();
       //插入到商家云站数据库中
       $this->appCaller->call(
          YUN_P_CONST::MODULE_NAME,
@@ -72,6 +73,71 @@ class Product extends AbstractScript
          'addProduct',
          array($params)
       );
+   }
+   
+   
+   /**
+    * 添加一个商品
+    * 
+    * @param array $params
+    * @return 
+    */
+   public function updateProduct(array $params)
+   {
+      $this->checkRequireFields($params, array('number', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
+      $provider = $this->getCurUser();
+      $company = $provider->getCompany();
+      $companyId = $company ? $company->getId() : 0;
+      $cndServer = Kernel\get_image_cdn_server_url() .'/';
+      $params['companyId'] = $companyId;
+      
+      if(count($params['images'])){
+         $images = $params['images'];
+         $params['images'] = array();
+         foreach ($images as $image){
+            $item[0] = str_replace($cndServer, '', $image[0]);
+            $item[1] = $image[1];
+            $params['images'][] = $item;
+         }
+      }
+
+      if(count($params['imgRefMap'])){
+         $imgRefMap = $params['imgRefMap'];
+         $params['imgRefMap'] = array();
+         foreach ($imgRefMap as $image){
+            $item[0] = str_replace($cndServer, '', $image[0]);
+            $item[1] = $image[1];
+            $params['imgRefMap'][] = $item;
+         }
+      }
+
+      $fhproduct = $this->getFhProductByNumber($params['number']);
+      if(!$fhproduct){
+         $errorType = new ErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')
+         ));
+      }
+      $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_PRODUCT_MGR,
+         'updateProduct',
+         array($fhproduct->getId(), $params)
+      );
+      
+      $shopprodcut = $this->getShopProductByNumber($params['number']);
+      
+      if($shopprodcut){
+         //插入到商家云站数据库中
+         $this->appCaller->call(
+            YUN_P_CONST::MODULE_NAME,
+            YUN_P_CONST::APP_NAME,
+            YUN_P_CONST::APP_API_PRODUCT_MGR,
+            'updateProduct',
+            array($shopprodcut->getId(), $params)
+         );
+      }
    }
    
    /**
@@ -144,19 +210,27 @@ class Product extends AbstractScript
     */
    public function deleteProduct(array $params)
    {
-      $this->checkRequireFields($params, array('ids'));
+      $this->checkRequireFields($params, array('numbers'));
       $curUser = $this->getCurUser();
-      $ids = $params['ids'];
-      if(!is_array($ids)){
-         $ids = array((int)$ids);
+      $numbers = $params['numbers'];
+      if(!is_array($numbers)){
+         $numbers = array($numbers);
       }
       
-      return $this->appCaller->call(
+      $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,
          P_CONST::APP_API_PRODUCT_MGR,
-         'setProductDelete',
-         array($curUser->getId(), $ids)
+         'changeProductsStauts',
+         array($curUser->getId(), $numbers, P_CONST::PRODUCT_STATUS_DELETE,'')
+      );
+      
+      $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_PRODUCT_MGR,
+         'changeProductsStauts',
+         array($numbers, YUN_P_CONST::PRODUCT_STATUS_DELETE)
       );
    }
    
@@ -168,19 +242,51 @@ class Product extends AbstractScript
     */
    public function shelfProduct(array $params)
    {
-      $this->checkRequireFields($params, array('ids'));
+      $this->checkRequireFields($params, array('numbers'));
       $curUser = $this->getCurUser();
-      $ids = $params['ids'];
-      if(!is_array($ids)){
-         $ids = array((int)$ids);
-      }
       
-      return $this->appCaller->call(
+      $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,
          P_CONST::APP_API_PRODUCT_MGR,
-         'setProductshelf',
-         array($curUser->getId(), $ids, '自主下架')
+         'changeProductsStauts',
+         array($curUser->getId(), $params['numbers'], P_CONST::PRODUCT_STATUS_SHELF, '自主下架')
+      );
+      
+      $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_PRODUCT_MGR,
+         'changeProductsStauts',
+         array($params['numbers'], YUN_P_CONST::PRODUCT_STATUS_SHELF)
+      );
+   }
+   
+   /**
+    * 上架商品
+    * 
+    * @param array $params
+    * @return 
+    */
+   public function upshelfProduct(array $params)
+   {
+      $this->checkRequireFields($params, array('numbers'));
+      $curUser = $this->getCurUser();
+      
+      $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_PRODUCT_MGR,
+         'changeProductsStauts',
+         array($curUser->getId(), $params['numbers'], P_CONST::PRODUCT_STATUS_VERIFY, '')
+      );
+      
+      $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_PRODUCT_MGR,
+         'changeProductsStauts',
+         array($params['numbers'], YUN_P_CONST::PRODUCT_STATUS_VERIFY)
       );
    }
    
@@ -310,6 +416,40 @@ class Product extends AbstractScript
          PROVIDER_CONST::APP_NAME,
          PROVIDER_CONST::APP_API_MGR,
          'getCurUser'
+      );
+   }
+   
+   /**
+    * 获取指定编码的产品信息
+    * 
+    * @param string $number
+    * @return 
+    */
+   protected function getFhProductByNumber($number)
+   {
+      return $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_PRODUCT_MGR,
+         'getProductByNumber',
+         array($number)
+      );
+   }
+   
+   /**
+    * 获取指定编码的产品信息
+    * 
+    * @param string $number
+    * @return 
+    */
+   protected function getShopProductByNumber($number)
+   {
+      return $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_PRODUCT_MGR,
+         'getProductByNumber',
+         array($number)
       );
    }
 }

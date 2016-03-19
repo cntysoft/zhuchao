@@ -94,8 +94,8 @@ define(['jquery', 'Core', 'Front', 'layer'], function() {
       
       $('.pro_operate .delete').click(function(){
          var $delete = $(this);
-         var ids = $delete.parents('.prolist_list').attr('fh-index');
-         deleteProducts(ids)
+         var numbers = $delete.parents('.prolist_list').attr('fh-number');
+         deleteProducts(numbers);
       });
       
       $('.prolist_operate .delete').click(function(){
@@ -106,12 +106,12 @@ define(['jquery', 'Core', 'Front', 'layer'], function() {
          if(0 == checkedList.length){
             return;
          }
-         var ids = [];
+         var numbers = [];
          checkedList.each(function(index, dom){
-            ids.push($(dom).attr('fh-index'));
+            numbers.push($(dom).attr('fh-number'));
          });
          
-         deleteProducts(ids);
+         deleteProducts(numbers);
       });
       
       $('.prolist_operate .shelf').click(function(){
@@ -122,20 +122,60 @@ define(['jquery', 'Core', 'Front', 'layer'], function() {
          if(0 == checkedList.length){
             return;
          }
-         var ids = [];
+         var numbers = [];
          checkedList.each(function(index, dom){
-            ids.push($(dom).attr('fh-index'));
+            numbers.push($(dom).attr('fh-number'));
          });
          
-         shelfProduct(ids);
+         shelfProduct(numbers);
       });
       
-      function shelfProduct(ids)
+      $('.prolist_operate .upshelf').click(function(){
+         if($(this).hasClass('btn_del')){
+            return;
+         }
+         var checkedList = $('.prolist_list ').has('.icon-checked');
+         if(0 == checkedList.length){
+            return;
+         }
+         var numbers = [];
+         checkedList.each(function(index, dom){
+            numbers.push($(dom).attr('fh-number'));
+         });
+         
+         upshelfProduct(numbers);
+      });
+      
+      function upshelfProduct(numbers)
+      {
+         layer.confirm('您确定要上架选中的产品吗?', function(index){
+            layer.close(index);
+            Cntysoft.Front.callApi('Product', 'upshelfProduct', {
+               numbers : numbers
+            }, function(response){
+               if(!response.status){
+                  layer.alert('上架失败，请稍后再试！');
+               }else{
+                  layer.alert('上架成功！', {
+                     btn : '',
+                     success : function(){
+                        var redirect = function(){
+                           window.location.href = '/product/1.html';
+                        };
+                        setTimeout(redirect, 300);
+                     }
+                  });
+               }
+            });
+         });
+      }
+      
+      function shelfProduct(numbers)
       {
          layer.confirm('您确定要下架选中的产品吗?', function(index){
             layer.close(index);
             Cntysoft.Front.callApi('Product', 'shelfProduct', {
-               ids : ids
+               numbers : numbers
             }, function(response){
                if(!response.status){
                   layer.alert('下架失败，请稍后再试！');
@@ -154,12 +194,12 @@ define(['jquery', 'Core', 'Front', 'layer'], function() {
          });
       }
       
-      function deleteProducts(ids)
+      function deleteProducts(numbers)
       {
          layer.confirm('您确定要删除选中的产品吗?', function(index){
             layer.close(index);
             Cntysoft.Front.callApi('Product', 'deleteProduct', {
-               ids : ids
+               numbers : numbers
             }, function(response){
                if(!response.status){
                   layer.alert('删除失败，请稍后再试！');

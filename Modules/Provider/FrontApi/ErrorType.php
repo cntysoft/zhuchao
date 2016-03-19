@@ -16,7 +16,7 @@ class ErrorType
     * @var array $map
     */
    protected $map = array(
-
+      'E_PRODUCT_MGR_NOT_EXIST'     => array(10001, 'The product is not exist')
    );
 
    /**

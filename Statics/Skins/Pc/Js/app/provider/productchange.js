@@ -5,8 +5,20 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
     $(function (){
         var uploadIndex = -1;
         var images = new Array();
-        var sendQuery =  Cntysoft.fromQueryString(window.location.search);
+        var pathname = window.location.pathname;
+        var number = pathname.substring(pathname.indexOf('/product/change/') + 16, pathname.lastIndexOf('.html'));
         var checkArea = '#title,#brand,#description,#advertText,#minimum,#stock,#price';
+        init();
+        function init()
+        {
+           var $uploaded = $('.img_uploading .image_uploaded');
+           if($uploaded.length > 0){
+               $.each($uploaded, function (index, item){
+                  var $img = $(item).find('img');
+                  images.push([$img.attr('src').split('@.src')[0], $img.attr('fh-rid')]);
+               });
+           }
+        }
         //提交 submit为保存,draft为生成草稿
         $('#submit,#draft').click(function (){
             var validation = validate.checkFields($(checkArea + ',#keyword,#keyword2,#keyword3,.basic .attrInput,.customAttr .attr_info,.customAttr .attrTitle'));
@@ -46,11 +58,11 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 params['attribute']['自定义属性'][key] = val;
             });
             if(0 == images.length){
-               layer.msg('请上传产品的图片，至少1张');
+               layer.msg('请上传产品的图片，至少1张!');
                return;
             }
             params['images'] = images;
-
+            
             var editorHtml = editor.html(), editorText = editor.text();
             if(!editorText || editorText.length < 20){
                layer.msg('请填写商品简介信息，至少20个字！');
@@ -72,15 +84,15 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             params['fileRefs'] = fileRefs;
             params['isBatch'] = getRadioValueByName('isBatch');
             params['unit'] = $('#proUnit').val();
-            params['categoryId'] = sendQuery['category'];
             if($(this).attr('id') === 'submit'){
                 params['status'] = 3;
             }else{
                 params['status'] = 1;
             }
-            Cntysoft.Front.callApi('Product','addProduct',params,function(response){
+            params['number'] = number;
+            Cntysoft.Front.callApi('Product','updateProduct',params,function(response){
                 if(response.status){
-                    layer.alert('商品发布成功！', {
+                    layer.alert('商品修改成功！', {
                         btn : '',
                         success : function(){
                            var redirect = function(){
@@ -90,7 +102,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                         }
                      });
                 }else{
-                    layer.alert('商品发布错误，请核对您的信息！');
+                    layer.alert('商品修改错误，请核对您的信息！');
                 }
             });
         });
