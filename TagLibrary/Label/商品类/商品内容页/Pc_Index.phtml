@@ -99,7 +99,6 @@ foreach ($articles as $article) {
 	if ($i == 1) {
 		$out .= '<div class="about_news_list">
                 <h4><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
-
                 <p>
                     ' . $article->getIntro() . '
                 </p>
@@ -134,7 +133,7 @@ $out .= '</div>
 $goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 4);
 foreach ($goodsLists as $list) {
 	$out .= '<li>
-            <p class="card_price">¥' . ($list->getPrice() > 0 ? ($list->getPrice() / 10000) . "万" : "暂无报价") . '</p>
+            <p class="card_price">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "暂无报价") . '</p>
             <a href="/item/' . $list->getId() . '.html" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
 
             <div class="card_text_box">
@@ -168,7 +167,7 @@ foreach ($goodsLists as $list) {
         </a>
         <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
         
-        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥<b>" . ($list->getPrice() / 10000) . "</b>万" : "暂无报价") . '</span>
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥暂无报价") . '</span>
     </div>';
 	if ($i == 1) {
 		$out .= '<div class="pro_item fl pro_banner noselect">
@@ -262,7 +261,7 @@ foreach ($goodsLists as $list) {
         </a>
         <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
         
-        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥<b>" . ($list->getPrice() / 10000) . "</b>万" : "暂无报价") . '</span>
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥暂无报价") . '</span>
     </div>';
 	if ($i == 1) {
 		$out .= '<div class="pro_item fl pro_banner noselect">

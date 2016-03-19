@@ -1,6 +1,8 @@
 <?php
 $id = $this->getRouteInfo()['articleId'];
-$info = $this->getGInfo($id);
+$detailInfo = $this->getDetail($id);
+$info = $detailInfo[0];
+$detail = $detailInfo[1];
 $out = '<div class="right_content fr">
         <div class="right_content_title">
             <h3>' . $info->getTitle() . '</h3>
@@ -11,7 +13,7 @@ $out = '<div class="right_content fr">
             </p>
         </div>
         <div class="help_content">
-            ' . $info->getIntro() . '
+            ' . $detail->getContent() . '
         </div>';
 $pn = $this->getPrevAndNextItem($info->getNodeId(), $info->getId());
 $out .= '<div class="up_down">

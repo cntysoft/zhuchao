@@ -57,6 +57,16 @@ class HelpCenter extends AbstractLabelScript
               CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getSubNodes', array($nodeId));
       return $childNodes;
    }
+	/**
+	 * 获取指定信息的详细内容
+	 *
+	 * @param integer $itemId
+	 * @return array
+	 */
+	public function getDetail($itemId)
+	{
+		return $this->appCaller->call(CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_MANAGER, 'read', array($itemId));
+	}
 
    /**
     * 获取文章列表（带分页）

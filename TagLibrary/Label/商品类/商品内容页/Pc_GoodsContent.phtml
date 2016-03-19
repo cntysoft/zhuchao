@@ -34,11 +34,14 @@ $out .= $bigImage;
 $out .= '</div>
             <div class="small_img clearfix">' . $smallImage . '</div>
             <div class="share clearfix">
-                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"><i class="main icon-fenxiang"></i>分享</a></div>
-                <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>收藏</span>
-            </div>
-        </div>';
-$out .= '<div class="pro_about fr">
+                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"><i class="main icon-fenxiang"></i>分享</a></div>';            
+          if($this->checkLogin() && $this->checkCollect($goodsInfo->getId())){
+				 $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
+			 } else {
+				 $out .= ' <span class="collect_btn can_collect"><em>|</em><i class="main icon-shoucang"></i>收藏</span>';
+			 }
+$out .= '</div>
+        </div><div class="pro_about fr">
             <div class="pro_about_top">
                 <h4 class="pro_code">产品编号：' . $goodsInfo->getNumber() . '</h4>
                 <p class="pro_price main">￥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "暂无价格") . '</p>

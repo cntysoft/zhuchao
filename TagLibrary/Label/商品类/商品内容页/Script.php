@@ -13,6 +13,7 @@ use App\ZhuChao\Product\Constant as GOODS_CONST;
 use App\ZhuChao\MarketMgr\Constant as MAR_CONST;
 use App\Site\Category\Constant as CATEGORY_CONST;
 use App\Site\Content\Constant as CONTENT_CONST;
+use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use Cntysoft\Framework\Utils\ChinaArea;
 class Goods extends AbstractLabelScript
 {
@@ -28,7 +29,31 @@ class Goods extends AbstractLabelScript
 		return $this->appCaller->call(
 							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($gid));
 	}
-
+	/**
+	 * 检查是否登录
+	 * @return boolean
+	 */
+	public function checkLogin()
+	{
+		return $this->appCaller->call(
+				  BUYER_CONST::MODULE_NAME, 
+				  BUYER_CONST::APP_NAME, 
+				  BUYER_CONST::APP_API_BUYER_ACL, 
+				  'isLogin');
+	}
+	/**
+	 * 检查是否收藏该商品
+	 * 
+	 * @return type
+	 */
+	public function checkCollect($id)
+	{
+		return $this->appCaller->call(
+				  BUYER_CONST::MODULE_NAME, 
+				  BUYER_CONST::APP_NAME, 
+				  BUYER_CONST::APP_API_BUYER_COLLECT, 
+				  'getCollectById', array($id));
+	}
 	/**
 	 * 获取商品列表
 	 * @param array $cond
@@ -43,12 +68,6 @@ class Goods extends AbstractLabelScript
 		return $this->appCaller->call(
 							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, $total, $orderBy, $offset, $limit));
 	}
-
-	public function checkLogin()
-	{
-		
-	}
-
 	/**
 	 * 从CDN上获取图片
 	 * @param type $source

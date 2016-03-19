@@ -1,5 +1,6 @@
 <?php
-$infos = $this->getInfoListByNodeAndStatusNotPage(29);
+$help = $this->getNodeInfoByIdentifier('help');
+$infos = $this->getInfoListByNodeAndStatusNotPage($help->getId());
 $out = '';
 foreach ($infos as $info) {
    $out .= '<li class="hot_item"><a href="/article/' . $info->getId() . '.html">' . $info->getTitle() . '</a></li>';
