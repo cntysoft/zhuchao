@@ -9,6 +9,8 @@
 use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Kernel;
 use Cntysoft\Framework\Qs\View;
+use App\ZhuChao\MessageMgr\Constant as MESSAGE_CONST;
+
 class IndexController extends AbstractController
 {
    /**
@@ -62,6 +64,36 @@ class IndexController extends AbstractController
    {
       return $this->setupRenderOpt(array(
          View::KEY_RESOLVE_DATA => 'buyer/follow',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   public function quotationlistAction()
+   {
+      return $this->setupRenderOpt(array(
+         View::KEY_RESOLVE_DATA => 'buyer/quotationlist',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   public function quotationAction()
+   {
+      $quotationId = $this->dispatcher->getParam('quotationId');
+      
+      $quotation = $this->getAppCaller()->call(
+         MESSAGE_CONST::MODULE_NAME,
+         MESSAGE_CONST::APP_NAME,
+         MESSAGE_CONST::APP_API_OFFER,
+         'getInquiryAndOffer',
+         array((int)$quotationId)
+      );
+
+      if(!$quotation){
+         Kernel\goto_route('404.html');
+      }
+      
+      return $this->setupRenderOpt(array(
+         View::KEY_RESOLVE_DATA => 'buyer/quotation',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }

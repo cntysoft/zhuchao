@@ -33,6 +33,9 @@ class Inquiry extends BaseModel {
 		$this->belongsTo('uid', 'App\ZhuChao\Buyer\Model\BaseInfo', 'id', array(
 			'alias' => 'Buyer'
 		));
+      $this->belongsTo('gid', 'App\ZhuChao\Product\Model\Product', 'id', array(
+			'alias' => 'Product'
+		));
 	}
 
 	public function getProviderId() {

@@ -75,7 +75,7 @@ class InquiryOffer extends AbstractLib
       } else {
          $ret['offer'] = $offer;
       }
-      return $offer;
+      return $ret;
    }
    /**
     * 获取询价单列表

@@ -47,11 +47,29 @@
         },
         {
             "key" : "BuyerMessage",
-            "rule" : "\/message.html",
+            "rule" : "\/message/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Buyer",
                 "controller" : "Index",
                 "action" : "message"
+            }
+        },
+        {
+            "key" : "BuyerQuotationList",
+            "rule" : "\/quotationlist/{pageId:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Buyer",
+                "controller" : "Index",
+                "action" : "quotationlist"
+            }
+        },
+        {
+            "key" : "BuyerQuotation",
+            "rule" : "\/quotation/{quotationId:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Buyer",
+                "controller" : "Index",
+                "action" : "quotation"
             }
         },
         {
@@ -126,7 +144,10 @@
         "buyer\/index" : "采购会员\/用户中心\/我的信息.phtml",
         "buyer\/password" : "采购会员\/用户中心\/修改密码.phtml",
         "buyer\/modify" : "采购会员\/用户中心\/我的信息.phtml",
+        "buyer\/quotationlist" : "采购会员\/用户中心\/报价单列表.phtml",
+        "buyer\/quotation" : "采购会员\/用户中心\/报价单详情.phtml",
         "buyer\/collection" : "采购会员\/用户中心\/收藏商品.phtml",
+        "buyer\/follow" : "采购会员\/用户中心\/关注企业.phtml",
         "buyer\/address" : "采购会员\/用户中心\/收货地址.phtml",
         "buyer\/changeaddress" : "采购会员\/用户中心\/修改地址.phtml",
         "buyer\/message" : "采购会员\/用户中心\/消息通知.phtml"

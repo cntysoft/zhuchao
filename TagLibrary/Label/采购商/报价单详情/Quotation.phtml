@@ -1,0 +1,90 @@
+<?php
+$result = $this->getQuotation();
+$quotation = $result['inquiry'];
+$offer = $result['offer'];
+$time = date('Y-m-d H:i:s', $quotation->getInputTime());
+$content = $quotation->getContent();
+$product = $quotation->getProduct();
+$productUrl = $this->getProductUrl($product->getId());
+$imageUrl = $this->getImageCdnUrl($product->getDefaultImage());
+$name = $product->getBrand(). ' ' . $product->getTitle() . ' ' . $product->getDescription();
+$price = (0 == $product->getPrice()) ? '面议' : '￥'.$product->getPrice();
+
+$out='<div class="baojia_content">
+            <h3>询价内容 <i>发布时间：'.$time.'</i></h3>
+            <p class=""><span class="content_bg main_bg"></span>'.$content.'</p>
+        </div>
+        <div class="baojia_pro clearfix">
+            <a href="'.$productUrl.'" class="baojia_pro_img"><img src="'.$imageUrl.'" alt="'.$name.'"></a>
+            <div class="baojia_pro_detail">
+                <h4>'.$name.'</h4>
+                <p class="main_light">'.$price.'</p>
+            </div>
+        </div>';
+if(is_object($offer)){
+   $provider = $offer->getProvider();
+   $profile = $provider->getProfile();
+   $company = $provider->getCompany();
+   $logo = $this->getImageCdnUrl($company->getLogo());
+   $name = $company->getName();
+   $productIds = $offer->getRecommendGoods();
+
+   $out.='<div class="answer">
+            <h4>供应商回复</h4>
+            <div class="answer_content clearfix" style="min-height:250px">
+                <div class="answer_left fl">
+                    <img src="'.$logo.'" alt="">
+                    <h4>'.$name.'</h4>
+                    <p class="clearfix">
+                        <span class="company_intro">信用星级：</span>
+                        <span class="company_detail">
+                            <i class="icon-star main_light"></i>
+                            <i class="icon-star main_light"></i>
+                        <i class="icon-star main_light"></i>
+                        <i class="icon-star main_light"></i>
+                        <i class="icon-star main_light"></i>
+                        </span>
+                    </p>
+                    <p class="clearfix">
+                        <span class="company_intro">联系人：</span>
+                        <span class="company_detail">'.$profile->getRealName().'</span>
+                    </p>
+                    <p class="clearfix">
+                        <span class="company_intro">手&nbsp;&nbsp;&nbsp;&nbsp;机：</span>
+                        <span class="company_detail">'.$profile->getShowPhone().'</span>
+                    </p>
+                </div>
+                <div class="answer_right fr">
+                    <div class="answer_ele baojia clearfix">
+                      <span class="answer_intro">报价：</span>
+                        <input type="text" value="'.$offer->getLowPrice().'" disabled>
+                        <span class="fl">——</span>
+                        <input type="text" value="'.$offer->getHighPrice().'" disabled>
+                    </div>
+                    <div class="answer_ele clearfix">
+                        <span class="answer_intro">说明：</span>
+                        <textarea disabled>'.$offer->getContent().'</textarea></div>';
+   if(is_array($productIds) && count($productIds)){
+      $out.='<div class="answer_ele clearfix">
+                  <span class="answer_intro">产品：</span>
+                  <div class="m_answer_pro">';
+      $len = count($productIds);
+      for($i = 0; $i < $len; $i++){
+         $product = $this->getProduct($productIds[$i]);
+         $imgUrl = $this->getImageCdnUrl($product->getDefaultImage());
+         $name = $product->getBrand(). ' ' . $product->getTitle() . ' ' . $product->getDescription();
+         $url = $this->getProductUrl($productIds[$i]);
+         $out.='<div class="answer_pro">
+            <a href="'.$url.'"><img src="'.$imgUrl.'" alt="'.$name.'"></a>
+        </div>';
+      }
+      $out.='</div></div>';
+   }
+      
+
+       $out.='</div>
+            </div>
+        </div>';
+}
+
+echo $out;
