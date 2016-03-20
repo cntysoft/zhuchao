@@ -7,7 +7,7 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-namespace TagLibrary\Label\Goods;
+namespace TagLibrary\Label\Nav;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\Product\Constant as GOODS_CONST;
 use App\ZhuChao\MarketMgr\Constant as MAR_CONST;
@@ -15,7 +15,7 @@ use App\Site\Category\Constant as CATEGORY_CONST;
 use App\Site\Content\Constant as CONTENT_CONST;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use Cntysoft\Framework\Utils\ChinaArea;
-class Goods extends AbstractLabelScript
+class Nav extends AbstractLabelScript
 {
 	protected $chinaArea = null;
 
@@ -28,10 +28,6 @@ class Goods extends AbstractLabelScript
 		$gid = $this->getRouteInfo()['itemId'];
 		return $this->appCaller->call(
 							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($gid));
-	}
-	public function getCurUser()
-	{
-		return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
 	}
 	/**
 	 * 检查是否登录

@@ -12,20 +12,32 @@ if (count($ads)) {
 	}
 }
 $out .= '</div><div class="banner_login_box">
-            <div class="login_box">
-                <div class="login_user clearfix">
-                    <a href=""><img src="../../Images/test/test_news_img.jpg" alt=""/></a>
-
+            <div class="login_box">';
+if(!$this->checkLogin()){
+	$out .= '<div class="login_user clearfix">
+                    <a href=""><img src="/Statics/Skins/Pc/Images/lazyicon.png" alt=""/></a>
                     <h3 class="text_ellipsis">上午好，采购经理</h3>
-
                     <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
                 </div>
                 <div class="login_action">
-                    <a class="main_bg">登录</a>
-                    <a>注册</a>
+                    <a class="main_bg" href="http://' . RT_BUYER_SITE_NAME . '/login.html">登录</a>
+                    <a href="http://' . RT_BUYER_SITE_NAME . '/resgister.html">注册</a>
+                </div>';
+} else {
+	$curUser = $this->getCurUser();
+	$detail = $curUser->getProfile();
+	$out .= '<div class="login_user clearfix">
+                    <a href=""><img src="'.$this->getImageFromCdn($detail->getAvatar(),75,53).'" alt=""/></a>
+                    <h3 class="text_ellipsis">上午好，采购经理</h3>
+                    <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
                 </div>
-                <!--全球企业库-->
-                <h3 class="login_search_title">全球企业库</h3>
+					 <div class="login_action">
+                    <a class="main_bg">欢迎</a>
+                    <a class="main_bg">欢迎</a>
+                </div>';
+}
+                
+                $out .= '<h3 class="login_search_title">全球企业库</h3>
 
                 <div class="login_search_box">
                     <input type="text" placeholder="">

@@ -19,6 +19,8 @@ const RT_SYS_DOMAIN = SYS_DOMAIN_DEVEL;
  * @var string 系统的主站域名
  */
 const RT_SYS_SITE_NAME = SYS_SITE_NAME_DEVEL;
+const RT_BUYER_SITE_NAME = BUYER_SITE_NAME_DEVEL;
+const RT_PROVIDER_SITE_NAME = PROVIDER_SITE_NAME_DEVEL;
 /**
  * @var string
  */

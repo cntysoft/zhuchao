@@ -3,9 +3,6 @@
  */
 define(['jquery2.1.4','slick','layer'], function () {
     $(document).ready(function () {
-        //导航栏展开
-        $('.sort_list').show();
-        $('.all_sort_bg').show();
         // banner
         $('.banner_box').slick({
             dots: true,

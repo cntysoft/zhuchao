@@ -56,6 +56,8 @@ const ZHUCHAO_PLATFORM_DBNAME = 'zhuchao_devel';
 const SYS_DOMAIN = 'fhzc.com';
 const SYS_DOMAIN_DEVEL = 'abc.com';
 const SYS_SITE_NAME_DEVEL = 'devel.abc.com';
+const BUYER_SITE_NAME_DEVEL = 'i.abc.com';
+const PROVIDER_SITE_NAME_DEVEL = 'provider.abc.com';
 
 //站点系统的主域名
 const ZHUCHAO_SITE_DOMAIN = 'site.fhzc.com';
