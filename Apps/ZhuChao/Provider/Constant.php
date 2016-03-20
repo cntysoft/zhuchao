@@ -46,4 +46,16 @@ class Constant
    
    //用户网站的域名映射缓存键值
    const SITE_CACHE_KEY = 'site_name_map_cache_key';
+   
+   //企业类型
+   const COMPANY_TYPE_GUOYOU = 1;  //国有企业
+   const COMPANY_TYPE_JITI = 2; //集体企业
+   const COMPANY_TYPE_SIYING = 3; //私营企业
+   const COMPANY_TYPE_GUFENG = 4; //股份制企业
+   const COMPANY_TYPE_LIANYING = 5; //联营企业
+   const COMPANY_TYPE_WAISHANG = 6; //外商投资企业
+   const COMPANY_TYPE_GOT = 7; //港、澳、台企业
+   const COMPANY_TYPE_GUFENGHEZUO = 8; //股份合作企业
+   const COMPATY_TYPE_GETI = 9; //个体工商
+   const COMPANY_TYPE_OTHER = 10; //其他企业
 }

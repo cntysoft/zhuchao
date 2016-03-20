@@ -173,8 +173,10 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
                   GUFENG : '股份制企业',
                   LIANYING : '联营企业',
                   WAISHANG : '外商投资企业',
-                  GOT : '港、澳、台',
-                  GUFENGHEZUO : '股份合作企业'
+                  GOT : '港、澳、台企业',
+                  GUFENGHEZUO : '股份合作企业',
+                  GETI : '个体工商户',
+                  OTHER : '其他企业'
                },
                TRADEMODE_NAME : {
                   SALE : '销售型',

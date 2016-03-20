@@ -36,11 +36,13 @@ class Company extends AbstractScript
       $company = $user->getCompany();
 
       //已经存在企业信息
-      if (isset($company)) {
+      if ($company) {
          unset($params['name']); //企业名称不允许修改
          $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProviderCompany', array($company->getId(), $params));
       } else {
          $params['providerId'] = $user->getId();
+         $params['status'] = P_CONST::COMPANY_STATUS_NORMAL;
+         $params['type'] = 9;
          $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'addProviderCompany', array($params));
       }
    }

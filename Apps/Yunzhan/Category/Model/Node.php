@@ -7,7 +7,7 @@
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
 namespace App\Yunzhan\Category\Model;
-use ZhuChao\Phalcon\Mvc as BaseModel;
+use ZhuChao\Phalcon\Mvc\Model as BaseModel;
 use Phalcon\Mvc\Model\Query\Builder as QueryBuilder;
 /**
  * 节点模型对象
