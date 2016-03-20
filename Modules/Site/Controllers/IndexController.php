@@ -10,6 +10,7 @@ use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Framework\Qs\View;
 use Cntysoft\Kernel;
 use App\Yunzhan\Category\Constant as CATE_CONST;
+use App\Yunzhan\Content\Constant as CONTENT_CONST;
 class IndexController extends AbstractController
 {
    public function initialize()
@@ -18,7 +19,7 @@ class IndexController extends AbstractController
       if (!$id) {
          $this->dispatcher->forward(array(
             'controller' => 'Exception',
-            'action' => 'notfind'
+            'action'     => 'notfind'
          ));
       }
    }
@@ -64,7 +65,7 @@ class IndexController extends AbstractController
                  View::KEY_RESOLVE_DATA => $tpl
       ));
    }
-   
+
    /**
     * 新闻内容页路由
     * 
@@ -72,8 +73,88 @@ class IndexController extends AbstractController
     */
    public function newsAction()
    {
+      $itemId = $this->dispatcher->getParam('newsid');
+      if (null === $itemId) {
+         $this->dispatcher->forward(array(
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+      $itemId = (int) $itemId;
+      try {
+         $appCaller = $this->getAppCaller();
+         $info = $appCaller->call(
+                 CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_MANAGER, 'getGInfo', array($itemId)
+         );
+         if (!$info) {
+            $this->dispatcher->forward(array(
+               'controller' => 'Exception',
+               'action'     => 'pageNotExist'
+            ));
+            return false;
+         }
+         $status = $info->getStatus();
+         if ($status != CONTENT_CONST::INFO_S_VERIFY) {
+            $this->dispatcher->forward(array(
+               'module'     => 'Pages',
+               'controller' => 'Exception',
+               'action'     => 'pageNotExist'
+            ));
+            return false;
+         }
+
+         $this->view->setRouteInfoItem('nid', $info->getNodeId());
+         $node = $appCaller->call(
+                 CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNode', array($info->getNodeId()));
+         if (!$node) {
+            $this->dispatcher->forward(array(
+               'module'     => 'Pages',
+               'controller' => 'Exception',
+               'action'     => 'pageNotExist'
+            ));
+            return false;
+         }
+
+         $tpl = $appCaller->call(
+                 CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeModelTpl', array((int) $info->getNodeId(), $info->getCmodelId())
+         );
+         $this->view->setRouteInfoItem('nodeIdentifier', $node->getNodeIdentifier());
+         $this->setupRenderOpt(array(
+            View::KEY_RESOLVE_DATA => $tpl,
+            View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_FINDER
+         ));
+      } catch (\Exception $ex) {
+         $this->dispatcher->forward(array(
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+   }
+
+   /**
+    * 关于我们
+    * 
+    * @return 
+    */
+   public function aboutAction()
+   {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'site/newslist',
+                 View::KEY_RESOLVE_DATA => 'site/about',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+
+   /**
+    * 产品列表
+    * 
+    * @return 
+    */
+   public function productlistAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'site/productlist',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
