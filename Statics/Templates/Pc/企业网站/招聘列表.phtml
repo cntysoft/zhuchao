@@ -1,1 +1,71 @@
-zhaopinliebiaoye
+<!DOCTYPE html>
+<?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('CP', 'name') ?>－招聘信息</title>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/zhaopin.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <!--公司头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <!--站点指示-->
+        <div class="site conwidth">
+            <a href="/">首页</a>
+            <span>&gt;</span>
+            <a class="main">关于我们</a>
+        </div>
+        <div class="l_main conwidth clearfix">
+            <!--左侧-->
+            <div class="m_left fl">
+                <h3>招聘中心</h3>
+                <ul>
+                    <li><a class="main active_hover">设计</a></li>
+                    <li><a class="active_hover">研发</a></li>
+                    <li><a class="active_hover">前端</a></li>
+                    <li><a class="active_hover">策划</a></li>
+                    <li class="no_bb "><a class="active_hover">市场</a></li>
+                </ul>
+            </div>
+            <!--右侧-->
+            <div class="m_right fr">
+                <h3>招聘中心</h3>
+                <div class="zhaopin_ele">
+                    <h4>视觉动效设计师</h4>
+                    <p class="clearfix">
+                        <span class="zhaopin_intro">工作地点：</span>
+                        <span class="zhaopin_detail">武汉</span>
+                    </p>
+                    <p class="clearfix">
+                        <span class="zhaopin_intro">岗位职责：</span>
+                        <span class="zhaopin_detail">
+                            1、基于界面的静态概念设计，设计并制作为动态版本呈现；<br/>
+                            2、基于产品的概念模型，实现动态原型设计；<br/>
+                            3、为界面系统设计动态特效控件以及相关界面特效，及产品设计整体后期视效包装；<br/>
+                            4、深刻理解不同动画曲线的使用场景， 对操作系统以及应用程序的动态特效进行特效统一；<br/>
+                            5、能够分解动态特效步骤并向开发人员讲解动效实现细节；<br/>
+                            6、及时完成上级交代的其他任务。
+                        </span>
+                    </p>
+                    <p class="clearfix">
+                        <span class="zhaopin_intro">任职要求：</span>
+                        <span class="zhaopin_detail">
+                            1、视觉设计、动画和后期视效设计背景；<br/>
+                            2、良好的沟通与视觉动画表达能力；<br/>
+                            3、有JavaScript动效或AS经验者优先；<br/>
+                            4、有视效后期、游戏动效或手机动效经验者优先 ；<br/>
+                            5、有物理或数学相关专业学位者优先；<br/>
+                            6、发简历请附带相关作品。
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <!--底部-->
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <?php Qs::Sys('loadRequireJs', 'company/common') ?>
+    </body>
+</html>

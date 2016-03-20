@@ -1,1 +1,171 @@
-企业网站首页
+<!DOCTYPE html>
+<?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('CP', 'name') ?>－首页</title>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'slick.css', 'company/companyindex.css')) ?>
+    </head>
+
+    <body>
+        <!--头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <!--公司头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <div class="l_main conwidth">
+            <!--banner-->
+            <div class="banner">
+                <div><a href=""><img src="../../Images/test/test_company_banner.jpg" alt=""></a></div>
+                <div><a href=""><img src="../../Images/test/test_banner1.jpg" alt=""></a></div>
+                <div><a href=""><img src="../../Images/test/test_company_banner.jpg" alt=""></a></div>
+                <div><a href=""><img src="../../Images/test/test_banner1.jpg" alt=""></a></div>
+
+            </div>
+            <!--新闻和企业文化-->
+            <div class="company_info clearfix">
+                <div class="l_news fl">
+                    <h3>新闻动态 <a href="newslist.html" class="active_hover">更多 >></a></h3>
+                    <div class="clearfix">
+                        <div class="big_news fl">
+                            <a href="newsdetail.html"><img src="../../Images/test/test_company_news1.jpg" alt=""></a>
+                            <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                            <p>卡萨帝灵珑传奇热水器以及卡萨帝云裳欧式洗衣
+                                年德国红点奖....<a href="" class="main">更多</a></p>
+                            <div class="news_time clearfix">
+                                <span class="fl">2015-12-04</span>
+                                <span class="fr">浏览（1111）</span>
+                            </div>
+                        </div>
+                        <div class="small_news fl">
+                            <div class="small_news_ele clearfix">
+                                <a href="newsdetail.html"><img src="../../Images/test/test_company_news2.jpg" alt=""></a>
+                                <div class="news_content">
+                                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                                    <p>卡萨帝灵珑传奇热水器以及015年德
+                                        国红点奖.... <a href="" class="main">更多</a></p>
+                                    <div class="news_time clearfix">
+                                        <span class="fl">2015-12-04</span>
+                                        <span class="fr">浏览（1111）</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="small_news_ele clearfix">
+                                <a href="newsdetail.html"><img src="../../Images/test/test_company_news2.jpg" alt=""></a>
+                                <div class="news_content">
+                                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                                    <p>卡萨帝灵珑传奇热水器以及015年德
+                                        国红点奖.... <a href="newsdetail.html" class="main">更多</a></p>
+                                    <div class="news_time clearfix">
+                                        <span class="fl">2015-12-04</span>
+                                        <span class="fr">浏览（1111）</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="small_news_ele  clearfix">
+                                <a href="newsdetail.html"><img src="../../Images/test/test_company_news2.jpg" alt=""></a>
+                                <div class="news_content">
+                                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                                    <p>卡萨帝灵珑传奇热水器以及015年德
+                                        国红点奖.... <a href="newsdetail.html" class="main">更多</a></p>
+                                    <div class="news_time clearfix">
+                                        <span class="fl">2015-12-04</span>
+                                        <span class="fr">浏览（1111）</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="l_intro fr">
+                    <h3>企业介绍 <a href="aboutus.html" class="active_hover">更多 >></a></h3>
+                    <a href="aboutus.html"> <img src="../../Images/test/test_company_new3.jpg" alt=""></a>
+                    <p>河南四方达超硬材料股份有限公司始创于1997年,是专业生产聚晶金刚石(简称PCD)及其相关制品的高新技术企业.公司以提供优质的PCD材料,.充分满足客户个性化的需业.公司以提供优质的PC、性价比最优和..
+                        <a href="aboutus.html" class="main">查看详情 >></a></p>
+                </div>
+            </div>
+            <!--产品展示-->
+            <div class="l_pro">
+                <h3>产品展示 <a href="company_prolist.html" class="active_hover">查看更多 >></a><span class="prev_page"><i></i></span><span class="next_page"><i></i></span></h3>
+                <div class="pro_box clearfix">
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_proinfo1.jpg" alt=""></a>
+                            <p class="active_hover"><a href=company_proinfo.html"">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro2.jpg" alt=""></a>
+                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
+                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro2.jpg" alt=""></a>
+                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
+                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro2.jpg" alt=""></a>
+                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
+                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                    <div class="pro_card">
+                        <div>
+                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro2.jpg" alt=""></a>
+                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
+                            <span class="">￥700.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--底部-->
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <!--侧边栏-->
+        <div class="online">
+            <div class="online_ele  ">
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2788984873&site=qq&menu=yes">
+                    <i class="icon-qq main"></i>
+                    <p class="main">在线客服</p>
+                    <span class="main_bg"></span>
+                </a>
+            </div>
+            <div class="online_ele  no_mb">
+                <a href="">
+                    <i class="icon-dianhua main"></i>
+                    <p class="main">电话联系</p>
+                    <span class="main_bg"></span>
+                </a>
+            </div>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'company/company_index') ?>
+
+    </body>
+</html>

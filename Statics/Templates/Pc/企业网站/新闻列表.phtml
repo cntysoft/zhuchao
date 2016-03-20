@@ -1,1 +1,101 @@
-企业网站新闻列表页
+<!DOCTYPE html>
+<?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('CP', 'name') ?>－新闻动态</title>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/newslist.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <!--公司头部-->
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <!--站点指示-->
+        <div class="site conwidth">
+            <a href="/">首页</a>
+            <span>&gt;</span>
+            <a class="main">新闻中心</a>
+        </div>
+        <div class="l_main conwidth clearfix">
+            <!--左侧-->
+            <div class="m_left fl">
+                <h3>新闻中心</h3>
+                <ul>
+                    <li><a class="active_hover main">行业新闻</a></li>
+                    <li class="no_bb"><a class="active_hover">企业新闻</a></li>
+                </ul>
+            </div>
+            <!--新闻列表-->
+            <div class="m_right fr">
+                <div class="news_ele">
+                    <a href="newsdetail.html"><img src="../../Images/test/test_company_news1.jpg" alt=""></a>
+                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                    <p class="news_detail">卡萨帝灵珑传奇热水器以及卡萨帝云裳欧式洗衣机，凭借创新的设计和出众的性能，获得 2015卡萨帝灵珑传奇热水器以及卡萨帝云裳欧
+                        年德国红点奖。</p>
+                    <p class="news_time">
+                        <span class="fl">2015-12.04</span>
+                        <span class="fr">浏览（1111）</span>
+                    </p>
+                </div>
+                <div class="news_ele">
+                    <a href="newsdetail.html"><img src="../../Images/test/test_company_news1.jpg" alt=""></a>
+                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                    <p class="news_detail">卡萨帝灵珑传奇热水器以及卡萨帝云裳欧式洗衣机，凭借创新的设计和出众的性能，获得 2015卡萨帝灵珑传奇热水器以及卡萨帝云裳欧
+                        年德国红点奖。</p>
+                    <p class="news_time">
+                        <span class="fl">2015-12.04</span>
+                        <span class="fr">浏览（1111）</span>
+                    </p>
+                </div>
+                <div class="news_ele">
+                    <a href="newsdetail.html"><img src="../../Images/test/test_company_news1.jpg" alt=""></a>
+                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                    <p class="news_detail">卡萨帝灵珑传奇热水器以及卡萨帝云裳欧式洗衣机，凭借创新的设计和出众的性能，获得 2015卡萨帝灵珑传奇热水器以及卡萨帝云裳欧
+                        年德国红点奖。</p>
+                    <p class="news_time">
+                        <span class="fl">2015-12.04</span>
+                        <span class="fr">浏览（1111）</span>
+                    </p>
+                </div>
+                <div class="news_ele">
+                    <a href="newsdetail.html"><img src="../../Images/test/test_company_news1.jpg" alt=""></a>
+                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                    <p class="news_detail">卡萨帝灵珑传奇热水器以及卡萨帝云裳欧式洗衣机，凭借创新的设计和出众的性能，获得 2015卡萨帝灵珑传奇热水器以及卡萨帝云裳欧
+                        年德国红点奖。</p>
+                    <p class="news_time">
+                        <span class="fl">2015-12.04</span>
+                        <span class="fr">浏览（1111）</span>
+                    </p>
+                </div>
+                <div class="news_ele">
+                    <a href="newsdetail.html"><img src="../../Images/test/test_company_news1.jpg" alt=""></a>
+                    <h4 class="active_hover"><a href="newsdetail.html">卡萨帝灵珑传奇热水器</a></h4>
+                    <p class="news_detail">卡萨帝灵珑传奇热水器以及卡萨帝云裳欧式洗衣机，凭借创新的设计和出众的性能，获得 2015卡萨帝灵珑传奇热水器以及卡萨帝云裳欧
+                        年德国红点奖。</p>
+                    <p class="news_time">
+                        <span class="fl">2015-12.04</span>
+                        <span class="fr">浏览（1111）</span>
+                    </p>
+                </div>
+                <!--分页-->
+                <div class="page_list">
+                    <p>
+                        <a class="prev_page" href="#">上一页</a>
+                        <a class="main_bg main_border" href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a class="no_all_b" href="#">......</a>
+                        <a href="#">100</a>
+                        <a class="next_page no_marginR" href="#">下一页</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--底部-->
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <?php Qs::Sys('loadRequireJs', 'company/common') ?>
+    </body>
+</html>
