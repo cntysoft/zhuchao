@@ -9,7 +9,7 @@
             }
         },
         {
-            "rule" : "/news/{nodeIdentifier:[a-z]+}.html",
+            "rule" : "/{nodeIdentifier:[a-z]+}.html",
             "option" : {
                 "module" : "Site",
                 "controller" : "Index",
@@ -17,7 +17,7 @@
             }
         },
         {
-            "rule" : "/news/{nodeIdentifier:[a-z]+}/{pageid:[1-9][0-9]*}.html",
+            "rule" : "/{nodeIdentifier:[a-z]+}/{pageid:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Site",
                 "controller" : "Index",
