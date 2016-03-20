@@ -6,22 +6,10 @@ Qs::Ds('用户数据源/企业信息', 'User');
     <head>
         <meta charset="UTF-8">
         <title>个人中心</title>
-        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
+        <?php Qs::Sys('loadCss', array('usercenter/style1.css', 'usercenter/user_index1.css')) ?>
     </head>
     <body>
-        <!--个人中心头部-->
-        <div class="head_wrap main_bg_light">
-            <div class="head_box conwidth clearfix">
-                <a class="logo_img fl" href="#"><img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>"> </a>
-                <ul class="fr clearfix">
-                    <li><a class="mainbg_hover" href="#">首页</a></li>
-                    <li><a class="mainbg_hover" href="#">产品中心</a></li>
-                    <li><a class="mainbg_hover" href="#">询价单</a></li>
-                    <li><a class="mainbg_hover" href="#">账号中心</a></li>
-                    <li><a class="mainbg_hover" href="#">店铺设置</a></li>
-                </ul>
-            </div>
-        </div>
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->

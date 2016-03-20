@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>发布信息</title>
-        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'lib/default.css', 'lib/reset.css', 'usercenter/publish_info.css')) ?>
+        <?php Qs::Sys('loadCss', array('usercenter/style1.css', 'lib/default.css', 'lib/reset.css', 'usercenter/publish_info.css')) ?>
         <style type="text/css" rel="stylesheet">
             .ke-icon-upload {
                 background-position: 0px -496px;
@@ -14,25 +14,13 @@
         </style>
     </head>
     <body>
-        <!--个人中心头部-->
-        <div class="head_wrap main_bg_light">
-            <div class="head_box conwidth clearfix">
-                <a class="logo_img fl" href="#"><img src="<?php Qs::Sys('loadImage', 'mall/icon/icon_logo_white.png') ?>"> </a>
-                <ul class="fr clearfix">
-                    <li><a class="mainbg_hover" href="#">首页</a></li>
-                    <li><a class="mainbg_hover" href="#">产品中心</a></li>
-                    <li><a class="mainbg_hover" href="#">询价单</a></li>
-                    <li><a class="mainbg_hover" href="#">账号中心</a></li>
-                    <li><a class="mainbg_hover" href="#">店铺设置</a></li>
-                </ul>
-            </div>
-        </div>
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">上架产品信息</h1>
-                <?php Qs::Label('供应商/商品内容', array('renderTpl' => 'ProductChange'))?>
+                <?php Qs::Label('供应商/商品内容', array('renderTpl' => 'ProductChange')) ?>
             </div>
         </div>
     </div>

@@ -50,7 +50,8 @@ class Module implements ModuleDefinitionInterface
       if ($acl->isLogin()) {
          $user = $acl->getCurUser();
          $company = $user->getCompany();
-         if (isset($company) && $company->getSubAttr()) {
+
+         if ($company && $company->getSubAttr()) {
             Kernel\get_site_id($company->getId());
             
             $config = ConfigProxy::getGlobalConfig();

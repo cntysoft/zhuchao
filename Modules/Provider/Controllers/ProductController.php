@@ -22,11 +22,11 @@ class ProductController extends AbstractController
    public function initialize()
    {
       $acl = $this->di->get('ProviderAcl');
-//      if (!$acl->isLogin()) {
-//         $path = $this->request->getURI();
-//         Kernel\goto_route('login.html?returnUrl=' . urlencode($path));
-//         exit;
-//      }
+      if (!$acl->isLogin()) {
+         $path = $this->request->getURI();
+         Kernel\goto_route('login.html?returnUrl=' . urlencode($path));
+         exit;
+      }
    }
 
    public function indexAction()
