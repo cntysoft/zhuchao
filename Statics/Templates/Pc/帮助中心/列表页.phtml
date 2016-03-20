@@ -1,65 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>帮助中心首页--新闻列表</title>
-	 <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/helplist.css')); ?>
-</head>
-<body>
-	 <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
-<!--站点指示-->
-<div class="site conwidth">
-    <a href="../mall/index.html">首页</a>
-    <span>&gt;</span>
-    <a href="/category/help.html">帮助中心</a>
-</div>
-<!--帮助中心-->
-<div class="main_content clearfix conwidth">
-    <!--左侧内容-->
-    <div class="help_left_nav fl">
-					 <ul class="left_menu">
-						  <li class="menu_item">
-								<a href="javascript:;" class="menu_head">帐户管理<i class="icon-xiangxiajiantou main"></i></a>
-								<ul class="sub_menu">
-									 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl'=>'Pc_HelpCenterIndex','identifier' => 'zhanghuguanli','type' => 1)) ?>
-								</ul>
-						  </li>
-						  <li class="menu_item">
-								<a href="javascript:;" class="menu_head">采购中心<i class="icon-xiangxiajiantou main"></i></a>
-								<ul class="sub_menu">
-									 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl'=>'Pc_HelpCenterIndex','identifier' => 'caigouzhongxin','type' => 1)) ?>
-								</ul>
-						  </li>
-						  <li class="menu_item">
-								<a href="javascript:;" class="menu_head">特色频道<i class="icon-xiangxiajiantou main"></i></a>
-								<ul class="sub_menu">
-									 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl'=>'Pc_HelpCenterIndex','identifier' => 'tesepindao','type' => 1)) ?>
-								</ul>
-						  </li>
-						  <li class="menu_item">
-								<a href="javascript:;" class="menu_head">筑巢特购<i class="icon-xiangxiajiantou main"></i></a>
-								<ul class="sub_menu">
-									 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl'=>'Pc_HelpCenterIndex','identifier' => 'zhuchaoshangou','type' => 1)) ?>
-								</ul>
-						  </li>
-						  <li class="menu_item">
-								<a href="javascript:;" class="menu_head">采购工具<i class="icon-xiangxiajiantou main"></i></a>
-								<ul class="sub_menu">
-									 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl'=>'Pc_HelpCenterIndex','identifier' => 'caigougongju','type' => 1)) ?>
-								</ul>
-						  </li>
-						  <li class="menu_item">
-								<a href="javascript:;" class="menu_head">维权投诉<i class="icon-xiangxiajiantou main"></i></a>
-								<ul class="sub_menu">
-									 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl'=>'Pc_HelpCenterIndex','identifier' => 'weiquantousu','type' => 1)) ?>
-								</ul>
-						  </li>
-					 </ul>
-				</div>
-    <!--右侧内容-->
-    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterList','outputNum' => 8)) ?>
-</div>
-<?php Qs::Label('静态类/网站底部') ?>
-<script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="help/help" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
-</body>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>帮助中心首页--新闻列表</title>
+        <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/helplist.css')); ?>
+    </head>
+    <body>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
+        <!--站点指示-->
+        <div class="site conwidth">
+            <a href="../mall/index.html">首页</a>
+            <span>&gt;</span>
+            <a href="/category/help.html">帮助中心</a>
+        </div>
+        <!--帮助中心-->
+        <div class="main_content clearfix conwidth">
+            <!--左侧内容-->
+            <div class="help_left_nav fl">
+                <ul class="left_menu">
+                    <li class="menu_item">
+                        <a href="javascript:;" class="menu_head">帐户管理<i class="icon-xiangxiajiantou main"></i></a>
+                        <ul class="sub_menu">
+                            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'zhanghaoguanli', 'type' => 1)) ?>
+                        </ul>
+                    </li>
+                    <li class="menu_item">
+                        <a href="javascript:;" class="menu_head">采购中心<i class="icon-xiangxiajiantou main"></i></a>
+                        <ul class="sub_menu">
+                            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'caigouzhongxin', 'type' => 1)) ?>
+                        </ul>
+                    </li>
+                    <li class="menu_item">
+                        <a href="javascript:;" class="menu_head">供应商服务<i class="icon-xiangxiajiantou main"></i></a>
+                        <ul class="sub_menu">
+                            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'gongyingshangfuwu', 'type' => 1)) ?>
+                        </ul>
+                    </li>
+                    <li class="menu_item">
+                        <a href="javascript:;" class="menu_head">特色栏目<i class="icon-xiangxiajiantou main"></i></a>
+                        <ul class="sub_menu">
+                            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'teselanmu', 'type' => 1)) ?>
+                        </ul>
+                    </li>
+                    <li class="menu_item">
+                        <a href="javascript:;" class="menu_head">积分商城<i class="icon-xiangxiajiantou main"></i></a>
+                        <ul class="sub_menu">
+                            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'jifenshangcheng', 'type' => 1)) ?>
+                        </ul>
+                    </li>
+                    <li class="menu_item">
+                        <a href="javascript:;" class="menu_head">维权指南<i class="icon-xiangxiajiantou main"></i></a>
+                        <ul class="sub_menu">
+                            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'weiquanzhinan', 'type' => 1)) ?>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--右侧内容-->
+            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterList', 'outputNum' => 8)) ?>
+        </div>
+        <?php Qs::Label('静态类/网站底部') ?>
+        <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="help/help" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
+    </body>
 </html>

@@ -2,12 +2,12 @@
     <div class="conwidth clearfix">
         <div class="fl">
             欢迎来到凤凰筑巢！ 
-				<?php
-				$isLogin = $this->checkLogin();
-				if (!$isLogin) {
-					echo '<a class="login_btn main_hover" href="http://' . RT_BUYER_SITE_NAME . '/login.html">请登录</a> <a class="register_btn main_hover" href="http://' . RT_BUYER_SITE_NAME . '/resgister.html">注册</a>';
-				}
-				?>
+            <?php
+            $isLogin = $this->checkLogin();
+            if (!$isLogin) {
+               echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
+            }
+            ?>
         </div>
         <ul class="fr header_top_nav main_hover">
             <li><a href="">我的询价单</a></li>
@@ -16,23 +16,18 @@
             <li class="line"></li>
             <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
             <li class="line"></li>
-            <li><a href="">供应商专区</a></li>
-            <li class="line"></li>
-            <li><a href="">运营商专区</a></li>
+            <li><a target="_blank" href="http://<?php echo $this->getProviderSiteName(); ?>">供应商专区</a></li>
+            <!--            <li class="line"></li>
+                        <li><a href="">运营商专区</a></li>-->
             <li class="line"></li>
             <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a></li>
             <li class="line"></li>
-            <li><a href="">帮助中心</a></li>
+            <li><a target="_blank" href="/category/help.html">帮助中心</a></li>
             <li class="line"></li>
             <li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
-
                 <div class="pull_more main_bg">
-                    <a href="">邀请好友</a>
-                    <a href="">加入收藏</a>
-                    <a href="">新浪微博</a>
-                    <a href="">邀请好友</a>
-                    <a href="">加入收藏</a>
-                    <a href="">新浪微博</a>
+                    <img class="erweima" src="<?php Qs::Sys('loadImage', 'icon_erweima.png'); ?>">
+                    <span>扫一扫<br>关注凤凰筑巢</span>
                 </div>
             </li>
         </ul>
@@ -42,9 +37,9 @@
 <div class="header_search">
     <div class="header_search_inner conwidth clearfix">
         <div class="icon_logo fl">
-				<a href="/">
-					 <img src="/Statics/Skins/Pc/Images/mall/icon/test_iocn_logo.png" alt="凤凰筑巢LOGO">
-				</a>
+            <a href="/">
+                <img src="/Statics/Skins/Pc/Images/mall/icon/test_iocn_logo.png" alt="凤凰筑巢LOGO">
+            </a>
         </div>
         <div class="header_search_box fr clearfix">
             <div class="search_box">
@@ -406,10 +401,10 @@
             <span class="all_sort_bg" style="display: block"></span>
         </div>
         <ul class="fl nav_list">
-            <li><a href="../mall/index.html" class="mainbg_hover">首页</a></li>
-            <li><a href="../mall/prolist.html" class="mainbg_hover">活动</a></li>
-            <li><a href="../mall/prolist.html" class="mainbg_hover">建材老板内参</a></li>
-            <li><a href="../mall/prolist.html" class="mainbg_hover">企业库</a></li>
+            <li><a href="/" class="mainbg_hover">首页</a></li>
+            <li><a href="/category/zhuchaoschool.html" class="mainbg_hover">筑巢商学院</a></li>
+            <li><a href="/category/laobanneican.html" class="mainbg_hover">建材老板内参</a></li>
+            <!--<li><a href="../mall/prolist.html" class="mainbg_hover">企业库</a></li>-->
         </ul>
     </div>
 </div>

@@ -1,7 +1,8 @@
 <div class="header_top">
     <div class="conwidth clearfix">
         <div class="fl">
-            欢迎来到凤凰筑巢！ <?php
+            欢迎来到凤凰筑巢！ 
+            <?php
             $isLogin = $this->checkLogin();
             if (!$isLogin) {
                echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
@@ -30,33 +31,5 @@
                 </div>
             </li>
         </ul>
-    </div>
-</div>
-<!--搜索-->
-<div class="header_search">
-    <div class="header_search_inner conwidth clearfix">
-        <div class="icon_logo fl">
-            <a href="/">
-                <img src="/Statics/Skins/Pc/Images/mall/icon/test_iocn_logo.png" alt="凤凰筑巢LOGO">
-            </a>
-        </div>
-        <div class="header_search_box fr clearfix">
-            <div class="search_box">
-                <input type="text" placeholder="搜索您的问题">
-                <span class="search_button">
-                    搜索
-                </span>
-            </div>
-            <div class="search_right_btn noselect fr mainbd_hover">
-                <a href="/">
-                    <span>联系客服</span>
-                </a>
-            </div>
-            <div class="search_right_btn noselect fr mainbd_hover">
-                <a href="/">
-                    <span>返回商城首页</span>
-                </a>
-            </div>
-        </div>
     </div>
 </div>

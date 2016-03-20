@@ -20,8 +20,8 @@ if(!$this->checkLogin()){
                     <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
                 </div>
                 <div class="login_action">
-                    <a class="main_bg" href="http://' . RT_BUYER_SITE_NAME . '/login.html">登录</a>
-                    <a href="http://' . RT_BUYER_SITE_NAME . '/resgister.html">注册</a>
+                    <a class="main_bg" href="http://' . $this->getBuyerSiteName() . '/login.html">登录</a>
+                    <a href="http://' . $this->getBuyerSiteName() . '/resgister.html">注册</a>
                 </div>';
 } else {
 	$curUser = $this->getCurUser();

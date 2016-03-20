@@ -160,4 +160,13 @@ class Nav extends AbstractLabelScript
       return $ads;
    }
 
+   public function getBuyerSiteName()
+   {
+      return \Cntysoft\RT_BUYER_SITE_NAME;
+   }
+   
+   public function getProviderSiteName()
+   {
+      return \Cntysoft\RT_PROVIDER_SITE_NAME;
+   }
 }
