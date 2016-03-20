@@ -1,25 +1,33 @@
-define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/address'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer'], function (validate, WebUploader){
     $(function (){
+       var reg = new RegExp(/^[0-9a-zA-Z-_]{3,10}$/);
         $('#submit').click(function (){
             var hasError = false;
-            var validation = validate.checkFields($('.checkField,.company,.register'));
-            if(validation.length){
-                layer.msg('请正确填写各项');
-                return false;
-            }
             var params = {};
-            $.each($('.checkField,.register,.company'), function (index, item){
-                params[$(item).attr('id')] = $(item).val();
-            });
-            if($('#logo').length){
-                params['logo'] = $('#logo').attr('src');
+            if($('#avatar').length){
+                params['avatar'] = $('#avatar').attr('src');
             }else{
-                validate.tips('请上传企业logo','.img_plus');
-                layer.msg('请正确填写各项');
+                validate.tips('请上传个人头像','.img_plus');
                 return false;
             }
-            params['tradeMode'] = getRadioValueByName('tradeMode');
-            console.log(params);
+            params['sex'] = getRadioValueByName('sex');
+            if($('#name').attr('disabled')){
+               
+            }else{
+               if(!$('#name').val() || !reg.test($('#name').val())){
+                  validate.tips('请填写3-10位字母数字的用户名','#name');
+                  return false;
+               }
+               params['name'] = $('#name').val();
+            }
+            Cntysoft.Front.callApi('User', 'updateBuyer', params, function (response){
+               if(!response.status){
+                  layer.alert('当前用户名不可用！');
+               }else{
+                  layer.msg('用户信息修改成功');
+               }
+            });
+            
         });
         //上传的默认配置项
         var uploaderConfig = {
@@ -57,7 +65,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
         //商品图片上传成功
         uploadProductImg.on('uploadSuccess', function (file, response){
             if(response.status){
-                var out = '<li><img id="logo" src="' + response.data[0].filename + '" fh-rid="' + response.data[0].rid + '"><em class="deleteImg">删除</em></li>';
+                var out = '<li><img id="avatar" src="' + response.data[0].filename + '" fh-rid="' + response.data[0].rid + '"><em class="deleteImg">删除</em></li>';
                 $('.img_plus').siblings('li').remove();
                 $('.img_plus').before(out);
                 $('.img_plus').hide();

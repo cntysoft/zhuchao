@@ -54,7 +54,6 @@ class Upload extends BaseUpload
                   $filename = $objectName;
                   FsLib::deleteFile($file);
                } else {
-                
                   $attachment = Kernel\convert_2_utf8(str_replace(CNTY_ROOT_DIR,
                            '', $file));
                   $filename = Kernel\convert_2_utf8(str_replace(DS, '/',

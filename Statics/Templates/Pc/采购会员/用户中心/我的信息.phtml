@@ -57,10 +57,13 @@
           <div class="form_list">
                <label class="label_uploading"><em class="main">*</em>用户头像:</label>
                <ul class="img_uploading clearfix">
-                   <li class="img_plus">
-                       <p>+</p>
-                       <span>添加照片</span>
-                   </li>
+                   <?php $avatar = Qs::DsField('User', 'avatar', true); 
+                  if($avatar){
+                      echo '<li><img id="avatar" src="'.$avatar.'" fh-rid="61"><em class="deleteImg">删除</em></li><li class="img_plus webuploader-container" style="display: none;"><div class="webuploader-pick"><p>+</p><span>添加照片</span></div><div id="rt_rt_1ae9482a0n411k8su8qqlo59f1" style="position: absolute; top: 0px; left: 0px; width: 120px; height: 83px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" multiple="multiple" accept="image/*" style="position: absolute; clip: rect(1px 1px 1px 1px);"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></li>';
+                   }else{
+                      echo '<li class="img_plus"><p>+</p><span>添加照片</span></li>';
+                   }?>
+                   
                </ul>
            </div>
           <?php 
@@ -76,11 +79,11 @@
               <input type="text" id='name' value="<?php echo $name; ?>" fh-type="nickname" <?php echo $canChange?>>
           </div>
           <div class="form_list">
-              <label><em class="main">*</em>等&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>
+              <label><em class="main"></em>等&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>
               <input type="text" id='name' value="<?php echo 'LV'.Qs::DsField('User', 'level',true); ?>" fh-type="nickname" disabled>
           </div>
           <div class="form_list">
-              <label><em class="main">*</em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
+              <label><em class="main"></em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
               <?php
               $checkArray = array(1 => '', 2 => '', 3 => '');
               $sex = Qs::DsField('User', 'sex', true);
@@ -118,10 +121,13 @@
               <label><em class="main">*</em>手机号码:</label>
               <input type="text" id="phone" value="<?php Qs::DsField('User', 'phone') ?>" disabled>
           </div>
-
-          <div class="action_btn">
+          <div class="form_list">
+              <label><em class="main"></em>默认地址:</label>
+              <input type="text" id="address" value="<?php Qs::DsField('User', 'address') ?>" disabled>
+          </div>
+          <div class="action_btn" style="width:600px;margin-bottom: 20px">
               <label></label>
-              <a class="main_bg" id="submit">可选</a>
+              <a class="main_bg" id="submit">提交</a>
           </div>
       </div>
   </div>

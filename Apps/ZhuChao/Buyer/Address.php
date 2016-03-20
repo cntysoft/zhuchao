@@ -24,7 +24,7 @@ class Address extends AbstractLib
       $count = $this->getAddressCount($buyerId);
       if($count == Constant::ADDRESS_MAX_NUM){
          $errorType = $this->getErrorType();
-         Kernel\truncate_table(new Exception(
+         Kernel\throw_exception(new Exception(
             $errorType->msg('E_BUYER_ADDRESS_MAXIMUM'), $errorType->code('E_BUYER_ADDRESS_MAXIMUM')
          ), $this->getErrorTypeContext());
       }

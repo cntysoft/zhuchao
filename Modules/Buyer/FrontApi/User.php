@@ -79,8 +79,14 @@ class User extends AbstractScript
    public function updateBuyer(array $params)
    {
       $curUser = $this->getCurUser();
-      Kernel\unset_array_values($params, array('id', 'buyerId', 'avatar', 'password', 'profileId', 'status', 'experience', 'level', 'point'));
-   
+      Kernel\unset_array_values($params, array('id', 'buyerId', 'password', 'profileId', 'status', 'experience', 'level', 'point'));
+      $cndServer = Kernel\get_image_cdn_server_url() .'/';
+      $src = '@.src';
+      
+      if(count($params['avatar'])){
+         $params['avatar'] = str_replace($src, '', str_replace($cndServer, '', $params['avatar']));
+      }
+
       return $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,
          BUYER_CONST::APP_NAME,
@@ -98,7 +104,7 @@ class User extends AbstractScript
     */
    public function addAddress(array $params)
    {
-      $this->checkRequireFields($params, array('username', 'phone', 'province', 'city', 'district', 'address', 'postCode'));
+      $this->checkRequireFields($params, array('username', 'phone', 'province', 'city', 'district', 'address', 'postCode', 'isDefault'));
       $curUser = $this->getCurUser();
       
       return $this->appCaller->call(
@@ -118,7 +124,7 @@ class User extends AbstractScript
     */
    public function updateAddress(array $params)
    {
-      $this->checkRequireFields($params, array('id', 'username', 'phone', 'province', 'city', 'district', 'address', 'postCode'));
+      $this->checkRequireFields($params, array('id', 'username', 'phone', 'province', 'city', 'district', 'address', 'postCode', 'isDefault'));
       $curUser = $this->getCurUser();
       $id = (int)$params['id'];
       unset($params['id']);
@@ -150,6 +156,29 @@ class User extends AbstractScript
          'deleteAddress',
          array($curUser->getId(), (int)$params['id'])
       );
+   }
+   /**
+    * 获取地址信息
+    * 
+    * @param array $params
+    * @return 
+    */
+   public function getAddress(array $params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      $curUser = $this->getCurUser();
+      
+      $address = $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_ADDRESS,
+         'getAddressByBuyerAndId',
+         array($curUser->getId(), (int)$params['id'])
+      );
+      $array = $address->toArray();
+      Kernel\unset_array_values($array, array('id', 'buyerId', 'inputTime'));
+      $array['postCode'] = $array['postCode'] ? $array['postCode'] : '';
+      return $array;
    }
    
    /**
@@ -364,7 +393,7 @@ class User extends AbstractScript
          'getCurUser'
       );
    }
-   
+
    /**
     * 获取省份信息
     * 

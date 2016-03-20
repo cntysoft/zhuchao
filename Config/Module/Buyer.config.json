@@ -37,15 +37,6 @@
             }
         },
         {
-            "key" : "BuyerAvatar",
-            "rule" : "\/avatar.html",
-            "option" : {
-                "module" : "Buyer",
-                "controller" : "Index",
-                "action" : "avatar"
-            }
-        },
-        {
             "key" : "BuyerPassword",
             "rule" : "\/password.html",
             "option" : {
@@ -143,6 +134,7 @@
     },
     "front_api_map" : {
         "User" : ["\\FrontApi\\User", 2],
-        "Uploader" : ["\\FrontApi\\Uploader", 2]
+        "Uploader" : ["\\FrontApi\\Uploader", 2],
+        "Utils" : ["\\FrontApi\\Utils", 2]
     }
 }

@@ -16,21 +16,7 @@ class ErrorType
     * @var array $map
     */
    protected $map = array(
-      'E_FRONT_AUTH_CODE_EXPIRE'   => array(10001, 'auth code expired'),
-      'E_FRONT_AUTH_CODE_ERROR'    => array(10002, 'auth code error'),
-      'E_USER_EXIST'               => array(10003, 'user is exist'),
-      'E_SET_DEFAULT_ADDRESS_FAIL' => array(10004, 'set default address error'),
-      'E_FAVORITE_HAVE_THIS_GOOD'  => array(10005, 'set favorite goods error'),
-      'E_USER_HAVE_COUPON'         => array(10006, 'user have this coupon'),
-      'E_HAS_CHAOGUO_STOCK'        => array(10007, 'has chaoguo stock'),
-      'E_USER_LEVEL_ERROR'         => array(10008, 'user level error'),
-      'E_STOCK_NONE'               => array(10009, 'stock is 0'),
-      'E_COUPON_NUM_ERROR'         => array(10010, 'coupon num error'),
-      'E_RECEIVE_COUPON_ERROR'     => array(10011, 'receive coupon error'),
-      'E__USER_MSG_ERROR'          => array(10012, 'user msg error'),
-      'E_WECHATPAY_CODE_ERROR'     => array(10013,' wechat pay error'),
-      'E_GOODS_STATUS_NONE'        => array(10014, 'goods status error'),
-      'E_ADD_ORDER_ERROR'  => array(10015, 'create order error')
+      'E_FRONT_NAME_EXIST'       => array(10001, 'the user name is exist')
    );
 
    /**

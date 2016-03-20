@@ -68,5 +68,6 @@ define(['require', 'exports', 'jquery', 'Front'], function (require, exports){
         }
         exports.getChildArea = getChildArea;
         exports.appendDom = appendDom;
+        exports.init = init;
     });
 });
