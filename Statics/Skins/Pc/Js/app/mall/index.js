@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/10.
  */
-define(['jquery2.1.4','slick','layer'], function () {
+define(['jquery','slick','layer'], function () {
     $(document).ready(function () {
         // banner
         $('.banner_box').slick({
@@ -21,12 +21,8 @@ define(['jquery2.1.4','slick','layer'], function () {
                 prevArrow: ".left_btn" + i ,
                 nextArrow: ".right_btn"+ i
             });
-
         }
-
-
-
-
+        
         //产品切换
         //$('.pro_banner_box').slick({
         //    dots: false,
