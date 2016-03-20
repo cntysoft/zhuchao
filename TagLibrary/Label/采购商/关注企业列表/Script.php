@@ -10,43 +10,12 @@ namespace TagLibrary\Label\Buyer;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use Cntysoft\Kernel;
-use Cntysoft\Framework\Utils\ChinaArea;
 
-class Collection extends AbstractLabelScript
+class Follow extends AbstractLabelScript
 {
    protected $outputNum = 0;
-
-   protected static $chinaArea = null;
-
-   /**
-    * 获取指定code的下级地区信息
-    * 
-    */
-   public function getArea($code)
-   {
-      $chinaArea = $this->getChinaArea();
-      if($code){
-         return $chinaArea->getArea($code);
-      }else{
-         return '';
-      }      
-   }
-
-   /**
-    * 获取省市区管理对象
-    * 
-    * @return Cntysoft\Framework\Utils\ChinaArea
-    */
-   protected function getChinaArea()
-   {
-      if (null == self::$chinaArea) {
-         self::$chinaArea = new ChinaArea();
-      }
-
-      return self::$chinaArea;
-   }
    
-   public function getCollection()
+   public function getFollowList()
    {
       $curUser = $this->getCurUser();
       $page = $this->getPageParam();
@@ -54,15 +23,15 @@ class Collection extends AbstractLabelScript
       return $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,
          BUYER_CONST::APP_NAME,
-         BUYER_CONST::APP_API_BUYER_COLLECT,
-         'getCollectList',
+         BUYER_CONST::APP_API_BUYER_FOLLOW,
+         'getFollowList',
          array(array('buyerId='.$curUser->getId()), true, 'id DESC', $page['offset'], $page['limit'])
       );
    }
 
    public function getPageUrl($pageId)
    {
-      return '/product/'.$pageId.'.html';
+      return '/follow/'.$pageId.'.html';
    }
    
    /**
@@ -148,18 +117,18 @@ class Collection extends AbstractLabelScript
       if($imgUrl){
          return Kernel\get_image_cdn_url_operate($imgUrl, $arguments);
       }else{
-         return '/Statics/Skins/Pc/lazyicon.png';
+         return '/Statics/Skins/Pc/Images/lazyicon.png';
       }
    }
    
    /**
     * 获取商品的网址
     * 
-    * @param integer $id
+    * @param string $subAttr
     * @return string
     */
-   public function getProduct($id)
+   public function getCompanyUrl($subAttr)
    {
-      return '/item/'.$id.'.html';
+      return 'http://'.$subAttr.'.'.\Cntysoft\SYS_SITE_NAME_DEVEL;
    }
 }

@@ -1,37 +1,39 @@
 <?php
-$result = $this->getCollection();
+$result = $this->getFollowList();
 $list = $result[0];
 $total = $result[1];
 $out = '';
 if(count($list)){
-   foreach($list as $collect){
-      $product = $collect->getProduct();
-      $company = $product->getCompany();
-      $number = $product->getNumber();
-      $imageUrl = $this->getImageCdnUrl($product->getDefaultImage());
-      $name = $product->getBrand() . ' ' . $product->getTitle() . ' ' . $product->getDescription(); 
-      $url = $this->getProduct($product->getId());
-      $price = 0 == $product->getPrice() ? '面议' : '￥' . $product->getPrice();
-      $out.='<div class="collect_ele clearfix" fh-id="'.$collect->getId().'">
-            <a href="" class="collect_ele_img"> <img src="'.$imageUrl.'" alt="'.$name.'"></a>
-            <div class="collect_container">
-                <h4><a href="'.$url.'">'.$name.'</a></h4>
-                <p class="collect_price main_light"><span>'.$price.'</span><i>奖0积分</i></p>
-                <p class="clearfix">
-                    <span class="collect_intro">发货地：</span>
-                    <span class="collect_detail">'.$this->getArea($company->getProvince()).' '.$this->getArea($company->getCity()).' </span>
+   foreach($list as $follow){
+      $id = $follow->getId();
+      $company = $follow->getCompany();
+      $url = $this->getCompanyUrl($company->getSubAttr());
+      $provider = $company->getProvider();
+      $linker = '';
+      if($provider){
+         $detail = $provider->getProfile();
+         $sexText = $detail->getSex() ? '先生' : '女士';
+         $linker = $detail->getRealName().' '.$sexText. ' '.$detail->getPosition().' ' .$detail->getShowPhone();
+      }
+      $products = $company->getProducts();
+      $name = $company->getName();
+      $out.='<div class="company_ele" fh-index="'.$id.'">
+            <h4>'.$name.'</h4>
+            <div class="company_container" style="width:910px">
+                <div class="company_title clearfix">
+                    <span>企业注册号</span>
+                    <span>联系人</span>
+                    <span>主营产品</span>
+                </div>
+                <div class="company_content clearfix">
+                    <span>****</span>
+                    <span>'.$linker.'</span>
+                    <span>'.$products.'</span>
+                </div>
+                <p class="company_operation clearfix">
+                    <i  class="icon-shanchu fr"></i>
+                    <a href="'.$url.'" class="main_bg_light fr" target="__blank">企业商铺</a>
                 </p>
-                <p class="clearfix">
-                    <span class="collect_intro">销售区域：</span>
-                    <span class="collect_detail"></span>
-                </p>
-            </div>
-            <div class="collect_operation ">
-                <p class="clearfix">
-                    <span class="xunjia_btn fr icon-tubiao"></span>
-                    <span class="phone_btn fr  icon-dianhua2 main_bg_light"></span>
-                </p>
-                <p class="clearfix"><span class="del_btn fr  icon-shanchu"></span></p>
             </div>
         </div>';
    }

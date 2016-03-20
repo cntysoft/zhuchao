@@ -21,13 +21,15 @@ class BuyerInfo extends AbstractDsScript
    {
       $user = $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
       $detail = $user->getProfile();
+      $fileRefs = $detail->getFileRefs();
       $ret = array(
          'avatar' => $this->getImageCdnUrl($detail->getAvatar()),
          'name'   => $user->getName(),
          'phone'  => $user->getPhone(),
          'sex'    => $detail->getSex(),
          'level'  => $detail->getLevel(),
-         'address' => $this->getDefaultAddress($user->getId())
+         'address' => $this->getDefaultAddress($user->getId()),
+         'rid'    => count($fileRefs) ? $fileRefs[0] : ''
       );
       return $ret;
    }
@@ -80,7 +82,7 @@ class BuyerInfo extends AbstractDsScript
       if($imgUrl){
          return Kernel\get_image_cdn_url_operate($imgUrl, $arguments);
       }else{
-         return '/Statics/Skins/Pc/lazyicon.png';
+         return '';
       }
    }
 }

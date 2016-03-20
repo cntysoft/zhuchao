@@ -13,12 +13,19 @@ class Follow extends BaseModel
 {
    protected $id;
    protected $buyerId;
-   protected $productId;
+   protected $companyId;
    protected $followTime;
    
    public function getSource()
    {
       return 'app_zhuchao_buyer_follow';
+   }
+   
+   public function initialize()
+   {
+      $this->belongsTo('companyId', 'App\ZhuChao\Provider\Model\Company', 'id', array(
+         'alias' => 'company'
+      ));
    }
    
    public function getId()
@@ -31,9 +38,9 @@ class Follow extends BaseModel
       return (int)$this->buyerId;
    }
 
-   public function getProductId()
+   public function getCompanyId()
    {
-      return (int)$this->productId;
+      return (int)$this->companyId;
    }
 
    public function getFollowTime()
@@ -51,9 +58,9 @@ class Follow extends BaseModel
       $this->buyerId = (int)$buyerId;
    }
 
-   public function setProductId($productId)
+   public function setCompanyId($companyId)
    {
-      $this->productId = (int)$productId;
+      $this->companyId = (int)$companyId;
    }
    
    public function setFollowTime($followTime)

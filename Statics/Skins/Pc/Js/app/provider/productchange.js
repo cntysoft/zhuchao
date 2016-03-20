@@ -19,6 +19,10 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                });
            }
         }
+        $('#brand,#title,#description,#advertText').keyup(function(){
+           var len = $(this).val().length;
+           $(this).next('span').find('em').text(len);
+        });
         //提交 submit为保存,draft为生成草稿
         $('#submit,#draft').click(function (){
             var validation = validate.checkFields($(checkArea + ',#keyword,#keyword2,#keyword3,.basic .attrInput,.customAttr .attr_info,.customAttr .attrTitle'));

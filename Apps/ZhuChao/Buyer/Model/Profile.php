@@ -17,7 +17,8 @@ class Profile extends BaseModel
    protected $level;
    protected $point;
    protected $sex;
-   
+   protected $fileRefs;
+
    public function getSource()
    {
       return 'app_zhuchao_buyer_profile';
@@ -53,6 +54,11 @@ class Profile extends BaseModel
       return (int)$this->sex;
    }
 
+   public function getFileRefs()
+   {
+      return explode(',', $this->fileRefs);
+   }
+   
    public function setId($id)
    {
       $this->id = (int)$id;
@@ -81,6 +87,11 @@ class Profile extends BaseModel
    public function setSex($sex)
    {
       $this->sex = (int)$sex;
+   }
+   
+   public function setFileRefs($fileRefs)
+   {
+      $this->fileRefs = implode(',', $fileRefs);
    }
 
 }

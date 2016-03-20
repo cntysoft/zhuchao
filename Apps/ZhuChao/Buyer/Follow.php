@@ -66,26 +66,26 @@ class Follow extends AbstractLib
       return $items;
    }
    
-   /**
+    /**
     * 删除指定id的关注信息
     * 
-    * @param integer $followId
+    * @param integer $buyerId
+    * @param integer $ids
     * 
-    * @return boolean
     */
-   public function deleteFollow($followId)
+   public function deleteFollows($buyerId, array $ids)
    {
-      $follow = $this->getFollowById($followId);
-      
-      if(!$follow){
-         $errorType = $this->getErrorType();
-         Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_FOLLOW_NOT_EXIST'), $errorType->code('E_BUYER_FOLLOW_NOT_EXIST')
-         ), $this->getErrorTypeContext());
+      $cond[] = FollowModel::generateRangeCond('id', $ids);
+      $cond[] = 'buyerId='.$buyerId;
+      $cond = implode(' and ', $cond);
+      $list = $this->getFollowList(array($cond), false, 'id DESC', 0, 0);
+      if(count($list)){
+         foreach($list as $follow){
+            $follow->delete();
+         }
       }
-      
-      return $follow->delete();
    }
+   
    
    /**
     * 获取指定id的关注信息

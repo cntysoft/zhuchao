@@ -1,11 +1,11 @@
 <?php
 return array(
-   'id'          => '收藏产品列表',
+   'id'          => '关注企业列表',
    'category'    => '采购商',
-   'class'       => 'Collection',
+   'class'       => 'Follow',
    'namespace'   => 'Buyer',
    'static'      => false,
-   'description' => '采购商收藏产品的列表',
+   'description' => '采购商关注企业的列表',
    'attributes'  => array(
       'outputNum' => array(
          'dataType' => \Cntysoft\INTEGER,

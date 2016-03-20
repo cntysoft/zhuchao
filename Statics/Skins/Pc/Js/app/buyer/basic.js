@@ -20,6 +20,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer'], function
                }
                params['name'] = $('#name').val();
             }
+            params['fileRefs'] = [$('#avatar').attr('fh-rid')];
             Cntysoft.Front.callApi('User', 'updateBuyer', params, function (response){
                if(!response.status){
                   layer.alert('当前用户名不可用！');
@@ -48,7 +49,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer'], function
                     method : "process"
                 }),
                 REQUEST_DATA : Cntysoft.Json.encode({
-                    uploadDir : "/Data/UploadFiles/Apps/ZhuChao/Product",
+                    uploadDir : "/Data/UploadFiles/Apps/ZhuChao/Buyer",
                     overwrite : true,
                     randomize : true,
                     createSubDir : true,
@@ -62,6 +63,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer'], function
         var uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
             pick : '.img_plus'
         }));
+        
         //商品图片上传成功
         uploadProductImg.on('uploadSuccess', function (file, response){
             if(response.status){

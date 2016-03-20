@@ -59,7 +59,7 @@
                <ul class="img_uploading clearfix">
                    <?php $avatar = Qs::DsField('User', 'avatar', true); 
                   if($avatar){
-                      echo '<li><img id="avatar" src="'.$avatar.'" fh-rid="61"><em class="deleteImg">删除</em></li><li class="img_plus webuploader-container" style="display: none;"><div class="webuploader-pick"><p>+</p><span>添加照片</span></div><div id="rt_rt_1ae9482a0n411k8su8qqlo59f1" style="position: absolute; top: 0px; left: 0px; width: 120px; height: 83px; overflow: hidden; bottom: auto; right: auto;"><input type="file" name="file" multiple="multiple" accept="image/*" style="position: absolute; clip: rect(1px 1px 1px 1px);"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label></div></li>';
+                      echo '<li class="avatar"><img id="avatar" src="'.$avatar.'" fh-rid="'. Qs::DsField('User', 'avatar', true). '"><em class="deleteImg">删除</em></li><li class="img_plus hide"><p>+</p><span>添加照片</span></li>';
                    }else{
                       echo '<li class="img_plus"><p>+</p><span>添加照片</span></li>';
                    }?>

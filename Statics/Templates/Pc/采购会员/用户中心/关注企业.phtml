@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>关注企业</title>
-    <?php Qs::Sys('loadCss', array('buyer/style.css', 'buyer/collect_pro.css'))?>
+    <?php Qs::Sys('loadCss', array('buyer/style.css', 'buyer/company.css'))?>
 </head>
 <body>
 <!--头部-->
@@ -44,14 +44,12 @@
     <?php Qs::Label('采购商/用户中心左侧')?>
     <!--右侧内容-->
     <div class="content_wrap fr">
-        <h1 class="items_title">收藏产品</h1>
-        <div class="collect_list">
-            <?php Qs::Label('采购商/收藏产品列表', array('renderTpl' => 'ProductList', 'outputNum' => 4, 'enablePage' => true))?>
-        </div>
-        </div>
+        <h1 class="items_title">关注企业</h1>
+        <?php Qs::Label('采购商/关注企业列表', array('renderTpl' => 'CompanyList', 'outputNum' => 4, 'enablePage' => true))?>
     </div>
+</div>
 <!--合作伙伴-->
 <?php Qs::Label('采购商/用户中心底部')?>
-<?php Qs::Sys('loadRequireJs', 'buyer/collection')?>
+<?php Qs::Sys('loadRequireJs', 'buyer/company')?>
 </body>
 </html>

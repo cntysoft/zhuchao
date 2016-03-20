@@ -99,7 +99,8 @@ class ProductController extends AbstractController
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-	public function itemAction() {
+	public function itemAction() 
+   {
 		$productId = $this->dispatcher->getParam('itemId');
 		if (null === $productId) {
 			$this->setupRenderOpt(array(

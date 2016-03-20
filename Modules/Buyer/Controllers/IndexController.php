@@ -34,14 +34,6 @@ class IndexController extends AbstractController
       ));
    }
 
-   public function avatarAction()
-   {
-      return $this->setupRenderOpt(array(
-         View::KEY_RESOLVE_DATA => 'buyer/avatar',
-         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
-   }
-
    public function modifyAction()
    {
       return $this->setupRenderOpt(array(
@@ -62,6 +54,14 @@ class IndexController extends AbstractController
    {
       return $this->setupRenderOpt(array(
          View::KEY_RESOLVE_DATA => 'buyer/collection',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   public function followAction()
+   {
+      return $this->setupRenderOpt(array(
+         View::KEY_RESOLVE_DATA => 'buyer/follow',
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }

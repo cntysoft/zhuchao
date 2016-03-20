@@ -40,7 +40,7 @@ if(count($list)){
       $time = date('Y-m-d', $product->getInputTime());
       $comment = $product->getComment();
       $image = $this->getImageCdnUrl($product->getDefaultImage());
-      $url = $this->getProduct($productId);
+      $url = $this->getProductUrl($productId);
       $star = $product->getStar();
       $out.='<tr class="prolist_list " fh-number="'.$number.'">
             <td class="pro-code">

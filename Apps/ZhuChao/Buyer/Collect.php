@@ -71,7 +71,7 @@ class Collect extends AbstractLib
     * 
     * @param integer $buyerId
     * @param integer $ids
-    * @return boolean
+    * 
     */
    public function deleteCollects($buyerId, array $ids)
    {

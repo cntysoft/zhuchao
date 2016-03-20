@@ -55,6 +55,7 @@ class Uploader extends AbstractScript
       
       foreach ($ret as &$file) {
          $file['filename'] = Kernel\get_image_cdn_url($file['filename']);
+         $file['rid'] = $file['rid'];
       }
       return $ret;
    }

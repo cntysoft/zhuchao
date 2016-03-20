@@ -11,7 +11,7 @@ use Cntysoft\Kernel\App\AbstractLib;
 use App\ZhuChao\Buyer\Model\BaseInfo as BaseInfoModel;
 use App\ZhuChao\Buyer\Model\Profile as ProfileModel;
 use Cntysoft\Kernel;
-
+use Cntysoft\Framework\Core\FileRef\Manager as RefManager;
 class BuyerMgr extends AbstractLib
 {
    /**
@@ -85,6 +85,10 @@ class BuyerMgr extends AbstractLib
       
       try{
          $db->begin();
+         if (!empty($pdata['fileRefs'])) {
+            $refManager = new RefManager();
+            $refManager->confirmFileRef($pdata['fileRefs']);
+         }
          $profile->assignBySetter($pdata);
          $profile->create();
          $data['profileId'] = $profile->getId();
@@ -181,6 +185,15 @@ class BuyerMgr extends AbstractLib
             }
          }
 
+         if (!empty($pdata['fileRefs'])) {
+            $fileRefs = $profile->getFileRefs();
+            $refManager = new RefManager();
+            if(count($fileRefs) && $fileRefs[0] != $pdata['fileRefs']){
+               $refManager->removeFileRef($fileRefs[0]);
+               $refManager->confirmFileRef($pdata['fileRefs']);
+            }
+         }
+         
          $profile->assignBySetter($pdata);
          $profile->update();
          

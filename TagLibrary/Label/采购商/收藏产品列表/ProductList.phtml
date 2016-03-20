@@ -7,19 +7,25 @@ if(count($list)){
    foreach($list as $collect){
       $product = $collect->getProduct();
       $company = $product->getCompany();
+      $from = '';
+      if($company){
+         $from = $this->getArea($company->getProvince()).' '.$this->getArea($company->getCity());
+      }
       $number = $product->getNumber();
       $imageUrl = $this->getImageCdnUrl($product->getDefaultImage());
       $name = $product->getBrand() . ' ' . $product->getTitle() . ' ' . $product->getDescription(); 
-      $url = $this->getProduct($product->getId());
+      $url = $this->getProductUrl($product->getId());
       $price = 0 == $product->getPrice() ? '面议' : '￥' . $product->getPrice();
+      $status = $product->getStatus();
+      
       $out.='<div class="collect_ele clearfix" fh-id="'.$collect->getId().'">
-            <a href="" class="collect_ele_img"> <img src="'.$imageUrl.'" alt="'.$name.'"></a>
+            <a href="'.$url.'" class="collect_ele_img" target="__blank"> <img src="'.$imageUrl.'" alt="'.$name.'"></a>
             <div class="collect_container">
-                <h4><a href="'.$url.'">'.$name.'</a></h4>
+                <h4><a href="'.$url.'" target="__blank">'.$name.'</a></h4>
                 <p class="collect_price main_light"><span>'.$price.'</span><i>奖0积分</i></p>
                 <p class="clearfix">
                     <span class="collect_intro">发货地：</span>
-                    <span class="collect_detail">'.$this->getArea($company->getProvince()).' '.$this->getArea($company->getCity()).' </span>
+                    <span class="collect_detail">'.$from.' </span>
                 </p>
                 <p class="clearfix">
                     <span class="collect_intro">销售区域：</span>
@@ -27,13 +33,17 @@ if(count($list)){
                 </p>
             </div>
             <div class="collect_operation ">
-                <p class="clearfix">
-                    <span class="xunjia_btn fr icon-tubiao"></span>
-                    <span class="phone_btn fr  icon-dianhua2 main_bg_light"></span>
-                </p>
-                <p class="clearfix"><span class="del_btn fr  icon-shanchu"></span></p>
-            </div>
-        </div>';
+                <p class="clearfix">';
+      if(3 == $status){
+         $out.='<span class="xunjia_btn fr icon-tubiao"></span><span class="phone_btn fr  icon-dianhua2 main_bg_light"></span>';
+      }else{
+         $out.='<span class="icon-yishixiao"></span>';
+      }
+                    
+      $out.='</p>
+               <p class="clearfix"><span class="del_btn fr  icon-shanchu"></span></p>
+           </div>
+       </div>';
    }
 }
 

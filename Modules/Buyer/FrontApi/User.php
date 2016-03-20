@@ -343,6 +343,29 @@ class User extends AbstractScript
    }
    
    /**
+    * 删除选定的关注企业
+    * 
+    * @param array $params
+    */
+   public function deleteFollows(array $params)
+   {
+      $this->checkRequireFields($params, array('ids'));
+      $curUser = $this->getCurUser();
+      $ids = $params['ids'];
+      if(!is_array($params['ids'])){
+         $ids = array($params['ids']);
+      }
+      
+      $this->appCaller->call(
+         BUYER_CONST::MODULE_NAME,
+         BUYER_CONST::APP_NAME,
+         BUYER_CONST::APP_API_BUYER_FOLLOW,
+         'deleteFollows',
+         array($curUser->getId(), $ids)
+      );
+   }
+   
+   /**
     * 检查手机号码是否存在
     * 
     * @param array $params

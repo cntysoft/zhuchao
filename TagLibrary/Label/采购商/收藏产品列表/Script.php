@@ -62,7 +62,7 @@ class Collection extends AbstractLabelScript
 
    public function getPageUrl($pageId)
    {
-      return '/product/'.$pageId.'.html';
+      return '/collection/'.$pageId.'.html';
    }
    
    /**
@@ -148,7 +148,7 @@ class Collection extends AbstractLabelScript
       if($imgUrl){
          return Kernel\get_image_cdn_url_operate($imgUrl, $arguments);
       }else{
-         return '/Statics/Skins/Pc/lazyicon.png';
+         return '/Statics/Skins/Pc/Images/lazyicon.png';
       }
    }
    
@@ -158,8 +158,8 @@ class Collection extends AbstractLabelScript
     * @param integer $id
     * @return string
     */
-   public function getProduct($id)
+   public function getProductUrl($id)
    {
-      return '/item/'.$id.'.html';
+      return 'http://'.\Cntysoft\SYS_SITE_NAME_DEVEL.'/item/'.$id.'.html';
    }
 }

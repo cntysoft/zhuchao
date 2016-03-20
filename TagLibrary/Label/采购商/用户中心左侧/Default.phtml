@@ -1,6 +1,6 @@
 <?php
 $routeInfo = $this->getRouteInfo();
-$cls1 = $cls2 = $cls3 = $cls4 ='';
+$cls1 = $cls2 = $cls3 = $cls4 = $cls5 ='';
 switch($routeInfo['action']){
    case 'collection':
       $cls1 = 'main_bg_light';
@@ -12,7 +12,11 @@ switch($routeInfo['action']){
       $cls3 = 'main_bg_light';
       break;
    case 'modify':
+   case 'index':
       $cls4 = 'main_bg_light';
+      break;
+   case 'follow':
+      $cls5 = 'main_bg_light';
       break;
 }
 
@@ -20,8 +24,7 @@ $out = '<div class="items_wrap fl">
         <dl>
             <dt><i class="icon-product main"></i>采购中心</dt>
             <dd><a class="mainbg_hover_light '.$cls1.'" href="/collection/1.html">收藏商品</a></dd>
-            <dd><a class="mainbg_hover_light" href="#">产品管理</a></dd>
-            <dd><a class="mainbg_hover_light" href="#">产品分组</a></dd>
+            <dd><a class="mainbg_hover_light '.$cls5.'" href="/follow/1.html">关注企业</a></dd>
         </dl>
         <dl>
             <dt><i class="icon-zhanghao main"></i>账户中心</dt>
