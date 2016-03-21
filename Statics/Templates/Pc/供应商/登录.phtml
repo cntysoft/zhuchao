@@ -1,8 +1,13 @@
+<?php Qs::Ds('商城数据源/商城数据', 'sites'); ?>
 <!DOCTYPE html>
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>登录</title>
+		  <title>供应商登录-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')) ?>
     </head>
     <body>
@@ -50,38 +55,6 @@
             </div>
         </div>
         <!--版权 begin-->
-        <div class="login_footer">
-            <ul class="copy_nav clearfix">
-                <li>
-                    <a href="" target="_blank">关于我们</a>
-                    <span></span>
-                </li>
-                <li>
-                    <a href="" target="_blank">联系我们</a>
-                    <span></span>
-                </li>
-                <li>
-                    <a href="" target="_blank">友情链接</a>
-                    <span></span>
-                </li>
-                <li>
-                    <a href="" target="_blank">帮助中心</a>
-                    <span></span>
-                </li>
-                <li>
-                    <a href="" target="_blank">意见反馈</a>
-                    <span></span>
-                </li>
-                <li>
-                    <a href="" target="_blank">高薪聘请</a>
-                    <span></span>
-                </li>
-                <li>
-                    <a href="" target="_blank">法律声明</a>
-                </li>
-            </ul>
-            <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
-            <script data-main="/Statics/Skins/Pc/Js/requireenter.js" id="require" app="provider/login" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
-        </div>
+        <?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'provider/login');?>
     </body>
 </html>

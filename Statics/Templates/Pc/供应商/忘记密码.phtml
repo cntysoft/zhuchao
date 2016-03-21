@@ -59,7 +59,6 @@
             </div>
         </div>
         <!--版权 begin-->
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
-        <script data-main="/Statics/Skins/Pc/Js/requireenter.js" id="require" app="provider/forget" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
+        <?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'provider/forget');?>
     </body>
 </html>
