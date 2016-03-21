@@ -41,6 +41,14 @@ class IndexController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
+   
+   public function inquirycontentAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'provider/inquirycontent',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
 
    public function accountAction()
    {

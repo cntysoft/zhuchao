@@ -183,6 +183,9 @@ body {
   -webkit-overflow-scrolling: touch;
   font: 12px/1.5 "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif; }
 
+a {
+  color: #666; }
+
 * {
   word-break: break-all; }
 
@@ -286,6 +289,9 @@ ul, ol {
 .icon-guanyuwomen:before {
   content: "\e634"; }
 
+.icon-newcuo:before {
+  content: "\e657"; }
+
 .icon-jiancaizhuangxiu:before {
   content: "\e60a"; }
 
@@ -300,6 +306,9 @@ ul, ol {
 
 .icon-filec:before {
   content: "\e604"; }
+
+.icon-shouji:before {
+  content: "\e655"; }
 
 .icon-product:before {
   content: "\e627"; }
@@ -376,7 +385,7 @@ ul, ol {
 .icon-duihaoyuanquan:before {
   content: "\e640"; }
 
-.icon-shouji:before {
+.icon-shouji1:before {
   content: "\e64e"; }
 
 .icon-star:before {
@@ -402,6 +411,12 @@ ul, ol {
 
 .icon-jiantou-copy-copy-copy:before {
   content: "\e60c"; }
+
+.icon-kefu:before {
+  content: "\e652"; }
+
+.icon-star1:before {
+  content: "\e653"; }
 
 .icon-msg1:before {
   content: "\e607"; }
@@ -484,27 +499,109 @@ ul, ol {
 .icon-black-up:before {
   content: "\e63b"; }
 
+.icon-yishixiao:before {
+  content: "\e654"; }
+
+.icon-suo:before {
+  content: "\e656"; }
+
+.header_top {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  background-color: #f8f8f8;
+  color: #777;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); }
+  .header_top .login_btn {
+    margin: 0 30px; }
+  .header_top .login_btn, .header_top .register_btn {
+    color: #777; }
+  .header_top .header_top_nav li {
+    float: left;
+    position: relative; }
+    .header_top .header_top_nav li > a {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 15px;
+      color: #777; }
+      .header_top .header_top_nav li > a i {
+        font-size: 15px;
+        vertical-align: -2px;
+        transition: -webkit-transform .1s ease-in 0s;
+        -moz-transition: transform .1s ease-in 0s, -moz-transform .1s ease-in 0s;
+        -o-transition: transform .1s ease-in 0s, -o-transform .1s ease-in 0s;
+        transition: transform .1s ease-in 0s;
+        transition: transform .1s ease-in 0s, -webkit-transform .1s ease-in 0s, -moz-transform .1s ease-in 0s, -o-transform .1s ease-in 0s;
+        -webkit-transition: -webkit-transform .1s ease-in 0s; }
+    .header_top .header_top_nav li:hover i {
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg); }
+    .header_top .header_top_nav li:hover .pull_more {
+      display: block; }
+  .header_top .header_top_nav .line {
+    padding: 0;
+    margin-top: 10px;
+    width: 1px;
+    height: 10px;
+    background-color: #ccc; }
+  .header_top .header_top_nav .more_btn {
+    width: 95px;
+    text-align: center; }
+    .header_top .header_top_nav .more_btn:hover {
+      background: #fff !important; }
+      .header_top .header_top_nav .more_btn:hover a {
+        color: #666 !important; }
+
+.more_btn .pull_more {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  padding-top: 5px;
+  width: 95px;
+  color: #666666 !important;
+  background-color: #fff !important;
+  -webkit-box-shadow: 0 4px 5px rgba(100, 100, 100, 0.3);
+  -moz-box-shadow: 0 4px 5px rgba(100, 100, 100, 0.3);
+  box-shadow: 0 4px 5px rgba(100, 100, 100, 0.3); }
+  .more_btn .pull_more .erweima {
+    width: 83px;
+    height: 83px;
+    display: block;
+    margin: 0 auto; }
+  .more_btn .pull_more span {
+    display: inline-block;
+    text-align: center;
+    margin: 5px 10px 0;
+    line-height: 1.6; }
+
 .head_wrap {
-  height: 80px;
-  line-height: 80px; }
+  height: 60px;
+  line-height: 60px; }
 
 .head_box .logo_img {
   display: block;
   width: 163px;
-  height: 60px;
+  height: 40px;
   float: left;
   margin-top: 10px; }
   .head_box .logo_img img {
     display: inline-block;
     max-width: 100%;
-    height: 60px; }
+    height: 40px; }
 
 .head_box ul li {
   float: left; }
   .head_box ul li a {
     display: inline-block;
-    height: 80px;
-    line-height: 80px;
+    height: 60px;
+    line-height: 60px;
     padding: 0 35px;
     font-size: 18px;
     color: #fff; }

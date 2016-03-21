@@ -1,5 +1,7 @@
 define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/address'], function (validate, WebUploader){
     $(function (){
+        init();
+        var uploadProductImg;
         $('#submit').click(function (){
             var hasError = false;
             var validation = validate.checkFields($('.checkField,.company,.register'));
@@ -12,25 +14,25 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                 params[$(item).attr('id')] = $(item).val();
             });
             params.products = '';
-            $.each($('.checkField[id^=product]'),function(index,item){
+            $.each($('.checkField[id^=product]'), function (index, item){
                 delete params[$(item).attr('id')];
                 if($(item).val() != ''){
-                    params.products == '' ? params.products += $(item).val():params.products += ','+$(item).val();
+                    params.products == '' ? params.products += $(item).val() : params.products += ',' + $(item).val();
                 }
             });
             if($('#logo').length){
                 params['logo'] = $('#logo').attr('src');
-            }else{
-                validate.tips('请上传企业logo','.img_plus');
+            } else{
+                validate.tips('请上传企业logo', '.img_plus');
                 layer.msg('请正确填写各项');
                 return false;
             }
             params['tradeMode'] = getRadioValueByName('tradeMode');
-            Cntysoft.Front.callApi('Company', 'updateCompany', params, function(response) {
-                if(response.status) {
-                    
-                }else {
-                    
+            Cntysoft.Front.callApi('Company', 'updateCompany', params, function (response){
+                if(response.status){
+
+                } else{
+
                 }
             });
             console.log(params);
@@ -64,23 +66,14 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                 REQUEST_SECURITY : Cntysoft.Json.encode({})
             }
         };
-        //处理上传
-        var uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-            pick : '.img_plus'
-        }));
-        //商品图片上传成功
-        uploadProductImg.on('uploadSuccess', function (file, response){
-            if(response.status){
-                var out = '<li><img id="logo" src="' + response.data[0].filename + '" fh-rid="' + response.data[0].rid + '"><em class="deleteImg">删除</em></li>';
-                $('.img_plus').siblings('li').remove();
-                $('.img_plus').before(out);
-                $('.img_plus').hide();
-            }
-        });
+
 
         $('.img_uploading').delegate('.deleteImg', 'click', function (){
             $(this).closest('li').remove();
             $('.img_plus').show();
+            if(uploadProductImg == undefined){
+                createUploader();
+            }
         });
         //根据name获得radio的值
         function getRadioValueByName(name){
@@ -92,6 +85,26 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                 }
             });
             return val;
+        }
+        //初始化函数
+        function init(){
+
+        }
+
+        function createUploader(){
+            //处理上传
+            uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
+                pick : '.img_plus'
+            }));
+            //logo上传成功
+            uploadProductImg.on('uploadSuccess', function (file, response){
+                if(response.status){
+                    var out = '<li class="logo"><img id="logo" src="' + response.data[0].filename + '" fh-rid="' + response.data[0].rid + '"><em class="deleteImg">删除</em></li>';
+                    $('.img_plus').siblings('li').remove();
+                    $('.img_plus').before(out);
+                    $('.img_plus').hide();
+                }
+            });
         }
     });
 });

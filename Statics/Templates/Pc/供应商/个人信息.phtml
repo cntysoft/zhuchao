@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>个人中心</title>
-        <?php Qs::Sys('loadCss', array('usercenter/style1.css', 'usercenter/user_index.css')) ?>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
     </head>
     <body>
         <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
@@ -13,22 +13,32 @@
             <!--左侧列表-->
             <div class="items_wrap fl">
                 <dl>
+                    <dt><i class="icon-caozuochenggong"></i>账户中心</dt>
+                    <dd><a class="mainbg_hover_light" href="/account/index.html">基本信息</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/account/company.html">企业信息</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/account/safe.html">修改密码</a></dd>
+                </dl>
+                <dl>
                     <dt><i class="icon-caozuochenggong"></i>产品中心</dt>
-                    <dd><a class="main_bg_light" href="#">发布产品</a></dd>
-                    <dd><a class="mainbg_hover_light" href="#">产品管理</a></dd>
-                    <dd><a class="mainbg_hover_light" href="#">产品分组</a></dd>
+                    <dd><a class="main_bg_light" href="/product/addproduct/1.html">发布产品</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/product/1.html">产品管理</a></dd>
                 </dl>
                 <dl>
                     <dt><i class="icon-caozuochenggong"></i>询价单</dt>
-                    <dd><a class="mainbg_hover_light" href="#">全部</a></dd>
-                    <dd><a class="mainbg_hover_light" href="#">未回复</a></dd>
-                    <dd><a class="mainbg_hover_light" href="#">已回复</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/inquiry/1.html">全部</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/inquiry/1.html?status=1">未回复</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/inquiry/1.html?status=2">已回复</a></dd>
                 </dl>
                 <dl>
-                    <dt><i class="icon-caozuochenggong"></i>账户中心</dt>
-                    <dd><a class="mainbg_hover_light" href="/account/index.html">基本信息</a></dd>
-                    <dd><a class="mainbg_hover_light" href="#">我的地址</a></dd>
-                    <dd><a class="mainbg_hover_light" href="#">修改密码</a></dd>
+                    <dt><i class="icon-caozuochenggong"></i>店铺设置</dt>
+                    <dd><a class="mainbg_hover_light" href="/site/news/1.html">店铺新闻</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/site/job/1.html">招聘</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/site/setting.html">店铺设置</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>消息</dt>
+                    <dd><a class="mainbg_hover_light" href="/account/businessmsg/1.html">服务消息</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/account/sysmsg/1.html">系统消息</a></dd>
                 </dl>
             </div>
             <!--右侧内容-->
@@ -143,9 +153,10 @@
                         <span class="tel_line">-</span>
                         <input class="tel_num" id="faxNum"  type="text" value="<?php echo $faxArray[2] ?>" fh-type="fax">
                     </div>
-                    <div class="action_btn">
-                        <label></label>
-                        <a class="main_bg" id="submit">可选</a>
+                    <div class="form_list">
+                        <div class="action_btn">
+                            <a class="main_bg" id="submit">保存</a>
+                        </div>
                     </div>
                 </div>
             </div>

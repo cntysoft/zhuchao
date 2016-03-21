@@ -10,6 +10,7 @@
 namespace TagLibrary\Ds\UserModel;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractDsScript;
 use App\ZhuChao\Provider\Constant as UserContent;
+use Cntysoft\Kernel;
 class CompanyInfo extends AbstractDsScript
 {
    public function load()
@@ -47,6 +48,7 @@ class CompanyInfo extends AbstractDsScript
       $company = $company->toarray();
       $companyProfile = $companyProfile->toarray();
       $ret = array_merge($company,$companyProfile);
+      $ret['logo'] = Kernel\get_image_cdn_url($ret['logo']);
       unset($ret['id']);
       unset($ret['providerId']);
       unset($ret['inputTime']);
