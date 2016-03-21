@@ -19,6 +19,10 @@ class Nav extends AbstractLabelScript
 {
 	protected $chinaArea = null;
 
+	public function getCurUser()
+   {
+      return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
+   }
 	/**
 	 * 获取商品信息
 	 * @return type

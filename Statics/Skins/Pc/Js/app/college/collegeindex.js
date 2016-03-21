@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/18.
  */
-define(['jquery', 'slick'], function (){
+define(['jquery', 'slick','comment'], function (){
    $(function (){
       //banner
       $('.banner_box').slick({

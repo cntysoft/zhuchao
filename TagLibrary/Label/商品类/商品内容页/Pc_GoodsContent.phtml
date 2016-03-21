@@ -38,13 +38,13 @@ $out .= '</div>
           if($this->checkLogin() && $this->checkCollect($goodsInfo->getId())){
 				 $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
 			 } else {
-				 $out .= ' <span class="collect_btn can_collect"><em>|</em><i class="main icon-shoucang"></i>收藏</span>';
+				 $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang can_collect"></i>收藏</span>';
 			 }
 $out .= '</div>
         </div><div class="pro_about fr">
             <div class="pro_about_top">
                 <h4 class="pro_code">产品编号：' . $goodsInfo->getNumber() . '</h4>
-                <p class="pro_price main">￥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "暂无价格") . '</p>
+                <p class="pro_price main">￥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "面议") . '</p>
                 <div class="pro_content">
                     <p>最小起定量：' . $goodsDetail->getMinimum() . $goodsDetail->getUnit() . '</p>
                     <p>可售量数：' . $goodsDetail->getStock() . '</p>
@@ -89,7 +89,7 @@ foreach ($goodsLists as $goodsList) {
 	$out .= '<div class="related_pro">
 				<a href="/item/' . $goodsList->getId() . '.html"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
 				<p class="pro_intro"><a href="/item/' . $goodsList->getId() . '.html" class="main_hover">' . $goodsList->getTitle() . '</a></p>
-				<p class="pro_price">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "暂无价格") . '</p>
+				<p class="pro_price">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
 		  </div>';
 }
 

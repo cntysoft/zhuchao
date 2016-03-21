@@ -6,7 +6,10 @@
             $isLogin = $this->checkLogin();
             if (!$isLogin) {
                echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
-            }
+            } else {
+					echo '<a class="login_btn main_hover logout">安全退出</a>
+					<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">'.$this->getCurUser()->getPhone().'</a>';
+				}
             ?>
         </div>
         <ul class="fr header_top_nav main_hover">

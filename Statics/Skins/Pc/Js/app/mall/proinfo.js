@@ -1,12 +1,30 @@
 /**
  * Created by Administrator on 2016/3/10.
  */
-define(['jquery', 'module/base', 'module/totop', 'Front'], function (){
+define(['jquery', 'Front','comment'], function (){
     $(function (){
         var gid = parseInt(window.location.pathname.split('/')[2].split('.')[0]);
+        //增加点击量
+        Cntysoft.Front.callApi('User', 'addHits', {
+            id : gid
+        }, function (response){
+            if(response.status){
+            }
+        }, true);
         //收藏
-        $('.can_collect').click(function (){
-            
+        $('.collect_btn').delegate('.can_collect', 'click', function (){
+            Cntysoft.Front.callApi('User', 'addCollect', {
+                id : gid
+            }, function (response){
+                if(response.status){
+                    $(this).removeClass('can_collect');
+                    $('.collect_btn').html('<em>|</em><i class="main icon-shoucang"></i>已收藏');
+                } else{
+                    if(response.errorCode == 5){
+                        window.location.href = window.BUYER_SITE_NAME + '/login.html';
+                    }
+                }
+            }, true);
         });
         /*图片切换*/
         var small_img = $('.small_img').find('div');

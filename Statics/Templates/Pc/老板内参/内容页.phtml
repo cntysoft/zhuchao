@@ -1,9 +1,16 @@
 <!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
 <?php Qs::Ds('内容数据源/标准内容模型', 'AC') ?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>老板内参－信息详情</title>
+        <title>老板内参-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('reference/style.css', 'reference/referencedetail.css')) ?>
     </head>
     <body>

@@ -52,8 +52,9 @@ class Goods extends AbstractLabelScript
     */
    public function checkCollect($id)
    {
+		$curUser = $this->getCurUser();
       return $this->appCaller->call(
-                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'getCollectById', array($id));
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'checkCollect', array($curUser->getId(),$id));
    }
 
    /**

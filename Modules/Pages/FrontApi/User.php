@@ -22,38 +22,61 @@ use App\ZhuChao\Buyer\Constant as BUYER_CONST;
  */
 class User extends AbstractScript
 {
-   /**
-    * 添加企业关注
-    * 
-    * @param array $params
-    */
-   public function addFollow($params)
-   {
-      $this->checkRequireFields($params, array('id'));
-      $companyId = $params['id'];
-      //验证企业信息是否存在
-      $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_NAME, 'getCompanyById', array($companyId));
-      
-      $acl = $this->di->get('BuyerAcl');
-      $user = $acl->getCurUser();
-      $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_FOLLOW, 'addFollow', array($user->getId(), $companyId));
-   }
+	/**
+	 * 添加企业关注
+	 * 
+	 * @param array $params
+	 */
+	public function addFollow($params)
+	{
+		$this->checkRequireFields($params, array('id'));
+		$companyId = $params['id'];
+		//验证企业信息是否存在
+		$this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_NAME, 'getCompanyById', array($companyId));
 
-   /**
-    * 添加商品收藏
-    * 
-    * @param array $params
-    */
-   public function addCollect($params)
-   {
-      $this->checkRequireFields($params, array('id'));
-      $productId = $params['id'];
-      //验证企业信息是否存在
-      $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_NAME, 'getProductById', array($productId));
-      
-      $acl = $this->di->get('BuyerAcl');
-      $user = $acl->getCurUser();
-      $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'addCollect', array($user->getId(), $productId));
-   }
+		$acl = $this->di->get('BuyerAcl');
+		$user = $acl->getCurUser();
+		$this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_FOLLOW, 'addFollow', array($user->getId(), $companyId));
+	}
+
+	/**
+	 * 添加商品收藏
+	 * 
+	 * @param array $params
+	 */
+	public function addCollect($params)
+	{
+		$this->checkRequireFields($params, array('id'));
+		$productId = $params['id'];
+		//验证企业信息是否存在
+		$this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($productId));
+
+		$acl = $this->di->get('BuyerAcl');
+		$user = $acl->getCurUser();
+		$this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'addCollect', array($user->getId(), $productId));
+	}
+	/**
+	 * 增加商品点击量
+	 * @param array $params
+	 * @return 
+	 */
+	public function addHits($params)
+	{
+		$this->checkRequireFields($params, array('id'));
+		$productId = $params['id'];
+		return $this->appCaller->call(
+				  PRODUCT_CONST::MODULE_NAME, 
+				  PRODUCT_CONST::APP_NAME, 
+				  PRODUCT_CONST::APP_API_PRODUCT_MGR, 
+				  'addHit', array($productId));
+	}
+	/**
+	 * 退出
+	 * @return type
+	 */
+	public function logout()
+	{
+		return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout');
+	}
 
 }

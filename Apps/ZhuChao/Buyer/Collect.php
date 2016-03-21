@@ -22,6 +22,16 @@ class Collect extends AbstractLib
     */
    public function addCollect($buyerId, $productId)
    {
+		$isHave = CollectModel::findFirst(array(
+			'buyerId = ?0 AND productId = ?1',
+			'bind' => array(
+				0 => $buyerId,
+				1 => $productId
+			)
+		));
+		if($isHave){
+			return false;
+		}
       $collect = new CollectModel();
       $collect->setBuyerId((int)$buyerId);
       $collect->setProductId((int)$productId);
@@ -96,4 +106,20 @@ class Collect extends AbstractLib
    {
       return CollectModel::findFirst($collectId);
    }
+	/**
+	 * 检查用户是否收藏该商品
+	 * @param int $uid
+	 * @param int $gid
+	 * @return type
+	 */
+	public function checkCollect($uid,$gid)
+	{
+		return CollectModel::findFirst(array(
+			'buyerId = ?0 AND productId = ?1',
+			'bind' => array(
+				0 => $uid,
+				1 => $gid
+			)
+		));
+	}
 }

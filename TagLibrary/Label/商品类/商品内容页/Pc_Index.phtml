@@ -27,13 +27,13 @@ if(!$this->checkLogin()){
 	$curUser = $this->getCurUser();
 	$detail = $curUser->getProfile();
 	$out .= '<div class="login_user clearfix">
-                    <a href=""><img src="'.$this->getImageFromCdn($detail->getAvatar(),75,53).'" alt=""/></a>
+                    <a href="http://' . $this->getBuyerSiteName() . '/login.html"><img src="'.$this->getImageFromCdn($detail->getAvatar(),75,53).'" alt=""/></a>
                     <h3 class="text_ellipsis">上午好，采购经理</h3>
                     <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
                 </div>
 					 <div class="login_action">
-                    <a class="main_bg">欢迎</a>
-                    <a class="main_bg">欢迎</a>
+                    <a class="main_bg" href="http://' . $this->getBuyerSiteName() . '/login.html">个人中心</a>
+                    <a class="main_bg" href="/category/help.html">帮助中心</a>
                 </div>';
 }
                 
@@ -69,7 +69,7 @@ foreach ($goodsLists as $list) {
                     <h3 class="text_ellipsis">' . $list->getTitle() . '</h3>
 
                     <p class="text_ellipsis">' . $list->getDescription() . '</p>
-                    <span class="pro_text_tip">￥' . ($list->getPrice() > 0 ? $list->getPrice() : "暂无") . '</span>
+                    <span class="pro_text_tip">￥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</span>
                 </div>
                 <span class="sale_tip main_bg">
                     热
@@ -145,7 +145,7 @@ $out .= '</div>
 $goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 4);
 foreach ($goodsLists as $list) {
 	$out .= '<li>
-            <p class="card_price">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "暂无报价") . '</p>
+            <p class="card_price">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</p>
             <a href="/item/' . $list->getId() . '.html" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
 
             <div class="card_text_box">
@@ -179,7 +179,7 @@ foreach ($goodsLists as $list) {
         </a>
         <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
         
-        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥暂无报价") . '</span>
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
 	if ($i == 1) {
 		$out .= '<div class="pro_item fl pro_banner noselect">
@@ -273,7 +273,7 @@ foreach ($goodsLists as $list) {
         </a>
         <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
         
-        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥暂无报价") . '</span>
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
 	if ($i == 1) {
 		$out .= '<div class="pro_item fl pro_banner noselect">

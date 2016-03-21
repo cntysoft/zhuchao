@@ -5,7 +5,8 @@
             <?php
             $isLogin = $this->checkLogin();
             if (!$isLogin) {
-               echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
+               echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> '
+							  . '<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
             } else {
 					echo '<a class="login_btn main_hover logout">安全退出</a>
 					<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">'.$this->getCurUser()->getPhone().'</a>';
@@ -72,7 +73,7 @@
         <div class="all_sort fl">
             <span class="main_bg all_btn"><i class="icon-fenlei"></i>所有商品分类</span>
 
-            <div class="sort_list">
+            <div class="sort_list" style="display: block">
                 <div class="sort_ele">
                     <div class="sort_container">
                         <h4><i class="icon-jiancaizhuangxiu"></i>家装建材</h4>
@@ -431,7 +432,7 @@
                     </div>
                 </div>
             </div>
-            <span class="all_sort_bg"></span>
+            <span class="all_sort_bg" style="display: block"></span>
         </div>
         <ul class="fl nav_list">
             <li><a href="/" class="mainbg_hover">首页</a></li>

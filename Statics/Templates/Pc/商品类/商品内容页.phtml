@@ -1,33 +1,44 @@
 <!DOCTYPE html>
+<?php
+Qs::Ds('商品数据源/商品信息', 'goods');
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>商品</title>
-	 <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/proinfo.css')); ?>
-	 
-    <script>window._bd_share_config = {
-        "common": {
-            "bdSnsKey": {},
-            "bdText": "",
-            "bdMini": "2",
-            "bdMiniList": false,
-            "bdPic": "",
-            "bdStyle": "0",
-            "bdSize": "16"
-        }, "share": {"bdSize": 16}
-    };
-    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-</head>
-<body>
-	 <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
-<!--导航-->
-<div class="site conwidth">
-    <a href="/index.html">首页</a>
-    <span>&gt;</span>
-    <a>商品</a>
-</div>
-<?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_GoodsContent')) ?>
-<?php Qs::Label('静态类/网站底部') ?>
-<script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="mall/proinfo" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
-</body>
+	 <head>
+		  <meta charset="UTF-8">
+		  <title><?php Qs::DsField('goods', 'name') ?>-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/proinfo.css')); ?>
+		  <script>window._bd_share_config = {
+               "common" : {
+                   "bdSnsKey" : {},
+                   "bdText" : "",
+                   "bdMini" : "2",
+                   "bdMiniList" : false,
+                   "bdPic" : "",
+                   "bdStyle" : "0",
+                   "bdSize" : "16"
+               }, "share" : {"bdSize" : 16}
+           };
+           with (document)
+              0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+	 </head>
+	 <body>
+<?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
+		  <!--导航-->
+		  <div class="site conwidth">
+				<a href="/index.html">首页</a>
+				<span>&gt;</span>
+				<a>商品</a>
+		  </div>
+		  <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_GoodsContent')) ?>
+<?php Qs::Label('静态类/网站底部'); ?>
+		  <script>
+           window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
+		  </script>
+		  <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="mall/proinfo" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
+	 </body>
 </html>
