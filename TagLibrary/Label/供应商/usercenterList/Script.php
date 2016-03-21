@@ -11,7 +11,7 @@ use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\MessageMgr\Constant as MessageMgr_Const;
 use App\ZhuChao\Provider\Constant as Provider_Constant;
 use Cntysoft\Kernel;
-class Inquiry extends AbstractLabelScript
+class News extends AbstractLabelScript
 {
    public $pageSize = 1;
    public function getInquiryList($status,$page)

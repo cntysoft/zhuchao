@@ -19,33 +19,7 @@
                 </div>
                 <!--新闻标题-->
                 <!--标题-->
-                <table>
-                    <tr class="news_items">
-                        <th class="news_title">新闻标题</th>
-                        <th class="news_time">发布时间</th>
-                        <th class="news_operate">操作</th>
-                    </tr>
-                    <tr class="news_list ">
-                        <td class="news_title">
-                            <span class="check"><em><i></i></em></span>
-                            <a class="caption" href="#"><em>[顶]</em>昶王科技开通世界工厂网店铺啦</a>
-                        </td>
-                        <td class="news_time">
-                            2016-03-07 13:12:12
-                        </td>
-                        <td class="news_operate">
-                            <a href="">修改</a>
-                            <span>|</span>
-                            <a href="">删除</a>
-                            <span>|</span>
-                            <a href="#">取消置顶</a>
-                        </td>
-                    </tr>
-                    <!--暂无新闻i，赶快去添加-->
-                    <tr class="news_list no_news">
-                        <td colspan=3 >暂无发布新闻，赶快去添加吧~~</td>
-                    </tr>
-                </table>
+                <?php Qs::Label('供应商/新闻',array('renderTpl' => 'usercenterList'))?>
                 <div class="news_delete  ">
                     <span class="check"><em><i></i></em>全选</span>
                     <span class="btn btn_del">删除</span>
