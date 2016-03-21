@@ -478,6 +478,9 @@ ul, ol {
 .icon-sousuo1:before {
   content: "\e639"; }
 
+.icon-smallcuo:before {
+  content: "\e658"; }
+
 .icon-erweima:before {
   content: "\e62b"; }
 
@@ -580,6 +583,15 @@ ul, ol {
     text-align: center;
     margin: 5px 10px 0;
     line-height: 1.6; }
+
+.l_btn {
+  background-color: #093 !important;
+  color: #fff !important;
+  display: inline-block;
+  width: 130px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px; }
 
 .head_wrap {
   height: 60px;

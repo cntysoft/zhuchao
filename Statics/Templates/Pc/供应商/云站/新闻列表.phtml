@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>企业新闻</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/news.css')) ?>
+    </head>
+    <body>
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <!--个人中心-->
+        <div class="content conwidth clearfix">
+            <!--左侧列表-->
+            <div class="items_wrap fl">
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>账户中心</dt>
+                    <dd><a class="mainbg_hover_light" href="/account/index.html">基本信息</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/account/company.html">企业信息</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/account/safe.html">修改密码</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>产品中心</dt>
+                    <dd><a class="mainbg_hover_light" href="/product/addproduct/1.html">发布产品</a></dd>
+                    <dd><a class="" href="/product/1.html">产品管理</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>询价单</dt>
+                    <dd><a class="mainbg_hover_light" href="/inquiry/1.html">全部</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/inquiry/1.html?status=1">未回复</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/inquiry/1.html?status=2">已回复</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>店铺设置</dt>
+                    <dd><a class="main_bg_light" href="/site/news/1.html">店铺新闻</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/site/job/1.html">招聘</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/site/setting.html">店铺设置</a></dd>
+                </dl>
+                <dl>
+                    <dt><i class="icon-caozuochenggong"></i>消息</dt>
+                    <dd><a class="mainbg_hover_light" href="/account/businessmsg/1.html">服务消息</a></dd>
+                    <dd><a class="mainbg_hover_light" href="/account/sysmsg/1.html">系统消息</a></dd>
+                </dl>
+            </div>
+            <!--右侧内容-->
+            <div class="content_wrap fr">
+                <h1 class="items_title">发布产品<a class="main_bg_light fr" href="/site/news/add.html"><em>+</em>发布新闻</a></h1>
+                <div class="notice main_bg_light">
+                    <a><i class="main icon-notice"></i> 你已发布 1 条企业新闻，还可发布 999 条</a>
+                </div>
+                <!--新闻标题-->
+                <!--标题-->
+                <table>
+                    <tr class="news_items">
+                        <th class="news_title">新闻标题</th>
+                        <th class="news_time">发布时间</th>
+                        <th class="news_operate">操作</th>
+                    </tr>
+                    <tr class="news_list ">
+                        <td class="news_title">
+                            <span class="check"><em><i></i></em></span>
+                            <a class="caption" href="#"><em>[顶]</em>昶王科技开通世界工厂网店铺啦</a>
+                        </td>
+                        <td class="news_time">
+                            2016-03-07 13:12:12
+                        </td>
+                        <td class="news_operate">
+                            <a href="">修改</a>
+                            <span>|</span>
+                            <a href="">删除</a>
+                            <span>|</span>
+                            <a href="#">取消置顶</a>
+                        </td>
+                    </tr>
+                    <!--暂无新闻i，赶快去添加-->
+                    <tr class="news_list no_news">
+                        <td colspan=3 >暂无发布新闻，赶快去添加吧~~</td>
+                    </tr>
+                </table>
+                <div class="news_delete  ">
+                    <span class="check"><em><i></i></em>全选</span>
+                    <span class="btn btn_del">删除</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php Qs::Sys('loadRequireJs', 'provider/newslist') ?>
+</body>
+
+</html>

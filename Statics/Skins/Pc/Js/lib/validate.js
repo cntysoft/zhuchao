@@ -3,8 +3,8 @@ define(['exports', 'jquery', 'layer'], function (exports){
         var reg = {
             email : /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
             phone : /^(1[0-9]{10})$/,
-            tel:/[1-9][0-9]{6,7}/,
-            fax:/[1-9][0-9]{6,7}/,
+            tel : /[1-9][0-9]{6,7}/,
+            fax : /[1-9][0-9]{6,7}/,
             qq : /^[1-9][0-9]{4,10}$/,
             nickname : /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,8}$/,
             name : /^[\w]{5,11}$/,
@@ -19,8 +19,8 @@ define(['exports', 'jquery', 'layer'], function (exports){
         message = {
             email : '请输入正确的邮箱',
             phone : '请输入正确的手机号',
-            tel:'座机号为首位不为0的7-8位数字',
-            fax:'传真为首位不为0的7-8位数字',
+            tel : '座机号为首位不为0的7-8位数字',
+            fax : '传真为首位不为0的7-8位数字',
             qq : '请输入正确的qq',
             nickname : '请输入3-8位昵称',
             name : '请输入手机号或用户名',
@@ -122,13 +122,13 @@ define(['exports', 'jquery', 'layer'], function (exports){
                     var tipTarget = $($item);
                     if($($item).attr('tip-value')){
                         tipMessage = $($item).attr('tip-value');
-                    }else if(message.hasOwnProperty(type)){
+                    } else if(message.hasOwnProperty(type)){
                         tipMessage = message[type];
                     }
                     if($item.attr('tip-target')){
                         tipTarget = $($item.attr('tip-target'));
                     }
-                    tips(tipMessage,tipTarget);
+                    tips(tipMessage, tipTarget);
                     errorArray.push({
                         ele : $item,
                         msg : message[type]
@@ -157,13 +157,23 @@ define(['exports', 'jquery', 'layer'], function (exports){
         function tips(msg, $item){
             layer.tips(msg, $item, {
                 tipsMore : true,
-                tips : [2, '#63bf82']
+                tips : [2, '#63bf82'],
+                time:100000000
             });
+        }
+
+        function getInputValue(fields){
+            var params = {};
+            $.each($(fields), function (index, item){
+                params[$(item).attr('id')] = $(item).val();
+            });
+            return params;
         }
         exports.reg = reg;
         exports.message = message;
         exports.checkFields = checkFields;
         exports.notEqual = notEqual;
         exports.tips = tips;
+        exports.getInputValue = getInputValue;
     });
 });

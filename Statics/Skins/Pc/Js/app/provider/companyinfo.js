@@ -88,7 +88,9 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
         }
         //初始化函数
         function init(){
-
+            if($('.logo').length == 1){
+                createUploader();
+            }
         }
 
         function createUploader(){

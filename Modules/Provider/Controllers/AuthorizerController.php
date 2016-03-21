@@ -57,7 +57,7 @@ class AuthorizerController extends AbstractController
                    View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
         ));
     }
-
+    
     protected function checkLogin()
     {
         $acl = $this->di->get('ProviderAcl');
