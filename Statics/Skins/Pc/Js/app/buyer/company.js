@@ -1,4 +1,4 @@
-define(['jquery', 'layer', 'Core', 'Front'], function(){
+define(['jquery', 'layer', 'Core', 'Front', 'search', 'comment'], function(){
    $(function (){
       $('.company_operation .icon-shanchu').click(function(){
          var collect = $(this).parents('.company_ele');

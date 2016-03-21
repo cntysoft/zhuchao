@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/19.
  */
-define(['module/address', 'jquery', 'layer', 'Core', 'Front'], function (address){
+define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search', 'comment'], function (address){
    $(function (){
       var reg = new RegExp(/^1[0-9]{10}$/);
       var type = 'add';

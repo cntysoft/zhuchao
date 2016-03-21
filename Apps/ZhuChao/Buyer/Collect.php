@@ -65,8 +65,8 @@ class Collect extends AbstractLib
          );
       }
       
-      array_merge($query, $cond);
-      
+      $query = array_merge($query, $cond);
+
       $items = CollectModel::find($query);
       
       if($total){

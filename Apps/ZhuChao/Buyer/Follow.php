@@ -55,7 +55,7 @@ class Follow extends AbstractLib
          );
       }
       
-      array_merge($query, $cond);
+      $query = array_merge($query, $cond);
       
       $items = FollowModel::find($query);
       

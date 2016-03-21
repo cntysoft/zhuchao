@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
+define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search', 'comment'], function (validate){
     $(function (){
         $('#submit').click(function (event){
             event.preventDefault();

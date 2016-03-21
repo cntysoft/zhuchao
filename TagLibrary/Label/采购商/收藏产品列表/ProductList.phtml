@@ -48,6 +48,7 @@ if(count($list)){
 }
 
 $paging = $this->getPaging($total);
+
 if($this->getParam('enablePage') && count($list) && $paging['total'] > 0){
    $out1 = '';
    $currentPage = $paging['current'];

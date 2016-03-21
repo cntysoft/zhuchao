@@ -72,6 +72,18 @@ class User extends AbstractScript
    }
    
    /**
+    * 用户注销
+    * 
+    * @return boolean
+    */
+   public function logout()
+   {
+      return $this->appCaller->call(
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout', array()
+      );
+   }
+   
+   /**
     * 修改采购商的信息
     * 
     * @param array $params

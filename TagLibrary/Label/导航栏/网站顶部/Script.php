@@ -173,4 +173,9 @@ class Nav extends AbstractLabelScript
    {
       return \Cntysoft\RT_PROVIDER_SITE_NAME;
    }
+   
+   public function getMallSiteName()
+   {
+      return \Cntysoft\RT_SYS_SITE_NAME;
+   }
 }

@@ -1,4 +1,4 @@
-define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'search', 'comment'], function (validate, WebUploader){
    $(function (){
       var reg = new RegExp(/^[0-9a-zA-Z-_]{3,10}$/);
       var uploadProductImg;
