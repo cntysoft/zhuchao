@@ -129,6 +129,6 @@ class Follow extends AbstractLabelScript
     */
    public function getCompanyUrl($subAttr)
    {
-      return 'http://'.$subAttr.'.'.\Cntysoft\SYS_SITE_NAME_DEVEL;
+      return 'http://'.$subAttr.'.'.\Cntysoft\RT_SYS_SITE_NAME;;
    }
 }

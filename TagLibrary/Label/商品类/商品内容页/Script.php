@@ -23,11 +23,11 @@ class Goods extends AbstractLabelScript
     * 获取商品信息
     * @return type
     */
-   public function getProductById()
+   public function getProductByNumber()
    {
-      $gid = $this->getRouteInfo()['itemId'];
+      $number = $this->getRouteInfo()['number'];
       return $this->appCaller->call(
-                      GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($gid));
+                      GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
    }
 
    public function getCurUser()
@@ -171,4 +171,8 @@ class Goods extends AbstractLabelScript
       return \Cntysoft\RT_BUYER_SITE_NAME;
    }
 
+   public function getProductUrl($number)
+   {
+      return '/item/'.$number.'.html';
+   }
 }

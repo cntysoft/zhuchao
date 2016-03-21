@@ -4,7 +4,6 @@ $goodsLists = $this->searchProduct();
 $i = 0;
 $queryUrl = $this->getQueryUrl();
 foreach ($goodsLists['docs'] as $goods) {
-
    $product = $this->getProduct($goods['id']);
    $goodsdetail = $product->getDetail();
    $company = $product->getCompany();
@@ -13,7 +12,7 @@ foreach ($goodsLists['docs'] as $goods) {
    foreach ($attrslist as $attrs) {
       $attrvalue+=$attrs;
    }
-   $url = $this->getProductUrl($goods['id']);
+   $url = $this->getProductUrl($goods['number']);
    $time = date('Y-m-d', $company->getInputTime());
    $imageUrl = $this->getImageCdnUrl($goods['defaultImage'], array('w' => 195, 'h' => 195));
    $name = $goods['brand'] . ' ' . $goods['title']. ' ' . $goods['description'];

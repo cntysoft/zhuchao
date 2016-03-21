@@ -181,11 +181,11 @@ class ProductList extends AbstractLabelScript
    /**
     * 获取商品的网址
     * 
-    * @param integer $id
+    * @param string number
     * @return string
     */
-   public function getProductUrl($id)
+   public function getProductUrl($number)
    {
-      return 'http://'.\Cntysoft\SYS_SITE_NAME_DEVEL.'/item/'.$id.'.html';
+      return 'http://'.  \Cntysoft\RT_SYS_SITE_NAME.'/item/'.$number.'.html';
    }
 }

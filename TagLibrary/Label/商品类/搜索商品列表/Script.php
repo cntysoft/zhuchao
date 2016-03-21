@@ -174,12 +174,12 @@ class Search extends AbstractLabelScript
    
    /**
     * 
-    * @param integer $id
+    * @param string $number
     * @return string
     */
-   public function getProductUrl($id)
+   public function getProductUrl($number)
    {
-      return '/item/' . $id . '.html';
+      return '/item/' . $number . '.html';
    }
    
    /**

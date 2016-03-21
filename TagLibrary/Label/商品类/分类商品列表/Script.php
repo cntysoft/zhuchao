@@ -279,4 +279,8 @@ class ProductClassify extends AbstractLabelScript
       return $img ? \Cntysoft\Kernel\get_image_cdn_url($img, $width, $height) : '/Statics/Images/Global/lazyicon.png';
    }
 
+   public function getProductUrl($number)
+   {
+      return '/item/'.$number.'.html';
+   }
 }

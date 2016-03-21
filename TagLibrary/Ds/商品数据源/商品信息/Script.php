@@ -17,8 +17,8 @@ class Goods extends AbstractDsScript
     */
    public function load()
    {
-      $gid = $this->getRouteInfo()['itemId'];
-		$goodsInfo = $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($gid));
+      $number = $this->getRouteInfo()['number'];
+		$goodsInfo = $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
 		return array(
 			'name' => $goodsInfo->getTitle()
 		);

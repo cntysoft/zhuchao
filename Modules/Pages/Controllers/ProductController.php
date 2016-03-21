@@ -22,8 +22,8 @@ class ProductController extends AbstractController
     */
    public function productAction()
    {
-      $productId = $this->dispatcher->getParam('itemId');
-      if (null === $productId) {
+      $number = $this->dispatcher->getParam('number');
+      if (null === $number) {
          $this->dispatcher->forward(array(
             'module'     => 'Pages',
             'controller' => 'Exception',
@@ -33,7 +33,7 @@ class ProductController extends AbstractController
       }
 
       $product = $this->getAppCaller()->call(
-              GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($productId)
+              GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number)
       );
 
       if (!$product) {

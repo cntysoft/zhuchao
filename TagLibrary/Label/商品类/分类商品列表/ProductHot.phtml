@@ -3,10 +3,12 @@ $out = '';
 $lists = $this->getGoodsListBy();
 foreach ($lists as $list) {
    $id = $list->getId();
+   $number = $list->getNumber();
+   $url = $this->getProductUrl($number);
    $defpic = $list->getDefaultImage();
    $out .= '<div class="pro_card">
-                        <a class="pro_name" href="/item/' . $id . '.html"><img src="' . $this->getImgUrl($defpic, 195, 195) . '"/> </a>
-                        <a class="pro_price main" href="/product/' . $id . '.html">' . $list->getBrand() . ' ' . $list->getTitle() . ' </a>
+                        <a class="pro_name" href="'.$url.'"><img src="' . $this->getImgUrl($defpic, 195, 195) . '"/> </a>
+                        <a class="pro_price main" href="'.$url.'">' . $list->getBrand() . ' ' . $list->getTitle() . ' </a>
                         <p class="pro_intro">' . $list->getDescription() . '</p>
                     </div>';
 }

@@ -61,8 +61,9 @@ if(!$this->checkLogin()){
     <ul class="clearfix">';
 $goodsLists = $this->getGoodsList(array(), false, 'hits DESC', 0, 4);
 foreach ($goodsLists as $list) {
+   $url = $this->getProductUrl($list->getNumber());
 	$out .= '<li>
-            <a href="/item/' . $list->getId() . '.html">
+            <a href="'.$url.'">
                 <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 150, 150) . '" alt=""/>
 
                 <div class="pro_text_box">
@@ -131,10 +132,11 @@ $out .= '<div class="about_right_box fl about_item">
         <a href="" class="item_title main_bg">采购实况</a>
         <div class="about_right_item">';
 foreach ($goodsLists as $list) {
+   $url = $this->getProductUrl($list->getNumber());
 	$out .= '<div class="about_right_list">
                 <span class="address text_ellipsis">河南省鹤壁市</span>
                 <span class="time">' . rand(1, 10) . '秒前</span>
-                <h4 class="text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h4>
+                <h4 class="text_ellipsis main_hover"><a href="'.$url.'">' . $list->getTitle() . '</a></h4>
             </div>';
 }
 $out .= '</div>
@@ -144,12 +146,13 @@ $out .= '</div>
     <ul class="clearfix">';
 $goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 4);
 foreach ($goodsLists as $list) {
+   $url = $this->getProductUrl($list->getNumber());
 	$out .= '<li>
             <p class="card_price">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</p>
-            <a href="/item/' . $list->getId() . '.html" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
+            <a href="'.$url.'" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
 
             <div class="card_text_box">
-                <h3 class="text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
+                <h3 class="text_ellipsis main_hover"><a href="'.$url.'">' . $list->getTitle() . '</a></h3>
                 <i class="jiantou icon-jiantou-copy"></i>
             </div>
             <span class="pro_card_tip">
@@ -173,11 +176,12 @@ $out .= '<div class="pro_list clearfix conwidth">';
 $goodsLists = $this->getGoodsList($cond, false, 'inputTime DESC', 0, 4);
 $i = 1;
 foreach ($goodsLists as $list) {
+   $url = $this->getProductUrl($list->getNumber());
 	$out .= '<div class="pro_item fl">
-        <a class="pro_img" href="/item/' . $list->getId() . '.html">
+        <a class="pro_img" href="'.$url.'">
             <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
         </a>
-        <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
+        <h3 class="pro_text text_ellipsis main_hover"><a href="'.$url.'">' . $list->getTitle() . '</a></h3>
         
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
@@ -267,11 +271,12 @@ $out .= '<div class="pro_list clearfix conwidth">';
 $goodsLists = $this->getGoodsList($cond, false, 'inputTime DESC', 0, 4);
 $i = 1;
 foreach ($goodsLists as $list) {
+   $url = $this->getProductUrl($list->getNumber());
 	$out .= '<div class="pro_item fl">
-        <a class="pro_img" href="/item/' . $list->getId() . '.html">
+        <a class="pro_img" href="'.$url.'">
             <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
         </a>
-        <h3 class="pro_text text_ellipsis main_hover"><a href="/item/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h3>
+        <h3 class="pro_text text_ellipsis main_hover"><a href="'.$url.'">' . $list->getTitle() . '</a></h3>
         
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';

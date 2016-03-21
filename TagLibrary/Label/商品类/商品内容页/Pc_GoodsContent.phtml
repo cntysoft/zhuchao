@@ -1,5 +1,5 @@
 <?php
-$goodsInfo = $this->getProductById();
+$goodsInfo = $this->getProductByNumber();
 $goodsDetail = $goodsInfo->getDetail();
 $out = '<div class="l_main conwidth">
     <!--商品展示-->
@@ -86,9 +86,10 @@ foreach ($goodsLists as $goodsList) {
 	if ($goodsList->getId() == $goodsInfo->getId()) {
 		continue;
 	}
+   $url = $this->getProductUrl($goodsList->getNumber());
 	$out .= '<div class="related_pro">
-				<a href="/item/' . $goodsList->getId() . '.html"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
-				<p class="pro_intro"><a href="/item/' . $goodsList->getId() . '.html" class="main_hover">' . $goodsList->getTitle() . '</a></p>
+				<a href="'.$url.'"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
+				<p class="pro_intro"><a href="'.$url.'" class="main_hover">' . $goodsList->getTitle() . '</a></p>
 				<p class="pro_price">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
 		  </div>';
 }

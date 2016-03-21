@@ -29,9 +29,9 @@ class Nav extends AbstractLabelScript
 	 */
 	public function getProductById()
 	{
-		$gid = $this->getRouteInfo()['itemId'];
+		$number = $this->getRouteInfo()['number'];
 		return $this->appCaller->call(
-							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($gid));
+							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
 	}
 	/**
 	 * 检查是否登录
