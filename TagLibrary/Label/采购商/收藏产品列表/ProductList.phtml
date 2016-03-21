@@ -14,7 +14,7 @@ if(count($list)){
       $number = $product->getNumber();
       $imageUrl = $this->getImageCdnUrl($product->getDefaultImage());
       $name = $product->getBrand() . ' ' . $product->getTitle() . ' ' . $product->getDescription(); 
-      $url = $this->getProductUrl($product->getId());
+      $url = $this->getProductUrl($product->getNumber());
       $price = 0 == $product->getPrice() ? '面议' : '￥' . $product->getPrice();
       $status = $product->getStatus();
       

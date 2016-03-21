@@ -3,10 +3,10 @@
  */
 define(['jquery', 'Front','comment'], function (){
     $(function (){
-        var gid = parseInt(window.location.pathname.split('/')[2].split('.')[0]);
+        var number = window.location.pathname.split('/')[2].split('.')[0];
         //增加点击量
         Cntysoft.Front.callApi('User', 'addHits', {
-            id : gid
+            number : number
         }, function (response){
             if(response.status){
             }
@@ -14,7 +14,7 @@ define(['jquery', 'Front','comment'], function (){
         //收藏
         $('.collect_btn').delegate('.can_collect', 'click', function (){
             Cntysoft.Front.callApi('User', 'addCollect', {
-                id : gid
+                number : number
             }, function (response){
                 if(response.status){
                     $(this).removeClass('can_collect');

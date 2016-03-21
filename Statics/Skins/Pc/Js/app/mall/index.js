@@ -22,6 +22,12 @@ define(['jquery','slick','layer','comment'], function () {
                 nextArrow: ".right_btn"+ i
             });
         }
+        $('.search_button').click(function(){
+            var key = $('.search_key').val();
+            if(key){
+               window.location.href = '/query/1.html?keyword=' + key;
+            }
+        });
         
         //产品切换
         //$('.pro_banner_box').slick({

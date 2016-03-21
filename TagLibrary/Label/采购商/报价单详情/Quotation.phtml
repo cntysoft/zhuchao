@@ -5,7 +5,7 @@ $offer = $result['offer'];
 $time = date('Y-m-d H:i:s', $quotation->getInputTime());
 $content = $quotation->getContent();
 $product = $quotation->getProduct();
-$productUrl = $this->getProductUrl($product->getId());
+$productUrl = $this->getProductUrl($product->getNumber());
 $imageUrl = $this->getImageCdnUrl($product->getDefaultImage());
 $name = $product->getBrand(). ' ' . $product->getTitle() . ' ' . $product->getDescription();
 $price = (0 == $product->getPrice()) ? '面议' : '￥'.$product->getPrice();

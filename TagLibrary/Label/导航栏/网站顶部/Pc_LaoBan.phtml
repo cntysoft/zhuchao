@@ -7,15 +7,17 @@
             if (!$isLogin) {
                echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
             } else {
+               $curUser = $this->getCurUser();
+               $name = $curUser->getName() ? $curUser->getName() : $curUser->getPhone();
 					echo '<a class="login_btn main_hover logout">安全退出</a>
-					<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">'.$this->getCurUser()->getPhone().'</a>';
+					<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">'.$name.'</a>';
 				}
             ?>
         </div>
         <ul class="fr header_top_nav main_hover">
-            <li><a href="">我的询价单</a></li>
+            <li><a href="<?php echo 'http://' . $this->getBuyerSiteName() . '/quotationlist/1.html';?>">我的询价单</a></li>
             <li class="line"></li>
-            <li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li><a href="<?php echo 'http://' . $this->getBuyerSiteName();?>">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
             <li class="line"></li>
             <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
             <li class="line"></li>

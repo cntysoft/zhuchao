@@ -1,9 +1,13 @@
-<?php Qs::Ds('用户数据源/采购商', 'User'); ?>
+<?php Qs::Ds('用户数据源/采购商', 'User'); Qs::Ds('商城数据源/商城数据', 'site'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>个人中心</title>
+    <title>个人中心-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
     <?php Qs::Sys('loadCss', array('buyer/style.css', 'buyer/user.css'))?>
     <style>
          div.radio i {

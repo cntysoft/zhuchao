@@ -1,49 +1,54 @@
+<?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>登录页</title>
-    <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css'));?>
-</head>
-<body>
-<div class="wrap">
-    <div class="wrap_inner">
-        <!--logo-->
-        <div class="logo_register">
-            <div class="icon_logo fl">
-                <img src="<?php Qs::Sys('loadImage','login/icon/icon_logo_fff.png')?>" alt="凤凰筑巢LOGO">
-            </div>
-            <h3 class="fl">后台管理系统</h3>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>登录页-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')); ?>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="wrap_inner">
+                <!--logo-->
+                <div class="logo_register">
+                    <div class="icon_logo fl">
+                        <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                    </div>
+                    <h3 class="fl">后台管理系统</h3>
 
-            <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
-        </div>
-        <div class="login_box">
-            <div class="login_header">
-                <h4 class="login_title">采购商登录</h4>
-                <div class="login_form">
-                    <form action="">
-                        <div class="login_form_input">
-                            <input class="form_text" type="text" name="user" fh-type="name" required id="name" placeholder="请输入用户名/手机号">
-                            <!--错误提示-->
-                            <input type="password" placeholder="请输入密码" name="pwd" required fh-type="password" id="password">
+                    <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
+                </div>
+                <div class="login_box">
+                    <div class="login_header">
+                        <h4 class="login_title">采购商登录</h4>
+                        <div class="login_form">
+                            <form action="">
+                                <div class="login_form_input">
+                                    <input class="form_text" type="text" name="user" fh-type="name" required id="name" placeholder="请输入用户名/手机号">
+                                    <!--错误提示-->
+                                    <input type="password" placeholder="请输入密码" name="pwd" required fh-type="password" id="password">
+                                </div>
+                                <!--忘记密码-->
+                                <div class="login_forget clearfix tr">
+                                    <div class="login_auto fl checked">
+                                        <i class="icon-checked main_light"></i><span>一周内自动登陆</span>
+                                    </div>
+                                    <a href="/forget.html" class="main_light">忘记密码？</a>
+                                </div>
+                                <!--提交-->
+                                <input class="submit_btn main_bg_light" type="submit" id="submit" value="立即登录"/>
+                            </form>
                         </div>
-                        <!--忘记密码-->
-                        <div class="login_forget clearfix tr">
-                            <div class="login_auto fl checked">
-                                <i class="icon-checked main_light"></i><span>一周内自动登陆</span>
-                            </div>
-                            <a href="/forget.html" class="main_light">忘记密码？</a>
-                        </div>
-                        <!--提交-->
-                        <input class="submit_btn main_bg_light" type="submit" id="submit" value="立即登录"/>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--版权 begin-->
-<?php Qs::Label('静态类/登陆注册网站底部');?>
-<?php Qs::Sys('loadRequireJs', 'buyer/login');?>
-</body>
+        <!--版权 begin-->
+        <?php Qs::Label('静态类/登陆注册网站底部'); ?>
+        <?php Qs::Sys('loadRequireJs', 'buyer/login'); ?>
+    </body>
 </html>
