@@ -9,6 +9,8 @@
 namespace FrontApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;  
+use App\ZhuChao\Product\Constant as PRODUCT_CONST;
+use App\ZhuChao\MessageMgr\Constant as MESSAGE_CONST;
 use Cntysoft\Kernel;
 use Cntysoft\Framework\Utils\ChinaArea;
 
@@ -415,6 +417,36 @@ class User extends AbstractScript
    }
    
    /**
+    * 获取联系方式
+    * 
+    * @param array $params
+    * @return array
+    */
+   public function getLinker(array $params)
+   {
+      $this->checkRequireFields($params, array('number'));
+      
+      $product = $this->appCaller->call(
+         PRODUCT_CONST::MODULE_NAME,
+         PRODUCT_CONST::APP_NAME,
+         PRODUCT_CONST::APP_API_PRODUCT_MGR,
+         'getProductByNumber',
+         array($params['number'])
+      );
+      
+      if(!$product){
+         $errorType = new ErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_PRODUCT_NOT_EXIST'), $errorType->code('E_PRODUCT_NOT_EXIST')));
+      }
+      $provider = $product->getProvider();
+      $profile = $provider->getProfile();
+      
+      return array(
+         'name' => $profile->getRealName().($profile->getSex() ? ' 先生' : ' 女士'),
+         'phone' => $profile->getShowPhone()
+      );
+   }
+   /**
     * 获取当前登陆的会员信息
     * 
     * @return type
@@ -458,5 +490,35 @@ class User extends AbstractScript
       }
       return $this->chinaarea->getArea($param);
    }
+   
+   /**
+	 * 添加询价信息
+	 * @param array $params
+	 * @return type
+	 */
+	public function addXunjiadan(array $params)
+	{
+		$this->checkRequireFields($params, array('number','content'));
+		$goodsInfo = $this->appCaller->call(
+				  PRODUCT_CONST::MODULE_NAME, 
+				  PRODUCT_CONST::APP_NAME, 
+				  PRODUCT_CONST::APP_API_PRODUCT_MGR, 
+				  'getProductByNumber', array($params['number']));
+		$provider = $goodsInfo->getProvider();
+		$curUser = $this->getCurUser();
+		$data = array(
+			'gid' => $goodsInfo->getId(),
+			'uid' => $curUser->getId(),
+			'providerId' => $provider->getId(),
+			'expireTime' => 30,
+			'content' => $params['content']
+		);
+		return $this->appCaller->call(
+				  MESSAGE_CONST::MODULE_NAME, 
+				  MESSAGE_CONST::APP_NAME, 
+				  MESSAGE_CONST::APP_API_OFFER, 
+				  'addInquiry', array($data));
+	}
+   
    
 }

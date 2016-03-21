@@ -98,19 +98,18 @@ define(['jquery', 'lazyload'], function (){
       });
       //更多选项
       $('.show_more').click(function (){
-
          if(!$(this).hasClass('active')){
             $(this).addClass('active');
             $(this).children('span').addClass('main').text('收起');
             $(this).children('i').removeClass('icon-jiantou3').addClass('main icon-jiantou1');
-            $('.choose_list .list_item:gt(1)').show();
-            $('.choose_list .list_item:nth-child(2)').removeClass('no_bb');
+            $('.choose_list .list_item:gt(2)').show();
+            $('.choose_list .list_item:nth-child(3)').removeClass('no_bb');
          } else{
             $(this).removeClass('active');
             $(this).children('span').removeClass('main').text('更多选项');
             $(this).children('i').removeClass('main icon-jiantou1').addClass('icon-jiantou3');
-            $('.choose_list .list_item:gt(1)').hide();
-            $('.choose_list .list_item:nth-child(2)').addClass('no_bb');
+            $('.choose_list .list_item:gt(2)').hide();
+            $('.choose_list .list_item:nth-child(3)').addClass('no_bb');
          }
       });
       //排序

@@ -14,34 +14,6 @@ Qs::Ds('商城数据源/商城数据', 'sites');
     </head>
     <body>
         <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
-        <div class="header_search">
-            <div class="header_search_inner conwidth clearfix">
-                <div class="icon_logo fl">
-                    <img src="../../Images/test/test_iocn_logo.png" alt="凤凰筑巢LOGO">
-                </div>
-                <div class="header_search_box fr clearfix">
-                    <div class="search_box">
-                        <input type="text" placeholder="圣诞节跨年幸福购">
-                        <span class="search_button">
-                            搜索
-                        </span>
-                    </div>
-                    <div class="search_right_btn noselect fr mainbd_hover">
-                        <a href="../cart/cart.html">
-                            <i class="icon-bianji main"></i>
-                            <span>发布询价单</span>
-                        </a>
-                    </div>
-                    <div class="search_right_btn noselect fr mainbd_hover">
-                        <a href="../cart/cart.html">
-                            <i class="icon-bianji main"></i>
-                            <span>发布询价单</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php Qs::Label('商品类/商城头部', array('renderTpl' => 'ProductTop',)) ?>
         <div class="content conwidth">
             <!--站点指示-->
             <?php Qs::Label('商品类/分类商品列表', array('renderTpl' => 'ClassifyNav')); ?>

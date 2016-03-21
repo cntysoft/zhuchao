@@ -9,6 +9,21 @@
     <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
    <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
     <?php Qs::Sys('loadCss', array('buyer/style.css', 'buyer/collect_pro.css'))?>
+   <style>
+      .online{position:fixed;width:100%;height:100%;top:0;left:0;z-index:99;background-color:rgba(0,0,0,.3);-pie-background:rgba(0,0,0,.3);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#50000000, endColorstr=#50000000)}.online_box{position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;width:900px;height:650px;background:#fff}.online_box>h3{font-size:16px;color:#333;padding:0 40px;line-height:68px;border-bottom:2px solid #e4e4e4}.online_box>h3 .online_close{float:right;font-size:18px;line-height:68px;color:#666;user-select:none}.online_ele,.warn,.zixun_detail textarea{color:#333;font-size:14px}.online_content{padding:30px 65px}.warn{display:block;line-height:60px;text-align:center;margin-bottom:35px;background:#F8F8F8}.online_ele{margin-bottom:25px}.online_intro{width:120px;text-align:right}.online_detail{float:left;width:600px;height:1.53em;display:-webkit-box}.xunjia_theme{display:inline-block;margin-right:20px}.xunjia_theme input{display:none}.xunjia_theme i{display:inline-block;width:11px;height:11px;vertical-align:-1px;border:1px solid #e4e4e4}.xunjia_theme input:checked+i{background:#093}.xunjia_theme label{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.zixun_detail{height:250px}.zixun_detail textarea{width:600px;height:250px;padding:4px 10px;resize:none;outline-color:transparent;border:1px solid #e4e4e4;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.online .submit_btn{margin-left:120px;width:130px;height:40px;font-size:16px;line-height:40px;text-align:center;cursor:pointer}
+      .online_close{cursor: pointer}
+      #linker .online_box{
+          width : 600px;
+          height : 200px;
+      }
+      #linker .online_box p{
+          width : 400px;
+          height : 50px;
+          line-height: 50px;
+          margin-left: 50px;
+         font-size:14px
+      }
+   </style>
 </head>
 <body>
 <!--头部-->
@@ -26,6 +41,49 @@
         </div>
         </div>
     </div>
+<div class="online hide" id="xunjia">
+      <div class="online_box">
+          <h3>在线询价 <i class="icon-newcuo online_close"></i></h3>
+          <div class="online_content">
+              <div class="warn">
+                  注意：供应商将在24小时内给您回复，回复内容将以短信形式发送至您手机。
+              </div>
+              <form>
+                  <div class="online_ele clearfix">
+                      <span class="fl online_intro">询价产品：</span>
+                      <span class="online_detail product_name">
+                      </span>
+                  </div>
+                  <div class="online_ele clearfix">
+                      <span class="fl online_intro">询价主题：</span>
+                      <div class="online_detail ">
+                          <div class="xunjia_theme">
+                              <label >
+                                  <input type="radio" checked name="theme" >
+                                  <i></i>
+                                  价格
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="online_ele clearfix">
+                      <span class="fl online_intro">咨询详情：</span>
+                      <div class="online_detail zixun_detail">
+                          <textarea name="" id="xunjia_content" placeholder="请至少输入10个字！"></textarea>
+                      </div>
+                  </div>
+                  <input class="submit_btn main_bg_light xunjia_button" type="button" value="立即询价">
+              </form>
+          </div>
+      </div>
+  </div>
+  <div class="online hide" id="linker">
+      <div class="online_box">
+          <h3 style="padding-left:20px">联系方式 <i class="icon-newcuo online_close"></i></h3>
+          <p>联系人：<span class="linker_name"></span></p>
+          <p>电  &nbsp;&nbsp;话：<span class="linker_phone"></span></p>
+      </div>
+  </div> 
 <!--合作伙伴-->
 <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'buyer/collection')?>
 </body>

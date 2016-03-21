@@ -16,7 +16,8 @@ class ErrorType
     * @var array $map
     */
    protected $map = array(
-      'E_FRONT_NAME_EXIST'       => array(10001, 'the user name is exist')
+      'E_FRONT_NAME_EXIST'       => array(10001, 'the user name is exist'),
+      'E_PRODUCT_NOT_EXIST'       => array(10001, 'the product is exist')
    );
 
    /**

@@ -18,7 +18,7 @@ if(count($list)){
       $price = 0 == $product->getPrice() ? '面议' : '￥' . $product->getPrice();
       $status = $product->getStatus();
       
-      $out.='<div class="collect_ele clearfix" fh-id="'.$collect->getId().'">
+      $out.='<div class="collect_ele clearfix" fh-id="'.$collect->getId().'" fh-number="'.$number.'">
             <a href="'.$url.'" class="collect_ele_img" target="__blank"> <img src="'.$imageUrl.'" alt="'.$name.'"></a>
             <div class="collect_container">
                 <h4><a href="'.$url.'" target="__blank">'.$name.'</a></h4>

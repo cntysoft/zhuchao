@@ -9,7 +9,7 @@ if(count($list)){
       $buyer = $inquiry->getBuyer();
       $offer = $inquiry->getOffer();
       $product = $inquiry->getProduct();
-      $time = date('Y年m月d日 H:i:s', $product->getInputTime());
+      $time = date('Y年m月d日 H:i:s', $inquiry->getInputTime());
       $url = $this->getProductUrl($product->getNumber());
       $name = $product->getBrand(). ' ' . $product->getTitle() . ' ' . $product->getDescription();
       $quotationUrl = $this->getQuotationUrl($inquiry->getId());

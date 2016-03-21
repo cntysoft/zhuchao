@@ -57,9 +57,7 @@ if(is_object($offer)){
                 <div class="answer_right fr">
                     <div class="answer_ele baojia clearfix">
                       <span class="answer_intro">报价：</span>
-                        <input type="text" value="'.$offer->getLowPrice().'" disabled>
-                        <span class="fl">——</span>
-                        <input type="text" value="'.$offer->getHighPrice().'" disabled>
+                        <span class="fl" style="min-width:200px; text-align:left">￥'.$offer->getLowPrice().' - '.$offer->getHighPrice().'</span>
                     </div>
                     <div class="answer_ele clearfix">
                         <span class="answer_intro">说明：</span>
@@ -73,7 +71,7 @@ if(is_object($offer)){
          $product = $this->getProduct($productIds[$i]);
          $imgUrl = $this->getImageCdnUrl($product->getDefaultImage());
          $name = $product->getBrand(). ' ' . $product->getTitle() . ' ' . $product->getDescription();
-         $url = $this->getProductUrl($productIds[$i]);
+         $url = $this->getProductUrl($product->getNumber());
          $out.='<div class="answer_pro">
             <a href="'.$url.'"><img src="'.$imgUrl.'" alt="'.$name.'"></a>
         </div>';

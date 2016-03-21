@@ -23,5 +23,51 @@ define(['jquery', 'layer', 'Core', 'Front', 'search', 'comment'], function(){
             });
          });
       });
+      $('.phone_btn').click(function(){
+         var collect = $(this).parents('.collect_ele');
+         var number = collect.attr('fh-number');
+         
+         Cntysoft.Front.callApi('User', 'getLinker', {
+            number : number
+         }, function(response){
+            if(response.status){
+               var data = response.data;
+               $('.linker_name').text(data.name);
+               $('.linker_phone').text(data.phone);
+               $('#linker').show();
+            }
+         });
+      });
+      $('.xunjia_button').click(function (){
+            var content = $('#xunjia_content').val();
+            var number = $('#xunjia').attr('fh-number');
+            var params = {
+                number : number,
+                content : content
+            };
+            if(content.length < 10){
+                return false;
+            }
+            Cntysoft.Front.callApi('User', 'addXunjiadan', params, function (response){
+                if(response.status){
+                   layer.alert('询价提交成功，请等待商家回复！', function(index){
+                           layer.close(index);
+                           $('#xunjia_content').val('');
+                           $('#xunjia').attr('fh-number', '');
+                           $('#xunjia').hide();
+                   });
+                }
+            }, true);
+        });
+      $('.xunjia_btn').click(function(){
+         var collect = $(this).parents('.collect_ele');
+         var name = collect.find('.collect_container h4 a').text();
+         $('.online_detail.product_name').text(name);
+         $('#xunjia').attr('fh-number', collect.attr('fh-number'));
+         $('#xunjia').show();
+      });
+      $('.online_close').click(function(){
+         $('.online').hide();
+      });
    });
 });
