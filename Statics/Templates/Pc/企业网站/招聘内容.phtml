@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <?php Qs::Ds('内容数据源/企业标准内容模型', 'AC') ?>
-<?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
+<?php Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><?php Qs::DsField('CP', 'name') ?>－招聘信息</title>
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/zhaopin.css')) ?>
+        <title><?php Qs::DsField('CP', 'name') ?>－招聘信息-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+<?php Qs::Sys('loadCss', array('company/style.css', 'company/zhaopin.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+<?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
         <div class="l_top ">
             <div class="conwidth clearfix">
@@ -19,14 +25,14 @@
                         <span><?php Qs::DsField('CP', 'name') ?></span>
                     </a>
                 </div>
-                <div class="l_top_right icon-erweima">
-                    <div class="erweima_box">
-                        <div class="qrcode">
-                            <img src="../../Images/test/test_erweima.jpg" alt="">
-                        </div>
-                        <p>扫一扫，用手机查看</p>
-                    </div>
-                </div>
+                <!--                <div class="l_top_right icon-erweima">
+                                    <div class="erweima_box">
+                                        <div class="qrcode">
+                                            <img src="../../Images/test/test_erweima.jpg" alt="">
+                                        </div>
+                                        <p>扫一扫，用手机查看</p>
+                                    </div>
+                                </div>-->
             </div>
         </div>
         <!--导航和搜索-->
@@ -132,7 +138,7 @@
                         <span class="zhaopin_detail"><?php echo date('Y-m-d', QS::DsField('AC', 'endTime', true)) ?></span>
                     </p><br>
                     <p class="clearfix">
-                        <?php Qs::DsField('AC', 'content') ?>
+<?php Qs::DsField('AC', 'content') ?>
                     </p><br>
                     <div class="prev_next">
                         <p><em>上一条：</em><?php
@@ -159,6 +165,6 @@
         </div>
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
-        <?php Qs::Sys('loadRequireJs', 'company/common') ?>
+<?php Qs::Sys('loadRequireJs', 'company/common') ?>
     </body>
 </html>

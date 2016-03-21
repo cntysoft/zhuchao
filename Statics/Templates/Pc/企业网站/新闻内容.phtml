@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <?php Qs::Ds('内容数据源/企业标准内容模型', 'AC') ?>
-<?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
+<?php Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('商城数据源/商城数据', 'sites'); ?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><?php Qs::DsField('CP', 'name') ?>－新闻动态</title>
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/newsdetail.css')) ?>
+        <title><?php Qs::DsField('CP', 'name') ?>－新闻动态-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+<?php Qs::Sys('loadCss', array('company/style.css', 'company/newsdetail.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+<?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
         <div class="l_top ">
             <div class="conwidth clearfix">
@@ -19,14 +24,14 @@
                         <span><?php Qs::DsField('CP', 'name') ?></span>
                     </a>
                 </div>
-                <div class="l_top_right icon-erweima">
-                    <div class="erweima_box">
-                        <div class="qrcode">
-                            <img src="../../Images/test/test_erweima.jpg" alt="">
-                        </div>
-                        <p>扫一扫，用手机查看</p>
-                    </div>
-                </div>
+                <!--                <div class="l_top_right icon-erweima">
+                                    <div class="erweima_box">
+                                        <div class="qrcode">
+                                            <img src="../../Images/test/test_erweima.jpg" alt="">
+                                        </div>
+                                        <p>扫一扫，用手机查看</p>
+                                    </div>
+                                </div>-->
             </div>
         </div>
         <!--导航和搜索-->
@@ -73,7 +78,7 @@
             <div class="m_left fl">
                 <h3>新闻中心</h3>
                 <ul>
-                    <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Pc_NewNav',)) ?> 
+<?php Qs::Label('企业网站/文章', array('renderTpl' => 'Pc_NewNav',)) ?> 
                 </ul>
             </div>
             <!--右侧-->
@@ -81,7 +86,7 @@
                 <h3><?php Qs::DsField('AC', 'title') ?></h3>
                 <p><span>发表时间：<?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></span><span>作者：<?php Qs::DsField('AC', 'author') ?> </span> <span >浏览：<?php Qs::DsField('AC', 'hits') ?></span></p>
                 <div class="news_detail" style="min-height: 600px">
-                    <?php Qs::DsField('AC', 'content') ?>
+<?php Qs::DsField('AC', 'content') ?>
                 </div>
                 <div class="prev_next">
                     <p><em>上一篇：</em><?php
@@ -106,6 +111,6 @@
         </div>
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
-        <?php Qs::Sys('loadRequireJs', 'company/common') ?>
+<?php Qs::Sys('loadRequireJs', 'company/common') ?>
     </body>
 </html>

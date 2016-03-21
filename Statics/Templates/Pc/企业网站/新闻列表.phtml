@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
+<?php Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('商城数据源/商城数据', 'sites'); ?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><?php Qs::DsField('CP', 'name') ?>－新闻动态</title>
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/newslist.css')) ?>
+        <title><?php Qs::DsField('CP', 'name') ?>－新闻动态-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+<?php Qs::Sys('loadCss', array('company/style.css', 'company/newslist.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
-        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+<?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
         <!--站点指示-->
         <div class="site conwidth">
             <a href="/">首页</a>
@@ -22,7 +27,7 @@
             <div class="m_left fl">
                 <h3>新闻中心</h3>
                 <ul>
-                    <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Pc_NewNav',)) ?>                    
+<?php Qs::Label('企业网站/文章', array('renderTpl' => 'Pc_NewNav',)) ?>                    
                 </ul>
             </div>
             <!--新闻列表-->
@@ -34,6 +39,6 @@
         </div>
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
-        <?php Qs::Sys('loadRequireJs', 'company/common') ?>
+<?php Qs::Sys('loadRequireJs', 'company/common') ?>
     </body>
 </html>
