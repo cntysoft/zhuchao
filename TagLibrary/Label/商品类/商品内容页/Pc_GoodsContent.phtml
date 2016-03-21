@@ -1,15 +1,27 @@
 <?php
 $goodsInfo = $this->getProductByNumber();
 $goodsDetail = $goodsInfo->getDetail();
-$out = '<div class="l_main conwidth">
+$category = $goodsInfo->getCategory();
+$name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
+
+$out = '<div class="site conwidth">
+				<a href="/index.html">首页</a>';
+$out .= '<span>&gt;</span>
+				<a href="/productclassify/' . $category->getId() . '/1.html">' . $category->getName() . '</a>';
+$out .= '<span>&gt;</span>
+				<a>' . $name . '</a></div>';
+
+$out .= '<div class="l_main conwidth">
     <!--商品展示-->
     <div class="pro_display clearfix">
         <!--左侧图片展示-->
         <div class="pro_show fl">
             <div class="pro_show_content">
                 <h3 class=" clearfix">
-                    <span class="fl">' . $goodsInfo->getTitle() . '</span>';
-
+                    <div class="fl">
+                        <p>' . $name . '</p>
+                        <p>' . $goodsDetail->getAdvertText() . '</p>
+                    </div>';
 $out .= '<div class="icon-erweima fr">
                         <div class="erweima_box">
                             <p>扫一扫&nbsp;&nbsp;用手机查看此页</p>
@@ -34,12 +46,12 @@ $out .= $bigImage;
 $out .= '</div>
             <div class="small_img clearfix">' . $smallImage . '</div>
             <div class="share clearfix">
-                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"><i class="main icon-fenxiang"></i>分享</a></div>';            
-          if($this->checkLogin() && $this->checkCollect($goodsInfo->getId())){
-				 $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
-			 } else {
-				 $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang can_collect"></i>收藏</span>';
-			 }
+                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"><i class="main icon-fenxiang"></i>分享</a></div>';
+if ($this->checkLogin() && $this->checkCollect($goodsInfo->getId())) {
+	$out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
+} else {
+	$out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang can_collect"></i>收藏</span>';
+}
 $out .= '</div>
         </div><div class="pro_about fr">
             <div class="pro_about_top">
@@ -47,8 +59,8 @@ $out .= '</div>
                 <p class="pro_price main">￥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "面议") . '</p>
                 <div class="pro_content">
                     <p>最小起定量：' . $goodsDetail->getMinimum() . $goodsDetail->getUnit() . '</p>
-                    <p>可售量数：' . $goodsDetail->getStock() . '</p>
-                    <p>批发采购：' . ($goodsInfo->getIsBatch() ? "支持" : "不支持") . '</p>
+                    <p>可售库存数：' . $goodsDetail->getStock() . $goodsDetail->getUnit() . '</p>
+                    <p>是否可批发：' . ($goodsInfo->getIsBatch() ? "支持" : "不支持") . '</p>
                 </div>
             </div>';
 $company = $goodsInfo->getCompany();
@@ -86,10 +98,10 @@ foreach ($goodsLists as $goodsList) {
 	if ($goodsList->getId() == $goodsInfo->getId()) {
 		continue;
 	}
-   $url = $this->getProductUrl($goodsList->getNumber());
+	$url = $this->getProductUrl($goodsList->getNumber());
 	$out .= '<div class="related_pro">
-				<a href="'.$url.'"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
-				<p class="pro_intro"><a href="'.$url.'" class="main_hover">' . $goodsList->getTitle() . '</a></p>
+				<a href="' . $url . '"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
+				<p class="pro_intro"><a href="' . $url . '" class="main_hover">' . $goodsList->getTitle() . '</a></p>
 				<p class="pro_price">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
 		  </div>';
 }

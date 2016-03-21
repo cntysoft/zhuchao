@@ -43,10 +43,45 @@ class Goods extends AbstractLabelScript
    public function getLeafNodes()
    {
       $nodes = $this->appCaller->call(
-              CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getLeafNodes');
+              CATEGORY::MODULE_NAME, 
+				  CATEGORY::APP_NAME, 
+				  CATEGORY::APP_API_MGR, 
+				  'getLeafNodes');
       return $nodes;
    }
+	/**
+	 * 获取节点树
+	 * @return type
+	 */
+	public function getNodeTree()
+	{
+		return $this->appCaller->call(
+				  CATEGORY::MODULE_NAME, 
+				  CATEGORY::APP_NAME, 
+				  CATEGORY::APP_API_MGR, 
+				  'getNodeTree');
+	}
+	/**
+    * 根据节点ID，获取节点路径
+    *
+    * @param string $id
+    * @return array
+    */
+   public function getNodePath($id)
+   {
+      $tree = $this->getNodeTree();
+      $ret = array();
+      if (!$tree->isNodeExist($id)) {
+         return $ret;
+      }
 
+      $node = $tree->getValue($id);
+      $ret[] = $node;
+      while ($id = $tree->getParent($id)) {
+         $ret[] = $tree->getValue($id);
+      }
+      return $ret;
+   }
    /**
     * 检查是否登录
     * @return boolean

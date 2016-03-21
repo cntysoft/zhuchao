@@ -23,56 +23,53 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                    "bdSize" : "16"
                }, "share" : {"bdSize" : 16}
            };
-           with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
-    </head>
-    <body>
-        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
-        <!--导航-->
-        <div class="site conwidth">
-            <a href="/index.html">首页</a>
-            <span>&gt;</span>
-            <a>商品</a>
-        </div>
-        <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_GoodsContent')) ?>
-        <?php Qs::Label('静态类/网站底部'); ?>
-        <div class="online hide">
-            <div class="online_box">
-                <h3>在线询价 <i class="icon-newcuo online_close"></i></h3>
-                <div class="online_content">
-                    <div class="warn">
-                        注意：供应商将在24小时内给您回复，回复内容将以短信形式发送至您手机。
-                    </div>
-                    <form>
-                        <div class="online_ele clearfix">
-                            <span class="fl online_intro">询价产品：</span>
-                            <span class="online_detail">
-                                <?php Qs::DsField('goods', 'name') ?>
-                            </span>
-                        </div>
-                        <div class="online_ele clearfix">
-                            <span class="fl online_intro">询价主题：</span>
-                            <div class="online_detail ">
-                                <div class="xunjia_theme">
-                                    <label >
-                                        <input type="radio" checked name="theme" >
-                                        <i></i>
-                                        价格
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="online_ele clearfix">
-                            <span class="fl online_intro">咨询详情：</span>
-                            <div class="online_detail zixun_detail">
-                                <textarea name="" id="xunjia_content" placeholder="请至少输入10个字！"></textarea>
-                            </div>
-                        </div>
-                        <input class="submit_btn main_bg_light xunjia_button" type="button" value="立即询价">
-                    </form>
-                </div>
-            </div>
-        </div>
-        <script>
+           with (document)
+               0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+	 </head>
+	 <body>
+		  <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
+		  <!--导航-->
+		  
+		  <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_GoodsContent')) ?>
+		  <?php Qs::Label('静态类/网站底部'); ?>
+		  <div class="online hide">
+				<div class="online_box">
+					 <h3>在线询价 <i class="icon-newcuo online_close"></i></h3>
+					 <div class="online_content">
+						  <div class="warn">
+								注意：供应商将在24小时内给您回复，回复内容将以短信形式发送至您手机。
+						  </div>
+						  <form>
+								<div class="online_ele clearfix">
+									 <span class="fl online_intro">询价产品：</span>
+									 <span class="online_detail">
+										  <?php Qs::DsField('goods','name') ?>
+									 </span>
+								</div>
+								<div class="online_ele clearfix">
+									 <span class="fl online_intro">询价主题：</span>
+									 <div class="online_detail ">
+										  <div class="xunjia_theme">
+												<label >
+													 <input type="radio" checked name="theme" >
+													 <i></i>
+													 价格
+												</label>
+										  </div>
+									 </div>
+								</div>
+								<div class="online_ele clearfix">
+									 <span class="fl online_intro">咨询详情：</span>
+									 <div class="online_detail zixun_detail">
+										  <textarea name="" id="xunjia_content" placeholder="请至少输入10个字！"></textarea>
+									 </div>
+								</div>
+								<input class="submit_btn main_bg_light xunjia_button" type="button" value="立即询价">
+						  </form>
+					 </div>
+				</div>
+		  </div>
+		  <script>
            window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
         </script>
         <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="mall/proinfo" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>

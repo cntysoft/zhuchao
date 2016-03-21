@@ -67,9 +67,9 @@ foreach ($goodsLists as $list) {
                 <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 150, 150) . '" alt=""/>
 
                 <div class="pro_text_box">
-                    <h3 class="text_ellipsis">' . $list->getTitle() . '</h3>
+                    <h3 class="text_ellipsis">' . $list->getBrand().$list->getTitle() .$list->getDescription(). '</h3>
 
-                    <p class="text_ellipsis">' . $list->getDescription() . '</p>
+                    <p class="text_ellipsis">' . $list->getDetail()->getAdvertText() . '</p>
                     <span class="pro_text_tip">￥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</span>
                 </div>
                 <span class="sale_tip main_bg">
@@ -136,7 +136,7 @@ foreach ($goodsLists as $list) {
 	$out .= '<div class="about_right_list">
                 <span class="address text_ellipsis">河南省鹤壁市</span>
                 <span class="time">' . rand(1, 10) . '秒前</span>
-                <h4 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getTitle() . '</a></h4>
+                <h4 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand().$list->getTitle() .$list->getDescription() . '</a></h4>
             </div>';
 }
 $out .= '</div>
@@ -152,7 +152,7 @@ foreach ($goodsLists as $list) {
             <a href="' . $url . '" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
 
             <div class="card_text_box">
-                <h3 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getTitle() . '</a></h3>
+                <h3 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand().$list->getTitle() .$list->getDescription() . '</a></h3>
                 <i class="jiantou icon-jiantou-copy"></i>
             </div>
             <span class="pro_card_tip">
@@ -189,7 +189,7 @@ foreach ($nodes as $node) {
         <a class="pro_img" href="' . $url . '">
             <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
         </a>
-        <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getTitle() . '</a></h3>
+        <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand().$list->getTitle() .$list->getDescription() . '</a></h3>
         
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
