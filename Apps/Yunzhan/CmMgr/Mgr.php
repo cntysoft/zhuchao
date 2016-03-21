@@ -769,7 +769,7 @@ class Mgr extends AbstractLib
       $fileGen->setNamespace('App\Yunzhan\CmMgr\Model');
       $fileGen->setUses(array(
          array(
-            'use' => 'Cntysoft\Phalcon\Mvc\Model',
+            'use' => 'ZhuChao\Phalcon\Mvc\Model',
             'as' => 'BaseModel'
          )
       ));

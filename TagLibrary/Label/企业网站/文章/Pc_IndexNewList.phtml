@@ -1,0 +1,39 @@
+<?php
+$infoList = $this->execute();
+if (!$infoList) {
+   echo "<script>window.location = '/'</script>";
+   return false;
+}
+$items = is_array($infoList) ? $infoList[0] : $infoList;
+$out = '';
+foreach ($items as $index => $item) {
+   $defpic = $item->getDefaultPicUrl()[0];
+   $infourl = $this->getInfoUrl($item->getId());
+   if ($index) {
+      $imgurl = $this->getImgcdn($defpic, 134, 84);
+      $out .=' <div class="small_news_ele clearfix">
+                                <a href="' . $infourl . '"><img src="' . $imgurl . '" alt=""></a>
+                                <div class="news_content">
+                                    <h4 class="active_hover"><a href="' . $infourl . '">' . $this->formatString($item->getTitle(), $this->invokeParams['titleLength']) . '</a></h4>
+                                    <p>' . $item->getIntro() . '</p>
+                                    <div class="news_time clearfix">
+                                        <span class="fl">' . date('Y-m-d', $item->getInputTime()) . '</span>
+                                        <span class="fr">浏览（' . $item->getHits() . '）</span>
+                                    </div>
+                                </div>
+                            </div>';
+   } else {
+      $out = '<div class="big_news fl">
+                            <a href="' . $infourl . '"><img src="' . $this->getImgcdn($defpic, 300, 188) . '" alt=""></a>
+                            <h4 class="active_hover"><a href="' . $infourl . '">' . $item->getTitle() . '</a></h4>
+                            <p>' . $item->getIntro() . '</p>
+                            <div class="news_time clearfix">
+                                <span class="fl">' . date('Y-m-d', $item->getInputTime()) . '</span>
+                                <span class="fr">浏览（' . $item->getHits() . '）</span>
+                            </div>
+                        </div>
+                        <div class="small_news fl">';
+   }
+}
+echo $out . '</div>';
+?>

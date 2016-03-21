@@ -5,7 +5,7 @@
 namespace App\Yunzhan\Setting;
 use Cntysoft\Kernel\App\AbstractLib;
 use Cntysoft\Kernel;
-use App\Yunzhan\Model\Config as ConfigModel;
+use App\Yunzhan\Setting\Model\Config as ConfigModel;
 
 /**
  * @author SOFTBOY <cntysoft@163.com>

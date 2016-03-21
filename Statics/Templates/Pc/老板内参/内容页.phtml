@@ -7,15 +7,15 @@ Qs::Ds('商城数据源/商城数据', 'sites');
     <head>
         <meta charset="UTF-8">
         <title>老板内参-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('reference/style.css', 'reference/referencedetail.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_LaoBan',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--导航-->
         <div class="head main_bg_light">
             <div class="head_box conwidth1100 clearfix">

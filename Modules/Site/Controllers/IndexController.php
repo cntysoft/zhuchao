@@ -115,7 +115,14 @@ class IndexController extends AbstractController
             ));
             return false;
          }
-
+         if ($node->getNodeIdentifier() == 'about') {
+            $this->dispatcher->forward(array(
+               'module'     => 'Site',
+               'controller' => 'Index',
+               'action'     => 'about'
+            ));
+            return false;
+         }
          $tpl = $appCaller->call(
                  CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeModelTpl', array((int) $info->getNodeId(), $info->getCmodelId())
          );

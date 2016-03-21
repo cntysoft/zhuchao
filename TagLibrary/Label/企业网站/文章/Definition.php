@@ -1,10 +1,10 @@
 <?php
 return array(
-   'id'          => '电商宝典',
-   'category'    => '文章',
+   'id'          => '文章',
+   'category'    => '企业网站',
    'static'      => false,
-   'namespace'   => 'Category',
-   'class'       => 'ZhuchaoSchool',
+   'namespace'   => 'Company',
+   'class'       => 'CompanyArticle',
    'description' => '获取自定义信息列表',
    'attributes'  => array(
       'nodeIdentifier' => array(

@@ -4,16 +4,23 @@
 define(['jquery', 'module/totop'], function (){
    $(function (){
       var path = window.location.pathname;
-      if(path.indexOf('productclassify/') >= 0 || path.indexOf('item/') >= 0){
+      if(path.indexOf('productlist/') >= 0){
          $('.l_nav ul li.mainbd_hover').eq(1).addClass('main_border main');
-      } else if(path.indexOf('news/') >= 0){
+      } else if(path.indexOf('/newscenter') >= 0 || path.indexOf('/companynews') >= 0 || path.indexOf('/industrynews') >= 0){
          $('.l_nav ul li.mainbd_hover').eq(2).addClass('main_border main');
-      } else if(path.indexOf('/recruit') >= 0){
+      } else if(path.indexOf('/joinus') >= 0){
          $('.l_nav ul li.mainbd_hover').eq(3).addClass('main_border main');
-      } else if(path.indexOf('/aboutus') >= 0){
+      } else if(path.indexOf('/about') >= 0){
          $('.l_nav ul li.mainbd_hover').eq(4).addClass('main_border main');
-      } else{
+      }
+      if(!$('.l_nav ul li.mainbd_hover.main_border').length){
          $('.l_nav ul li.mainbd_hover').eq(0).addClass('main_border main');
       }
+      $('.l_nav i.icon-sousuo').click(function (){
+         var text = $(this).siblings('input').val();
+         if(text.length){
+            window.location.href = '/productlist/1.html?keyword=' + text;
+         }
+      });
    });
 });

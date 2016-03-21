@@ -8,9 +8,9 @@
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
         <!--内容-->
         <div class="content conwidth clearfix">
             <!--站点指示-->
@@ -24,29 +24,32 @@
                 <!--公司信息-->
                 <div class="company_info">
                     <div class="company_name">
-                        <h1>神恩信息技术有限公司</h1>
+                        <h1><?php Qs::DsField('CP', 'name') ?></h1>
                         <p>
-                            <img src="../../Images/test/test_icon_zizhi1.png" title="资质好" alt="资质好">
-                            <img src="../../Images/test/test_icon_zizhi2.png" title="诚信商家" alt="诚信商家">
-                            <img src="../../Images/test/test_icon_zizhi2.png" title="有良心商家" alt="有良心商家">
+                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi1.png') ?>" title="资质好" alt="资质好">
+                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="诚信商家" alt="诚信商家">
+                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="有良心商家" alt="有良心商家">
                         </p>
                     </div>
                     <div class="company_intro">
                         <dl>
                             <dt>经营模式</dt>
-                            <dd>生产型</dd>
+                            <dd><?php
+                                $trade = array(1 => '销售型', '生产型', '设计型', '信息服务型', '销售+生产型', '销售+设计型', '生产+设计型', '销售+生产+设计型');
+                                echo $trade[Qs::DsField('CP', 'tradeMode', true)]
+                                ?></dd>
                         </dl>
                         <dl>
                             <dt>所在地区</dt>
-                            <dd>河南省 郑州市 金水区</dd>
+                            <dd><?php echo ' ' . implode(' ', Qs::DsField('CP', 'PCD', true)) ?></dd>
                         </dl>
                         <dl>
                             <dt>联系人</dt>
-                            <dd>哈哈(女士)</dd>
+                            <dd><?php Qs::DsField('CP', 'providername') ?></dd>
                         </dl>
                         <dl>
                             <dt>联系电话</dt>
-                            <dd>1456456456</dd>
+                            <dd><?php Qs::DsField('CP', 'contact') ?></dd>
                         </dl>
                         <dl>
                             <dt>工作时间</dt>
@@ -58,174 +61,54 @@
                     </div>
                 </div>
                 <!--产品分类-->
-                <div class="product_classify">
-                    <h1>全部分类<em>121355</em></h1>
-                    <div class="classify_list">
-                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                        <ul>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                        </ul>
-                    </div>
-                    <div class="classify_list">
-                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                        <ul>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                        </ul>
-                    </div>
-                    <div class="classify_list">
-                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                        <ul>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                        </ul>
-                    </div>
-                    <div class="classify_list">
-                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                        <ul>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                            <li><a href="#">二级分类<em>322</em></a></li>
-                        </ul>
-                    </div>
-                </div>
+                <!--                <div class="product_classify">
+                                    <h1>全部分类<em>121355</em></h1>
+                                    <div class="classify_list">
+                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
+                                        <ul>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="classify_list">
+                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
+                                        <ul>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="classify_list">
+                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
+                                        <ul>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="classify_list">
+                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
+                                        <ul>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                            <li><a href="#">二级分类<em>322</em></a></li>
+                                        </ul>
+                                    </div>
+                                </div>-->
             </div>
 
             <!--右侧内容列表-->
             <div class="r_section fr">
-                <div class="rank_choice clearfix">
-                    <p class="rank_btn1 fl clearfix">
-                        <a href="#">默认</a>
-                        <a href="#">最新</a>
-                        <a class="main" href="#">价格
-                            <span class="arrow_wrap">
-                                <i class="icon-black-up"></i><i class="active icon-black-down"></i>
-                            </span>
-                        </a>
-                    </p>
-                    <p class="rank_btn2 fr">
-                        <span class="btn2_total">共<em>12000</em>件商品</span>
-                        <span class="btn2_page"><em class="main">3</em>/<em>96</em></span>
-                        <span class="btn2_next">
-                            <a href="#">&lt;</a>
-                            <a href="#">&gt;</a>
-                        </span>
-                    </p>
-                </div>
-                <!--商品列表-->
-                <div class="pro_list_wrap clearfix">
-                    <div class="pro_card">
-                        <div>
-                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href="company_proinfo.html"><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="company_proinfo.html">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href=""><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href=""><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href=""><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href=""><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href=""><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                    <div class="pro_card">
-                        <div>
-                            <a href=""><img src="../../Images/test/test_company_pro1.jpg" alt=""></a>
-                            <p class="active_hover"><a href="">新疆和田玉水玉牌 太白醉酒 41.4克新疆和田玉山流水玉牌 </a></p>
-                            <span class="">￥700.00</span>
-                        </div>
-                    </div>
-                </div>
-                <!--分页-->
-                <div class="page_list ">
-                    <p>
-                        <a class="prev_page" href="#">上一页</a>
-                        <a class="main_bg_light main_border_light" href="#">1</a>
-                        <a  href="#">2</a>
-                        <a  href="#">3</a>
-                        <a  href="#">4</a>
-                        <a class="next_page no_marginR" href="#">下一页</a>
-                        <span>&nbsp;共2页&nbsp;到第</span>
-                        <input type="text" onkeyup="value = value.replace(/[^\d/g]/, '')">
-                        <span>页</span>
-                        <span class="page_submit mainbg_hover">确认</span>
-                    </p>
-                </div>
+                <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Pc_ProductList', 'outputNum' => 12, 'enablePage' => true)); ?>
             </div>
         </div>
         <!--底部-->
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <?php Qs::Sys('loadRequireJs', 'company/company_prolist') ?>
 
     </body>

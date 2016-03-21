@@ -17,7 +17,6 @@ use App\Yunzhan\Category\Constant as CATE_CONST;
  */
 class InfoList extends AbstractLib
 {
-
    /**
     * 根据指定的ids一次获取基本基本数据集合
     * 
@@ -29,12 +28,12 @@ class InfoList extends AbstractLib
       $ret = array();
       $mgr = new Manager();
       foreach ($ids as $id) {
-         if($withSubmodel){
+         if ($withSubmodel) {
             $info = $mgr->read((int) $id);
-         }else{
+         } else {
             $info = GeneralModel::findFirst($id);
          }
-         
+
          $ret[] = $info;
       }
       return $ret;
@@ -51,13 +50,13 @@ class InfoList extends AbstractLib
    public function titleExist($cmid, $nid, $title)
    {
       return GeneralModel::count(array(
-            'cmodelId = ?0 AND nodeId = ?1 AND title = ?2',
-            'bind' => array(
-               0 => (int) $cmid,
-               1 => (int) $nid,
-               2 => $title
-            )
-         )) > 0 ? true : false;
+                 'cmodelId = ?0 AND nodeId = ?1 AND title = ?2',
+                 'bind' => array(
+                    0 => (int) $cmid,
+                    1 => (int) $nid,
+                    2 => $title
+                 )
+              )) > 0 ? true : false;
    }
 
    /**
@@ -77,9 +76,7 @@ class InfoList extends AbstractLib
       if (!in_array($status, $this->getSupportInfoStatus())) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_INFO_STATUS_NOT_SUPPORT', $status),
-            $errorType->code('E_INFO_STATUS_NOT_SUPPORT')),
-            $this->getErrorTypeContext());
+                 $errorType->msg('E_INFO_STATUS_NOT_SUPPORT', $status), $errorType->code('E_INFO_STATUS_NOT_SUPPORT')), $this->getErrorTypeContext());
       }
       $cond = array();
       if (!in_array(0, $id)) {
@@ -102,12 +99,12 @@ class InfoList extends AbstractLib
       $cond = implode(' and ', $cond);
 
       $items = GeneralModel::find(array(
-            $cond,
-            'order' => $orderBy,
-            'limit' => array(
-               'number' => $limit,
-               'offset' => $offset
-            )
+                 $cond,
+                 'order' => $orderBy,
+                 'limit' => array(
+                    'number' => $limit,
+                    'offset' => $offset
+                 )
       ));
       if ($total) {
          return array($items, (int) GeneralModel::count(array(
@@ -126,36 +123,36 @@ class InfoList extends AbstractLib
    public function getInfoListByNode($nodeId)
    {
       $infoList = GeneralModel::find(array(
-            'nodeId = ?0',
-            'bind' => array(
-               0 => $nodeId
-            ))
+                 'nodeId = ?0',
+                 'bind' => array(
+                    0 => $nodeId
+                 ))
       );
 
-        return $infoList;
-    }
-    
-	/**
-	 * 获取上一篇下一篇
-	 *
-	 * @param int $nid
-	 * @param int $id
-	 * @return array
-	 */
-	public function getPrevAndNextItem($nid, $id)
-	{
-		$ret = array();
-		$condPrev = $condNext = array('nodeId = ' . $nid, 'isDeleted = 0', 'status = ' . Constant::INFO_S_VERIFY);
-		$condPrev[] = 'id > ' . $id;
-		$condNext[] = 'id < ' . $id;
-		$condNext = implode(' AND ', $condNext);
-		$condPrev = implode(' AND ', $condPrev);
-		$prev = GeneralModel::findFirst($condPrev);
-		$next = GeneralModel::findFirst(array($condNext, 'order' => 'id DESC'));
-		$ret['prev'] = is_object($prev) ? array($this->getItemUrl($prev->getId()), $prev->getTitle(), $prev->getDefaultPicUrl() ? $prev->getDefaultPicUrl()[0] : '') : null;
-		$ret['next'] = is_object($next) ? array($this->getItemUrl($next->getId()), $next->getTitle(), $next->getDefaultPicUrl() ? $next->getDefaultPicUrl()[0] : '') : null;
-		return $ret;
-	}
+      return $infoList;
+   }
+
+   /**
+    * 获取上一篇下一篇
+    *
+    * @param int $nid
+    * @param int $id
+    * @return array
+    */
+   public function getPrevAndNextItem($nid, $id)
+   {
+      $ret = array();
+      $condPrev = $condNext = array('nodeId = ' . $nid, 'isDeleted = 0', 'status = ' . Constant::INFO_S_VERIFY);
+      $condPrev[] = 'id > ' . $id;
+      $condNext[] = 'id < ' . $id;
+      $condNext = implode(' AND ', $condNext);
+      $condPrev = implode(' AND ', $condPrev);
+      $prev = GeneralModel::findFirst($condPrev);
+      $next = GeneralModel::findFirst(array($condNext, 'order' => 'id DESC'));
+      $ret['prev'] = is_object($prev) ? array($this->getItemUrl($prev->getId()), $prev->getTitle(), $prev->getDefaultPicUrl() ? $prev->getDefaultPicUrl()[0] : '') : null;
+      $ret['next'] = is_object($next) ? array($this->getItemUrl($next->getId()), $next->getTitle(), $next->getDefaultPicUrl() ? $next->getDefaultPicUrl()[0] : '') : null;
+      return $ret;
+   }
 
    /**
     * 获取内容页地址，这里不进行存在性判断
@@ -165,7 +162,7 @@ class InfoList extends AbstractLib
     */
    public function getItemUrl($id)
    {
-      return '/article/' . $id . '.html';
+      return '/news/' . $id . '.html';
    }
 
    /**
@@ -191,12 +188,12 @@ class InfoList extends AbstractLib
       $cond = implode(' and ', $cond);
 
       $items = GeneralModel::find(array(
-            $cond,
-            'order' => $orderBy,
-            'limit' => array(
-               'number' => $limit,
-               'offset' => $offset
-            )
+                 $cond,
+                 'order' => $orderBy,
+                 'limit' => array(
+                    'number' => $limit,
+                    'offset' => $offset
+                 )
       ));
       if ($total) {
          return array(
@@ -235,18 +232,18 @@ class InfoList extends AbstractLib
     */
    public function getEffectImageList(array $id = array(0), $gids = array(), $total = false, $orderBy = null, $offset = 0, $limit = 15)
    {
-      $cond = 'isDeleted = 0 and status = '. Constant::INFO_S_VERIFY . ' and cmodelId = ' . CM_CONST::CONTENT_MODEL_EFFECT_IMAGE . ' and ' . GeneralModel::generateRangeCond('id', $gids);
+      $cond = 'isDeleted = 0 and status = ' . Constant::INFO_S_VERIFY . ' and cmodelId = ' . CM_CONST::CONTENT_MODEL_EFFECT_IMAGE . ' and ' . GeneralModel::generateRangeCond('id', $gids);
       if (count($id) && !in_array(0, $id)) {
-         $cond .=  ' and '. GeneralModel::generateRangeCond('nodeId', $id);
+         $cond .= ' and ' . GeneralModel::generateRangeCond('nodeId', $id);
       }
 
       $items = GeneralModel::find(array(
-            $cond,
-            'order' => $orderBy,
-            'limit' => array(
-               'number' => $limit,
-               'offset' => $offset
-            )
+                 $cond,
+                 'order' => $orderBy,
+                 'limit' => array(
+                    'number' => $limit,
+                    'offset' => $offset
+                 )
       ));
       if ($total) {
          return array($items, (int) GeneralModel::count(array(
@@ -276,7 +273,7 @@ class InfoList extends AbstractLib
    public function getGidsByQuery(array $id = array(), $imageType = 0, $queryAttrs = array())
    {
       $adapter = $this->getAppCaller()->getAppObject(
-         Constant::MODULE_NAME, Constant::APP_NAME, 'Saver\ImageSaver'
+              Constant::MODULE_NAME, Constant::APP_NAME, 'Saver\ImageSaver'
       );
 
       $ret = $adapter->getQueryListByQuery($id, false, $imageType, $queryAttrs);
@@ -304,8 +301,7 @@ class InfoList extends AbstractLib
       if ($includeChildren) {
          //在这里需要节点管理器APP相关功能
          $categoryTree = $this->getAppCaller()->call(
-            CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME,
-            CATE_CONST::APP_API_STRUCTURE, 'getTreeObject'
+                 CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getTreeObject'
          );
          /**
           * 这里WEBOS直接请求的数据 所以节点基本可以保证存在

@@ -1,18 +1,18 @@
-<?php Qs::Ds('商城数据源/商城数据', 'sites');?>
+<?php Qs::Ds('商城数据源/商城数据', 'sites'); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>筑巢商学院-课程中心、店商资讯、经典案例-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('college/style.css', 'college/collegecenter.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_LaoBan',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--导航-->
         <div class="head main_bg_light">
             <div class="head_box conwidth1100 clearfix">
@@ -50,6 +50,7 @@
                 ?>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'college/collegeindex');?>
+        <?php Qs::Label('静态类/网站底部');
+        Qs::Sys('loadRequireJs', 'college/collegeindex'); ?>
     </body>
 </html>

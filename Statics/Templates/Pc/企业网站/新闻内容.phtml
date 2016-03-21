@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php Qs::Ds('内容数据源/企业标准内容模型', 'AC') ?>
 <?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
 <html lang="en">
     <head>
@@ -8,9 +9,59 @@
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <div class="l_top ">
+            <div class="conwidth clearfix">
+                <div class="l_top_left">
+                    <a href="">
+                        <img src="<?php Qs::DsField('CP', 'logo') ?>" alt="">
+                        <span><?php Qs::DsField('CP', 'name') ?></span>
+                    </a>
+                </div>
+                <div class="l_top_right icon-erweima">
+                    <div class="erweima_box">
+                        <div class="qrcode">
+                            <img src="../../Images/test/test_erweima.jpg" alt="">
+                        </div>
+                        <p>扫一扫，用手机查看</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--导航和搜索-->
+        <div class="l_nav ">
+            <div class="conwidth">
+                <ul class="clearfix ">
+                    <li class="mainbd_hover active_hover "><a href="/">首页</a></li>
+                    <li class="mainbd_hover active_hover"><a href="/productlist/1.html">产品中心</a></li>
+                    <li class="mainbd_hover active_hover main_border main">
+                        <a href="/newscenter.html">新闻中心</a>
+                        <div class="nav_box">
+                            <ul>
+                                <li class="active_hover"><a href="/companynews.html">公司新闻</a></li>
+                                <li class="active_hover"><a href="/industrynews.html">行业新闻</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mainbd_hover active_hover"><a href="/joinus.html">招聘中心</a></li>
+                    <li class="mainbd_hover active_hover">
+                        <a href="/about.html">关于我们</a>
+                        <div class="nav_box">
+                            <ul>
+                                <li class="active_hover"><a href="/about.html">公司介绍</a></li>
+                                <li class="active_hover"><a href="/about.html">公司资质</a></li>
+                                <li class="active_hover"><a href="/about.html">公司文化</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="search">
+                    <input type="text">
+                    <i class="icon-sousuo"></i>
+                </div>
+            </div>
+        </div>
         <!--站点指示-->
         <div class="site conwidth">
             <a href="/">首页</a>
@@ -22,27 +73,39 @@
             <div class="m_left fl">
                 <h3>新闻中心</h3>
                 <ul>
-                    <li><a class="active_hover main">行业新闻</a></li>
-                    <li class="no_bb"><a class="active_hover">企业新闻</a></li>
+                    <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Pc_NewNav',)) ?> 
                 </ul>
             </div>
             <!--右侧-->
             <div class="m_right fr">
-                <h3>卡萨帝灵珑传奇热水器</h3>
-                <p><span>发表时间：2015-11-17</span><span>作者：smm </span> <span >浏览：1111</span></p>
-                <div class="news_detail">
-                    <p>
-                        作为当前治国方针政策中最重要的一环，信息安全已经成为国家安全的重要战略组成部分。在这方面，国人已经经历了长久的努力和实践——掌握自主知识产权的核心技术和产品已经成为当前国家信息安全
-                    </p>
-                    <p>领域最为迫切的需求，而目前国产化芯片和操作系统作为最重要战略布局得到了国家的大力扶持。</p>
-                    <img src="../../Images/test/test_banner1.jpg" alt="">
-                    <p> 深度科技研发的桌面操作系统就可以很好地满足使用者的需求——不仅在界面体验上无需改变用户长期以来的使用习惯，更是兼容市面上主流的Windows应用程序。安全性方面，因为可以由管理员设置权限进行统一管理，员工无法自己随意安装、卸载软件，使企业系统安全性更高，进而提升信息保密程度。对于特殊行业，
-                        以及企业而言，深度科技自主研发的操作系统因为其易用性及安全性，有着得天独厚的优势。</p>
+                <h3><?php Qs::DsField('AC', 'title') ?></h3>
+                <p><span>发表时间：<?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></span><span>作者：<?php Qs::DsField('AC', 'author') ?> </span> <span >浏览：<?php Qs::DsField('AC', 'hits') ?></span></p>
+                <div class="news_detail" style="min-height: 600px">
+                    <?php Qs::DsField('AC', 'content') ?>
                 </div>
-            </div>
+                <div class="prev_next">
+                    <p><em>上一篇：</em><?php
+                        $prev = Qs::DsField('AC', 'prev', true);
+                        if ($prev) {
+                           echo '<a href="' . $prev[0] . '">' . iconv_substr($prev[1], 0, 18) . '</a>';
+                        } else {
+                           echo '木有了';
+                        }
+                        ?>
+                    </p>
+                    <p><em>下一篇：</em><?php
+                        $next = Qs::DsField('AC', 'next', true);
+                        if ($next) {
+                           echo '<a href="' . $next[0] . '">' . iconv_substr($next[1], 0, 18) . '</a>';
+                        } else {
+                           echo '正在更新中，请等待~';
+                        }
+                        ?></p>
+                </div>
+            </div>           
         </div>
         <!--底部-->
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <?php Qs::Sys('loadRequireJs', 'company/common') ?>
     </body>
 </html>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php Qs::Ds('内容数据源/企业设置', 'CS') ?>
 <?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
 <html lang="en">
     <head>
@@ -8,9 +9,9 @@
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
         <!--站点指示-->
         <div class="site conwidth">
             <a href="/">首页</a>
@@ -21,7 +22,7 @@
             <div class="m_left fl">
                 <h3>关于我们</h3>
                 <ul>
-                    <li><a  class="main active_hover">公司介绍</a></li>
+                    <li><a  class="active_hover">公司介绍</a></li>
                     <li><a  class="active_hover">企业文化</a></li>
                     <li><a class="active_hover">企业资质</a></li>
                     <li><a  class="active_hover">发展历程</a></li>
@@ -32,100 +33,38 @@
                 <!--//公司介绍-->
                 <div class="m_intro ">
                     <h3>公司介绍</h3>
-                    <div class="clearfix">
-                        <img src="../../Images/test/test_company_aboutus1.jpg" alt="">
-                        <img src="../../Images/test/test_company_aboutus1.jpg" alt="">
-                        <img src="../../Images/test/test_company_aboutus1.jpg" alt="">
-                        <img src="../../Images/test/test_company_aboutus1.jpg" alt="">
-                    </div>
-                    <h4>郑州神恩信息技术有限公司</h4>
-                    <p>  郑州神恩信息技术有限公司是河南鑫山实业发展有限公司的子公司。河南省鑫山实业有限公司创建于1995
-                        年，是以商贸家居流通为核心，以文化产业为平台，以广告业务为途径，以电子商务发展为辅助，以物业、物流
-                        业为支撑的民营集团性企业，公司员工千余人，注册资金五亿元人民币,公司净资产近百亿元。
-                    </p>
-                    <p>  郑州神恩信息技术有限公司是河南鑫山实业发展有限公司的子公司。河南省鑫山实业有限公司创建于1995
-                        年，是以商贸家居流通为核心，以文化产业为平台，以广告业务为途径，以电子商务发展为辅助，以物业、物流
-                        业为支撑的民营集团性企业，公司员工千余人，注册资金五亿元人民币,公司净资产近百亿元。
-                    </p>
-                    <p>  郑州神恩信息技术有限公司是河南鑫山实业发展有限公司的子公司。河南省鑫山实业有限公司创建于1995
-                        年，是以商贸家居流通为核心，以文化产业为平台，以广告业务为途径，以电子商务发展为辅助，以物业、物流
-                        业为支撑的民营集团性企业，公司员工千余人，注册资金五亿元人民币,公司净资产近百亿元。
-                    </p>
+                    <?php echo unserialize(Qs::DsField('CS', 0, true))['content']
+                    ?>
                 </div>
                 <!--企业文化-->
                 <div class="m_culture hide">
                     <h3>企业文化</h3>
-                    <p>  郑州神恩信息技术有限公司是河南鑫山实业发展有限公司的子公司。河南省鑫山实业有限公司创建于1995
-                        年，是以商贸家居流通为核心，以文化产业为平台，以广告业务为途径，以电子商务发展为辅助，以物业、物流
-                        业为支撑的民营集团性企业，公司员工千余人，注册资金五亿元人民币,公司净资产近百亿元。
-                    </p>
-                    <p>  郑州神恩信息技术有限公司是河南鑫山实业发展有限公司的子公司。河南省鑫山实业有限公司创建于1995
-                        年，是以商贸家居流通为核心，以文化产业为平台，以广告业务为途径，以电子商务发展为辅助，以物业、物流
-                        业为支撑的民营集团性企业，公司员工千余人，注册资金五亿元人民币,公司净资产近百亿元。
-                    </p>
-                </div>
-                <!--发展历程-->
-                <div class="m_develop hide">
-                    <h3>发展历程</h3>
-                    <p>  郑州神恩信息技术有限公司是河南鑫山实业发展有限公司的子公司。河南省鑫山实业有限公司创建于1995
-                        年，是以商贸家居流通为核心，以文化产业为平台，以广告业务为途径，以电子商务发展为辅助，以物业、物流
-                        业为支撑的民营集团性企业，公司员工千余人，注册资金五亿元人民币,公司净资产近百亿元。
-                    </p>
-                    <p>  郑州神恩信息技术有限公司是河南鑫山实业发展有限公司的子公司。河南省鑫山实业有限公司创建于1995
-                        年，是以商贸家居流通为核心，以文化产业为平台，以广告业务为途径，以电子商务发展为辅助，以物业、物流
-                        业为支撑的民营集团性企业，公司员工千余人，注册资金五亿元人民币,公司净资产近百亿元。
-                    </p>
+                    <?php echo unserialize(Qs::DsField('CS', 1, true))['content']
+                    ?>
                 </div>
                 <!--资质-->
                 <div class="m_zizhi hide">
                     <h3>企业资质</h3>
-                    <div class="clearfix">
-                        <div class="zizhi_ele">
-                            <img src="../../Images/test/test_company_zizhi.jpg" alt="">
-                            <div class="zizhi_intro">
-                                <p>2014第十三届东北亚开源软件推进论坛优秀项目奖</p>
-                            </div>
-                        </div>
-                        <div class="zizhi_ele">
-                            <img src="../../Images/test/test_company_zizhi.jpg" alt="">
-                            <div class="zizhi_intro">
-                                <p>2014第十三届东北亚开源软件推进论坛优秀项目奖</p>
-                            </div>
-                        </div>
-                        <div class="zizhi_ele">
-                            <img src="../../Images/test/test_company_zizhi.jpg" alt="">
-                            <div class="zizhi_intro">
-                                <p>2014第十三届东北亚开源软件推进论坛优秀项目奖</p>
-                            </div>
-                        </div>
-                        <div class="zizhi_ele">
-                            <img src="../../Images/test/test_company_zizhi.jpg" alt="">
-                            <div class="zizhi_intro">
-                                <p>2014第十三届东北亚开源软件推进论坛优秀项目奖</p>
-                            </div>
-                        </div>
-                        <div class="zizhi_ele">
-                            <img src="../../Images/test/test_company_zizhi.jpg" alt="">
-                            <div class="zizhi_intro">
-                                <p>2014第十三届东北亚开源软件推进论坛优秀项目奖</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php echo unserialize(Qs::DsField('CS', 2, true))['content']
+                    ?>
                 </div>
+                <!--发展历程-->
+                <div class="m_develop hide">
+                    <h3>发展历程</h3>
+                    <?php echo unserialize(Qs::DsField('CS', 3, true))['content']
+                    ?>
+                </div>
+
                 <!--联系我们-->
                 <div class="m_connect hide">
                     <h3>联系我们</h3>
-                    <div id="Map" class="map"></div>
-                    <div class="connect_detail">
-                        <p><i class="icon-dianhua1"></i>电&nbsp;&nbsp; &nbsp; &nbsp;话：12345678912</p>
-                        <p><i class="icon-iconfontzuobiao"></i>地&nbsp;&nbsp; &nbsp; &nbsp; 址：郑州市金水区郑汴路凤凰城北城3楼</p>
-                        <p><i class="icon-101"></i>工作时间：周一到周日（08:30——18:00）</p>
-                    </div>
+                    <?php echo unserialize(Qs::DsField('CS', 4, true))['content']
+                    ?>
                 </div>
             </div>
         </div>
         <!--底部-->
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <?php Qs::Sys('loadRequireJs', 'company/aboutus') ?>
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BPWH0tb47EkNlH6fGGzh381M"></script>
     </body>

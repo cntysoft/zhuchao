@@ -2,7 +2,7 @@
 
 namespace App\Yunzhan\CmMgr\Model;
 
-use Cntysoft\Phalcon\Mvc\Model as BaseModel;
+use ZhuChao\Phalcon\Mvc\Model as BaseModel;
 
 class Article extends BaseModel
 {

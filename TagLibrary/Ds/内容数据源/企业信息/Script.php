@@ -52,10 +52,14 @@ class CompanyInfo extends AbstractDsScript
          );
       }
       $companyProfile = $company->getProfile();
+      $companyProvider = $company->getProvider();
       $company = $company->toarray();
       $company['logo'] = $this->getImgcdn($company['logo'], 50, 54);
       $company['PCD'] = $this->getChPcd($company['province'], $company['city'], $company['district']);
       $companyProfile = $companyProfile->toarray();
+      $company['contact'] = $companyProvider ? $companyProvider->getPhone() : '';
+      $company['providername'] = $companyProvider ? $companyProvider->getName() : '';
+      $company['providerqq'] = $companyProvider ? $companyProvider->getProfile()->getQq() : '';
       $ret = array_merge($company, $companyProfile);
       unset($ret['id']);
       unset($ret['providerId']);
@@ -84,20 +88,20 @@ class CompanyInfo extends AbstractDsScript
     * @param integer $code1
     * @param integer $code2
     * @param integer $code3
-    * @return string
+    * @return array()
     */
    public function getChPcd($code1, $code2, $code3)
    {
       $chinaArea = $this->getChinaArea();
-      $ret = '';
+      $ret = array();
       if ($code1) {
-         $ret.=$chinaArea->getArea($code1);
+         array_push($ret, $chinaArea->getArea($code1));
       }
-      if ($code2) {
-         $ret.=$ret == $chinaArea->getArea($code2) ? '' : $chinaArea->getArea($code2);
+      if ($code2 && !empty($ret)) {
+         $ret[0] == $chinaArea->getArea($code2) ? '' : array_push($ret, $chinaArea->getArea($code2));
       }
       if ($code3) {
-         $ret.=$chinaArea->getArea($code3);
+         array_push($ret, $chinaArea->getArea($code3));
       }
       return $ret;
    }

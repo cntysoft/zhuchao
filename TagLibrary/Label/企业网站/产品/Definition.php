@@ -2,7 +2,7 @@
 return array(
    'id'          => '产品',
    'category'    => '企业网站',
-   'class'       => 'ProductClassify',
+   'class'       => 'Product',
    'namespace'   => 'Company',
    'static'      => false,
    'description' => '企业产品相关',

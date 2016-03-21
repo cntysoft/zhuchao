@@ -1,0 +1,136 @@
+<?php
+$out = '';
+$goodsLists = $this->getProductList();
+$total = $goodsLists[1];
+$paging = $this->getPaging($total);
+$navnext = $navpre = '';
+$query = $this->getQuery();
+$queryUrl = $this->getQueryUrl();
+if ($paging['total']) {
+   $navnext = $paging['total'] > 1 && $paging['total'] > $paging['current'] ? 'href="/productlist/' . ($paging['current'] + 1) . '.html' . $queryUrl . '"' : '';
+   $navpre = $paging['total'] > 1 && $paging['current'] > 1 ? 'href="/productlist/' . ($paging['current'] - 1) . '.html' . $queryUrl . '"' : '';
+} else {
+   $paging['current'] = 0;
+}
+$sort1 = $sort2 = $sort3 = '';
+$icon1 = $icon2 = 'active';
+if (isset($query['sort']) && $query['sort']) {
+   switch ((int) $query['sort']) {
+      case 1:$sort1 = ' main ';
+         break;
+      case 2:$sort2 = ' main ';
+         break;
+      case 3:
+         $sort3 = ' main ';
+         $icon1 = '';
+         break;
+      case 4:
+         $sort3 = ' main ';
+         $icon2 = '';
+         break;
+      default:
+         break;
+   }
+} else {
+   $sort1 = ' main ';
+}
+$out.='<div class="rank_choice clearfix">
+                    <p class="rank_btn1 fl clearfix">
+                        <a class="' . $sort1 . '" sort="1">默认</a>
+                        <a  class="' . $sort2 . '" sort="2">最热</a>
+                        <a class="' . $sort3 . '">价格
+                            <span class="arrow_wrap">
+                                <i class="' . $icon1 . '   icon-black-up" sort="3"></i><i class="' . $icon2 . ' icon-black-down" sort="4"></i>
+                            </span>
+                        </a>
+                    </p>
+                    <p class="rank_btn2 fr">
+                        <span class="btn2_total">共<em>' . $total . '</em>件商品</span>
+                        <span class="btn2_page"><em class="main">' . $paging['current'] . '</em>/<em>' . $paging['total'] . '</em></span>
+                        <span class="btn2_next">
+                            <a ' . $navpre . '>&lt;</a>
+                            <a ' . $navnext . '>&gt;</a>
+                        </span>
+                    </p>
+                </div>';
+if ($total == 0) {
+   echo $out;
+   return;
+}
+$out.='<!--商品列表-->       <div class="pro_list_wrap clearfix">';
+foreach ($goodsLists[0] as $goods) {
+   $infourl = $this->getInfoUrl($goods->getNumber());
+   $defpic = $goods->getDefaultImage();
+   $price0 = $goods->getPrice();
+   $price = $price0 > 0 ? '¥' . $price0 : '面议';
+   $out .= '<div class="pro_card" >
+                        <div>
+                            <a target="_block" href="' . $infourl . '"><img src="' . $this->getImgUrl($defpic, 205, 205) . '" alt=""></a>
+                            <p class="active_hover"><a target="_block" href="' . $infourl . '">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . ' </a></p>
+                            <span class="">' . $price . '</span>
+                        </div>
+                    </div>';
+}
+$out.='</div>';
+if ($this->invokeParams['enablePage'] && $paging['total'] > 1) {
+   $out1 = '';
+   $currentPage = $this->getRouteInfo()['pageId'];
+   $totalPage = $paging['total'];
+   $pageOne = ''; //首页要加的类名
+   $pageLast = '';  //未页要加的类名
+   $pageFirstUrl = 'href="/productlist/1.html' . $queryUrl . '"';
+   $pageLastUrl = 'href="/productlist/' . $totalPage . '.html' . $queryUrl . '"';
+   if ($currentPage == 1) {
+      $pageOne = 'now_page';
+      $pageFirstUrl = '#';
+   }
+   if ($currentPage == $totalPage) {
+      $pageLast = 'now_page';
+      $pageLastUrl = '';
+   }
+   $cls = "";
+   $out .= ' <div class="page_list">
+                        <p>';
+   $out .='<a class="' . $pageOne . '" ' . $pageFirstUrl . '>首页</a>';
+   if ($currentPage > 1) {
+      $out.='<a href="/productlist/' . ($currentPage - 1) . '.html' . $queryUrl . '">&lt; 上一页</a>';
+   }
+   if ($currentPage > 5) {
+      $out.='<a href="/productlist/1.html' . $queryUrl . '">1</a>... ';
+      for ($i = ($currentPage - 2); $i <= $totalPage && $i <= $currentPage + 2; $i++) {
+         $cls = "";
+         $nowPageUrl = 'href="/productlist/' . $i . '.html' . $queryUrl . '"';
+         if ($i == $currentPage) {
+            $cls = "main_bg main_border";
+            $nowPageUrl = '';
+         }
+         $out .= '<a  class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
+      }
+   } else {
+      for ($i = 1; $i <= $totalPage && $i <= 6; $i++) {
+         $cls = "";
+         $nowPageUrl = 'href="/productlist/' . $i . '.html' . $queryUrl . '"';
+         if ($i == $currentPage) {
+            $cls = "main_bg main_border";
+            $nowPageUrl = '';
+         }
+         $out .= '<a class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
+      }
+      if ($totalPage > 6) {
+         $out1 .='... ' . '<a href="/productlist/7.html' . $queryUrl . '">7</a>';
+      }
+   }
+   $out .= $out1;
+   if ($totalPage > 0 && $currentPage != $totalPage) {
+      $out .= '<a href="/productlist/' . ($currentPage + 1) . '.html' . $queryUrl . '">下一页 &gt;</a>';
+   }
+   $out .= '<a class="' . $pageLast . '" ' . $pageLastUrl . '>尾页</a>';
+//   $out.='<span>&nbsp;共10页&nbsp;到第</span>
+//                                <input type="text" onkeyup="value = value.replace(/[^\d]/, \'\')">
+//                                <span>页</span>
+//                                <span class="page_submit mainbg_hover">确认</span>';
+   $out .= '</p>
+                    </div>';
+}
+
+echo $out;

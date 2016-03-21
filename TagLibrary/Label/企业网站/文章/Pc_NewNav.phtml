@@ -1,0 +1,8 @@
+<?php
+$identifier = $this->getRouteNodeIdentifier();
+$out = '';
+$out.=$identifier == 'companynews' ? '<li><a class="active_hover main" href="/companynews.html">行业新闻</a></li>' :
+        '<li><a class="active_hover " href="/companynews.html">行业新闻</a></li>';
+$out.= $identifier == 'industrynews' ? '<li class="no_bb"><a class="active_hover main" href="/industrynews.html">企业新闻</a></li>' :
+        '<li class="no_bb"><a class="active_hover" href="/industrynews.html">企业新闻</a></li>';
+echo $out;

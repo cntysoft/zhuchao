@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php Qs::Ds('内容数据源/企业标准内容模型', 'AC') ?>
 <?php Qs::Ds('内容数据源/企业信息', 'CP') ?>
 <html lang="en">
     <head>
@@ -8,64 +9,156 @@
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'LaoBan',)) ?>
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <div class="l_top ">
+            <div class="conwidth clearfix">
+                <div class="l_top_left">
+                    <a href="">
+                        <img src="<?php Qs::DsField('CP', 'logo') ?>" alt="">
+                        <span><?php Qs::DsField('CP', 'name') ?></span>
+                    </a>
+                </div>
+                <div class="l_top_right icon-erweima">
+                    <div class="erweima_box">
+                        <div class="qrcode">
+                            <img src="../../Images/test/test_erweima.jpg" alt="">
+                        </div>
+                        <p>扫一扫，用手机查看</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--导航和搜索-->
+        <div class="l_nav ">
+            <div class="conwidth">
+                <ul class="clearfix ">
+                    <li class="mainbd_hover active_hover "><a href="/">首页</a></li>
+                    <li class="mainbd_hover active_hover"><a href="/productlist/1.html">产品中心</a></li>
+                    <li class="mainbd_hover active_hover">
+                        <a href="/newscenter.html">新闻中心</a>
+                        <div class="nav_box">
+                            <ul>
+                                <li class="active_hover"><a href="/companynews.html">公司新闻</a></li>
+                                <li class="active_hover"><a href="/industrynews.html">行业新闻</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mainbd_hover active_hover main_border main"><a href="/joinus.html">招聘中心</a></li>
+                    <li class="mainbd_hover active_hover">
+                        <a href="/about.html">关于我们</a>
+                        <div class="nav_box">
+                            <ul>
+                                <li class="active_hover"><a href="/about.html">公司介绍</a></li>
+                                <li class="active_hover"><a href="/about.html">公司资质</a></li>
+                                <li class="active_hover"><a href="/about.html">公司文化</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="search">
+                    <input type="text">
+                    <i class="icon-sousuo"></i>
+                </div>
+            </div>
+        </div>
         <!--站点指示-->
         <div class="site conwidth">
             <a href="/">首页</a>
             <span>&gt;</span>
-            <a class="main">关于我们</a>
+            <a class="main">招聘中心</a>
         </div>
         <div class="l_main conwidth clearfix">
             <!--左侧-->
             <div class="m_left fl">
-                <h3>招聘中心</h3>
-                <ul>
-                    <li><a class="main active_hover">设计</a></li>
-                    <li><a class="active_hover">研发</a></li>
-                    <li><a class="active_hover">前端</a></li>
-                    <li><a class="active_hover">策划</a></li>
-                    <li class="no_bb "><a class="active_hover">市场</a></li>
-                </ul>
+                <div class="company_info">
+                    <div class="company_name">
+                        <h1><?php Qs::DsField('CP', 'name') ?></h1>
+                        <p>
+                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi1.png') ?>" title="资质好" alt="资质好">
+                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="诚信商家" alt="诚信商家">
+                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="有良心商家" alt="有良心商家">
+                        </p>
+                    </div>
+                    <div class="company_intro">
+                        <dl>
+                            <dt>经营模式</dt>
+                            <dd><?php
+                                $trade = array(1 => '销售型', '生产型', '设计型', '信息服务型', '销售+生产型', '销售+设计型', '生产+设计型', '销售+生产+设计型');
+                                echo $trade[Qs::DsField('CP', 'tradeMode', true)]
+                                ?></dd>
+                        </dl>
+                        <dl>
+                            <dt>所在地区</dt>
+                            <dd><?php echo ' ' . implode(' ', Qs::DsField('CP', 'PCD', true)) ?></dd>
+                        </dl>
+                        <dl>
+                            <dt>联系人</dt>
+                            <dd><?php Qs::DsField('CP', 'providername') ?></dd>
+                        </dl>
+                        <dl>
+                            <dt>联系电话</dt>
+                            <dd><?php Qs::DsField('CP', 'contact') ?></dd>
+                        </dl>
+                        <dl>
+                            <dt>工作时间</dt>
+                            <dd>
+                                <p>周一到周五</p>
+                                <p>(08:30-18:30)</p>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
             </div>
             <!--右侧-->
             <div class="m_right fr">
                 <h3>招聘中心</h3>
                 <div class="zhaopin_ele">
-                    <h4>视觉动效设计师</h4>
+                    <h4><?php Qs::DsField('AC', 'title') ?></h4><br>
                     <p class="clearfix">
-                        <span class="zhaopin_intro">工作地点：</span>
-                        <span class="zhaopin_detail">武汉</span>
+                        <span class="zhaopin_intro">任职部门：</span>
+                        <span class="zhaopin_detail"><?php Qs::DsField('AC', 'department') ?></span>
                     </p>
                     <p class="clearfix">
-                        <span class="zhaopin_intro">岗位职责：</span>
-                        <span class="zhaopin_detail">
-                            1、基于界面的静态概念设计，设计并制作为动态版本呈现；<br/>
-                            2、基于产品的概念模型，实现动态原型设计；<br/>
-                            3、为界面系统设计动态特效控件以及相关界面特效，及产品设计整体后期视效包装；<br/>
-                            4、深刻理解不同动画曲线的使用场景， 对操作系统以及应用程序的动态特效进行特效统一；<br/>
-                            5、能够分解动态特效步骤并向开发人员讲解动效实现细节；<br/>
-                            6、及时完成上级交代的其他任务。
-                        </span>
+                        <span class="zhaopin_intro">招聘人数：</span>
+                        <span class="zhaopin_detail"><?php Qs::DsField('AC', 'number') ?></span>
                     </p>
                     <p class="clearfix">
-                        <span class="zhaopin_intro">任职要求：</span>
-                        <span class="zhaopin_detail">
-                            1、视觉设计、动画和后期视效设计背景；<br/>
-                            2、良好的沟通与视觉动画表达能力；<br/>
-                            3、有JavaScript动效或AS经验者优先；<br/>
-                            4、有视效后期、游戏动效或手机动效经验者优先 ；<br/>
-                            5、有物理或数学相关专业学位者优先；<br/>
-                            6、发简历请附带相关作品。
-                        </span>
+                        <span class="zhaopin_intro">联系电话：</span>
+                        <span class="zhaopin_detail"><?php Qs::DsField('AC', 'tel') ?></span>
                     </p>
+                    <p class="clearfix">
+                        <span class="zhaopin_intro">截止时间：</span>
+                        <span class="zhaopin_detail"><?php echo date('Y-m-d', QS::DsField('AC', 'endTime', true)) ?></span>
+                    </p><br>
+                    <p class="clearfix">
+                        <?php Qs::DsField('AC', 'content') ?>
+                    </p><br>
+                    <div class="prev_next">
+                        <p><em>上一条：</em><?php
+                            $prev = Qs::DsField('AC', 'prev', true);
+                            if ($prev) {
+                               echo '<a href="' . $prev[0] . '">' . iconv_substr($prev[1], 0, 18) . '</a>';
+                            } else {
+                               echo '木有了';
+                            }
+                            ?>
+                        </p>
+                        <p><em>下一条：</em><?php
+                            $next = Qs::DsField('AC', 'next', true);
+                            if ($next) {
+                               echo '<a href="' . $next[0] . '">' . iconv_substr($next[1], 0, 18) . '</a>';
+                            } else {
+                               echo '正在更新中，请等待~';
+                            }
+                            ?></p>
+                    </div>
                 </div>
 
             </div>
         </div>
         <!--底部-->
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <?php Qs::Sys('loadRequireJs', 'company/common') ?>
     </body>
 </html>
