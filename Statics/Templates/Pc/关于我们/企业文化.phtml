@@ -1,0 +1,76 @@
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>业务介绍-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/aboutus.css')); ?>
+    </head>
+    <body>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
+        <!--站点指示-->
+        <div class="site conwidth">
+            <a href="/">首页</a>
+            <span>&gt;</span>
+            <a href="/about/culture.html">企业文化</a>
+        </div>
+        <!--帮助中心-->
+        <div class="main_content clearfix conwidth">
+            <!--左侧内容-->
+            <div class="help_left_nav fl">
+                <ul class="left_menu">
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/company.html">公司简介</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head main" href="/about/culture.html">企业文化</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/business.html">业务介绍</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/qualification.html">企业资质</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/join.html">加入我们</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/legal.html">法律声明</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/ad.html">广告服务</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/contact.html">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+            <!--右侧内容-->
+            <div class="right_content fr">
+                <div class="right_content_title">
+                    <h3 class="title">公司简介</h3>
+                </div>
+                <div class="about_content" style="text-indent: 2em;">
+                    <p>我们想成为为一个与众不同的人，创新是我们的思维方式，技术研发是我们的根骨，专业化的服务是我们的血肉，我们站在巨人的肩膀上，只望比巨人看的更远。</p>
+                    
+                    <p>企业核心：<strong>创新与服务</strong></p>
+                    <p>企业精神：<strong>专业、务实、高效、创新</strong></p>
+                    <p>企业思想：<em>用信息带动企业发展，用技术推动时代创新</em></p>
+                    
+                    <p>公司倡导“专业、务实、高效、创新”的企业精神，具有良好的内部机制、优良的工作环境以及良好的激励机制，吸引了一批年轻的、有学识的、具有实干精神的人才。高素质、高水平、高效率的人才是在当今激烈的市场竞争中立于不败之地的保障。
+我们坚持用一颗感恩的心回馈客户，以客户为中心，用我们的专业水平、优质服务、合理价格为客户的成功添砖加瓦。自公司创办以来，得到了广大客户的充分认可，我们将一如既往的为客户提供最优质的服务。</p>
+                </div>
+            </div>
+        </div>
+        <?php
+        Qs::Label('静态类/网站底部');
+        Qs::Sys('loadRequireJs', 'help/help');
+        ?>
+    </body>
+</html>

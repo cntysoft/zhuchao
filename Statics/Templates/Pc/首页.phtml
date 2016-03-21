@@ -16,7 +16,6 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 		  <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_IndexTop')) ?>
 		  <!--banner 全屏-->
 		  <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_Index')) ?>
-		  <?php Qs::Label('静态类/网站底部') ?>
-		  <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="mall/index" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
+		  <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'mall/index'); ?>
 	 </body>
 </html>

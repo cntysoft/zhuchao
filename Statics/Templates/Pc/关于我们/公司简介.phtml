@@ -1,0 +1,71 @@
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>业务介绍-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/aboutus.css')); ?>
+    </head>
+    <body>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
+        <!--站点指示-->
+        <div class="site conwidth">
+            <a href="/">首页</a>
+            <span>&gt;</span>
+            <a href="/about/company.html">公司简介</a>
+        </div>
+        <!--帮助中心-->
+        <div class="main_content clearfix conwidth">
+            <!--左侧内容-->
+            <div class="help_left_nav fl">
+                <ul class="left_menu">
+                    <li class="menu_item current">
+                        <a class="menu_head main" href="/about/company.html">公司简介</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/culture.html">企业文化</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/business.html">业务介绍</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/qualification.html">企业资质</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/join.html">加入我们</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/legal.html">法律声明</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/ad.html">广告服务</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/contact.html">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+            <!--右侧内容-->
+            <div class="right_content fr">
+                <div class="right_content_title">
+                    <h3 class="title">公司简介</h3>
+                </div>
+                <div class="about_content" style="text-indent: 2em;">
+                    <p >郑州神恩信息技术有限公司是河南省鑫山实业发展有限公司的子公司，位于郑州市凤凰城内，是一家拥有国家双软认证、以Web OS应用开发、销售为主的电商信息化解决方案提供商。</p>
+                    <p>河南省鑫山实业发展有限公司创建于1995年，是以商贸家居流通为核心、以文化产业为平台、以广告业为途径、以电子商务发展为辅助、以物业、物流业为支撑的民营集团性企业，公司员工千余人，注册资金5亿元人民币，公司净资产近百亿元。
+                        凤凰城是鑫山实业的核心产业之一，营业面积达40余万平方米，经营数十个建材家居业种，拥有商户4000余家、停车位1800多个，占据了河南省建材家居半数以上的市场份额。同时，城内配有图书馆、企业收藏馆、商务办公室、设计师创客空间、智能家居样板间等，并辅以金融、保险、工商、税务、邮政、信息、物流等综合服务配套设施。
+                        公司视创新与服务为企业之根本，倡导专业、务实、高效、创新的企业精神。规范的内部机制、优良的工作环境以及广阔的发展空间，吸引了一批年轻、有学识、有实干精神的人才。</p>
+                </div>
+            </div>
+        </div>
+        <?php Qs::Label('静态类/网站底部');
+        Qs::Sys('loadRequireJs', 'help/help');
+        ?>
+    </body>
+</html>

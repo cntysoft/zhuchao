@@ -1,0 +1,68 @@
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>广告服务-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/aboutus.css')); ?>
+    </head>
+    <body>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
+        <!--站点指示-->
+        <div class="site conwidth">
+            <a href="/">首页</a>
+            <span>&gt;</span>
+            <a href="/about/ad.html">广告服务</a>
+        </div>
+        <!--帮助中心-->
+        <div class="main_content clearfix conwidth">
+            <!--左侧内容-->
+            <div class="help_left_nav fl">
+                <ul class="left_menu">
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/company.html">公司简介</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/culture.html">企业文化</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/business.html">业务介绍</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/qualification.html">企业资质</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/join.html">加入我们</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/legal.html">法律声明</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head main" href="/about/ad.html">广告服务</a>
+                    </li>
+                    <li class="menu_item">
+                        <a class="menu_head" href="/about/contact.html">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+            <!--右侧内容-->
+            <div class="right_content fr">
+                <div class="right_content_title">
+                    <h3 class="title">广告服务</h3>
+                </div>
+                <div class="about_content" style="text-indent: 2em;">
+                    <p >广告服务热线：0371-55221883</p>
+                   </div>
+            </div>
+        </div>
+        <?php Qs::Label('静态类/网站底部');
+        Qs::Sys('loadRequireJs', 'help/help');
+        ?>
+    </body>
+</html>

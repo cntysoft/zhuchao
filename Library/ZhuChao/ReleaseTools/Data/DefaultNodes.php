@@ -588,17 +588,5 @@ return array(
             )
          )
       )
-   ),
-   array(
-      'text'              => '关于我们',
-      'identifier'        => 'guanyuwomen',
-      'nodeType'          => 3,
-      'showOnMenu'        => 1,
-      'showOnListParent'  => 0,
-      'listTemplateFile'  => '关于我们.phtml',
-      'coverTemplateFile' => '关于我们.phtml',
-      'modelsTemplate'    => array(
-         1 => '关于我们.phtml'
-      )
    )
 );

@@ -51,6 +51,11 @@ class ProductController extends AbstractController
       ));
    }
 
+   /**
+    * 商品分类列表页面
+    * 
+    * @return 
+    */
    public function productclassifylistAction()
    {
       $appCaller = $this->getAppCaller();
@@ -84,6 +89,9 @@ class ProductController extends AbstractController
       }
    }
 
+   /**
+    * 商品分类页面
+    */
    public function classifylistAction()
    {
       $this->setupRenderOpt(array(
@@ -92,6 +100,9 @@ class ProductController extends AbstractController
       ));
    }
 
+   /**
+    * 商品搜索页
+    */
    public function searchpageAction()
    {
       $this->setupRenderOpt(array(
@@ -99,32 +110,5 @@ class ProductController extends AbstractController
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-	public function itemAction() 
-   {
-		$productId = $this->dispatcher->getParam('itemId');
-		if (null === $productId) {
-			$this->setupRenderOpt(array(
-				View::KEY_RESOLVE_DATA => '404',
-				View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-			));
-			return;
-		}
-		$productId = (int) $productId;
-		$appCaller = $this->getAppCaller();
-		$productInfo = $appCaller->call(
-				  GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductById', array($productId)
-		);
-		if ($productInfo) {
-			$this->setupRenderOpt(array(
-				View::KEY_RESOLVE_DATA => 'product',
-				View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-			));
-		} else {
-			$this->setupRenderOpt(array(
-				View::KEY_RESOLVE_DATA => '404',
-				View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-			));
-		}
-	}
 
 }

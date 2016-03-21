@@ -90,6 +90,78 @@
                 "controller" : "FrontApiEntry",
                 "action" : "index"
             }
+        },
+        {
+            "key" : "AboutCompany",
+            "rule" : "\/about\/company.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "company"
+            }
+        },
+        {
+            "key" : "AboutQualification",
+            "rule" : "\/about\/qualification.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "qualification"
+            }
+        },
+        {
+            "key" : "AboutCulture",
+            "rule" : "\/about\/culture.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "culture"
+            }
+        },
+        {
+            "key" : "AboutBusiness",
+            "rule" : "\/about\/business.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "business"
+            }
+        },
+        {
+            "key" : "AboutJoin",
+            "rule" : "\/about\/join.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "join"
+            }
+        },
+        {
+            "key" : "AboutLegal",
+            "rule" : "\/about\/legal.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "legal"
+            }
+        },
+        {
+            "key" : "AboutAd",
+            "rule" : "\/about\/ad.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "ad"
+            }
+        },
+        {
+            "key" : "AboutContact",
+            "rule" : "\/about\/contact.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "About",
+                "action" : "contact"
+            }
         }
     ],
     "hostName" : true,
@@ -101,7 +173,15 @@
         "product" : "商品类/商品内容页.phtml",
         "search" : "商品类/搜索商品列表.phtml",
         "classifylist" : "商品类/商品分类列表.phtml",
-        "searchpage" : "商品类/搜索页.phtml"
+        "searchpage" : "商品类/搜索页.phtml",
+        "about\/company" : "关于我们\/公司简介.phtml",
+        "about\/culture" : "关于我们\/企业文化.phtml",
+        "about\/business" : "关于我们\/业务介绍.phtml",
+        "about\/legal" : "关于我们\/法律声明.phtml",
+        "about\/ad" : "关于我们\/广告服务.phtml",
+        "about\/contact" : "关于我们\/联系我们.phtml",
+        "about\/qualification" : "关于我们\/企业资质.phtml",
+        "about\/join" : "关于我们\/人才招聘.phtml"
     },
     "front_api_map" : {
         "User" : [
