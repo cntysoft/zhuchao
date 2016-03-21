@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>商品搜索</title>
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/search.css')); ?>
+    </head>
+    <body>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
+        <div class="content conwidth">
+            <!--站点指示-->
+            <div class="site">
+                <a class="main_hover" href="/">首页</a><span>&gt;</span><a>搜索结果页</a></div>
+            <div class="pro_list clearfix">
+                <!--左侧-->
+                <div class="left_side fl">
+                    <!--筛选条件-->
+                    <?php Qs::Label('商品类/搜索商品列表', array('renderTpl' => 'CategoryQuery', 'outputNum' => 10)); ?>
+                    <!--产品展示-->
+                    <div class="pro_show">
+                        <?php Qs::Label('商品类/搜索商品列表', array('renderTpl' => 'ProductList', 'outputNum' => 10, 'enablePage' => true)); ?>
+                        <!--分页-->
+                    </div>
+                </div>
+                <!--右侧-->
+                <div class="right_side fr">
+                    <?php Qs::Label('商品类/分类商品列表', array('renderTpl' => 'ProductHot', 'outputNum' => 4)); ?>                    
+                </div>
+            </div>
+
+        </div>
+        <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'mall/search') ?>
+    </body>
+</html>

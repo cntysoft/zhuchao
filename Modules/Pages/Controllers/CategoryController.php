@@ -177,6 +177,14 @@ class CategoryController extends AbstractController
       $args = $request->getQuery();
       unset($args['_url']);
 
+      if(!array_key_exists('keyword', $args)){
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'search',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP

@@ -562,6 +562,124 @@ class ProductMgr extends AbstractLib
    }
    
    /**
+    * 搜索商品
+    * 
+    * @param string $keyword
+    * @param integer $offset
+    * @param integer $limit
+    * @param array $sorts
+    * @param array $attrFilter
+    * @param boolean $withQueryAttrs
+    * @return array
+    */
+   public function searchGoods($keyword, $offset, $limit, array $sorts, array $attrFilter, $withQueryAttrs = false)
+   {
+      $cond = array();
+      if ($keyword) {
+         $cond[] = "(title like '%" . $keyword . "%' or brand like '%".$keyword."%' or description like '%".$keyword."%')";
+      }
+      $cond[] = 'status='.Constant::PRODUCT_STATUS_VERIFY;
+      $orderBy = ' id DESC ';
+      if (!empty($sorts)) {
+         $sortKey = key($sorts);
+         $sortType = current($sorts);
+         if (!in_array($sortKey, array(Constant::SORT_HITS, Constant::SORT_PRICE, Constant::SORT_TIME, Constant::SORT_GRADE))) {
+            $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+                    $errorType->msg('SORT_KEY_NOT_SUPPORT', $sortKey), $errorType->code('SORT_KEY_NOT_SUPPORT')));
+         }
+         if (!in_array($sortType, array(Constant::FLAG_UP, Constant::FLAG_DOWN))) {
+            $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+                    $errorType->msg('SORT_TYPE_NOT_SUPPORT', $sortType), $errorType->code('SORT_TYPE_NOT_SUPPORT')));
+         }
+         if (Constant::FLAG_UP == $sortType) {
+            $sortType = 'asc';
+         } else if (Constant::FLAG_DOWN == $sortType) {
+            $sortType = 'desc';
+         }
+         $orderBy = $sortKey . ' ' . $sortType;
+      }
+      //设置属性过滤
+      if (!empty($attrFilter)) {
+         if (isset($attrFilter['price'])) {
+            $range = $attrFilter['price'];
+            $cond[] = sprintf('price >= %d and price < %d', (int) $range[0], (int) $range[1]);
+            unset($attrFilter['price']);
+         }
+         if (isset($attrFilter['enableprice'])) {
+            if ($attrFilter['enableprice']) {
+               $cond[] = 'price > 0';
+            }
+            unset($attrFilter['enableprice']);
+         }
+         foreach ($attrFilter as $key => $val) {
+            $filtermd5 = md5(strtolower(preg_replace(Constant::ATTR_FILTER_REGEX, '', $key . $val)));
+            $cond[] = sprintf('locate("%s", searchAttrMap) != 0', $filtermd5);
+         }
+      }
+      $cond = implode(' and ', $cond);
+
+      $query = array(
+         $cond,
+         'order' => $orderBy,
+         'limit' => array(
+            'number' => $limit,
+            'offset' => ($offset - 1) * $limit
+         )
+      );
+
+      $list = ProductModel::find($query);
+
+      $ret = array(
+         'total' => ProductModel::count(array(
+            $cond
+         )),
+         'docs'  => $list->toArray()
+      );
+
+      if ($withQueryAttrs) {
+         //聚合搜索结果
+         //获取第一个结果的查询属性
+         $categories = ProductModel::find(array(
+                    $cond,
+                    'group' => 'categoryId'
+         ));
+
+         $catemgr = $this->getAppCaller()->getAppObject(
+                 CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR);
+         $attrs = array();
+         foreach ($categories as $category) {
+            $attrItems = array();
+            $category = $catemgr->getNode($category->getCategoryId());
+            foreach ($category->queryAttrs as $attr) {
+               $attrItems[$attr->getName()] = explode(',', $attr->getOptValues());
+            }
+            //增加品牌
+            $trademarks = array();
+//            foreach ($category->trademarks as $t) {
+//               if (!array_key_exists($t->getId(), $trademarks)) {
+//                  $trademarks[$t->getId()] = array(
+//                     'id'   => $t->getId(),
+//                     'name' => $t->getName(),
+//                     'logo' => $t->getLogo()
+//                  );
+//               }
+//            }
+            $attrs = array_merge_recursive($attrs, $attrItems);
+         }
+         foreach ($attrs as $key => $values) {
+            $attrs[$key] = array_unique($values);
+         }
+         if (!empty($trademarks)) {
+            $attrs['品牌'] = $trademarks;
+         }
+         $ret['queryAttrs'] = $attrs;
+      }
+      return $ret;
+   }
+   
+   /**
     * 添加商品的点击量
     * 
     * @param int $id

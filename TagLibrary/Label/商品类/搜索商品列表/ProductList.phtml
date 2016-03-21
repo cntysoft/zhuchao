@@ -1,0 +1,105 @@
+<?php
+$out = '';
+$goodsLists = $this->searchProduct();
+$i = 0;
+$queryUrl = $this->getQueryUrl();
+foreach ($goodsLists['docs'] as $goods) {
+
+   $product = $this->getProduct($goods['id']);
+   $goodsdetail = $product->getDetail();
+   $company = $product->getCompany();
+   $attrslist = $goodsdetail->getAttribute();
+   $attrvalue = array();
+   foreach ($attrslist as $attrs) {
+      $attrvalue+=$attrs;
+   }
+   $url = $this->getProductUrl($goods['id']);
+   $time = date('Y-m-d', $company->getInputTime());
+   $imageUrl = $this->getImageCdnUrl($goods['defaultImage'], array('w' => 195, 'h' => 195));
+   $name = $goods['brand'] . ' ' . $goods['title']. ' ' . $goods['description'];
+   $price0 = $goods['price'];
+   $price = $price0 > 0 ? '¥<em>' . substr($price0, 0, iconv_strpos($price0, '.')) . '</em>.' . $price0 * 100 % 100 : '<em>面议</em>';
+   $out .= ' <div class="show_list clearfix">
+                            <a class="pro_img" href="'.$url.'"><img src="' . $imageUrl. '"> </a>
+                            <div class="pro_info">
+                                <h1>' . $name. ' </h1>
+                                <table>
+                                    <tr>
+                                        <th>' . implode('</th><th>', array_slice(array_keys($attrvalue), 0, 6)) . '</th>
+                                    </tr>
+                                    <tr>
+                                        <td>' . implode('</td><td>', array_slice(array_values($attrvalue), 0, 6)) . '</td>
+                                    </tr>
+                                </table>
+                                <p>' . $company->getName() . '</p>
+                                <p>所在地：<em>' . $this->getArea($company) . '</em><span>加入时间：' . $time . '</span></p>
+                            </div>
+                            <div class="pro_buy">
+                                <p class="main">' . $price . '</p>
+                                <a class="main_bg" href="'.$url.'">选购</a>
+                            </div>
+                        </div>';
+}
+$totalPage = ceil($goodsLists['total'] / $this->invokeParams['outputNum']);
+if ($this->invokeParams['enablePage'] && $totalPage > 1) {
+   $out1 = '';
+   $currentPage = $this->getRouteInfo()['pageId'];
+   $pageOne = ''; //首页要加的类名
+   $pageLast = '';  //未页要加的类名
+   
+   $pageFirstUrl = 'href="' . $this->getPageUrl(1). $queryUrl . '"';
+   $pageLastUrl = 'href="'.$this->getPageUrl($totalPage). $queryUrl . '"';
+   if ($currentPage == 1) {
+      $pageOne = 'now_page';
+      $pageFirstUrl = '#';
+   }
+   if ($currentPage == $totalPage) {
+      $pageLast = 'now_page';
+      $pageLastUrl = '';
+   }
+   $cls = "";
+   $out .= ' <div class="page_list">
+                        <p>';
+   $out .='<a class="' . $pageOne . '" ' . $pageFirstUrl . '>首页</a>';
+   if ($currentPage > 1) {
+      $out.='<a href="'.$this->getPageUrl($currentPage-1). $queryUrl . '">&lt; 上一页</a>';
+   }
+   if ($currentPage > 5) {
+      $out.='<a href="'.$this->getPageUrl(1). $queryUrl . '">1</a>... ';
+      for ($i = ($currentPage - 2); $i <= $totalPage && $i <= $currentPage + 2; $i++) {
+         $cls = "";
+         $nowPageUrl = 'href="'.$this->getPageUrl($i) . $queryUrl . '"';
+         if ($i == $currentPage) {
+            $cls = "main_bg main_border";
+            $nowPageUrl = '';
+         }
+         $out .= '<a  class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
+      }
+   } else {
+      for ($i = 1; $i <= $totalPage && $i <= 6; $i++) {
+         $cls = "";
+         $nowPageUrl = 'href="'.$this->getPageUrl($i). $queryUrl . '"';
+         if ($i == $currentPage) {
+            $cls = "main_bg main_border";
+            $nowPageUrl = '';
+         }
+         $out .= '<a class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
+      }
+      if ($totalPage > 6) {
+         $out1 .='... ' . '<a href="'.$this->getPageUrl(7) . $queryUrl . '">7</a>';
+      }
+   }
+   $out .= $out1;
+   if ($totalPage > 0 && $currentPage != $totalPage) {
+      $out .= '<a href="'.$this->getPageUrl($currentPage+1) . $queryUrl . '">下一页 &gt;</a>';
+   }
+   $out .= '<a class="' . $pageLast . '" ' . $pageLastUrl . '>尾页</a>';
+//   $out.='<span>&nbsp;共10页&nbsp;到第</span>
+//                                <input type="text" onkeyup="value = value.replace(/[^\d]/, \'\')">
+//                                <span>页</span>
+//                                <span class="page_submit mainbg_hover">确认</span>';
+   $out .= '</p>
+                    </div>';
+}
+
+echo $out;

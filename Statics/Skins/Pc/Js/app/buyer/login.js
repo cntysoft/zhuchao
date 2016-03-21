@@ -1,9 +1,5 @@
 define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
-        $('#name, #password').blur(function(){
-           validate.checkFields($(this));
-        });
-
         $('#submit').click(function (event){
             event.preventDefault();
             var validateMsg = validate.checkFields($('#name,#password'));
