@@ -66,7 +66,6 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <!--右侧内容-->
             <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterList', 'outputNum' => 8)) ?>
         </div>
-        <?php Qs::Label('静态类/网站底部') ?>
-        <script data-main="/Statics/Skins/Pc/Js/requireenter.js" app="help/help" id="require" src="/Statics/Skins/Pc/Js/lib/require.js"></script>
+        <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'help/help'); ?>
     </body>
 </html>
