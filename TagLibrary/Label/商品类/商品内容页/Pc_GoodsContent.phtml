@@ -62,8 +62,8 @@ if ($company) {
 		  </p>
 	 </div>
 	 <div class="pro_connect">
-		  <a href="" class="mainbg_hover"><i class="icon-dianhua"></i>联系方式</a>
-		  <a href="" class="mainbg_hover"><i class="icon-dianhua"></i>在线询价</a>
+		  <a class="mainbg_hover"><i class="icon-dianhua"></i>联系方式</a>
+		  <a class="mainbg_hover zaixian_xunjia"><i class="icon-dianhua"></i>在线询价</a>
 	 </div>
 </div>';
 }
@@ -101,7 +101,8 @@ $out .= '</div><div class="m_pro_info fr">
 				<span>联系方式</span>
 				<span>评价</span>
 		  </h3>';
-$out .= '<div class="pro_info">' . $goodsDetail->getIntroduction() . '</div>';
+$out .= '<div class="pro_info" style="margin-top:10px;">' . $goodsDetail->getIntroduction() . '</div>';
+
 $attribute = $goodsDetail->getAttribute();
 $out .= '<div class="pro_info hide">
 	 <div class="l_parameter">';

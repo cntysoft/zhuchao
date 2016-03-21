@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/10.
  */
-define(['jquery', 'Front','comment'], function (){
+define(['jquery', 'Front', 'comment'], function (){
     $(function (){
         var number = window.location.pathname.split('/')[2].split('.')[0];
         //增加点击量
@@ -64,7 +64,34 @@ define(['jquery', 'Front','comment'], function (){
             }
             $('.pro_info').hide();
             $('.pro_info').eq($.inArray(this, $('.pro_infor_nav span'))).show();
-        })
+        });
+        $('.zaixian_xunjia').click(function (){
+            $('.online').show();
+        });
+        $('.online_close').click(function (){
+            $('.online').hide();
+        });
+        //询价
+        $('.xunjia_button').click(function (){
+            var content = $('#xunjia_content').val();
+            var params = {
+                number : number,
+                content : content
+            };
+            if(content.length < 10){
+                return false;
+            }
+            Cntysoft.Front.callApi('Utils', 'addXunjiadan', params, function (response){
+                if(response.status){
+                    $('#xunjia_content').val('');
+                    $('.online').hide();
+                } else {
+                    if(response.errorCode == 10014){
+                        window.location.href = window.BUYER_SITE_NAME + '/login.html';
+                    }
+                }
+            }, true);
+        });
         //创建和初始化地图函数：
         function initMap(){
             createMap();//创建地图

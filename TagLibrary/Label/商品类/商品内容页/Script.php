@@ -14,6 +14,7 @@ use App\ZhuChao\MarketMgr\Constant as MAR_CONST;
 use App\Site\Category\Constant as CATEGORY_CONST;
 use App\Site\Content\Constant as CONTENT_CONST;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;
+use App\ZhuChao\CategoryMgr\Constant as CATEGORY;
 use Cntysoft\Framework\Utils\ChinaArea;
 class Goods extends AbstractLabelScript
 {
@@ -33,6 +34,17 @@ class Goods extends AbstractLabelScript
    public function getCurUser()
    {
       return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
+   }
+	/**
+    * 获取叶子节点列表信息
+    * 
+    * @return object 
+    */
+   public function getLeafNodes()
+   {
+      $nodes = $this->appCaller->call(
+              CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getLeafNodes');
+      return $nodes;
    }
 
    /**
