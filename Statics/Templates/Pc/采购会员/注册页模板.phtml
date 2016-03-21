@@ -3,7 +3,11 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>注册页</title>
+    <title>注册页-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+	 <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
     <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css'));?>
 </head>
 <body>
@@ -46,11 +50,13 @@
                                 <i class="icon-checked main_light"></i><span>我已经同意《凤凰筑巢用户注册协议》</span>
                             </div>
                         </div>
+                        <input class="submit_btn main_bg_light" type="submit" id="submit" value="立即注册">
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
-        <?php Qs::Label('静态类/登陆注册网站底部'); ?>
-        <?php Qs::Sys('loadRequireJs', 'buyer/register'); ?>
+    </div>
+        <?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'buyer/register'); ?>
     </body>
 </html>

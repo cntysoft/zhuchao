@@ -37,12 +37,14 @@
                             </div>
                             <a href="/forget.html" class="main_light">忘记密码？</a>
                         </div>
+                        <input class="submit_btn main_bg_light" id="submit" type="submit" value="立即登录"/>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
         <!--版权 begin-->
-        <?php Qs::Label('静态类/登陆注册网站底部'); ?>
-        <?php Qs::Sys('loadRequireJs', 'buyer/login'); ?>
+        <?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'buyer/login'); ?>
     </body>
 </html>
