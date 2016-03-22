@@ -3,7 +3,7 @@ define(['app/common', 'validate', 'webuploader', 'Core', 'Front'], function (com
         common.createPage(getPageUrl);
 
         function getPageUrl(page){
-            var baseUrl = '/site/news/1.html';
+            var baseUrl = '/site/job/1.html';
             return baseUrl.replace('1', page);
         }
     });

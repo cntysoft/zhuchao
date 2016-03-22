@@ -1,4 +1,4 @@
-define(['app/common','jquyer'],function(common){
+define(['app/common','jquery'],function(common){
     $(function(){
         var sendQuery = window.location.search;
         sendQuery = Cntysoft.fromQueryString(sendQuery, this);

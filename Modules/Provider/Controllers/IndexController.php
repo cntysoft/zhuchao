@@ -113,5 +113,13 @@ class IndexController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
+   
+   public function openAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'provider/open',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
 
 }

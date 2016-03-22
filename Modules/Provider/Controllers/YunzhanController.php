@@ -24,6 +24,12 @@ class YunzhanController extends AbstractController
          Kernel\goto_route('login.html?returnUrl=' . urlencode($path));
          exit;
       }
+      
+      $user = $acl->getCurUser();
+      $company = $user->getCompany();
+      if(!$company || !$company->getSubAttr()) {
+         Kernel\dispatch_action('Provider', 'Index', 'open');
+      }
    }
 
    public function newslistAction()
@@ -41,6 +47,14 @@ class YunzhanController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
+   
+   public function modifynewsAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/modifynews',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
 
    public function joblistAction()
    {
@@ -54,6 +68,14 @@ class YunzhanController extends AbstractController
    {
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'yunzhan/addjob',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   public function modifyjobAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/modifyjob',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }

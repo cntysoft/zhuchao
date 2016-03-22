@@ -39,6 +39,14 @@ final class Constant
    const QUERY_ATTR_IMAGES = 1;
    const QUERY_ATTR_SINGLE = 2;
    
-   const EFFECT_CATEGORY_IDENTIFIER = 'xiaoguotu';
+   /**
+    * 这里的常量都是写死的信息,一般不会改变
+    */
+   const CMODEL_ARTICLE_ID = 1;
+   const CMODEL_JOB_ID = 2;
    
+   const NODE_COMPANY_ID = 2;
+   const NODE_INDUSTRY_ID = 3;
+   
+   const NODE_JOIN_ID = 5;
 }

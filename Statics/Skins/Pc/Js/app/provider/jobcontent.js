@@ -27,7 +27,15 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
             params.content = content;
             params.endTime = parseInt($('#endTime').datepicker('getDate', false).getTime() / 1000);
             params.tel = $('#telCountry').val()+'-'+$('#telArea').val()+'-'+$('#telNum').val()
-            console.log(params);
+            Cntysoft.Front.callApi('Site', 'addJob', params, function(response) {
+                if(response.status) {
+                    layer.msg('发表成功!', function() {
+                        window.location.href = '/site/job/1.html';
+                    });
+                }else {
+                    layer.msg('发表失败,请稍候再试!');
+                }
+            });
         });
 
         //根据name获得radio的值

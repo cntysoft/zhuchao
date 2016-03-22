@@ -13,18 +13,20 @@ use App\ZhuChao\Provider\Constant as Provider_Constant;
 use Cntysoft\Kernel;
 class Inquiry extends AbstractLabelScript
 {
-   public $pageSize = 1;
-   public function getInquiryList($status,$page)
+   public $pageSize;
+
+   public function getInquiryList($status, $page)
    {
       $user = $this->getCurUser();
       $orderBy = 'id desc';
       $cond = array('id' => $user->getId());
-      $offset = ($page-1) * $this->pageSize;
+      $offset = ($page - 1) * $this->pageSize;
       $inquiry = $this->appCaller->call(MessageMgr_Const::MODULE_NAME, MessageMgr_Const::APP_NAME, MessageMgr_Const::APP_API_OFFER, 'getInquiryList', array($cond, true, $orderBy, $this->pageSize, $offset));
       return $inquiry;
    }
-   
-   public function getInquiryAndOffer($id){
+
+   public function getInquiryAndOffer($id)
+   {
       return $this->appCaller->call(MessageMgr_Const::MODULE_NAME, MessageMgr_Const::APP_NAME, MessageMgr_Const::APP_API_OFFER, 'getInquiryAndOffer', array($id));
    }
 

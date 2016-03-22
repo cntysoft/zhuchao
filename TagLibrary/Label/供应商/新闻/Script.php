@@ -8,22 +8,74 @@
  */
 namespace TagLibrary\Label\Provider;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
-use App\Site\Content\Constant as Content_Const;
+use App\Yunzhan\Content\Constant as CONTENRT_CONST;
 use App\ZhuChao\Provider\Constant as Provider_Constant;
 use Cntysoft\Kernel;
 class News extends AbstractLabelScript
 {
-   public $pageSize = 1;
-   public function getnewsList($page)
+   /**
+    * 分页大小
+    *
+    * @var int
+    */
+   protected $outputNum;
+   
+   /**
+    * 获取不同类型的信息列表
+    * 
+    * @param int $type
+    * @param int $page
+    * @return 
+    */
+   public function getNewsList($type, $page)
    {
-      $user = $this->getCurUser();
       $orderBy = 'id desc';
-      $cond = array('id' => $user->getId());
-      $offset = ($page-1) * $this->pageSize;
-      $inquiry = $this->appCaller->call(Content_Const::MODULE_NAME, Content_Const::APP_NAME, Content_Const::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($user->getId(), true, $orderBy, $this->pageSize, $offset));
+      $pageSize = $this->getOutputNum();
+      $offset = ($page-1) * $pageSize;
+      $inquiry = $this->appCaller->call(
+              CONTENRT_CONST::MODULE_NAME, 
+              CONTENRT_CONST::APP_NAME, 
+              CONTENRT_CONST::APP_API_INFO_LIST, 
+              'getInfoListByNodeAndStatus', 
+              array(array(CONTENRT_CONST::NODE_COMPANY_ID, CONTENRT_CONST::NODE_INDUSTRY_ID), $type, CONTENRT_CONST::INFO_S_ALL, true, $orderBy, $offset, $pageSize)
+              );
       return $inquiry;
    }
-
+   
+   /**
+    * 获取不同类型的信息列表
+    * 
+    * @param int $type
+    * @param int $page
+    * @return 
+    */
+   public function getJobsList($type, $page)
+   {
+      $orderBy = 'id desc';
+      $pageSize = $this->getOutputNum();
+      $offset = ($page-1) * $pageSize;
+      $inquiry = $this->appCaller->call(
+              CONTENRT_CONST::MODULE_NAME, 
+              CONTENRT_CONST::APP_NAME, 
+              CONTENRT_CONST::APP_API_INFO_LIST, 
+              'getInfoListByNodeAndStatus', 
+              array(array(CONTENRT_CONST::NODE_JOIN_ID), $type, CONTENRT_CONST::INFO_S_ALL, true, $orderBy, $offset, $pageSize)
+              );
+      return $inquiry;
+   }
+   
+   public function readInfo($id)
+   {
+      $info = $this->appCaller->call(
+              CONTENRT_CONST::MODULE_NAME, 
+              CONTENRT_CONST::APP_NAME, 
+              CONTENRT_CONST::APP_API_MANAGER, 
+              'read', array($id)
+              );
+      
+      return $info[1];
+   }
+   
    /**
     * 获取信息分页参数
     *
@@ -76,6 +128,11 @@ class News extends AbstractLabelScript
       return $this->di->get('request')->getQuery();
    }
 
+   /**
+    * 获取当前登录的用户
+    * 
+    * @return 
+    */
    public function getCurUser()
    {
       return $this->appCaller->call(

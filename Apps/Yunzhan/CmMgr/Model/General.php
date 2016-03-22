@@ -35,6 +35,14 @@ class General extends BaseModel
       return 'app_site_cmmgr_general_info';
    }
 
+   public function initialize()
+   {
+      parent::initialize();
+      
+      $this->belongsTo('nodeId', 'App\Yunzhan\Category\Model\Node', 'id', array(
+         'alias' => 'node'
+      ));
+   }
    public function getId()
    {
       return (int)$this->id;

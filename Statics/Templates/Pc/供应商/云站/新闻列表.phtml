@@ -24,14 +24,9 @@
                 </div>
                 <!--新闻标题-->
                 <!--标题-->
-                <?php Qs::Label('供应商/新闻',array('renderTpl' => 'usercenterList'))?>
-                <div class="news_delete  ">
-                    <span class="check"><em><i></i></em>全选</span>
-                    <span class="btn btn_del">删除</span>
-                </div>
+                <?php Qs::Label('供应商/新闻',array('renderTpl' => 'newsList', 'outputNum' => 1));?>
             </div>
         </div>
-    </div>
     <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
     <?php Qs::Sys('loadRequireJs', 'provider/newslist') ?>
 </body>

@@ -1,0 +1,44 @@
+<table>
+    <tr class="recruit_items">
+        <th class="recruit_title">项目名称</th>
+        <th class="recruit_num">招聘人数</th>
+        <th class="recruit_time">发布时间</th>
+        <th class="recruit_status">招聘状态</th>
+        <th class="recruit_operate">操作</th>
+    </tr>
+    <?php
+    use App\Yunzhan\Content\Constant;
+    $routeInfo = $this->getRouteInfo();
+    $page = $routeInfo['pageId'];
+    $info = $this->getJobsList(Constant::CMODEL_JOB_ID, $page);
+    $total = $info[1];
+    $list = $info[0];
+    echo '<script>var pageInfo={total:' . $total . ',currentPage:' . $page . ',pageSize:' . $this->getOutputNum() . '}</script>';
+
+    if ($total) {
+       foreach ($list as $info) {
+          $node = $info->getNode();
+          $detail = $this->readInfo($info->getId());
+          $status = time() > $detail->getEndTime() ? '已过期' : '正常';
+          echo '<tr class="recruit_list ">
+                        <td class="recruit_title">
+                            <span class="caption"><em>[' . $node->getText() . ']</em>' . $info->getTitle() . '</span>
+                        </td>
+                        <td class="recruit_num">' . $detail->getNumber() . '</td>
+                        <td class="news_time">' . date('Y-m-d H:i:s', $info->getInputTime()) . '</td>
+                        <td class="recruit_status">' . $status . '</td>
+                        <td class="recruit_operate">
+                            <a href="/site/modifyjob/' . $info->getId() . '.html">修改</a>
+                            <span>|</span>
+                            <a fh-data="' . $info->getId() . '" class="delete">删除</a>
+                        </td>
+                    </tr>';
+       }
+    } else {
+       echo '<tr class="recruit_list no_recruit">
+                     <td colspan=5>暂无招聘信息，赶快去添加吧~~</td>
+                 </tr>';
+    }
+    ?>
+</table>
+<div class="page_list"></div>
