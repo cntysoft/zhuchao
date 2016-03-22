@@ -60,7 +60,7 @@ $out .= '</div>
                 <div class="pro_content">
                     <p>最小起定量：' . $goodsDetail->getMinimum() . $goodsDetail->getUnit() . '</p>
                     <p>可售库存数：' . $goodsDetail->getStock() . $goodsDetail->getUnit() . '</p>
-                    <p>是否可批发：' . ($goodsInfo->getIsBatch() ? "支持" : "不支持") . '</p>
+                    <p>是否可批发：' . ($goodsInfo->getIsBatch() ? "是" : "否") . '</p>
                 </div>
             </div>';
 $company = $goodsInfo->getCompany();

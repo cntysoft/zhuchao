@@ -35,7 +35,7 @@ Ext.define('App.ZhuChao.MessageMgr.Ui.Offer.Offer', {
             {text : this.LANG_TEXT.ID, dataIndex : 'id', flex : 1, resizable : false, sortable : false, menuDisabled : true},
             {text : this.LANG_TEXT.INQUIRY, dataIndex : 'inquiry', flex : 1, resizable : false, sortable : false, menuDisabled : true},
             {text : this.LANG_TEXT.INQUIRYTIME, dataIndex : 'inquiryTime', flex : 1, resizable : false, sortable : false, menuDisabled : true},
-            {text : this.LANG_TEXT.GOODS, dataIndex : 'goods', flex : 1, resizable : false, sortable : false, menuDisabled : true},
+            {text : this.LANG_TEXT.GOODS, dataIndex : 'goods', flex : 2, resizable : false, sortable : false, menuDisabled : true},
             {text : this.LANG_TEXT.OFFER, dataIndex : 'offer', flex : 1, resizable : false, sortable : false, menuDisabled : true},
             {text : this.LANG_TEXT.LOWPRICE, dataIndex : 'lowPrice', flex : 1, resizable : false, sortable : false, menuDisabled : true},
             {text : this.LANG_TEXT.HIGHPRICE, dataIndex : 'highPrice', flex : 1, resizable : false, sortable : false, menuDisabled : true},

@@ -27,11 +27,12 @@ class InquiryOffer extends AbstractHandler
       );
       foreach ($inquiries['item'] as $inquiry) {
          $buyer = $inquiry->getBuyer();
+			$product = $inquiry->getProduct();
          $child = array(
             'id'          => $inquiry->getId(),
             'inquiry'     => $buyer->getName(),
             'inquiryTime' => date('Y-m-d', $inquiry->getInputTime()),
-            'goods'       => $inquiry->getGid()
+            'goods'       => $product->getBrand().$product->getTitle().$product->getDescription()
          );
          $offer = $inquiry->getOffer();
          if (!$offer) {
