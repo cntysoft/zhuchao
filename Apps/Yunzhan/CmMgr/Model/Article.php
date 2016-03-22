@@ -50,7 +50,7 @@ class Article extends BaseModel
 
     public function getImgRefMap()
     {
-        return $this->imgRefMap;
+        return unserialize($this->imgRefMap);
     }
 
     /**
@@ -58,7 +58,7 @@ class Article extends BaseModel
      */
     public function setImgRefMap($imgRefMap)
     {
-        $this->imgRefMap = $imgRefMap;
+        $this->imgRefMap = serialize($imgRefMap);
         return $this;
     }
 

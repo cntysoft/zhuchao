@@ -292,6 +292,10 @@
         "Utils" : [
             "\\ProviderFrontApi\\Utils",
             2
+        ],
+        "Site" : [
+            "\\ProviderFrontApi\\Site",
+            2
         ]
     }
 }

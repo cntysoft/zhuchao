@@ -1,8 +1,13 @@
+<?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>企业新闻</title>
+        <title>新闻列表-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/news.css')) ?>
     </head>
     <body>
@@ -13,9 +18,9 @@
             <?php Qs::Label('供应商/用户中心左侧')?>
             <!--右侧内容-->
             <div class="content_wrap fr">
-                <h1 class="items_title">发布产品<a class="main_bg_light fr" href="/site/news/add.html"><em>+</em>发布新闻</a></h1>
+                <h1 class="items_title">新闻列表<a class="main_bg_light fr" href="/site/news/add.html"><em>+</em>发布新闻</a></h1>
                 <div class="notice main_bg_light">
-                    <a><i class="main icon-notice"></i> 你已发布 1 条企业新闻，还可发布 999 条</a>
+                    <a><i class="main icon-notice"></i> 在这里可以查看所有的新闻列表.</a>
                 </div>
                 <!--新闻标题-->
                 <!--标题-->

@@ -22,16 +22,25 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 return false;
             }
             if(content.length < 20){
-                layer.msg('招聘详情内容过少');
+                layer.msg('新闻内容过少');
                 editor.focus();
                 return false;
             }
             params.title = $('#title').val();
             params.defaultPicUrl = [$('#logo').attr('src'),$('#logo').attr('fh-rid')];
             params.content = content;
+            params.nodeId = $('#nodeId').val();
             $.extend(params,getEditorFileRef(content));
             params.fileRefs.push(params.defaultPicUrl[1]);
-            console.log(params);
+            Cntysoft.Front.callApi('Site', 'addArticle', params, function(response) {
+                if(response.status) {
+                    layer.msg('发表成功!', function() {
+                        window.location.href = '/site/news/1.html';
+                    });
+                }else {
+                    layer.msg('发表失败,请稍候再试!');
+                }
+            });
         });
         $('.img_uploading').delegate('.deleteImg', 'click', function (){
             $(this).closest('li').remove();
@@ -151,7 +160,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             var params = {
                 imgRefMap : [],
                 fileRefs : []
-            }
+            };
             if(imgArray != null){
                 for(var i = 0, length = imgArray.length; i < length; i++) {
                     var ridSrc = imgArray[i].match(/<img fh-rid="([\d])*" src="([\w\.\/\:\-]*)"[\s]*?\/>/);

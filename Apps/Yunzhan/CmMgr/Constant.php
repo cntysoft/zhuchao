@@ -14,7 +14,6 @@ final class Constant
    const APP_NAME = 'CmMgr';
    const APP_API_MGR = 'Mgr';
    
-   const CONTENT_MODEL_EFFECT_IMAGE = 7;
    //内容模型的键值
    const M_KEY_ARTICLE = 'Article';
    const M_KEY_IMAGE = 'Image';
@@ -23,4 +22,6 @@ final class Constant
    const M_KEY_FRIEND_LINK = 'FriendLink';
    const M_KEY_EFFECT_IMAGE = 'EffectImage';
    
+   const CONTENT_MODEL_ARTICLE = 1;
+   const CONTENT_MODEL_JOB = 2;
 }
