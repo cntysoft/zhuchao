@@ -1,0 +1,32 @@
+<?php
+$result = $this->getQuotationList();
+$list = $result['item'];
+$total = $result['total'];
+$out = '';
+
+if(count($list)){
+   foreach($list as $inquiry){
+      $buyer = $inquiry->getBuyer();
+      $offer = $inquiry->getOffer();
+      $product = $inquiry->getProduct();
+      $time = date('Y年m月d日 H:i:s', $inquiry->getInputTime());
+      $url = $this->getProductUrl($product->getNumber());
+      $name = $product->getBrand(). ' ' . $product->getTitle() . ' ' . $product->getDescription();
+      $quotationUrl = $this->getQuotationUrl($inquiry->getId());
+      
+      $out.='<div class="c_baojia">
+         <p class="baojia_time clearfix">
+             <span class="fl">'.$time.'</span>
+             <span class="fr">'. ($offer? "报价已结束" : "报价进行中") .'</span>
+         </p>
+         <div class="baojia_content">
+             <p class="baojia_count">'. ($offer?1:0) .'条报价</p>
+             <p class="baojia_pro">采购产品：<i>'.$name.'</i></p>
+             <p>报价来源：<i>产品咨询</i></p>
+         </div>
+         <a href="'.$quotationUrl.'" class="to_detail main_bg_light">查看报价单</a>
+     </div>';
+   }
+}
+
+echo $out;

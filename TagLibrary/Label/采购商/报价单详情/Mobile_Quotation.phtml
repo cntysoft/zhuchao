@@ -1,0 +1,63 @@
+<?php
+$result = $this->getQuotation();
+$quotation = $result['inquiry'];
+$offer = $result['offer'];
+$time = date('Y/m/d H:i:s', $quotation->getInputTime());
+$content = $quotation->getContent();
+$product = $quotation->getProduct();
+$productUrl = $this->getProductUrl($product->getNumber());
+$imageUrl = $this->getImageCdnUrl($product->getDefaultImage());
+$name = $product->getBrand(). ' ' . $product->getTitle() . ' ' . $product->getDescription();
+if(0 == $product->getPrice()){
+   $price = '面议';
+}else{
+   $all = explod('.', $product->getPrice());
+   $price = '￥'.$all[0].' <i>.'.$all[1].'</i>';
+}
+$price = (0 == $product->getPrice()) ? '面议' : '￥'.$product->getPrice();
+
+$out='<div class="l_baojia">
+    <div class="m_baojia">
+        <a href="'.$productUrl.'"> <img src="'.$imageUrl.'" alt=""></a>
+        <h4><a href="'.$productUrl.'">'.$name.'</a>
+        </h4>
+        <p>'.$price.'</p>
+    </div>
+</div>
+<div class="l_xunjia">
+    <h3>询价内容 <i class="fr">'.$time.'</i></h3>
+    <p>'.$content.'</p>
+</div>';
+
+
+if(is_object($offer)){
+   $provider = $offer->getProvider();
+   $profile = $provider->getProfile();
+   $username = $profile->getRealName();
+   $showPhone = $profile->getShowPhone();
+   $company = $provider->getCompany();
+   $logo = $this->getImageCdnUrl($company->getLogo());
+   $name = $company->getName();
+   $productIds = $offer->getRecommendGoods();
+   $content = $offer->getContent();
+   $companyUrl = $this->getCompanyUrl($company->getSubAttr());
+   
+   $out.='<div class="l_answer">
+    <div class="answer_top">
+        <a href="'.$companyUrl.'">
+            <img src="'.$logo.'" alt="'.$name.'">
+        </a>
+        <h4>店铺名：'.$name.'</h4>
+        <p>联系人：'.$username.'</p>
+        <p>电话：'.$showPhone.'</p>
+    </div>
+    <div class="m_answer">
+        <p><span class="answer_intro">报价：</span>￥'.$offer->getLowPrice().' - '.$offer->getHighPrice().'</p>
+        <p><span class="answer_intro">回复：</span>
+            '.$content.'
+        </p>
+    </div>
+</div>';
+}
+
+echo $out;

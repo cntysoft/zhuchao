@@ -1,10 +1,10 @@
-define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
+define(['validate', 'zepto', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
         var imgCodeUrl = '/forgetchkcode?v_';
         var codeType = 2, phone = '', phoneChecked = false, phoneExist = false;
         var regPhone = new RegExp(/^(1[0-9]{10})$/), regImage = new RegExp(/^[\w]{4}$/) ;
         $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
-        $('#changeCodeImg').click(function (){
+        $('#changeCodeImg').tap(function (){
             $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
         });
 
@@ -26,7 +26,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
               });
            }
         });
-        $('#submit_first').click(function (event){
+        $('#submit_first').tap(function (event){
             event.preventDefault();
             var imageCode = $('#imgCode').val();
             phone = $('#phone').val();
@@ -62,7 +62,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
                            content : '图片验证码错误！',
                            time : 1
                         });
-                        $('#changeCodeImg').click();
+                        $('#changeCodeImg').tap();
                     } else if(10001 == response.errorCode){//错误
                         layer.open({
                            content : '图片验证码已过期！',
@@ -77,7 +77,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
             }, true);
         });
 
-        $('#submit_second').click(function (event){
+        $('#submit_second').tap(function (event){
             event.preventDefault();
             var validateMsg = validate.checkFields($('#password,#password2,#phoneAuthCode'));
             if(validateMsg.length || !phoneExist){

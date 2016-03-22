@@ -4,5 +4,5 @@
 define(['zepto','module/mall_nav'],function(){
     $(function(){
 
-    })
-})
+    });
+});

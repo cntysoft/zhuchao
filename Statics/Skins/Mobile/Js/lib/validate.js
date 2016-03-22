@@ -1,4 +1,4 @@
-define(['exports', 'jquery', 'layer'], function (exports){
+define(['exports', 'zepto', 'layer'], function (exports){
     $(function (){
         var reg = {
             email : /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,

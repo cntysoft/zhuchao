@@ -1,0 +1,29 @@
+<?php $config = $this->getSiteUrl(); ?>
+<!--logo，搜索,名称-->
+<div class="headbar  clearfix main_bg">
+    <!--logo-->
+    <div class="header_left fl">
+        <a href="javascript:history.back()">
+        <span class="icon-fanhuijian"></span>
+        </a>
+    </div>
+    <!--搜索框-->
+    <div class="header_title">
+        <div class="search_input_box">
+            会员中心
+        </div>
+    </div>
+    <!--更多按钮-->
+    <div class="header_right fr">
+        <span class="more_icon"><i class="icon-xiala"></i></span>
+    </div>
+</div>
+<!--导航-->
+<div class="top_nav_box">
+    <ul class="top_nav_list clearfix">
+        <li><a href="<?php echo $config['SiteUrl'];?>">首页</a></li>
+        <li><a href="<?php echo $config['SiteUrl'].'/query/1.html?keyword=';?>">产品搜索</a></li>
+        <!--<li><a href="">企业搜索</a></li>-->
+        <li><a href="<?php echo $config['BuyerUrl'];?>">会员中心</a></li>
+    </ul>
+</div>

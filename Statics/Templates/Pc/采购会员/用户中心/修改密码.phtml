@@ -13,7 +13,7 @@
 <body>
 <!--头部-->
 <!--个人中心头部-->
-<?php Qs::Label('采购商/用户中心头部')?>
+<?php Qs::Label('采购商/用户中心头部', array('renderTpl' => 'Pc_Header'))?>
 <!--个人中心-->
 <div class="content conwidth clearfix">
     <!--左侧列表-->
@@ -42,6 +42,6 @@
         </div>
     </div>
 </div>
-<?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'buyer/password')?>
+<?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'buyer/password')?>
 </body>
 </html>

@@ -27,6 +27,7 @@ class BuyerInfo extends AbstractDsScript
          'name'   => $user->getName(),
          'phone'  => $user->getPhone(),
          'sex'    => $detail->getSex(),
+         'sexText' => (1 == $detail->getSex()) ? '男' : (2 == $detail->getSex() ? '女' : '保密'),
          'level'  => $detail->getLevel(),
          'address' => $this->getDefaultAddress($user->getId()),
          'rid'    => count($fileRefs) ? $fileRefs[0] : ''

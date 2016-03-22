@@ -520,5 +520,48 @@ class User extends AbstractScript
 				  'addInquiry', array($data));
 	}
    
-   
+   /**
+    * 获取询价单列表
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function getXunJiaList(array $params)
+   {
+      $curUser = $this->getCurUser();
+      $this->checkRequireFields($params, array('limit', 'page'));
+      $limit = (int)$params['limit'];
+      if($params['page'] > 0){
+         $offset = ((int)$params['page'] - 1) * $limit;
+      }else{
+         $offset = 0;
+      }
+      
+      
+      $list = $this->appCaller->call(
+         MESSAGE_CONST::MODULE_NAME,
+         MESSAGE_CONST::APP_NAME,
+         MESSAGE_CONST::APP_API_OFFER,
+         'getInquiryList',
+         array(array('uid='.$curUser->getId()), false, 'id DESC', $limit, $offset)
+      );
+      
+      $ret = array();
+      foreach($list as $one){
+         $product = $one->getProduct();
+         $offer = $one->getOffer();
+         
+         $item = array(
+            'url' => '/quotation/'.$one->getId().'.html',
+            'time' => date('Y-m-d H:i:s', $one->getInputTime()),
+            'productName' => $product->getBrand() . ' ' . $product->getTitle() . ' ' . $product->getDescription(),
+            'status' => $offer ? '报价结束' : '报价进行中',
+            'number' => $offer ? 1 : 0
+         );
+         
+         array_push($ret, $item);
+      }
+      
+      return $ret;
+   }
 }

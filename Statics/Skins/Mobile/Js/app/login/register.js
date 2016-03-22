@@ -1,16 +1,16 @@
-define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
+define(['validate', 'zepto', 'layer', 'Core', 'Front'], function (validate){
     $(function (){
        var imgCodeUrl = '/registerchkcode?v_';
        var codeType = 1;
         var sendMessageCode = false;
         $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
-        $('#changeCodeImg').click(function (){
+        $('#changeCodeImg').tap(function (){
             $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());
         });
         $('#phone,#password,#password2,#imgCode').blur(function(){
            validate.checkFields($(this));
         });
-        $('#sendMessage').click(function (){
+        $('#sendMessage').tap(function (){
             var $this = $(this);
             var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
             if(validateMsg.length){
@@ -65,7 +65,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front'], function (validate){
             });
         });
 
-        $('#submit').click(function (event){
+        $('#submit').tap(function (event){
             event.preventDefault();
             var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
             if(validateMsg.length){

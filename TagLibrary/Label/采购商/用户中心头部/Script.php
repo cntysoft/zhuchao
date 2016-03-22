@@ -12,5 +12,12 @@ use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 
 class UserHead extends AbstractLabelScript
 {
-
+   public function getSiteUrl()
+   {
+      $config['SiteUrl'] = 'http://'.\Cntysoft\RT_SYS_SITE_NAME;
+      $config['BuyerUrl'] = 'http://'.\Cntysoft\RT_BUYER_SITE_NAME;
+      $config['ProviderUrl'] = 'http://'.\Cntysoft\RT_PROVIDER_SITE_NAME;
+      
+      return $config;
+   }
 }

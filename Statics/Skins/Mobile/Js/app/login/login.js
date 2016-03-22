@@ -1,6 +1,6 @@
-define(['jquery', 'layer', 'Core', 'Front'], function (){
+define(['zepto', 'layer', 'Core', 'Front'], function (){
     $(function (){
-        $('.submit_btn').click(function (event){
+        $('.submit_btn').tap(function (event){
             event.preventDefault();
             var $name = $('#name'), $pwd = $('#pwd');
             var regName = new RegExp(/^([\w]{1,10}|1[0-9]{10})$/), regPwd = new RegExp(/^[\w~`\!@#\$%\^&\*\(\)_\-\=\+\[\]\{\}\:"\|;'\\<>\?,\.\/"]{6,15}$/);
@@ -61,7 +61,7 @@ define(['jquery', 'layer', 'Core', 'Front'], function (){
             });
         });
         
-        $('.login_auto').click(function(){
+        $('.login_auto').tap(function(){
            var $this = $(this);
            if($this.hasClass('checked')){
               $this.removeClass('checked');

@@ -8,6 +8,6 @@ define(['zepto','module/mall_nav'],function(){
             $('.l_nav span').removeClass('main');
             $(this).addClass('main');
             $('.his_lis').eq($.inArray(this,$('.l_nav span'))).show();
-        })
-    })
-})
+        });
+    });
+});

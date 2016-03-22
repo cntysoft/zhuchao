@@ -65,5 +65,16 @@ class Quotation extends AbstractLabelScript
    {
       return 'http://'.\Cntysoft\RT_SYS_SITE_NAME.'/item/'.$number.'.html';
    }
+   
+   /**
+    * 获取商品的网址
+    * 
+    * @param string $subAttr
+    * @return string
+    */
+   public function getCompanyUrl($subAttr)
+   {
+      return 'http://'. $subAttr . '.' .\Cntysoft\RT_SYS_SITE_NAME;
+   }
 
 }

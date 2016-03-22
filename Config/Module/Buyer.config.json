@@ -141,7 +141,7 @@
         "login" : "采购会员\/登录页模板.phtml",
         "register" : "采购会员\/注册页模板.phtml",
         "forget" : "采购会员\/找回密码页模板.phtml",
-        "buyer\/index" : "采购会员\/用户中心\/我的信息.phtml",
+        "buyer\/index" : "采购会员\/用户中心\/用户中心首页.phtml",
         "buyer\/password" : "采购会员\/用户中心\/修改密码.phtml",
         "buyer\/modify" : "采购会员\/用户中心\/我的信息.phtml",
         "buyer\/quotationlist" : "采购会员\/用户中心\/报价单列表.phtml",

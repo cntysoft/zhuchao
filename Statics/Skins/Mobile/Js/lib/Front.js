@@ -8,12 +8,12 @@
 /**
  * 前台用户中心用户登录相关的API
  */
-define(['jquery','Core'],function($){
+define(['zepto','Core'],function(){
 (function(window, undefined){
    var _emptyFn = function(){
    };
    var _FrontNs_ = Cntysoft.Front;
-   jQuery.extend(_FrontNs_, {
+   $.extend(_FrontNs_, {
       FRONT_API_GATEWAY : "/front-api-entry",
       REQUEST_META_KEY : "REQUEST_META",
       REQUEST_DATA_KEY : "REQUEST_DATA",
@@ -47,10 +47,11 @@ define(['jquery','Core'],function($){
             data : requestObject,
             async : true,
             error : errorCallback,
-            success : successCallback
+            success : successCallback,
+            url:this.FRONT_API_GATEWAY
          };
-         jQuery.ajax(this.FRONT_API_GATEWAY, ajaxOpt);
+         $.ajax(ajaxOpt);
       }
    });
 })(window);
-})
+});
