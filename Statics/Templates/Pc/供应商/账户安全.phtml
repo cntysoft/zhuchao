@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>个人中心</title>
-    <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css'))?>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>个人中心</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
+    </head>
+    <body>
         <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧')?>
-    <div class="content_wrap fr">
-        <h1 class="items_title">修改密码</h1>
-        <div class="form_box">
-            <div class="form_list">
-                <label><em class="main">*</em>旧密码:</label>
-                <input type="password" id="oldpassword" fh-type="password" required>
-            </div>
-            <div class="form_list">
-                <label><em class="main">*</em>新密码:</label>
-                <input type="password" id="newpassword" fh-type="password" required>
-            </div>
-            <div class="form_list">
-                <label><em class="main">*</em>重复密码:</label>
-                <input type="password" id="repassword" fh-type="password" required>
-            </div>
-            <!--按钮-->
-            <div class="action_btn" style="width: 600px">
-                <a class="main_bg submit">提交</a>
-                <a class="main_bg reset">重置</a>
+            <?php Qs::Label('供应商/用户中心左侧') ?>
+            <div class="content_wrap fr">
+                <h1 class="items_title">修改密码</h1>
+                <div class="form_box">
+                    <div class="form_list">
+                        <label><em class="main">*</em>旧密码:</label>
+                        <input type="password" id="oldpassword" fh-type="password" required>
+                    </div>
+                    <div class="form_list">
+                        <label><em class="main">*</em>新密码:</label>
+                        <input type="password" id="newpassword" fh-type="password" required>
+                    </div>
+                    <div class="form_list">
+                        <label><em class="main">*</em>重复密码:</label>
+                        <input type="password" id="repassword" fh-type="password" required>
+                    </div>
+                    <!--按钮-->
+                    <div class="action_btn" style="width: 600px">
+                        <a class="main_bg submit">提交</a>
+                        <a class="main_bg reset">重置</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<?php Qs::Sys('loadRequireJs', 'provider/password')?>
-</body>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
+        <?php Qs::Sys('loadRequireJs', 'provider/password') ?>
+    </body>
 </html>

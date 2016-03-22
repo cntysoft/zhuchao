@@ -18,6 +18,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             var fileRefs = new Array();
             var imgRefMap = new Array();
             if(validation.length){
+                validation[0].ele.focus();
                 layer.msg('请正确填写每项!');
                 return false;
             }
