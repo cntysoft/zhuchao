@@ -1,0 +1,8 @@
+<?php
+$help = $this->getNodeInfoByIdentifier('help');
+$infos = $this->getInfoListByNodeAndStatusNotPage($help->getId());
+$out = '';
+foreach ($infos as $info) {
+   $out .= '<li class="relevant_li"><a href="/article/' . $info->getId() . '.html">' . $info->getTitle() . '</a></li>';
+}
+echo $out;

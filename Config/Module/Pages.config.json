@@ -90,6 +90,15 @@
                 "controller" : "FrontApiEntry",
                 "action" : "index"
             }
+        }, 
+        {
+            "key" : "ClassifyList",
+            "rule" : "\/classifylist.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "Product",
+                "action" : "classifylist"
+            }
         },
         {
             "key" : "AboutCompany",

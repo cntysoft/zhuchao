@@ -1,0 +1,119 @@
+<?php
+$out = '<div class="module_ad3 module_ad clearfix  swiper-container">
+	 <div class="swiper-wrapper">';
+$locationId = $this->getAdsLocationId('电脑端', '首页', 'banner');
+$ads = $this->getAds($locationId);
+if (count($ads)) {
+	foreach ($ads as $ad) {
+		$url = $ad->getContentUrl();
+		$image = $this->getImageFromCdn($ad->getImage(), 710, 400);
+		$out .= '<div class="module_ad_list swiper-slide">
+				<a href="' . $url . '">
+					 <div class="module_ad_img" style="background: url(' . $image . ');">
+						  <div class="module_ad_box"></div>
+					 </div>
+				</a>
+		  </div>';
+	}
+}
+$out .= '</div>
+	 <div class="swiper-pagination"></div>
+</div>';
+
+$out .= '<ul class="nav_radius100 module_nav clearfix">
+	 <li>
+		  <a href="/classifylist.html">
+				<div class="nav_img">
+					 <div class="margin_top"></div>
+				</div>
+				<h2 class="nav_title">全部分类</h2>
+		  </a>
+	 </li>
+	 <li>
+		  <a href="http://' . $this->getBuyerSiteName() . '/quotationlist/1.html">
+				<div class="nav_img">
+					 <div class="margin_top"></div>
+				</div>
+				<h2 class="nav_title">我的询价</h2>
+		  </a>
+	 </li>
+	 <li>
+		  <a href="http://' . $this->getBuyerSiteName() . '">
+				<div class="nav_img">
+					 <div class="margin_top"></div>
+				</div>
+				<h2 class="nav_title">个人中心</h2>
+		  </a>
+	 </li>
+	 <li>
+		  <a href="/category/help.html">
+				<div class="nav_img">
+					 <div class="margin_top"></div>
+				</div>
+				<h2 class="nav_title">帮助中心</h2>
+		  </a>
+	 </li>
+	 <li>
+		  <a href="/category/laobanneican.html">
+				<div class="nav_img">
+					 <div class="margin_top"></div>
+				</div>
+				<h2 class="nav_title">老板内参</h2>
+		  </a>
+	 </li>
+	 <li>
+		  <a href="http://' . \Cntysoft\RT_PROVIDER_SITE_NAME . '">
+				<div class="nav_img">
+					 <div class="margin_top"></div>
+				</div>
+				<h2 class="nav_title">供应商专区</h2>
+		  </a>
+	 </li>
+</ul>';
+
+$goodsLists = $this->getGoodsList(array(), false, 'hits DESC', 0, 4);
+$out .= '<div class="module_title">
+	 <a>热门商品</a>
+	 <i class="icon-gengduo"></i>
+</div><div class="card_box">
+	 <!--card3-->
+	 <ul class="card3">';
+foreach ($goodsLists as $list) {
+	$url = $this->getProductUrl($list->getNumber());
+	$out .= '<li>
+				<a href="' . $url . '">
+					 <div class="pro_img">
+						  <div class="pro_table">
+								<img src="' . $this->getImageFromCdn($list->getDefaultImage(), 108, 108) . '" alt=""/>
+						  </div>
+					 </div>
+
+					 <p class="pro_text">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</p>
+
+					 <p class="pro_price add_color">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</p>
+				</a>
+		  </li>';
+}
+$out .= '</ul>
+</div>';
+
+$out .= '<div class="module_title">
+	 <a href="/category/laobanneican.html">老板内参</a>
+	 <i class="icon-gengduo"></i>
+</div>
+<ul class="new_box">';
+$laobanneicai = $this->getNodeInfoByIdentifier('laobanneican');
+$articles = $this->getInfoListByNodeAndStatusNotPage($laobanneicai->getId());
+foreach ($articles as $article) {
+	$out .= '<li>
+		  <a href="/article/' . $article->getId() . '.html">
+				<img src="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 196, 138) . '" alt=""/>
+				<span class="new_title main">[老板内参]</span>
+				<p class="new_text">' . $article->getTitle() . '</p>
+				<p class="new_date tr">' . date('Y-m-d', $article->getInputTime()) . '</p>
+		  </a>
+	 </li>';
+}
+$out .= '</ul>';
+echo $out;
+?>

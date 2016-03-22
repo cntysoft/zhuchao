@@ -1,0 +1,49 @@
+<?php
+$goodsLists = $this->searchProduct();
+$queryAttrs = $goodsLists['queryAttrs'];
+$out = '<div id="shaixuanBox" class="shaixuan_box hide">
+	 <div id="shaixuanIndex" class="shaixuan_list">
+		  <div class="shaixuan_head">
+				<span>筛选</span>
+		  </div>
+		  <ul id="shaixuanListNav" class="shaixuan_nav">';
+foreach ($queryAttrs as $key => $value) {
+	$out .= '<li>
+					 <div class="shaixuan_nav_title">
+						  <a>' . $key . '</a><span class="choose_text add_color"></span><i class="icon-youjiantou"></i>
+					 </div>
+					 <ul class="sub_nav">';
+	foreach ($value as $v) {
+		$out .= '<li>' . $v . '</li>';
+	}
+	$out .= '</ul>
+</li>';
+}
+$out .= '</ul>
+<div class="shaixuan_bottom">
+	 <a class="reset">重置</a>
+	 <a class="enter main_bg">确定</a>
+</div></div></div>';
+$out .= '<div class="card_box">
+	 <ul class="card3">';
+foreach ($goodsLists['docs'] as $goods) {
+	$url = $this->getProductUrl($goods['number']);
+	$name = $goods['brand'] . ' ' . $goods['title'] . ' ' . $goods['description'];
+	$imageUrl = $this->getImageCdnUrl($goods['defaultImage'], array('w' => 108, 'h' => 108));
+	$out .= '<li>
+				<a href="' . $url . '">
+					 <div class="pro_img">
+						  <div class="pro_table">
+								<img src="' . $imageUrl . '" alt=""/>
+						  </div>
+					 </div>
+					 <p class="pro_text">' . $name . '</p>
+					 <p class="pro_price add_color">¥' . ($goods['price'] > 0 ? $goods['price'] : '面议') . '</p>
+				</a>
+		  </li>';
+}
+$out .= '</ul>
+</div>';
+echo $out;
+?>
+	 

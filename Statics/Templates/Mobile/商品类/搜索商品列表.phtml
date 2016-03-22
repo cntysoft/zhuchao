@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<html>
+	 <head lang="en">
+		  <meta charset="UTF-8">
+		  <title>搜索-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+		  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/prosearch.css', 'swiper.min.css')); ?>
+	 </head>
+	 <body>
+		  <!--logo，搜索,名称-->
+		  <div class="headbar w clearfix main_bg">
+				<!--logo-->
+				<div class="header_left fl">
+					 <span class="icon_logo">
+						  <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
+					 </span>
+				</div>
+				<!--搜索框-->
+				<div class="header_title">
+					 <div class="search_input_box">
+						  <i class="icon-sousuo"></i>
+						  <input class="search_input" type="text" required placeholder="搜索建材/攻略/商铺"/>
+					 </div>
+				</div>
+				<!--更多按钮-->
+				<div class="header_right fr">
+					 <span class="more_icon"><i class="icon-xiala"></i></span>
+				</div>
+		  </div>
+		  <!--导航-->
+		  <div class="top_nav_box">
+				<ul class="top_nav_list clearfix">
+					 <li><a href="/">首页</a></li>
+					 <li><a href="/">产品搜索</a></li>
+					 <li><a href="/">企业搜索</a></li>
+					 <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
+				</ul>
+		  </div>
+		  <!--导航 文字列表-->
+		  <ul id="mallSearchNav" class="mall_search_nav clearfix">
+				<li class="current"><a>综合</a></li>
+				<li><a>热度</a></li>
+				<li class="search_price"><a>价格</a><i class="up_sanjiao sanjiao"></i><i class="down_sanjiao sanjiao"></i></li>
+				<li id="shaixuan"><a>筛选</a><i class="icon-shaixuan"></i></li>
+		  </ul>
+		  <!--筛选条件-->
+		  <?php Qs::Label('商品类/搜索商品列表', array('renderTpl' => 'Mobile_ProductList','outputNum' => 1)) ?>
+		  <?php Qs::Sys('loadRequireJs', 'mall/prosearch'); ?>
+	 </body>
+</html>

@@ -1,0 +1,88 @@
+<?php
+$out = '<div class="module_ad3 module_ad clearfix  swiper-container">
+	 <div class="swiper-wrapper">';
+$goodsInfo = $this->getProductByNumber();
+$goodsDetail = $goodsInfo->getDetail();
+$category = $goodsInfo->getCategory();
+$company = $goodsInfo->getCompany();
+$images = $goodsDetail->getImages();
+foreach ($images as $image) {
+	$out .= '<div class="module_ad_list swiper-slide">
+				<a>
+					 <div class="module_ad_img" style="background: url(' . $this->getImageFromCdn($image[0], 332, 331) . ');">
+						  <div class="module_ad_box"></div>
+					 </div>
+				</a>
+		  </div>';
+}
+$out .= '</div>
+	 <div class="swiper-pagination"></div>
+</div>';
+$out .= '<div class="item_box">
+	 <!--价格 编号-->
+	 <div class="module_title price_num">
+		  <span class="add_color">¥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "面议") . '</span>
+		  <span class="fr">产品编号：' . $goodsInfo->getNumber() . '</span>
+	 </div>
+	 <ul class="info_box">
+		  <li class="box_dl">
+				<span class="box_dt">所在地区：</span>
+				<span class="box_dd">' . $this->getAreaFromCode($company->getProvince()) . ' ' . $this->getAreaFromCode($company->getCity()) . '</span>
+		  </li>
+		  <li class="box_dl">
+				<span class="box_dt">支持批发：</span>
+				<span class="box_dd">' . ($goodsInfo->getIsBatch() ? "是" : "否") . '</span>
+		  </li>
+		  <li class="box_dl">
+				<span class="box_dt">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;营：</span>
+				<span class="box_dd">';
+$products = explode(',', $company->getProducts());
+$i = 1;
+foreach ($products as $product) {
+	if ($i == 1) {
+		$out .= '<a>' . $product . '</a>';
+	} else {
+		$out .= '<span>|</span><a>' . $product . '</a>';
+	}
+	$i = 2;
+}
+$out .= '</span>
+		  </li>
+	 </ul>
+</div>';
+
+$out .= '<div class="item_box">
+	 <div class="module_title no_bb">
+		  <a>产品介绍</a>
+		  <i class="icon-youjiantou"></i>
+	 </div>
+	 <div class="pro_info_box">
+		  ' . $goodsDetail->getIntroduction() . '
+	 </div>
+</div>';
+$attribute = $goodsDetail->getAttribute();
+$out .= '<div class="item_box">
+	 <div class="module_title no_bb">
+		  <a>产品属性</a>
+		  <i class="icon-youjiantou"></i>
+	 </div>
+	 <div class="pro_info_box">
+		  <ul class="pro_details_box">';
+foreach ($attribute as $key => $value) {
+	foreach ($value as $attrs => $attr) {
+		$out .= '<li class="item">
+					 <div class="key">'.$attrs.'：</div>
+					 <div class="val">'.$attr.'</div>
+				</li>';
+	}
+}
+$out .= '</ul>
+	 </div>
+</div>';
+$out .= '<div class="item_box">
+	 <div class="module_title no_bb">
+		  <a>评价</a>
+		  <i class="icon-youjiantou"></i>
+	 </div>
+</div>';
+echo $out;

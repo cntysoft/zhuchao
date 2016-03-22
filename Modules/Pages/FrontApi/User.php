@@ -58,26 +58,7 @@ class User extends AbstractScript
 		$user = $acl->getCurUser();
 		$this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'addCollect', array($user->getId(), $product->getId()));
 	}
-	/**
-	 * 增加商品点击量
-	 * @param array $params
-	 * @return 
-	 */
-	public function addHits($params)
-	{
-		$this->checkRequireFields($params, array('number'));
-		$number = $params['number'];
-      $product = $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
-      if(!$product){
-         $errorType = new ErrorType();
-         Kernel\throw_exception(new Exception($errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')));
-      }
-		return $this->appCaller->call(
-				  PRODUCT_CONST::MODULE_NAME, 
-				  PRODUCT_CONST::APP_NAME, 
-				  PRODUCT_CONST::APP_API_PRODUCT_MGR, 
-				  'addHit', array($product->getId()));
-	}
+	
 	/**
 	 * 退出
 	 * @return type

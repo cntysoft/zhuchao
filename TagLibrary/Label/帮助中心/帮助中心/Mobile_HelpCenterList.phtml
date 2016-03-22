@@ -1,0 +1,27 @@
+<?php
+$identifier = $this->getRouteInfo()['nodeIdentifier'];
+$nodeInfo = $this->getNodeInfoByIdentifier($identifier);
+$out = '<ul class="new_box">';
+$generalInfos = $this->getInfoListByNodeAndStatus($nodeInfo->getId());
+foreach ($generalInfos[0] as $generalInfo) {
+	$out .= '<li>
+		  <a href="/article/' . $generalInfo->getId() . '.html">
+				<div class="new_img">
+					 <div class="new_table">
+						  <img src="' . Cntysoft\Kernel\get_image_cdn_url($generalInfo->getDefaultPicUrl()[0], 200, 140) . '" alt="">
+					 </div>
+				</div>
+				<p class="new_text">' . $generalInfo->getTitle() . '</p>
+				<p class="writer_info clearfix">
+					 <span class="writer fl">' . $generalInfo->getAuthor() . '</span>
+					 <span class="fl">' . date('Y-m-d', $generalInfo->getInputTime()) . '</span>
+				</p>
+				<span class="look">浏览（' . $generalInfo->getHits() . '）</span>
+		  </a>
+	 </li>';
+}
+$out .= '</ul>';
+echo $out;
+?>
+
+

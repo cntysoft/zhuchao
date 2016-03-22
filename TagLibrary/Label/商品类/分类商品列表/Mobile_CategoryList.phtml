@@ -1,0 +1,11 @@
+<?php
+$leafNodes = $this->getLeafNodes();
+$out = '<div class="module_title">
+	 <a class="main">全部分类</a>
+</div>
+<div class="pro_list_nav clearfix">';
+foreach ($leafNodes as $node) {
+	$out .= '<a href="/productclassify/' . $node->getId() . '/1.html">' . $node->getName() . '</a>';
+}
+$out .= '</div>';
+echo $out;

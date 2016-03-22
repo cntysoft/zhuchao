@@ -5,7 +5,7 @@ define(['jquery', 'Front', 'comment'], function (){
     $(function (){
         var number = window.location.pathname.split('/')[2].split('.')[0];
         //增加点击量
-        Cntysoft.Front.callApi('User', 'addHits', {
+        Cntysoft.Front.callApi('Utils', 'addHits', {
             number : number
         }, function (response){
             if(response.status){

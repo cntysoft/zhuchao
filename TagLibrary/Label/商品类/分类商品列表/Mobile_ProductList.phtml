@@ -1,0 +1,32 @@
+<?php
+$cid = $this->getRouteInfo()['categoryId'];
+$category = $this->getProductClassifyInfo($cid);
+$out = '<div class="module_title">
+	 <a>' . $category->getName() . '</a>
+</div>
+<div class="card_box">
+	 <!--card3-->
+	 <ul class="card3">';
+$goodsLists = $this->getGoodsListBy();
+foreach ($goodsLists as $list) {
+	$url = $this->getProductUrl($list->getNumber());
+	$name = $list->getBrand() . $list->getTitle() . $list->getDescription();
+	$out .= '<li>
+	 <a href="' . $url . '">
+		  <div class="pro_img">
+				<div class="pro_table">
+					 <img src="' . $this->getImgUrl($list->getDefaultImage(), 108, 108) . '" alt=""/>
+				</div>
+		  </div>
+		  <p class="pro_text">' . $name . '</p>
+		  <p class="pro_price add_color">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</p>
+	 </a>
+</li>';
+}
+$out .= '</ul>
+</div>';
+echo $out;
+?>
+
+
+
