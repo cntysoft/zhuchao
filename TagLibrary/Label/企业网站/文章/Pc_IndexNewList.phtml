@@ -35,5 +35,5 @@ foreach ($items as $index => $item) {
                         <div class="small_news fl">';
    }
 }
-echo $out . '</div>';
-?>
+$out.=count($items) == 0 ? '' : '</div>';
+echo $out;
