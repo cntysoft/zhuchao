@@ -224,7 +224,7 @@ var requirejs, require, define;
         /**
          * Trims the . and .. from an array of path segments.
          * It will keep a leading path segment if a .. will become
-         * the first path segment, to help with module name lookups,
+         * the first path segment, to help with model name lookups,
          * which act like paths, but can be remapped. But the end result,
          * all paths that use this function should look normalized.
          * NOTE: this method MODIFIES the input array.
@@ -254,7 +254,7 @@ var requirejs, require, define;
         }
 
         /**
-         * Given a relative module name, like ./something, normalize it to
+         * Given a relative model name, like ./something, normalize it to
          * a real name that can be mapped to a path.
          * @param {String} name the relative name
          * @param {String} baseName a real name that the name arg is relative
@@ -287,7 +287,7 @@ var requirejs, require, define;
                 if (name[0].charAt(0) === '.' && baseParts) {
                     //Convert baseName to array, and lop off the last part,
                     //so that . matches that 'directory' and not name of the baseName's
-                    //module. For instance, baseName of 'one/two/three', maps to
+                    //model. For instance, baseName of 'one/two/three', maps to
                     //'one/two/three.js', but we want the directory, 'one/two' for
                     //this normalization.
                     normalizedBaseParts = baseParts.slice(0, baseParts.length - 1);
@@ -396,15 +396,15 @@ var requirejs, require, define;
         }
 
         /**
-         * Creates a module mapping that includes plugin prefix, module
+         * Creates a model mapping that includes plugin prefix, model
          * name, and path. If parentModuleMap is provided it will
          * also normalize the name via require.normalize()
          *
-         * @param {String} name the module name
-         * @param {String} [parentModuleMap] parent module map
-         * for the module name, used to resolve relative names.
+         * @param {String} name the model name
+         * @param {String} [parentModuleMap] parent model map
+         * for the model name, used to resolve relative names.
          * @param {Boolean} isNormalized: is the ID already normalized.
-         * This is true if this call is done for a define() module ID.
+         * This is true if this call is done for a define() model ID.
          * @param {Boolean} applyMap: apply the map config to the ID.
          * Should only be true if this map is for a dependency.
          *
@@ -449,13 +449,13 @@ var requirejs, require, define;
                         // term solution is not to normalize until plugins are
                         // loaded and all normalizations to allow for async
                         // loading of a loader plugin. But for now, fixes the
-                        // common uses. Details in #1131
+                        // base uses. Details in #1131
                         normalizedName = name.indexOf('!') === -1 ?
                                          normalize(name, parentName, applyMap) :
                                          name;
                     }
                 } else {
-                    //A regular module.
+                    //A regular model.
                     normalizedName = normalize(name, parentName, applyMap);
 
                     //Normalized name may be a plugin ID due to map config
@@ -531,7 +531,7 @@ var requirejs, require, define;
                 each(ids, function (id) {
                     var mod = getOwn(registry, id);
                     if (mod) {
-                        //Set error on module, so it skips timeout checks.
+                        //Set error on model, so it skips timeout checks.
                         mod.error = err;
                         if (mod.events.error) {
                             notified = true;
@@ -618,7 +618,7 @@ var requirejs, require, define;
                     //Only force things that have not completed
                     //being defined, so still in the registry,
                     //and only if it has not been matched up
-                    //in the module already.
+                    //in the model already.
                     if (dep && !mod.depMatched[i] && !processed[depId]) {
                         if (getOwn(traced, depId)) {
                             mod.defineDep(i, defined[depId]);
@@ -664,7 +664,7 @@ var requirejs, require, define;
                 }
 
                 if (!mod.error) {
-                    //If the module should be executed, and it has not
+                    //If the model should be executed, and it has not
                     //been inited and time is up, remember it.
                     if (!mod.inited && expired) {
                         if (hasPathFallback(modId)) {
@@ -740,8 +740,8 @@ var requirejs, require, define;
                 options = options || {};
 
                 //Do not do more inits if already done. Can happen if there
-                //are multiple define calls for the same module. That is not
-                //a normal, common case, but it is also not unexpected.
+                //are multiple define calls for the same model. That is not
+                //a normal, base case, but it is also not unexpected.
                 if (this.inited) {
                     return;
                 }
@@ -749,11 +749,11 @@ var requirejs, require, define;
                 this.factory = factory;
 
                 if (errback) {
-                    //Register for errors on this module.
+                    //Register for errors on this model.
                     this.on('error', errback);
                 } else if (this.events.error) {
                     //If no errback already, but there are error listeners
-                    //on this module, set up an errback to pass to the deps.
+                    //on this model, set up an errback to pass to the deps.
                     errback = bind(this, function (err) {
                         this.emit('error', err);
                     });
@@ -768,17 +768,17 @@ var requirejs, require, define;
 
                 this.errback = errback;
 
-                //Indicate this module has be initialized
+                //Indicate this model has be initialized
                 this.inited = true;
 
                 this.ignore = options.ignore;
 
-                //Could have option to init this module in enabled mode,
+                //Could have option to init this model in enabled mode,
                 //or could have been previously marked as enabled. However,
                 //the dependencies are not known until init is called. So
                 //if enabled previously, now trigger dependencies as enabled.
                 if (options.enabled || this.enabled) {
-                    //Enable this module and dependencies.
+                    //Enable this model and dependencies.
                     //Will call this.check()
                     this.enable();
                 } else {
@@ -831,7 +831,7 @@ var requirejs, require, define;
             },
 
             /**
-             * Checks if the module is ready to define itself, and if so,
+             * Checks if the model is ready to define itself, and if so,
              * define it.
              */
             check: function () {
@@ -854,7 +854,7 @@ var requirejs, require, define;
                     this.emit('error', this.error);
                 } else if (!this.defining) {
                     //The factory could trigger another require call
-                    //that would result in checking this module to
+                    //that would result in checking this model to
                     //define itself again. If already in the process
                     //of doing that, skip this work.
                     this.defining = true;
@@ -880,7 +880,7 @@ var requirejs, require, define;
 
                             // Favor return value over exports. If node/cjs in play,
                             // then will not have a return value anyway. Favor
-                            // module.exports assignment over exports object.
+                            // model.exports assignment over exports object.
                             if (this.map.isDefine && exports === undefined) {
                                 cjsModule = this.module;
                                 if (cjsModule) {
@@ -1010,7 +1010,7 @@ var requirejs, require, define;
                         this.error = err;
                         err.requireModules = [id];
 
-                        //Remove temp unnormalized modules for this module,
+                        //Remove temp unnormalized modules for this model,
                         //since they will never be resolved otherwise now.
                         eachProp(registry, function (mod) {
                             if (mod.map.id.indexOf(id + '_unnormalized') === 0) {
@@ -1043,11 +1043,11 @@ var requirejs, require, define;
                             useInteractive = false;
                         }
 
-                        //Prime the system by creating a module instance for
+                        //Prime the system by creating a model instance for
                         //it.
                         getModule(moduleMap);
 
-                        //Transfer any config to this other module.
+                        //Transfer any config to this other model.
                         if (hasProp(config.config, id)) {
                             config.config[moduleName] = config.config[id];
                         }
@@ -1073,7 +1073,7 @@ var requirejs, require, define;
                         //Support anonymous modules.
                         context.completeLoad(moduleName);
 
-                        //Bind the value of that module to the value for this
+                        //Bind the value of that model to the value for this
                         //resource ID.
                         localRequire([moduleName], load);
                     });
@@ -1092,7 +1092,7 @@ var requirejs, require, define;
                 enabledRegistry[this.map.id] = this;
                 this.enabled = true;
 
-                //Set flag mentioning that the module is enabling,
+                //Set flag mentioning that the model is enabling,
                 //so that immediate calls to the defined callbacks
                 //for dependencies do not trigger inadvertent load
                 //with the depCount still being zero.
@@ -1104,7 +1104,7 @@ var requirejs, require, define;
 
                     if (typeof depMap === 'string') {
                         //Dependency needs to be converted to a depMap
-                        //and wired up to this module.
+                        //and wired up to this model.
                         depMap = makeModuleMap(depMap,
                                                (this.map.isDefine ? this.map : this.map.parentMap),
                                                false,
@@ -1131,7 +1131,7 @@ var requirejs, require, define;
                         if (this.errback) {
                             on(depMap, 'error', bind(this, this.errback));
                         } else if (this.events.error) {
-                            // No direct errback on this module, but something
+                            // No direct errback on this model, but something
                             // else is listening for errors, so be sure to
                             // propagate the error correctly.
                             on(depMap, 'error', bind(this, function(err) {
@@ -1143,7 +1143,7 @@ var requirejs, require, define;
                     id = depMap.id;
                     mod = registry[id];
 
-                    //Skip special modules like 'require', 'exports', 'module'
+                    //Skip special modules like 'require', 'exports', 'model'
                     //Also, don't call enable if it is already enabled,
                     //important in circular dependency cases.
                     if (!hasProp(handlers, id) && mod && !mod.enabled) {
@@ -1240,7 +1240,7 @@ var requirejs, require, define;
             while (defQueue.length) {
                 args = defQueue.shift();
                 if (args[0] === null) {
-                    return onError(makeError('mismatch', 'Mismatched anonymous define() module: ' +
+                    return onError(makeError('mismatch', 'Mismatched anonymous define() model: ' +
                         args[args.length - 1]));
                 } else {
                     //args are id, deps, factory. Should be normalized by the
@@ -1338,10 +1338,10 @@ var requirejs, require, define;
                             config.paths[name] = pkgObj.location;
                         }
 
-                        //Save pointer to main module ID for pkg name.
+                        //Save pointer to main model ID for pkg name.
                         //Remove leading dot in main, so main paths are normalized,
                         //and remove any trailing .js, since different package
-                        //envs have different conventions: some use a module name,
+                        //envs have different conventions: some use a model name,
                         //some use a file name.
                         config.pkgs[name] = pkgObj.name + '/' + (pkgObj.main || 'main')
                                      .replace(currDirRegExp, '')
@@ -1353,7 +1353,7 @@ var requirejs, require, define;
                 //update the maps for them, since their info, like URLs to load,
                 //may have changed.
                 eachProp(registry, function (mod, id) {
-                    //If module already has init called, since it is too
+                    //If model already has init called, since it is too
                     //late to modify them, and ignore unnormalized ones
                     //since they are transient.
                     if (!mod.inited && !mod.map.unnormalized) {
@@ -1396,20 +1396,20 @@ var requirejs, require, define;
                             return onError(makeError('requireargs', 'Invalid require call'), errback);
                         }
 
-                        //If require|exports|module are requested, get the
+                        //If require|exports|model are requested, get the
                         //value for them from the special handlers. Caveat:
-                        //this only works while module is being defined.
+                        //this only works while model is being defined.
                         if (relMap && hasProp(handlers, deps)) {
                             return handlers[deps](registry[relMap.id]);
                         }
 
-                        //Synchronous access to one module. If require.get is
+                        //Synchronous access to one model. If require.get is
                         //available (as in the Node adapter), prefer that.
                         if (req.get) {
                             return req.get(context, deps, relMap, localRequire);
                         }
 
-                        //Normalize module name, if it contains . or ..
+                        //Normalize model name, if it contains . or ..
                         map = makeModuleMap(deps, relMap, false, true);
                         id = map.id;
 
@@ -1452,8 +1452,8 @@ var requirejs, require, define;
                     isBrowser: isBrowser,
 
                     /**
-                     * Converts a module name + .extension into an URL path.
-                     * *Requires* the use of a module name. It does not support using
+                     * Converts a model name + .extension into an URL path.
+                     * *Requires* the use of a model name. It does not support using
                      * plain URLs like nameToUrl.
                      */
                     toUrl: function (moduleNamePlusExt) {
@@ -1512,7 +1512,7 @@ var requirejs, require, define;
 
                         if (mod) {
                             //Hold on to listeners in case the
-                            //module will be attempted to be reloaded
+                            //model will be attempted to be reloaded
                             //using a different config.
                             if (mod.events.defined) {
                                 undefEvents[id] = mod.events;
@@ -1527,8 +1527,8 @@ var requirejs, require, define;
             },
 
             /**
-             * Called to enable a module if it is still in the registry
-             * awaiting enablement. A second arg, parent, the parent module,
+             * Called to enable a model if it is still in the registry
+             * awaiting enablement. A second arg, parent, the parent model,
              * is passed in for context, when this method is overridden by
              * the optimizer. Not shown here to keep code compact.
              */
@@ -1543,7 +1543,7 @@ var requirejs, require, define;
              * Internal method used by environment adapters to complete a load event.
              * A load event could be a script load or just a load pass from a synchronous
              * load call.
-             * @param {String} moduleName the name of the module to potentially complete.
+             * @param {String} moduleName the name of the model to potentially complete.
              */
             completeLoad: function (moduleName) {
                 var found, args, mod,
@@ -1556,8 +1556,8 @@ var requirejs, require, define;
                     args = defQueue.shift();
                     if (args[0] === null) {
                         args[0] = moduleName;
-                        //If already found an anonymous module and bound it
-                        //to this name, then this is some other anon module
+                        //If already found an anonymous model and bound it
+                        //to this name, then this is some other anon model
                         //waiting for its completeLoad to fire.
                         if (found) {
                             break;
@@ -1597,7 +1597,7 @@ var requirejs, require, define;
             },
 
             /**
-             * Converts a module name to a file path. Supports cases where
+             * Converts a model name to a file path. Supports cases where
              * moduleName may actually be just an URL.
              * Note that it **does not** call normalize on the moduleName,
              * it is assumed to have already been normalized. This is an
@@ -1620,19 +1620,19 @@ var requirejs, require, define;
 
                 //If a colon is in the URL, it indicates a protocol is used and it is just
                 //an URL to a file, or if it starts with a slash, contains a query arg (i.e. ?)
-                //or ends with .js, then assume the user meant to use an url and not a module id.
+                //or ends with .js, then assume the user meant to use an url and not a model id.
                 //The slash is important for protocol-less URLs as well as full paths.
                 if (req.jsExtRegExp.test(moduleName)) {
-                    //Just a plain path, not module name lookup, so just return it.
+                    //Just a plain path, not model name lookup, so just return it.
                     //Add extension if it is included. This is a bit wonky, only non-.js things pass
                     //an extension, this method probably needs to be reworked.
                     url = moduleName + (ext || '');
                 } else {
-                    //A module that needs to be converted to a path.
+                    //A model that needs to be converted to a path.
                     paths = config.paths;
 
                     syms = moduleName.split('/');
-                    //For each module name segment, see if there is a path
+                    //For each model name segment, see if there is a path
                     //registered for it. Start with most specific name
                     //and work up from it.
                     for (i = syms.length; i > 0; i -= 1) {
@@ -1668,7 +1668,7 @@ var requirejs, require, define;
             },
 
             /**
-             * Executes a module callback function. Broken out as a separate function
+             * Executes a model callback function. Broken out as a separate function
              * solely to allow the build system to sequence the files in the built
              * layer in the right sequence.
              *
@@ -1694,7 +1694,7 @@ var requirejs, require, define;
                     //to long.
                     interactiveScript = null;
 
-                    //Pull out the name of the module and the context.
+                    //Pull out the name of the model and the context.
                     var data = getScriptData(evt);
                     context.completeLoad(data.id);
                 }
@@ -1718,7 +1718,7 @@ var requirejs, require, define;
     /**
      * Main entry point.
      *
-     * If the only argument to require is a string, then the module that
+     * If the only argument to require is a string, then the model that
      * is represented by that string is fetched for the appropriate context.
      *
      * If the first argument is an array, then it will be treated as an array
@@ -1851,13 +1851,13 @@ var requirejs, require, define;
     };
 
     /**
-     * Does the request to load a module for the browser case.
+     * Does the request to load a model for the browser case.
      * Make this a separate function to allow other environments
      * to override it.
      *
      * @param {Object} context the require context to find state.
-     * @param {String} moduleName the name of the module.
-     * @param {Object} url the URL to the module.
+     * @param {String} moduleName the name of the model.
+     * @param {Object} url the URL to the model.
      */
     req.load = function (context, moduleName, url) {
         var config = (context && context.config) || {},
@@ -1917,7 +1917,7 @@ var requirejs, require, define;
 
             //For some cache cases in IE 6-8, the script executes before the end
             //of the appendChild execution, so to tie an anonymous define
-            //call to the module name (which is stored on the node), hold on
+            //call to the model name (which is stored on the node), hold on
             //to a reference to this node, but clear after the DOM insertion.
             currentlyAddingScript = node;
             if (baseElement) {
@@ -1935,7 +1935,7 @@ var requirejs, require, define;
                 //its script is downloaded and evaluated. However, if web workers
                 //are in play, the expectation that a build has been done so that
                 //only one script needs to be loaded anyway. This may need to be
-                //reevaluated if other use cases become common.
+                //reevaluated if other use cases become base.
                 importScripts(url);
 
                 //Account for anonymous modules
@@ -1993,7 +1993,7 @@ var requirejs, require, define;
                 }
 
                 //Strip off any trailing .js since mainScript is now
-                //like a module name.
+                //like a model name.
                 mainScript = mainScript.replace(jsSuffixRegExp, '');
 
                 //If mainScript is still a path, fall back to dataMain
@@ -2011,9 +2011,9 @@ var requirejs, require, define;
 
     /**
      * The function that handles definitions of modules. Differs from
-     * require() in that a string for the module should be the first argument,
+     * require() in that a string for the model should be the first argument,
      * and the function to execute after dependencies are loaded should
-     * return a value to define the module corresponding to the first argument's
+     * return a value to define the model corresponding to the first argument's
      * name.
      */
     define = function (name, deps, callback) {
@@ -2027,7 +2027,7 @@ var requirejs, require, define;
             name = null;
         }
 
-        //This module may not have dependencies
+        //This model may not have dependencies
         if (!isArray(deps)) {
             callback = deps;
             deps = null;
@@ -2049,7 +2049,7 @@ var requirejs, require, define;
                     });
 
                 //May be a CommonJS thing even without require calls, but still
-                //could use exports, and module. Avoid doing exports and module
+                //could use exports, and model. Avoid doing exports and model
                 //work though if it just needs require.
                 //REQUIRES the function to expect the CommonJS variables in the
                 //order listed below.
@@ -2071,8 +2071,8 @@ var requirejs, require, define;
 
         //Always save off evaluating the def call until the script onload handler.
         //This allows multiple modules to be in a file without prematurely
-        //tracing dependencies, and allows for anonymous module support,
-        //where the module name is not known until the script onload event
+        //tracing dependencies, and allows for anonymous model support,
+        //where the model name is not known until the script onload event
         //occurs. If no context, use the global queue, and get it processed
         //in the onscript load callback.
         if (context) {

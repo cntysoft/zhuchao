@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>老版内参-首页-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <?php Qs::Sys('loadCss', array('referenceindex/style.css', 'referenceindex/referenceindex.css', 'swiper.min.css')) ?>
+    </head>
+    <body>
+        <!--logo，搜索,名称-->
+        <div class="headbar w clearfix main_bg">
+            <!--logo-->
+            <div class="header_left fl">
+                <a href="/">
+                    <span class="icon_logo">
+                        <img src="<?php Qs::Sys('loadImage', 'icon/icon_logo.png') ?>" alt="logo"/>
+                    </span>
+                </a>
+            </div>
+            <!--标题-->
+            <div class="header_title">
+                <h2 class="text_ellipsis tc">老板内参</h2>
+            </div>
+            <!--更多按钮-->
+            <div class="header_right fr">
+                <span class="more_icon"><i class="icon-xiala"></i></span>
+            </div>
+            <!--下拉列表-->
+            <div class="top_nav_box hide">
+                <ul class="top_nav_list">
+                    <li><a href="/category/laobanneican.html"><i class="icon-shouye"></i>首页</a></li>
+                    <li><a href="/category/jiancaiqiwen/1.html"><i class="icon-luntan"></i>建材奇闻</a></li>
+                    <li><a href="/category/shendujiexi/1.html"><i class="icon-bankuai"></i>深度解析</a></li>
+                    <li><a href="/category/zhongbangtuijian/1.html"><i class="icon-huodong"></i>重磅推荐</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--一列广告滑动-->
+        <div class="module_ad3 module_ad clearfix  swiper-container">
+            <div class="swiper-wrapper">
+                <div class="module_ad_list swiper-slide">
+                    <a >
+                        <div class="module_ad_img">
+                            <div class="module_ad_box"></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="module_ad_list swiper-slide">
+                    <a >
+                        <div class="module_ad_img">
+                            <div class="module_ad_box"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <!--列表-->
+        <ul class="new_box">
+            <li>
+                <a href="../reference/referenceinfo.html">
+                    <div class="new_img">
+                        <div class="new_table">
+                            <img src="../../Images/test/test_pro_img.jpg" alt="">
+                        </div>
+                    </div>
+                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+                    <p class="writer_info clearfix">
+                        <span class="writer fl">神恩信息</span>
+                        <span class="fl">2015-01-06</span>
+                    </p>
+                    <span class="look">浏览（123）</span>
+                </a>
+            </li>
+            <li class="no_img">
+                <a href="../reference/referenceinfo.html">
+                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+                    <p class="writer_info clearfix">
+                        <span class="writer fl">神恩信息</span>
+                        <span class="fl">2015-01-06</span>
+                    </p>
+                    <span class="look">浏览（123）</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reference/referenceinfo.html">
+                    <div class="new_img">
+                        <div class="new_table">
+                            <img src="../../Images/test/test_pro_img.jpg" alt="">
+                        </div>
+                    </div>
+                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+                    <p class="writer_info clearfix">
+                        <span class="writer fl">神恩信息</span>
+                        <span class="fl">2015-01-06</span>
+                    </p>
+                    <span class="look">浏览（123）</span>
+                </a>
+            </li>
+            <li class="no_img">
+                <a href="../reference/referenceinfo.html">
+                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+                    <p class="writer_info clearfix">
+                        <span class="writer fl">神恩信息</span>
+                        <span class="fl">2015-01-06</span>
+                    </p>
+                    <span class="look">浏览（123）</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reference/referenceinfo.html">
+                    <div class="new_img">
+                        <div class="new_table">
+                            <img src="../../Images/test/test_pro_img.jpg" alt="">
+                        </div>
+                    </div>
+                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+                    <p class="writer_info clearfix">
+                        <span class="writer fl">神恩信息</span>
+                        <span class="fl">2015-01-06</span>
+                    </p>
+                    <span class="look">浏览（123）</span>
+                </a>
+            </li>
+            <li>
+                <a href="../reference/referenceinfo.html">
+                    <div class="new_img">
+                        <div class="new_table">
+                            <img src="../../Images/test/test_pro_img.jpg" alt="">
+                        </div>
+                    </div>
+                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+                    <p class="writer_info clearfix">
+                        <span class="writer fl">神恩信息</span>
+                        <span class="fl">2015-01-06</span>
+                    </p>
+                    <span class="look">浏览（123）</span>
+                </a>
+            </li>
+        </ul>
+        <?php Qs::Sys('loadRequireJs', 'reference/referenceindex') ?>      
+    </body>
+</html>
