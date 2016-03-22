@@ -15,20 +15,12 @@
             <div class="content_wrap fr">
                 <h1 class="items_title">收到的询价单</h1>
                 <!--回复 未回复-->
-                <ul class="reply clearfix">
-                    <li class="main_bg">全部</li>
-                    <li>回复</li>
-                    <li>未回复</li>
-                </ul>
+                
                 <?php Qs::Label('供应商/询价单', array('renderTpl' => 'usercenterList','outputNum' => 1,'enablePage' => true))?>
-                <div class="inquiry_delete ">
-                    <span class="check"><em><i></i></em>全选</span>
-                    <span class="btn btn_del">删除</span>
-                </div>
             </div>
         </div>
     </div>
-    <script data-main="../../Js/requireenter" app="usercenter/inquiry" id="require" src="../../Js/lib/require.js"></script>
+    <?php Qs::Sys('loadRequireJs', 'provider/inquirylist') ?>
 </body>
 
 </html>

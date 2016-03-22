@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>baojialist</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/baojiadetail.css')) ?>
+    </head>
+    <body>
+        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <!--个人中心-->
+        <div class="content conwidth clearfix">
+            <!--左侧列表-->
+            <?php Qs::Label('供应商/用户中心左侧') ?>
+            <!--右侧内容-->
+            <div class="content_wrap fr">
+                <h1 class="items_title">报价</h1>
+                <?php Qs::Label('供应商/询价单', array('renderTpl' => 'inquiryContent')) ?>
+            </div>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'provider/inquirycontent') ?>
+    </body>
+</html>

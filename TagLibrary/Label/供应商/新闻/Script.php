@@ -8,19 +8,19 @@
  */
 namespace TagLibrary\Label\Provider;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
-use App\ZhuChao\MessageMgr\Constant as MessageMgr_Const;
+use App\Site\Content\Constant as Content_Const;
 use App\ZhuChao\Provider\Constant as Provider_Constant;
 use Cntysoft\Kernel;
 class News extends AbstractLabelScript
 {
    public $pageSize = 1;
-   public function getInquiryList($status,$page)
+   public function getnewsList($page)
    {
       $user = $this->getCurUser();
       $orderBy = 'id desc';
       $cond = array('id' => $user->getId());
       $offset = ($page-1) * $this->pageSize;
-      $inquiry = $this->appCaller->call(MessageMgr_Const::MODULE_NAME, MessageMgr_Const::APP_NAME, MessageMgr_Const::APP_API_OFFER, 'getInquiryList', array($cond, true, $orderBy, $this->pageSize, $offset));
+      $inquiry = $this->appCaller->call(Content_Const::MODULE_NAME, Content_Const::APP_NAME, Content_Const::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($user->getId(), true, $orderBy, $this->pageSize, $offset));
       return $inquiry;
    }
 

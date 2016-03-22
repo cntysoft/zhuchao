@@ -23,6 +23,10 @@ class Inquiry extends AbstractLabelScript
       $inquiry = $this->appCaller->call(MessageMgr_Const::MODULE_NAME, MessageMgr_Const::APP_NAME, MessageMgr_Const::APP_API_OFFER, 'getInquiryList', array($cond, true, $orderBy, $this->pageSize, $offset));
       return $inquiry;
    }
+   
+   public function getInquiryAndOffer($id){
+      return $this->appCaller->call(MessageMgr_Const::MODULE_NAME, MessageMgr_Const::APP_NAME, MessageMgr_Const::APP_API_OFFER, 'getInquiryAndOffer', array($id));
+   }
 
    /**
     * 获取信息分页参数

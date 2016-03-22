@@ -68,6 +68,16 @@ define(['exports', 'jquery', 'layer'], function (exports){
         }
         function checkFieldValue(index, $item){
             var val = $item.val();
+            var tipMessage = '';
+            var tipTarget = $($item);
+            if($($item).attr('tip-value')){
+                tipMessage = $($item).attr('tip-value');
+            } else if(message.hasOwnProperty(type)){
+                tipMessage = message[type];
+            }
+            if($item.attr('tip-target')){
+                tipTarget = $($item.attr('tip-target'));
+            }
             if($item.attr('fh-type')){
                 var type = $item.attr('fh-type');
                 if(reg.hasOwnProperty(type)){
@@ -76,7 +86,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
                             ele : $item,
                             msg : message[type]
                         });
-                        tips(message[type], $item);
+                        tips(message[type], tipTarget);
                     }
                 } else if(type == 'length'){
                     var min = parseInt($($item).attr('minlength'));
@@ -89,7 +99,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
                                 ele : $item,
                                 msg : msg
                             });
-                            tips(msg, $item);
+                            tips(msg, tipTarget);
                         }
                     }
                     else if(min == min && max != max){
@@ -99,7 +109,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
                             ele : $item,
                             msg : msg
                         });
-                        tips(msg, $item);
+                        tips(tipMessage, tipTarget);
                     } else if(max == max && min != min){
                         var msg = lengthMessage.lte.replace('{1}', min);
                         msg = msg.replace('{2}', max);
@@ -107,7 +117,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
                             ele : $item,
                             msg : msg
                         });
-                        tips(msg, $item);
+                        tips(tipMessage, tipTarget);
                     }
                 } else if(type === 'select'){
 

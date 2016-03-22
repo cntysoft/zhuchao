@@ -1,47 +1,53 @@
 <?php
 $query = $this->getQuery();
 $status = 1;   //1是所有,2是已回复,3是未回复
-$page = 1;
 if (isset($query['status']) && in_array($query['status'], array(2, 3))) {
    $status = $query['status'];
 }
-if (isset($query['page'])) {
-   $query['page'] = (int) $query['page'];
-   $query['page'] == 0 ? $page = 1 : $page = $query['page'];
-}
+$routeInfo = $this->getRouteInfo();
+$page = $routeInfo['pageId'];
 $info = $this->getInquiryList($status, $page);
 $list = $info['item'];
 $total = $info['total'];
+$cls = array(1=>'',2=>'',3=>'');
+$cls[$status] = 'main_bg';
+echo '<ul class="reply clearfix"><li><a class="'.$cls[1].'" href="/inquiry/1.html?status=1">全部</a></li><li><a class="'.$cls[2].'" href="/inquiry/1.html?status=2">已回复</a></li><li><a class="'.$cls[3].'" href="/inquiry/1.html?status=3">未回复</a></li></ul>';
+echo '<script>var pageInfo={total:'.$total.',currentPage:'.$page.',pageSize:'.$this->pageSize.'}</script>';
+
 $out = '<table>';
-$out1 = '';
-$out2 = '';
-if ($total) {
-   $out .= '<tr class="inquiry_items">
+$out .= '<tr class="inquiry_items">
         <th class="inquiry_title">询盘内容</th>
         <th class="inquiry_state">状态</th>
         <th class="inquiry_operate">操作</th>
     </tr>';
+$out1 = '';
+$out2 = '';
+if ($total) {
    foreach ($list as $item) {
       if ($status == 1) {
-         $out .= getTemplate($item, $item->getOffer() == false ? 3 : 2);
+         $out1 .= getTemplate($item, $item->getOffer() == false ? 3 : 2);
       } else if ($status == 2) {
          if ($item->getOffer()) {
-            $out .= getTemplate($item, 2);
+            $out1 .= getTemplate($item, 2);
          }
       } else if ($status == 3) {
          if (!$item->getOffer()) {
-            $out .= getTemplate($item, 3);
+            $out1 .= getTemplate($item, 3);
          }
       }
    }
+}
+if ($out1 != '') {
+   $out .= $out2 . $out1;
 } else {
    $out .= '<tr class="inquiry_list no_inquiry ">
         <td colspan=3 >暂无询盘信息~~</td>
     </tr>';
 }
 
+
 $out .= '</table>';
-echo $out;
+echo $out.'<div class="page_list"></div>';
 function getTemplate($data, $status)
 {
    if ($status == 2) {
@@ -55,7 +61,7 @@ function getTemplate($data, $status)
         </td>
         <td class="inquiry_state">已回复</td>
         <td class="inquiry_operate">
-            <a href="/inquirycontent/'.$data->getId().'.html">查看详情</a>
+            <a href="/inquirycontent/' . $data->getId() . '.html">查看详情</a>
         </td>
     </tr>';
    } else {
@@ -64,12 +70,12 @@ function getTemplate($data, $status)
             <span class="check"><em><i></i></em></span>
             <div class="acticle_box fr">
                 <span>' . mb_substr($data->getContent(), 0, 80) . '</span>
-                <a class="more" href="/inquirycohtent/' . $data->getId() . '.html">更多</a>
+                <a class="more" href="/inquirycontent/' . $data->getId() . '.html">更多</a>
             </div>
         </td>
         <td class="inquiry_state">未回复</td>
         <td class="inquiry_operate">
-            <a href="">回复</a>
+            <a href="/inquirycontent/'.$data->getId().'.html">回复</a>
         </td>
     </tr>';
    }

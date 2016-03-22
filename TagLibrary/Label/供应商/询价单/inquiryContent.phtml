@@ -1,0 +1,69 @@
+<?php
+$routeInfo = $this->getRouteInfo();
+$content = $this->getInquiryAndOffer($routeInfo['id']);
+$provider = $this->getCurUser();
+$providerProfile = $provider->getProfile();
+$company = $provider->getCompany();
+$product = $content['inquiry']->getProduct();
+$out = '<div class="baojia_content">
+    <h3>询价内容 <i>发布时间：' . date('Y-m-d h:i:s', $content['inquiry']->getInputTime()) . '</i></h3>
+    <p class=""><span class="content_bg main_bg"></span>' . $content['inquiry']->getContent() . '</p>
+</div>
+<div class="baojia_pro clearfix">
+    <a href="" class="baojia_pro_img"><img src="' . $this->getImageCdnUrl($product->getDefaultImage()) . '" alt=""></a>
+    <div class="baojia_pro_detail">
+        <h4>' . $product->getTitle() . '</h4>
+        <p class="main_light">￥面议</p>
+    </div>
+</div>';
+
+if ($content['offer'] == '尚未报价') {
+   $out .= '<div class="answer">
+                    <h4>供应商回复</h4>
+                    <div class="answer_content clearfix">
+                        <div class="answer_left fl">
+                            <img src="'.$this->getImageCdnUrl($company->getLogo()).'">
+                            <h4>' . $company->getName() . '</h4>
+                            <p class="clearfix">
+                                <span class="company_intro">信用星级：</span>
+                                <span class="company_detail">
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                </span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="company_intro">最近成交：</span>
+                                <span class="company_detail">0笔</span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="company_intro">联系人：</span>
+                                <span class="company_detail">' . $providerProfile->getRealName() . '</span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="company_intro">手&nbsp;&nbsp;&nbsp;&nbsp;机：</span>
+                                <span class="company_detail">' . $providerProfile->getShowPhone() . '</span>
+                            </p>
+                        </div>
+                        <div class="answer_right fr">
+                            <div class="answer_ele baojia clearfix">
+                                <span class="answer_intro">报价：</span>
+                                <input type="text" id="lowPrice" class="checkfield" fh-type="float" tip-target="#highPrice" required>
+                                <span class="fl">——</span>
+                                <input type="text" id="highPrice" class="checkfield" fh-type="float" required>
+                            </div>
+                            <div class="answer_ele clearfix">
+                                <span class="answer_intro">说明：</span>
+                                <textarea id="content" class="checkfield" fh-type="length" minlength="5" maxlength="300" required></textarea>
+                            </div>
+                            <div class="submit_btn main_bg_light" id="submit">发表报价</div>
+                        </div>
+                    </div>
+                </div>';
+} else {
+   
+}
+echo $out;
+?>
