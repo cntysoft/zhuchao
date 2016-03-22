@@ -164,7 +164,7 @@ return array(
                   )
                ),
                array(
-                  'text'             => '商铺基础建设',
+                  'text'             => '基础建设',
                   'identifier'       => 'shangpujichujianshe',
                   'nodeType'         => 3,
                   'showOnMenu'       => 1,

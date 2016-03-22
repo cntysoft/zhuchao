@@ -53,7 +53,7 @@
                     </div>
                     <ul class="class_sub_item main_hover">
                         <?php
-                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexArticle', 'nodeIdentifier' => array(
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'Pc_IndexArticle', 'nodeIdentifier' => array(
                               'shangpujichujianshe', 'shangjiachanpin', 'kaitongdianpu', 'zhuceshangpu'
                            ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => false, 'listSubNode'    => true))
                         ?>                       
@@ -66,7 +66,7 @@
                     </div>
                     <ul class="class_sub_item main_hover">
                         <?php
-                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexArticle', 'nodeIdentifier' => array(
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'Pc_IndexArticle', 'nodeIdentifier' => array(
                               'richangguanli', 'richangxiajiachanpin', 'richangshangjiachanpin', 'dianpushezhi'
                            ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => false, 'listSubNode'    => true))
                         ?>
@@ -79,7 +79,7 @@
                     </div>
                     <ul class="class_sub_item main_hover">
                         <?php
-                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexArticle', 'nodeIdentifier' => array(
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'Pc_IndexArticle', 'nodeIdentifier' => array(
                               'yingxiaotuiguang', 'shehuihuayingxiao', 'huodongyingxiao', 'pinpaiguanli', 'yingxiaoseo'
                            ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => false, 'listSubNode'    => true))
                         ?>
@@ -98,7 +98,7 @@
                     <h3>大家都在看</h3>
                     <ul class="all_look_sub">
                         <?php
-                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexHotArticle', 'nodeIdentifier' => array(
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'Pc_IndexHotArticle', 'nodeIdentifier' => array(
                               'zhuchaoschool'
                            ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 3, 'enablePage'     => false, 'listSubNode'    => true))
                         ?>
@@ -109,7 +109,7 @@
                     <h3>店商那些事</h3>
                     <ul class="all_look_sub">
                         <?php
-                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexHotArticle', 'nodeIdentifier' => array(
+                        Qs::Label('文章/电商宝典', array('renderTpl'      => 'Pc_IndexHotArticle', 'nodeIdentifier' => array(
                               'dianshangzixun'
                            ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 3, 'enablePage'     => false, 'listSubNode'    => true))
                         ?>
@@ -129,14 +129,15 @@
             <div class="class_items2 clearfix">
                 <div id="class_items2" class="class_items_box">
                     <?php
-                    Qs::Label('文章/电商宝典', array('renderTpl'      => 'IndexRecomentArticle', 'nodeIdentifier' => array(
+                    Qs::Label('文章/电商宝典', array('renderTpl'      => 'Pc_IndexRecomentArticle', 'nodeIdentifier' => array(
                           'kechengzhongxin'
                        ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 4, 'enablePage'     => false, 'listSubNode'    => true))
                     ?>
                 </div>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部');
+        <?php
+        Qs::Label('静态类/网站底部');
         Qs::Sys('loadRequireJs', 'college/collegeindex');
         ?>
     </body>

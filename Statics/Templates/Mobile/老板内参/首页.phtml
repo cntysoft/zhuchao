@@ -7,6 +7,8 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta charset="UTF-8">
         <title>老版内参-首页-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">  
         <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <?php Qs::Sys('loadCss', array('referenceindex/style.css', 'referenceindex/referenceindex.css', 'swiper.min.css')) ?>
@@ -33,10 +35,10 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <!--下拉列表-->
             <div class="top_nav_box hide">
                 <ul class="top_nav_list">
-                    <li><a href="/category/laobanneican.html"><i class="icon-shouye"></i>首页</a></li>
-                    <li><a href="/category/jiancaiqiwen/1.html"><i class="icon-luntan"></i>建材奇闻</a></li>
-                    <li><a href="/category/shendujiexi/1.html"><i class="icon-bankuai"></i>深度解析</a></li>
-                    <li><a href="/category/zhongbangtuijian/1.html"><i class="icon-huodong"></i>重磅推荐</a></li>
+                    <li><a href="/category/laobanneican.html">首页</a></li>
+                    <li><a href="/category/jiancaiqiwen/1.html">建材奇闻</a></li>
+                    <li><a href="/category/shendujiexi/1.html">深度解析</a></li>
+                    <li><a href="/category/zhongbangtuijian/1.html">重磅推荐</a></li>
                 </ul>
             </div>
         </div>
@@ -61,88 +63,12 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="swiper-pagination"></div>
         </div>
         <!--列表-->
-        <ul class="new_box">
-            <li>
-                <a href="../reference/referenceinfo.html">
-                    <div class="new_img">
-                        <div class="new_table">
-                            <img src="../../Images/test/test_pro_img.jpg" alt="">
-                        </div>
-                    </div>
-                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
-                    <p class="writer_info clearfix">
-                        <span class="writer fl">神恩信息</span>
-                        <span class="fl">2015-01-06</span>
-                    </p>
-                    <span class="look">浏览（123）</span>
-                </a>
-            </li>
-            <li class="no_img">
-                <a href="../reference/referenceinfo.html">
-                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
-                    <p class="writer_info clearfix">
-                        <span class="writer fl">神恩信息</span>
-                        <span class="fl">2015-01-06</span>
-                    </p>
-                    <span class="look">浏览（123）</span>
-                </a>
-            </li>
-            <li>
-                <a href="../reference/referenceinfo.html">
-                    <div class="new_img">
-                        <div class="new_table">
-                            <img src="../../Images/test/test_pro_img.jpg" alt="">
-                        </div>
-                    </div>
-                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
-                    <p class="writer_info clearfix">
-                        <span class="writer fl">神恩信息</span>
-                        <span class="fl">2015-01-06</span>
-                    </p>
-                    <span class="look">浏览（123）</span>
-                </a>
-            </li>
-            <li class="no_img">
-                <a href="../reference/referenceinfo.html">
-                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
-                    <p class="writer_info clearfix">
-                        <span class="writer fl">神恩信息</span>
-                        <span class="fl">2015-01-06</span>
-                    </p>
-                    <span class="look">浏览（123）</span>
-                </a>
-            </li>
-            <li>
-                <a href="../reference/referenceinfo.html">
-                    <div class="new_img">
-                        <div class="new_table">
-                            <img src="../../Images/test/test_pro_img.jpg" alt="">
-                        </div>
-                    </div>
-                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
-                    <p class="writer_info clearfix">
-                        <span class="writer fl">神恩信息</span>
-                        <span class="fl">2015-01-06</span>
-                    </p>
-                    <span class="look">浏览（123）</span>
-                </a>
-            </li>
-            <li>
-                <a href="../reference/referenceinfo.html">
-                    <div class="new_img">
-                        <div class="new_table">
-                            <img src="../../Images/test/test_pro_img.jpg" alt="">
-                        </div>
-                    </div>
-                    <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
-                    <p class="writer_info clearfix">
-                        <span class="writer fl">神恩信息</span>
-                        <span class="fl">2015-01-06</span>
-                    </p>
-                    <span class="look">浏览（123）</span>
-                </a>
-            </li>
-        </ul>
-        <?php Qs::Sys('loadRequireJs', 'reference/referenceindex') ?>      
+
+        <?php
+        Qs::Label('文章/老板内参', array('renderTpl'      => 'Mobile_DefaultList', 'nodeIdentifier' => array(
+              'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
+           ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 6, 'enablePage'     => false, 'listSubNode'    => true));
+        Qs::Sys('loadRequireJs', 'reference/referenceindex')
+        ?>      
     </body>
 </html>

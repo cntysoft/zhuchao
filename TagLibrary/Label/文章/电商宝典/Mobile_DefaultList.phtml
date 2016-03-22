@@ -1,0 +1,45 @@
+<?php
+$node0 = $this->getDefalutNode($this->getRouteNodeIdentifier());
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+   $subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $node0->getNodeIdentifier());
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$infoList = $this->execute();
+if (!$infoList) {
+   echo "<script>window.location = '/'</script>";
+   return false;
+}
+$items = is_array($infoList) ? $infoList[0] : $infoList;
+$out = '';
+$out1 = '';
+foreach ($items as $index => $item) {
+   $imgurl = '';
+   $defpic = $item->getDefaultPicUrl()[0];
+   $infourl = $this->getInfoUrl($item->getId());
+   if ($defpic) {
+      $imgurl = '<a href="' . $infourl . '"> <img src="' . $this->getImgcdn($defpic, 300, 300) . '" alt=""/></a>';
+   }
+   $out .='<div class="class_item">
+                    <h3 class="class_title text_ellipsis main_hover"><a href="' . $infourl . '">' . $item->getTitle() . '</a></h3>
+                    <div class="writer_info clearfix">
+                        <div class="fl">
+                            <span>发表时间：' . date('Y-m-d', $item->getInputTime()) . '</span>
+                            <span class="writer">作者：' . $item->getAuthor() . '</span>
+                        </div>
+                        <span class="look fr"><i class="icon-yan"></i>' . $item->getHits() . '</span>
+                    </div>
+                    <div class="class_img">' . $imgurl . '                        
+                    </div>
+                    <p class="class_text">' . $item->getIntro() . '
+                    </p>
+                    <div class="user_action tr clearfix">
+                        <a class="study_btn fl main_bg" href="' . $infourl . '">立即学习</a>
+                        <span>' . $item->getHits() . '人已学</span>
+                    </div>
+                </div>';
+}
+echo $out;
+?>

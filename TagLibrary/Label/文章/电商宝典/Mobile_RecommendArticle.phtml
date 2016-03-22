@@ -1,0 +1,23 @@
+<?php
+$indetifier = $this->invokeParams['nodeIdentifier'][0];
+$node0 = $this->getNodeByNodeIndentifier($indetifier);
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+   $subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $indetifier);
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$infoList = $this->execute();
+if (!$infoList) {
+   echo "<script>window.location = '/'</script>";
+   return false;
+}
+$items = is_array($infoList) ? $infoList[0] : $infoList;
+$out = '';
+foreach ($items as $index => $item) {
+   $infourl = $this->getInfoUrl($item->getId());
+   $out .='  <li class="relevant_li"><a href="' . $infourl . '">' . $item->getTitle() . '</a></li>';
+}
+echo $out;
+?>

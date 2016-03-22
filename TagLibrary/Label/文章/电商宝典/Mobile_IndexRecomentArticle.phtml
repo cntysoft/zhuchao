@@ -1,0 +1,27 @@
+<?php
+$indetifier = $this->invokeParams['nodeIdentifier'][0];
+$node0 = $this->getNodeByNodeIndentifier($indetifier);
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+   $subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $indetifier);
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$items = $this->execute();
+$out = $last = '';
+foreach ($items as $index => $info) {
+   $node = $this->getNode($info->getNodeId());
+   $out .= '  <div class="new_item">
+                    <a href="' . $this->getInfoUrl($info->getId()) . '">
+                        <div class="new_img">
+                            <div class="new_table">
+                                <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 147, 110) . '" alt="">
+                            </div>
+                        </div>
+                        <h4 class="list_title text_ellipsis">[' . $node->getText() . ']' . $info->getTitle() . '</h4>
+                        <p class="new_text text_ellipsis">' . $info->getIntro() . '</p>
+                    </a>
+                </div>';
+}
+echo $out;

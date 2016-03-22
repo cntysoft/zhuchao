@@ -1,0 +1,30 @@
+<?php
+$items = $this->execute();
+$out = $last = '';
+foreach ($items as $index => $info) {
+   $node = $this->getNode($info->getNodeId());
+   $imgurl = $imgcls = '';
+   $defpic = $info->getDefaultPicUrl()[0];
+   $infourl = $this->getInfoUrl($info->getId());
+   if ($defpic) {
+      $imgurl = '<img src="' . $this->getImgcdn($defpic, 110, 110) . '" alt=""/>';
+   } else {
+      $imgcls = 'no_img';
+   }
+//                        <span class="writer fl">' . $info->getAuthor() . '</span>
+   $out .= ' <div class="new_item ' . $imgcls . '">
+                <a href="' . $this->getInfoUrl($info->getId()) . '">
+                    <div class="new_img">
+                        <div class="new_table">
+                            ' . $imgurl . '
+                        </div>
+                    </div>
+                    <p class="new_text">[' . $node->getText() . ']' . $info->getTitle() . '</p>
+                    <p class="writer_info clearfix">
+                        <span class="fl">' . date('Y-m-d', $info->getInputTime()) . '</span>
+                    </p>
+                    <span class="look">浏览（' . $info->getHits() . '）</span>
+                </a>
+            </div>';
+}
+echo $out;

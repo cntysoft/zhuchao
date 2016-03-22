@@ -1,0 +1,43 @@
+<?php
+if ($this->getRouteNodeIdentifier() == 'laobanneican') {
+   $out = '<ul class="new_box" ident="' . implode(',', $this->invokeParams['nodeIdentifier']) . '">';
+   $infoList = $this->execute();
+} else {
+   $out = '<ul class="new_box" ident="' . $this->getRoute()['nodeIdentifier'] . '">';
+   $infoList = $this->getArticleList();
+}
+if (!$infoList) {
+   echo "<script>window.location = '/'</script>";
+   return false;
+}
+$items = is_array($infoList) ? $infoList[0] : $infoList;
+$out1 = '';
+$node = $this->getDefalutNode($this->getRouteNodeIdentifier());
+foreach ($items as $index => $item) {
+   $imgcls = $imgurl = '';
+   $defpic = $item->getDefaultPicUrl()[0];
+   $infourl = $this->getInfoUrl($item->getId());
+   if ($defpic) {
+      $imgurl = '<div class="new_img">
+                        <div class="new_table">
+                            <img src="' . $this->getImgcdn($defpic, 110, 110) . '" alt="">
+                        </div>
+                    </div>';
+   } else {
+      $imgcls = 'class="no_img"';
+   }
+//                        <span class="writer fl">' . $item->getAuthor() . '</span>
+   $out .=' <li  ' . $imgcls . ' >
+                <a href="' . $infourl . '">
+                      ' . $imgurl . '
+                    <p class="new_text">' . $item->getTitle() . '</p>
+                    <p class="writer_info clearfix">
+                        <span class="fl">' . date('Y-m-d', $item->getInputTime()) . '</span>
+                    </p>
+                    <span class="look">浏览（' . $item->getHits() . '）</span>
+                </a>
+            </li>';
+}
+$out.='</ul>';
+echo $out;
+?>

@@ -46,7 +46,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <!--行业资讯-->
             <ul class="trade_news clearfix">
                 <?php
-                Qs::Label('文章/老板内参', array('renderTpl'      => 'NewArticle', 'nodeIdentifier' => array(
+                Qs::Label('文章/老板内参', array('renderTpl'      => 'Pc_NewArticle', 'nodeIdentifier' => array(
                       'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
                    ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 3, 'enablePage'     => false, 'listSubNode'    => true))
                 ?>
@@ -55,7 +55,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="news_wrap clearfix">
                 <div class="left_section fl">
                     <?php
-                    Qs::Label('文章/老板内参', array('renderTpl'      => 'DefaultList', 'nodeIdentifier' => array(
+                    Qs::Label('文章/老板内参', array('renderTpl'      => 'Pc_DefaultList', 'nodeIdentifier' => array(
                           'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
                        ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 5, 'enablePage'     => true, 'listSubNode'    => true))
                     ?>
@@ -65,7 +65,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <h1>热点资讯</h1>
                         <ul>
                             <?php
-                            Qs::Label('文章/老板内参', array('renderTpl'      => 'HotArticle', 'nodeIdentifier' => array(
+                            Qs::Label('文章/老板内参', array('renderTpl'      => 'Pc_HotArticle', 'nodeIdentifier' => array(
                                   'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
                                ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 6, 'enablePage'     => false, 'listSubNode'    => true))
                             ?>

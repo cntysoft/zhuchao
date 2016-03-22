@@ -32,25 +32,25 @@
         <div class="center_main clearfix conwidth1100">
             <div class="fl main_left">
                 <!--筛选-->
-
                 <?php
-                Qs::Label('文章/电商宝典', array('renderTpl'      => 'DefaultChoose', 'nodeIdentifier' => array(
+                Qs::Label('文章/电商宝典', array('renderTpl'      => 'Pc_DefaultChoose', 'nodeIdentifier' => array(
                       'kechengzhongxin'
            )))
                 ?>
                 <!--列表-->
                 <?php
-                Qs::Label('文章/电商宝典', array('renderTpl' => 'DefaultList', 'nodeIdentifier' => array(), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 5, 'enablePage' => true, 'listSubNode' => true))
+                Qs::Label('文章/电商宝典', array('renderTpl' => 'Pc_DefaultList', 'nodeIdentifier' => array(), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 5, 'enablePage' => true, 'listSubNode' => true))
                 ?>
             </div>
             <div class="fr main_right">
                 <h3 class="right_title"><a href="/category/kechengzhongxin/1.html">最新课程</a></h3>
                 <?php
-                Qs::Label('文章/电商宝典', array('renderTpl' => 'NewArticle', 'nodeIdentifier' => array('kechengzhongxin'), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 3, 'enablePage' => false, 'listSubNode' => true))
+                Qs::Label('文章/电商宝典', array('renderTpl' => 'Pc_NewArticle', 'nodeIdentifier' => array('kechengzhongxin'), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 3, 'enablePage' => false, 'listSubNode' => true))
                 ?>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部');
+        <?php
+        Qs::Label('静态类/网站底部');
         Qs::Sys('loadRequireJs', 'college/collegeindex');
         ?>
     </body>
