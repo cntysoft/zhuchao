@@ -1,0 +1,52 @@
+<?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登录页-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+	 <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <?php Qs::Sys('loadCss', array('login/style.css', 'login/login.css', 'layer.css'));?>
+</head>
+<body>
+<div class="login_main w">
+    <div class="login_icon">
+        <i class="login_icon_bg"></i>
+        <h3>账户登录</h3>
+    </div>
+    <form action="">
+        <ul class="form_box login_form">
+            <li>
+                <label for="name"><i class="icon-shouji"></i></label>
+                <input id="name" name="name" type="text" tabindex="1" required="required" placeholder="请输入用户名或手机号">
+            </li>
+            <li class="tips tl">
+                <span>请输入用户名/手机号/邮箱</span>
+            </li>
+            <li>
+                <label for="pwd"><i class="icon-suo"></i></label>
+                <input id="pwd" name="pwd" class="error_input mainbordercolor" type="password" placeholder="请输入用户密码">
+            </li>
+            <li class="tips tl">
+                <span>请输入用户名/手机号/邮箱</span>
+            </li>
+        </ul>
+        <!--自动登陆 忘记密码-->
+        <div class="login_forget clearfix tr">
+            <div class="login_auto fl checked">
+                <i class="icon-checked add_color"></i><span>一周内自动登陆</span>
+            </div>
+            <a href="/forget.html">忘记密码？</a>
+        </div>
+
+        <div class="user_action">
+            <a class="submit_btn">登录</a>
+        </div>
+    </form>
+</div>
+<?php Qs::Sys('loadRequireJs', 'login/login')?>
+</body>
+</html>

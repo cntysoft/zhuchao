@@ -1,0 +1,89 @@
+<?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>找回密码密码-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+	 <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+    <?php Qs::Sys('loadCss', array('login/style.css', 'login/login.css', 'layer.css'));?>
+</head>
+<body>
+<div class="login_main w">
+    <div class="login_icon">
+        <i class="login_icon_bg"></i>
+        <h3>忘记密码</h3>
+    </div>
+    <!--短信验证-->
+    <form action="" class=" check_form">
+        <ul class="form_box">
+            <li>
+                <input id="phone" name="phone" type="text" tabindex="1" required="required" placeholder="请输入注册时的手机号">
+            </li>
+            <li class="tips tl">
+                <span>请输入注册时的手机号</span>
+            </li>
+            <!--验证码-->
+            <li class="input_code">
+                <input class="fl code" type="text" name="code" autocomplete="off" placeholder="请输入图片验证码"  id="imgCode">
+                <a class="icode_image">
+                    <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
+                    <i class="icon-svgupdate" id="changeCodeImg"></i>
+                </a>
+            </li>
+            <li class="tips tl">
+                <i></i>
+                <span class="maincolor">请输入图片验证码</span>
+            </li>
+        </ul>
+
+        <div class="user_action">
+            <a class="submit_btn" id="submit_first">找回密码</a>
+        </div>
+    </form>
+    <!--输入密码-->
+    <form action="" class=" hide reset_form">
+        <ul class="form_box">
+            <!--短信验证-->
+            <li>
+                <input class="yzm_input" id="yzm" name="yzm" type="text" fh-type="phoneAuthCode" required="required" placeholder="请输入短信验证码" style="width: 100%">
+            </li>
+            <li class="tips tl">
+                <i></i>
+                <span class="maincolor" id="phoneAuthCode">请输入短信验证码</span>
+            </li>
+            <li>
+                <input id="password" name="pwd" class="error_input"  fh-type="password" type="password" placeholder="请输入新密码">
+            </li>
+            <li class="tips tl">
+                <span class="maincolor">密码由6-20位字母，数字和符号组合</span>
+            </li>
+            <li>
+                <input id="password2" name="confirmpwd" type="password"  fh-type="password" placeholder="请输入确认密码">
+            </li>
+            <li class="tips tl">
+                <span class="maincolor">请确保两次输入密码一致</span>
+            </li>
+        </ul>
+
+        <div class="user_action">
+            <a class="submit_btn" id="submit_second">确认</a>
+        </div>
+    </form>
+    <!--设置成功-->
+    <!--成功-->
+    <div class="form_box tc success hide success">
+        <i class="icon-duihaoyuanquan"></i>
+        <p>新密码设置成功，请您牢记新密码</p>
+        <!--返回首页-->
+        <div class="user_action">
+            <a class="submit_btn" href="/login.html">返回登陆页</a>
+        </div>
+    </div>
+</div>
+<?php Qs::Sys('loadRequireJs', 'login/forget')?>
+</body>
+</html>
