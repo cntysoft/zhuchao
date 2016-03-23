@@ -43,7 +43,10 @@ const PROVIDER_USER_S_KEY_LOGIN_CHK_CODE = 'provider_user_s_key_reg_login_chk_co
 const PROVIDER_USER_S_KEY_REG_MSG_CODE = 'provider_user_s_key_reg_msg_code';
 //忘记密码发送短信验证或者邮件验证码的session键值
 const PROVIDER_USER_S_KEY_FORGET_MSG_CODE = 'provider_user_s_key_forget_msg_code';
-
+//修改供应商显示手机号时发送短信或者邮件验证码的session键值
+const PROVIDER_USER_S_KEY_SHOWPHONE_MSG_CODE = 'provider_user_s_key_showphone_msg_code';
+//修改注册手机注册手机号发送短信或验证码的session键值
+const PROVIDER_USER_S_KEY_CHANGEPHONE_MSG_CODE = 'provider_user_s_key_phone_msg_code';
 //标准异常上下文
 const ZHU_CHAO_STD_EXCEPTION_CONTEXT = 'ZhuChao/Kernel/StdErrorType';
 

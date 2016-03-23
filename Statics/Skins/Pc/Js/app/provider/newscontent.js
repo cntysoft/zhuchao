@@ -34,11 +34,17 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             params.fileRefs.push(params.defaultPicUrl[1]);
             Cntysoft.Front.callApi('Site', 'addArticle', params, function(response) {
                 if(response.status) {
-                    layer.msg('发表成功!', function() {
+                    layer.msg('发表成功!',{
+                        time:1000
+                    }, function() {
                         window.location.href = '/site/news/1.html';
                     });
                 }else {
-                    layer.msg('发表失败,请稍候再试!');
+                    if(response.errorCode == 10004){
+                        layer.alert('文章标题重复!');
+                        return false;
+                    }
+                    layer.alert('发表失败,请稍候再试!');
                 }
             });
         });

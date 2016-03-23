@@ -8,20 +8,25 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         var pathname = window.location.pathname;
         var number = pathname.substring(pathname.indexOf('/product/change/') + 16, pathname.lastIndexOf('.html'));
         var checkArea = '#title,#brand,#description,#advertText,#minimum,#stock,#price';
+        var uploaderConfig,uploadProductImg;
         init();
         function init()
         {
-           var $uploaded = $('.img_uploading .image_uploaded');
-           if($uploaded.length > 0){
-               $.each($uploaded, function (index, item){
-                  var $img = $(item).find('img');
-                  images.push([$img.attr('src').split('@.src')[0], $img.attr('fh-rid')]);
-               });
-           }
+            //如果上传按钮没隐藏时
+            if(!$('.img_uploading li.hide').length){
+                createProductUpload();
+            }
+            var $uploaded = $('.img_uploading .image_uploaded');
+            if($uploaded.length > 0){
+                $.each($uploaded, function (index, item){
+                    var $img = $(item).find('img');
+                    images.push([$img.attr('src').split('@.src')[0], $img.attr('fh-rid')]);
+                });
+            }
         }
-        $('#brand,#title,#description,#advertText').keyup(function(){
-           var len = $(this).val().length;
-           $(this).next('span').find('em').text(len);
+        $('#brand,#title,#description,#advertText').keyup(function (){
+            var len = $(this).val().length;
+            $(this).next('span').find('em').text(len);
         });
         //提交 submit为保存,draft为生成草稿
         $('#submit,#draft').click(function (){
@@ -62,15 +67,15 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 params['attribute']['自定义属性'][key] = val;
             });
             if(0 == images.length){
-               layer.msg('请上传产品的图片，至少1张!');
-               return;
+                layer.msg('请上传产品的图片，至少1张!');
+                return;
             }
             params['images'] = images;
-            
+
             var editorHtml = editor.html(), editorText = editor.text();
             if(!editorText || editorText.length < 20){
-               layer.msg('请填写商品简介信息，至少20个字！');
-               return;
+                layer.msg('请填写商品简介信息，至少20个字！');
+                return;
             }
             params['introduction'] = editorHtml;
             var imgArray = editorHtml.match(imgReg);
@@ -90,22 +95,22 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             params['unit'] = $('#proUnit').val();
             if($(this).attr('id') === 'submit'){
                 params['status'] = 3;
-            }else{
+            } else{
                 params['status'] = 1;
             }
             params['number'] = number;
-            Cntysoft.Front.callApi('Product','updateProduct',params,function(response){
+            Cntysoft.Front.callApi('Product', 'updateProduct', params, function (response){
                 if(response.status){
                     layer.alert('商品修改成功！', {
                         btn : '',
-                        success : function(){
-                           var redirect = function(){
-                              window.location = '/product/1.html';
-                           };
-                           setTimeout(redirect, 300);
+                        success : function (){
+                            var redirect = function (){
+                                window.location = '/product/1.html';
+                            };
+                            setTimeout(redirect, 300);
                         }
-                     });
-                }else{
+                    });
+                } else{
                     layer.alert('商品修改错误，请核对您的信息！');
                 }
             });
@@ -124,57 +129,15 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             console.log($(this).closest('.customAttr'));
             $(this).closest('.customAttr').remove();
         });
-        //上传的默认配置项
-        var uploaderConfig = {
-            chunked : false,
-            auto : true,
-            dnd : '#uploadBtn',
-            threads : 1,
-            accept : {
-                title : 'Images',
-                extensions : 'gif,jpg,jpeg,bmp,png',
-                mimeTypes : 'image/*'
-            },
-            server : '/front-api-entry',
-            formData : {
-                REQUEST_META : Cntysoft.Json.encode({
-                    cls : "Uploader",
-                    method : "process"
-                }),
-                REQUEST_DATA : Cntysoft.Json.encode({
-                    uploadDir : "/Data/UploadFiles/Apps/ZhuChao/Product",
-                    overwrite : true,
-                    randomize : true,
-                    createSubDir : true,
-                    enableFileRef : true,
-                    useOss : true
-                }),
-                REQUEST_SECURITY : Cntysoft.Json.encode({})
-            }
-        };
-        //处理上传
-        var uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-            pick : '#uploadBtn'
-        }));
-        //上传商品图片
-        uploadProductImg.on('beforeFileQueued', function (){
-            if(images.length == 5){
-                layer.alert('最多上传5张图片');
-                return false;
-            }
-        });
-        //商品图片上传成功
-        uploadProductImg.on('uploadSuccess', function (file, response){
-            if(response.status){
-                images.push([response.data[0].filename, response.data[0].rid]);
-                showImg();
-            }
-        });
+
         //删除商品图片
-        $('.img_uploading').delegate('.deleteImg','click',function(){
+        $('.img_uploading').delegate('.deleteImg', 'click', function (){
             var imgWrap = $(this).closest('li');
-            images.splice($(imgWrap).index(),1);
+            images.splice($(imgWrap).index(), 1);
             showImg();
+            if(uploadProductImg == undefined){
+                createProductUpload();
+            }
         });
         //商品标题预览
         $('#title,#brand,#description,#advertText').keyup(function (){
@@ -209,11 +172,11 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         function showImg(){
             $('#uploadBtn').siblings('li').remove();
             $.each(images, function (index, item){
-                $('#uploadBtn').before('<li><img src="'+item[0]+'"><em class="deleteImg">删除</em></li>');
+                $('#uploadBtn').before('<li><img src="' + item[0] + '"><em class="deleteImg">删除</em></li>');
             });
             if(images.length != 5){
                 $('#uploadBtn').show();
-            }else{
+            } else{
                 $('#uploadBtn').hide();
             }
         }
@@ -228,6 +191,55 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             });
             return val;
         }
+        //初始化商品图片上传
+        function createProductUpload(){
+            uploaderConfig = {
+                chunked : false,
+                auto : true,
+                dnd : '#uploadBtn',
+                threads : 1,
+                accept : {
+                    title : 'Images',
+                    extensions : 'gif,jpg,jpeg,bmp,png',
+                    mimeTypes : 'image/*'
+                },
+                server : '/front-api-entry',
+                formData : {
+                    REQUEST_META : Cntysoft.Json.encode({
+                        cls : "Uploader",
+                        method : "process"
+                    }),
+                    REQUEST_DATA : Cntysoft.Json.encode({
+                        uploadDir : "/Data/UploadFiles/Apps/ZhuChao/Product",
+                        overwrite : true,
+                        randomize : true,
+                        createSubDir : true,
+                        enableFileRef : true,
+                        useOss : true
+                    }),
+                    REQUEST_SECURITY : Cntysoft.Json.encode({})
+                }
+            };
+            //处理上传
+            uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
+                pick : '#uploadBtn'
+            }));
+            //上传商品图片
+            uploadProductImg.on('beforeFileQueued', function (){
+                if(images.length == 5){
+                    layer.alert('最多上传5张图片');
+                    return false;
+                }
+            });
+            //商品图片上传成功
+            uploadProductImg.on('uploadSuccess', function (file, response){
+                if(response.status){
+                    images.push([response.data[0].filename, response.data[0].rid]);
+                    showImg();
+                }
+            });
+        }
+
         //添加图片上传插件
         KindEditor.plugin('upload', function (K){
             var editor = this, name = 'upload';

@@ -101,6 +101,10 @@ class Acl extends AbstractLib
             return \Cntysoft\PROVIDER_USER_S_KEY_REG_MSG_CODE;
          case Constant::SMS_TYPE_FORGET:
             return \Cntysoft\PROVIDER_USER_S_KEY_FORGET_MSG_CODE;
+         case Constant::SMS_TYPE_SHOWPHONE:
+            return \Cntysoft\PROVIDER_USER_S_KEY_SHOWPHONE_MSG_CODE;
+         case Constant::SMS_TYPE_CHANGEPHONE:
+            return \Cntysoft\PROVIDER_USER_S_KEY_CHANGEPHONE_MSG_CODE;
          default:
             return \Cntysoft\PROVIDER_USER_S_KEY_REG_MSG_CODE;
       }
@@ -163,7 +167,9 @@ class Acl extends AbstractLib
    {
       if (!in_array($type, array(
                  Constant::SMS_TYPE_REG,
-                 Constant::SMS_TYPE_FORGET
+                 Constant::SMS_TYPE_FORGET,
+                 Constant::SMS_TYPE_SHOWPHONE,
+                 Constant::SMS_TYPE_CHANGEPHONE
               ))) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
@@ -539,6 +545,25 @@ class Acl extends AbstractLib
       $password = $hasher->hash($newPassword);
       $user->setPassword($password);
       return $user->save();
+   }
+
+   /**
+    * 检测密码是否正确
+    * @param type $password
+    */
+   public function checkPassword($password)
+   {
+      $user = $this->getCurUser();
+      $hasher = $this->di->getShared('security');
+      $curPassword = $user->getPassword();
+      //首先验证输入的原密码是否正确
+      if (!$hasher->checkHash($password, $curPassword)) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_PROVIDER_PASSWORD_ERROR'), $errorType->code('E_PROVIDER_PASSWORD_ERROR')
+                 ), $this->getErrorTypeContext());
+      }
+      return true;
    }
 
    /**

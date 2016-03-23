@@ -1,4 +1,4 @@
-define(['jquery', 'Core', 'Front', 'layer'], function() {
+define(['jquery', 'Core', 'Front', 'layer','app/common'], function() {
 	$(document).ready(function() {
 		//全選
 		$('.prolist_operate').find('.check').click(function() {

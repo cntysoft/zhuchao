@@ -31,7 +31,7 @@ class Product extends AbstractScript
    public function addProduct(array $params)
    {
       $this->checkRequireFields($params, array('categoryId', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
-      $provider = $this->getCurUser();
+      $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $company = $provider->getCompany();
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
@@ -86,7 +86,7 @@ class Product extends AbstractScript
    public function updateProduct(array $params)
    {
       $this->checkRequireFields($params, array('number', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
-      $provider = $this->getCurUser();
+      $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $company = $provider->getCompany();
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
@@ -213,7 +213,7 @@ class Product extends AbstractScript
    public function deleteProduct(array $params)
    {
       $this->checkRequireFields($params, array('numbers'));
-      $curUser = $this->getCurUser();
+      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $numbers = $params['numbers'];
       if(!is_array($numbers)){
          $numbers = array($numbers);
@@ -245,7 +245,7 @@ class Product extends AbstractScript
    public function shelfProduct(array $params)
    {
       $this->checkRequireFields($params, array('numbers'));
-      $curUser = $this->getCurUser();
+      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       
       $this->appCaller->call(
          P_CONST::MODULE_NAME,
@@ -273,7 +273,7 @@ class Product extends AbstractScript
    public function upshelfProduct(array $params)
    {
       $this->checkRequireFields($params, array('numbers'));
-      $curUser = $this->getCurUser();
+      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       
       $this->appCaller->call(
          P_CONST::MODULE_NAME,
@@ -326,7 +326,7 @@ class Product extends AbstractScript
     */
    public function getProviderGroup()
    {
-      $curUser = $this->getCurUser();
+      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $groupTree = $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,
@@ -370,7 +370,7 @@ class Product extends AbstractScript
    public function addGroup(array $params)
    {
       $this->checkRequireFields($params, array('name'));
-      $provider = $this->getCurUser();
+      $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       
       if(isset($params['pid'])){
          $params['pid'] = (int)$params['pid'];
@@ -404,21 +404,6 @@ class Product extends AbstractScript
       }
       
       return $this->categoryTree;
-   }
-   
-   /**
-    * 获取当前登陆的供应商
-    * 
-    * @return 
-    */
-   public function getCurUser()
-   {
-      return $this->appCaller->call(
-         PROVIDER_CONST::MODULE_NAME,
-         PROVIDER_CONST::APP_NAME,
-         PROVIDER_CONST::APP_API_MGR,
-         'getCurUser'
-      );
    }
    
    /**

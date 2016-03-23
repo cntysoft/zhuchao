@@ -13,16 +13,16 @@ if(isset($query['keyword']) && $query['keyword']){
 }
 switch($status){
    case 2:
-      $cls1 = 'current';
+      $cls1 = 'main_bg';
       break;
    case 3:
-      $cls2 = 'current';
+      $cls2 = 'main_bg';
       break;
    case 4:
-      $cls3 = 'current';
+      $cls3 = 'main_bg';
       break;
    case 5:
-      $cls4 = 'current';
+      $cls4 = 'main_bg';
       break;
 }
 $num1 = $num2 = $num3 = $num4 = 0;
@@ -51,10 +51,10 @@ echo '<div class="search_wrap clearfix">
       <i class="icon-sousuo"></i>
    </div>
    <ul class="clearfix fl pro_status">
-      <li class="'.$cls2.'">已上架'.($num2 > 0 ? '（'.$num2.'）' : '').'</li>
-      <li class="'.$cls1.'">审核中'.($num1 > 0 ? '（'.$num1.'）' : '').'</li>
-      <li class="'.$cls4.'">已下架'.($num4 > 0 ? '（'.$num4.'）' : '').'</li>
-      <li class="'.$cls3.'">被拒审'.($num3 > 0 ? '（'.$num3.'）' : '').'</li>
+      <li ><a href="/product/1.html?status=3" class="'.$cls2.'">已上架'.($num2 > 0 ? '（'.$num2.'）' : '').'</a></li>
+      <li><a href="/product/1.html?status=2" class="'.$cls1.'">审核中'.($num1 > 0 ? '（'.$num1.'）' : '').'</a></li>
+      <li><a href="/product/1.html?status=5"  class="'.$cls4.'">已下架'.($num4 > 0 ? '（'.$num4.'）' : '').'</a></li>
+      <li><a href="/product/1.html?status=4" class="'.$cls3.'">被拒审'.($num3 > 0 ? '（'.$num3.'）' : '').'</a></li>
    </ul>
 </div>';
 

@@ -29,6 +29,8 @@ class Constant
    //手机短信验证码的类型
    const SMS_TYPE_REG = 1;
    const SMS_TYPE_FORGET = 2;
+   const SMS_TYPE_SHOWPHONE = 3;
+   const SMS_TYPE_CHANGEPHONE = 4;
    
    //图片验证码的类型
    const PIC_CODE_TYPE_REG = 1;

@@ -73,6 +73,44 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
             effect : "fadeIn",
             placeholder : "/Statics/Skins/Images/pc/lazyicon.png"
         });
+        //返回顶部
+        $(function (){
+            $.fn.manhuatoTop = function (options){
+                var defaults = {
+                    showHeight : 150,
+                    speed : 1000
+                };
+                var options = $.extend(defaults, options);
+                $('body').prepend('<div id = "totop" style="display: block;" > <a> < i class = "icon-jiantou1" > < /i></a> <a> < i class = "icon-kefu" > < /i><em>客服</em > </a></div >');
+                var $toTop = $(this);
+                var $top = $('#totop');
+                var $ta = $('#totop a');
+                var scrolltop = $(window).scrollTop();
+                $top.hide();
+                if(scrolltop >= options.showHeight){
+                    $top.show();
+                }
+                $toTop.scroll(function (){
+                    var scrolltop = $(this).scrollTop();
+                    if(scrolltop >= options.showHeight){
+                        $top.show();
+                    }
+                    else{
+                        $top.hide();
+                    }
+                });
+                $top.click(function (){
+                    $("html,body").animate({scrollTop : 0}, options.speed);
+                });
+            }
+        });
+        $(function (){
+            $(window).manhuatoTop({
+                showHeight : 500, //设置滚动高度时显示
+                speed : 500 //返回顶部的速度以毫秒为单位
+            });
+        })
     });
 });
+
 

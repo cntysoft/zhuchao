@@ -199,6 +199,15 @@
             }
         },
         {
+          "key":"ProviderMobilrApiEntry",
+          "rule":"\/mobile-api-entry",
+          "option":{
+              "module":"Provider",
+              "controller":"MobileApiEntry",
+              "action":"index"
+          }
+        },
+        {
             "key" : "ProviderYunzhan",
             "rule" : "\/site\/news\/{pageId:[1-9][0-9]*}.html",
             "option" : {
@@ -354,6 +363,28 @@
         ],
         "Site" : [
             "\\ProviderFrontApi\\Site",
+            2
+        ]
+    },
+    "mobile_api_map":{
+        "Provider" : [
+            "\\ProviderMobileApi\\Provider",
+            2
+        ],
+        "Product" : [
+            "\\ProviderMobileApi\\Product",
+            2
+        ],
+        "Uploader" : [
+            "\\ProviderMobileApi\\Uploader",
+            2
+        ],
+        "Company" : [
+            "\\ProviderMobileApi\\Company",
+            2
+        ],
+        "Utils" : [
+            "\\ProviderMobileApi\\Utils",
             2
         ]
     }
