@@ -81,12 +81,12 @@ define(['jquery', 'Front', 'comment'], function (){
             if(content.length < 10){
                 return false;
             }
-            Cntysoft.Front.callApi('Utils', 'addXunjiadan', params, function (response){
+            Cntysoft.Front.callApi('User', 'addXunjiadan', params, function (response){
                 if(response.status){
                     $('#xunjia_content').val('');
                     $('.online').hide();
                 } else {
-                    if(response.errorCode == 10014){
+                    if(response.errorCode == 5){
                         window.location.href = window.BUYER_SITE_NAME + '/login.html';
                     }
                 }

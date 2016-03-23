@@ -115,6 +115,7 @@ class Goods extends AbstractLabelScript
     */
    public function getGoodsList(array $cond, $total, $orderBy, $offset, $limit)
    {
+		$cond = array_merge($cond, array("status = 3"));
       return $this->appCaller->call(
                       GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, $total, $orderBy, $offset, $limit));
    }

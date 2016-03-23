@@ -43,15 +43,14 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 					 <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
 				</ul>
 		  </div>
-		  <!--导航 文字列表-->
 		  <ul id="mallSearchNav" class="mall_search_nav clearfix">
-				<li class="current"><a>综合</a></li>
-				<li><a>热度</a></li>
-				<li class="search_price"><a>价格</a><i class="up_sanjiao sanjiao"></i><i class="down_sanjiao sanjiao"></i></li>
+				<li id="1" sort="1"><a>新品</a></li>
+				<li id="2" sort="1"><a>人气</a></li>
+				<li id="3" class="search_price up"><a>价格</a><i class="up_sanjiao sanjiao current"></i><i class="down_sanjiao sanjiao"></i></li>
 				<li id="shaixuan"><a>筛选</a><i class="icon-shaixuan"></i></li>
 		  </ul>
 		  <!--筛选条件-->
-		  <?php Qs::Label('商品类/搜索商品列表', array('renderTpl' => 'Mobile_ProductList','outputNum' => 1)) ?>
+		  <?php Qs::Label('商品类/搜索商品列表', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 2)) ?>
 		  <?php Qs::Sys('loadRequireJs', 'mall/prosearch'); ?>
 	 </body>
 </html>

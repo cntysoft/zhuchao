@@ -16,7 +16,7 @@ foreach ($goodsLists['docs'] as $goods) {
       $attrvalue+=$attrs;
    }
    $price0 = $goods->getPrice();
-   $price = $price0 > 0 ? '¥<em>' . substr($price0, 0, iconv_strpos($price0, '.')) . '</em>.' . $price0 * 100 % 100 : '<em>面议</em>';
+   $price = $price0 > 0 ? '¥<em>' . substr($price0, 0, iconv_strpos($price0, '.')) . '</em>.' . $price0 * 100 % 100 : '￥<em>面议</em>';
    $out .= ' <div class="show_list clearfix">
                             <a class="pro_img" href="'.$url.'"><img src="' . $this->getImgUrl($defpic, 195, 195) . '"> </a>
                             <div class="pro_info">

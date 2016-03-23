@@ -249,6 +249,7 @@ class ProductClassify extends AbstractLabelScript
       if (null == $limit) {
          $limit = $this->invokeParams['outputNum'];
       }
+		$cond = array_merge($cond, array("status = 3"));
       $goodsList = $this->appCaller->call(
               GOOD_CONST::MODULE_NAME, GOOD_CONST::APP_NAME, GOOD_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, $total, $orderBy, $offset, $limit));
       return $goodsList;

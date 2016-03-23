@@ -30,7 +30,7 @@ class InquiryOffer extends AbstractHandler
 			$product = $inquiry->getProduct();
          $child = array(
             'id'          => $inquiry->getId(),
-            'inquiry'     => $buyer->getName(),
+            'inquiry'     => $buyer->getPhone(),
             'inquiryTime' => date('Y-m-d', $inquiry->getInputTime()),
             'goods'       => $product->getBrand().$product->getTitle().$product->getDescription()
          );

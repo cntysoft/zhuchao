@@ -173,7 +173,7 @@ foreach ($nodes as $node) {
 		return false;
 	}
 	$cond = array(
-		'categoryId = ?1',
+		'categoryId = ?1 AND status = 3',
 		'bind' => array(
 			1 => $node
 		)
@@ -264,9 +264,9 @@ foreach ($nodes as $node) {
             </div>
         </div>
     </div>';
-	$out .= '</div>';
 	$j++;
 }
+$out .= '</div>';
 echo $out;
 ?>
 

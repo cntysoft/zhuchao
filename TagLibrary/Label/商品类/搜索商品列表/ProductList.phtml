@@ -17,7 +17,7 @@ foreach ($goodsLists['docs'] as $goods) {
    $imageUrl = $this->getImageCdnUrl($goods['defaultImage'], array('w' => 195, 'h' => 195));
    $name = $goods['brand'] . ' ' . $goods['title']. ' ' . $goods['description'];
    $price0 = $goods['price'];
-   $price = $price0 > 0 ? '¥<em>' . substr($price0, 0, iconv_strpos($price0, '.')) . '</em>.' . $price0 * 100 % 100 : '<em>面议</em>';
+   $price = $price0 > 0 ? ($price0>100000 ? '￥<em>'.  round($price0/10000, 2).'</em>万' : '¥<em>' . substr($price0, 0, iconv_strpos($price0, '.')) . '</em>.' . $price0 * 100 % 100) : '￥<em>面议</em>';
    $out .= ' <div class="show_list clearfix">
                             <a class="pro_img" href="'.$url.'"><img src="' . $imageUrl. '"> </a>
                             <div class="pro_info">

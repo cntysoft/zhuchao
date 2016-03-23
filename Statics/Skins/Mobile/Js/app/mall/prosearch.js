@@ -1,21 +1,20 @@
 /**
- * Created by jiayin on 2016/3/16.
+ * Created by jiayin on 2016/1/6.
  */
 define(['zepto'], function (){
+    //导航
+    $('.header_right').tap(function (){
+        var that = $('.top_nav_box');
+        if(that.hasClass('in')){
+            $(that).removeClass('in');
+            return false;
+        } else{
+            $(that).addClass('in');
+            return false;
+        }
+    });
+    //头部导航样式
     $(function (){
-        //导航
-        $('.header_right').tap(function (){
-            var that = $('.top_nav_box');
-            if(that.hasClass('in')){
-                $(that).removeClass('in');
-                return false;
-            } else{
-                $(that).addClass('in');
-                return false;
-            }
-
-        });
-
         var search = decodeURI(window.location.search);
         if(search){
             var params = search.substring(1);
@@ -50,13 +49,13 @@ define(['zepto'], function (){
                     }
                 });
             }
-            $('.shaixuan_nav li.maincolor').each(function (){
+            $('.shaixuan_item li.current').each(function (){
                 var item = $(this);
                 cond[item.attr('id')] = item.attr('data');
             });
             $('#mallSearchNav li').each(function (){
-                if($(this).hasClass('maincolor')){
-                    cond['sort'] = $('#mallSearchNav li.maincolor').attr('id') + '_' + $('#mallSearchNav li.maincolor').attr('sort');
+                if($(this).hasClass('current')){
+                    cond['sort'] = $('#mallSearchNav li.current').attr('id') + '_' + $('#mallSearchNav li.current').attr('sort');
                 }
             });
             $.each(cond, function (index, item){
@@ -72,16 +71,16 @@ define(['zepto'], function (){
         $('#mallSearchNav li').tap(function (){
             var $this = $(this);
             if($this.attr('id') == '1' || $this.attr('id') == '2'){
-                if(!$this.hasClass('maincolor')){
-                    $this.siblings('.maincolor').removeClass('maincolor');
-                    $this.addClass('maincolor');
+                if(!$this.hasClass('current')){
+                    $this.siblings('.current').removeClass('current');
+                    $this.addClass('current');
                     $this.attr('sort', 1);
                 }
                 redirectUrl();
             }
-            if($this.attr('id') == '4'){
-                $this.siblings('.maincolor').removeClass('maincolor');
-                $this.addClass('maincolor');
+            if($this.attr('id') == '3'){
+                $this.siblings('.current').removeClass('current');
+                $this.addClass('current');
                 if($('.sanjiao').hasClass('current')){
                     $this.find('.sanjiao').toggleClass('current');
                 }
@@ -90,6 +89,11 @@ define(['zepto'], function (){
                 }
                 if($('.down_sanjiao').hasClass('current')){
                     $this.attr('sort', 2);
+                }
+                if($this.hasClass('up')){
+                    $this.removeClass('up').addClass('down');
+                } else{
+                    $this.removeClass('down').addClass('up');
                 }
                 redirectUrl();
             }
@@ -102,7 +106,7 @@ define(['zepto'], function (){
                 $.each($('#' + id), function (){
                     var span = $(this);
                     if(span.attr('data') == data){
-                        span.addClass('maincolor');
+                        span.addClass('current');
                     }
                 });
             });
@@ -114,18 +118,20 @@ define(['zepto'], function (){
                 var data = arr[1];
                 if(id == 'sort'){
                     var item = data.split('_');
-                    if(item[0] == '4'){
+                    if(item[0] == '3'){
                         if(item[1] == '1'){
+                            $('.search_price').removeClass('down').addClass('up');
                             $('.up_sanjiao').addClass('current')
                             $('.down_sanjiao').removeClass('current')
                         }
                         if(item[1] == '2'){
+                            $('.search_price').removeClass('up').addClass('down');
                             $('.down_sanjiao').addClass('current')
                             $('.up_sanjiao').removeClass('current')
                         }
                     } else{
                         $('#' + item[0]).attr('sort', item[1]);
-                        $('#' + item[0]).addClass('maincolor');
+                        $('#' + item[0]).addClass('current');
                     }
                 }
             });
@@ -138,7 +144,7 @@ define(['zepto'], function (){
         //点击取消
         $('.cancel').tap(function (){
             $('#shaixuanListNav').find('.choose_text').text('不限');
-            $('.shaixuan_item').find('li.maincolor').removeClass('maincolor');
+            $('.shaixuan_item').find('li.current').removeClass('current');
             $('#shaixuanBox').addClass('hide');
             $('html,body').css({'height' : 'auto', 'overflow' : 'visible'});
         });
@@ -151,7 +157,7 @@ define(['zepto'], function (){
         //点击条件
         $('.shaixuan_item .module_text_nav li').tap(function (){
             var index = $(this).closest('.shaixuan_item').index();
-            $(this).addClass('maincolor').siblings().removeClass('maincolor');
+            $(this).addClass('current').siblings().removeClass('current');
             var textValue = $(this).children('a').text();
             $('#shaixuanListBox').hide();
             $('#shaixuanIndex').show();
@@ -168,7 +174,7 @@ define(['zepto'], function (){
         //清除选择
         $('.submit_btn').tap(function (){
             $('#shaixuanListNav').find('.choose_text').text('不限');
-            $('.shaixuan_item').find('li.maincolor').removeClass('maincolor');
+            $('.shaixuan_item').find('li.current').removeClass('current');
         });
         //返回按钮
         $('#shaixuanListBox .goback').tap(function (){
@@ -176,4 +182,5 @@ define(['zepto'], function (){
             $('#shaixuanIndex').show();
         });
     });
+
 });
