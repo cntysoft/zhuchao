@@ -52,6 +52,9 @@ class CompanyInfo extends AbstractDsScript
       unset($ret['id']);
       unset($ret['providerId']);
       unset($ret['inputTime']);
+      
+      $products = $ret['products'];
+      $ret['products'] = explode(',', $products);
       return $ret;
    }
 

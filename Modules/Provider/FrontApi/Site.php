@@ -83,4 +83,48 @@ class Site extends AbstractScript
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array($id, $params));
    }
 
+   public function modifyIntro($params)
+   {
+      $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
+      
+      $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_INTRO_ID, array(
+         'content' => $params['content'],
+         'fileRefs' => $params['fileRefs'],
+         'imgRefMap' => $params['imgRefMap']
+      )));
+   }
+   
+   public function modifyCulture($params)
+   {
+      $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
+      
+      $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_CULTURE_ID, array(
+         'content' => $params['content'],
+         'fileRefs' => $params['fileRefs'],
+         'imgRefMap' => $params['imgRefMap']
+      )));
+   }
+   
+   public function modifyZizhi($params)
+   {
+      $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
+      
+      $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_ZIZHI_ID, array(
+         'content' => $params['content'],
+         'fileRefs' => $params['fileRefs'],
+         'imgRefMap' => $params['imgRefMap']
+      )));
+   }
+   
+   public function modifyContact($params)
+   {
+      $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
+      
+      $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_CONTACT_ID, array(
+         'content' => $params['content'],
+         'fileRefs' => $params['fileRefs'],
+         'imgRefMap' => $params['imgRefMap']
+      )));
+   }
+   
 }

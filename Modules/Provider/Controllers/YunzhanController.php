@@ -104,10 +104,34 @@ class YunzhanController extends AbstractController
       ));
    }
 
-   public function settingAction()
+   public function introAction()
    {
       return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'yunzhan/setting',
+                 View::KEY_RESOLVE_DATA => 'yunzhan/intro',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   public function cultureAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/culture',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   public function zizhiAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/zizhi',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   public function contactAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/contact',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }

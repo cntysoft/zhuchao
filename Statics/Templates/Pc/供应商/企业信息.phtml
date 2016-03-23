@@ -70,10 +70,16 @@ Qs::Ds('用户数据源/企业信息', 'User');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>主营产品：</label>
-                        <input class="middle_input checkField" id="product1"  type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" required>
-                        <input class="middle_input checkField" id="product2"  type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" >
-                        <input class="middle_input checkField" id="product3" type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6位产品名称" >
-                        <input class="middle_input checkField" id="product4" type="text" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$' tip-value="请输入1-6产品名称" >
+                        <?php
+                           $products = Qs::DsField('User', 'products', true);
+                           foreach($products as $key => $p) {
+                              if(0 == $key) {
+                                 echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
+                              }else {
+                                 echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
+                              }
+                           }
+                        ?>
                     </div>
 
                     <div class="form_list">

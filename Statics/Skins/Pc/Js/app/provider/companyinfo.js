@@ -30,12 +30,11 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
             params['tradeMode'] = getRadioValueByName('tradeMode');
             Cntysoft.Front.callApi('Company', 'updateCompany', params, function (response){
                 if(response.status){
-
+                     layer.msg('信息保存成功!');
                 } else{
-
+                    layer.msg('信息保存失败,请稍候再试');
                 }
             });
-            console.log(params);
         });
         //上传的默认配置项
         var uploaderConfig = {

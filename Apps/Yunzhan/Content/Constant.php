@@ -44,9 +44,14 @@ final class Constant
     */
    const CMODEL_ARTICLE_ID = 1;
    const CMODEL_JOB_ID = 2;
-   
+   //系统默认的栏目ID
    const NODE_COMPANY_ID = 2;
    const NODE_INDUSTRY_ID = 3;
    const NODE_ABOUT_ID = 4;
    const NODE_JOIN_ID = 5;
+   //系统默认的文章ID
+   const INFO_INTRO_ID = 1;
+   const INFO_CULTURE_ID = 2;
+   const INFO_ZIZHI_ID = 3;
+   const INFO_CONTACT_ID = 4;
 }

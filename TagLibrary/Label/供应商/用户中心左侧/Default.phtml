@@ -1,6 +1,6 @@
 <?php
 $routeInfo = $this->getRouteInfo();
-$cls1 = $cls2 = $cls3 = $cls4 = $cls5 = $cls6 = $cls7 = $cls8 = $cls9 = $cls10 = $cls11 = $cls12 = $cls13 = '';
+$cls1 = $cls2 = $cls3 = $cls4 = $cls5 = $cls6 = $cls7 = $cls8 = $cls9 = $cls10 = $cls11 = $cls12 = $cls13 = $cls14 = $cls15 = $cls16= '';
 switch($routeInfo['action']){
    case 'account':
       $cls1 = 'main_bg_light';
@@ -39,7 +39,7 @@ switch($routeInfo['action']){
    case 'addjob':
       $cls10 = 'main_bg_light';
       break;
-   case 'setting':
+   case 'intro':
       $cls11 = 'main_bg_light';
       break;
    case 'businessmsg':
@@ -47,6 +47,15 @@ switch($routeInfo['action']){
       break;
    case 'sysmsg':
       $cls13 = 'main_bg_light';
+      break;
+   case 'culture':
+      $cls14 = 'main_bg_light';
+      break;
+   case 'zizhi':
+      $cls15 = 'main_bg_light';
+      break;
+   case 'contact':
+      $cls16 = 'main_bg_light';
       break;
 }
 
@@ -72,15 +81,10 @@ $out = '<div class="items_wrap fl">
              <dt><i class="icon-caozuochenggong"></i>店铺设置</dt>
              <dd><a class="mainbg_hover_light '.$cls9.'" href="/site/news/1.html">店铺新闻</a></dd>
              <dd><a class="mainbg_hover_light '.$cls10.'" href="/site/job/1.html">招聘信息</a></dd>
-             <dd><a class="mainbg_hover_light '.$cls11.'" href="/site/setting.html">店铺设置</a></dd>
-             <dd><a class="mainbg_hover_light '.$cls11.'" href="/site/setting.html">店铺设置</a></dd>
-             <dd><a class="mainbg_hover_light '.$cls11.'" href="/site/setting.html">店铺设置</a></dd>
-             <dd><a class="mainbg_hover_light '.$cls11.'" href="/site/setting.html">店铺设置</a></dd>
-         </dl>
-         <dl>
-             <dt><i class="icon-caozuochenggong"></i>消息</dt>
-             <dd><a class="mainbg_hover_light '.$cls12.'" href="/account/businessmsg/1.html">服务消息</a></dd>
-             <dd><a class="mainbg_hover_light '.$cls13.'" href="/account/sysmsg/1.html">系统消息</a></dd>
+             <dd><a class="mainbg_hover_light '.$cls11.'" href="/site/intro.html">企业介绍</a></dd>
+             <dd><a class="mainbg_hover_light '.$cls14.'" href="/site/culture.html">企业文化</a></dd>
+             <dd><a class="mainbg_hover_light '.$cls15.'" href="/site/zizhi.html">企业资质</a></dd>
+             <dd><a class="mainbg_hover_light '.$cls16.'" href="/site/contact.html">联系我们</a></dd>
          </dl>
      </div>';
 

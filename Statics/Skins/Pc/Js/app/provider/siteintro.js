@@ -3,24 +3,26 @@
  */
 define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader){
     $(function (){
-        var imgRefMap = new Array();
-        var fileRefs = new Array();
-        var defaultPicUrl = new Array();
-        var uploadImg, editor, uploaderConfig;
+        var editor;
         init();
         //提交 submit为保存,draft为生成草稿
         $('#submit').click(function (){
             var params = {};
             var content = editor.html();
             if(content.length < 20){
-                layer.msg('招聘详情内容过少');
+                layer.msg('详情内容过少');
                 editor.focus();
                 return false;
             }
             params.content = content;
             $.extend(params,getEditorFileRef(content));
-            params.fileRefs.push(params.defaultPicUrl[1]);
-            console.log(params);
+            Cntysoft.Front.callApi('Site', 'modifyIntro', params, function(response) {
+                if(response.status){
+                     layer.msg('信息保存成功!');
+                } else{
+                    layer.msg('信息保存失败,请稍候再试');
+                }
+            });
         });
 
 
@@ -53,23 +55,6 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 }
             };
             createEditorUplad();
-            createUploader();
-        }
-
-        function createUploader(){
-            //处理上传
-            uploadImg = WebUploader.create($.extend(uploaderConfig, {
-                pick : '.img_plus'
-            }));
-            //logo上传成功
-            uploadImg.on('uploadSuccess', function (file, response){
-                if(response.status){
-                    var out = '<li><img id="logo" src="' + response.data[0].filename + '" fh-rid="' + response.data[0].rid + '"><em class="deleteImg">删除</em></li>';
-                    $('.img_plus').siblings('li').remove();
-                    $('.img_plus').before(out);
-                    $('.img_plus').hide();
-                }
-            });
         }
         //初始化编辑器
         function createEditorUplad(){

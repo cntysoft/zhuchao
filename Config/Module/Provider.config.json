@@ -254,11 +254,38 @@
         },
         {
             "key" : "ProviderYunzhanSetting",
-            "rule" : "\/site\/setting.html",
+            "rule" : "\/site\/intro.html",
             "option" : {
                 "module" : "Provider",
                 "controller" : "Yunzhan",
-                "action" : "setting"
+                "action" : "intro"
+            }
+        },
+        {
+            "key" : "ProviderYunzhanSetting",
+            "rule" : "\/site\/zizhi.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "zizhi"
+            }
+        },
+        {
+            "key" : "ProviderYunzhanSetting",
+            "rule" : "\/site\/culture.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "culture"
+            }
+        },
+        {
+            "key" : "ProviderYunzhanSetting",
+            "rule" : "\/site\/contact.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "contact"
             }
         },
         {
@@ -299,7 +326,10 @@
         "yunzhan/joblist" : "供应商\/云站\/招聘列表.phtml",
         "yunzhan/addjob" : "供应商\/云站\/添加招聘.phtml",
         "yunzhan/modifyjob" : "供应商\/云站\/修改招聘.phtml",
-        "yunzhan/setting" : "供应商\/云站\/站点设置.phtml"
+        "yunzhan/intro" : "供应商\/云站\/企业介绍.phtml",
+        "yunzhan/culture" : "供应商\/云站\/企业文化.phtml",
+        "yunzhan/zizhi" : "供应商\/云站\/企业资质.phtml",
+        "yunzhan/contact" : "供应商\/云站\/联系我们.phtml"
     },
     "front_api_map" : {
         "Provider" : [

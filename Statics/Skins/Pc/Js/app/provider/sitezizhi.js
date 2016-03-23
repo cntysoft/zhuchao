@@ -3,67 +3,27 @@
  */
 define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader){
     $(function (){
-        var uploadImg, editor, uploaderConfig;
+        var editor;
         init();
         //提交 submit为保存,draft为生成草稿
         $('#submit').click(function (){
             var params = {};
-            var validation = validate.checkFields($('.checkfield'));
-            if(validation.length){
-                validation[0].ele.focus();
-                return false;
-            }
             var content = editor.html();
-            if($('#logo').length == 0){
-                layer.msg('请上传封面');
-                return false;
-            }
             if(content.length < 20){
-                layer.msg('新闻内容过少');
+                layer.msg('详情内容过少');
                 editor.focus();
                 return false;
             }
-            params.title = $('#title').val();
-            params.defaultPicUrl = [$('#logo').attr('src'), $('#logo').attr('fh-rid')];
             params.content = content;
-            params.nodeId = $('#nodeId').val();
-            $.extend(params, getEditorFileRef(content));
-            params.fileRefs.push(params.defaultPicUrl[1]);
-            //获取ID
-            var path = window.location.pathname.split('/');
-            params.id = parseInt(path.pop());
-            Cntysoft.Front.callApi('Site', 'modifyContent', params, function (response){
+            $.extend(params,getEditorFileRef(content));
+            Cntysoft.Front.callApi('Site', 'modifyZizhi', params, function(response) {
                 if(response.status){
-                    layer.msg('发表成功!', {
-                        time : 1000
-                    }, function (){
-                        window.location.href = '/site/news/1.html';
-                    });
+                     layer.msg('信息保存成功!');
                 } else{
-                    layer.msg('发表失败,请稍候再试!');
+                    layer.msg('信息保存失败,请稍候再试');
                 }
             });
         });
-        $('.img_uploading').delegate('.deleteImg', 'click', function (){
-            $(this).closest('li').remove();
-            $('.img_plus').show();
-            if(uploadImg == undefined){
-                createUploader();
-            }
-        });
-
-        //根据name获得radio的值
-        function getRadioValueByName(name){
-            var val = null;
-            $.each($('input[name=' + name + ']'), function (index, item){
-                if($(item).prop('checked')){
-                    val = $(item).val();
-                    return false;
-                }
-            });
-            return val;
-        }
-
 
 
         function init(){
@@ -95,25 +55,6 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 }
             };
             createEditorUplad();
-            if(!$('#logo').length){
-                createUploader();
-            }
-        }
-
-        function createUploader(){
-            //处理上传
-            uploadImg = WebUploader.create($.extend(uploaderConfig, {
-                pick : '.img_plus'
-            }));
-            //logo上传成功
-            uploadImg.on('uploadSuccess', function (file, response){
-                if(response.status){
-                    var out = '<li><img id="logo" src="' + response.data[0].filename + '" fh-rid="' + response.data[0].rid + '"><em class="deleteImg">删除</em></li>';
-                    $('.img_plus').siblings('li').remove();
-                    $('.img_plus').before(out);
-                    $('.img_plus').hide();
-                }
-            });
         }
         //初始化编辑器
         function createEditorUplad(){
@@ -164,7 +105,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             var params = {
                 imgRefMap : [],
                 fileRefs : []
-            };
+            }
             if(imgArray != null){
                 for(var i = 0, length = imgArray.length; i < length; i++) {
                     var ridSrc = imgArray[i].match(/<img fh-rid="([\d])*" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
