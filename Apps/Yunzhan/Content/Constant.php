@@ -47,6 +47,6 @@ final class Constant
    
    const NODE_COMPANY_ID = 2;
    const NODE_INDUSTRY_ID = 3;
-   
+   const NODE_ABOUT_ID = 4;
    const NODE_JOIN_ID = 5;
 }

@@ -9,6 +9,7 @@
 use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Kernel;
 use Cntysoft\Framework\Qs\View;
+use App\Yunzhan\Content\Constant as C_CONST;
 class YunzhanController extends AbstractController
 {
    /**
@@ -24,10 +25,10 @@ class YunzhanController extends AbstractController
          Kernel\goto_route('login.html?returnUrl=' . urlencode($path));
          exit;
       }
-      
+
       $user = $acl->getCurUser();
       $company = $user->getCompany();
-      if(!$company || !$company->getSubAttr()) {
+      if (!$company || !$company->getSubAttr()) {
          Kernel\dispatch_action('Provider', 'Index', 'open');
       }
    }
@@ -47,9 +48,21 @@ class YunzhanController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-   
+
    public function modifynewsAction()
    {
+      $id = $this->dispatcher->getParam('id');
+      $info = $this->getAppCaller()->call(C_CONST::MODULE_NAME, C_CONST::APP_NAME, C_CONST::APP_API_MANAGER, 'getGInfo', array($id));
+      if (!$info) {
+         Kernel\goto_route('site/news/1.html');
+      }else {
+         $node = $info->getNode();
+         $nid = $node->getId();
+         //关于我们栏目下面的文章有特定的修改地方,不能在这里修改
+         if(C_CONST::NODE_COMPANY_ID != $nid && C_CONST::NODE_INDUSTRY_ID != $nid) {
+            Kernel\goto_route('site/news/1.html');
+         }
+      }
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'yunzhan/modifynews',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
@@ -71,9 +84,20 @@ class YunzhanController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-   
+
    public function modifyjobAction()
    {
+      $id = $this->dispatcher->getParam('id');
+      $info = $this->getAppCaller()->call(C_CONST::MODULE_NAME, C_CONST::APP_NAME, C_CONST::APP_API_MANAGER, 'getGInfo', array($id));
+      if (!$info) {
+         Kernel\goto_route('/site/job/1.html');
+      }else {
+         $node = $info->getNode();
+         //关于我们栏目下面的文章有特定的修改地方,不能在这里修改
+         if(C_CONST::NODE_JOIN_ID != $node->getId()) {
+            Kernel\goto_route('site/job/1.html');
+         }
+      }
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'yunzhan/modifyjob',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
@@ -85,7 +109,7 @@ class YunzhanController extends AbstractController
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'yunzhan/setting',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      )); 
+      ));
    }
 
 }

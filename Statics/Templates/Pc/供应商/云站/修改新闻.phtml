@@ -1,4 +1,7 @@
-<?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
+<?php 
+Qs::Ds('商城数据源/商城数据', 'site');
+Qs::Ds('云站数据源/标准内容模型', 'info');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,33 +11,37 @@
         <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css', 'lib/default.css', 'lib/reset.css')) ?>
+<?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css', 'lib/default.css', 'lib/reset.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+<?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧') ?>
+<?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">发布店铺新闻</h1>
                 <div class="form_box">
                     <div class="form_list">
                         <label><em class="main">*</em>新闻标题:</label>
-                        <input type="text" id='title' class="checkfield" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){5,30}$" tip-value="请输入5-30位新闻标题" required>
+                        <input type="text" id='title' class="checkfield" value="<?php Qs::DsField('info', 'title'); ?>" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){5,30}$" tip-value="请输入5-30位新闻标题" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>新闻栏目:</label>
                         <select class="ui-form-select" name="nodeId" id="nodeId">
-                            <option value="2">公司新闻</option>
-                            <option value="3">行业新闻</option>
+                            <?php $nodeId = Qs::DsField('info', 'nodeId', true); ?>
+                            <option value="2" <?php echo 2==$nodeId ? 'selected' : ''; ?>>公司新闻</option>
+                            <option value="3" <?php echo 3==$nodeId ? 'selected' : ''; ?>>行业新闻</option>
                         </select>
                     </div>
                     <div class="form_list">
                         <label class="label_uploading"><em class="main">*</em>新闻封面：</label>
                         <ul class="img_uploading clearfix">
-                            <li class="img_plus">
+                            <li>
+                                <img id="logo" src="<?php Qs::DsField('info', 'defaultPicUrl'); ?>" fh-rid="<?php Qs::DsField('info', 'defaultPicUrlRefId'); ?>"><em class="deleteImg">删除</em>
+                            </li>
+                            <li class="img_plus hide">
                                 <p>+</p>
                                 <span>添加照片</span>
                             </li>
@@ -44,7 +51,7 @@
                         <label class="fl"><em class="main">*</em>新闻内容:</label>
                         <div class="fl">
                             <p class="title">&nbsp;&nbsp; 排版好样式会在新闻页面直接显示</p>
-                            <textarea class="textarea_area" id="info_editor" style="height: 400px;width: 650px;"></textarea>
+                            <textarea class="textarea_area" id="info_editor" style="height: 400px;width: 650px;"><?php Qs::DsField('info', 'content'); ?></textarea>
                         </div>
                     </div>
                     <div class="form_list">
@@ -56,6 +63,6 @@
             </div>
         </div>
         <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
-        <?php Qs::Sys('loadRequireJs', 'provider/newscontent') ?>
+<?php Qs::Sys('loadRequireJs', 'provider/newsmodify') ?>
     </body>
 </html>

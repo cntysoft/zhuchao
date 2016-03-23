@@ -53,23 +53,23 @@ class StdSaver extends AbstractSaver
       $scmodel = new $scmodelCls();
       $requires = $scmodel->getRequireFields(array('id'));
       Kernel\ensure_array_has_fields($data, $requires);
-      if (method_exists($scmodel, 'getFileRefs')) {
-         //检查文件引用
-         if (array_key_exists('fileRefs', $data)) {
-            if (empty($data['fileRefs'])) { //为空的时候直接给NULL
-               $data['fileRefs'] = null;
-            } else {
-               //先确定
-               $refManager = new RefManager();
-               foreach ($data['fileRefs'] as $ref) {
-                  $refManager->confirmFileRef($ref);
-               }
-               $data['fileRefs'] = implode(',', $data['fileRefs']);
-            }
-         }
-      } else {
+//      if (method_exists($scmodel, 'getFileRefs')) {
+//         //检查文件引用
+//         if (array_key_exists('fileRefs', $data)) {
+//            if (empty($data['fileRefs'])) { //为空的时候直接给NULL
+//               $data['fileRefs'] = null;
+//            } else {
+//               //先确定
+//               $refManager = new RefManager();
+//               foreach ($data['fileRefs'] as $ref) {
+//                  $refManager->confirmFileRef($ref);
+//               }
+//               $data['fileRefs'] = implode(',', $data['fileRefs']);
+//            }
+//         }
+//      } else {
          unset($data['fileRefs']);
-      }
+//      }
 
       $scmodel->assignBySetter($data);
       $scmodel->create();
@@ -93,23 +93,23 @@ class StdSaver extends AbstractSaver
             $this->getErrorTypeContext());
       }
       //条件缺一不可
-      if (isset($data['fileRefs']) && method_exists($scmodel, 'getFileRefs')) {
-         $oldRefs = $scmodel->getFileRefs();
-         $oldRefs = explode(',', $oldRefs);
-         $nowRefs = $data['fileRefs'];
-         $deleteRefs = array_diff($oldRefs, $nowRefs);
-         $newRefs = array_diff($nowRefs, $oldRefs);
-         $refManager = new RefManager();
-         foreach ($deleteRefs as $ref) {
-            $refManager->removeFileRef($ref);
-         }
-         foreach ($newRefs as $ref) {
-            $refManager->confirmFileRef($ref);
-         }
-         $data['fileRefs'] = implode(',', $data['fileRefs']);
-      } else {
+//      if (isset($data['fileRefs']) && method_exists($scmodel, 'getFileRefs')) {
+//         $oldRefs = $scmodel->getFileRefs();
+//         $oldRefs = explode(',', $oldRefs);
+//         $nowRefs = $data['fileRefs'];
+//         $deleteRefs = array_diff($oldRefs, $nowRefs);
+//         $newRefs = array_diff($nowRefs, $oldRefs);
+//         $refManager = new RefManager();
+//         foreach ($deleteRefs as $ref) {
+//            $refManager->removeFileRef($ref);
+//         }
+//         foreach ($newRefs as $ref) {
+//            $refManager->confirmFileRef($ref);
+//         }
+//         $data['fileRefs'] = implode(',', $data['fileRefs']);
+//      } else {
          unset($data['fileRefs']);
-      }
+//      }
 
       if (!empty($data)) {
          $scmodel->save($data);
