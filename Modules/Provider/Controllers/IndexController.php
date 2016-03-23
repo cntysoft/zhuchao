@@ -28,10 +28,12 @@ class IndexController extends AbstractController
 
    public function indexAction()
    {
-      return $this->setupRenderOpt(array(
-                 View::KEY_RESOLVE_DATA => 'provider/index',
-                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
-      ));
+//      return $this->setupRenderOpt(array(
+//                 View::KEY_RESOLVE_DATA => 'provider/index',
+//                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+//      ));
+      //暂时将首页重置到产品列表
+      Kernel\goto_route('product/1.html');
    }
 
    public function inquiryAction()
