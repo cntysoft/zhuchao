@@ -9,18 +9,12 @@
  */
 namespace TagLibrary\Ds\ContentModel;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractDsScript;
-use App\Yunzhan\Category\Constant as CategoryConst;
 use App\Yunzhan\Content\Constant as ContentConst;
 class CompanySetting extends AbstractDsScript
 {
    public function load()
    {
-      $node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodeByIdentifier', array('about')
-      );
-      $aboutlist = $this->appCaller->call(
-              ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array($node->getId()), 0, ContentConst::INFO_S_VERIFY, FALSE, 'id ASC', 0, 5)
-      );
-      $ret = array(
+      $ret = array(1 =>
          serialize(array(
             'pic'     => $this->getImgcdn('', '', ''),
             'content' => ''
@@ -39,17 +33,12 @@ class CompanySetting extends AbstractDsScript
                  array(
                     'pic'     => '',
                     'content' => ''
-         )),
-         serialize(
-                 array(
-                    'pic'     => '',
-                    'content' => ''
          ))
       );
-      foreach ($aboutlist as $index => $value) {
-         $info = $this->appCaller->call(ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_MANAGER, 'read', array($value->getId()));
+      foreach ($ret as $index => $value) {
+         $info = $this->appCaller->call(ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_MANAGER, 'read', array($index));
 
-         if ($index) {
+         if ($index > 1) {
             $ret[$index] = serialize(array(
                'content' => $info[1]->getContent()
             ));

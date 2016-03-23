@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php Qs::Ds('内容数据源/企业设置', 'CS') ?>
-<?php Qs::Ds('内容数据源/企业信息', 'CP');
+<?php
+Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('商城数据源/商城数据', 'sites');
 ?>
 <html lang="en">
@@ -11,13 +12,13 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-<?php Qs::Sys('loadCss', array('company/style.css', 'company/aboutus.css')) ?>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/aboutus.css')) ?>
     </head>
     <body>
         <!--头部-->
         <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
-<?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
         <!--站点指示-->
         <div class="site conwidth">
             <a href="/">首页</a>
@@ -31,7 +32,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                     <li><a  class="active_hover">公司介绍</a></li>
                     <li><a  class="active_hover">企业文化</a></li>
                     <li><a class="active_hover">企业资质</a></li>
-                    <li><a  class="active_hover">发展历程</a></li>
+                    <!--<li><a  class="active_hover">发展历程</a></li>-->
                     <li class="no_bb "><a class="active_hover">联系我们</a></li>
                 </ul>
             </div>
@@ -39,24 +40,18 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 <!--//公司介绍-->
                 <div class="m_intro ">
                     <h3>公司介绍</h3>
-                    <?php echo unserialize(Qs::DsField('CS', 0, true))['content']
+                    <?php echo unserialize(Qs::DsField('CS', 1, true))['content']
                     ?>
                 </div>
                 <!--企业文化-->
                 <div class="m_culture hide">
                     <h3>企业文化</h3>
-                    <?php echo unserialize(Qs::DsField('CS', 1, true))['content']
+                    <?php echo unserialize(Qs::DsField('CS', 2, true))['content']
                     ?>
                 </div>
                 <!--资质-->
                 <div class="m_zizhi hide">
                     <h3>企业资质</h3>
-                    <?php echo unserialize(Qs::DsField('CS', 2, true))['content']
-                    ?>
-                </div>
-                <!--发展历程-->
-                <div class="m_develop hide">
-                    <h3>发展历程</h3>
                     <?php echo unserialize(Qs::DsField('CS', 3, true))['content']
                     ?>
                 </div>
@@ -71,7 +66,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         </div>
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
-<?php Qs::Sys('loadRequireJs', 'company/aboutus') ?>
+        <?php Qs::Sys('loadRequireJs', 'company/aboutus') ?>
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BPWH0tb47EkNlH6fGGzh381M"></script>
     </body>
 </html>

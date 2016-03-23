@@ -39,7 +39,7 @@ foreach ($goodsLists['docs'] as $goods) {
                         </div>';
 }
 $totalPage = ceil($goodsLists['total'] / $this->invokeParams['outputNum']);
-if ($this->invokeParams['enablePage'] && $totalPage > 1) {
+if ($this->invokeParams['enablePage'] && $totalPage > 0) {
    $out1 = '';
    $currentPage = $this->getRouteInfo()['pageId'];
    $pageOne = ''; //首页要加的类名

@@ -44,8 +44,8 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 <div class="intro_detial">
                     <p>
                         <?php
-                        $inrodata = unserialize(Qs::DsField('CS', 0, true));
-                        echo iconv_substr($inrodata['content'], 0, 92)
+                        $inrodata = unserialize(Qs::DsField('CS', 1, true));
+                        echo iconv_strlen($inrodata['content']) > 92 ? iconv_substr($inrodata['content'], 0, 92) . '...' : $inrodata['content']
                         ?> <a href="/about.html">查看详情>></a>
                     </p>
                 </div>

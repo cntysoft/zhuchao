@@ -28,26 +28,19 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="employ_ele intro">
                 <h3><i></i>公司介绍</h3>
                 <div class="employ_detail hide">
-                    <?php echo unserialize(Qs::DsField('CS', 0, true))['content']
+                    <?php echo unserialize(Qs::DsField('CS', 1, true))['content']
                     ?>
                 </div>
             </div>
             <div class="employ_ele culture">
                 <h3><i></i>企业文化</h3>
                 <div class="employ_detail hide">
-                    <?php echo unserialize(Qs::DsField('CS', 1, true))['content']
+                    <?php echo unserialize(Qs::DsField('CS', 2, true))['content']
                     ?>
                 </div>
             </div>
             <div class="employ_ele zizhi">
                 <h3><i></i>企业资质</h3>
-                <div class="employ_detail hide">
-                    <?php echo unserialize(Qs::DsField('CS', 2, true))['content']
-                    ?>
-                </div>
-            </div>
-            <div class="employ_ele develop">
-                <h3><i></i>发展历程</h3>
                 <div class="employ_detail hide">
                     <?php echo unserialize(Qs::DsField('CS', 3, true))['content']
                     ?>
