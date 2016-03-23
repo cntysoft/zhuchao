@@ -48,13 +48,22 @@ $out .= '<h3 class="login_search_title">全球企业库</h3>
             </div>
             <!--快报-->
             <div class="login_news">
-                <h3>筑巢快报</h3>
-                <div class="main_hover login_news_list">
-					 <a href=""><i>中钢网春节放假公告 </i><span class="date">01-29</span></a>
-					<a href=""><i>中钢网春节放假公告 </i><span class="date">01-29</span></a>
-<a href=""><i>中钢网春节放假公告</i> <span class="date">01-29</span></a>
-<a href=""><i>中钢网春节放假公告</i> <span class="date">01-29</span></a>
-</div>
+                <h3>筑巢商学院</h3>
+                <div class="main_hover login_news_list">';
+$laobanneicai = $this->getNodeInfoByIdentifier('zhuchaoschool');
+$subNodes = $this->getSubNodesByIdentifier('zhuchaoschool');
+$nodeIds = array(
+	$laobanneicai->getId()
+);
+foreach ($subNodes as $node) {
+	$nodeIds[] = $node->getId();
+}
+$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
+foreach ($articles as $article) {
+	$out .= '<a href = "/article/' . $article->getId() . '.html"><i>' . $article->getTitle() . ' </i><span cla'
+			  . 'ss = "date">' . date('m-d', $article->getInputTime()) . '</span></a>';
+}
+$out .= '</div>
 </div>
 </div>
 </div><div class="sale_pro conwidth">
@@ -67,7 +76,7 @@ foreach ($goodsLists as $list) {
                 <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 150, 150) . '" alt=""/>
 
                 <div class="pro_text_box">
-                    <h3 class="text_ellipsis">' . $list->getBrand().$list->getTitle() .$list->getDescription(). '</h3>
+                    <h3 class="text_ellipsis">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</h3>
 
                     <p class="text_ellipsis">' . $list->getDetail()->getAdvertText() . '</p>
                     <span class="pro_text_tip">￥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</span>
@@ -102,9 +111,16 @@ if (count($ads)) {
 
 $out .= '</div>';
 $laobanneicai = $this->getNodeInfoByIdentifier('laobanneican');
-$articles = $this->getInfoListByNodeAndStatusNotPage($laobanneicai->getId());
+$subNodes = $this->getSubNodesByIdentifier('laobanneican');
+$nodeIds = array(
+	$laobanneicai->getId()
+);
+foreach ($subNodes as $node) {
+	$nodeIds[] = $node->getId();
+}
+$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
 $out .= '<div class="about_news fl about_item">
-        <a href="" class="item_title main_bg">老板内参</a>
+        <a href="/category/laobanneican.html" class="item_title main_bg">老板内参</a>
 
         <div class="about_news_items main_hover">';
 $i = 1;
@@ -136,7 +152,7 @@ foreach ($goodsLists as $list) {
 	$out .= '<div class="about_right_list">
                 <span class="address text_ellipsis">河南省鹤壁市</span>
                 <span class="time">' . rand(1, 10) . '秒前</span>
-                <h4 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand().$list->getTitle() .$list->getDescription() . '</a></h4>
+                <h4 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h4>
             </div>';
 }
 $out .= '</div>
@@ -144,7 +160,7 @@ $out .= '</div>
     <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
 </h3><div class="pro_card conwidth">
     <ul class="clearfix">';
-$goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 4);
+$goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 5);
 foreach ($goodsLists as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$out .= '<li>
@@ -152,7 +168,7 @@ foreach ($goodsLists as $list) {
             <a href="' . $url . '" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
 
             <div class="card_text_box">
-                <h3 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand().$list->getTitle() .$list->getDescription() . '</a></h3>
+                <h3 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
                 <i class="jiantou icon-jiantou-copy"></i>
             </div>
             <span class="pro_card_tip">
@@ -167,9 +183,9 @@ $nodes = array();
 foreach ($leafNodes as $value) {
 	$nodes[] = $value->getId();
 }
-$j = 2;//控制首页输出多少次产品展示
+$j = 2; //控制首页输出多少次产品展示
 foreach ($nodes as $node) {
-	if($j > 5){
+	if ($j > 5) {
 		return false;
 	}
 	$cond = array(
@@ -181,7 +197,7 @@ foreach ($nodes as $node) {
 	$out .= '</div><div class="module_title conwidth clearfix">
     <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
 </div><div class="pro_list clearfix conwidth">';
-	$goodsLists = $this->getGoodsList($cond, false, 'inputTime DESC', 0, 4);
+	$goodsLists = $this->getGoodsList($cond, false, 'inputTime DESC', 0, 7);
 	$i = 1;
 	foreach ($goodsLists as $list) {
 		$url = $this->getProductUrl($list->getNumber());
@@ -189,7 +205,7 @@ foreach ($nodes as $node) {
         <a class="pro_img" href="' . $url . '">
             <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
         </a>
-        <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand().$list->getTitle() .$list->getDescription() . '</a></h3>
+        <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
         
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
@@ -198,7 +214,7 @@ foreach ($nodes as $node) {
         <a class="switch_btn switch_left_btn left_btn1"><i class="icon-jiantou4"></i></a>
         <a class="switch_btn switch_right_btn right_btn1"><i class="icon-jiantou2"></i></a>
         <div class="pro_banner_box" pro-box="pro-box1">';
-			$locationId = $this->getAdsLocationId('电脑端', '首页', 'body'.$j);
+			$locationId = $this->getAdsLocationId('电脑端', '首页', 'body' . $j);
 			$ads = $this->getAds($locationId);
 			if (count($ads)) {
 				foreach ($ads as $ad) {
@@ -218,52 +234,6 @@ foreach ($nodes as $node) {
 		}
 		$i = 2;
 	}
-	$out .= '<div class="pro_item fl noselect">
-        <a class="switch_btn switch_left_btn left_btn2"><i class="icon-jiantou4"></i></a>
-        <a class="switch_btn switch_right_btn right_btn2"><i class="icon-jiantou2"></i></a>
-        <div class="pro_brank"  pro-box="pro-box2">
-            <div class="pro_brank_item">
-                <a href="">
-                    <img src="../../Images/test/test_pro_img.jpg" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_banner1.jpg" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_brand_ad.jpg" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_iocn_logo.png" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
-                </a>
-            </div>
-            <div class="pro_brank_item">
-                <a href="">
-                    <img src="../../Images/test/test_pro_img.jpg" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_banner1.jpg" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_brand_ad.jpg" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_iocn_logo.png" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
-                </a>
-                <a href="">
-                    <img src="../../Images/test/test_prolist_img.png" alt=""/>
-                </a>
-            </div>
-        </div>
-    </div>';
 	$j++;
 }
 $out .= '</div>';

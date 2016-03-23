@@ -73,10 +73,16 @@ if ($company) {
 				<span class="pro_detail">' . $company->getProducts() . '</span>
 		  </p>
 	 </div>
-	 <div class="pro_connect">
-		  <a class="mainbg_hover"><i class="icon-dianhua"></i>联系方式</a>
-		  <a class="mainbg_hover zaixian_xunjia"><i class="icon-dianhua"></i>在线询价</a>
-	 </div>
+	 <div class="pro_connect">';
+	 if($goodsInfo->getStatus() == 3){
+		 $out .= '<a class="mainbg_hover"><i class="icon-dianhua"></i>联系方式</a>
+		  <a class="mainbg_hover zaixian_xunjia"><i class="icon-dianhua"></i>在线询价</a>';
+	 } else {
+		 $out .= '<a class="mainbg_hover"><i class="icon-dianhua"></i>暂停服务</a>
+		  <a class="mainbg_hover"><i class="icon-dianhua"></i>暂停服务</a>';
+	 }
+		  
+	 $out .= '</div>
 </div>';
 }
 

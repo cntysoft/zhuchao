@@ -160,7 +160,19 @@ class Goods extends AbstractLabelScript
       return $this->appCaller->call(
                       CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'checkNodeIdentifier', array($identifier));
    }
-
+	/**
+    * 获取节点的字节点信息
+    * @param string $identilier
+    * @return 
+    */
+   public function getSubNodesByIdentifier($identifier)
+   {
+      $nodeInfo = $this->getNodeInfoByIdentifier($identifier);
+      $nodeId = $nodeInfo->getId();
+      $childNodes = $this->appCaller->call(
+              CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getSubNodes', array($nodeId));
+      return $childNodes;
+   }
    /**
     * 获取节点信息
     * @param string $identifier

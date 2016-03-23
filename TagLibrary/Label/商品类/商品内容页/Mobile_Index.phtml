@@ -1,7 +1,7 @@
 <?php
 $out = '<div class="module_ad3 module_ad clearfix  swiper-container">
 	 <div class="swiper-wrapper">';
-$locationId = $this->getAdsLocationId('电脑端', '首页', 'banner');
+$locationId = $this->getAdsLocationId('手机端', '首页', 'banner');
 $ads = $this->getAds($locationId);
 if (count($ads)) {
 	foreach ($ads as $ad) {
@@ -74,7 +74,6 @@ $out .= '<ul class="nav_radius100 module_nav clearfix">
 $goodsLists = $this->getGoodsList(array(), false, 'hits DESC', 0, 4);
 $out .= '<div class="module_title">
 	 <a>热门商品</a>
-	 <i class="icon-gengduo"></i>
 </div><div class="card_box">
 	 <!--card3-->
 	 <ul class="card3">';

@@ -5,7 +5,7 @@ define(['zepto', 'swiper', 'Front'], function (){
     $(function (){
         var ajaxParams = {};
         var page = 1;
-        var limit = 1;
+        var limit = 10;
         var sendAjax = true;
         $(window).scroll(function (){
             var scrollTop = $(window).scrollTop();
