@@ -8,8 +8,8 @@
  */
 namespace TagLibrary\Label\Company;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
-use App\Yunzhan\Category\Constant as CategoryConst;
-use App\Yunzhan\Content\Constant as ContentConst;
+use App\Yunzhan\Category\Constant as CATECONST;
+use App\Yunzhan\Content\Constant as CONTENTCONST;
 class CompanyArticle extends AbstractLabelScript
 {
    /**
@@ -55,13 +55,13 @@ class CompanyArticle extends AbstractLabelScript
       $modelId = $params['modelId'];
       $enablePage = $params['enablePage'];
       $pageParam = $this->getPageParam();
-      $node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodesByIdentifiers', array($nodeIdentifier)
+      $node = $this->appCaller->call(CATECONST::MODULE_NAME, CATECONST::APP_NAME, CATECONST::APP_API_STRUCTURE, 'getNodesByIdentifiers', array($nodeIdentifier)
       );
       foreach ($node as $item) {
          array_push($nodeId, $item->getId());
       }
       return $this->appCaller->call(
-                      ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, $modelId, ContentConst::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
+                      CONTENTCONST::MODULE_NAME, CONTENTCONST::APP_NAME, CONTENTCONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, $modelId, CONTENTCONST::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
       );
    }
 
@@ -79,10 +79,10 @@ class CompanyArticle extends AbstractLabelScript
       $modelId = $params['modelId'];
       $enablePage = $params['enablePage'];
       $pageParam = $this->getPageParam();
-      $node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
+      $node = $this->appCaller->call(CATECONST::MODULE_NAME, CATECONST::APP_NAME, CATECONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
       );
       return $this->appCaller->call(
-                      ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array($node->getId()), $modelId, ContentConst::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
+                      CONTENTCONST::MODULE_NAME, CONTENTCONST::APP_NAME, CONTENTCONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array($node->getId()), $modelId, CONTENTCONST::INFO_S_VERIFY, $enablePage, $orderType, $pageParam['offset'], $pageParam['limit'])
       );
    }
 
@@ -94,7 +94,7 @@ class CompanyArticle extends AbstractLabelScript
    public function getDefalutNode($nodeIdentifier)
    {
 
-      $node = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
+      $node = $this->appCaller->call(CATECONST::MODULE_NAME, CATECONST::APP_NAME, CATECONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier)
       );
       return $node;
    }
@@ -106,7 +106,7 @@ class CompanyArticle extends AbstractLabelScript
    public function getContent($itemId)
    {
 
-      $info = $this->appCaller->call(ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_MANAGER, 'read', array($itemId));
+      $info = $this->appCaller->call(CONTENTCONST::MODULE_NAME, CONTENTCONST::APP_NAME, CONTENTCONST::APP_API_MANAGER, 'read', array($itemId));
       return $info[1];
    }
 
@@ -148,7 +148,7 @@ class CompanyArticle extends AbstractLabelScript
    public function getSubNodeIds($nodeId)
    {
       if (null == self::$tree) {
-         self::$tree = $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getTreeObject', array());
+         self::$tree = $this->appCaller->call(CATECONST::MODULE_NAME, CATECONST::APP_NAME, CATECONST::APP_API_STRUCTURE, 'getTreeObject', array());
       }
 
       return self::$tree->getChildren($nodeId, -1, true);
@@ -181,7 +181,7 @@ class CompanyArticle extends AbstractLabelScript
     */
    public function getDetail($itemId)
    {
-      return $this->appCaller->call(ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_MANAGER, 'read', array($itemId));
+      return $this->appCaller->call(CONTENTCONST::MODULE_NAME, CONTENTCONST::APP_NAME, CONTENTCONST::APP_API_MANAGER, 'read', array($itemId));
    }
 
    /**
@@ -231,7 +231,7 @@ class CompanyArticle extends AbstractLabelScript
     */
    public function getNodeByNodeIndentifier($nodeIdentifier)
    {
-      return $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier));
+      return $this->appCaller->call(CATECONST::MODULE_NAME, CATECONST::APP_NAME, CATECONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($nodeIdentifier));
    }
 
    /**
@@ -253,7 +253,7 @@ class CompanyArticle extends AbstractLabelScript
     */
    public function getNodeUrl($nodeIdentifier)
    {
-      return $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNodeUrl', array($nodeIdentifier));
+      return $this->appCaller->call(CATECONST::MODULE_NAME, CATECONST::APP_NAME, CATECONST::APP_API_STRUCTURE, 'getNodeUrl', array($nodeIdentifier));
    }
 
    /**
@@ -334,7 +334,7 @@ class CompanyArticle extends AbstractLabelScript
     */
    public function getNode($nodeId)
    {
-      return $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNode', array($nodeId));
+      return $this->appCaller->call(CATECONST::MODULE_NAME, CATECONST::APP_NAME, CATECONST::APP_API_STRUCTURE, 'getNode', array($nodeId));
    }
 
    /**

@@ -1,0 +1,8 @@
+<?php
+$identifier = $this->getRouteNodeIdentifier();
+$out = '';
+$out.=$identifier == 'companynews' ? '<span class="main">行业新闻</span>' :
+        '<span><a href="/companynews.html">行业新闻</a></span>';
+$out.= $identifier == 'industrynews' ? '<span  class="main">企业新闻</span>' :
+        '<span ><a href="/industrynews.html">企业新闻</a></span>';
+echo $out;

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('内容数据源/企业设置', 'CS');
+Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('CP', 'name') ?>－首页-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('company/style.css', 'swiper.min.css', 'company/index.css')) ?>
+        <meta name="viewport"
+              content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
+        <!-- 内容-->
+        <div class="l_main" id="l_main">
+            <!--banner-->
+            <div class="banner">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a ><img src="<?php Qs::Sys('loadImage', 'company/test_banner_01.jpg') ?>" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a ><img src="<?php Qs::Sys('loadImage', 'company/test_banner_01.jpg') ?>" alt=""></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a ><img src="<?php Qs::Sys('loadImage', 'company/test_banner_01.jpg') ?>" alt=""></a>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <!--公司介绍-->
+            <div class="module_title">
+                <i></i><span> <a href="/about.html">公司介绍</a></span><i></i>
+            </div>
+            <div class="company_intro">
+                <div class="intro_detial">
+                    <p>
+                        <?php
+                        $inrodata = unserialize(Qs::DsField('CS', 0, true));
+                        echo iconv_substr($inrodata['content'], 0, 92)
+                        ?> <a href="/about.html">查看详情>></a>
+                    </p>
+                </div>
+            </div>
+            <!--新闻动态-->
+            <div class="module_title">
+                <i></i><span><a href="/newscenter.html">新闻动态</a></span><i></i>
+            </div>
+            <?php
+            Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_IndexNewList', 'nodeIdentifier' => array('newscenter', 'companynews', 'industrynews'), 'titleLength' => 17, 'introLength' => 20, 'outputNum' => 4, 'enablePage' => false, 'listSubNode' => true))
+            ?>
+            <!--产品展示-->
+            <div class="module_title">
+                <i></i><span><a href="/productlist/1.html">产品展示</a></span><i></i>
+            </div>
+            <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_IndexProductList', 'outputNum' => 4, 'enablePage' => false)); ?>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'company/index') ?>
+    </body>
+</html>

@@ -5,7 +5,7 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license   Expression $license is undefined on line 6, column 17 in Templates/ClientSide/javascript.js.
  */
-define(['zepto', 'Core', 'Front'], function (){
+define(['zepto', 'module/totop', 'Core', 'Front'], function (){
    $(function (){
       //导航
       $('.more_icon').click(function (){

@@ -1,0 +1,23 @@
+<?php
+$out = '';
+$goodsLists = $this->getProductList();
+if (count($goodsLists) == 0) {
+   echo $out;
+   return;
+}
+foreach ($goodsLists as $goods) {
+   $defpic = $goods->getDefaultImage();
+   $price0 = $goods->getPrice();
+   $infourl = $this->getInfoUrl($goods->getNumber());
+   $price = $price0 > 0 ? '¥' . $price0 : '面议';
+   $out .= '<div class="pro_show">
+                <h4>产品编号：' . $goods->getNumber() . '</h4>
+                <p class="clearfix">
+                    <span class="pro_price">' . $price . '</span>
+                    <span class="pro_detail">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '</span>
+                </p>
+                <a target="_block" href="' . $infourl . '"><img src="' . $this->getImgUrl($defpic, 290, 290) . '" alt=""></a>
+            </div>';
+}
+
+echo $out;

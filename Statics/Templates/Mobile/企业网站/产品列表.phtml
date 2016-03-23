@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <title><?php Qs::DsField('CP', 'name') ?>－产品列表-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/prolist.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
+        <!--内容-->
+        <div class="l_main">
+            <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 6, 'enablePage' => false)); ?>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'company/prolist') ?> 
+    </body>
+</html>

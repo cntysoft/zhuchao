@@ -154,6 +154,19 @@ class IndexController extends AbstractController
    }
 
    /**
+    * 搜索
+    * 
+    * @return 
+    */
+   public function searchAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'site/search',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+
+   /**
     * 产品列表
     * 
     * @return 

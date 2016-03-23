@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('内容数据源/企业设置', 'CS');
+Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <title><?php Qs::DsField('CP', 'name') ?>－关于我们-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/employ.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
+        <!--内容-->
+        <div class="l_main">
+            <!--公司介绍-->
+            <div class="module_title">
+                <i></i><span>关于我们</span><i></i>
+            </div>
+            <div class="employ_ele intro">
+                <h3><i></i>公司介绍</h3>
+                <div class="employ_detail hide">
+                    <?php echo unserialize(Qs::DsField('CS', 0, true))['content']
+                    ?>
+                </div>
+            </div>
+            <div class="employ_ele culture">
+                <h3><i></i>企业文化</h3>
+                <div class="employ_detail hide">
+                    <?php echo unserialize(Qs::DsField('CS', 1, true))['content']
+                    ?>
+                </div>
+            </div>
+            <div class="employ_ele zizhi">
+                <h3><i></i>企业资质</h3>
+                <div class="employ_detail hide">
+                    <?php echo unserialize(Qs::DsField('CS', 2, true))['content']
+                    ?>
+                </div>
+            </div>
+            <div class="employ_ele develop">
+                <h3><i></i>发展历程</h3>
+                <div class="employ_detail hide">
+                    <?php echo unserialize(Qs::DsField('CS', 3, true))['content']
+                    ?>
+                </div>
+            </div>
+            <div class="employ_ele connect">
+                <h3><i></i>联系我们</h3>
+                <div class="employ_detail hide">
+                    <?php echo unserialize(Qs::DsField('CS', 4, true))['content']
+                    ?>
+                </div>
+            </div>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'company/aboutus') ?> 
+    </body>
+</html>

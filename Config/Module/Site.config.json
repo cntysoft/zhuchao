@@ -58,6 +58,14 @@
             }
         },
         {
+            "rule" : "/search.html",
+            "option" : {
+                "module" : "Site",
+                "controller" : "Index",
+                "action" : "search"
+            }
+        },
+        {
             "rule" : "/productlist/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Site",
@@ -71,6 +79,7 @@
         "site/index" : "企业网站/首页.phtml",
         "site/404" : "404.phtml",
         "site/about" : "企业网站/关于我们.phtml",
+        "site/search" : "企业网站/搜索页.phtml",
         "site/productlist" : "企业网站/产品列表.phtml"
     },
     "front_api_map" : {
