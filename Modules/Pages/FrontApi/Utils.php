@@ -42,23 +42,23 @@ class Utils extends AbstractScript
       $this->appCaller->call(CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_MANAGER, 'addHit', array($params['id']));
    }
 
-	/**
-	 * 增加商品点击量
-	 * @param array $params
-	 * @return 
-	 */
-	public function addHits($params)
-	{
-		$this->checkRequireFields($params, array('number'));
-		$number = $params['number'];
-		$product = $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
-		if (!$product) {
-			$errorType = new ErrorType();
-			Kernel\throw_exception(new Exception($errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')));
-		}
-		return $this->appCaller->call(
-							 PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'addHit', array($product->getId()));
-	}
+   /**
+    * 增加商品点击量
+    * @param array $params
+    * @return 
+    */
+   public function addHits($params)
+   {
+      $this->checkRequireFields($params, array('number'));
+      $number = $params['number'];
+      $product = $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
+      if (!$product) {
+         $errorType = new ErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')));
+      }
+      return $this->appCaller->call(
+                      PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'addHit', array($product->getId()));
+   }
 
    public function getInfoListByNodeAndStatus(array $params)
    {
@@ -231,7 +231,7 @@ class Utils extends AbstractScript
     * @param type $height
     * @return string
     */
-   public function getImgcdn($url, $width, $height)
+   private function getImgcdn($url, $width, $height)
    {
       if (!isset($url) || empty($url)) {
          $url = 'Static/lazyicon.png';

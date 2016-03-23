@@ -38,12 +38,10 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 </div>
                 <div class="l_intro fr">
                     <h3>企业介绍 <a href="/about.html" class="active_hover">更多 >></a></h3>
-                    <a href="/about.html"> <img src="<?php
-                        $inrodata = unserialize(Qs::DsField('CS', 1, true));
-                        echo $inrodata['pic'];
-                        ?>" alt=""></a>
                     <p>
-                        <?php echo iconv_strlen($inrodata['content']) > 92 ? iconv_substr($inrodata['content'], 0, 92) . '...' : $inrodata['content']
+                        <?php
+                        $inrodata = Qs::DsField('CS', 1, true);
+                        echo iconv_strlen($inrodata) > 92 ? iconv_substr($inrodata, 0, 92) . '...' : $inrodata
                         ?>
                         <a href="/about.html" class="main">查看详情 >></a></p>
                 </div>

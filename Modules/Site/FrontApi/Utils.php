@@ -56,7 +56,7 @@ class Utils extends AbstractScript
       );
       $ret = array();
       foreach ($productlist as $goods) {
-         $infourl = $this->getInfoUrl($goods->getNumber());
+         $infourl = 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $goods->getNumber() . '.html';
          $defpic = $goods->getDefaultImage();
          $price0 = $goods->getPrice();
          $price = $price0 > 0 ? '¥' . $price0 : '面议';
@@ -78,7 +78,7 @@ class Utils extends AbstractScript
     * @param integer $height
     * @return string
     */
-   public function getImgUrl($imgUrl, $width, $height)
+   private function getImgUrl($imgUrl, $width, $height)
    {
       if ($imgUrl) {
          return Kernel\get_image_cdn_url($imgUrl, $width, $height);
@@ -88,22 +88,11 @@ class Utils extends AbstractScript
    }
 
    /**
-    * 
-    * 主站产品网址
-    * @param integer $item
-    * @return string
-    */
-   public function getInfoUrl($item)
-   {
-      return 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $item . '.html';
-   }
-
-   /**
     * 获取文章列表
     * 
     * @param array $params
     */
-   protected function getArticles($params)
+   private function getArticles($params)
    {
       $nodeId = array();
       $node = $this->appCaller->call(CATEGORYCONST::MODULE_NAME, CATEGORYCONST::APP_NAME, CATEGORYCONST::APP_API_STRUCTURE, 'getNodesByIdentifiers', array(
@@ -158,28 +147,16 @@ class Utils extends AbstractScript
       $ret = array();
       foreach ($infolist as $info) {
          $infourl = '/news/' . $info->getId() . '.html';
-         $itemInfo = $this->getContent($info->getId());
+         $itemInfo = $this->appCaller->call(CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_MANAGER, 'read', array($info->getId()));
          $ret[] = array(
             'infourl'    => $infourl,
             'title'      => $info->getTitle(),
             'time'       => date('Y-m-d', $info->getInputTime()),
-            'department' => $itemInfo->getDepartment(),
-            'number'     => $itemInfo->getNumber()
+            'department' => $itemInfo[1]->getDepartment(),
+            'number'     => $itemInfo[1]->getNumber()
          );
       }
       return $ret;
-   }
-
-   /**
-    * 获取文章内容
-    * 
-    * @param integer $itemId
-    */
-   public function getContent($itemId)
-   {
-
-      $info = $this->appCaller->call(CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_MANAGER, 'read', array($itemId));
-      return $info[1];
    }
 
 }

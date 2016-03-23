@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/9.
  */
-define(['jquery', 'lazyload'], function (){
+define(['jquery', 'lazyload', 'comment'], function (){
    $(document).ready(function (){
       var search = decodeURI(window.location.search);
       if(search){
@@ -38,13 +38,13 @@ define(['jquery', 'lazyload'], function (){
             var id = arr[0];
             var data = arr[1];
             if('keyword' != id && 'sort' != id){
-               $('.list_item.choosed dd').append('<span fh-name="'+id+'" fh-data="'+data+'">'+data+'<i class="icon-smallcuo"></i></span>');
+               $('.list_item.choosed dd').append('<span fh-name="' + id + '" fh-data="' + data + '">' + data + '<i class="icon-smallcuo"></i></span>');
             }
          });
       }
       //筛选条件点击------------------------------------------
       $('.list_item dd a').click(function (){
-         addRoute([$(this).attr('id')+'='+$(this).attr('data')]);
+         addRoute([$(this).attr('id') + '=' + $(this).attr('data')]);
          redirectUrl();
       });
       //重定向网址---------------------------------------
@@ -54,7 +54,7 @@ define(['jquery', 'lazyload'], function (){
          if(search){
             var params = search.substring(1);
             var condition = params.split('&');
-            $.each(condition, function(index, item){
+            $.each(condition, function (index, item){
                var arr = item.split('=');
                var id = arr[0];
                var data = arr[1];
@@ -143,8 +143,8 @@ define(['jquery', 'lazyload'], function (){
          }
          redirectUrl();
       });
-      
-      $('.list_item.choosed').delegate('dd span', 'click', function(){
+
+      $('.list_item.choosed').delegate('dd span', 'click', function (){
          $(this).remove();
          redirectUrl();
       });

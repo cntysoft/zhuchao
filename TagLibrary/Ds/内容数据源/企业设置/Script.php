@@ -14,41 +14,10 @@ class CompanySetting extends AbstractDsScript
 {
    public function load()
    {
-      $ret = array(1 =>
-         serialize(array(
-            'pic'     => $this->getImgcdn('', '', ''),
-            'content' => ''
-         )),
-         serialize(
-                 array(
-                    'pic'     => '',
-                    'content' => ''
-         )),
-         serialize(
-                 array(
-                    'pic'     => '',
-                    'content' => ''
-         )),
-         serialize(
-                 array(
-                    'pic'     => '',
-                    'content' => ''
-         ))
-      );
+      $ret = array(1 => '', '', '', '');
       foreach ($ret as $index => $value) {
          $info = $this->appCaller->call(ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_MANAGER, 'read', array($index));
-
-         if ($index > 1) {
-            $ret[$index] = serialize(array(
-               'content' => $info[1]->getContent()
-            ));
-         } else {
-            $defpic = $info[0]->getDefaultPicUrl()[0];
-            $ret[$index] = serialize(array(
-               'pic'     => $this->getImgcdn($defpic, 305, 190),
-               'content' => $info[1]->getContent()
-            ));
-         }
+         $ret[$index] = $info[1]->getContent();
       }
       return $ret;
    }
