@@ -471,7 +471,8 @@ class Product extends AbstractScript
             "defaultImage" => \Cntysoft\Kernel\get_image_cdn_url($item->getDefaultImage()),
             "price"        => $item->getPrice(),
             "comment"      => $item->getComment(),
-            "status"       => $item->getStatus()
+            "status"       => $item->getStatus(),
+            "url" => 'http://'.\Cntysoft\RT_SYS_SITE_NAME.'/item/'.$item->getNumber().'.html'
          ));
       }
       return $ret;
