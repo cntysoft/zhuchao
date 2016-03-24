@@ -66,11 +66,5 @@
         "ZhuChao",
         "Site",
         "Sys"
-    ],
-    "moduleHostNames" : {
-        "Provider" : "provider.abc.com",
-        "Buyer" : "i.abc.com",
-        "Site" : "([a-z0-9]+).site.abc.com",
-        "Pages" : "devel.abc.com"
-    }
+    ]
 }

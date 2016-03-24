@@ -47,9 +47,6 @@ const PROVIDER_USER_S_KEY_FORGET_MSG_CODE = 'provider_user_s_key_forget_msg_code
 //标准异常上下文
 const ZHU_CHAO_STD_EXCEPTION_CONTEXT = 'ZhuChao/Kernel/StdErrorType';
 
-//商家的默认域名
-const MERCHANT_DOMAIN = 'fhzc.com';
-const MERCHANT_DOMAIN_DEBUG = 'fhzc.cn';
 const ZHUCHAO_PLATFORM_DBNAME_DEVEL = 'zhuchao_devel';
 const ZHUCHAO_PLATFORM_DBNAME = 'zhuchao';
 
@@ -57,9 +54,13 @@ const ZHUCHAO_PLATFORM_DBNAME = 'zhuchao';
 const SYS_DOMAIN = 'fhzc.com';
 const SYS_DOMAIN_DEVEL = 'abc.com';
 const SYS_SITE_NAME_DEVEL = 'devel.abc.com';
+const SYS_SITE_NAME = 'www.fhzc.com';
 const BUYER_SITE_NAME_DEVEL = 'i.abc.com';
+const BUYER_SITE_NAME = 'i.fhzc.com';
+const SITE_SUBDOMAIN_DEVEL = '([a-z0-9]+).site.abc.com';
+const SITE_SUBDOMAIN = '([a-z0-9]+).site.abc.com';
 const PROVIDER_SITE_NAME_DEVEL = 'provider.abc.com';
-
+const PROVIDER_SITE_NAME = 'provider.fhzc.com';
 //站点系统的主域名
 const ZHUCHAO_SITE_DOMAIN = 'site.fhzc.com';
 const ZHUCHAO_SITE_DOMAIN_DEVEL = 'site.abc.com';

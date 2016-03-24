@@ -12,8 +12,6 @@ use ZhuChao\InitFlow\Listeners;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use App\ZhuChao\Provider\ListView as SiteMgr;
 use Cntysoft\Kernel;
-use ZhuChao\Kernel\Exception;
-use ZhuChao\Kernel\StdErrorType;
 /**
  * @package ZhuChao\Phalcon\Mvc
  */
@@ -82,7 +80,7 @@ class Application extends BaseApplication
          $siteId = -1;
          $siteName = array_shift($parts);
          //判断主域名是否正确
-         if (implode('.', $parts) === \Cntysoft\ZHUCHAO_SITE_DOMAIN_DEVEL) {
+         if (implode('.', $parts) === \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN) {
             //查看域名是否存在
             $siteMaper = new SiteMgr();
             $siteId = $siteMaper->getSiteIdBySubAttr($siteName);

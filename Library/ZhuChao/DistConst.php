@@ -8,9 +8,9 @@
  */
 namespace Cntysoft;
 /**
- * @var string 商家系统的域名
+ * @var string 筑巢主站点域名
  */
-const RT_MERCHANT_DOMAIN = MERCHANT_DOMAIN_DEBUG;
+const RT_ZHUCHAO_SITE_DOMAIN = ZHUCHAO_SITE_DOMAIN_DEVEL;
 /**
  * @var string 系统绑定的域名
  */
@@ -27,6 +27,10 @@ const RT_BUYER_SITE_NAME = BUYER_SITE_NAME_DEVEL;
  * @var string 供应商域名
  */
 const RT_PROVIDER_SITE_NAME = PROVIDER_SITE_NAME_DEVEL;
+/**
+ * @var string 子站点域名
+ */
+const RT_SITE_SUBDOMAIN = SITE_SUBDOMAIN_DEVEL; 
 /**
  * @var string
  */
