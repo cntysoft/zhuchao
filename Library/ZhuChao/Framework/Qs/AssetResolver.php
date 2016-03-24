@@ -32,7 +32,7 @@ class AssetResolver implements AssetResolverInterface
       if (SYS_RUNTIME_MODE == SYS_RUNTIME_MODE_DEBUG) {
          return StdHtmlPath::getSkinPath();
       } else {
-         return 'http://statics-res.fhzc.com';
+         return 'http://statics-b2b.fhzc.com';
       }
    }
 
