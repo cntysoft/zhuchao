@@ -73,7 +73,7 @@ const ZHUCHAO_OTS_INSTANCE_NAME = 'fhzc-b2b-ots';
 
 //阿里的API服务器
 const ALI_SEARCH_API_PUB_ENTRY = 'http://opensearch-cn-beijing.aliyuncs.com';
-const ALI_SEARCH_INTERNAL_ENTRY = 'http://intranet.opensearch-cn-beijing.aliyuncs.com';
+const ALI_SEARCH_API_INTERNAL_ENTRY = 'http://intranet.opensearch-cn-beijing.aliyuncs.com';
 //OSS相关常量的定义
 const OSS_INTERNAL_ENTRY = 'oss-cn-beijing-internal.aliyuncs.com';
 const OSS_PUBLIC_ENTRY = 'oss-cn-beijing.aliyuncs.com';
