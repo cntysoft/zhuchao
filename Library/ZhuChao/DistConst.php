@@ -19,7 +19,13 @@ const RT_SYS_DOMAIN = SYS_DOMAIN_DEVEL;
  * @var string 系统的主站域名
  */
 const RT_SYS_SITE_NAME = SYS_SITE_NAME_DEVEL;
+/**
+ * @var string 采购商域名
+ */
 const RT_BUYER_SITE_NAME = BUYER_SITE_NAME_DEVEL;
+/**
+ * @var string 供应商域名
+ */
 const RT_PROVIDER_SITE_NAME = PROVIDER_SITE_NAME_DEVEL;
 /**
  * @var string
@@ -49,3 +55,7 @@ const RT_IS_DEVEL_MODEL = true;
  * @var string 部署类型
  */
 const RT_DEPLOY_TYPE = DEPLOY_TYPE_DEVEL;
+/**
+ * @var string 数据库名称
+ */
+const RT_ZHUCHAO_PLATFORM_DB = ZHUCHAO_PLATFORM_DBNAME_DEVEL;

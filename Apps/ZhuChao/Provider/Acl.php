@@ -360,7 +360,7 @@ class Acl extends AbstractLib
          if ($remember) {//记住密码, 默认保存一周
             $cookieLife = 7 * 24 * 60 * 60;
          }
-         $this->cookieManager->setCookie($authKey, $token, $cookieLife, \Cntysoft\SYS_DOMAIN_DEVEL);
+         $this->cookieManager->setCookie($authKey, $token, $cookieLife, \Cntysoft\RT_SYS_DOMAIN);
          $this->sessionManager->offsetSet(\Cntysoft\FRONT_USER_PROVIDER_S_KEY_INFO, $key . '|' . $type);
          return true;
       } catch (\Exception $ex) {

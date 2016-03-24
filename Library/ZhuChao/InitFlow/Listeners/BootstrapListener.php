@@ -26,12 +26,12 @@ class BootstrapListener extends BaseBootstrapListener
          'module'     => 'Sys',
          'controller' => 'Index',
          'action'     => 'index'
-      ))->setHostname(\Cntysoft\SYS_SITE_NAME_DEVEL);
+      ))->setHostname(\Cntysoft\RT_SYS_SITE_NAME);
       $router->add('/' . $config->sysEntry . 'devel', array(
          'module'     => 'Sys',
          'controller' => 'Index',
          'action'     => 'devel'
-      ))->setHostname(\Cntysoft\SYS_SITE_NAME_DEVEL);
+      ))->setHostname(\Cntysoft\RT_SYS_SITE_NAME);
    }
 
    /**

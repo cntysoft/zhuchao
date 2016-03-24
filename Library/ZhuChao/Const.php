@@ -50,7 +50,8 @@ const ZHU_CHAO_STD_EXCEPTION_CONTEXT = 'ZhuChao/Kernel/StdErrorType';
 //商家的默认域名
 const MERCHANT_DOMAIN = 'fhzc.com';
 const MERCHANT_DOMAIN_DEBUG = 'fhzc.cn';
-const ZHUCHAO_PLATFORM_DBNAME = 'zhuchao_devel';
+const ZHUCHAO_PLATFORM_DBNAME_DEVEL = 'zhuchao_devel';
+const ZHUCHAO_PLATFORM_DBNAME = 'zhuchao';
 
 //系统的主域名
 const SYS_DOMAIN = 'fhzc.com';

@@ -61,7 +61,7 @@ class Application extends BaseApplication
    protected function beforeInitialized()
    {
       $cfg = $this->gcfg->db->toArray();
-      $cfg['dbname'] = \Cntysoft\ZHUCHAO_PLATFORM_DBNAME;
+      $cfg['dbname'] = \Cntysoft\RT_ZHUCHAO_PLATFORM_DB;
       $this->di->setShared('db', function() use($cfg) {
          $db = new Mysql($cfg);
          return $db;
