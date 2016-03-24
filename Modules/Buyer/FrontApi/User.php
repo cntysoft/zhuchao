@@ -263,13 +263,16 @@ class User extends AbstractScript
    {
       $this->checkRequireFields($params, array('oldPassword', 'newPassword'));
       
-      return $this->appCaller->call(
+      $flag = $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,
          BUYER_CONST::APP_NAME,
          BUYER_CONST::APP_API_BUYER_ACL,
          'resetPassword',
          array($params['oldPassword'], $params['newPassword'])
       );
+      if($flag){
+         $this->logout();
+      }
    }
    
    /**
@@ -422,7 +425,7 @@ class User extends AbstractScript
       
       return array(
          'name' => $profile->getRealName().($profile->getSex() ? ' 先生' : ' 女士'),
-         'phone' => $profile->getShowPhone()
+         'phone' => $profile->getShowPhone() ? $profile->getShowPhone() : ''
       );
    }
    /**
@@ -460,7 +463,8 @@ class User extends AbstractScript
 			'uid' => $curUser->getId(),
 			'providerId' => $provider->getId(),
 			'expireTime' => 30,
-			'content' => $params['content']
+			'content' => $params['content'],
+         'status' => 1
 		);
 		return $this->appCaller->call(
 				  MESSAGE_CONST::MODULE_NAME, 

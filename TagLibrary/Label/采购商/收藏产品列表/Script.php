@@ -162,4 +162,16 @@ class Collection extends AbstractLabelScript
    {
       return 'http://'.\Cntysoft\RT_SYS_SITE_NAME.'/item/'.$number.'.html';
    }
+   
+   public function getPrice($price)
+   {
+      $len = strlen($price);
+      if($len > 11){
+         return number_format(($price / 100000000), 2) . '亿';
+      }else if($len > 8 && $len < 12){
+         return number_format(($price / 10000), 2) . '万';
+      }else{
+         return $price;
+      }
+   }
 }

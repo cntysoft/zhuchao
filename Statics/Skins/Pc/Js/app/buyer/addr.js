@@ -4,7 +4,7 @@
 define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], function (address){
    $(function (){
       var reg = new RegExp(/^1[0-9]{10}$/);
-      var type = 'add';
+      var type = 'add', flag = true;
       $('.submit_address').click(function(event){
          event.preventDefault();
          $('#name,#address,#phone').each(function(){
@@ -13,16 +13,20 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search','app/comm
                layer.tips($this.next('.tip').text(), '#'+$this.attr('id'));
                return false;
             }
-            
          });
          $('#province,#city,#district').each(function(){
             var $this = $(this);
             var regExp = new RegExp($this.attr('reg'));
             if(!regExp.test($this.val())){
                layer.tips($this.attr('tip-value'), $this.attr('tip-target'));
+               flag = false;
                return false;
             }
          });
+         if(!flag){
+            flag = true;
+            return false;
+         }
          if($('#phone').val() && !reg.test($('#phone').val())){
             layer.tips('请输入正确的手机号码！', '#phone');
                return false;

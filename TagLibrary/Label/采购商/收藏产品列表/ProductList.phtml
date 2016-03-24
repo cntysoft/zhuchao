@@ -15,7 +15,7 @@ if(count($list)){
       $imageUrl = $this->getImageCdnUrl($product->getDefaultImage());
       $name = $product->getBrand() . ' ' . $product->getTitle() . ' ' . $product->getDescription(); 
       $url = $this->getProductUrl($product->getNumber());
-      $price = 0 == $product->getPrice() ? '面议' : '￥' . $product->getPrice();
+      $price = 0 == $product->getPrice() ? '面议' : '￥' . $this->getPrice($product->getPrice());
       $status = $product->getStatus();
       
       $out.='<div class="collect_ele clearfix" fh-id="'.$collect->getId().'" fh-number="'.$number.'">

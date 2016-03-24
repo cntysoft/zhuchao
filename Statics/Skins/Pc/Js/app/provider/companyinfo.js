@@ -1,7 +1,7 @@
 define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/address','app/common'], function (validate, WebUploader){
     $(function (){
         init();
-        var uploadProductImg;
+        var uploadProductImg, uploaderConfig;
         $('#submit').click(function (){
             var hasError = false;
             var validation = validate.checkFields($('.checkField,.company,.register'));
@@ -36,8 +36,29 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                 }
             });
         });
-        //上传的默认配置项
-        var uploaderConfig = {
+
+        $('.img_uploading').delegate('.deleteImg', 'click', function (){
+            $(this).closest('li').remove();
+            $('.img_plus').show();
+            if(uploadProductImg == undefined){
+                createUploader();
+            }
+        });
+        //根据name获得radio的值
+        function getRadioValueByName(name){
+            var val = null;
+            $.each($('input[name=' + name + ']'), function (index, item){
+                if($(item).prop('checked')){
+                    val = $(item).val();
+                    return false;
+                }
+            });
+            return val;
+        }
+        //初始化函数
+        function init(){
+           //上传的默认配置项
+        uploaderConfig = {
             chunked : false,
             auto : true,
             dnd : '.img_plus',
@@ -65,28 +86,6 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                 REQUEST_SECURITY : Cntysoft.Json.encode({})
             }
         };
-
-
-        $('.img_uploading').delegate('.deleteImg', 'click', function (){
-            $(this).closest('li').remove();
-            $('.img_plus').show();
-            if(uploadProductImg == undefined){
-                createUploader();
-            }
-        });
-        //根据name获得radio的值
-        function getRadioValueByName(name){
-            var val = null;
-            $.each($('input[name=' + name + ']'), function (index, item){
-                if($(item).prop('checked')){
-                    val = $(item).val();
-                    return false;
-                }
-            });
-            return val;
-        }
-        //初始化函数
-        function init(){
             if($('.logo').length == 1){
                 createUploader();
             }
