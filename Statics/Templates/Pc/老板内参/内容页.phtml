@@ -11,7 +11,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('reference/style.css', 'reference/referencedetail.css')) ?>
+        <?php Qs::Sys('loadCss', array('mall/style.css','reference/style.css', 'reference/referencedetail.css')) ?>
     </head>
     <body>
         <!--头部-->
@@ -138,6 +138,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
            with (document)
               0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
-        <?php Qs::Sys('loadRequireJs', 'reference/referenceindex') ?>      
+        <?php Qs::Sys('loadRequireJs', 'reference/referenceindex') ?>  
+		  <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'mall/index'); ?>
     </body>
 </html>
