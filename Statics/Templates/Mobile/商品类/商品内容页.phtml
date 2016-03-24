@@ -4,63 +4,65 @@ Qs::Ds('商品数据源/商品信息', 'goods');
 Qs::Ds('商城数据源/商城数据', 'sites');
 ?>
 <html>
-	 <head lang="en">
-		  <meta charset="UTF-8">
-		  <title><?php Qs::DsField('goods', 'name') ?>-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-		  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/proinfo.css', 'swiper.min.css')); ?>
-	 </head>
-	 <body>
-		  <!--logo，搜索,名称-->
-		  <div class="headbar w clearfix main_bg">
-				<!--logo-->
-				<div class="header_left fl">
-					 <span class="icon_logo">
-						  <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
-					 </span>
-				</div>
-				<!--搜索框-->
-				<div class="header_title">
-					 <div class="search_input_box">
-						  <i class="icon-sousuo"></i>
-						  <input class="search_input" type="text" required placeholder="搜索建材/攻略/商铺"/>
-					 </div>
-				</div>
-				<!--更多按钮-->
-				<div class="header_right fr">
-					 <span class="more_icon"><i class="icon-xiala"></i></span>
-				</div>
-		  </div>
-		  <!--导航-->
-		  <div class="top_nav_box">
-				<ul class="top_nav_list clearfix">
-					 <li><a href="/">首页</a></li>
-					 <li><a href="/">产品搜索</a></li>
-					 <li><a href="/">企业搜索</a></li>
-					 <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
-				</ul>
-		  </div>
-		  <!--标题-->
-		  <div class="module_title">
-				<a><?php Qs::DsField('goods', 'name') ?></a>
-		  </div>
-		  <!--一列广告滑动-->
-		  <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Mobile_GoodsContent')) ?>
-		  <div class="copy">
-				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
-					 Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME)*1000, 2) . 'ms'; ?></p>
-		  </div>
-		  <!--底部填充-->
-		  <div class="footer_padding"></div>
-		  <!--加入购物车-->
-		  <footer class="footer_fixed clearfix">
-				<a class="fl main_bg"><i class="icon-dianhua"></i>联系方式</a>
-				<a class="fr"><i class="icon-xunjia"></i>在线询价</a>
-		  </footer>
-		  <?php Qs::Sys('loadRequireJs', 'mall/proinfo'); ?>
-	 </body>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('goods', 'name') ?>-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/proinfo.css', 'swiper.min.css')); ?>
+    </head>
+    <body>
+        <!--logo，搜索,名称-->
+        <div class="headbar w clearfix main_bg">
+            <!--logo-->
+            <div class="header_left fl">
+                <a href="/">
+                    <span class="icon_logo">
+                        <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
+                    </span>
+                </a>
+            </div>
+            <!--搜索框-->
+            <div class="header_title">
+                <div class="search_input_box">
+                    <i class="icon-sousuo"></i>
+                    <input class="search_input" type="text" required placeholder="搜索建材/攻略/商铺"/>
+                </div>
+            </div>
+            <!--更多按钮-->
+            <div class="header_right fr">
+                <span class="more_icon"><i class="icon-xiala"></i></span>
+            </div>
+        </div>
+        <!--导航-->
+        <div class="top_nav_box">
+            <ul class="top_nav_list clearfix">
+                <li><a href="/">首页</a></li>
+                <li><a href="/">产品搜索</a></li>
+                <li><a href="/">企业搜索</a></li>
+                <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
+            </ul>
+        </div>
+        <!--标题-->
+        <div class="module_title">
+            <a><?php Qs::DsField('goods', 'name') ?></a>
+        </div>
+        <!--一列广告滑动-->
+        <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Mobile_GoodsContent')) ?>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
+        <!--底部填充-->
+        <div class="footer_padding"></div>
+        <!--加入购物车-->
+        <footer class="footer_fixed clearfix">
+            <a class="fl main_bg"><i class="icon-dianhua"></i>联系方式</a>
+            <a class="fr"><i class="icon-xunjia"></i>在线询价</a>
+        </footer>
+        <?php Qs::Sys('loadRequireJs', 'mall/proinfo'); ?>
+    </body>
 </html>

@@ -1,76 +1,76 @@
 <?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>注册页-<?php Qs::DsField('site', 'SiteTitle')?></title>
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
-    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
-    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-	 <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <?php Qs::Sys('loadCss', array('login/style.css', 'login/login.css', 'layer.css'));?>
-</head>
-<body>
-<div class="login_main w">
-    <div class="login_icon">
-        <i class="login_icon_bg"></i>
-        <h3>欢迎注册</h3>
-    </div>
-    <form action="">
-        <ul class="form_box">
-            <li>
-                <input id="phone" name="phone" fh-type="phone" type="text" tabindex="1" required="required" placeholder="请输入手机号">
-            </li>
-            <li class="tips tl">
-                <span>请输入手机号码</span>
-            </li>
-            <!--验证码-->
-            <li class="input_code">
-                <input class="fl code" type="text" name="code" id="imgCode" fh-type="imgCode" autocomplete="off" placeholder="请输入图片验证码">
-                <a class="icode_image">
-                    <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
-                    <i class="icon-svgupdate" id="changeCodeImg"></i>
-                </a>
-            </li>
-            <li class="tips tl">
-                <i></i>
-                <span class="maincolor">请输入图片验证码</span>
-            </li>
-            <!--短信验证-->
-            <li>
-                <input class="yzm_input" id="phoneAuthCode" name="yzm" fh-type="phoneAuthCode" type="text" required="required" placeholder="请输入短信验证码">
-                <a class="yzm_btn" id="sendMessage">发送短信到手机</a>
-            </li>
-            <li class="tips tl">
-                <i></i>
-                <span class="maincolor">请输入短信验证码</span>
-            </li>
-            <li>
-                <input id="password" name="pwd" class="error_input"  fh-type="password"  type="password" placeholder="密码由6-20位字母，数字和符号组合">
-            </li>
-            <li class="tips tl">
-                <span class="maincolor">密码由6-20位字母，数字和符号组合</span>
-            </li>
-            <li>
-                <input id="password2" name="confirmpwd"  fh-type="password"  type="password" placeholder="请输入确认密码">
-            </li>
-            <li class="tips tl">
-                <span class="maincolor">请确保两次输入密码一致</span>
-            </li>
-        </ul>
-        <!--自动登陆 忘记密码-->
-        <div class="login_forget clearfix tr">
-            <div class="login_auto fl checked">
-                <i class="icon-checked add_color"></i><span>我已经同意《凤凰筑巢用户注册协议》</span>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>注册页-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('login/style.css', 'login/login.css', 'layer.css')); ?>
+    </head>
+    <body>
+        <div class="login_main w">
+            <div class="login_icon">
+                <a href="<?php echo 'http://' . \Cntysoft\RT_SYS_SITE_NAME; ?>"><i class="login_icon_bg"></i></a>
+                <h3>欢迎注册</h3>
             </div>
-        </div>
+            <form action="">
+                <ul class="form_box">
+                    <li>
+                        <input id="phone" name="phone" fh-type="phone" type="text" tabindex="1" required="required" placeholder="请输入手机号">
+                    </li>
+                    <li class="tips tl">
+                        <span>请输入手机号码</span>
+                    </li>
+                    <!--验证码-->
+                    <li class="input_code">
+                        <input class="fl code" type="text" name="code" id="imgCode" fh-type="imgCode" autocomplete="off" placeholder="请输入图片验证码">
+                        <a class="icode_image">
+                            <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
+                            <i class="icon-svgupdate" id="changeCodeImg"></i>
+                        </a>
+                    </li>
+                    <li class="tips tl">
+                        <i></i>
+                        <span class="maincolor">请输入图片验证码</span>
+                    </li>
+                    <!--短信验证-->
+                    <li>
+                        <input class="yzm_input" id="phoneAuthCode" name="yzm" fh-type="phoneAuthCode" type="text" required="required" placeholder="请输入短信验证码">
+                        <a class="yzm_btn" id="sendMessage">发送短信到手机</a>
+                    </li>
+                    <li class="tips tl">
+                        <i></i>
+                        <span class="maincolor">请输入短信验证码</span>
+                    </li>
+                    <li>
+                        <input id="password" name="pwd" class="error_input"  fh-type="password"  type="password" placeholder="密码由6-20位字母，数字和符号组合">
+                    </li>
+                    <li class="tips tl">
+                        <span class="maincolor">密码由6-20位字母，数字和符号组合</span>
+                    </li>
+                    <li>
+                        <input id="password2" name="confirmpwd"  fh-type="password"  type="password" placeholder="请输入确认密码">
+                    </li>
+                    <li class="tips tl">
+                        <span class="maincolor">请确保两次输入密码一致</span>
+                    </li>
+                </ul>
+                <!--自动登陆 忘记密码-->
+                <div class="login_forget clearfix tr">
+                    <div class="login_auto fl checked">
+                        <i class="icon-checked add_color"></i><span>我已经同意《凤凰筑巢用户注册协议》</span>
+                    </div>
+                </div>
 
-        <div class="user_action">
-            <a class="submit_btn" id="submit">立即注册</a>
+                <div class="user_action">
+                    <a class="submit_btn" id="submit">立即注册</a>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-<?php Qs::Sys('loadRequireJs', 'login/register')?>
-</body>
+        <?php Qs::Sys('loadRequireJs', 'login/register') ?>
+    </body>
 </html>

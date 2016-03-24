@@ -3,49 +3,51 @@
 Qs::Ds('商城数据源/商城数据', 'sites');
 ?>
 <html>
-	 <head lang="en">
-		  <meta charset="UTF-8">
-		  <title>商品列表-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-		  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/index.css', 'swiper.min.css')); ?>
-	 </head>
-	 <body>
-		  <!--logo，搜索,名称-->
-		  <div class="headbar w clearfix main_bg">
-				<!--logo-->
-				<div class="header_left fl">
-					 <span class="icon_logo">
-						  <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
-					 </span>
-				</div>
-				<!--标题-->
-				<div class="header_title">
-					 <h2 class="text_ellipsis tc">开关</h2>
-				</div>
-				<!--更多按钮-->
-				<div class="header_right fr">
-					 <span class="more_icon"><i class="icon-xiala"></i></span>
-				</div>
-		  </div>
-		  <!--导航-->
-		  <div class="top_nav_box">
-				<ul class="top_nav_list clearfix">
-					 <li><a href="/">首页</a></li>
-					 <li><a href="/">产品搜索</a></li>
-					 <li><a href="/">企业搜索</a></li>
-					 <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
-				</ul>
-		  </div>
-		  <!--推荐商品-->
-		  <?php Qs::Label('商品类/分类商品列表', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 10)) ?>
-		  <div class="copy">
-				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
-					 Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME)*1000, 2) . 'ms'; ?></p>
-		  </div>
-		  <?php Qs::Sys('loadRequireJs', 'mall/product_list'); ?>
-	 </body>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>商品列表-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/index.css', 'swiper.min.css')); ?>
+    </head>
+    <body>
+        <!--logo，搜索,名称-->
+        <div class="headbar w clearfix main_bg">
+            <!--logo-->
+            <div class="header_left fl">
+                <a href="/">
+                    <span class="icon_logo">
+                        <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
+                    </span>
+                </a>
+            </div>
+            <!--标题-->
+            <div class="header_title">
+                <h2 class="text_ellipsis tc">开关</h2>
+            </div>
+            <!--更多按钮-->
+            <div class="header_right fr">
+                <span class="more_icon"><i class="icon-xiala"></i></span>
+            </div>
+        </div>
+        <!--导航-->
+        <div class="top_nav_box">
+            <ul class="top_nav_list clearfix">
+                <li><a href="/">首页</a></li>
+                <li><a href="/">产品搜索</a></li>
+                <li><a href="/">企业搜索</a></li>
+                <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
+            </ul>
+        </div>
+        <!--推荐商品-->
+        <?php Qs::Label('商品类/分类商品列表', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 10)) ?>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'mall/product_list'); ?>
+    </body>
 </html>
