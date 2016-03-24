@@ -13,6 +13,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (
         $('#sendMessage').click(function (){
             var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
             if(validateMsg.length){
+                 validateMsg[0].ele.focus();
                 return false;
             }
             if($('#password').val() != $('#password2').val()){

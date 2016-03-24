@@ -8,7 +8,7 @@ define(['require', 'exports', 'jquery', 'Front'], function (require, exports){
                 });
                 init();
             }
-        });
+        },true);
 
         $('.province').change(function (){
             var $this = $(this);
@@ -44,7 +44,7 @@ define(['require', 'exports', 'jquery', 'Front'], function (require, exports){
                 if(response.status){
                     callback(response.data);
                 }
-            });
+            },true);
         }
         function init(){
             $.each($('.province'), function (index, item){

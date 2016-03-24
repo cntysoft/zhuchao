@@ -105,7 +105,7 @@ if(count($normalAttrs)){
          }
       });
       $required = $attr->getRequired() ? 'required' : '';
-      $star = $attr->getRequired() ? '*' : '';
+      $star = $attr->getRequired() ? '<em class="main">*</em>' : '';
       if(count($optValue)){
          $out.='<div class="attr_list clearfix basic">
                <span class="attr_title">'.$star.$name.'：</span>
@@ -123,11 +123,11 @@ if(count($normalAttrs)){
          if($nameExist){
             $out.='<div class="attr_list clearfix basic">
                <span class="attr_title">'.$star.$name.'：</span>
-               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="10"></div>';
+               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="10" value="'.$attribute['基本参数'][$name].'"></div>';
          }else{
             $out.='<div class="attr_list clearfix basic">
                <span class="attr_title">'.$star.$name.'：</span>
-               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="10" value="'.$attribute['基本参数'][$name].'"></div>';
+               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="10"></div>';
          }
       }
    }

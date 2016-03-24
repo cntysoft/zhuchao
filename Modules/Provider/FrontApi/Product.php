@@ -92,7 +92,6 @@ class Product extends AbstractScript
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
       $params['companyId'] = $companyId;
       $src = '@.src';
-      
       if(count($params['images'])){
          $images = $params['images'];
          $params['images'] = array();
@@ -129,7 +128,6 @@ class Product extends AbstractScript
       );
       
       $shopprodcut = $this->getShopProductByNumber($params['number']);
-      
       if($shopprodcut){
          //插入到商家云站数据库中
          $this->appCaller->call(

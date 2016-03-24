@@ -22,7 +22,7 @@ define(['jquery', 'Core', 'layer'], function (){
             {
                 var layerIndex;
                 if(!load){
-                    layerIndex = layer.load();
+                    layerIndex = layer.load(2);
                 }
                 callback = callback || Cntysoft.emptyFn;
                 scope = scope || Cntysoft.Front;

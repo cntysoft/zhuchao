@@ -36,6 +36,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             var fileRefs = new Array();
             var imgRefMap = new Array();
             if(validation.length){
+                validation[0].ele.focus();
                 layer.msg('请正确填写每项!');
                 return false;
             }
@@ -102,7 +103,6 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             Cntysoft.Front.callApi('Product', 'updateProduct', params, function (response){
                 if(response.status){
                     layer.alert('商品修改成功！', {
-                        btn : '',
                         success : function (){
                             var redirect = function (){
                                 window.location = '/product/1.html';

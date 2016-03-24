@@ -174,6 +174,15 @@ class Product extends AbstractScript
 
       $ret = array();
       foreach ($list as $category) {
+         if ($category->getNodeType() == 1) {
+            $categoryChildren = $this->appCaller->call(
+                    CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR, 'getChildren', array((int) $category->getId())
+            );
+            if (count($categoryChildren) == 0) {
+               continue;
+            }
+         }
+
          $item = array(
             'id'   => $category->getId(),
             'name' => $category->getName(),
@@ -395,7 +404,7 @@ class Product extends AbstractScript
       foreach ($attrs as $key => $attr) {
          array_push($retAttrs, array(
             'name'    => $attr->getName(),
-            'attrs'   => explode(',', $attr->getOptValue()),
+            'val'   => explode(',', $attr->getOptValue()),
             'rquired' => $attr->getRequired(),
             'type'    => 1,
             'value'   => $info['attribute']['基本属性'][$attr->getName()],
@@ -479,16 +488,17 @@ class Product extends AbstractScript
       $ret = array();
       foreach ($attrs as $attr) {
          $ret[] = array(
-            'name' => $attr->getName(),
-            'val' => explode(',', $attr->getOptValue()),
+            'name'     => $attr->getName(),
+            'val'      => explode(',', $attr->getOptValue()),
             'required' => $attr->getRequired()
          );
       }
       return $ret;
    }
-   
-   public function getProductListByCid($params){
-      $this->checkRequireFields($params,array('cId','page','pageSize','status'));
+
+   public function getProductListByCid($params)
+   {
+      $this->checkRequireFields($params, array('cId', 'page', 'pageSize', 'status'));
       $cond = array();
       $this->checkRequireFields($params, array('page', 'pageSize', 'status'));
       $page = (int) $params['page'];
