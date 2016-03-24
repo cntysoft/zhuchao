@@ -33,5 +33,10 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], 
             }
          });
       });
+      $('.action_btn .reset').click(function(){
+         $('#oldpassword,#newpassword,#repassword').each(function(){
+            $(this).val('');
+         });
+      });
    });
 });

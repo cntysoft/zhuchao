@@ -27,7 +27,7 @@ define(['jquery', 'lazyload','app/common'], function (){
                }
             }
             if(id == 'enableprice'){
-               $('.rank_wrap span.price i').addClass('icon-checked')
+               $('.rank_wrap span.price i').addClass('icon-checked');
             }
          });
       }
@@ -37,7 +37,7 @@ define(['jquery', 'lazyload','app/common'], function (){
             var arr = item.split('=');
             var id = arr[0];
             var data = arr[1];
-            if('keyword' != id && 'sort' != id){
+            if('keyword' != id && 'sort' != id && 'enableprice' != id){
                $('.list_item.choosed dd').append('<span fh-name="' + id + '" fh-data="' + data + '">' + data + '<i class="icon-smallcuo"></i></span>');
             }
          });

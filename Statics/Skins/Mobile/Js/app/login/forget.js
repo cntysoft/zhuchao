@@ -30,16 +30,16 @@ define(['validate', 'zepto', 'layer', 'Core', 'Front'], function (validate){
             event.preventDefault();
             var imageCode = $('#imgCode').val();
             phone = $('#phone').val();
-            if(!phone && !regPhone.test(phone)){
+            if(!phone || !regPhone.test(phone)){
                layer.open({
                   content : '请输入正确的手机号码！',
                   time : 1
                });
                return false;
             }
-            if(!imageCode && !regImage.test(imageCode)){
+            if(!imageCode || !regImage.test(imageCode)){
                layer.open({
-                  content : '请输入正确的手机验证码！',
+                  content : '请输入正确的图片验证码！',
                   time : 1
                });
                return false;

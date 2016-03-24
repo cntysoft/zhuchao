@@ -12,7 +12,6 @@ use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 use App\ZhuChao\MessageMgr\Constant as MESSAGE_CONST;
 use Cntysoft\Kernel;
-use Cntysoft\Framework\Utils\ChinaArea;
 
 /**
  * 主要是处理采购商相关的的Ajax调用
@@ -21,7 +20,6 @@ use Cntysoft\Framework\Utils\ChinaArea;
  */
 class User extends AbstractScript
 {
-   protected $chinaarea = null;
    /**
     * 采购商注册
     * <code>
@@ -220,7 +218,7 @@ class User extends AbstractScript
     * @param array $params
     * @return type
     */
-   public function sendSmsCode(array $params)
+   protected function sendSmsCode(array $params)
    {
       $this->checkRequireFields($params, array('phone', 'type'));
       
@@ -275,31 +273,12 @@ class User extends AbstractScript
    }
    
    /**
-    * 检测短信验证码是否正确
-    * 
-    * @param array $params
-    * @return boolean
-    */
-   public function checkSmsCode(array $params)
-   {
-      $this->checkRequireFields($params, array('phone', 'code', 'type'));
-      
-      return $this->appCaller->call(
-         BUYER_CONST::MODULE_NAME,
-         BUYER_CONST::APP_NAME,
-         BUYER_CONST::APP_API_BUYER_ACL,
-         'checkSmsCode',
-         array($params['phone'], $params['code'], $params['type'])
-      );
-   }
-   
-   /**
     * 获取用户的登录方式
     * 
     * @param string $key
     * @return integer
     */
-   public function getLoginType($key)
+   protected function getLoginType($key)
    {
       if(preg_match('/^1[0-9]{10}$/', $key)){
          return BUYER_CONST::FRONT_USER_PHONE_LOGIN;
@@ -451,7 +430,7 @@ class User extends AbstractScript
     * 
     * @return type
     */
-   public function getCurUser()
+   protected function getCurUser()
    {
       return $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,
@@ -459,36 +438,6 @@ class User extends AbstractScript
          BUYER_CONST::APP_API_BUYER_ACL,
          'getCurUser'
       );
-   }
-
-   /**
-    * 获取省份信息
-    * 
-    * @return array <b>获取省份数组信息</b>
-    */
-   public function getProvinces()
-   {
-      if (null == $this->chinaarea) {
-         $this->chinaarea = new ChinaArea;
-      }
-      return $this->chinaarea->getProvinces();
-   }
-
-   /**
-    * 获取指定的地区信息
-    * 
-    * @param integer $param <b>邮编</b>
-    * @return string <b>该邮编的地区信息</b>
-    */
-   public function getArea($param)
-   {
-      if (empty($param)) {
-         return '暂无';
-      }
-      if (null == $this->chinaarea) {
-         $this->chinaarea = new ChinaArea;
-      }
-      return $this->chinaarea->getArea($param);
    }
    
    /**

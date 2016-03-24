@@ -100,11 +100,9 @@ class FrontApiServer
            'User.login',
            'User.register',
            'User.findPassword',
-           'User.checkSmsCode',
            'User.checkPicCode', //用户注册发送短信验证码之前的图片验证码
-           'User.checkNameExist',
            'User.checkPhoneExist',
-           'User.checkLogin', //验证是否登陆
+           'User.checkLogin' //验证是否登陆
         );
     }
 
