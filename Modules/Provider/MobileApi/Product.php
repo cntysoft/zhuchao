@@ -30,7 +30,7 @@ class Product extends AbstractScript
     */
    public function addProduct(array $params)
    {
-      $this->checkRequireFields($params, array('categoryId', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
+      $this->checkRequireFields($params, array('categoryId', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'status'));
       $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $company = $provider->getCompany();
       $companyId = $company ? $company->getId() : 0;
@@ -54,6 +54,21 @@ class Product extends AbstractScript
             $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
             $item[1] = $image[1];
             $params['imgRefMap'][] = $item;
+         }
+      }
+
+      if (count($params['attribute'])) {
+         $attrs = $params['attribute'];
+         $params['attribute'] = array(
+            '基本属性'  => array(),
+            '自定义属性' => array()
+         );
+         foreach ($attrs as $attr) {
+            if ($attr['type'] = 1) {
+               $params['基本属性'][$attr['name']] = $attr['value'];
+            } else {
+               $params['自定义属性'][$attr['name']] = $attr['value'];
+            }
          }
       }
 
@@ -76,34 +91,7 @@ class Product extends AbstractScript
     */
    public function updateProduct(array $params)
    {
-      $this->checkRequireFields($params, array('number', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
-      $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      $company = $provider->getCompany();
-      $companyId = $company ? $company->getId() : 0;
-      $cndServer = Kernel\get_image_cdn_server_url() . '/';
-      $params['companyId'] = $companyId;
-      $src = '@.src';
-
-      if (count($params['images'])) {
-         $images = $params['images'];
-         $params['images'] = array();
-         foreach ($images as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
-            $item[1] = $image[1];
-            $params['images'][] = $item;
-         }
-      }
-
-      if (count($params['imgRefMap'])) {
-         $imgRefMap = $params['imgRefMap'];
-         $params['imgRefMap'] = array();
-         foreach ($imgRefMap as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
-            $item[1] = $image[1];
-            $params['imgRefMap'][] = $item;
-         }
-      }
-
+      $this->checkRequireFields($params, array('number', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'status'));
       $fhproduct = $this->getFhProductByNumber($params['number']);
       if (!$fhproduct) {
          $errorType = new ErrorType();
@@ -111,6 +99,51 @@ class Product extends AbstractScript
                  $errorType->msg('E_PRODUCT_MGR_NOT_EXIST'), $errorType->code('E_PRODUCT_MGR_NOT_EXIST')
          ));
       }
+      $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
+      $company = $provider->getCompany();
+      $companyId = $company ? $company->getId() : 0;
+      $cndServer = Kernel\get_image_cdn_server_url() . '/';
+      $params['companyId'] = $companyId;
+      $src = '@.src';
+      $params['fileRefs'] = array();
+      $imgRefMap = $fhproduct->getImgRefMap();
+      if (count($params['images'])) {
+         $images = $params['images'];
+         $params['images'] = array();
+         foreach ($images as $image) {
+            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
+            $item[1] = $image[1];
+            array_push($params['fileRefs'], $item[1]);
+            $params['images'][] = $item;
+         }
+      }
+
+      if (count($imgRefMap)) {
+         $params['imgRefMap'] = array();
+         foreach ($imgRefMap as $image) {
+            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
+            $item[1] = $image[1];
+            array_push($params['fileRefs'], $item[1]);
+            $params['imgRefMap'][] = $item;
+         }
+      }
+
+      if (count($params['attribute'])) {
+         $attrs = $params['attribute'];
+         $params['attribute'] = array(
+            '基本属性'  => array(),
+            '自定义属性' => array()
+         );
+         foreach ($attrs as $attr) {
+            if ($attr['type'] = 1) {
+               $params['基本属性'][$attr['name']] = $attr['value'];
+            } else {
+               $params['自定义属性'][$attr['name']] = $attr['value'];
+            }
+         }
+      }
+
+
       $this->appCaller->call(
               P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'updateProduct', array($fhproduct->getId(), $params)
       );
@@ -144,11 +177,11 @@ class Product extends AbstractScript
          $item = array(
             'id'   => $category->getId(),
             'name' => $category->getName(),
-            'pId' => $category->getPId()
+            'pId'  => $category->getPId()
          );
-         if($category->getNodeType() == 2){
+         if ($category->getNodeType() == 2) {
             $item['leaf'] = true;
-         }else{
+         } else {
             $item['leaf'] = false;
          }
          array_push($ret, $item);
@@ -413,9 +446,59 @@ class Product extends AbstractScript
       $page >= 1 ? '' : $page = 1;
       $pageSize = (int) $params['pageSize'];
       $pageSize >= 1 ? $pageSize : $pageSize = 1;
-      $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
+      $user = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $cond['providerId'] = $user->getId();
       $cond['status'] = $params['status'];
+      $offset = ($page - 1) * $pageSize;
+      $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, true, 'id DESC', $offset, $pageSize));
+      $ret = array();
+      foreach ($products[0] as $item) {
+         array_push($ret, array(
+            "id"           => $item->getId(),
+            "number"       => $item->getNumber(),
+            "brand"        => $item->getBrand(),
+            "title"        => $item->getTitle(),
+            "description"  => $item->getDescription(),
+            "defaultImage" => \Cntysoft\Kernel\get_image_cdn_url($item->getDefaultImage()),
+            "price"        => $item->getPrice(),
+            "comment"      => $item->getComment(),
+            "status"       => $item->getStatus()
+         ));
+      }
+      return $ret;
+   }
+
+   /**
+    * 根据分类id获得分类属性
+    * @param type $params
+    */
+   public function getCategoryAttrsById($params)
+   {
+      $this->checkRequireFields($params, array('nodeId'));
+      $attrs = $this->appCaller->call(CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR, 'getNodeNormalAttrs', array($params['nodeId']));
+      $ret = array();
+      foreach ($attrs as $attr) {
+         $ret[] = array(
+            'name' => $attr->getName(),
+            'val' => explode(',', $attr->getOptValue()),
+            'required' => $attr->getRequired()
+         );
+      }
+      return $ret;
+   }
+   
+   public function getProductListByCid($params){
+      $this->checkRequireFields($params,array('cId','page','pageSize','status'));
+      $cond = array();
+      $this->checkRequireFields($params, array('page', 'pageSize', 'status'));
+      $page = (int) $params['page'];
+      $page >= 1 ? '' : $page = 1;
+      $pageSize = (int) $params['pageSize'];
+      $pageSize >= 1 ? $pageSize : $pageSize = 1;
+      $user = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
+      $cond['providerId'] = $user->getId();
+      $cond['status'] = $params['status'];
+      $cond['categoryId'] = $params['cId'];
       $offset = ($page - 1) * $pageSize;
       $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, true, 'id DESC', $offset, $pageSize));
       $ret = array();
