@@ -9,7 +9,6 @@
 use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Framework\Utils\CheckCode;
 use Cntysoft\Framework\Utils\QrCode;
-
 /**
  * 一些功能
  */
@@ -22,12 +21,13 @@ class IndexController extends AbstractController
    {
       $drawer = new CheckCode(\Cntysoft\SITEMANAGER_S_KEY_CHK_CODE, 12, 4);
       $drawer->draw();
+      exit;
    }
-	
-	public function wechatQrCodeAction()
+
+   public function wechatQrCodeAction()
    {
       $query = $this->request->getQuery();
-      if(isset($query['data'])){
+      if (isset($query['data'])) {
          $qrcode = new QrCode($query['data']);
          $size = isset($query['size']) ? $query['size'] : 340;
          $padding = isset($query['padding']) ? $query['padding'] : 10;

@@ -118,7 +118,7 @@ class Provider extends AbstractScript
       }
       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProvider', array($user->getId(), $params));
    }
-   
+
    /**
     * 用户中信修改密码
     * 
@@ -129,6 +129,36 @@ class Provider extends AbstractScript
    {
       $this->checkRequireFields($params, array('oldPwd', 'newPwd'));
       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'resetPassword', array($params['oldPwd'], $params['newPwd']));
+   }
+
+   /**
+    * 开通店铺
+    * 
+    * @param array $params
+    */
+   public function openSite($params)
+   {
+      $this->checkRequireFields($params, array('subAttr'));
+      $provider = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
+      //判断企业信息是否存在
+      $company = $provider->getCompany();
+      if (!$company) {
+         $errorType = new ErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_COMPANY_NOT_EXIST'), $errorType->code('E_COMPANY_NOT_EXIST')
+         ));
+      }
+
+      //判断二级域名是否合法
+      $subAttr = $params['subAttr'];
+      if ($this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'checkSubAttr', array($subAttr))) {
+         $errorType = new ErrorType();
+         Kernel\throw_exception(new Exception(
+                 $errorType->msg('E_SUBATTR_EXIST'), $errorType->code('E_SUBATTR_EXIST')
+         ));
+      }
+      
+      return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'createSite', array($company->getId(), $subAttr));
    }
 
 }

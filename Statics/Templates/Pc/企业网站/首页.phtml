@@ -23,8 +23,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <div class="l_main conwidth">
             <!--banner-->
             <div class="banner">
-                <div><a ><img src="<?php Qs::Sys('loadImage', 'company/test_company_banner.jpg') ?>" alt=""></a></div>
-                <div><a ><img src="<?php Qs::Sys('loadImage', 'company/test_banner1.jpg') ?>" alt=""></a></div>
+                <div><a ><img src="<?php Qs::Sys('loadImage', 'company/test_company_banner.jpg') ?>" alt="<?php Qs::DsField('CP', 'name') ?>"></a></div>
             </div>
             <!--新闻和企业文化-->
             <div class="company_info clearfix">

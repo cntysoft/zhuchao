@@ -14,7 +14,8 @@ define(['exports', 'jquery', 'layer'], function (exports){
             imgCode : /^[\w]{4}$/,
             number : /^[0-9]*[1-9][0-9]*$/,
             float : /^\d+(\.\d+)?$/,
-            chinese : /^[\u0391-\uFFE5]+$/
+            chinese : /^[\u0391-\uFFE5]+$/,
+            subname : /[a-zA-Z0-9]{3,32}/
         },
         message = {
             email : '请输入正确的邮箱',
@@ -37,7 +38,8 @@ define(['exports', 'jquery', 'layer'], function (exports){
             phoneCodeExpire : '短信验证码过期!',
             number : '请输入整数',
             float : '请输入数字',
-            chinese : '请输入中文'
+            chinese : '请输入中文',
+            subname : '请输入3至32位域名'
         },
         lengthMessage = {
             eq : '请输入{1}个字符',

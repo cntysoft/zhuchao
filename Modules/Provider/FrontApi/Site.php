@@ -83,6 +83,11 @@ class Site extends AbstractScript
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array($id, $params));
    }
 
+   /**
+    * 修改企业介绍
+    * 
+    * @param array $params
+    */
    public function modifyIntro($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
@@ -94,6 +99,11 @@ class Site extends AbstractScript
       )));
    }
    
+   /**
+    * 修改企业文化
+    * 
+    * @param array $params
+    */
    public function modifyCulture($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
@@ -105,6 +115,11 @@ class Site extends AbstractScript
       )));
    }
    
+   /**
+    * 修改企业资质
+    * 
+    * @param array $params
+    */
    public function modifyZizhi($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
@@ -116,6 +131,11 @@ class Site extends AbstractScript
       )));
    }
    
+   /**
+    * 修改联系我们
+    * 
+    * @param array $params
+    */
    public function modifyContact($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));

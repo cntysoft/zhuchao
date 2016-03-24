@@ -14,6 +14,8 @@ use App\ZhuChao\Provider\Model\BaseInfo as BaseModel;
 use App\ZhuChao\Provider\Model\Profile as ProfileModel;
 use App\ZhuChao\Provider\Model\Company as CompanyModel;
 use App\ZhuChao\Provider\Model\CompanyProfile as CompanyProfileModel;
+use Phalcon\Db\Adapter\Pdo\MySql;
+use Cntysoft\Kernel\ConfigProxy;
 /**
  * 站点管理员角色管理
  */
@@ -395,6 +397,53 @@ class Mgr extends AbstractLib
       }
 
       return self::$chinaArea;
+   }
+
+   /**
+    * 添加企业的网站
+    * 
+    * @param int $companyId
+    * @param string $subAttr
+    * @return boolean
+    */
+   public function createSite($companyId, $subAttr)
+   {
+      $company = $this->getCompanyById($companyId);
+      $siteDbName = \Cntysoft\ZHUCHAO_SITE_DB_PREFIX . $companyId;
+      
+      $executeTime  = ini_get('max_execution_time');
+      set_time_limit(0);
+      $global = ConfigProxy::getGlobalConfig();
+      $dbConfig = $global->db->toArray();
+      $connection = new MySql($dbConfig);
+      //创建数据库
+      $connection->query("CREATE DATABASE $siteDbName");
+      //向数据库中插入数据
+      $dbConfig['dbname'] = $siteDbName;
+      $connection->connect($dbConfig);
+      $sqls = include $this->getAppObject()->getDataDir() . DS . 'SiteSqlData.php';
+      foreach ($sqls as $sql) {
+         $connection->execute($sql);
+      }
+      $connection->close();
+      
+      //最后将域名插入企业信息表中
+      $company->setSubAttr($subAttr);
+      ini_set('max_execution_time', $executeTime);
+      return $company->save();
+   }
+   
+   /**
+    * 验证二级域名是否存在
+    * 
+    * @param string $subAttr
+    * @return boolean
+    */
+   public function checkSubAttr($subAttr)
+   {
+      $company = CompanyModel::findFirst("subAttr = '$subAttr' ");
+      
+      return $company ? true : false;
    }
 
 }

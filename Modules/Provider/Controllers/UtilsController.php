@@ -22,6 +22,7 @@ class UtilsController extends AbstractController
    {
       $drawer = new CheckCode(\Cntysoft\PROVIDER_USER_S_KEY_REG_CHK_CODE, 12, 4);
       $drawer->draw();
+      exit;
    }
 
    /**
@@ -33,6 +34,7 @@ class UtilsController extends AbstractController
    {
       $drawer = new CheckCode(\Cntysoft\PROVIDER_USER_S_KEY_LOGIN_CHK_CODE, 12, 4);
       $drawer->draw();
+      exit;
    }
 
    /**
@@ -44,6 +46,7 @@ class UtilsController extends AbstractController
    {
       $drawer = new CheckCode(\Cntysoft\PROVIDER_USER_S_KEY_FORGET_CHK_CODE, 12, 4);
       $drawer->draw();
+      exit;
    }
 
 }

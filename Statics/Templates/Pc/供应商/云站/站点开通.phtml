@@ -19,17 +19,16 @@
                 <div class="form_box">
                     <div class="form_list">
                         <label><em class="main">*</em>站点域名:</label>
-                        <input type="password" id="oldpassword" fh-type="password" required>
+                        <input type="text" id="subattr" fh-type="subname" required>
                     </div>
                     <!--按钮-->
                     <div class="action_btn" style="width: 600px">
-                        <a class="main_bg submit">提交</a>
-                        <a class="main_bg reset">重置</a>
+                        <a class="main_bg submit" id="submit">提交</a>
                     </div>
                 </div>
             </div>
         </div>
         <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
-        <?php Qs::Sys('loadRequireJs', 'provider/password') ?>
+        <?php Qs::Sys('loadRequireJs', 'provider/siteopen') ?>
     </body>
 </html>

@@ -16,7 +16,9 @@ class ErrorType
     * @var array $map
     */
    protected $map = array(
-      'E_PRODUCT_MGR_NOT_EXIST'     => array(10001, 'The product is not exist')
+      'E_PRODUCT_MGR_NOT_EXIST'     => array(10001, 'The product is not exist'),
+      'E_COMPANY_NOT_EXIST' => array(10002, 'company no exist'),
+      'E_SUBATTR_EXIST' => array(10003, 'company subattr is exist')
    );
 
    /**

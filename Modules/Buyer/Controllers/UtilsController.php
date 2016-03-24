@@ -18,6 +18,7 @@ class UtilsController extends AbstractController
    {
       $drawer = new CheckCode(\Cntysoft\FRONT_USER_S_KEY_REG_CHK_CODE, 12, 4);
       $drawer->draw();
+      exit;
    }
    /**
     * 找回密码页图片验证码生成
@@ -26,5 +27,6 @@ class UtilsController extends AbstractController
    {
       $drawer = new CheckCode(\Cntysoft\FRONT_USER_S_KEY_FORGET_CHK_CODE, 12, 4);
       $drawer->draw();
+      exit;
    }
 }
