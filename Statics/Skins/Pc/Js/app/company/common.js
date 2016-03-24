@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/14.
  */
-define(['jquery', 'module/totop'], function (){
+define(['jquery', 'module/totop','app/common'], function (){
    $(function (){
       var path = window.location.pathname;
       if(path.indexOf('productlist/') >= 0){

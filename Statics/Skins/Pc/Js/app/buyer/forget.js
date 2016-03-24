@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search', 'comment'], function (validate){
+define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], function (validate){
     $(function (){
         var imgCodeUrl = '/forgetchkcode?v_';
         var codeType = 2, phone = '', phoneChecked = false, phoneExist = false;

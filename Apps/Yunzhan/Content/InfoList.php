@@ -128,7 +128,6 @@ class InfoList extends AbstractLib
                     0 => $nodeId
                  ))
       );
-
       return $infoList;
    }
 

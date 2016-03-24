@@ -1,4 +1,4 @@
-define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/address'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/address','app/common'], function (validate, WebUploader){
     $(function (){
         init();
         var uploadProductImg;

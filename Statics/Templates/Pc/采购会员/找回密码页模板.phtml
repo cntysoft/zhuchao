@@ -7,7 +7,7 @@
         <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
         <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')); ?>
     </head>
     <body>
@@ -16,9 +16,11 @@
                 <!--logo-->
                 <div class="logo_register">
                     <div class="icon_logo fl">
-                        <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                        <a href="<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>">
+                            <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                        </a>
                     </div>
-                    <h3 class="fl">后台管理系统</h3>
+                    <h3 class="fl">采购商</h3>
                     <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
                 </div>
                 <div class="login_box">
@@ -63,6 +65,7 @@
             </div>
         </div>
         <!--版权 begin-->
-        <?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'buyer/forget'); ?>
+        <?php Qs::Label('静态类/登陆注册网站底部');
+        Qs::Sys('loadRequireJs', 'buyer/forget'); ?>
     </body>
 </html>

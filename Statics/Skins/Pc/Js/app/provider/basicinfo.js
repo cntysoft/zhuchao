@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
+define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (validate){
     $(function (){
         $('#submit').click(function (){
             var validation = validate.checkFields($('#name,#realName,#department,#position,#email,#showPhone,#qq,#telNum,#telCountry,#telArea,#faxNum,#faxCountry,#faxArea'));

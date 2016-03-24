@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
+define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (validate){
     $(function (){
         var sendMessageCode = false;  //标识是否发送短信
         var checkMessageCode = false;  //标识图片验证码是否通过

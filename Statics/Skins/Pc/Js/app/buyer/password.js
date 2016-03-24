@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/19.
  */
-define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search', 'comment'], function(validate){
+define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], function(validate){
    $(function (){ 
       $('.action_btn .submit').click(function(){
          var validateMsg = validate.checkFields($('#oldpassword,#newpassword,#repassword'));

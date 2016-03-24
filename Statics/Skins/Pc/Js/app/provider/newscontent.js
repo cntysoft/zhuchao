@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front','app/common'], function (validate, WebUploader){
     $(function (){
         var imgRefMap = new Array();
         var fileRefs = new Array();

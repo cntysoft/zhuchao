@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/11.
  */
-define(['jquery', 'Front','comment'], function (){
+define(['jquery', 'Front','app/common'], function (){
     $(function (){
         var url = window.location.pathname.split('/');
         if(url[1] == 'article'){

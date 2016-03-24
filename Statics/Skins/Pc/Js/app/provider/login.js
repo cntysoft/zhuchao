@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
+define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (validate){
     $(function (){
         var checkArea = '#name,#password';
         var checkImgCode = false;

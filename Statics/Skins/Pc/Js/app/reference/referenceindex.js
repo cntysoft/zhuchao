@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/16.
  */
-define(['jquery', 'slick','comment'], function (){
+define(['jquery', 'slick','comment','app/common'], function (){
    $(function (){
       $('.banner_box').slick({
          autoplay : true,

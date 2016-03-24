@@ -10,7 +10,7 @@ $out = '<div class="baojia_content">
     <p class=""><span class="content_bg main_bg"></span>' . $content['inquiry']->getContent() . '</p>
 </div>
 <div class="baojia_pro clearfix">
-    <a href="" class="baojia_pro_img"><img src="' . $this->getImageCdnUrl($product->getDefaultImage()) . '" alt=""></a>
+    <a href="http://'.\Cntysoft\RT_SYS_SITE_NAME.'/item/'.$product->getNumber().'.html" class="baojia_pro_img"><img src="' . $this->getImageCdnUrl($product->getDefaultImage()) . '" alt=""></a>
     <div class="baojia_pro_detail">
         <h4>' . $product->getTitle() . '</h4>
         <p class="main_light">￥面议</p>
@@ -22,7 +22,7 @@ if ($content['offer'] == '尚未报价') {
                     <h4>供应商回复</h4>
                     <div class="answer_content clearfix">
                         <div class="answer_left fl">
-                            <img src="'.$this->getImageCdnUrl($company->getLogo()).'">
+                            <img src="' . $this->getImageCdnUrl($company->getLogo()) . '">
                             <h4>' . $company->getName() . '</h4>
                             <p class="clearfix">
                                 <span class="company_intro">信用星级：</span>
@@ -63,7 +63,50 @@ if ($content['offer'] == '尚未报价') {
                     </div>
                 </div>';
 } else {
-   
+   $offer = $content['offer'];
+   $out .= '<div class="answer">
+                    <h4>供应商回复</h4>
+                    <div class="answer_content clearfix">
+                        <div class="answer_left fl" style="margin-bottom:30px;">
+                            <img src="' . $this->getImageCdnUrl($company->getLogo()) . '">
+                            <h4>' . $company->getName() . '</h4>
+                            <p class="clearfix">
+                                <span class="company_intro">信用星级：</span>
+                                <span class="company_detail">
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                    <i class="icon-star main_light"></i>
+                                </span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="company_intro">最近成交：</span>
+                                <span class="company_detail">0笔</span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="company_intro">联系人：</span>
+                                <span class="company_detail">' . $providerProfile->getRealName() . '</span>
+                            </p>
+                            <p class="clearfix">
+                                <span class="company_intro">手&nbsp;&nbsp;&nbsp;&nbsp;机：</span>
+                                <span class="company_detail">' . $providerProfile->getShowPhone() . '</span>
+                            </p>
+                        </div>
+                        <div class="answer_right fr">
+                            <div class="answer_ele baojia clearfix">
+                                <span class="answer_intro">报价：</span>
+                                <input type="text" id="lowPrice" class="checkfield" fh-type="float" tip-target="#highPrice" required readonly value="'.$offer->getLowPrice().'">
+                                <span class="fl">——</span>
+                                <input type="text" id="highPrice" class="checkfield" fh-type="float" required value="'.$offer->getHighPrice().'" readonly>
+                            </div>
+                            <div class="answer_ele clearfix">
+                                <span class="answer_intro">说明：</span>
+                                <textarea id="content" class="checkfield" fh-type="length" minlength="5" maxlength="300" required readonly="true">'.$offer->getContent().'</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
 }
 echo $out;
 ?>

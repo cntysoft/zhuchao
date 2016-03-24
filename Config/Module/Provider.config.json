@@ -364,6 +364,10 @@
         "Site" : [
             "\\ProviderFrontApi\\Site",
             2
+        ],
+        "Inquiry":[
+            "\\ProviderFrontApi\\Inquiry",
+            2
         ]
     },
     "mobile_api_map":{

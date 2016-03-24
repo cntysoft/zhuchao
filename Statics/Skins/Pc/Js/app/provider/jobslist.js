@@ -1,4 +1,4 @@
-define(['app/common', 'validate', 'webuploader', 'Core', 'Front'], function (common){
+define(['app/common', 'validate', 'webuploader', 'Core', 'Front','app/common'], function (common){
     $(function (){
         common.createPage(getPageUrl);
 

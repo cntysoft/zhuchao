@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'Core', 'Front', 'layer'], function (validate){
+define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (validate){
     $(function (){
         var curPhone = null, phoneExist = false;
         Cntysoft.Front.forgetCodeUrl = '/forgetchkcode?v_';

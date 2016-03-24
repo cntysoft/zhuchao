@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>注册</title>
-    <?php Qs::Sys('loadCss',array('usercenter/style.css','usercenter/login.css'))?>
-</head>
-<body>
-<div class="wrap">
-    <div class="wrap_inner">
-        <!--logo-->
-        <div class="logo_register">
-            <div class="icon_logo fl">
-                <img src="<?php Qs::Sys('loadImage','login/icon/icon_logo_fff.png')?>" alt="凤凰筑巢LOGO">
-            </div>
-            <h3 class="fl">后台管理系统</h3>
-
-            <a href="login.html" class="register_a fr">已有帐号？立即登录</a>
-        </div>
-        <div class="login_box">
-            <div class="login_header">
-                <h4 class="login_title">注册新帐号</h4>
-                <div class="login_form">
-                    <form action="">
-                        <div class="login_form_input">
-                            <input class="form_text" type="text" fh-type="phone"  id="phone" placeholder="请输入手机号" required>
-                            <input class="form_text" type="password" fh-type="password"  id="password" placeholder="请输入字母、数字、符号均可，6-25个字符的密码" required>
-                            <input class="form_text" type="password" fh-type="password"  id="password2" placeholder="请再次输入密码" required>
-                            <div class="input_code clearfix">
-                                <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
-                                <a class="icode_image" >
-                                    <img alt="图片验证码" id="codeImg" title="看不清换一张" src="">
-                                    <i class="icon-svgupdate" id="changeCodeImg"></i>
-                                </a>
-                            </div>
-                            <!--获取短信验证码-->
-                            <div class="input_code clearfix">
-                                <input class="fl code" type="text" fh-type="phoneAuthCode" id="phoneAuthCode" autocomplete="off" placeholder="请输入短信验证码" required>
-                                <a class="icode_image tc" id="sendMessage">
-                                    获取短信验证码
-                                </a>
-                            </div>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>注册</title>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')) ?>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="wrap_inner">
+                <!--logo-->
+                <div class="logo_register">
+                    <div class="icon_logo fl">
+                        <a href="<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>">
+                            <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                        </a>
+                    </div>
+                    <h3 class="fl">供应商</h3>
+                    <a href="login.html" class="register_a fr">已有帐号？立即登录</a>
+                </div>
+                <div class="login_box">
+                    <div class="login_header">
+                        <h4 class="login_title">供应商注册</h4>
+                        <div class="login_form">
+                            <form action="">
+                                <div class="login_form_input">
+                                    <input class="form_text" type="text" fh-type="phone"  id="phone" placeholder="请输入手机号" required>
+                                    <input class="form_text" type="password" fh-type="password"  id="password" placeholder="请输入字母、数字、符号均可，6-25个字符的密码" required>
+                                    <input class="form_text" type="password" fh-type="password"  id="password2" placeholder="请再次输入密码" required>
+                                    <div class="input_code clearfix">
+                                        <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
+                                        <a class="icode_image" >
+                                            <img alt="图片验证码" id="codeImg" title="看不清换一张" src="">
+                                            <i class="icon-svgupdate" id="changeCodeImg"></i>
+                                        </a>
+                                    </div>
+                                    <!--获取短信验证码-->
+                                    <div class="input_code clearfix">
+                                        <input class="fl code" type="text" fh-type="phoneAuthCode" id="phoneAuthCode" autocomplete="off" placeholder="请输入短信验证码" required>
+                                        <a class="icode_image tc" id="sendMessage">
+                                            获取短信验证码
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--忘记密码-->
+                                <div class="login_forget clearfix">
+                                    <div class="login_auto checked">
+                                        <i class="icon-checked main_light"></i><span>我已经同意《凤凰筑巢用户注册协议》</span>
+                                    </div>
+                                </div>
+                                <!--提交-->
+                                <input class="submit_btn main_bg_light" type="submit" id="submit" value="立即注册">
+                            </form>
                         </div>
-                        <!--忘记密码-->
-                        <div class="login_forget clearfix">
-                            <div class="login_auto checked">
-                                <i class="icon-checked main_light"></i><span>我已经同意《凤凰筑巢用户注册协议》</span>
-                            </div>
-                        </div>
-                        <!--提交-->
-                        <input class="submit_btn main_bg_light" type="submit" id="submit" value="立即注册">
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--版权 begin-->
-<?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'provider/register');?>
-</body>
+        <!--版权 begin-->
+        <?php Qs::Label('静态类/登陆注册网站底部');
+        Qs::Sys('loadRequireJs', 'provider/register'); ?>
+    </body>
 </html>

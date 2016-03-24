@@ -21,7 +21,7 @@ define(['jquery', 'Core', 'layer'], function (){
             callApi : function (name, method, params, callback, load, scope)
             {
                 var layerIndex;
-                if(load){
+                if(!load){
                     layerIndex = layer.load();
                 }
                 callback = callback || Cntysoft.emptyFn;

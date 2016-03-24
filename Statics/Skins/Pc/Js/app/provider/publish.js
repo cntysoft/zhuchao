@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['jquery', 'layer', 'Core', 'Front'], function (){
+define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
    $(function (){
       var $search = $('.searched_wrap'), $select = $('.select_wrap');
       $('.category_select').click(function(){

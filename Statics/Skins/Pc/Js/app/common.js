@@ -1,5 +1,21 @@
 define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (exports, COOKIE){
     $(function (){
+        // 退出登录
+        $('.logout').click(function (){
+            Cntysoft.Front.callApi('User', 'logout', {
+            }, function (response){
+                if(response.status){
+                    window.location.reload();
+                }
+            }, true);
+        });
+        //搜索
+        $('.search_button').click(function (){
+            var key = $('.search_key').val();
+            if(key){
+                window.location.href = '/query/1.html?keyword=' + key;
+            }
+        });
         //实例化页码
         function createPage(getPageUrl){
             if(window.pageInfo == undefined || pageInfo.pageSize >= pageInfo.total){
@@ -81,9 +97,10 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
                     speed : 1000
                 };
                 var options = $.extend(defaults, options);
-                $('body').prepend('<div id = "totop" style="display: block;" > <a> < i class = "icon-jiantou1" > < /i></a> <a> < i class = "icon-kefu" > < /i><em>客服</em > </a></div >');
+                $('body').prepend('<div id="totop" style="display: block;" > <a id="totop_up"><i class = "icon-jiantou1" > </i></a> <a> <i class = "icon-kefu"> </i><em>客服</em > </a></div >');
                 var $toTop = $(this);
                 var $top = $('#totop');
+                var $totopUp = $('#totop_up');
                 var $ta = $('#totop a');
                 var scrolltop = $(window).scrollTop();
                 $top.hide();
@@ -99,7 +116,7 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
                         $top.hide();
                     }
                 });
-                $top.click(function (){
+                $totopUp.click(function (){
                     $("html,body").animate({scrollTop : 0}, options.speed);
                 });
             }

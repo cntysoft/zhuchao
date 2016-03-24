@@ -12,7 +12,9 @@
                 <!--logo-->
                 <div class="logo_register">
                     <div class="icon_logo fl">
-                        <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                        <a href="<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>">
+                            <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
+                        </a>
                     </div>
                     <h3 class="fl">供应商</h3>
                     <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
@@ -59,6 +61,7 @@
             </div>
         </div>
         <!--版权 begin-->
-        <?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'provider/forget');?>
+        <?php Qs::Label('静态类/登陆注册网站底部');
+        Qs::Sys('loadRequireJs', 'provider/forget'); ?>
     </body>
 </html>

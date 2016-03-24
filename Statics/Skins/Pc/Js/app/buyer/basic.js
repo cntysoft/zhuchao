@@ -1,4 +1,4 @@
-define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'search', 'comment'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'search', 'app/common'], function (validate, WebUploader){
     $(function (){
         var reg = new RegExp(/^[0-9a-zA-Z-_]{3,10}$/);
         var uploadProductImg, uploaderConfig;
@@ -20,17 +20,26 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'search',
                     validate.tips('请填写3-10位字母数字的用户名', '#name');
                     return false;
                 }
-                params['name'] = $('#name').val();
-            }
-            params['fileRefs'] = [$('#avatar').attr('fh-rid')];
-            Cntysoft.Front.callApi('User', 'updateBuyer', params, function (response){
-                if(!response.status){
-                    layer.alert('当前用户名不可用！');
-                } else{
-                    layer.msg('用户信息修改成功');
-                }
-            });
+                params['sex'] = getRadioValueByName('sex');
+                if($('#name').attr('disabled')){
 
+                } else{
+                    if(!$('#name').val() || !reg.test($('#name').val())){
+                        validate.tips('请填写3-10位字母数字的用户名', '#name');
+                        return false;
+                    }
+                    params['name'] = $('#name').val();
+                }
+                params['fileRefs'] = [$('#avatar').attr('fh-rid')];
+                Cntysoft.Front.callApi('User', 'updateBuyer', params, function (response){
+                    if(!response.status){
+                        layer.alert('当前用户名不可用！');
+                    } else{
+                        layer.msg('用户信息修改成功');
+                    }
+                });
+
+            }
         });
         //上传的默认配置项
 
