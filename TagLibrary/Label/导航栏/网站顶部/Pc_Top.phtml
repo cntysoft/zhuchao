@@ -2,30 +2,48 @@
     <div class="conwidth clearfix">
         <div class="fl">
             欢迎来到凤凰筑巢！ 
-            <?php
-            $isLogin = $this->checkLogin();
-            if (!$isLogin) {
-               echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
-            } else {
-               $curUser = $this->getCurUser();
-               $name = $curUser->getName() ? $curUser->getName() : $curUser->getPhone();
-               echo '<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">' . $name . '</a>'
-               . '<a class="login_btn main_hover logout">安全退出</a>';
-            }
-            ?>
+				<?php
+				$isLogin = $this->checkLogin();
+				if (!$isLogin) {
+					echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
+				} else {
+					$curUser = $this->getCurUser();
+					$name = $curUser->getName() ? $curUser->getName() : $curUser->getPhone();
+					echo '<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">' . $name . '</a>'
+					. '<a class="login_btn main_hover logout">安全退出</a>';
+				}
+				?>
         </div>
         <ul class="fr header_top_nav main_hover">
             <li><a href="<?php echo 'http://' . $this->getBuyerSiteName() . '/quotationlist/1.html'; ?>">我的询价单</a></li>
             <li class="line"></li>
-            <li><a href="<?php echo 'http://' . $this->getBuyerSiteName(); ?>">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li><a href="<?php echo 'http://' . $this->getBuyerSiteName(); ?>">会员中心 <i class="icon-xiangxiajiantou"></i></a>
+					 <div class="down_list">
+                    <a href="#">我的账户<em>(0)</em></a>
+                    <a href="#">我的账户</a>
+                    <a href="#">我的账户</a>
+                    <a href="#">我的账户</a>
+                </div></li>
             <li class="line"></li>
-            <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a>
+					 <div class="down_list">
+                    <a href="#">大宝剑</a>
+                    <a href="#">大宝剑</a>
+                    <a href="#">我的账户</a>
+                    <a href="#">我的账户</a>
+                </div></li>
             <li class="line"></li>
             <li><a target="_blank" href="http://<?php echo $this->getProviderSiteName(); ?>">供应商专区</a></li>
             <li class="line"></li>
-            <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a></li>
+            <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a>
+				<div class="down_list">
+                    <a href="#">大宝剑</a>
+                    <a href="#">大宝剑</a>
+                    <a href="#">我的账户</a>
+                    <a href="#">我的账户</a>
+                </div></li>
             <li class="line"></li>
-            <li><a target="_blank" href="/category/help.html">帮助中心</a></li>
+            <li><a target="_blank" href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a></li>
             <li class="line"></li>
             <li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
                 <div class="pull_more main_bg">

@@ -76,7 +76,7 @@ if ($company) {
 	 <div class="pro_connect">';
 	 if($goodsInfo->getStatus() == 3){
 		 $out .= '<a class="mainbg_hover"><i class="icon-dianhua"></i>联系方式</a>
-		  <a class="mainbg_hover zaixian_xunjia"><i class="icon-dianhua"></i>在线询价</a>';
+		  <a class="mainbg_hover zaixian_xunjia"><i class="icon-tubiao"></i>在线询价</a>';
 	 } else {
 		 $out .= '<a class="mainbg_hover"><i class="icon-dianhua"></i>暂停服务</a>
 		  <a class="mainbg_hover"><i class="icon-dianhua"></i>暂停服务</a>';
@@ -119,7 +119,7 @@ $out .= '</div><div class="m_pro_info fr">
 				<span>联系方式</span>
 				<span>评价</span>
 		  </h3>';
-$out .= '<div class="pro_info" style="margin-top:10px;">' . $goodsDetail->getIntroduction() . '</div>';
+$out .= '<div class="pro_info"><div class="pro_info_content">' . $goodsDetail->getIntroduction() . '</div></div>';
 
 $attribute = $goodsDetail->getAttribute();
 $out .= '<div class="pro_info hide">
@@ -155,7 +155,7 @@ if ($provider) {
 	 </div>
 </div>';
 }
-$out .= '<div class="pro_info"></div>
+$out .= '<div class="pro_info"><div class="pro_info_content"></div></div>
 </div>
 </div>
 </div>';

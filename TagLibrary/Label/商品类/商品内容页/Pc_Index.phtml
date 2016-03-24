@@ -93,7 +93,7 @@ $out .= '</ul>
 </h3><div class="about_us conwidth clearfix">
     <!--品牌广告-->
     <div class="brand_ad fl about_item">
-        <a href="" class="item_title main_bg">品牌广告</a>';
+        <a class="item_title main_bg">品牌广告</a>';
 $locationId = $this->getAdsLocationId('电脑端', '首页', 'body1');
 $ads = $this->getAds($locationId);
 if (count($ads)) {
@@ -145,12 +145,12 @@ $out .= '</div>
     </div>';
 
 $out .= '<div class="about_right_box fl about_item">
-        <a href="" class="item_title main_bg">采购实况</a>
+        <a class="item_title main_bg">采购实况</a>
         <div class="about_right_item">';
 foreach ($goodsLists as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$out .= '<div class="about_right_list">
-                <span class="address text_ellipsis">河南省鹤壁市</span>
+                <span class="address text_ellipsis">河南省郑州市</span>
                 <span class="time">' . rand(1, 10) . '秒前</span>
                 <h4 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h4>
             </div>';
