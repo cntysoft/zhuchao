@@ -657,7 +657,7 @@ class Acl extends AbstractLib
    {
       $keys = $this->getCookieKeys();
       $key = $keys[Constant::AUTH_KEY];
-      $this->cookieManager->deleteCookie($key, \Cntysoft\SYS_DOMAIN_DEVEL);
+      $this->cookieManager->deleteCookie($key, \Cntysoft\RT_SYS_DOMAIN);
       $this->sessionManager->offsetUnset(\Cntysoft\FRONT_USER_PROVIDER_S_KEY_INFO);
    }
 
