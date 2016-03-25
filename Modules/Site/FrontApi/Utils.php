@@ -11,6 +11,8 @@ use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\Yunzhan\Product\Constant as PRODUCT_CONST;
 use App\Yunzhan\Category\Constant as CATEGORYCONST;
 use App\Yunzhan\Content\Constant as CONTENT_CONST;
+use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
+use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use Cntysoft\Kernel;
 /**
  * 处理系统上传
@@ -157,6 +159,32 @@ class Utils extends AbstractScript
          );
       }
       return $ret;
+   }
+
+   /**
+    * 添加企业关注
+    * 
+    * @param array $params
+    */
+   public function addFollow($params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      $companyId = $params['id'];
+      //验证企业信息是否存在
+      $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MANAGER, 'getCompanyById', array($companyId));
+
+      $acl = $this->di->get('BuyerAcl');
+      $user = $acl->getCurUser();
+      $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_FOLLOW, 'addFollow', array($user->getId(), $companyId));
+   }
+
+   /**
+    * 退出
+    * @return type
+    */
+   public function logout()
+   {
+      return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout');
    }
 
 }

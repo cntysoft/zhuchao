@@ -67,6 +67,9 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <?php Qs::Sys('loadRequireJs', 'company/aboutus') ?>
+        <script>
+           window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
+        </script>
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BPWH0tb47EkNlH6fGGzh381M"></script>
     </body>
 </html>

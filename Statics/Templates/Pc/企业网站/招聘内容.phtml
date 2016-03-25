@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php Qs::Ds('内容数据源/企业标准内容模型', 'AC') ?>
-<?php Qs::Ds('内容数据源/企业信息', 'CP');
+<?php
+Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('商城数据源/商城数据', 'sites');
 ?>
 <html lang="en">
@@ -11,11 +12,11 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-<?php Qs::Sys('loadCss', array('company/style.css', 'company/zhaopin.css')) ?>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/zhaopinlist.css')) ?>
     </head>
     <body>
         <!--头部-->
-<?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
         <div class="l_top ">
             <div class="conwidth clearfix">
@@ -138,7 +139,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <span class="zhaopin_detail"><?php echo date('Y-m-d', QS::DsField('AC', 'endTime', true)) ?></span>
                     </p><br>
                     <p class="clearfix">
-<?php Qs::DsField('AC', 'content') ?>
+                        <?php Qs::DsField('AC', 'content') ?>
                     </p><br>
                     <div class="prev_next">
                         <p><em>上一条：</em><?php
@@ -165,6 +166,9 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         </div>
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
-<?php Qs::Sys('loadRequireJs', 'company/common') ?>
+        <?php Qs::Sys('loadRequireJs', 'company/common') ?>
+        <script>
+           window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
+        </script>
     </body>
 </html>

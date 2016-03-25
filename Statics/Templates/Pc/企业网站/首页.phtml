@@ -75,6 +75,9 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             </div>
         </div>
         <?php Qs::Sys('loadRequireJs', 'company/company_index') ?>
+        <script>
+           window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
+        </script>
 
     </body>
 </html>

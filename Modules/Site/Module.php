@@ -10,6 +10,7 @@ namespace Site;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Cntysoft\Kernel;
 use App\ZhuChao\Provider\Acl;
+use App\ZhuChao\Buyer\Acl as BuyerAcl;
 /**
  * 前端模块初始化代码
  */
@@ -28,7 +29,7 @@ class Module implements ModuleDefinitionInterface
          'SiteFrontApi' => __DIR__ . DS . 'FrontApi'
               ), true);
       $loader->registerDirs(array(
-         __DIR__.DS.'Controllers'
+         __DIR__ . DS . 'Controllers'
       ))->register();
    }
 
@@ -39,6 +40,10 @@ class Module implements ModuleDefinitionInterface
     */
    public function registerServices(\Phalcon\DiInterface $dependencyInjector)
    {
-      
+      $acl = new BuyerAcl();
+      $dependencyInjector->set('BuyerAcl', function()use($acl) {
+         return $acl;
+      });
    }
+
 }

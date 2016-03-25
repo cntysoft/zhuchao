@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/14.
  */
-define(['jquery', 'module/totop','app/common'], function (){
+define(['jquery', 'module/totop', 'Front', 'Core'], function (){
    $(function (){
       var path = window.location.pathname;
       if(path.indexOf('productlist/') >= 0){
@@ -21,6 +21,57 @@ define(['jquery', 'module/totop','app/common'], function (){
          if(text.length){
             window.location.href = '/productlist/1.html?keyword=' + text;
          }
+      });
+      var origin = window.location.origin;
+      setTimeout(function (){
+         $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
+      }, 1);
+      $('.l_top_right').mouseenter(function (){
+         if(!$('#qrcode1').hasClass('loaded')){
+            $('#qrcode1').qrcode({
+               render : "canvas",
+               height : 130,
+               width : 130,
+               text : origin
+            });
+            $('#qrcode1').addClass('loaded');
+         }
+      });
+      var shouchang = $('.header_top a.logout').attr('followed');
+      if(shouchang == 1){
+         $('#totop a.shoucang').addClass('followed');
+         $('#totop a.shoucang em').html('已加');
+      }
+      $('#totop a.shoucang').click(function (){
+         if($('.header_top a.logout').length == 0){
+            window.location.href = window.BUYER_SITE_NAME + '/login.html';
+         }
+         if($(this).hasClass('followed')){
+            return;
+         }
+         Cntysoft.Front.callApi('Utils', 'addFollow',
+         {
+            id : $('#qrcode1').attr('company')
+         }, function (response){
+            if(response.status){
+               $('#totop a.shoucang').addClass('followed');
+               $('#totop a.shoucang em').html('已加');
+            } else{
+               if(response.errorCode == 10014){
+                  window.location.href = window.BUYER_SITE_NAME + '/login.html';
+               }
+            }
+         }
+         , this);
+      });
+      // 退出登录
+      $('.logout').click(function (){
+         Cntysoft.Front.callApi('Utils', 'logout', {
+         }, function (response){
+            if(response.status){
+               window.location.reload();
+            }
+         }, true);
       });
    });
 });

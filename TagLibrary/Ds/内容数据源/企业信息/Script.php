@@ -61,6 +61,7 @@ class CompanyInfo extends AbstractDsScript
       $company['providername'] = $companyProvider ? $companyProvider->getName() : '';
       $company['providerqq'] = $companyProvider ? $companyProvider->getProfile()->getQq() : '';
       $ret = array_merge($company, $companyProfile);
+      $ret['company'] = $ret['id'];
       unset($ret['id']);
       unset($ret['providerId']);
       unset($ret['inputTime']);

@@ -1,8 +1,15 @@
 <!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'site');
+?>
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>注册</title>
+        <title>注册-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')) ?>
     </head>
     <body>
@@ -57,7 +64,9 @@
             </div>
         </div>
         <!--版权 begin-->
-        <?php Qs::Label('静态类/登陆注册网站底部');
-        Qs::Sys('loadRequireJs', 'provider/register'); ?>
+        <?php
+        Qs::Label('静态类/登陆注册网站底部');
+        Qs::Sys('loadRequireJs', 'provider/register');
+        ?>
     </body>
 </html>
