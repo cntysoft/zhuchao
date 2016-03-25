@@ -54,7 +54,7 @@ class CompanyInfo extends AbstractDsScript
       $companyProfile = $company->getProfile();
       $companyProvider = $company->getProvider();
       $company = $company->toarray();
-      $company['logo'] = $this->getImgcdn($company['logo'], 50, 54);
+      $company['logo'] = $this->getImgcdn($company['logo'], 100, 54);
       $company['PCD'] = $this->getChPcd($company['province'], $company['city'], $company['district']);
       $companyProfile = $companyProfile->toarray();
       $company['contact'] = $companyProvider ? $companyProvider->getPhone() : '';
@@ -80,7 +80,7 @@ class CompanyInfo extends AbstractDsScript
       if (!isset($url) || empty($url)) {
          $url = 'Static/lazyicon.png';
       }
-      return Kernel\get_image_cdn_url($url, $width, $height);
+      return Kernel\get_image_cdn_url_operate($url, array('w' => $width, 'h' => $height, 'Q' => 100));
    }
 
    /**
