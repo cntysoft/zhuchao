@@ -93,7 +93,7 @@ class StdSaver extends AbstractSaver
             $this->getErrorTypeContext());
       }
       //条件缺一不可
-      if (isset($data['fileRefs']) && method_exists($scmodel, 'getFileRefs')) {
+      if (!empty($data['fileRefs']) && method_exists($scmodel, 'getFileRefs')) {
          $oldRefs = $scmodel->getFileRefs();
          $oldRefs = explode(',', $oldRefs);
          $nowRefs = $data['fileRefs'];

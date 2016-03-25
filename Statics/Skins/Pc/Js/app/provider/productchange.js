@@ -81,7 +81,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             var imgArray = editorHtml.match(imgReg);
             if(imgArray != null){
                 for(var i = 0, length = imgArray.length; i < length; i++) {
-                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d])*" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
+                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d]*)" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
                     imgRefMap.push([ridSrc[2], ridSrc[1]]);
                     fileRefs.push(ridSrc[1]);
                 }

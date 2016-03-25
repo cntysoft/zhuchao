@@ -108,7 +108,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             }
             if(imgArray != null){
                 for(var i = 0, length = imgArray.length; i < length; i++) {
-                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d])*" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
+                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d]*)" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
                     params.imgRefMap.push([ridSrc[2], ridSrc[1]]);
                     params.fileRefs.push(ridSrc[1]);
                 }
