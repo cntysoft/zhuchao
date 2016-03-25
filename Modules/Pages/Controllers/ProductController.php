@@ -64,17 +64,6 @@ class ProductController extends AbstractController
               GOODS_CATE_CONST::MODULE_NAME, GOODS_CATE_CONST::APP_NAME, GOODS_CATE_CONST::APP_API_MGR, 'getNode', array($categoryId)
       );
       if ($node) {
-         $nodeId = $node->getId();
-         $children = $appCaller->call(
-                 GOODS_CATE_CONST::MODULE_NAME, GOODS_CATE_CONST::APP_NAME, GOODS_CATE_CONST::APP_API_MGR, 'getChildren', array($nodeId));
-         if (count($children)) {
-            $this->dispatcher->forward(array(
-               'module'     => 'Front',
-               'controller' => 'Exception',
-               'action'     => 'pageNotExist'
-            ));
-            return false;
-         }
          return $this->setupRenderOpt(array(
                     View::KEY_RESOLVE_DATA => 'productclassifylist',
                     View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP

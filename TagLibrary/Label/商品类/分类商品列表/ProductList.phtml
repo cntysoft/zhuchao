@@ -45,6 +45,7 @@ foreach ($goodsLists['docs'] as $goods) {
                             </div>
                         </div>';
 }
+
 $totalPage = ceil($goodsLists['total'] / $this->invokeParams['outputNum']);
 if ($this->invokeParams['enablePage'] && $totalPage > 0) {
    $out1 = '';

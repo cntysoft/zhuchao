@@ -457,10 +457,16 @@ class ProductMgr extends AbstractLib
     */
    public function queryGoods($cid, $page = 1, $pageSize = \Cntysoft\STD_PAGE_SIZE, array $attrFilter = array(), array $sorts = array(), $withQueryAttrs = false)
    {
+      if(!is_array($cid)){
+         $ids = array($cid);
+      }  else {
+         $ids = $cid;
+      }
+      
       $cond = array(
-         'categoryId = ?0'
+         ProductModel::generateRangeCond('categoryId', $ids)
       );
-      $bind = array((int) $cid);
+
       //设置orderby
       $orderBy = ' id DESC ';
       if (!empty($sorts)) {
@@ -512,7 +518,6 @@ class ProductMgr extends AbstractLib
       $cond = implode(' and ', $cond);
       $query = array(
          $cond,
-         'bind'  => $bind,
          'order' => $orderBy,
          'limit' => array(
             'number' => $pageSize,
@@ -523,8 +528,7 @@ class ProductMgr extends AbstractLib
 
       $ret = array(
          'total' => ProductModel::count(array(
-            $cond,
-            'bind' => $bind
+            $cond
          )),
          'docs'  => $list
       );

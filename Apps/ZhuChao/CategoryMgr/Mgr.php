@@ -138,7 +138,6 @@ class Mgr extends AbstractLib
    public function getNodeQueryAttrs($cid)
    {
       $cid = (int) $cid;
-      $node = $this->getNode($cid);
       return QueryAttrsModel::find(array(
                  'categoryId = ?0',
                  'bind' => array(

@@ -160,6 +160,19 @@ Ext.define('App.ZhuChao.CategoryMgr.Widget.Entry', {
                         },
                         scope : this
                      }
+                  }, {
+                     text : L.MODIFY_QUERY_ATTR,
+                     listeners : {
+                        click : function ()
+                        {
+                           this.renderPanel('QueryAttrPanel', {
+                              appRef : this.appRef,
+                              mode : 2,
+                              targetLoadId : record.get('id')
+                           });
+                        },
+                        scope : this
+                     }
                   }]
             });
             return this.normalNodeContextMenuRef;

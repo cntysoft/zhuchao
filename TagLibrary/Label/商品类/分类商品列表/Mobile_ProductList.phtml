@@ -7,8 +7,8 @@ $out = '<div class="module_title">
 <div class="card_box">
 	 <!--card3-->
 	 <ul class="card3">';
-$goodsLists = $this->getGoodsListBy();
-foreach ($goodsLists as $list) {
+$goodsLists = $this->queryGoods();
+foreach ($goodsLists['docs'] as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$name = $list->getBrand() . $list->getTitle() . $list->getDescription();
 	$out .= '<li>

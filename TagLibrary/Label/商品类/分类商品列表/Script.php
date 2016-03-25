@@ -175,8 +175,13 @@ class ProductClassify extends AbstractLabelScript
          unset($attrFilter['价格']);
       }
       $attrFilter['status'] = GOOD_CONST::PRODUCT_STATUS_VERIFY;
+      $tree = $this->appCaller->call(
+         CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeTree'
+      );
+      $ids = $tree->getChildren($categoryId, -1);
+      array_push($ids, $categoryId);
       $goods = $this->appCaller->call(
-              GOOD_CONST::MODULE_NAME, GOOD_CONST::APP_NAME, GOOD_CONST::APP_API_PRODUCT_MGR, 'queryGoods', array($categoryId, $page, $pageSize, $attrFilter, $orderBy));
+              GOOD_CONST::MODULE_NAME, GOOD_CONST::APP_NAME, GOOD_CONST::APP_API_PRODUCT_MGR, 'queryGoods', array($ids, $page, $pageSize, $attrFilter, $orderBy));
       return $goods;
    }
 
