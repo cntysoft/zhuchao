@@ -14,7 +14,7 @@ use Cntysoft\Kernel;
 class Recruit extends AbstractScript
 {
    /**
-    *根据详情获得询价单列表
+    *根据详情获得招聘列表
     * @param type $params
     */
    public  function getRecruitListByStatus($params){
@@ -23,8 +23,19 @@ class Recruit extends AbstractScript
       $page == 0 ? $page =1:'';
       $pageSize = (int)$params['pageSize'];
       $pageSize == 0 ? $pageSize=1:'';
+      $offset = ($page-1) * $pageSize;
       $user = $this->appCaller->call(Provider_Content::MODULE_NAME, Provider_Content::APP_NAME, Provider_Content::APP_API_MGR, 'getCurUser');
       $infoList = $this->appCaller->call(Content_Constant::MODULE_NAME,  Content_Constant::APP_NAME,  Content_Constant::APP_API_INFO_LIST,'getInfoListByNodeAndStatus',
-              array(5,2,$params['status'],false,'id DESC',$offset,$limit));
+              array(5,2,$params['status'],false,'id DESC',$offset,$pageSize));
+      $ret = array();
+      foreach($infoList as $item){
+         $job = $this->appCaller->call(Content_Constant::MODULE_NAME,  Content_Constant::APP_NAME,  Content_Constant::APP_API_MANAGER,'read',array($item->getId()))[1];
+         $ret[] = array(
+            "id" => $item->getId(),
+            "position" => $item->getTitle(),
+            "number" => $job->getNumber(),
+         );
+      }
+      return $ret;
    }
 }

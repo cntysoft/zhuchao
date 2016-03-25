@@ -8,7 +8,7 @@
     </tr>
     <?php
     use App\Yunzhan\Content\Constant;
-    $routeInfo = $this->getRouteInfo();
+$routeInfo = $this->getRouteInfo();
     $page = $routeInfo['pageId'];
     $info = $this->getJobsList(Constant::CMODEL_JOB_ID, $page);
     $total = $info[1];
@@ -22,6 +22,7 @@
           $status = time() > $detail->getEndTime() ? '已过期' : '正常';
           echo '<tr class="recruit_list ">
                         <td class="recruit_title">
+                        <span class="check"><em><i></i></em></span>
                             <span class="caption"><em>[' . $node->getText() . ']</em>' . $info->getTitle() . '</span>
                         </td>
                         <td class="recruit_num">' . $detail->getNumber() . '</td>
@@ -34,11 +35,15 @@
                         </td>
                     </tr>';
        }
+       echo '</table><div class="recruit_delete  ">
+            <span class="check"><em><i></i></em>全选</span>
+            <span class="btn btn_del">删除</span>
+        </div>';
     } else {
        echo '<tr class="recruit_list no_recruit">
                      <td colspan=5>暂无招聘信息，赶快去添加吧~~</td>
-                 </tr>';
+                 </tr></table>';
     }
     ?>
-</table>
-<div class="page_list"></div>
+
+    <div class="page_list"></div>

@@ -56,7 +56,7 @@ class MobileApiEntryController extends AbstractController
     */
    protected function getInvokeInfo()
    {
-      $cookies = explode('; ', $this->di->get('request')->getHeader("Cookie"));
+      $cookies = explode(';', $this->di->get('request')->getHeader("Cookie"));
       foreach ($cookies as $value) {
          $cookie = explode('=', $value);
          if ((count($cookie) == 2) && !isset($_COOKIE[$cookie[0]])) {

@@ -65,6 +65,7 @@ class Company extends AbstractScript
          unset($company['providerId']);
          $company['providerAddress'] = $this->getArea($company['province']) . $this->getArea($company['city']) . $this->getArea($company['district']);
          $company['registerAddress'] = $this->getArea($company['registerProvince']) . $this->getArea($company['city']) . $this->getArea($company['registerDistrict']);
+         $company['logo'] = \Cntysoft\Kernel\get_image_cdn_url($company['logo'],180,90);
          return $company;
       }
       return array();

@@ -40,7 +40,11 @@ class Site extends AbstractScript
       }
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'add', array(CM_CONST::CONTENT_MODEL_ARTICLE, $params));
    }
-
+   //把文章移如回收站,包括新闻,招聘等
+   public function deleteArticle($params){
+      $this->checkRequireFields($params,array('id'));
+      $this->appCaller->call(CN_CONST::MODULE_NAME,  CN_CONST::APP_NAME,  CN_CONST::APP_API_MANAGER, 'moveToTrashcan',array($params['id']));
+   }
    /**
     * 添加招聘信息
     * 

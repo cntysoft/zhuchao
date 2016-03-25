@@ -394,6 +394,10 @@
         "Inquiry":[
             "\\ProviderMobileApi\\Inquiry",
             2
+        ],
+        "Recruit":[
+            "\\ProviderMobileApi\\Recruit",
+            2
         ]
     }
 }

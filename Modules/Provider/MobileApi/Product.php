@@ -456,10 +456,9 @@ class Product extends AbstractScript
       $pageSize = (int) $params['pageSize'];
       $pageSize >= 1 ? $pageSize : $pageSize = 1;
       $user = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      $cond['providerId'] = $user->getId();
-      $cond['status'] = $params['status'];
+      $cond = 'providerId ='.$user->getId().' and status='.$params['status'];
       $offset = ($page - 1) * $pageSize;
-      $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, true, 'id DESC', $offset, $pageSize));
+      $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array(array($cond), true, 'id DESC', $offset, $pageSize));
       $ret = array();
       foreach ($products[0] as $item) {
          array_push($ret, array(
@@ -491,7 +490,8 @@ class Product extends AbstractScript
          $ret[] = array(
             'name'     => $attr->getName(),
             'val'      => explode(',', $attr->getOptValue()),
-            'required' => $attr->getRequired()
+            'required' => $attr->getRequired(),
+            'type' => 1
          );
       }
       return $ret;
@@ -507,11 +507,9 @@ class Product extends AbstractScript
       $pageSize = (int) $params['pageSize'];
       $pageSize >= 1 ? $pageSize : $pageSize = 1;
       $user = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      $cond['providerId'] = $user->getId();
-      $cond['status'] = $params['status'];
-      $cond['categoryId'] = $params['cId'];
+      $cond = 'providerId='.$user->getId(). ' and status='.$params['status'].' and categoryId='.$params['cId'];
       $offset = ($page - 1) * $pageSize;
-      $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, true, 'id DESC', $offset, $pageSize));
+      $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array(array($cond), true, 'id DESC', $offset, $pageSize));
       $ret = array();
       foreach ($products[0] as $item) {
          array_push($ret, array(

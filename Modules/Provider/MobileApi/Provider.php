@@ -181,7 +181,7 @@ class Provider extends AbstractScript
       $userProfile = $user->getProfile();
       $company = $user->getCompany();
       return array(
-         'id'          => $userProfile->getName(),
+         'id'          => $user->getId(),
          'name'        => $user->getName(),
          "phone"       => $user->getPhone(),
          "realName"    => $userProfile->getRealName(),
