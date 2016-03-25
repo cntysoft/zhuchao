@@ -9,7 +9,9 @@ define(['jquery'], function (){
             speed : 1000
          };
          var options = $.extend(defaults, options);
-         $("body").prepend("<div id='totop'><a><i class='icon-jiantou1'></i></a><a class='shoucang'><i class='icon-empty-star'></i><em>关注</em></a><a><i class='icon-kefu'></i><em>客服</em></a></div>");
+         $("body").prepend("<div id='totop'><a><i class='icon-jiantou1'></i></a><a class='shoucang'><i class='icon-empty-star'></i><em>关注</em></a><a><i class='icon-kefu'></i><em>客服</em>" +
+         "<div class='block'><span>电话：" + $('#qrcode1').attr('companyphone') + "</span><span>QQ：" + $('#qrcode1').attr('companyqq') + "</span></div>" +
+         "</a></div>");
          var $toTop = $(this);
          var $top = $("#totop");
          var $ta = $("#totop>a:first-child");
