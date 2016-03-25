@@ -31,15 +31,14 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'search',
                     params['name'] = $('#name').val();
                 }
                 params['fileRefs'] = [$('#avatar').attr('fh-rid')];
-                Cntysoft.Front.callApi('User', 'updateBuyer', params, function (response){
-                    if(!response.status){
-                        layer.alert('当前用户名不可用！');
-                    } else{
-                        layer.msg('用户信息修改成功');
-                    }
-                });
-
             }
+            Cntysoft.Front.callApi('User', 'updateBuyer', params, function (response){
+                  if(!response.status){
+                      layer.alert('当前用户名不可用！');
+                  } else{
+                      layer.msg('用户信息修改成功');
+                  }
+              });
         });
         //上传的默认配置项
 

@@ -88,13 +88,14 @@ class Product extends AbstractHandler
       unset($params['keywords3']);
       $params['keywords'] = $keyword;
       
-      return $this->getAppCaller()->call(
+      $product = $this->getAppCaller()->call(
          PRODUCT_CONST::MODULE_NAME,
          PRODUCT_CONST::APP_NAME,
          PRODUCT_CONST::APP_API_PRODUCT_MGR,
          'addProduct',
          array($providerId, $companyId, $params)
       );
+      return $product->getId();
    }
    
    /**
