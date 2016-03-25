@@ -60,12 +60,12 @@ class Product extends AbstractScript
       if (count($params['attribute'])) {
          $attrs = $params['attribute'];
          $params['attribute'] = array(
-            '基本属性'  => array(),
+            '基本参数'  => array(),
             '自定义属性' => array()
          );
          foreach ($attrs as $attr) {
             if ($attr['type'] = 1) {
-               $params['基本属性'][$attr['name']] = $attr['value'];
+               $params['基本参数'][$attr['name']] = $attr['value'];
             } else {
                $params['自定义属性'][$attr['name']] = $attr['value'];
             }
@@ -131,12 +131,12 @@ class Product extends AbstractScript
       if (count($params['attribute'])) {
          $attrs = $params['attribute'];
          $params['attribute'] = array(
-            '基本属性'  => array(),
+            '基本参数'  => array(),
             '自定义属性' => array()
          );
          foreach ($attrs as $attr) {
             if ($attr['type'] = 1) {
-               $params['基本属性'][$attr['name']] = $attr['value'];
+               $params['基本参数'][$attr['name']] = $attr['value'];
             } else {
                $params['自定义属性'][$attr['name']] = $attr['value'];
             }
@@ -407,7 +407,7 @@ class Product extends AbstractScript
             'val'   => explode(',', $attr->getOptValue()),
             'rquired' => $attr->getRequired(),
             'type'    => 1,
-            'value'   => $info['attribute']['基本属性'][$attr->getName()],
+            'value'   => $info['attribute']['基本参数'][$attr->getName()],
             'multi'   => false
          ));
       }
