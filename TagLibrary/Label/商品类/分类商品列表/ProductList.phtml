@@ -16,9 +16,16 @@ foreach ($goodsLists['docs'] as $goods) {
       $attrvalue+=$attrs;
    }
    $price0 = $goods->getPrice();
-   $price = $price0 > 0 ? '¥<em>' . substr($price0, 0, iconv_strpos($price0, '.')) . '</em>.' . $price0 * 100 % 100 : '￥<em>面议</em>';
+   if ($price0 > 10000) {
+      $pos = iconv_strpos($price0, '.');
+      $newprice = substr($price0, 0, $pos - 4);
+      $price = '¥<em>' . $newprice . '</em>.' . substr($price0, $pos - 4, 1) . ' 万';
+   } else {
+      $price = $price0 > 0 ? '¥<em>' . substr($price0, 0, iconv_strpos($price0, '.')) . '</em>.' . $price0 * 100 % 100 : '￥<em>面议</em>';
+   }
+
    $out .= ' <div class="show_list clearfix">
-                            <a class="pro_img" href="'.$url.'"><img src="' . $this->getImgUrl($defpic, 195, 195) . '"> </a>
+                            <a class="pro_img" href="' . $url . '"><img src="' . $this->getImgUrl($defpic, 195, 195) . '"> </a>
                             <div class="pro_info">
                                 <h1>' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . ' </h1>
                                 <table>
@@ -34,7 +41,7 @@ foreach ($goodsLists['docs'] as $goods) {
                             </div>
                             <div class="pro_buy">
                                 <p class="main">' . $price . '</p>
-                                <a class="main_bg" href="'.$url.'">选购</a>
+                                <a class="main_bg" href="' . $url . '">选购</a>
                             </div>
                         </div>';
 }

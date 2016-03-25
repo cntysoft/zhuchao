@@ -4,7 +4,7 @@ $node0 = $this->getNodeByNodeIndentifier($indetifier);
 $subNodes = $this->getSubNodeIds($node0->getId());
 $subindetifiers = array();
 foreach ($subNodes as $value) {
-	$subindetifiers[] = $value->getNodeIdentifier();
+   $subindetifiers[] = $value->getNodeIdentifier();
 }
 array_push($subindetifiers, $indetifier);
 $this->invokeParams['nodeIdentifier'] = $subindetifiers;
@@ -16,8 +16,8 @@ $out = '<section class="news_box conwidth1100 clearfix">
 $i = 1;
 $out_1 = $out_2 = '';
 foreach ($items as $index => $info) {
-	$url = $this->getInfoUrl($info->getId());
-	$out .= '<div class="item">
+   $url = $this->getInfoUrl($info->getId());
+   $out .= '<div class="item">
 	 <a href="' . $url . '">
 		  <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 550, 350) . '">
 		  <div class="banner_news_title">
@@ -26,17 +26,17 @@ foreach ($items as $index => $info) {
 		  </div>
 	 </a>
 </div>';
-	if ($i == 1) {
-		$out_1 = '<a href="' . $url . '">
+   if ($i == 1) {
+      $out_1 = '<a href="' . $url . '">
 				<img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 290, 170) . '" alt=""/>
 				<h3 class="text_ellipsis">' . $info->getTitle() . '</h3>
 		  </a>';
-	} else if ($i == 2) {
-		$out_2 = '<a href="' . $url . '">
+   } else if ($i == 2) {
+      $out_2 = '<a href="' . $url . '">
 				<img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 290, 170) . '" alt=""/>
 				<h3 class="text_ellipsis">' . $info->getTitle() . '</h3>
 		  </a>';
-	}
+   }
 }
 $out .= '</div><a class="prev_btn banner_btn "><i class="icon-jiantou7"></i></a>
 <a class="next_btn banner_btn "><i class="icon-jiantou6"></i></a>
@@ -51,12 +51,13 @@ $out .= '<div class="today_news fl">
 	 <h3 class="main">今日推荐</h3>
 	 <ul class="today_news_item main_hover">';
 foreach ($items as $item) {
-	$out .= '<li>
+   $day = floor((time() - $info->getInputTime()) / (24 * 60 * 60)) ? floor((time() - $info->getInputTime()) / (24 * 60 * 60)) . '天前' : '今天';
+   $out .= '<li>
 				<h4>
 					 <a href="' . $this->getInfoUrl($info->getId()) . '">
 						  ' . $info->getTitle() . '</a>
 				</h4>
-				<p>' . ceil((time() - $info->getInputTime()) / (24 * 60 * 60)) . '天前</p>
+				<p>' . $day . '</p>
 		  </li>';
 }
 $out .= '</ul>

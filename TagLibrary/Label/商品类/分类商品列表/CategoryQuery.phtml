@@ -25,10 +25,9 @@ foreach ($queryAttrs as $index => $queryAttr) {
    foreach ($attrs as $value) {
       $out .= '<li><a  id="' . $name . '" data="' . $value . '">' . $value . '</a></li>';
    }
-   $out .= '</ul>
-                                    <!--更多-->
-                                    <span class="more"><em>更多</em><i class="i_down icon-jiantou3"></i></span>
-                                </dd>
+   $out .= '</ul> ';
+   $out.=count($attrs) > 8 ? ' <span class="more"><em>更多</em><i class="i_down icon-jiantou3"></i></span>' : '';
+   $out.='</dd>
                             </dl>';
 }
 $out.='</div>';
