@@ -77,11 +77,12 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         <label><em class="main">*</em>主营产品：</label>
                         <?php
                         $products = Qs::DsField('User', 'products', true);
-                        foreach ($products as $key => $p) {
-                           if (0 == $key) {
-                              echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
+                        $products = empty($products) ? array() : $products;
+                        for ($i = 0; $i < 4; $i++) {
+                           if (0 == $i) {
+                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
                            } else {
-                              echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
+                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
                            }
                         }
                         ?>
