@@ -9,6 +9,14 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
                 }
             }, true);
         });
+        $('#providerlogout').click(function (){
+            Cntysoft.Front.callApi('Provider', 'logout', {
+            }, function (response){
+                if(response.status){
+                    window.location.reload();
+                }
+            }, true);
+        });
         //搜索
         $('.search_button').click(function (){
             var key = $('.search_key').val();

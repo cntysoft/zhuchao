@@ -1,10 +1,10 @@
 <div class="header_top">
     <div class="conwidth header_top_inner clearfix">
         <div class="fl">
-            欢迎来到凤凰筑巢！ <a class="login_btn main_hover">请登录</a> <a class="register_btn main_hover">注册</a>
+            欢迎来到凤凰筑巢！ <a class="login_btn main_hover" id="providerName"></a> <a class="register_btn main_hover" id="providerlogout">安全退出</a>
         </div>
         <ul class="fr header_top_nav main_hover">
-            <li><a href="">我的询价单</a></li>
+<!--            <li><a href="">我的询价单</a></li>
             <li class="line"></li>
             <li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
             <li class="line"></li>
@@ -13,15 +13,20 @@
             <li><a href="">供应商专区</a></li>
             <li class="line"></li>
             <li><a href="">运营商专区</a></li>
+            <li class="line"></li>-->
+            <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a>
+               <div class="down_list">
+                    <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a>
+                    <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/laobanneican.html">老板内参</a>
+                    <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/zhuchaoschool.html">筑巢商学院</a>
+                </div></li>
             <li class="line"></li>
-            <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a></li>
-            <li class="line"></li>
-            <li><a href="">帮助中心</a></li>
+            <li><a target="_blank" href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a></li>
             <li class="line"></li>
             <li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
                 <div class="pull_more main_bg">
                     <img class="erweima" src="<?php Qs::Sys('loadImage', 'icon_erweima.png'); ?>">
-                    <span>扫一扫关注凤凰筑巢</span>
+                    <span>扫一扫<br>关注凤凰筑巢</span>
                 </div>
             </li>
         </ul>

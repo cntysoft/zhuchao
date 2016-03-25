@@ -13,49 +13,52 @@
     <body>
         <div class="wrap">
             <div class="wrap_inner">
-                <!--logo-->
                 <div class="logo_register">
                     <div class="icon_logo fl">
-                        <a href="<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>">
+                        <a href="<?php echo 'http://' . \Cntysoft\RT_SYS_SITE_NAME ?>">
                             <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
                         </a>
-                        <h3 class="fl">供应商</h3>
-                        <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
                     </div>
-                    <div class="login_box">
-                        <div class="login_header">
-                            <h4 class="login_title">供应商登录</h4>
+                    <h3 class="fl">供应商</h3>
+                    <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
+                </div>
+                <div class="login_box">
+                    <div class="login_header">
+                        <h4 class="login_title">供应商登录</h4>
 
-                            <div class="login_form">
-                                <form action="">
-                                    <div class="login_form_input">
-                                        <input class="form_text" type="text" fh-type="name"  id="name" placeholder="请输入用户名/手机号" required>
-                                        <input type="password" placeholder="请输入密码" fh-type="password" id="password" required>
-                                        <div class="input_code clearfix hide">
-                                            <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
-                                            <a class="icode_image" >
-                                                <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
-                                                <i class="icon-svgupdate" id="changeCodeImg"></i>
-                                            </a>
-                                        </div>
+                        <div class="login_form">
+                            <form action="">
+                                <div class="login_form_input">
+                                    <input class="form_text" type="text" fh-type="name"  id="name" placeholder="请输入用户名/手机号" required>
+                                    <input type="password" placeholder="请输入密码" fh-type="password" id="password" required>
+                                    <div class="input_code clearfix hide">
+                                        <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
+                                        <a class="icode_image" >
+                                            <img alt="图片验证码" title="看不清换一张" src="" id="codeImg">
+                                            <i class="icon-svgupdate" id="changeCodeImg"></i>
+                                        </a>
                                     </div>
-                                    <!--忘记密码-->
-                                    <div class="login_forget clearfix tr">
-                                        <div class="login_auto fl checked">
-                                            <i class="icon-checked main_light" id="remember"></i><span>两周内自动登陆</span>
-                                        </div>
-                                        <a href="/forget.html" class="main_light">忘记密码？</a>
+                                </div>
+                                <!--忘记密码-->
+                                <div class="login_forget clearfix tr">
+                                    <div class="login_auto fl checked">
+                                        <i class="icon-checked main_light" id="remember"></i><span>两周内自动登陆</span>
                                     </div>
-                                    <!--提交-->
-                                    <input class="submit_btn main_bg_light" id="submit" type="submit" value="立即登录"/>
-                                </form>
-                            </div>
+                                    <a href="/forget.html" class="main_light">忘记密码？</a>
+                                </div>
+                                <!--提交-->
+                                <input class="submit_btn main_bg_light" id="submit" type="submit" value="立即登录"/>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--版权 begin-->
-            <?php Qs::Label('静态类/登陆注册网站底部');
-            Qs::Sys('loadRequireJs', 'provider/login'); ?>
-    </body>
+        </div>
+    </div> 
+    <!--版权 begin-->
+    <?php
+    Qs::Label('静态类/登陆注册网站底部');
+    Qs::Sys('loadRequireJs', 'provider/login');
+    ?>
+</body>
 </html>

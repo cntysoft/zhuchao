@@ -161,4 +161,13 @@ class Provider extends AbstractScript
       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'createSite', array($company->getId(), $subAttr));
    }
 
+   /**
+    * 安全退出
+    * 
+    * @return boolean
+    */
+   public function logout()
+   {
+      return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'logout');
+   }
 }
