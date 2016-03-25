@@ -19,5 +19,5 @@ return array(
    'ZhuChao.Buyer',
    'ZhuChao.MessageMgr',
    'ZhuChao.Product',
-	'ZhuChao.MarketMgr'
+   'ZhuChao.MarketMgr'
 );

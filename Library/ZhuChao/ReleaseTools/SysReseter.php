@@ -14,6 +14,7 @@ use App\Sys\User\Constant as SYS_USER_CONST;
 use App\Sys\AppInstaller\Model\AppModule;
 use App\Sys\AppInstaller\Model\InstalledApp;
 use App\Sys\User\Member;
+use App\ZhuChao\MarketMgr\Constant as Mar_Constant;
 /**
  * @author SOFTBOY <cntysoft@163.com>
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
@@ -54,6 +55,7 @@ class SysReseter
       $this->setupSysUserRoles();
       $this->setupCmModels();
       $this->setupCategory();
+      $this->setupAdsModuleTable();
    }
 
    protected function clearTables()
@@ -62,6 +64,20 @@ class SysReseter
       foreach($tableNames as $tableName){
          Kernel\truncate_table($tableName);
       }
+   }
+   
+   /**
+    * 初始化系统的广告位模块
+    */
+   protected function setupAdsModuleTable()
+   {
+      $adsmodule = $this->getDataArray('DefaultAds');
+      $this->appCaller->call(
+              Mar_Constant::MODULE_NAME, 
+              Mar_Constant::APP_NAME, 
+              Mar_Constant::APP_API_ADS, 
+              'initAdsModuleTable', 
+              array($adsmodule, 0));
    }
    
    protected function setupSiteConfig()

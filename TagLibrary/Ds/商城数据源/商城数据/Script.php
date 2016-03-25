@@ -17,9 +17,8 @@ class Sites extends AbstractDsScript
     */
    public function load()
    {
-		$config = $this->appCaller->call(SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getSiteConfig');
-		return $config;
+      $config = $this->appCaller->call(SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getSiteConfig');
+      return $config;
    }
-
 
 }

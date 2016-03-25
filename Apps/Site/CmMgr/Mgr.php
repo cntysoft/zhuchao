@@ -930,7 +930,7 @@ TPL;
 
    protected function getTargetDbName()
    {
-      return \Cntysoft\ZHUCHAO_PLATFORM_DBNAME;
+      return \Cntysoft\RT_ZHUCHAO_PLATFORM_DB;
    }
 
    /**
