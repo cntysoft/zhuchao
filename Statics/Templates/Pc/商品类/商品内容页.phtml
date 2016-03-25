@@ -11,7 +11,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/proinfo.css')); ?>
+		  <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/proinfo.css')); ?>
         <script>window._bd_share_config = {
                "common" : {
                    "bdSnsKey" : {},
@@ -29,13 +29,13 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 	 <body>
 		  <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
 		  <!--导航-->
-		  
+
 		  <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_GoodsContent')) ?>
 		  <?php Qs::Label('静态类/网站底部'); ?>
 		  <div class="online hide">
-				<div class="online_box">
+				<div class="online_inner">
 					 <h3>在线询价 <i class="icon-newcuo online_close"></i></h3>
-					 <div class="online_content">
+					 <div class="online_box">
 						  <div class="warn">
 								注意：供应商将在24小时内给您回复，回复内容将以短信形式发送至您手机。
 						  </div>
@@ -43,15 +43,15 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 								<div class="online_ele clearfix">
 									 <span class="fl online_intro">询价产品：</span>
 									 <span class="online_detail">
-										  <?php Qs::DsField('goods','name') ?>
+										  <?php Qs::DsField('goods', 'name') ?>
 									 </span>
 								</div>
 								<div class="online_ele clearfix">
 									 <span class="fl online_intro">询价主题：</span>
 									 <div class="online_detail ">
 										  <div class="xunjia_theme">
-												<label >
-													 <input type="radio" checked name="theme" >
+												<label>
+													 <input type="radio" checked name="theme">
 													 <i></i>
 													 价格
 												</label>
@@ -64,8 +64,27 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 										  <textarea name="" id="xunjia_content" placeholder="请至少输入10个字！"></textarea>
 									 </div>
 								</div>
-								<input class="submit_btn main_bg_light xunjia_button" type="button" value="立即询价">
+								<input class="submit_btn main_bg_light xunjia_button" type="button" value="发送">
 						  </form>
+					 </div>
+				</div>
+		  </div>
+		  <div class="connect hide">
+				<div class="connect_inner">
+					 <h3>在线询价 <i class="icon-newcuo connect_close"></i></h3>
+					 <div class="connect_content">
+						  <div class="warn clearfix">
+								<span>注意：</span>
+								<div class="warn_detail">
+									 <p>1 . 使用400电话可有效保证您的号码隐私不被泄露</p>
+									 <p>2 . 拨打后可在后台进行拨打记录查询，仅收市话费用</p>
+									 <p>3 . 成交后在会员中心确认可获得积分</p>
+								</div>
+						  </div>
+						  <div class="connect_detial">
+								<p><span>联系人：</span><?php Qs::DsField('goods', 'realName') ?> <i>（经理）</i></p>
+								<p><span>电话：</span><?php Qs::DsField('goods', 'phone') ?>
+						  </div>
 					 </div>
 				</div>
 		  </div>

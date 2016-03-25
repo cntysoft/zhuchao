@@ -26,13 +26,12 @@ define(['jquery', 'Front','app/common'], function (){
                 }
             }, true);
         });
-        /*图片切换*/
         var small_img = $('.small_img').find('div');
-        small_img.hover(function (){
-            small_img.removeClass('main_border');
-            $(this).addClass('main_border');
+        small_img.hover(function(){
+            small_img.removeClass('small_hover');
+            $(this).addClass('small_hover');
             var big_src = $(this).find('img').attr('big');
-            $('.big_img').find('img').attr('src', big_src);
+            $('.big_img').find('img').attr('src',big_src);
         });
         $('.next').click(function (){
             var index = $('.small_img').find('.main_border').index();
@@ -70,6 +69,12 @@ define(['jquery', 'Front','app/common'], function (){
         });
         $('.online_close').click(function (){
             $('.online').hide();
+        });
+        $('.connect_btn').click(function(){
+            $('.connect').show();
+        });
+        $('.connect_close').click(function(){
+            $('.connect').hide();
         });
         //询价
         $('.xunjia_button').click(function (){

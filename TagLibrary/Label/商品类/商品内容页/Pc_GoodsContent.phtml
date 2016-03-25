@@ -21,13 +21,12 @@ $out .= '<div class="l_main conwidth">
                     <div class="fl">
                         <p>' . $name . '</p>
                         <p>' . $goodsDetail->getAdvertText() . '</p>
-                    </div>';
-$out .= '<div class="icon-erweima fr">
-                        <div class="erweima_box">
-                            <p>扫一扫&nbsp;&nbsp;用手机查看此页</p>
-                            <div class="qrcode"> <img src="/Utils/index/wechatQrCode?data=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '" alt=""></div>
-                        </div>
-                    </div></h3>';
+                    </div>
+                </h3>';
+
+
+
+
 $images = $goodsDetail->getImages();
 $bigImage = $smallImage = '';
 $i = 1;
@@ -42,56 +41,62 @@ foreach ($images as $image) {
 	$i = 2;
 	$smallImage .= '<div> <img src="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt=""></div>';
 }
-$out .= $bigImage;
-$out .= '</div>
-            <div class="small_img clearfix">' . $smallImage . '</div>
+$out .= $bigImage . '</div>
             <div class="share clearfix">
-                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"><i class="main icon-fenxiang"></i>分享</a></div>';
+                <div class="bdsharebuttonbox"><a class="bds_more" data-cmd="more"><i
+                        class="main icon-fenxiang1"></i>分享</a></div>';
 if ($this->checkLogin() && $this->checkCollect($goodsInfo->getId())) {
 	$out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
 } else {
 	$out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang can_collect"></i>收藏</span>';
 }
 $out .= '</div>
-        </div><div class="pro_about fr">
-            <div class="pro_about_top">
-                <h4 class="pro_code">产品编号：' . $goodsInfo->getNumber() . '</h4>
-                <p class="pro_price main">￥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "面议") . '</p>
-                <div class="pro_content">
-                    <p>最小起定量：' . $goodsDetail->getMinimum() . $goodsDetail->getUnit() . '</p>
-                    <p>可售库存数：' . $goodsDetail->getStock() . $goodsDetail->getUnit() . '</p>
-                    <p>是否可批发：' . ($goodsInfo->getIsBatch() ? "是" : "否") . '</p>
-                </div>
-            </div>';
+        </div>';
+$provider = $goodsInfo->getProvider();
 $company = $goodsInfo->getCompany();
-if ($company) {
-	$out .= '<div class="pro_about_bottom">
-	 <h4 class="main">' . $company->getName() . '</h4>
-	 <div class="pro_content">
-		  <p class="clearfix"><i></i><span class="pro_detail">' . $this->getAreaFromCode($company->getProvince()) . '&nbsp;&nbsp;' . $this->getAreaFromCode($company->getCity()) . '</span></p>
-		  <p class="clearfix"><i></i><span>主营：</span>
-				<span class="pro_detail">' . $company->getProducts() . '</span>
-		  </p>
-	 </div>
-	 <div class="pro_connect">';
-	 if($goodsInfo->getStatus() == 3){
-		 $out .= '<a class="mainbg_hover"><i class="icon-dianhua"></i>联系方式</a>
-		  <a class="mainbg_hover zaixian_xunjia"><i class="icon-tubiao"></i>在线询价</a>';
-	 } else {
-		 $out .= '<a class="mainbg_hover"><i class="icon-dianhua"></i>暂停服务</a>
-		  <a class="mainbg_hover"><i class="icon-dianhua"></i>暂停服务</a>';
-	 }
-		  
-	 $out .= '</div>
-</div>';
+$out .= '<div class="pro_about fr">
+            <h3>编号：' . $goodsInfo->getNumber() . '</h3>
+            <p class="pro_price main">￥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "面议") . '</p>
+            <div class="pro_local_box">
+                <div class="pro_local">
+                    <span class="local_intro">发&nbsp;货&nbsp;地：</span>
+                    <div class="local_detail">
+                        <span>' . $this->getAreaFromCode($company->getProvince()) . '</span><span>' . $this->getAreaFromCode($company->getCity()) . '</span>
+                    </div>
+                </div>
+                <div class="pro_local">
+                    <span class="local_intro">主营产品：</span>
+                    <div class="local_detail">';
+$products = explode(',', $company->getProducts());
+foreach ($products as $product) {
+	$out .= '<span>' . $product . '</span>';
 }
-
-
 $out .= '</div>
-</div><div class="l_pro_info clearfix">
-	 <!--相关信息-->
-	 <div class="related_info fl">
-		  <h3 class="main_bg">相关产品</h3>';
+                </div>
+            </div>
+            <div class="pro_code">
+                <h4>' . $company->getName() . '</h4>
+                <div class="pro_code_img">
+                    <img src="/Utils/index/wechatQrCode?data=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '" alt="">
+                </div>
+
+            </div>
+            <div class="pro_connect">
+                <div class="connect_btn"><i class="icon-dianhua2"></i>联系方式</div>
+                <div class="online_btn zaixian_xunjia"><i class="icon-tubiao"></i>在线询价</div>
+            </div>
+        </div>
+    </div>';
+$out .= '<div class="small_img clearfix">' . $smallImage . '</div>';
+
+
+
+
+
+$out .= '<div class="l_pro_info clearfix">
+        <!--相关信息-->
+        <div class="related_info fl">
+            <h3 class="main_bg">相关信息</h3>';
 $cid = $goodsInfo->getCategoryId();
 $cond = array(
 	'categoryId = ?1',
@@ -106,10 +111,10 @@ foreach ($goodsLists as $goodsList) {
 	}
 	$url = $this->getProductUrl($goodsList->getNumber());
 	$out .= '<div class="related_pro">
-				<a href="' . $url . '"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
-				<p class="pro_intro"><a href="' . $url . '" class="main_hover">' . $goodsList->getTitle() . '</a></p>
-				<p class="pro_price">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
-		  </div>';
+                <a href="' . $url . '"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
+                <p class="pro_intro"><a href="' . $url . '" class="main_hover">' . $goodsList->getTitle() . '</a></p>
+                <p class="pro_price main">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
+            </div>';
 }
 
 $out .= '</div><div class="m_pro_info fr">
@@ -123,37 +128,50 @@ $out .= '<div class="pro_info"><div class="pro_info_content">' . $goodsDetail->g
 
 $attribute = $goodsDetail->getAttribute();
 $out .= '<div class="pro_info hide">
-	 <div class="l_parameter">';
+                <div class="l_parameter main_border">';
 
 foreach ($attribute as $key => $value) {
-	$out .= '<h3><span class="parameter_intro">' . $key . '</span></h3><ul>';
 	foreach ($value as $attrs => $attr) {
-		$out .= '<li>
-					 <span class="parameter_intro">' . $attrs . '：</span>
-					 <span>' . $attr . '</span>
-				</li>';
+		$out .= '
+				<p class="clearfix">
+                        <span class="para_intro"><i>' . $attrs . '：</i></span>
+                        <span class="para_detail">' . $attr . '</span>
+                    </p>';
 	}
-	$out .= '</ul></br>';
 }
 $out .= '</div>
 </div>';
-$provider = $goodsInfo->getProvider();
+
 if ($provider) {
 	$providerDetail = $provider->getProfile();
 	$out .= '<div class="pro_info hide">
-	 <div class="connect_way">
-		  <div class="pro_name">
-				<h4 class="">' . $provider->getName() . '</h4>
-				
-				<div class="pro_connect">
-					 <p>电&nbsp;&nbsp;话：' . $providerDetail->getTel() . '</p>
-					 <p>邮&nbsp;&nbsp;箱：' . $providerDetail->getEmail() . '</p>
-					 <p>Q&nbsp;&nbsp;Q：' . $providerDetail->getQq() . '</p>
-					 <p>地&nbsp;&nbsp;址：' . $providerDetail->getPosition() . '</p>
-				</div>
-		  </div>
-	 </div>
-</div>';
+                <div class="connect_box">
+                    <div>
+                        <div class="connect_ele">
+                            <span class="icon-dianhua1 main_light"></span>
+                            <h4>电话</h4>
+                            <p>' . $providerDetail->getTel() . '</p>
+                        </div>
+                        <div class="connect_ele">
+                            <span class="icon-youxiang main_light"></span>
+                            <h4>邮箱</h4>
+                            <p>' . $providerDetail->getEmail() . '</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="connect_ele">
+                            <span class="icon-weixin main_light"></span>
+                            <h4>QQ</h4>
+                            <p>' . $providerDetail->getQq() . '</p>
+                        </div>
+                        <div class="connect_ele">
+                            <span class="icon-iconfontzuobiao main_light"></span>
+                            <h4>地址</h4>
+                            <p>' . $providerDetail->getPosition() . '</p>
+                        </div>
+                    </div>
+                </div>
+            </div>';
 }
 $out .= '<div class="pro_info"><div class="pro_info_content"></div></div>
 </div>
@@ -161,6 +179,5 @@ $out .= '<div class="pro_info"><div class="pro_info_content"></div></div>
 </div>';
 echo $out;
 ?>
-
 
 

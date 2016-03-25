@@ -10,8 +10,8 @@
                $curUser = $this->getCurUser();
                $followed = empty($this->checkFollowed()) ? 0 : 1;
                $name = $curUser->getName() ? $curUser->getName() : $curUser->getPhone();
-               echo '<a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">' . $name . '</a>'
-               . '<a class="login_btn main_hover logout" followed="' . $followed . '">安全退出</a>';
+               echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '">' . $name . '</a>'
+               . '<a class="register_btn main_hover logout" followed="' . $followed . '">安全退出</a>';
             }
             ?>
         </div>

@@ -19,8 +19,12 @@ class Goods extends AbstractDsScript
    {
       $number = $this->getRouteInfo()['number'];
 		$goodsInfo = $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
+		$provider = $goodsInfo->getProvider();
+		$providerDetail = $provider->getProfile();
 		return array(
-			'name' => $goodsInfo->getBrand().$goodsInfo->getTitle().$goodsInfo->getDescription()
+			'name' => $goodsInfo->getBrand().$goodsInfo->getTitle().$goodsInfo->getDescription(),
+			'realName' => $providerDetail->getRealName(),
+			'phone' => $provider->getPhone()
 		);
    }
 
