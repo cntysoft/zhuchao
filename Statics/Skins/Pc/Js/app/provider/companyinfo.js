@@ -76,7 +76,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                     method : "process"
                 }),
                 REQUEST_DATA : Cntysoft.Json.encode({
-                    uploadDir : "/Data/UploadFiles/Apps/ZhuChao/Product",
+                    uploadDir : "/Data/UploadFiles/Apps/YunZhan",
                     overwrite : true,
                     randomize : true,
                     createSubDir : true,

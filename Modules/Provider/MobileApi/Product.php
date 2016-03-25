@@ -392,10 +392,10 @@ class Product extends AbstractScript
       $info['images'] = unserialize($info['images']);
       $info['attribute'] = unserialize($info['attribute']);
       foreach ($info['images'] as $key => $image) {
-         $info['images'][$key]['cdn'] = \Cntysoft\Kernel\get_image_cdn_server_url();
+         $info['images'][$key]['cdn'] = \Cntysoft\Kernel\get_image_cdn_url($image[0]);
          $info['images'][$key]['id'] = $image[1];
-         $info['images'][$key]['base'] = $image[0];
-         $info['images'][$key]['url'] = \Cntysoft\Kernel\get_image_cdn_url($image[0]);
+         $info['images'][$key]['base'] = \Cntysoft\Kernel\get_image_cdn_server_url();
+         $info['images'][$key]['url'] = $image[0];
          unset($info['images'][$key][0]);
          unset($info['images'][$key][1]);
       }
@@ -403,12 +403,12 @@ class Product extends AbstractScript
       $retAttrs = array();
       foreach ($attrs as $key => $attr) {
          array_push($retAttrs, array(
-            'name'    => $attr->getName(),
-            'val'   => explode(',', $attr->getOptValue()),
-            'rquired' => $attr->getRequired(),
-            'type'    => 1,
-            'value'   => $info['attribute']['基本参数'][$attr->getName()],
-            'multi'   => false
+            'name'     => $attr->getName(),
+            'val'      => explode(',', $attr->getOptValue()),
+            'required' => $attr->getRequired(),
+            'type'     => 1,
+            'value'    => $info['attribute']['基本参数'][$attr->getName()],
+            'multi'    => false
          ));
       }
 
@@ -420,12 +420,35 @@ class Product extends AbstractScript
          ));
       }
       $info['attribute'] = $retAttrs;
-      $info['defaultImage'] = \Cntysoft\Kernel\get_image_cdn_url($info['defaultImage']);
+      $info['categoryName'] = $this->getAllParentName($info['categoryId']);
       unset($info['id']);
       unset($info['imgRefMap']);
       unset($info['fileRefs']);
       unset($info['detailId']);
+      unset($info['searchAttrMap']);
+      unset($info['indexGenerated']);
+      unset($info['grade']);
+      unset($info['star']);
+      unset($info['inputTime']);
+      unset($info['updateTime']);
+      unset($info['status']);
+      unset($info['comment']);
+      unset($info['providerId']);
+      unset($info['companyId']);
+      unset($info['defaultImage']);
+      unset($info['hits']);
       return $info;
+   }
+
+   private function getAllParentName($cid)
+   {
+      $ret = array();
+      $this->getParentCategory($cid, $ret);
+      $text = '';
+      foreach ($ret as $category) {
+         $text = $category['text'] . '/' . $text;
+      }
+      return substr($text, 0, strlen($text) - 1);
    }
 
    /**
@@ -456,7 +479,7 @@ class Product extends AbstractScript
       $pageSize = (int) $params['pageSize'];
       $pageSize >= 1 ? $pageSize : $pageSize = 1;
       $user = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      $cond = 'providerId ='.$user->getId().' and status='.$params['status'];
+      $cond = 'providerId =' . $user->getId() . ' and status=' . $params['status'];
       $offset = ($page - 1) * $pageSize;
       $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array(array($cond), true, 'id DESC', $offset, $pageSize));
       $ret = array();
@@ -471,7 +494,7 @@ class Product extends AbstractScript
             "price"        => $item->getPrice(),
             "comment"      => $item->getComment(),
             "status"       => $item->getStatus(),
-            "url" => 'http://'.\Cntysoft\RT_SYS_SITE_NAME.'/item/'.$item->getNumber().'.html'
+            "url"          => 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $item->getNumber() . '.html'
          ));
       }
       return $ret;
@@ -491,7 +514,7 @@ class Product extends AbstractScript
             'name'     => $attr->getName(),
             'val'      => explode(',', $attr->getOptValue()),
             'required' => $attr->getRequired(),
-            'type' => 1
+            'type'     => 1
          );
       }
       return $ret;
@@ -507,7 +530,7 @@ class Product extends AbstractScript
       $pageSize = (int) $params['pageSize'];
       $pageSize >= 1 ? $pageSize : $pageSize = 1;
       $user = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      $cond = 'providerId='.$user->getId(). ' and status='.$params['status'].' and categoryId='.$params['cId'];
+      $cond = 'providerId=' . $user->getId() . ' and status=' . $params['status'] . ' and categoryId=' . $params['cId'];
       $offset = ($page - 1) * $pageSize;
       $products = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductList', array(array($cond), true, 'id DESC', $offset, $pageSize));
       $ret = array();
