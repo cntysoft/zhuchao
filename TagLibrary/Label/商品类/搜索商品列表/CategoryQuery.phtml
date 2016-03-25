@@ -27,7 +27,7 @@ foreach ($queryAttrs as $name => $attrs) {
                                     <ul class="clearfix">
                                         ';
    foreach ($attrs as $value) {
-      $out .= '<li><a  id="' . $name . '" data="' . $value . '">' . $value . '</a></li>';
+      $out .= '<li><a index="' . $name . '" data="' . $value . '">' . $value . '</a></li>';
    }
    $out .= '</ul>';
    if(count($attrs) > 8){

@@ -52,7 +52,7 @@ define(['jquery', 'lazyload','app/common'], function (){
             var arr = item.split('=');
             var id = arr[0];
             var data = arr[1];
-            $.each($('#' + id), function (){
+            $.each($('.list_item a[index='+id+']'), function (){
                var span = $(this);
                if(span.attr('data') == data){
                   span.addClass('main');
@@ -77,7 +77,7 @@ define(['jquery', 'lazyload','app/common'], function (){
          var query = '?';
          $('.list_item dd a.main').each(function (){
             var item = $(this);
-            cond[item.attr('id')] = item.attr('data');
+            cond[item.attr('index')] = item.attr('data');
          });
          $('.rank_wrap ul li').each(function (){
             if($(this).hasClass('main')){
@@ -110,7 +110,6 @@ define(['jquery', 'lazyload','app/common'], function (){
       });
       //更多选项
       $('.show_more').click(function (){
-
          if(!$(this).hasClass('active')){
             $(this).addClass('active');
             $(this).children('span').addClass('main').text('收起');

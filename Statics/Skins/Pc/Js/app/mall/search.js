@@ -44,7 +44,7 @@ define(['jquery', 'lazyload','app/common'], function (){
       }
       //筛选条件点击------------------------------------------
       $('.list_item dd a').click(function (){
-         addRoute([$(this).attr('id') + '=' + $(this).attr('data')]);
+         addRoute([$(this).attr('index') + '=' + $(this).attr('data')]);
          redirectUrl();
       });
       //重定向网址---------------------------------------
