@@ -1,0 +1,67 @@
+<?php
+$indetifier = $this->invokeParams['nodeIdentifier'][0];
+$node0 = $this->getNodeByNodeIndentifier($indetifier);
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+	$subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $indetifier);
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$items = $this->execute('hits desc');
+$out = '<section class="news_box conwidth1100 clearfix">
+    <!--banner -->
+    <div class="banner fl">
+        <div class="banner_box">';
+$i = 1;
+$out_1 = $out_2 = '';
+foreach ($items as $index => $info) {
+	$url = $this->getInfoUrl($info->getId());
+	$out .= '<div class="item">
+	 <a href="' . $url . '">
+		  <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 550, 350) . '">
+		  <div class="banner_news_title">
+				<span class="tips"><i>the news</i></span>
+				<h3 class="text_ellipsis">' . $info->getTitle() . '</h3>
+		  </div>
+	 </a>
+</div>';
+	if ($i == 1) {
+		$out_1 = '<a href="' . $url . '">
+				<img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 290, 170) . '" alt=""/>
+				<h3 class="text_ellipsis">' . $info->getTitle() . '</h3>
+		  </a>';
+	} else if ($i == 2) {
+		$out_2 = '<a href="' . $url . '">
+				<img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 290, 170) . '" alt=""/>
+				<h3 class="text_ellipsis">' . $info->getTitle() . '</h3>
+		  </a>';
+	}
+}
+$out .= '</div><a class="prev_btn banner_btn "><i class="icon-jiantou7"></i></a>
+<a class="next_btn banner_btn "><i class="icon-jiantou6"></i></a>
+</div>';
+$out .= '<div class="middle fl"><div class="middle_item">
+		  <span class="tips"><i>早期项目</i></span>' . $out_1 . '</div>
+	 <div class="middle_item">
+		  <span class="tips tips2"><i>大公司</i></span>' . $out_2 . '</div>
+</div>';
+$items = $this->execute('inputTime desc');
+$out .= '<div class="today_news fl">
+	 <h3 class="main">今日推荐</h3>
+	 <ul class="today_news_item main_hover">';
+foreach ($items as $item) {
+	$out .= '<li>
+				<h4>
+					 <a href="' . $this->getInfoUrl($info->getId()) . '">
+						  ' . $info->getTitle() . '</a>
+				</h4>
+				<p>' . ceil((time() - $info->getInputTime()) / (24 * 60 * 60)) . '天前</p>
+		  </li>';
+}
+$out .= '</ul>
+</div>
+</section>';
+echo $out;
+?>
+

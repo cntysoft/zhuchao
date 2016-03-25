@@ -178,26 +178,15 @@ foreach ($goodsLists as $list) {
         </li>';
 }
 $out .= '</ul>';
-$leafNodes = $this->getLeafNodes();
-$nodes = array();
-foreach ($leafNodes as $value) {
-	$nodes[] = $value->getId();
-}
-$j = 2; //控制首页输出多少次产品展示
-foreach ($nodes as $node) {
-	if ($j > 5) {
-		return false;
-	}
-	$cond = array(
-		'categoryId = ?1 AND status = 3',
-		'bind' => array(
-			1 => $node
-		)
-	);
+$superNodes = $this->getSuperNodes();
+$j = 2;
+foreach ($superNodes as $super) {
 	$out .= '</div><div class="module_title conwidth clearfix">
     <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
 </div><div class="pro_list clearfix conwidth">';
-	$goodsLists = $this->getGoodsList($cond, false, 'inputTime DESC', 0, 7);
+	$nodes = $this->getNodePath($super->getId());
+	$cond = array('categoryId IN (' . implode(',', $nodes) . ') AND status = 3');
+	$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 0, 7);
 	$i = 1;
 	foreach ($goodsLists as $list) {
 		$url = $this->getProductUrl($list->getNumber());
@@ -206,7 +195,7 @@ foreach ($nodes as $node) {
             <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
         </a>
         <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
-        
+
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
 		if ($i == 1) {

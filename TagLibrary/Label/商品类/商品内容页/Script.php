@@ -36,6 +36,18 @@ class Goods extends AbstractLabelScript
       return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
    }
 	/**
+	 * 获取PID为0的节点信息
+	 * @return type
+	 */
+	public function getSuperNodes()
+	{
+		return $this->appCaller->call(
+				  CATEGORY::MODULE_NAME, 
+				  CATEGORY::APP_NAME, 
+				  CATEGORY::APP_API_MGR, 
+				  'getChildren', array(0));
+	}
+	/**
     * 获取叶子节点列表信息
     * 
     * @return object 
@@ -74,13 +86,7 @@ class Goods extends AbstractLabelScript
       if (!$tree->isNodeExist($id)) {
          return $ret;
       }
-
-      $node = $tree->getValue($id);
-      $ret[] = $node;
-      while ($id = $tree->getParent($id)) {
-         $ret[] = $tree->getValue($id);
-      }
-      return $ret;
+		return $tree->getChildren($id);
    }
    /**
     * 检查是否登录
