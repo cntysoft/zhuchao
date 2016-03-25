@@ -1,80 +1,88 @@
 <?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>收货地址-<?php Qs::DsField('site', 'SiteTitle') ?></title>
-    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
-    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
-    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-   <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <?php Qs::Sys('loadCss', array('huiyuan/style.css', 'huiyuan/addr.css'))?>
-</head>
-<body>
-<!--头部-->
-<!--个人中心头部-->
-<?php Qs::Label('采购商/用户中心头部', array('renderTpl' => 'Pc_Header'))?>
-<!--个人中心-->
-<div class="content conwidth clearfix">
-    <!--左侧列表-->
-    <?php Qs::Label('采购商/用户中心左侧')?>
-    <!--右侧内容-->
-    <div class="content_wrap fr">
-        <h1 class="items_title">收货地址  <span class="add_btn main_bg_light"><i>+</i>添加收货地址</span></h1>
-        <?php Qs::Label('采购商/收货地址列表', array('renderTpl' => 'AddressList'))?>
-        <div class="new_address">
-            <div class="right_top">
-                <h2>新增收货地址</h2>
-            </div>
-            <div class="new_address_content">
-                <form>
-                    <div class="recevier clearfix">
-                        <span class="address_intro"><i class="main">*</i>收货人姓名：</span>
-                        <input type="text" required id="name">
-                        <span class="tip hide">收货人姓名不能为空</span>
+    <head>
+        <meta charset="UTF-8">
+        <title>收货地址-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('huiyuan/style.css', 'huiyuan/addr.css')) ?>
+        <style>
+            .form_list>select {
+                background: #fff;
+                height: 40px;
+                width: 135px;
+            }
+        </style>
+    </head>
+    <body>
+        <!--头部-->
+        <!--个人中心头部-->
+        <?php Qs::Label('采购商/用户中心头部', array('renderTpl' => 'Pc_Header')) ?>
+        <!--个人中心-->
+        <div class="content conwidth clearfix">
+            <!--左侧列表-->
+            <?php Qs::Label('采购商/用户中心左侧') ?>
+            <!--右侧内容-->
+            <div class="content_wrap fr">
+                <h1 class="items_title">收货地址  <span class="add_btn main_bg_light"><i>+</i>添加收货地址</span></h1>
+                <?php Qs::Label('采购商/收货地址列表', array('renderTpl' => 'AddressList')) ?>
+                <div class="new_address">
+                    <div class="right_top">
+                        <h2>新增收货地址</h2>
                     </div>
-                    <div class="form_list">
-                        <span class="address_intro"><i class="main">*</i>省市区：</span>
-                        <select class="province" id="province" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择省份">
-                            <option value="0">请选择</option>
-                        </select>
-                        <select class="city" id="city" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择城市">
-                            <option value="0">请选择</option>
-                        </select>
-                        <select class="district" id="district" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择县区">
-                            <option value="0">请选择</option>
-                        </select>
-                    </div>
-                    <div class="new_address_detail clearfix">
-                        <span class="address_intro"><i class="main">*</i>收货地址：</span>
-                        <input type="text" required id="address">
-                        <span class="tip hide">收货地址不能为空</span>
-                    </div>
-                    <div class="new_address_phone clearfix">
-                        <span class="address_intro"><i class="main">*</i>手机：</span>
-                        <input type="text" id="phone" required>
-                        <span class="tip hide">手机号不能为空</span>
-                    </div>
-                    <div class="new_postal clearfix">
-                        <span class="address_intro">邮编：</span>
-                        <input type="text" id="postCode">
-                    </div>
-                    <p class="new_defult clearfix">
-                        <!--<span><i></i> 设为默认</span>-->
-                        <input type="checkbox" id="new_defult" name="defult">
-                        <label for="new_defult">设为默认</label>
-                    </p>
-                    <p>
-                        <input type="submit" class="submit_address main_bg" value="保存信息">
-                        <span class="cancel_btn main_bg">取消</span>
-                    </p>
+                    <div class="new_address_content">
+                        <form>
+                            <div class="recevier clearfix">
+                                <span class="address_intro"><i class="main">*</i>收货人姓名：</span>
+                                <input type="text" required id="name">
+                                <span class="tip hide">收货人姓名不能为空</span>
+                            </div>
+                            <div class="form_list">
+                                <span class="address_intro"><i class="main">*</i>省市区：</span>
+                                <select class="province" id="province" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择省份">
+                                    <option value="0">请选择</option>
+                                </select>
+                                <select class="city" id="city" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择城市">
+                                    <option value="0">请选择</option>
+                                </select>
+                                <select class="district" id="district" reg="^[\d]{6}$" tip-target="#district" tip-value="请选择县区">
+                                    <option value="0">请选择</option>
+                                </select>
+                            </div>
+                            <div class="new_address_detail clearfix">
+                                <span class="address_intro"><i class="main">*</i>收货地址：</span>
+                                <input type="text" required id="address">
+                                <span class="tip hide">收货地址不能为空</span>
+                            </div>
+                            <div class="new_address_phone clearfix">
+                                <span class="address_intro"><i class="main">*</i>手机：</span>
+                                <input type="text" id="phone" required>
+                                <span class="tip hide">手机号不能为空</span>
+                            </div>
+                            <div class="new_postal clearfix">
+                                <span class="address_intro">邮编：</span>
+                                <input type="text" id="postCode">
+                            </div>
+                            <p class="new_defult clearfix">
+                                <!--<span><i></i> 设为默认</span>-->
+                                <input type="checkbox" id="new_defult" name="defult">
+                                <label for="new_defult">设为默认</label>
+                            </p>
+                            <p>
+                                <input type="submit" class="submit_address main_bg" value="保存信息">
+                                <span class="cancel_btn main_bg">取消</span>
+                            </p>
 
-                </form>
+                        </form>
+                    </div>
+                </div>
             </div>
+
         </div>
-    </div>
-
-</div>
-<?php Qs::Label('静态类/登陆注册网站底部'); Qs::Sys('loadRequireJs', 'buyer/addr')?>
-</body>
+        <?php Qs::Label('静态类/登陆注册网站底部');
+        Qs::Sys('loadRequireJs', 'buyer/addr') ?>
+    </body>
 </html>

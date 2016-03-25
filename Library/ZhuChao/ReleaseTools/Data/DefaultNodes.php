@@ -39,7 +39,7 @@ return array(
             )
          ),
          array(
-            'text'             => '店商资讯',
+            'text'             => '电商资讯',
             'identifier'       => 'dianshangzixun',
             'nodeType'         => 3,
             'showOnMenu'       => 1,

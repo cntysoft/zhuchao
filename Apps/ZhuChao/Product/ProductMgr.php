@@ -70,6 +70,9 @@ class ProductMgr extends AbstractLib
       foreach (array('imgRefMap', 'fileRefs') as $val) {
          array_push($dfields, $val);
       }
+      if(!isset($params['attribute'])){
+         $params['attribute'] = array();
+      }
       $this->checkRequireFields($params, $dfields);
       $pfields = $product->getRequireFields(array('id', 'providerId', 'companyId', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
       foreach (array('price') as $val) {

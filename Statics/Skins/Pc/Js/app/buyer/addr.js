@@ -10,7 +10,10 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search','app/comm
          $('#name,#address,#phone').each(function(){
             var $this = $(this);
             if(!$this.val()){
-               layer.tips($this.next('.tip').text(), '#'+$this.attr('id'));
+               layer.tips($this.next('.tip').text(), '#'+$this.attr('id'), {
+                tipsMore : true,
+                tips : [2, '#63bf82']
+            });
                return false;
             }
          });
@@ -18,7 +21,10 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search','app/comm
             var $this = $(this);
             var regExp = new RegExp($this.attr('reg'));
             if(!regExp.test($this.val())){
-               layer.tips($this.attr('tip-value'), $this.attr('tip-target'));
+               layer.tips($this.attr('tip-value'), $this.attr('tip-target'),{
+                tipsMore : true,
+                tips : [2, '#63bf82']
+            });
                flag = false;
                return false;
             }
@@ -28,7 +34,10 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search','app/comm
             return false;
          }
          if($('#phone').val() && !reg.test($('#phone').val())){
-            layer.tips('请输入正确的手机号码！', '#phone');
+            layer.tips('请输入正确的手机号码！', '#phone',{
+                tipsMore : true,
+                tips : [2, '#63bf82']
+            });
                return false;
          }
          

@@ -44,13 +44,12 @@ if ($totalquery > 2) {
 $out .= '</div>
                     <!--排序-->
                     <div class="rank_wrap clearfix">
-                        <ul class="clearfix">
-                            <li id="4"><a >综合<i class="icon-rank-down"></i></a></li>
+                        <ul class="clearfix">';
+$out.='<li id="4"><a >综合<i class="icon-rank-down"></i></a></li>
                             <li id="3"><a >价格<i class="icon-rank-down"></i></a></li>
                             <li id="2"><a >人气<i class="icon-rank-down"></i></a></li>
-                            <li id="1"><a class="alink_last" >最新<i class="icon-rank-down"></i></a></li>
-                        </ul>
-                        <!--<span class="check"><i></i><em>工厂认证</em></span>-->
+                            <li id="1"><a class="alink_last" >最新<i class="icon-rank-down"></i></a></li>';
+$out .='</ul><!--<span class="check"><i></i><em>工厂认证</em></span>-->
                         <span class="check price"><i></i><em>有价格</em></span>
                         <!--页码-->';
 if ($totalPage > 1) {
