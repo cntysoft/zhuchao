@@ -6,21 +6,21 @@
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/inquiry.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧')?>
+            <?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">收到的询价单</h1>
                 <!--回复 未回复-->
-                
-                <?php Qs::Label('供应商/询价单', array('renderTpl' => 'usercenterList','outputNum' => 8,'enablePage' => true))?>
+
+                <?php Qs::Label('供应商/询价单', array('renderTpl' => 'usercenterList', 'outputNum' => 8, 'enablePage' => true)) ?>
             </div>
         </div>
     </div>
-    <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
+    <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
     <?php Qs::Sys('loadRequireJs', 'provider/inquirylist') ?>
 </body>
 

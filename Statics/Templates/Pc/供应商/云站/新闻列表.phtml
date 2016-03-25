@@ -11,11 +11,11 @@
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/news.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧')?>
+            <?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">新闻列表<a class="main_bg_light fr" href="/site/news/add.html"><em>+</em>发布新闻</a></h1>
@@ -24,11 +24,11 @@
                 </div>
                 <!--新闻标题-->
                 <!--标题-->
-                <?php Qs::Label('供应商/新闻',array('renderTpl' => 'newsList', 'outputNum' =>8));?>
+                <?php Qs::Label('供应商/新闻', array('renderTpl' => 'newsList', 'outputNum' => 8)); ?>
             </div>
         </div>
-    <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
-    <?php Qs::Sys('loadRequireJs', 'provider/newslist') ?>
-</body>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
+        <?php Qs::Sys('loadRequireJs', 'provider/newslist') ?>
+    </body>
 
 </html>

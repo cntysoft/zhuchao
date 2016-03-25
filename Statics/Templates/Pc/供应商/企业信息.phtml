@@ -9,11 +9,11 @@ Qs::Ds('用户数据源/企业信息', 'User');
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧')?>
+            <?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">个人信息</h1>
@@ -71,14 +71,14 @@ Qs::Ds('用户数据源/企业信息', 'User');
                     <div class="form_list">
                         <label><em class="main">*</em>主营产品：</label>
                         <?php
-                           $products = Qs::DsField('User', 'products', true);
-                           foreach($products as $key => $p) {
-                              if(0 == $key) {
-                                 echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
-                              }else {
-                                 echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
-                              }
+                        $products = Qs::DsField('User', 'products', true);
+                        foreach ($products as $key => $p) {
+                           if (0 == $key) {
+                              echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
+                           } else {
+                              echo '<input class="middle_input checkField" id="product1"  type="text" value="' . $p . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
                            }
+                        }
                         ?>
                     </div>
 
@@ -179,7 +179,7 @@ Qs::Ds('用户数据源/企业信息', 'User');
                 </div>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
         <?php Qs::Sys('loadRequireJs', 'provider/companyinfo') ?>
     </body>
 </html>

@@ -1,5 +1,5 @@
-<?php 
-Qs::Ds('商城数据源/商城数据', 'site'); 
+<?php
+Qs::Ds('商城数据源/商城数据', 'site');
 Qs::Ds('云站数据源/标准内容模型', 'info');
 ?>
 <!DOCTYPE html>
@@ -11,14 +11,14 @@ Qs::Ds('云站数据源/标准内容模型', 'info');
         <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css', 'lib/default.css', 'lib/reset.css','datepicker.css')) ?>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css', 'lib/default.css', 'lib/reset.css', 'datepicker.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧')?>
+            <?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">职位招聘</h1>
@@ -43,10 +43,10 @@ Qs::Ds('云站数据源/标准内容模型', 'info');
                         </div>
                     </div>
                     <?php
-                     $number = explode('-', Qs::DsField('info', 'tel', true));
-                     if(!isset($number)) {
-                        $number = array(86, '', '');
-                     }
+                    $number = explode('-', Qs::DsField('info', 'tel', true));
+                    if (!isset($number)) {
+                       $number = array(86, '', '');
+                    }
                     ?>
                     <div class="form_list">
                         <label>座机:</label>
@@ -68,7 +68,7 @@ Qs::Ds('云站数据源/标准内容模型', 'info');
                 </div>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
         <?php Qs::Sys('loadRequireJs', 'provider/jobmodify') ?>
     </body>
 </html>

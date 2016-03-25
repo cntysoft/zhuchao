@@ -6,11 +6,11 @@
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/prolist.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧')?>
+            <?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">管理产品<a class="main_bg_light fr" href="/product/addproduct/1.html"><em>+</em>发布产品</a></h1>
@@ -23,7 +23,7 @@
                 <?php Qs::Label('供应商/产品列表', array('renderTpl' => 'ProductList', 'outputNum' => 6, 'enablePage' => true)) ?>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom'))?>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
         <?php Qs::Sys('loadRequireJs', 'provider/prolist') ?>
     </body>
 </html>

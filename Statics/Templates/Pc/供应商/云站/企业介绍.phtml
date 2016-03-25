@@ -1,6 +1,6 @@
-<?php 
+<?php
 use App\Yunzhan\Content\Constant;
-Qs::Ds('商城数据源/商城数据', 'site'); 
+Qs::Ds('商城数据源/商城数据', 'site');
 Qs::Ds('云站数据源/标准内容模型', 'info', array('itemId' => Constant::INFO_INTRO_ID));
 ?>
 <!DOCTYPE html>
@@ -15,11 +15,11 @@ Qs::Ds('云站数据源/标准内容模型', 'info', array('itemId' => Constant:
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css', 'lib/default.css', 'lib/reset.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('静态类/网站顶部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧')?>
+            <?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">企业介绍</h1>
