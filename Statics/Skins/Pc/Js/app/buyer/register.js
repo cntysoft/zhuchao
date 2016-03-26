@@ -52,6 +52,16 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], 
                }
             });
         });
+        
+        $('.login_auto').click(function(){
+            if($(this).hasClass('checked')){
+                $(this).removeClass('checked');
+                $('.submit_btn').addClass('disable').attr('disabled','').removeClass('main_bg_light');
+            } else {
+                $(this).addClass('checked');
+                $('.submit_btn').removeClass('disable').removeAttr('disabled').addClass('main_bg_light');
+            }
+        });
 
         $('#submit').click(function (event){
             event.preventDefault();
