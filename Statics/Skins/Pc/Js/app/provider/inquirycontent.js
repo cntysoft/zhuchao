@@ -1,7 +1,7 @@
 define(['validate', 'jquery', 'Core', 'Front', 'app/common'], function (validate){
     $(function (){
         
-        var reg = 'http://provider.abc.com/inquirycontent/([1-9][0-9]*).html'
+        var reg = '/inquirycontent/([1-9][0-9]*).html'
         var inquiryId = window.location.href.match(reg)[1];
         $('#submit').click(function (){
             var validation = validate.checkFields($('.checkfield'));

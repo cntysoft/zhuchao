@@ -61,7 +61,7 @@ const SYS_SITE_NAME = 'www.fhzc.com';
 const BUYER_SITE_NAME_DEVEL = 'i.abc.com';
 const BUYER_SITE_NAME = 'i.fhzc.com';
 const SITE_SUBDOMAIN_DEVEL = '([a-z0-9]+).site.abc.com';
-const SITE_SUBDOMAIN = '([a-z0-9]+).site.abc.com';
+const SITE_SUBDOMAIN = '([a-z0-9]+).site.fhzc.com';
 const PROVIDER_SITE_NAME_DEVEL = 'provider.abc.com';
 const PROVIDER_SITE_NAME = 'provider.fhzc.com';
 //站点系统的主域名
