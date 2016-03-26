@@ -56,7 +56,17 @@ foreach ($articles as $article) {
 			  . 'ss = "date">' . date('m-d', $article->getInputTime()) . '</span></a>';
 }
 $out .= '</div>
-</div>
+</div><div class="login_news login_news2">
+            <h3>筑巢公告</h3>
+            <div class="main_hover login_news_list">';
+$zhuchaogonggao = $this->getNodeInfoByIdentifier('zhuchaogonggao');
+$articles = $this->getInfoListByNodeAndStatusNotPage($zhuchaogonggao->getId());
+foreach ($articles as $article) {
+	$out .= '<a href="/article/' . $article->getId() . '.html">'
+			  . '<i>' . $article->getTitle() . ' </i><span class="date">' . date('m-d', $article->getInputTime()) . '</span></a>';
+}
+            $out .= '</div>
+        </div>
 </div>
 </div><div class="sale_pro conwidth">
     <ul class="clearfix">';
