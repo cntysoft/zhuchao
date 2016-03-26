@@ -83,9 +83,9 @@ class Utils extends AbstractScript
    private function getImgUrl($imgUrl, $width, $height)
    {
       if ($imgUrl) {
-         return Kernel\get_image_cdn_url($imgUrl, $width, $height);
+         return Kernel\get_image_cdn_url_operate($imgUrl, array('w' => $width, 'h' => $height));
       } else {
-         return '/Statics/Skins/Pc/lazyicon.png';
+         return '/Statics/Skins/Pc/Images/lazyicon.png';
       }
    }
 

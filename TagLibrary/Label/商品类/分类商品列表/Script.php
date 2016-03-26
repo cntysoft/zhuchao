@@ -176,7 +176,7 @@ class ProductClassify extends AbstractLabelScript
       }
       $attrFilter['status'] = GOOD_CONST::PRODUCT_STATUS_VERIFY;
       $tree = $this->appCaller->call(
-         CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeTree'
+              CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeTree'
       );
       $ids = $tree->getChildren($categoryId, -1);
       array_push($ids, $categoryId);
@@ -254,7 +254,7 @@ class ProductClassify extends AbstractLabelScript
       if (null == $limit) {
          $limit = $this->invokeParams['outputNum'];
       }
-		$cond = array_merge($cond, array("status = 3"));
+      $cond = array_merge($cond, array("status = 3"));
       $goodsList = $this->appCaller->call(
               GOOD_CONST::MODULE_NAME, GOOD_CONST::APP_NAME, GOOD_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, $total, $orderBy, $offset, $limit));
       return $goodsList;
@@ -282,11 +282,12 @@ class ProductClassify extends AbstractLabelScript
     */
    public function getImgUrl($img, $width, $height)
    {
-      return $img ? \Cntysoft\Kernel\get_image_cdn_url($img, $width, $height) : '/Statics/Images/Global/lazyicon.png';
+      return $img ? \Cntysoft\Kernel\get_image_cdn_url_operate($img, $width, $height) : '/Statics/Skins/Pc/Images/lazyicon.png';
    }
 
    public function getProductUrl($number)
    {
-      return '/item/'.$number.'.html';
+      return '/item/' . $number . '.html';
    }
+
 }

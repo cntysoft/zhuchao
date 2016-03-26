@@ -190,7 +190,6 @@ class User extends AbstractScript
 
       //删除Session
       $sessionManager->offsetUnset(\Cntysoft\FRONT_USER_S_KEY_FORGET_CHK_CODE);
-      
    }
 
    /**
@@ -633,7 +632,7 @@ class User extends AbstractScript
    public function getImgcdn($url, $width, $height)
    {
       if (!isset($url) || empty($url)) {
-         $url = 'Static/lazyicon.png';
+         $url = '/Statics/Skins/Pc/Images/lazyicon.png';
       }
       return \Cntysoft\Kernel\get_image_cdn_url_operate($url, array('w' => $width, 'h' => $height, 'e' => 1, 'c' => 1));
    }
@@ -921,11 +920,11 @@ class User extends AbstractScript
    {
       return $this->appCaller->call(CategoryConst::MODULE_NAME, CategoryConst::APP_NAME, CategoryConst::APP_API_STRUCTURE, 'getNode', array($nodeId));
    }
-   
+
    public function getWechatAppIdAndAppSecret()
    {
       $config = ConfigProxy::getFrameworkConfig('Pay');
-      if(!isset($config['wechatpay']) || !isset($config['wechatpay']['APPID']) || !isset($config['wechatpay']['APPSECRET']) || !isset($config['wechatpay']['MCH_ID']) || !isset($config['wechatpay']['NOTIFY_URL'])){
+      if (!isset($config['wechatpay']) || !isset($config['wechatpay']['APPID']) || !isset($config['wechatpay']['APPSECRET']) || !isset($config['wechatpay']['MCH_ID']) || !isset($config['wechatpay']['NOTIFY_URL'])) {
          $errorType = ErrorType::getInstance();
          Kernel\throw_exception(new Exception(
                  $errorType->msg('E_NO_CONFIG_WECHATPAY_ERROR'), $errorType->code('E_NO_CONFIG_WECHATPAY_ERROR')
@@ -933,4 +932,5 @@ class User extends AbstractScript
       }
       return $config->wechatpay;
    }
+
 }

@@ -35,19 +35,18 @@ class Goods extends AbstractLabelScript
    {
       return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
    }
-	/**
-	 * 获取PID为0的节点信息
-	 * @return type
-	 */
-	public function getSuperNodes()
-	{
-		return $this->appCaller->call(
-				  CATEGORY::MODULE_NAME, 
-				  CATEGORY::APP_NAME, 
-				  CATEGORY::APP_API_MGR, 
-				  'getChildren', array(0));
-	}
-	/**
+
+   /**
+    * 获取PID为0的节点信息
+    * @return type
+    */
+   public function getSuperNodes()
+   {
+      return $this->appCaller->call(
+                      CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getChildren', array(0));
+   }
+
+   /**
     * 获取叶子节点列表信息
     * 
     * @return object 
@@ -55,25 +54,21 @@ class Goods extends AbstractLabelScript
    public function getLeafNodes()
    {
       $nodes = $this->appCaller->call(
-              CATEGORY::MODULE_NAME, 
-				  CATEGORY::APP_NAME, 
-				  CATEGORY::APP_API_MGR, 
-				  'getLeafNodes');
+              CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getLeafNodes');
       return $nodes;
    }
-	/**
-	 * 获取节点树
-	 * @return type
-	 */
-	public function getNodeTree()
-	{
-		return $this->appCaller->call(
-				  CATEGORY::MODULE_NAME, 
-				  CATEGORY::APP_NAME, 
-				  CATEGORY::APP_API_MGR, 
-				  'getNodeTree');
-	}
-	/**
+
+   /**
+    * 获取节点树
+    * @return type
+    */
+   public function getNodeTree()
+   {
+      return $this->appCaller->call(
+                      CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeTree');
+   }
+
+   /**
     * 根据节点ID，获取节点路径
     *
     * @param string $id
@@ -86,8 +81,9 @@ class Goods extends AbstractLabelScript
       if (!$tree->isNodeExist($id)) {
          return $ret;
       }
-		return $tree->getChildren($id);
+      return $tree->getChildren($id);
    }
+
    /**
     * 检查是否登录
     * @return boolean
@@ -105,9 +101,9 @@ class Goods extends AbstractLabelScript
     */
    public function checkCollect($id)
    {
-		$curUser = $this->getCurUser();
+      $curUser = $this->getCurUser();
       return $this->appCaller->call(
-                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'checkCollect', array($curUser->getId(),$id));
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'checkCollect', array($curUser->getId(), $id));
    }
 
    /**
@@ -121,7 +117,7 @@ class Goods extends AbstractLabelScript
     */
    public function getGoodsList(array $cond, $total, $orderBy, $offset, $limit)
    {
-		$cond = array_merge($cond, array("status = 3"));
+      $cond = array_merge($cond, array("status = 3"));
       return $this->appCaller->call(
                       GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, $total, $orderBy, $offset, $limit));
    }
@@ -135,7 +131,7 @@ class Goods extends AbstractLabelScript
     */
    public function getImageFromCdn($source, $width, $height)
    {
-      return \Cntysoft\Kernel\get_image_cdn_url($source, $width, $height);
+      return $source ? \Cntysoft\Kernel\get_image_cdn_url_operate($source, array('w' => $width, 'h' => $height)) : '/Statics/Skins/Pc/Images/lazyicon.png';
    }
 
    public function getAreaFromCode($code)
@@ -166,7 +162,8 @@ class Goods extends AbstractLabelScript
       return $this->appCaller->call(
                       CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'checkNodeIdentifier', array($identifier));
    }
-	/**
+
+   /**
     * 获取节点的字节点信息
     * @param string $identilier
     * @return 
@@ -179,6 +176,7 @@ class Goods extends AbstractLabelScript
               CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getSubNodes', array($nodeId));
       return $childNodes;
    }
+
    /**
     * 获取节点信息
     * @param string $identifier
@@ -239,6 +237,7 @@ class Goods extends AbstractLabelScript
 
    public function getProductUrl($number)
    {
-      return '/item/'.$number.'.html';
+      return '/item/' . $number . '.html';
    }
+
 }
