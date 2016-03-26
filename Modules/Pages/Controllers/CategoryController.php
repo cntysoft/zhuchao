@@ -10,6 +10,8 @@ use Cntysoft\Phalcon\Mvc\AbstractController;
 use Cntysoft\Framework\Qs\View;
 use App\Site\Category\Constant as CATE_CONST;
 use App\Site\Content\Constant as CONTENT_CONST;
+use Cntysoft\Kernel;
+
 class CategoryController extends AbstractController
 {
    /**
@@ -178,11 +180,7 @@ class CategoryController extends AbstractController
       unset($args['_url']);
 
       if(!array_key_exists('keyword', $args)){
-         $this->dispatcher->forward(array(
-            'module'     => 'Pages',
-            'controller' => 'Exception',
-            'action'     => 'pageNotExist'
-         ));
+         Kernel\goto_route('');
          return false;
       }
       return $this->setupRenderOpt(array(

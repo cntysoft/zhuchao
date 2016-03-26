@@ -27,6 +27,12 @@ class ProductController extends AbstractController
          Kernel\goto_route('login.html?returnUrl=' . urlencode($path));
          exit;
       }
+      
+      $user = $acl->getCurUser();
+      $company = $user->getCompany();
+      if (!$company || !$company->getSubAttr()) {
+         Kernel\dispatch_action('Provider', 'Index', 'open');
+      }
    }
 
    public function indexAction()

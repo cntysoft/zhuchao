@@ -212,6 +212,7 @@ define(['jquery', 'Core', 'Front', 'layer','app/common'], function() {
                   });
                }
             });
-        }
+        });
+     } 
     });
 });
