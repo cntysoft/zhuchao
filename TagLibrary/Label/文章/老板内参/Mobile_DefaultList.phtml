@@ -11,8 +11,24 @@ if (!$infoList) {
    return false;
 }
 $items = is_array($infoList) ? $infoList[0] : $infoList;
-$out1 = '';
+$out1 = ' <div class="module_ad3 module_ad clearfix  swiper-container"> <div class="swiper-wrapper">';
 $node = $this->getDefalutNode($this->getRouteNodeIdentifier());
+foreach ($items as $key => $value) {
+   if ($key < 3) {
+      $defpic = $value->getDefaultPicUrl()[0];
+      $infourl = $this->getInfoUrl($value->getId());
+      $out1.='<div class="module_ad_list swiper-slide">
+                    <a href="' . $infourl . '">
+                        <div class="module_ad_img" style="background: url(' . $this->getImgcdn($defpic, 320, 160) . '?_nosprite)">
+                            <div class="module_ad_box"></div>
+                        </div>
+                    </a>
+                </div>';
+   }
+}
+$out1.='</div>
+            <div class="swiper-pagination"></div>
+        </div>';
 foreach ($items as $index => $item) {
    $imgcls = $imgurl = '';
    $defpic = $item->getDefaultPicUrl()[0];
@@ -39,5 +55,5 @@ foreach ($items as $index => $item) {
             </li>';
 }
 $out.='</ul>';
-echo $out;
+echo $out1 . $out;
 ?>

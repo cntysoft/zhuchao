@@ -78,7 +78,7 @@ class CompanyInfo extends AbstractDsScript
    public function getImgcdn($url, $width, $height)
    {
       if (!isset($url) || empty($url)) {
-         $url = '/Statics/Skins/Pc/Images/lazyicon.png';
+         $url = 'Statics/Skins/Pc/Images/lazyicon.png';
       }
       return Kernel\get_image_cdn_url_operate($url, array('w' => $width, 'h' => $height, 'Q' => 100));
    }

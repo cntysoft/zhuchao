@@ -27,7 +27,7 @@ define(['zepto', 'module/company_classify', 'module/totop', 'Core', 'Front'], fu
          }, function (response){
             var out = '';
             $.each(response.data, function (index, item){
-               out += '<div class="employ_ele"><h3><i></i><a href="' + item.infourl + '">' + item.title + '</a></h3><div class="employ_detail"><p>';
+               out += '<div class="employ_ele"><h3><i></i>' + item.title + '<a href="' + item.infourl + '">详细>></a></h3><div class="employ_detail"><p>';
                out += '任职部门： ' + item.department + '</p><p>招聘人数：' + item.number + '</p> <p>发布时间：' + item.time + '</p></div></div>';
             });
             $('.l_main').append(out);

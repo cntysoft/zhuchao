@@ -193,7 +193,7 @@ class Search extends AbstractLabelScript
       if($url){
          return Kernel\get_image_cdn_url_operate($url, $params);
       }else{
-         return '/Statics/Skins/Pc/Images/lazyicon.png';
+         return 'Statics/Skins/Pc/Images/lazyicon.png';
       }
    }
    

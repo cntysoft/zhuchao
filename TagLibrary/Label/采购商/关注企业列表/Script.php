@@ -10,30 +10,25 @@ namespace TagLibrary\Label\Buyer;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use Cntysoft\Kernel;
-
 class Follow extends AbstractLabelScript
 {
    protected $outputNum = 0;
-   
+
    public function getFollowList()
    {
       $curUser = $this->getCurUser();
       $page = $this->getPageParam();
 
       return $this->appCaller->call(
-         BUYER_CONST::MODULE_NAME,
-         BUYER_CONST::APP_NAME,
-         BUYER_CONST::APP_API_BUYER_FOLLOW,
-         'getFollowList',
-         array(array('buyerId='.$curUser->getId()), true, 'id DESC', $page['offset'], $page['limit'])
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_FOLLOW, 'getFollowList', array(array('buyerId=' . $curUser->getId()), true, 'id DESC', $page['offset'], $page['limit'])
       );
    }
 
    public function getPageUrl($pageId)
    {
-      return '/follow/'.$pageId.'.html';
+      return '/follow/' . $pageId . '.html';
    }
-   
+
    /**
     * 获取信息分页参数
     *
@@ -76,8 +71,8 @@ class Follow extends AbstractLabelScript
          'current' => $currentPage
       );
    }
-   
-    /**
+
+   /**
     * 获取列表的输出数
     *
     * @return integer
@@ -94,17 +89,14 @@ class Follow extends AbstractLabelScript
 
       return $this->outputNum;
    }
-   
+
    public function getCurUser()
    {
       return $this->appCaller->call(
-         BUYER_CONST::MODULE_NAME,
-         BUYER_CONST::APP_NAME,
-         BUYER_CONST::APP_API_BUYER_ACL,
-         'getCurUser'
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser'
       );
    }
-   
+
    /**
     * 获取cdn图片的地址
     * 
@@ -114,13 +106,13 @@ class Follow extends AbstractLabelScript
     */
    public function getImageCdnUrl($imgUrl, $arguments = array())
    {
-      if($imgUrl){
+      if ($imgUrl) {
          return Kernel\get_image_cdn_url_operate($imgUrl, $arguments);
-      }else{
-         return '/Statics/Skins/Pc/Images/lazyicon.png';
+      } else {
+         return 'Statics/Skins/Pc/Images/lazyicon.png';
       }
    }
-   
+
    /**
     * 获取商品的网址
     * 
@@ -129,6 +121,7 @@ class Follow extends AbstractLabelScript
     */
    public function getCompanyUrl($subAttr)
    {
-      return 'http://'.$subAttr.'.'.\Cntysoft\RT_SYS_SITE_NAME;;
+      return 'http://' . $subAttr . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN;
    }
+
 }

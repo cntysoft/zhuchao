@@ -118,7 +118,7 @@ class QuotationList extends AbstractLabelScript
       if($imgUrl){
          return Kernel\get_image_cdn_url_operate($imgUrl, $arguments);
       }else{
-         return '/Statics/Skins/Pc/Images/lazyicon.png';
+         return 'Statics/Skins/Pc/Images/lazyicon.png';
       }
    }
    

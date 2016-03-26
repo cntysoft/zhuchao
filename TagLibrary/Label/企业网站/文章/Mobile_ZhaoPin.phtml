@@ -12,7 +12,7 @@ foreach ($items as $index => $item) {
    $infourl = $this->getInfoUrl($item->getId());
    $itemInfo = $this->getContent($item->getId());
    $out .=' <div class="employ_ele">
-                <h3><i></i><a href="' . $infourl . '">' . $item->getTitle() . '</a></h3>
+                <h3><i></i>' . $item->getTitle() . '<a href="' . $infourl . '">详细>></a></h3>
                 <div class="employ_detail">
                     <p>
                         任职部门： ' . $itemInfo->getDepartment() . '

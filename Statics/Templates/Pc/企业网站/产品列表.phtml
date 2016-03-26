@@ -11,13 +11,13 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-<?php Qs::Sys('loadCss', array('company/style.css', 'company/company_prolist.css')) ?>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/company_prolist.css')) ?>
     </head>
     <body>
         <!--头部-->
         <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
-<?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
         <!--内容-->
         <div class="content conwidth clearfix">
             <!--站点指示-->
@@ -111,12 +111,23 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 
             <!--右侧内容列表-->
             <div class="r_section fr">
-<?php Qs::Label('企业网站/产品', array('renderTpl' => 'Pc_ProductList', 'outputNum' => 12, 'enablePage' => true)); ?>
+                <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Pc_ProductList', 'outputNum' => 12, 'enablePage' => true)); ?>
             </div>
         </div>
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
-<?php Qs::Sys('loadRequireJs', 'company/company_prolist') ?>
+        <div class="online">
+            <div class="online_ele  ">
+                <a target="_blank" <?php echo strlen(Qs::DsField('CP', 'providerqq', true)) ? 'href="http://wpa.qq.com/msgrd?v=3&uin=' . Qs::DsField('CP', 'providerqq', true) . '&site=qq&menu=yes"' : ''; ?>>
+                    <i class="icon-qq main"></i>
+                    <p class="main">在线客服</p>
+                    <span class="main_bg"></span>
+                </a>
+            </div>
+        </div>
+        <div id='totop'><a style="display: none"><i class='icon-jiantou1'></i></a><a class='shoucang'><i class='icon-empty-star'></i><em>关注</em></a><a><i class='icon-kefu'></i><em>客服</em>
+                <div class='block'><span>电话：<?php Qs::DsField('CP', 'contact') ?></span></div></a></div>
+                <?php Qs::Sys('loadRequireJs', 'company/company_prolist') ?>
         <script>
            window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
         </script>
