@@ -109,7 +109,6 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         });
         //删除属性
         $('.attr_wrap').delegate('.deleteAttr', 'click', function (){
-            console.log($(this).closest('.customAttr'));
             $(this).closest('.customAttr').remove();
         });
         //上传的默认配置项

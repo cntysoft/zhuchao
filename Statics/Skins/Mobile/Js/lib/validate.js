@@ -135,7 +135,6 @@ define(['exports', 'zepto', 'layer'], function (exports){
                     });
                 }
             } else{
-                console.log($item);
                 throw new Error('need param fh-type or reg');
             }
         }

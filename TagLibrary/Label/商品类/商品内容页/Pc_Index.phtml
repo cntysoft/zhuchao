@@ -171,15 +171,13 @@ foreach ($goodsLists as $list) {
 }
 $out .= '</ul>';
 $superNodes = $this->getSuperNodes();
-$j = 2;
 foreach ($superNodes as $super) {
 	$out .= '</div><div class="module_title conwidth clearfix">
     <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
 </div><div class="pro_list clearfix conwidth">';
 	$nodes = $this->getNodePath($super->getId());
 	$cond = array('categoryId IN (' . implode(',', $nodes) . ') AND status = 3');
-	$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 0, 7);
-	$i = 1;
+	$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 0, 1);
 	foreach ($goodsLists as $list) {
 		$url = $this->getProductUrl($list->getNumber());
 		$out .= '<div class="pro_item fl">
@@ -190,39 +188,45 @@ foreach ($superNodes as $super) {
 
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
-		if ($i == 1) {
-			$out .= '<div class="pro_item fl pro_banner noselect">
-        <a class="switch_btn switch_left_btn left_btn1"><i class="icon-jiantou4"></i></a>
-        <a class="switch_btn switch_right_btn right_btn1"><i class="icon-jiantou2"></i></a>
-        <div class="pro_banner_box" pro-box="pro-box1">';
-			$locationId = $this->getAdsLocationId('电脑端', '首页', 'body' . $j);
-			$ads = $this->getAds($locationId);
-			if (count($ads)) {
-				foreach ($ads as $ad) {
-					$url = $ad->getContentUrl();
-					$image = $this->getImageFromCdn($ad->getImage(), 310, 310);
-					$bgcolor = $ad->getBgcolor();
-					$out .= '<div class="pro_banner_li clearfix">
-                <div class="fl pro_banner_text">
-                    <h3 class="pro_text text_ellipsis main_hover"><a href="">' . $ad->getName() . '</a></h3>
-                </div>
-                <a class="pro_banner_img" href="' . $url . '"><img src="' . $image . '" alt=""/></a>
-            </div>';
-				}
-			}
-			$out .= '</div>
-    </div>';
-		}
-		$i = 2;
 	}
-	$j++;
+	$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 1, 4);
+	$out .= '<div class="pro_item fl pro_banner noselect">
+	 <a class="switch_btn switch_left_btn left_btn1"><i class="icon-jiantou4"></i></a>
+	 <a class="switch_btn switch_right_btn right_btn1"><i class="icon-jiantou2"></i></a>
+	 <div class="pro_banner_box" pro-box="pro-box1">';
+	foreach ($goodsLists as $list) {
+		$url = $this->getProductUrl($list->getNumber());
+		$out .= '<div class="pro_banner_li clearfix">
+				<div class="fl pro_banner_text">
+					 <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+					 <p class="pro_tip">
+						  <span>' . $list->getDetail()->getAdvertText() . '</span>
+					 </p>
+					 <p class="pro_banner_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</p>
+				</div>
+				<a class="pro_banner_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/></a>
+		  </div>';
+	}
+	$out .= '</div>
+</div>';
+	$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 5, 6);
+	foreach ($goodsLists as $list) {
+		$url = $this->getProductUrl($list->getNumber());
+		$out .= '<div class="pro_item fl">
+        <a class="pro_img" href="' . $url . '">
+            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
+        </a>
+        <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
+    </div>';
+	}
 }
 $out .= '</div>';
 echo $out;
 ?>
 
 
-<!--产品列表-->
 
 
 

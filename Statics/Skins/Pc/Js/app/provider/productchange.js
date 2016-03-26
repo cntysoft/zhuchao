@@ -102,7 +102,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             params['number'] = number;
             Cntysoft.Front.callApi('Product', 'updateProduct', params, function (response){
                 if(response.status){
-                    layer.alert('商品修改成功！', {
+                    layer.msg('商品修改成功！', {
                         success : function (){
                             var redirect = function (){
                                 window.location = '/product/1.html';
@@ -111,7 +111,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                         }
                     });
                 } else{
-                    layer.alert('商品修改错误，请核对您的信息！');
+                    layer.msg('商品修改错误，请核对您的信息！');
                 }
             });
         });
@@ -119,14 +119,13 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         $('.attr_add').click(function (){
             var out = '<div class="attr_list clearfix customAttr"><span class="attr_title add_title"><input type="text" class="attrTitle" style="text-align:left"  fh-type="length" minlength="1" maxlength="6" required>：</span><input class="attr_info input_text attrInput" type="text"  fh-type="length" minlength="1" maxlength="10" required><span class="attr_delete deleteAttr">删除</span> </div>';
             if($('.customAttr').length > 3){
-                layer.alert('最多添加4个自定义属性');
+                layer.msg('最多添加4个自定义属性');
                 return false;
             }
             $(this).before(out);
         });
         //删除属性
         $('.attr_wrap').delegate('.deleteAttr', 'click', function (){
-            console.log($(this).closest('.customAttr'));
             $(this).closest('.customAttr').remove();
         });
 
@@ -227,7 +226,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             //上传商品图片
             uploadProductImg.on('beforeFileQueued', function (){
                 if(images.length == 5){
-                    layer.alert('最多上传5张图片');
+                    layer.msg('最多上传5张图片');
                     return false;
                 }
             });

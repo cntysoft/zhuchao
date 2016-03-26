@@ -10,7 +10,6 @@ $out .= '<span>&gt;</span>
 				<a href="/productclassify/' . $category->getId() . '/1.html">' . $category->getName() . '</a>';
 $out .= '<span>&gt;</span>
 				<a>' . $name . '</a></div>';
-
 $out .= '<div class="l_main conwidth">
     <!--商品展示-->
     <div class="pro_display clearfix">
@@ -20,13 +19,8 @@ $out .= '<div class="l_main conwidth">
                 <h3 class=" clearfix">
                     <div class="fl">
                         <p>' . $name . '</p>
-                        <p>' . $goodsDetail->getAdvertText() . '</p>
                     </div>
                 </h3>';
-
-
-
-
 $images = $goodsDetail->getImages();
 $bigImage = $smallImage = '';
 $i = 1;
@@ -50,7 +44,15 @@ if ($this->checkLogin() && $this->checkCollect($goodsInfo->getId())) {
 } else {
 	$out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang can_collect"></i>收藏</span>';
 }
-$out .= '</div>
+$out .= '<div class="pro_code">
+                    <i class="icon-erweima"></i>
+                    <div class="pro_code_box">
+                        <p>扫一扫&nbsp;&nbsp;用手机查看此页</p>
+                        <div class="code_img">
+                            <img src="/Utils/index/wechatQrCode?data=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '" alt="">
+                        </div>
+                    </div>
+                </div></div>
         </div>';
 $provider = $goodsInfo->getProvider();
 $company = $goodsInfo->getCompany();
@@ -74,13 +76,14 @@ foreach ($products as $product) {
 $out .= '</div>
                 </div>
             </div>
-            <div class="pro_code">
-                <h4>' . $company->getName() . '</h4>
-                <div class="pro_code_img">
-                    <img src="/Utils/index/wechatQrCode?data=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '" alt="">
-                </div>
-
-            </div>
+            <div class="company_code">
+                <h4>' . $company->getName() . '</h4>';
+if ($company->getSubAttr()) {
+	$out .= '<div class="company_code_img">
+                    <img src="/Utils/index/wechatQrCode?data=http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" alt="">
+                </div>';
+}
+$out .= '</div>
             <div class="pro_connect">
                 <div class="connect_btn"><i class="icon-dianhua2"></i>联系方式</div>
                 <div class="online_btn zaixian_xunjia"><i class="icon-tubiao"></i>在线询价</div>
@@ -88,11 +91,6 @@ $out .= '</div>
         </div>
     </div>';
 $out .= '<div class="small_img clearfix">' . $smallImage . '</div>';
-
-
-
-
-
 $out .= '<div class="l_pro_info clearfix">
         <!--相关信息-->
         <div class="related_info fl">
@@ -116,7 +114,6 @@ foreach ($goodsLists as $goodsList) {
                 <p class="pro_price main">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
             </div>';
 }
-
 $out .= '</div><div class="m_pro_info fr">
 		  <h3 class="pro_infor_nav clearfix">
 				<span class="main_bg">商品信息</span>
@@ -125,21 +122,23 @@ $out .= '</div><div class="m_pro_info fr">
 				<span>评价</span>
 		  </h3>';
 $out .= '<div class="pro_info"><div class="pro_info_content">' . $goodsDetail->getIntroduction() . '</div></div>';
-
 $attribute = $goodsDetail->getAttribute();
-$out .= '<div class="pro_info hide">
-                <div class="l_parameter main_border">';
-
+$out .= '<div class="pro_info l_parameter hide">
+	 <table>
+		  <tbody>';
 foreach ($attribute as $key => $value) {
+	$out .= '<tr>
+					 <th colspan="2">基本信息</th>
+				</tr>';
 	foreach ($value as $attrs => $attr) {
-		$out .= '
-				<p class="clearfix">
-                        <span class="para_intro"><i>' . $attrs . '：</i></span>
-                        <span class="para_detail">' . $attr . '</span>
-                    </p>';
+		$out .= '<tr>
+					 <td class="c_key">' . $attrs . '：</td>
+					 <td>' . $attr . '</td>
+				</tr>';
 	}
 }
-$out .= '</div>
+$out .= '</tbody>
+	 </table>
 </div>';
 
 if ($provider) {
@@ -179,5 +178,3 @@ $out .= '<div class="pro_info"><div class="pro_info_content"></div></div>
 </div>';
 echo $out;
 ?>
-
-

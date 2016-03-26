@@ -87,8 +87,8 @@ $out = '<div class="itmes_form">
                         <label>产品属性:</label>
                         <div class="input_wrap select_attr">
                             <p class="attr_tips">产品属性越完整，目标客户越容易搜索到</p>';
-if(count($normalAttrs)){
    $out.= '<div class="attr_wrap">';
+if(count($normalAttrs)){
    $attrExist = isset($attribute['基本参数']);
    foreach($normalAttrs as $attr){
       $name = $attr->getName();
@@ -131,7 +131,8 @@ if(count($normalAttrs)){
          }
       }
    }
-   if(isset($attribute['自定义属性']) && count($attribute['自定义属性'])){
+}
+if(isset($attribute['自定义属性']) && count($attribute['自定义属性'])){
       foreach($attribute['自定义属性'] as $name => $val){
          $out.='<div class="attr_list clearfix customAttr"><span class="attr_title add_title"><input type="text" class="attrTitle" style="text-align:left" fh-type="length" minlength="1" maxlength="6" required="" value="'.$name.'">：</span><input class="attr_info input_text attrInput" type="text" fh-type="length" minlength="1" maxlength="10" required="" value="'.$val.'"><span class="attr_delete deleteAttr">删除</span> </div>';
       }
@@ -141,11 +142,10 @@ if(count($normalAttrs)){
          如果我们提供的产品属性无法满足你的需求，你可以自定义最多4个产品属性信息
      </p>';
 $out.='</div>';
-}
 
    $out.='</div></div><div class="itmes_lsit clearfix">
                         <label>计量单位:</label>
-                        <div class="input_wrap select_group">
+                        <div class="input_wrap select_group select_brand">
                             <select class="ui-form-select" name="unit" id="proUnit">';
    foreach($this->units as $val){
       if($unit == $val){

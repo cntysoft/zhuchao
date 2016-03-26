@@ -40,7 +40,8 @@ class User extends AbstractScript
 			'uid'			 => $curUser->getId(),
 			'providerId' => $provider->getId(),
 			'expireTime' => 30,
-			'content'	 => $params['content']
+			'content'	 => $params['content'],
+			'status'     => 1
 		);
 		return $this->appCaller->call(
 							 MESSAGE_CONST::MODULE_NAME, MESSAGE_CONST::APP_NAME, MESSAGE_CONST::APP_API_OFFER, 'addInquiry', array($data));
