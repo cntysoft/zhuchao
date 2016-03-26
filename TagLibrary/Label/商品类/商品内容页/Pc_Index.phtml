@@ -6,7 +6,7 @@ $ads = $this->getAds($locationId);
 if (count($ads)) {
 	foreach ($ads as $ad) {
 		$url = $ad->getContentUrl();
-		$image = $this->getImageFromCdn($ad->getImage(), 710, 400);
+		$image = $this->getImageFromCdn($ad->getImage(), 800, 400);
 		$bgcolor = $ad->getBgcolor();
 		$out .= '<div class="item" style="background-color: #' . $bgcolor . '"><a target="_blank" href="' . $url . '"><img src="' . $image . '"></a></div>';
 	}
@@ -75,7 +75,7 @@ foreach ($goodsLists as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$out .= '<li>
             <a href="' . $url . '">
-                <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 150, 150) . '" alt=""/>
+                <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 232, 145) . '" alt=""/>
 
                 <div class="pro_text_box">
                     <h3 class="text_ellipsis">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</h3>
@@ -101,7 +101,7 @@ $ads = $this->getAds($locationId);
 if (count($ads)) {
 	foreach ($ads as $ad) {
 		$url = $ad->getContentUrl();
-		$image = $this->getImageFromCdn($ad->getImage(), 710, 400);
+		$image = $this->getImageFromCdn($ad->getImage(), 460, 610);
 		$bgcolor = $ad->getBgcolor();
 		$out .= '<a target="_blank" href="' . $url . '" class="brand_ad_img">
             <img src="' . $image . '" alt=""/>
@@ -167,7 +167,7 @@ foreach ($goodsLists as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$out .= '<li>
             <p class="card_price">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</p>
-            <a href="' . $url . '" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 212) . '" alt=""/></a>
+            <a href="' . $url . '" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 132) . '" alt=""/></a>
 
             <div class="card_text_box">
                 <h3 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
@@ -192,7 +192,7 @@ foreach ($superNodes as $super) {
 		$url = $this->getProductUrl($list->getNumber());
 		$out .= '<div class="pro_item fl">
         <a class="pro_img" href="' . $url . '">
-            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
+            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
         </a>
         <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
 
@@ -214,7 +214,7 @@ foreach ($superNodes as $super) {
 					 </p>
 					 <p class="pro_banner_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</p>
 				</div>
-				<a class="pro_banner_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/></a>
+				<a class="pro_banner_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 480, 300) . '" alt=""/></a>
 		  </div>';
 	}
 	$out .= '</div>
@@ -224,7 +224,7 @@ foreach ($superNodes as $super) {
 		$url = $this->getProductUrl($list->getNumber());
 		$out .= '<div class="pro_item fl">
         <a class="pro_img" href="' . $url . '">
-            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 219, 220) . '" alt=""/>
+            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
         </a>
         <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
 
