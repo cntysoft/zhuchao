@@ -127,15 +127,17 @@ $out .= '<div class="pro_info l_parameter hide">
 	 <table>
 		  <tbody>';
 foreach ($attribute as $key => $value) {
-	$out .= '<tr>
-					 <th colspan="2">基本信息</th>
+   if(count($value)){
+      $out .= '<tr>
+					 <th colspan="2">'.$key.'</th>
 				</tr>';
-	foreach ($value as $attrs => $attr) {
-		$out .= '<tr>
-					 <td class="c_key">' . $attrs . '：</td>
-					 <td>' . $attr . '</td>
-				</tr>';
-	}
+      foreach ($value as $attrs => $attr) {
+         $out .= '<tr>
+                   <td class="c_key">' . $attrs . '</td>
+                   <td>' . $attr . '</td>
+               </tr>';
+      }
+   }
 }
 $out .= '</tbody>
 	 </table>
