@@ -586,6 +586,17 @@ return array(
                   )
                )
             )
+         ), array(
+            'text'             => '筑巢公告',
+            'identifier'       => 'zhuchaogonggao',
+            'nodeType'         => 3,
+            'showOnMenu'       => 1,
+            'showOnListParent' => 0,
+            'listTemplateFile' => '筑巢公告/列表页.phtml',
+            'listTemplateFile' => '筑巢公告/列表页.phtml',
+            'modelsTemplate'   => array(
+               1 => '筑巢公告/内容页.phtml'
+            )
          )
       )
    )
