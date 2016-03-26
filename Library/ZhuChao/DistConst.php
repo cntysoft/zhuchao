@@ -42,7 +42,7 @@ const RT_OTS_API_ENTRY = OTS_PUB_API;
 /**
  * @var string OSS接口的入口地址
  */
-const RT_OSS_API_ENTRY = OSS_PUBLIC_ENTRY;
+const RT_OSS_API_ENTRY = OSS_PUB_ENTRY;
 /**
  * @var string 筑巢开放存储名称
  */

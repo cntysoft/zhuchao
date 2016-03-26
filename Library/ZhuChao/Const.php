@@ -79,7 +79,7 @@ const ALI_SEARCH_API_PUB_ENTRY = 'http://opensearch-cn-beijing.aliyuncs.com';
 const ALI_SEARCH_API_INTERNAL_ENTRY = 'http://intranet.opensearch-cn-beijing.aliyuncs.com';
 //OSS相关常量的定义
 const OSS_INTERNAL_ENTRY = 'oss-cn-beijing-internal.aliyuncs.com';
-const OSS_PUBLIC_ENTRY = 'oss-cn-beijing.aliyuncs.com';
+const OSS_PUB_ENTRY = 'oss-cn-beijing.aliyuncs.com';
 const ZHUCHAO_OSS_IMG_BUCKET = 'fhzc-b2b-img';
 const ZHUCHAO_OSS_IMG_BUCKET_DEVEL = 'fhzc-b2b-img-devel';
 const ZHUCHAO_OSS_IMG_BUCKET_DEBUG = 'fhzc-b2b-img-debug';
