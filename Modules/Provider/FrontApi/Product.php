@@ -56,7 +56,12 @@ class Product extends AbstractScript
             $params['imgRefMap'][] = $item;
          }
       }
-
+      
+      $status = 1;
+      if(P_CONST::PRODUCT_STATUS_VERIFY == $params['status']){
+         $status = $params['status'];
+         $params['status'] = P_CONST::PRODUCT_STATUS_PEEDING;
+      }
       $product = $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,
@@ -65,6 +70,7 @@ class Product extends AbstractScript
          array($provider->getId(), $companyId, $params)
       );
       
+      $params['status'] = $status;
       $params['number'] = $product->getNumber();
       //插入到商家云站数据库中
       $this->appCaller->call(

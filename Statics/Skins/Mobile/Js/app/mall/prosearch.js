@@ -1,9 +1,9 @@
 /**
  * Created by jiayin on 2016/1/6.
  */
-define(['zepto'], function (){
+define(['zepto', 'search'], function (){
     //导航
-    $('.header_right').tap(function (){
+    $('.header_right').not('.header_right_icon_search').tap(function (){
         var that = $('.top_nav_box');
         if(that.hasClass('in')){
             $(that).removeClass('in');
@@ -121,13 +121,13 @@ define(['zepto'], function (){
                     if(item[0] == '3'){
                         if(item[1] == '1'){
                             $('.search_price').removeClass('down').addClass('up');
-                            $('.up_sanjiao').addClass('current')
-                            $('.down_sanjiao').removeClass('current')
+                            $('.up_sanjiao').addClass('current');
+                            $('.down_sanjiao').removeClass('current');
                         }
                         if(item[1] == '2'){
                             $('.search_price').removeClass('up').addClass('down');
-                            $('.down_sanjiao').addClass('current')
-                            $('.up_sanjiao').removeClass('current')
+                            $('.down_sanjiao').addClass('current');
+                            $('.up_sanjiao').removeClass('current'); 
                         }
                     } else{
                         $('#' + item[0]).attr('sort', item[1]);
@@ -138,19 +138,19 @@ define(['zepto'], function (){
         }
         //点击筛选
         $('#shaixuan').tap(function (){
-            $('#shaixuanBox').removeClass('hide');
+            $('#shaixuanBox').show();
             $('html,body').css({'height' : '100%', 'overflow' : 'hidden'});
         });
         //点击取消
         $('.cancel').tap(function (){
             $('#shaixuanListNav').find('.choose_text').text('不限');
             $('.shaixuan_item').find('li.current').removeClass('current');
-            $('#shaixuanBox').addClass('hide');
+            $('#shaixuanBox').hide();
             $('html,body').css({'height' : 'auto', 'overflow' : 'visible'});
         });
         //点击保存
         $('.save').tap(function (){
-            $('#shaixuanBox').addClass('hide');
+            $('#shaixuanBox').hide();
             $('html,body').css({'height' : 'auto', 'overflow' : 'visible'});
             redirectUrl();
         });

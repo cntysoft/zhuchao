@@ -398,6 +398,10 @@
         "Recruit":[
             "\\ProviderMobileApi\\Recruit",
             2
+        ],
+        "Article":[
+            "\\ProviderMobileApi\\Article",
+            1
         ]
     }
 }

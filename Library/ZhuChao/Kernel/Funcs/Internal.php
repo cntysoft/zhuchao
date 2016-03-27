@@ -174,7 +174,7 @@ function get_image_cdn_url_operate($resource, $arguments = array(), $watermark =
          } else if ('q' == $key) {
             $style .= '_' . $val . 'Q';
          } else if ('t' == $key) {
-            $style .= '_.' . $val;
+            $style .= '.' . $val;
          } else {
             $style .= '_' . $val . $key;
          }

@@ -4,7 +4,7 @@
 define(['zepto', 'swiper','search'], function (){
     $(function (){
         //导航
-        $('.header_right').tap(function (){
+        $('.header_right').not('.header_right_icon_search').tap(function (){
             var that = $('.top_nav_box');
             if(that.hasClass('in')){
                 $(that).removeClass('in');
