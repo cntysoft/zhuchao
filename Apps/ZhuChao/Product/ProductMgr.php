@@ -152,7 +152,7 @@ class ProductMgr extends AbstractLib
       foreach (array('imgRefMap', 'fileRefs') as $val) {
          array_push($dfields, $val);
       }
-      $pfields = $product->getRequireFields(array('id', 'providerId', 'categoryId', 'companyId', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
+      $pfields = $product->getRequireFields(array('id', 'providerId', 'categoryId', 'companyId', 'number', 'hits', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
       foreach (array('price') as $val) {
          array_push($pfields, $val);
       }
