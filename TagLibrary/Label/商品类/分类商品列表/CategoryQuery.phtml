@@ -8,6 +8,11 @@ $queryUrl = $this->getQueryParams();
 $totalquery = count($queryAttrs);
 $out = '<div class="choose_wrap" cid="' . $categoryId . '">
                         <div class="choose_list">';
+if ($totalquery) {
+   $out.='<dl class="list_item choosed"><dt>已选条件：</dt><dd></dd></dl>';
+} else {
+   $out.='<dl class="list_item choosed no_bb"><dt>已选条件：</dt><dd></dd></dl>';
+}
 foreach ($queryAttrs as $index => $queryAttr) {
    $name = $queryAttr->getName();
    $attr = $queryAttr->getOptValues();

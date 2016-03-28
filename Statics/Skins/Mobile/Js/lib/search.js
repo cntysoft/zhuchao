@@ -11,8 +11,10 @@ define(['zepto'], function (){
       $('.header_back_box').tap(function (event){
          $('body>div:not(.search_box)').show();
          $('body>ul').show();
+         $('.online').hide();
          $('#shaixuanBox').hide();
          $('.search_box').hide();
+
       });
       $('.header_right_icon_search').tap(function (){
          var keyword = $('.search_input_real').val();

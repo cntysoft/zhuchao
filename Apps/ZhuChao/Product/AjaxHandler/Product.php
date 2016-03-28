@@ -25,7 +25,8 @@ class Product extends AbstractHandler
       $this->checkRequireFields($params, array('start', 'limit'));
       $cond = array();
       if(isset($params['name']) && $params['name']){
-         $cond[] = "(brand like '%".$params['name']."%' or title like '%".$params['name']."%' or description like '%".$params['name']."%')";
+         $cond[] = "(brand like '%".$params['name']."%' or title like '%".$params['name']."%' or description like '%".$params['name']."%')";         
+         $params['start'] = 0;
       }
       $cid = (int) $params['cid'];
       $gcategoryTree = $this->getAppCaller()->call(

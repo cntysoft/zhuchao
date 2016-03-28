@@ -8,10 +8,10 @@ $node0 = $this->getNodeByNodeIndentifier($indetifier);
 $subNodes = $this->getSubNode($node0->getId());
 $out = '<div class="choose_box"> ';
 foreach ($subNodes as $value) {
-   $cls = $node->getNodeIdentifier() == $value->getNodeIdentifier() ? 'main_bg_light' : '';
+   $cls = $node->getNodeIdentifier() == $value->getNodeIdentifier() ? 'main' : '';
    $href = $node->getNodeIdentifier() == $value->getNodeIdentifier() ? '' : 'href="/category/' . $value->getNodeIdentifier() . '/1.html"';
    $out .= '    <dl class="choose_list clearfix">                  
-   <a  ' . $href . '><dt class="choose_key fl ' . $cls . '">' . $value->getText() . '</dt></a>
+   <a  ' . $href . '><dt class="choose_key activer_hover fl ' . $cls . '">' . $value->getText() . '</dt></a>
                         <dd class="choose_value fl">
                             <div class="choose_value_info">';
    $subsubNodes = $this->getSubNodeIds($value->getId());

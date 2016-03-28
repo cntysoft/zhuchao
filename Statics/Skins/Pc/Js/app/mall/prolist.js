@@ -1,14 +1,14 @@
 /**
  * Created by wangzan on 2016/3/9.
  */
-define(['jquery', 'lazyload','app/common'], function (){
+define(['jquery', 'lazyload', 'app/common'], function (){
    $(document).ready(function (){
       var search = decodeURI(window.location.search);
       if(search){
          var params = search.substring(1);
          var cond = params.split('&');
          addQuery(cond);
-//         addRoute(cond);
+         addRoute(cond);
          addSort(cond);
       }
       //增加排序选中-------------------------------------
@@ -32,27 +32,38 @@ define(['jquery', 'lazyload','app/common'], function (){
             }
          });
       }
-//      //增加route选中-------------------------------------
-//      function addRoute(params){
-//         $.each(params, function (index, item){
-//            var arr = item.split('=');
-//            var id = arr[0];
-//            var data = arr[1];
-//            $.each($('#' + id), function (){
-//               var span = $(this);
-//               if(span.attr('data') == data){
-//                  $('#route').append('<div index="' + id + '" data="' + data + '" class="selected"><b>' + id + ': ' + data + '</b><i></i></div>');
-//               }
-//            });
-//         });
-//      }
+      //增加route选中-------------------------------------
+      function addRoute(params){
+         $.each(params, function (index, item){
+            var arr = item.split('=');
+            var id = arr[0];
+            var data = arr[1];
+            if('keyword' != id && 'sort' != id && 'enableprice' != id){
+               var has = false;
+               var $hasspan = null;
+               $('.list_item.choosed dd span').each(function (){
+                  if($(this).attr('fh-name') === id){
+                     has = true;
+                     $hasspan = $(this);
+                  }
+               });
+               if(has){
+                  $hasspan.html(data + '<i class="icon-smallcuo"></i>');
+                  $hasspan.attr('fh-name', id);
+                  $hasspan.attr('fh-data', data);
+               } else{
+                  $('.list_item.choosed dd').append('<span fh-name="' + id + '" fh-data="' + data + '">' + data + '<i class="icon-smallcuo"></i></span>');
+               }
+            }
+         });
+      }
       //增加query 选中-------------------------------------
       function addQuery(params){
          $.each(params, function (index, item){
             var arr = item.split('=');
             var id = arr[0];
             var data = arr[1];
-            $.each($('.list_item a[index='+id+']'), function (){
+            $.each($('.list_item a[index=' + id + ']'), function (){
                var span = $(this);
                if(span.attr('data') == data){
                   span.addClass('main');
@@ -64,20 +75,26 @@ define(['jquery', 'lazyload','app/common'], function (){
       $('.list_item dd a').click(function (){
          var item = $(this);
          if(!item.hasClass('main')){
+            addRoute([$(this).attr('index') + '=' + $(this).attr('data')]);
             item.parent().siblings().find('a').removeClass('main');
             item.addClass('main');
-         } else{
-            item.removeClass('main');
+            redirectUrl();
          }
-         redirectUrl();
+//         else{
+//            item.removeClass('main');
+//         }
       });
       //重定向网址---------------------------------------
       function redirectUrl(){
          var cond = {};
          var query = '?';
-         $('.list_item dd a.main').each(function (){
+//         $('.list_item dd a.main').each(function (){
+//            var item = $(this);
+//            cond[item.attr('index')] = item.attr('data');
+//         });
+         $('.list_item.choosed dd span').each(function (){
             var item = $(this);
-            cond[item.attr('index')] = item.attr('data');
+            cond[item.attr('fh-name')] = item.attr('fh-data');
          });
          $('.rank_wrap ul li').each(function (){
             if($(this).hasClass('main')){
@@ -114,14 +131,14 @@ define(['jquery', 'lazyload','app/common'], function (){
             $(this).addClass('active');
             $(this).children('span').addClass('main').text('收起');
             $(this).children('i').removeClass('icon-jiantou3').addClass('main icon-jiantou1');
-            $('.choose_list .list_item:gt(1)').show();
-            $('.choose_list .list_item:nth-child(2)').removeClass('no_bb');
+            $('.choose_list .list_item:gt(2)').show();
+            $('.choose_list .list_item:nth-child(3)').removeClass('no_bb');
          } else{
             $(this).removeClass('active');
             $(this).children('span').removeClass('main').text('更多选项');
             $(this).children('i').removeClass('main icon-jiantou1').addClass('icon-jiantou3');
-            $('.choose_list .list_item:gt(1)').hide();
-            $('.choose_list .list_item:nth-child(2)').addClass('no_bb');
+            $('.choose_list .list_item:gt(2)').hide();
+            $('.choose_list .list_item:nth-child(3)').addClass('no_bb');
          }
       });
       //排序
@@ -153,6 +170,10 @@ define(['jquery', 'lazyload','app/common'], function (){
          } else{
             $(this).find('i').addClass('icon-checked');
          }
+         redirectUrl();
+      });
+      $('.list_item.choosed').delegate('dd span', 'click', function (){
+         $(this).remove();
          redirectUrl();
       });
    });

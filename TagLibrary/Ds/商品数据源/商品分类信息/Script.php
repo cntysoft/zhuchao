@@ -18,8 +18,7 @@ class GoodsCate extends AbstractDsScript
    public function load()
    {
       $number = $this->getRouteInfo()['categoryId'];
-      $nodetree = $this->appCaller->call(CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_MGR, 'getNodeTree', array());
-      $nodeInfo = $nodetree->getParent($number, true);
+      $nodeInfo = $this->appCaller->call(CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_MGR, 'getNode', array($number));
       return array(
          'name' => $nodeInfo->getName()
       );

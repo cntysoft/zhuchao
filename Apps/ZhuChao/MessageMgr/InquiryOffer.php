@@ -52,7 +52,7 @@ class InquiryOffer extends AbstractLib
          $inquiry = $this->getInquiryAndOffer($params['inquiryId']);
          $inquiry->setStatus(Constant::INQUIRY_STATUS_OFFERED);
          $inquiry->save();
-         $offer->create()
+         $offer->create();
          return $db->commit();
       } catch (\Exception $ex) {
          $db->rollback();
