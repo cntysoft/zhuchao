@@ -68,7 +68,7 @@ class Inquiry extends AbstractScript
       unset($ret['uid']);
       unset($ret['gid']);
       unset($ret['expireTime']);
-      uset($ret['inputTime']);
+      unset($ret['inputTime']);
       return $ret;
    }
 

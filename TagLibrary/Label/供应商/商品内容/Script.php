@@ -124,10 +124,10 @@ class ProductChange extends AbstractLabelScript
     * @param array $arguments
     * @return string
     */
-   public function getImageCdnUrl($imgUrl, $arguments = array())
+   public function getImageCdnUrl($imgUrl)
    {
       if($imgUrl){
-         return Kernel\get_image_cdn_url_operate($imgUrl, $arguments);
+         return Kernel\get_image_cdn_url($imgUrl);
       }else{
          return 'Statics/Skins/Pc/Images/lazyicon.png';
       }
