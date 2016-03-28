@@ -182,18 +182,18 @@ class Provider extends AbstractScript
       $company = $user->getCompany();
       return array(
          'id'          => $user->getId(),
-         'name'        => $user->getName(),
+         'name'        => $user->getName() ? $user->getName() : '',
          "phone"       => $user->getPhone(),
-         "realName"    => $userProfile->getRealName(),
-         "sex"         => $user->getSex(),
-         "position"    => $userProfile->getPosition(),
-         "companyName" => $company->getName(),
-         "department"  => $userProfile->getDepartment(),
-         "email"       => $userProfile->getEmail(),
-         "showPhone"   => $userProfile->getShowPhone(),
-         "qq"          => $userProfile->getQq(),
-         "tel"         => $userProfile->getTel(),
-         "fax"         => $userProfile->getFax()
+         "realName"    => $userProfile->getRealName() ? $userProfile->getRealName() : '',
+         "sex"         => $userProfile->getSex() ? $userProfile->getSex() : 3,
+         "position"    => $userProfile->getPosition() ? $userProfile->getPosition() : '',
+         "companyName" => $company ? $company->getName() : '',
+         "department"  => $userProfile->getDepartment() ? $userProfile->getDepartment() : '',
+         "email"       => $userProfile->getEmail() ? $userProfile->getEmail() : '',
+         "showPhone"   => $userProfile->getShowPhone() ? $userProfile->getShowPhone() : '',
+         "qq"          => $userProfile->getQq() ? $userProfile->getQq() : '',
+         "tel"         => $userProfile->getTel() ? $userProfile->getTel() : '',
+         "fax"         => $userProfile->getFax() ? $userProfile->getFax() : ''
       );
    }
 

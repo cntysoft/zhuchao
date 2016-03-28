@@ -17,4 +17,12 @@ class Constant
    const NOT_HAVE_PRICE = '<b style="color : red;">暂无报价</b>';
    
    const PK_OFFER = 'Offer';
+   
+   //询价单的状态
+   const INQUIRY_STATUS_NO_OFFER = 1;  
+   const INQUIRY_STATUS_OFFERED = 2;
+   
+   //报价单状态
+   const OFFER_STATUS_REPLY = 1;
+   const OFFER_STATUS_NO_REPLAY = 0;
 }

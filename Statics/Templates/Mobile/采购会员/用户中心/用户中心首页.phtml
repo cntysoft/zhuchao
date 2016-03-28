@@ -18,7 +18,7 @@ Qs::Ds('用户数据源/采购商', 'User');
 <?php Qs::Label('采购商/用户中心头部', array('renderTpl' => 'Mobile_Header')) ?>
         <div class="l_top">
             <div class="user_img">
-                <img src="<?php Qs::DsField('User', 'avatar') ?>" alt="">
+                <img src="<?php $avatar = Qs::DsField('User', 'avatar', true); $avatar = $avatar ? $avatar : 'Statics/Skins/Pc/Images/lazyicon.png'; echo $avatar; ?>" alt="">
             </div>
             <p class="user_name">下午好，<i class="main"><?php Qs::DsField('User', 'name') ?></i></p>
             <p class="user_level">普通采购会员

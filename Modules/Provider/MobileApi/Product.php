@@ -37,46 +37,51 @@ class Product extends AbstractScript
       $cndServer = Kernel\get_image_cdn_server_url() . '/';
       $src = '@.src';
 
+      $fileRefs = array();
+      $params['defaultImage'] = $params['images'][0]['url'];
       if (count($params['images'])) {
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
-            $item[1] = $image[1];
+            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image['url']));
+            $item[1] = $image['id'];
+            $fileRefs[] = $image['id'];
             $params['images'][] = $item;
          }
       }
-
-      if (count($params['imgRefMap'])) {
-         $imgRefMap = $params['imgRefMap'];
-         $params['imgRefMap'] = array();
-         foreach ($imgRefMap as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
-            $item[1] = $image[1];
-            $params['imgRefMap'][] = $item;
-         }
-      }
-
+      $params['fileRefs'] = $fileRefs;
+      $params['imgRefMap'] = array();
+      $params['keywords']= explode(',', $params['keywords']);
       if (count($params['attribute'])) {
          $attrs = $params['attribute'];
-         $params['attribute'] = array(
+         $attribute = array(
             '基本参数'  => array(),
             '自定义属性' => array()
          );
-         foreach ($attrs as $attr) {
-            if ($attr['type'] = 1) {
-               $params['基本参数'][$attr['name']] = $attr['value'];
+          foreach ($attrs as $attr) {
+            if (!isset($attr['value'])) {
+               $attr['value'] = '';
+            }
+            if ($attr['type'] == 1) {
+              $attribute['基本参数'][$attr['name']] = $attr['value'];
             } else {
-               $params['自定义属性'][$attr['name']] = $attr['value'];
+              $attribute['自定义属性'][$attr['name']] = $attr['value'];
             }
          }
+          $params['attribute'] = $attribute;  
       }
 
+      $status = 1;
+      if(P_CONST::PRODUCT_STATUS_VERIFY == $params['status']){
+         $status = $params['status'];
+         $params['status'] = P_CONST::PRODUCT_STATUS_PEEDING;
+      }
       $product = $this->appCaller->call(
-              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($provider->getId(), $companyId, $params)
+            P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($provider->getId(), $companyId, $params)
       );
-
+      
       $params['number'] = $product->getNumber();
+      $params['status'] = $status;
       //插入到商家云站数据库中
       $this->appCaller->call(
               YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($params)
@@ -92,7 +97,10 @@ class Product extends AbstractScript
    public function updateProduct(array $params)
    {
       $this->checkRequireFields($params, array('number', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'status'));
-      $fhproduct = $this->getFhProductByNumber($params['number']);
+      $product = $this->appCaller->call(
+              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($params['number'])
+      );
+      $fhproduct = $product->getDetail();
       if (!$fhproduct) {
          $errorType = new ErrorType();
          Kernel\throw_exception(new Exception(
@@ -104,6 +112,9 @@ class Product extends AbstractScript
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() . '/';
       $params['companyId'] = $companyId;
+      $params['providerId'] = $provider->getId();
+      $params['keywords']= explode(',', $params['keywords']);
+      $params['defaultImage'] = $params['images'][0]['url'];
       $src = '@.src';
       $params['fileRefs'] = array();
       $imgRefMap = $fhproduct->getImgRefMap();
@@ -111,13 +122,12 @@ class Product extends AbstractScript
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
-            $item[1] = $image[1];
+            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image['url']));
+            $item[1] = $image['id'];
             array_push($params['fileRefs'], $item[1]);
             $params['images'][] = $item;
          }
       }
-
       if (count($imgRefMap)) {
          $params['imgRefMap'] = array();
          foreach ($imgRefMap as $image) {
@@ -130,30 +140,41 @@ class Product extends AbstractScript
 
       if (count($params['attribute'])) {
          $attrs = $params['attribute'];
-         $params['attribute'] = array(
+         $attribute = array(
             '基本参数'  => array(),
             '自定义属性' => array()
          );
          foreach ($attrs as $attr) {
-            if ($attr['type'] = 1) {
-               $params['基本参数'][$attr['name']] = $attr['value'];
+             if(!isset($attr['value'])){
+                 $attr['value'] = '';
+             }
+            if ($attr['type'] == 1) {
+              $attribute['基本参数'][$attr['name']] = $attr['value'];
             } else {
-               $params['自定义属性'][$attr['name']] = $attr['value'];
+              $attribute['自定义属性'][$attr['name']] = $attr['value'];
             }
          }
+          $params['attribute'] = $attribute;  
       }
-
-
+      $status = 1;
+      if(P_CONST::PRODUCT_STATUS_VERIFY == $params['status']){
+         $status = $params['status'];
+         $params['status'] = P_CONST::PRODUCT_STATUS_PEEDING;
+      }
       $this->appCaller->call(
-              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'updateProduct', array($fhproduct->getId(), $params)
+              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'updateProduct', array($product->getId(), $params)
       );
-
       $shopprodcut = $this->getShopProductByNumber($params['number']);
 
       if ($shopprodcut) {
+         $params['status'] = $status;
          //插入到商家云站数据库中
          $this->appCaller->call(
                  YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'updateProduct', array($shopprodcut->getId(), $params)
+         );
+      }else{
+         $this->appCaller->call(
+              YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($params)
          );
       }
    }

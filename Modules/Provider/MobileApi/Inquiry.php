@@ -25,8 +25,7 @@ class Inquiry extends AbstractScript
       $offset = ($page - 1) * $pageSize;
       $provider = $this->appCaller->call(Provider_Content::MODULE_NAME, Provider_Content::APP_NAME, Provider_Content::APP_API_MGR, 'getCurUser');
       $cond = array(
-         'status'     => $params['status'],
-         'providerId' => $provider->getId()
+         'status = ' . $params['status']. ' and providerId = ' .$provider->getId()
       );
       $info = $this->appCaller->call(MessageMgr_Constant::MODULE_NAME, MessageMgr_Constant::APP_NAME, MessageMgr_Constant::APP_API_OFFER, 'getInquiryList', array($cond, false, 'inputTime DESC', $pageSize, $offset));
       $ret = array();
@@ -34,7 +33,7 @@ class Inquiry extends AbstractScript
          $product = $item->getProduct();
          $item = $item->toarray();
          $item['pic'] = \Cntysoft\Kernel\get_image_cdn_url($product->getDefaultImage());
-         unset($item['id']);
+         unset($item['uid']);
          unset($item['gid']);
          unset($item['expireTime']);
          $ret[] = $item;
@@ -56,7 +55,7 @@ class Inquiry extends AbstractScript
       $user = $inquiry->getBuyer();
       $ret = $inquiry->toarray();
       $ret['pic'] = \Cntysoft\Kernel\get_image_cdn_url($product->getDefaultImage());
-      $ret['pic'] = $product->getPrice();
+      $ret['price'] = $product->getPrice();
       $ret['title'] = $product->getTitle();
       $ret['name'] = $user->getName();
       $ret['phone'] = $user->getPhone();
@@ -66,9 +65,11 @@ class Inquiry extends AbstractScript
       } else {
          $ret['reply'] = $offer->toarray();
       }
-      var_dump($ret);
-      exit;
-      return $info;
+      unset($ret['uid']);
+      unset($ret['gid']);
+      unset($ret['expireTime']);
+      uset($ret['inputTime']);
+      return $ret;
    }
 
    /**

@@ -74,7 +74,7 @@ class Uploader extends AbstractScript
             array_push($pic, array(
                'id'   => $item['rid'],
                'url'  => $item['filename'],
-               "base" => 'http://' . Kernel\get_server_url()
+               "base" => Kernel\get_image_cdn_server_url() . '/'
             ));
          }
       }

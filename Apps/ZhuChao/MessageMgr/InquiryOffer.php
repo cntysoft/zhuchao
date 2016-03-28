@@ -45,7 +45,20 @@ class InquiryOffer extends AbstractLib
 		}
 		$offer = new OfferModel();
 		$offer->assignBySetter($params);
-		return $offer->create();
+      
+      $db = Kernel\get_db_adapter();
+      try{
+         $db->begin();
+         $inquiry = $this->getInquiryAndOffer($params['inquiryId']);
+         $inquiry->setStatus(Constant::INQUIRY_STATUS_OFFERED);
+         $inquiry->save();
+         $offer->create()
+         return $db->commit();
+      } catch (\Exception $ex) {
+         $db->rollback();
+         
+         Kernel\throw_exception($ex);
+      }
 	}
 
 	/**
