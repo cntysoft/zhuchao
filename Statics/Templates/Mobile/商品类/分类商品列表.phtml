@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 Qs::Ds('商城数据源/商城数据', 'sites');
+Qs::Ds('商品数据源/商品分类信息', 'goodscate');
 ?>
 <html>
     <head lang="en">
@@ -26,7 +27,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             </div>
             <!--标题-->
             <div class="header_title">
-                <h2 class="text_ellipsis tc">开关</h2>
+                <h2 class="text_ellipsis tc"><?php Qs::DsField('goodscate', 'name') ?></h2>
             </div>
             <!--更多按钮-->
             <div class="header_right fr">
