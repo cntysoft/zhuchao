@@ -24,6 +24,10 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_DefaultList', 'nodeIdentifier' => array(), 'titleLength' => 34, 'introLength' => 20, 'outputNum' => 6, 'enablePage' => false, 'listSubNode' => true))
             ?>
         </div>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
         <?php Qs::Sys('loadRequireJs', 'company/newslist') ?>
     </body>
 </html>

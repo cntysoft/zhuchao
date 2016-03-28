@@ -1,1 +1,38 @@
-404
+<!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>404-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/404.css', 'slick.css', 'layer.css')); ?>
+    </head>
+    <body>
+        <!--顶部状态栏-->
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>
+        <!--内容-->
+        <div class="content">
+            <div class="content_inner conwidth">
+                <img src="<?php Qs::Sys('loadImage', 'icon_404.jpg') ?>">
+                <div class="content_text">
+                    <p><strong>抱歉！</strong>您所要访问的页面不存在。</p>
+                    <p>您要查看的网址可能已被删除或者暂时不可用。<br>点击以下链接继续浏览网站</p>
+                    <p>
+                        <a href="javascript:history.go(-1)">&gt;&gt;返回上一页</a>
+                        <a href="/">&gt;&gt;返回首页</a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <?php
+        Qs::Label('静态类/网站底部');
+        Qs::Sys('loadRequireJs', 'mall/index');
+        ?>
+    </body>
+</html>

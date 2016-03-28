@@ -1,51 +1,57 @@
-<?php Qs::Ds('商城数据源/商城数据', 'site'); Qs::Ds('用户数据源/采购商', 'User');?>
+<?php Qs::Ds('商城数据源/商城数据', 'site');
+Qs::Ds('用户数据源/采购商', 'User');
+?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>用户中心首页-<?php Qs::DsField('site', 'SiteTitle') ?></title>
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
-    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
-    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-	 <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <?php Qs::Sys('loadCss', array('mall/style.css', 'usercenter/user_index.css'));?>
-</head>
-<body>
-<!--logo，搜索,名称-->
-<?php Qs::Label('采购商/用户中心头部', array('renderTpl'=> 'Mobile_Header'))?>
-<div class="l_top">
-    <div class="user_img">
-        <img src="<?php Qs::DsField('User', 'avatar')?>" alt="">
-    </div>
-    <p class="user_name">下午好，<i class="main"><?php Qs::DsField('User', 'name')?></i></p>
-    <p class="user_level">普通采购会员
-        <span class="main icon-huiyuan"></span></p>
-</div>
-<div class="l_feature">
-    <div class="c_feature">
-        <a href="/modify.html">
-            <span class="icon-wodeziliao"></span>
-            我的资料
-            <span class="fr icon-youjiantou"></span>
-        </a>
-    </div>
-    <div class="c_feature">
-        <a href="/quotationlist/1.html">
-            <span class="icon-mianfeibaojia"></span>
-            报价单
-            <span  class="fr icon-youjiantou"></span>
-        </a>
-    </div>
-<!--    <div class="c_feature">
-        <a href="history.html">
-            <span class="icon-lishijilu"></span>
-            历史记录
-            <span  class="fr icon-youjiantou"></span>
-        </a>
-    </div>-->
-</div>
-<div class="cancel_login main_bg">退出登录</div>
-<?php Qs::Sys('loadRequireJs', 'usercenter/user_index')?>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>用户中心首页-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+<?php Qs::Sys('loadCss', array('mall/style.css', 'usercenter/user_index.css')); ?>
+    </head>
+    <body>
+        <!--logo，搜索,名称-->
+<?php Qs::Label('采购商/用户中心头部', array('renderTpl' => 'Mobile_Header')) ?>
+        <div class="l_top">
+            <div class="user_img">
+                <img src="<?php Qs::DsField('User', 'avatar') ?>" alt="">
+            </div>
+            <p class="user_name">下午好，<i class="main"><?php Qs::DsField('User', 'name') ?></i></p>
+            <p class="user_level">普通采购会员
+                <span class="main icon-huiyuan"></span></p>
+        </div>
+        <div class="l_feature">
+            <div class="c_feature">
+                <a href="/modify.html">
+                    <span class="icon-wodeziliao"></span>
+                    我的资料
+                    <span class="fr icon-youjiantou"></span>
+                </a>
+            </div>
+            <div class="c_feature">
+                <a href="/quotationlist/1.html">
+                    <span class="icon-mianfeibaojia"></span>
+                    报价单
+                    <span  class="fr icon-youjiantou"></span>
+                </a>
+            </div>
+            <!--    <div class="c_feature">
+                    <a href="history.html">
+                        <span class="icon-lishijilu"></span>
+                        历史记录
+                        <span  class="fr icon-youjiantou"></span>
+                    </a>
+                </div>-->
+        </div>
+        <div class="cancel_login main_bg">退出登录</div>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
+<?php Qs::Sys('loadRequireJs', 'usercenter/user_index') ?>
+    </body>
 </html>

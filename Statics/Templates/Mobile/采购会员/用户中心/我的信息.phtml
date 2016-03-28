@@ -1,49 +1,56 @@
-<?php Qs::Ds('商城数据源/商城数据', 'site'); Qs::Ds('用户数据源/采购商', 'User');?>
+<?php
+Qs::Ds('商城数据源/商城数据', 'site');
+Qs::Ds('用户数据源/采购商', 'User');
+?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>我的信息-<?php Qs::DsField('site', 'SiteTitle') ?></title>
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
-    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
-    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-	 <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <?php Qs::Sys('loadCss', array('mall/style.css', 'usercenter/user_info.css'));?>
-</head>
-<body>
-<!--logo，搜索,名称-->
-<?php Qs::Label('采购商/用户中心头部', array('renderTpl'=> 'Mobile_Header'))?>
-<div class="l_info">
-    <div class="m_info clearfix">
-        <span class="info_intro">用户名：</span>
-        <span class="user_detail"><?php Qs::DsField('User', 'name')?></span>
-    </div>
-    <div class="m_info clearfix">
-        <span class="info_intro">姓名：</span>
-        <span class="user_detail">暂无</span>
-    </div>
-    <div class="m_info clearfix">
-        <span class="info_intro">性别：</span>
-        <span class="user_detail"><?php Qs::DsField('User', 'sexText')?></span>
-    </div>
-    <div class="m_info clearfix">
-        <span class="info_intro">手机：</span>
-        <span class="user_detail"><?php Qs::DsField('User', 'phone')?></span>
-    </div>
-    <div class="m_info clearfix">
-        <span class="info_intro">邮箱：</span>
-        <span class="user_detail">暂无</span>
-    </div>
-    <div class="m_info clearfix">
-        <span class="info_intro">实名认证：</span>
-        <span class="user_detail">未完成</span>
-    </div>
-    <div class="m_info clearfix no_bb">
-        <span class="info_intro">企业认证：</span>
-        <span class="user_detail">未完成</span>
+    <head>
+        <meta charset="UTF-8">
+        <title>我的信息-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+<?php Qs::Sys('loadCss', array('mall/style.css', 'usercenter/user_info.css')); ?>
+    </head>
+    <body>
+        <!--logo，搜索,名称-->
+<?php Qs::Label('采购商/用户中心头部', array('renderTpl' => 'Mobile_Header')) ?>
+        <div class="l_info">
+            <div class="m_info clearfix">
+                <span class="info_intro">用户名：</span>
+                <span class="user_detail"><?php Qs::DsField('User', 'name') ?></span>
+            </div>
+            <div class="m_info clearfix">
+                <span class="info_intro">姓名：</span>
+                <span class="user_detail">暂无</span>
+            </div>
+            <div class="m_info clearfix">
+                <span class="info_intro">性别：</span>
+                <span class="user_detail"><?php Qs::DsField('User', 'sexText') ?></span>
+            </div>
+            <div class="m_info clearfix">
+                <span class="info_intro">手机：</span>
+                <span class="user_detail"><?php Qs::DsField('User', 'phone') ?></span>
+            </div>
+            <div class="m_info clearfix">
+                <span class="info_intro">邮箱：</span>
+                <span class="user_detail">暂无</span>
+            </div>
+            <div class="m_info clearfix">
+                <span class="info_intro">实名认证：</span>
+                <span class="user_detail">未完成</span>
+            </div>
+            <div class="m_info clearfix no_bb">
+                <span class="info_intro">企业认证：</span>
+                <span class="user_detail">未完成</span>
+            </div>
         </div>
-</div>
-<?php Qs::Sys('loadRequireJs', 'usercenter/user_info')?>
-</body>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
+<?php Qs::Sys('loadRequireJs', 'usercenter/user_info') ?>
+    </body>
 </html>

@@ -1,22 +1,26 @@
-<?php Qs::Ds('商城数据源/商城数据', 'site');?>
+<?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>报价单列表-<?php Qs::DsField('site', 'SiteTitle') ?></title>
-    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-    <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
-    <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
-    <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-	 <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-    <?php Qs::Sys('loadCss', array('mall/style.css', 'usercenter/baojia_lis.css'));?>
-</head>
-<body>
-<!--logo，搜索,名称-->
-<?php Qs::Label('采购商/用户中心头部', array('renderTpl'=> 'Mobile_Header'))?>
-<div class="l_baojia">
-    <?php Qs::Label('采购商/报价单列表', array('renderTpl' => 'Mobile_QuotationList', 'outputNum' => 5, 'enablePage' => true))?>
-</div>
-<?php Qs::Sys('loadRequireJs', 'usercenter/baojia_lis')?>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>报价单列表-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'usercenter/baojia_lis.css')); ?>
+    </head>
+    <body>
+        <!--logo，搜索,名称-->
+        <?php Qs::Label('采购商/用户中心头部', array('renderTpl' => 'Mobile_Header')) ?>
+        <div class="l_baojia">
+            <?php Qs::Label('采购商/报价单列表', array('renderTpl' => 'Mobile_QuotationList', 'outputNum' => 5, 'enablePage' => true)) ?>
+        </div>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'usercenter/baojia_lis') ?>
+    </body>
 </html>

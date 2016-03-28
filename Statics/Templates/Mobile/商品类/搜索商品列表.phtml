@@ -53,6 +53,10 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         </ul>
         <!--筛选条件-->
         <?php Qs::Label('商品类/搜索商品列表', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 2)) ?>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
         <?php Qs::Sys('loadRequireJs', 'mall/prosearch'); ?>
     </body>
 </html>

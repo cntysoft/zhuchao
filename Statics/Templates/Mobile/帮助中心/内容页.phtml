@@ -3,30 +3,34 @@
 Qs::Ds('商城数据源/商城数据', 'sites');
 ?>
 <html>
-	 <head lang="en">
-		  <meta charset="UTF-8">
-		  <title>帮助中心-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-		  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <?php Qs::Sys('loadCss', array('help/style.css', 'help/helpcontent.css')); ?>
-	 </head>
-	 <body>
-		  <!--返回,名称,搜索-->
-		  <div class="headbar w clearfix main_bg">
-				<!--返回-->
-				<div class="header_back_box fl">
-					 <a class="header_back" href="javascript:history.back();"><i class="icon-fanhuijian"></i></a>
-				</div>
-				<!--标题-->
-				<div class="header_title">
-					 <h2 class="text_ellipsis tc">帮助中心</h2>
-				</div>
-		  </div>
-		  <!--内容详情-->
-		  <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Mobile_HelpCenterContent')) ?>
-		  <?php Qs::Sys('loadRequireJs', 'help/helpindex'); ?>
-	 </body>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>帮助中心-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('help/style.css', 'help/helpcontent.css')); ?>
+    </head>
+    <body>
+        <!--返回,名称,搜索-->
+        <div class="headbar w clearfix main_bg">
+            <!--返回-->
+            <div class="header_back_box fl">
+                <a class="header_back" href="javascript:history.back();"><i class="icon-fanhuijian"></i></a>
+            </div>
+            <!--标题-->
+            <div class="header_title">
+                <h2 class="text_ellipsis tc">帮助中心</h2>
+            </div>
+        </div>
+        <!--内容详情-->
+        <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Mobile_HelpCenterContent')) ?>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'help/helpindex'); ?>
+    </body>
 </html>
