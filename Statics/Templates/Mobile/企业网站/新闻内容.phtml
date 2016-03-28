@@ -13,11 +13,11 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/newsdetail.css')) ?>
+		  <?php Qs::Sys('loadCss', array('company/style.css', 'company/newsdetail.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
+		  <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
         <!--内容-->
         <div class="l_main">
             <div class="news_title">
@@ -29,34 +29,34 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 </p>
             </div>
             <div class="news_detail">
-                <?php Qs::DsField('AC', 'content') ?><br/>
+					 <?php Qs::DsField('AC', 'content') ?><br/>
                 <div class="prev_next">
                     <p><em>上一篇：</em><?php
-                        $prev = Qs::DsField('AC', 'prev', true);
-                        if ($prev) {
-                           $pretitle = iconv_strlen($prev[1]) > 13 ? iconv_substr($prev[1], 0, 13) . '...' : $prev[1];
-                           echo '<a href="' . $prev[0] . '">' . $pretitle . '</a>';
-                        } else {
-                           echo '木有了';
-                        }
-                        ?>
+								$prev = Qs::DsField('AC', 'prev', true);
+								if ($prev) {
+									$pretitle = iconv_strlen($prev[1]) > 13 ? iconv_substr($prev[1], 0, 13) . '...' : $prev[1];
+									echo '<a href="' . $prev[0] . '">' . $pretitle . '</a>';
+								} else {
+									echo '木有了';
+								}
+								?>
                     </p>
                     <p><em>下一篇：</em><?php
-                        $next = Qs::DsField('AC', 'next', true);
-                        if ($next) {
-                           $nexttitle = iconv_strlen($next[1]) > 13 ? iconv_substr($next[1], 0, 13) . '...' : $next[1];
-                           echo '<a href="' . $next[0] . '">' . $nexttitle . '</a>';
-                        } else {
-                           echo '正在更新中，请等待~';
-                        }
-                        ?></p>
+								$next = Qs::DsField('AC', 'next', true);
+								if ($next) {
+									$nexttitle = iconv_strlen($next[1]) > 13 ? iconv_substr($next[1], 0, 13) . '...' : $next[1];
+									echo '<a href="' . $next[0] . '">' . $nexttitle . '</a>';
+								} else {
+									echo '正在更新中，请等待~';
+								}
+								?></p>
                 </div>
             </div>
             <div class="copy">
-                <p>增值电信业务经营许可证：豫 B2-20160047<br/>
-                    Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
-            </div>
-            <?php Qs::Sys('loadRequireJs', 'company/newsdetail') ?>
+					 <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+						  Copyright 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+				</div>
+				<?php Qs::Sys('loadRequireJs', 'company/newsdetail') ?>
         </div>
     </body>
 </html>

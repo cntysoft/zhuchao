@@ -24,7 +24,8 @@ class Goods extends AbstractDsScript
 		return array(
 			'name' => $goodsInfo->getBrand().$goodsInfo->getTitle().$goodsInfo->getDescription(),
 			'realName' => $providerDetail->getRealName(),
-			'phone' => $provider->getPhone()
+			'phone' => $provider->getPhone(),
+			'showPhone' => $provider->getProfile()->getShowPhone() ? $provider->getProfile()->getShowPhone() : $provider->getPhone()
 		);
    }
 

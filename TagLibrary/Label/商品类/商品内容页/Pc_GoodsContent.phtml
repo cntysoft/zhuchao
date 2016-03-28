@@ -77,7 +77,7 @@ $out .= '</div>
                 </div>
             </div>
             <div class="company_code">
-                <h4>' . $company->getName() . '</h4>';
+                <h4><a href="http://'.$company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN.'">' . $company->getName() . '</a></h4>';
 if ($company->getSubAttr()) {
 	$out .= '<div class="company_code_img">
                     <img src="/Utils/index/wechatQrCode?data=http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" alt="">
@@ -127,17 +127,17 @@ $out .= '<div class="pro_info l_parameter hide">
 	 <table>
 		  <tbody>';
 foreach ($attribute as $key => $value) {
-   if(count($value)){
-      $out .= '<tr>
-					 <th colspan="2">'.$key.'</th>
+	if (count($value)) {
+		$out .= '<tr>
+					 <th colspan="2">' . $key . '</th>
 				</tr>';
-      foreach ($value as $attrs => $attr) {
-         $out .= '<tr>
+		foreach ($value as $attrs => $attr) {
+			$out .= '<tr>
                    <td class="c_key">' . $attrs . '</td>
                    <td>' . $attr . '</td>
                </tr>';
-      }
-   }
+		}
+	}
 }
 $out .= '</tbody>
 	 </table>
