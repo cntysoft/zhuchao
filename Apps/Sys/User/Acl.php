@@ -692,9 +692,9 @@ class Acl extends AbstractLib
       //设置凤凰筑巢OSS服务器地址
       $cfg = ConfigProxy::getFrameworkConfig('Net');
       if(Kernel\is_local_deploy()){
-         $imgOssServer = 'http://'.\Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET.'.'.\Cntysoft\OSS_PUBLIC_ENTRY;
+         $imgOssServer = 'http://'.\Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET.'.'.\Cntysoft\RT_OSS_API_ENTRY;
       }else{
-         $imgOssServer = 'http://'.\Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET.'.'.\Cntysoft\OSS_PUBLIC_ENTRY;
+         $imgOssServer = 'http://'.\Cntysoft\RT_ZHUCHAO_OSS_IMG_BUCKET.'.'.\Cntysoft\RT_OSS_API_ENTRY;
       }
       
       $data['sysSetting'] = array(

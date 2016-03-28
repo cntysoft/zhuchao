@@ -25,7 +25,6 @@ class ProductController extends AbstractController
       if (!$acl->isLogin()) {
          $path = $this->request->getURI();
          Kernel\goto_route('login.html?returnUrl=' . urlencode($path));
-         exit;
       }
       
       $user = $acl->getCurUser();
