@@ -1,11 +1,14 @@
-<?php Qs::Ds('商城数据源/商城数据', 'sites'); ?>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+Qs::Ds('栏目数据源/栏目SEO', 'category');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>首页-筑巢商学院-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <meta name="description" content="<?php Qs::DsField('category', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
 		  <?php Qs::Sys('loadCss', array('college/style.css', 'slick.css', 'college/collegeindex.css')) ?>

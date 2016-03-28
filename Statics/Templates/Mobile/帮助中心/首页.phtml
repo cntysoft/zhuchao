@@ -1,83 +1,80 @@
 <!DOCTYPE html>
 <?php
 Qs::Ds('商城数据源/商城数据', 'sites');
+Qs::Ds('栏目数据源/栏目SEO', 'category');
 ?>
 <html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title>帮助中心-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
-        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('help/style.css', 'help/helpindex.css')); ?>
-    </head>
-    <body>
-        <!--logo，标题，搜索-->
-        <div class="headbar w clearfix main_bg">
-            <!--logo-->
-            <div class="header_left fl">
-                <a href="/">
-                    <span class="icon_logo">
-                        <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
-                    </span>
-                </a>
-            </div>
-            <!--标题-->
-            <div class="header_title">
-                <h2 class="text_ellipsis tc">帮助中心</h2>
-            </div>
-        </div>
-        <!--列表-->
-        <ul class="item_box">
-            <li class="menu_item">
-                <h3 class="menu_head"><span class="icon-zhanghu"></span>帐户管理<i class="icon-youjiantou"></i></h3>
-                <ul class="sub_menu">
-                    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'zhanghaoguanli', 'type' => 1)) ?>
-                </ul>
-            </li>
-            <li class="menu_item">
-                <a href="javascript:;" class="menu_head"><span class="icon-caigoujinhuo"></span>采购中心<i class="icon-youjiantou"></i></a>
-                <ul class="sub_menu">
-                    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'caigouzhongxin', 'type' => 1)) ?>
-                </ul>
-            </li>
-            <li class="menu_item">
-                <a href="javascript:;" class="menu_head"><span class="icon-feature"></span>供应商服务<i class="icon-youjiantou"></i></a>
-                <ul class="sub_menu">
-                    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'gongyingshangfuwu', 'type' => 1)) ?>
-                </ul>
-            </li>
-            <li class="menu_item">
-                <a href="javascript:;" class="menu_head"><span class="icon-shangou"></span>特色栏目<i class="icon-youjiantou"></i></a>
-                <ul class="sub_menu">
-                    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'teselanmu', 'type' => 1)) ?>
-                </ul>
-            </li>
-            <li class="menu_item">
-                <a href="javascript:;" class="menu_head"><span class="icon-caigouxuqiu"></span>积分商城<i class="icon-youjiantou"></i></a>
-                <ul class="sub_menu">
-                    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'jifenshangcheng', 'type' => 1)) ?>
-                </ul>
-            </li>
-            <li class="menu_item">
-                <a href="javascript:;" class="menu_head"><span class="icon-tousu"></span>维权指南<i class="icon-youjiantou"></i></a>
-                <ul class="sub_menu">
-                    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'weiquanzhinan', 'type' => 1)) ?>
-                </ul>
-            </li>
-            <li class="menu_item">
-                <a href="javascript:;" class="menu_head"><span class="icon-remen"></span>热门问题</a>
-                <ul class="relevant_list_box">
-                    <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Mobile_HotQuestion', 'outputNum' => 8)); ?>
-                </ul>
-            </li>
-        </ul>
-        <div class="copy">
-            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
-                Copyright 2010-2016 www.fhzc.com All Rights Reserved 豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
-        </div>
-        <?php Qs::Sys('loadRequireJs', 'help/helpindex'); ?>
-    </body>
+	 <head lang="en">
+		  <meta charset="UTF-8">
+		  <title>帮助中心-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+		  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+		  <meta name="description" content="<?php Qs::DsField('category', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
+		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+		  <?php Qs::Sys('loadCss', array('help/style.css', 'help/helpindex.css')); ?>
+	 </head>
+	 <body>
+		  <!--logo，标题，搜索-->
+		  <div class="headbar w clearfix main_bg">
+				<!--logo-->
+				<div class="header_left fl">
+					 <a href="/">
+						  <span class="icon_logo">
+								<img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
+						  </span>
+					 </a>
+				</div>
+				<!--标题-->
+				<div class="header_title">
+					 <h2 class="text_ellipsis tc">帮助中心</h2>
+				</div>
+		  </div>
+		  <!--列表-->
+		  <ul class="item_box">
+				<li class="menu_item">
+					 <h3 class="menu_head"><span class="icon-zhanghu"></span>帐户管理<i class="icon-youjiantou"></i></h3>
+					 <ul class="sub_menu">
+						  <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'zhanghaoguanli', 'type' => 1)) ?>
+					 </ul>
+				</li>
+				<li class="menu_item">
+					 <a href="javascript:;" class="menu_head"><span class="icon-caigoujinhuo"></span>采购中心<i class="icon-youjiantou"></i></a>
+					 <ul class="sub_menu">
+						  <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'caigouzhongxin', 'type' => 1)) ?>
+					 </ul>
+				</li>
+				<li class="menu_item">
+					 <a href="javascript:;" class="menu_head"><span class="icon-feature"></span>供应商服务<i class="icon-youjiantou"></i></a>
+					 <ul class="sub_menu">
+						 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'gongyingshangfuwu', 'type' => 1)) ?>
+					 </ul>
+				</li>
+				<li class="menu_item">
+					 <a href="javascript:;" class="menu_head"><span class="icon-shangou"></span>特色栏目<i class="icon-youjiantou"></i></a>
+					 <ul class="sub_menu">
+						  <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'teselanmu', 'type' => 1)) ?>
+					 </ul>
+				</li>
+				<li class="menu_item">
+					 <a href="javascript:;" class="menu_head"><span class="icon-caigouxuqiu"></span>积分商城<i class="icon-youjiantou"></i></a>
+					 <ul class="sub_menu">
+						  <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'jifenshangcheng', 'type' => 1)) ?>
+					 </ul>
+				</li>
+				<li class="menu_item">
+					 <a href="javascript:;" class="menu_head"><span class="icon-tousu"></span>维权指南<i class="icon-youjiantou"></i></a>
+					 <ul class="sub_menu">
+						  <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_HelpCenterIndex', 'identifier' => 'weiquanzhinan', 'type' => 1)) ?>
+					 </ul>
+				</li>
+				<li class="menu_item">
+					 <a href="javascript:;" class="menu_head"><span class="icon-remen"></span>热门问题</a>
+					 <ul class="relevant_list_box">
+						  <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Mobile_HotQuestion', 'outputNum' => 8)); ?>
+					 </ul>
+				</li>
+		  </ul>
+		  <?php Qs::Sys('loadRequireJs', 'help/helpindex'); ?>
+	 </body>
 </html>
