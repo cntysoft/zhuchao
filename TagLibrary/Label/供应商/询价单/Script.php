@@ -114,7 +114,7 @@ class Inquiry extends AbstractLabelScript
     */
    public function getProductUrl($id)
    {
-      return 'http://' . \Cntysoft\SYS_SITE_NAME_DEVEL . '/item/' . $id . '.html';
+      return 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $id . '.html';
    }
 
 }
