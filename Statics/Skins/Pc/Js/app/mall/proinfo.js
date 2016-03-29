@@ -12,7 +12,7 @@ define(['jquery', 'Front', 'app/common'], function (){
          }
       }, true);
       //收藏
-      $('.collect_btn').delegate('.can_collect', 'click', function (){
+      $('.collect_btn').click(function (){
          Cntysoft.Front.callApi('User', 'addCollect', {
             number : number
          }, function (response){
