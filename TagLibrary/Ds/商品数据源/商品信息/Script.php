@@ -12,22 +12,23 @@ use Cntysoft\Framework\Qs\Engine\Tag\AbstractDsScript;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 class Goods extends AbstractDsScript
 {
-   /**
-    * @inheritdoc
-    */
-   public function load()
-   {
-      $number = $this->getRouteInfo()['number'];
+	/**
+	 * @inheritdoc
+	 */
+	public function load()
+	{
+		$number = $this->getRouteInfo()['number'];
 		$goodsInfo = $this->appCaller->call(PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
 		$provider = $goodsInfo->getProvider();
 		$providerDetail = $provider->getProfile();
 		return array(
-			'name' => $goodsInfo->getBrand().$goodsInfo->getTitle().$goodsInfo->getDescription(),
-			'realName' => $providerDetail->getRealName(),
-			'phone' => $provider->getPhone(),
-			'showPhone' => $provider->getProfile()->getShowPhone() ? $provider->getProfile()->getShowPhone() : $provider->getPhone()
+			'name'		 => $goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription(),
+			'status'		 => $goodsInfo->getStatus(),
+			'statusText' => $goodsInfo->getStatus() != 3 ? 'hide' : '',
+			'realName'	 => $providerDetail->getRealName(),
+			'phone'		 => $provider->getPhone(),
+			'showPhone'	 => $provider->getProfile()->getShowPhone() ? $provider->getProfile()->getShowPhone() : $provider->getPhone()
 		);
-   }
-
+	}
 
 }

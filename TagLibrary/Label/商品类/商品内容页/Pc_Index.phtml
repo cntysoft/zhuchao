@@ -65,7 +65,7 @@ foreach ($articles as $article) {
 	$out .= '<a href="/article/' . $article->getId() . '.html">'
 			  . '<i>' . $article->getTitle() . ' </i><span class="date">' . date('m-d', $article->getInputTime()) . '</span></a>';
 }
-            $out .= '</div>
+$out .= '</div>
         </div>
 </div>
 </div><div class="sale_pro conwidth">
@@ -181,6 +181,7 @@ foreach ($goodsLists as $list) {
 }
 $out .= '</ul>';
 $superNodes = $this->getSuperNodes();
+$i = 1;
 foreach ($superNodes as $super) {
 	$out .= '</div><div class="module_title conwidth clearfix">
     <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
@@ -201,9 +202,10 @@ foreach ($superNodes as $super) {
 	}
 	$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 1, 4);
 	$out .= '<div class="pro_item fl pro_banner noselect">
-	 <a class="switch_btn switch_left_btn left_btn1"><i class="icon-jiantou4"></i></a>
-	 <a class="switch_btn switch_right_btn right_btn1"><i class="icon-jiantou2"></i></a>
-	 <div class="pro_banner_box" pro-box="pro-box1">';
+	 <a class="switch_btn switch_left_btn left_btn' . $i . '"><i class="icon-jiantou4"></i></a>
+	 <a class="switch_btn switch_right_btn right_btn' . $i . '"><i class="icon-jiantou2"></i></a>
+	 <div class="pro_banner_box" pro-box="pro-box' . $i . '">';
+	$i++;
 	foreach ($goodsLists as $list) {
 		$url = $this->getProductUrl($list->getNumber());
 		$out .= '<div class="pro_banner_li clearfix">

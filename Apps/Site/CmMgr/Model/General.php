@@ -34,6 +34,12 @@ class General extends BaseModel
    {
       return 'app_site_cmmgr_general_info';
    }
+	public function initialize()
+   {
+      $this->hasOne('itemId', 'App\Site\CmMgr\Model\Article', 'id', array(
+         'alias' => 'Detail'
+      ));
+   }
 
    public function getId()
    {

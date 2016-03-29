@@ -24,76 +24,81 @@ define(['jquery', 'Front', 'app/common'], function (){
                   window.location.href = window.BUYER_SITE_NAME + '/login.html';
                }
             }
-         }, true);
-      });
-      var small_img = $('.small_img').find('div');
-      small_img.hover(function (){
-         small_img.removeClass('small_hover');
-         $(this).addClass('small_hover');
-         var big_src = $(this).find('img').attr('big');
-         $('.big_img').find('img').attr('src', big_src);
-      });
-      $('.next').click(function (){
-         var index = $('.small_img').find('.main_border').index();
-         small_img.eq(index).removeClass('main_border');
-         if(index == small_img.size() - 1){
-            index = -1;
-         }
-         var big_src = small_img.eq(index + 1).find('img').attr('big');
-         $('.big_img').find('img').attr('src', big_src);
-         small_img.eq(index + 1).addClass('main_border');
-      });
-      $('.prev').click(function (){
-         var index = $('.small_img').find('.main_border').index();
-         small_img.eq(index).removeClass('main_border');
-         if(index == 0){
-            index = small_img.size();
-         }
-         var big_src = small_img.eq(index - 1).find('img').attr('big');
-         $('.big_img').find('img').attr('src', big_src);
-         small_img.eq(index - 1).addClass('main_border');
-      });
-      /*
-       * 商品详情切换
-       * */
-      $('.pro_infor_nav span').click(function (){
-         if(!$(this).hasClass('main_bg')){
-            $('.pro_infor_nav span').removeClass('main_bg');
-            $(this).addClass('main_bg');
-         }
-         $('.pro_info').hide();
-         $('.pro_info').eq($.inArray(this, $('.pro_infor_nav span'))).show();
-      });
-      $('.zaixian_xunjia').click(function (){
-         $('.online').show();
-      });
-      $('.online_close').click(function (){
-         $('.online').hide();
-      });
-      $('.connect_btn').click(function (){
-         $('.connect').show();
-      });
-      $('.connect_close').click(function (){
-         $('.connect').hide();
-      });
-      //询价
-      $('.xunjia_button').click(function (){
-         var content = $('#xunjia_content').val();
-         var params = {
-            number : number,
-            content : content
-         };
-         if(content.length < 10){
-            return false;
-         }
-         Cntysoft.Front.callApi('User', 'addXunjiadan', params, function (response){
-            if(response.status){
-               $('#xunjia_content').val('');
-               $('.online').hide();
-            } else{
-               if(response.errorCode == 5){
-                  window.location.href = window.BUYER_SITE_NAME + '/login.html';
-               }
+        }, true);
+        //收藏
+        $('.share').delegate('.can_collect', 'click', function (){
+            Cntysoft.Front.callApi('User', 'addCollect', {
+                number : number
+            }, function (response){
+                if(response.status){
+                    $(this).removeClass('can_collect');
+                    $('.collect_btn').html('<em>|</em><i class="main icon-shoucang"></i>已收藏');
+                } else{
+                    if(response.errorCode == 5){
+                        window.location.href = window.BUYER_SITE_NAME + '/login.html';
+                    }
+                }
+            }, true);
+        });
+        var small_img = $('.small_img').find('div');
+        small_img.hover(function(){
+            small_img.removeClass('small_hover');
+            $(this).addClass('small_hover');
+            var big_src = $(this).find('img').attr('big');
+            $('.big_img').find('img').attr('src',big_src);
+        });
+        $('.next').click(function (){
+            var index = $('.small_img').find('.main_border').index();
+            small_img.eq(index).removeClass('main_border');
+            if(index == small_img.size() - 1){
+                index = -1;
+            }
+            var big_src = small_img.eq(index + 1).find('img').attr('big');
+            $('.big_img').find('img').attr('src', big_src);
+            small_img.eq(index + 1).addClass('main_border');
+        });
+        $('.prev').click(function (){
+            var index = $('.small_img').find('.main_border').index();
+            small_img.eq(index).removeClass('main_border');
+            if(index == 0){
+                index = small_img.size();
+            }
+            var big_src = small_img.eq(index - 1).find('img').attr('big');
+            $('.big_img').find('img').attr('src', big_src);
+            small_img.eq(index - 1).addClass('main_border');
+        });
+        /*
+         * 商品详情切换
+         * */
+        $('.pro_infor_nav span').click(function (){
+            if(!$(this).hasClass('main_bg')){
+                $('.pro_infor_nav span').removeClass('main_bg');
+                $(this).addClass('main_bg');
+            }
+            $('.pro_info').hide();
+            $('.pro_info').eq($.inArray(this, $('.pro_infor_nav span'))).show();
+        });
+        $('.zaixian_xunjia').click(function (){
+            $('.online').show();
+        });
+        $('.online_close').click(function (){
+            $('.online').hide();
+        });
+        $('.connect_btn').click(function(){
+            $('.connect').show();
+        });
+        $('.connect_close').click(function(){
+            $('.connect').hide();
+        });
+        //询价
+        $('.xunjia_button').click(function (){
+            var content = $('#xunjia_content').val();
+            var params = {
+                number : number,
+                content : content
+            };
+            if(content.length < 10){
+                return false;
             }
          }, true);
       });
