@@ -34,7 +34,8 @@ class Site extends AbstractScript
       if (isset($params['defaultPicUrl'])) {
          $img = $params['defaultPicUrl'];
          unset($params['defaultPicUrl']);
-         $item[0] = str_replace($cndServer, '', $img[0]);
+         $image = explode('@', str_replace($cndServer, '', $img[0]));
+         $item[0] = $image[0];
          $item[1] = $img[1];
          $params['defaultPicUrl'] = $item;
       }
@@ -80,7 +81,8 @@ class Site extends AbstractScript
       if (isset($params['defaultPicUrl'])) {
          $img = $params['defaultPicUrl'];
          unset($params['defaultPicUrl']);
-         $item[0] = str_replace($cndServer, '', $img[0]);
+         $result = explode('@', str_replace($cndServer, '', $img[0]));
+         $item[0] = $result[0];
          $item[1] = $img[1];
          $params['defaultPicUrl'] = $item;
       }

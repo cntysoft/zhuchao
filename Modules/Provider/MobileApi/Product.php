@@ -39,7 +39,6 @@ class Product extends AbstractScript
       }
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() . '/';
-      $src = '@.src';
 
       $fileRefs = array();
       $params['defaultImage'] = $params['images'][0]['url'];
@@ -47,7 +46,8 @@ class Product extends AbstractScript
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image['url']));
+            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $item[0] = $result[0];
             $item[1] = $image['id'];
             $fileRefs[] = $image['id'];
             $params['images'][] = $item;
@@ -123,14 +123,15 @@ class Product extends AbstractScript
       $params['providerId'] = $provider->getId();
       $params['keywords']= explode(',', $params['keywords']);
       $params['defaultImage'] = $params['images'][0]['url'];
-      $src = '@.src';
+
       $params['fileRefs'] = array();
       $imgRefMap = $fhproduct->getImgRefMap();
       if (count($params['images'])) {
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image['url']));
+            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $item[0] = $result[0];
             $item[1] = $image['id'];
             array_push($params['fileRefs'], $item[1]);
             $params['images'][] = $item;
@@ -139,7 +140,8 @@ class Product extends AbstractScript
       if (count($imgRefMap)) {
          $params['imgRefMap'] = array();
          foreach ($imgRefMap as $image) {
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
+            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $item[0] = $result[0];
             $item[1] = $image[1];
             array_push($params['fileRefs'], $item[1]);
             $params['imgRefMap'][] = $item;

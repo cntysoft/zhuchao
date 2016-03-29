@@ -240,6 +240,6 @@ class Article extends AbstractScript
     */
    protected function getArticleUrl($id)
    {
-      return 'http://'.\Cntysoft\RT_SYS_SITE_NAME . '/article/' . $id . '.html';
+      return 'http://'.\Cntysoft\RT_SYS_SITE_NAME . '/articleapp/' . $id . '.html';
    }
 }

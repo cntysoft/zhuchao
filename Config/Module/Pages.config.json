@@ -37,6 +37,15 @@
             }
         },
         {
+            "key" : "ArticleApp",
+            "rule" : "/articleapp/{articleId:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "Category",
+                "action" : "articleapp"
+            }
+        },
+        {
             "key" : "404",
             "rule" : "/404.html",
             "option" : {

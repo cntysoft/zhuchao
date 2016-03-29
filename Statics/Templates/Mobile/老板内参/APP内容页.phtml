@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('栏目数据源/栏目SEO', 'category');
+Qs::Ds('内容数据源/标准内容模型', 'AC') ?>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('AC', 'title') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">  
+        <meta name="description" content="<?php Qs::DsField('category', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
+        <?php Qs::Sys('loadCss', array('referenceindex/style.css', 'referenceindex/referenceinfo.css', 'swiper.min.css')) ?>
+    </head>
+    <body>
+        <!--内容详情-->
+        <div class="main_content">
+            <div class="content_title">
+                <h3><?php Qs::DsField('AC', 'title') ?></h3>
+
+                <div class="writer_info">
+                    <span><?php Qs::DsField('AC', 'author') ?></span>
+                    <span class="date"><?php echo date('Y.m.d', QS::DsField('AC', 'inputTime', true)) ?></span>
+                    <span>阅读量：<i><?php Qs::DsField('AC', 'hits') ?></i></span>
+                </div>
+            </div>
+            <div class="module_content">
+                <?php Qs::DsField('AC', 'content') ?>
+            </div>
+        </div>
+        <div class="copy">
+				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
+					 Copyright 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME)*1000, 2) . 'ms'; ?></p>
+		  </div>
+    </body>
+</html>

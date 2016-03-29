@@ -39,13 +39,13 @@ class Product extends AbstractScript
       }
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
-      $src = '@.src';
       
       if(count($params['images'])){
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image){
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
+            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $item[0] = $result[0];
             $item[1] = $image[1];
             $params['images'][] = $item;
          }
@@ -55,7 +55,8 @@ class Product extends AbstractScript
          $imgRefMap = $params['imgRefMap'];
          $params['imgRefMap'] = array();
          foreach ($imgRefMap as $image){
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
+            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $item[0] = $result[0];
             $item[1] = $image[1];
             $params['imgRefMap'][] = $item;
          }
@@ -105,12 +106,13 @@ class Product extends AbstractScript
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
       $params['companyId'] = $companyId;
-      $src = '@.src';
+      
       if(count($params['images'])){
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image){
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
+            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $item[0] = $result[0];
             $item[1] = $image[1];
             $params['images'][] = $item;
          }
@@ -120,7 +122,8 @@ class Product extends AbstractScript
          $imgRefMap = $params['imgRefMap'];
          $params['imgRefMap'] = array();
          foreach ($imgRefMap as $image){
-            $item[0] = str_replace($src, '', str_replace($cndServer, '', $image[0]));
+            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $item[0] = $result[0];
             $item[1] = $image[1];
             $params['imgRefMap'][] = $item;
          }

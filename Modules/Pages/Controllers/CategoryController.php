@@ -160,6 +160,77 @@ class CategoryController extends AbstractController
    }
 
    /**
+    * 文章模板
+    * 
+    * @return boolean
+    */
+   public function articleappAction()
+   {
+      $itemId = $this->dispatcher->getParam('articleId');
+      if (null === $itemId) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+      $itemId = (int) $itemId;
+      try {
+         $appCaller = $this->getAppCaller();
+         $info = $appCaller->call(
+                 CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_MANAGER, 'getGInfo', array($itemId)
+         );
+         if (!$info) {
+            $this->dispatcher->forward(array(
+               'module'     => 'Pages',
+               'controller' => 'Exception',
+               'action'     => 'pageNotExist'
+            ));
+            return false;
+         }
+         $status = $info->getStatus();
+         if ($status != CONTENT_CONST::INFO_S_VERIFY) {
+            $this->dispatcher->forward(array(
+               'module'     => 'Pages',
+               'controller' => 'Exception',
+               'action'     => 'pageNotExist'
+            ));
+            return false;
+         }
+
+         $this->view->setRouteInfoItem('nid', $info->getNodeId());
+         $node = $appCaller->call(
+                 CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNode', array($info->getNodeId()));
+         if (!$node) {
+            $this->dispatcher->forward(array(
+               'module'     => 'Pages',
+               'controller' => 'Exception',
+               'action'     => 'pageNotExist'
+            ));
+            return false;
+         }
+         
+         $tpl = $appCaller->call(
+                 CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeModelTpl', array((int) $info->getNodeId(), $info->getCmodelId())
+         );
+         $result = explode('/', $tpl);
+         $this->view->setRouteInfoItem('nodeIdentifier', $node->getNodeIdentifier());
+         $this->setupRenderOpt(array(
+            View::KEY_RESOLVE_DATA => $result[0] . '/APP'. $result[1],
+            View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_FINDER
+         ));
+      } catch (\Exception $ex) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+   }
+   
+   /**
     * 订单打印页模板
     */
    public function printAction()

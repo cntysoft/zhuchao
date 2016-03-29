@@ -32,7 +32,8 @@ class Company extends AbstractScript
 
       if (isset($params['logo'])) {
          $cndServer = Kernel\get_image_cdn_server_url() . '/';
-         $params['logo'] = str_replace($cndServer, '', $params['logo']);
+         $image = explode('@', str_replace($cndServer, '', $params['logo']));
+         $params['logo'] = $image[0];
       }
       $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
       $company = $user->getCompany();
