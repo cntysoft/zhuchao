@@ -339,7 +339,7 @@ class NewsList extends AbstractLabelScript
       if (!isset($url) || empty($url)) {
          $url = 'Statics/Skins/Pc/Images/lazyicon.png';
       }
-      return \Cntysoft\Kernel\get_image_cdn_url_operate($url, array('w' => $width, 'h' => $height));
+      return \Cntysoft\Kernel\get_image_cdn_url_operate($url, array('w' => $width, 'h' => $height, 'e' => 1, 'c' => 1));
    }
 
 }
