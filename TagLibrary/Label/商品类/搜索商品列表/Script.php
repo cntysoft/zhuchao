@@ -191,6 +191,8 @@ class Search extends AbstractLabelScript
    public function getImageCdnUrl($url, $params = array())
    {
       if($url){
+         $params += array('c' => 1, 'e' => 1);
+         var_dump($params);exit;
          return Kernel\get_image_cdn_url_operate($url, $params);
       }else{
          return 'Statics/Skins/Pc/Images/lazyicon.png';

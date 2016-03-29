@@ -131,7 +131,7 @@ class Goods extends AbstractLabelScript
     */
    public function getImageFromCdn($source, $width, $height)
    {
-      return $source ? \Cntysoft\Kernel\get_image_cdn_url_operate($source, array('w' => $width, 'h' => $height)) : 'Statics/Skins/Pc/Images/lazyicon.png';
+      return $source ? \Cntysoft\Kernel\get_image_cdn_url_operate($source, array('w' => $width, 'h' => $height, 'c' => 1, 'e' => 1)) : 'Statics/Skins/Pc/Images/lazyicon.png';
    }
 
    public function getAreaFromCode($code)

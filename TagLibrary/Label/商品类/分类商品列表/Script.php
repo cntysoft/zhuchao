@@ -282,7 +282,7 @@ class ProductClassify extends AbstractLabelScript
     */
    public function getImgUrl($img, $width, $height)
    {
-      return $img ? \Cntysoft\Kernel\get_image_cdn_url_operate($img, array('w' => $width, 'h' => $height)) : 'Statics/Skins/Pc/Images/lazyicon.png';
+      return $img ? \Cntysoft\Kernel\get_image_cdn_url_operate($img, array('w' => $width, 'h' => $height, 'c' => 1, 'e' => 1)) : 'Statics/Skins/Pc/Images/lazyicon.png';
    }
 
    public function getProductUrl($number)
