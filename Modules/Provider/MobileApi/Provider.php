@@ -165,8 +165,15 @@ class Provider extends AbstractScript
       $company = $user->getCompany();
       if ($company) {
          return array(
-            'name' => $company->getName() . ',' . $user->getName(),
-            'logo' => \Cntysoft\Kernel\get_image_cdn_url($company->getLogo())
+            'name' => $company->getName().','.$user->getName(),
+            'logo' => \Cntysoft\Kernel\get_image_cdn_url($company->getLogo()),
+            'subAttr' => $company->geySubAttr() ? $company->geySubAttr() : ''
+         );
+      }else{
+         return array(
+            'name' => '未填写'.$user->getName(),
+            'logo' => '',
+            'subAttr' => ''
          );
       } else {
          return array(

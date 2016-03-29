@@ -180,7 +180,11 @@ function get_image_cdn_url_operate($resource, $arguments = array(), $watermark =
          }
       }
       if ('' != $style) {
-         $url .= '@' . substr($style, 1);
+         if('.src' == $style){
+            $url .= '@' . $style;
+         }else{
+            $url .= '@' . substr($style, 1);
+         }
       }
       $encodeObject = url_safe_base64_encode('Static/watermark.png');
       if (isset($arguments['h']) && $arguments['h'] < 150) {

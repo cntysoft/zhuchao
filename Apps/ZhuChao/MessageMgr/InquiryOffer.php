@@ -50,6 +50,7 @@ class InquiryOffer extends AbstractLib
       try {
          $db->begin();
          $inquiry = $this->getInquiryAndOffer($params['inquiryId']);
+         $inquiry = $inquiry['inquiry'];
          $inquiry->setStatus(Constant::INQUIRY_STATUS_OFFERED);
          $inquiry->save();
          $offer->create();

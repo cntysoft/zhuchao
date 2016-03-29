@@ -16,7 +16,10 @@ class ErrorType
     * @var array $map
     */
    protected $map = array(
-      'E_PHONE_EXIST'     => array(10001, 'The phone is exist')
+      'E_PHONE_EXIST'           => array(10001, 'The phone is exist'),
+      'E_COMPANY_NOT_EXIST'     => array(10002, 'company no exist'),
+      'E_SUBATTR_CANNOT_CHANGE' => array(10003, 'company subattr can not change'),
+      'E_SUBATTR_EXIST'         => array(10004, 'the subattr is exist')
    );
 
    /**

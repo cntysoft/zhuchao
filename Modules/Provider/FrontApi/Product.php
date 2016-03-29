@@ -33,6 +33,10 @@ class Product extends AbstractScript
       $this->checkRequireFields($params, array('categoryId', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
       $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $company = $provider->getCompany();
+      if(!$company || !$company->getSubAttr()){
+         $errorType = new ErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_NOT_EXIST'), $errorType->code('E_COMPANY_NOT_EXIST')));
+      }
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
       $src = '@.src';
@@ -94,6 +98,10 @@ class Product extends AbstractScript
       $this->checkRequireFields($params, array('number', 'brand', 'title', 'description', 'advertText', 'keywords', 'attribute', 'unit', 'minimum', 'stock', 'price', 'isBatch', 'images', 'introduction', 'imgRefMap', 'fileRefs', 'status'));
       $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $company = $provider->getCompany();
+      if(!$company || !$company->getSubAttr()){
+         $errorType = new ErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_NOT_EXIST'), $errorType->code('E_COMPANY_NOT_EXIST')));
+      }
       $companyId = $company ? $company->getId() : 0;
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
       $params['companyId'] = $companyId;
