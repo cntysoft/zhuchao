@@ -106,5 +106,8 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
                 }
             });
         }
+        
+        var val = $('#type').attr('fh-index');
+        $('#type').val(val);
     });
 });

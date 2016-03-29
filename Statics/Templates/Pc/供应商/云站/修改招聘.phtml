@@ -58,7 +58,7 @@ Qs::Ds('云站数据源/标准内容模型', 'info');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>截止日期:</label>
-                        <input type="text" id="endTime" class="checkfield" reg="^[1-2][\d]{3}年[0-1][\d]月[0-3][\d]日$" fh-toggle="datepicker" style="width:140px;" readonly="true" tip-value="请选择日期" value="<?php echo date('Y-m-d', Qs::DsField('info', 'endTime', true)) ?>" required>
+                        <input type="text" id="endTime" class="checkfield" reg="^[1-2][\d]{3}年[0-1][\d]月[0-3][\d]日$" fh-toggle="datepicker" style="width:140px;" readonly="true" tip-value="请选择日期" value="<?php echo date('Y年m月d日', Qs::DsField('info', 'endTime', true)) ?>" required>
                     </div>
                     <div class="form_list">
                         <div class="action_btn">

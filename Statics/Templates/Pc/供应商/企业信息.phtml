@@ -29,7 +29,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>企业类型：</label>
-                        <select id="type">
+                        <select id="type" fh-index="<?php Qs::DsField('User', 'type');?>">
                             <option value="1">国有企业</option>
                             <option value="2">集体企业</option>
                             <option value="3">私营企业</option>
@@ -44,34 +44,25 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>经营模式：</label>
-                        <div class="radio margin-left">
-                            <label for="tradeMode1">
-                                <input id="tradeMode1" name="tradeMode" type="radio" tabindex="2" value="1" checked>
-                                <i></i>
-                                <span>生产型</span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="tradeMode2">
-                                <input id="tradeMode2" name="tradeMode" type="radio" tabindex="3" value="2">
-                                <i></i>
-                                <span>贸易型</span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="tradeMode3">
-                                <input id="tradeMode3" name="tradeMode" type="radio" tabindex="4" value="3">
-                                <i></i>
-                                <span>服务型</span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="tradeMode4">
-                                <input id="tradeMode4" name="tradeMode" type="radio" tabindex="4" value="4">
-                                <i></i>
-                                <span>服务型</span>
-                            </label>
-                        </div>
+                        <?php
+                        $tradeMode = Qs::DsField('User', 'tradeMode', true);
+                        $list = array(1 => '销售型', '生产型', '设计型', '服务型', '综合型');
+                        $cls = '';
+                        foreach($list as $index=>$val){
+                           if($index == $tradeMode){
+                              $cls = 'checked';
+                           }else{
+                              $cls = '';
+                           }
+                           echo '<div class="radio">
+                              <label for="tradeMode'.$index.'">
+                                  <input id="tradeMode'.$index.'" name="tradeMode" type="radio" tabindex="'.$index.'" value="'.$index.'" '.$cls.'>
+                                  <i></i>
+                                  <span>'.$val.'</span>
+                              </label>
+                           </div>';
+                        }
+                        ?>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>主营产品：</label>
