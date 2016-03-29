@@ -149,7 +149,7 @@ if ($provider) {
                         <div class="connect_ele">
                             <span class="icon-dianhua1 main_light"></span>
                             <h4>电话</h4>
-                            <p>' . $providerDetail->getTel() . '</p>
+                            <p>' . $providerDetail->getShowPhone() . '</p>
                         </div>
                         <div class="connect_ele">
                             <span class="icon-youxiang main_light"></span>
@@ -166,7 +166,7 @@ if ($provider) {
                         <div class="connect_ele">
                             <span class="icon-iconfontzuobiao main_light"></span>
                             <h4>地址</h4>
-                            <p>' . $providerDetail->getPosition() . '</p>
+                            <p>' . $this->getAreaFromCode($company->getProvince()) . $this->getAreaFromCode($company->getCity()) . $this->getAreaFromCode($company->getDistrict()) . $company->getAddress() . '</p>
                         </div>
                     </div>
                 </div>
