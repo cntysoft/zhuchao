@@ -12,11 +12,11 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
         <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-<?php Qs::Sys('loadCss', array('college/style.css', 'college/collegeinfo.css')) ?>
+        <?php Qs::Sys('loadCss', array('college/style.css', 'college/collegeinfo.css')) ?>
     </head>
     <body>
         <!--头部-->
-<?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--导航-->
         <div class="head main_bg_light">
             <div class="head_box conwidth1100 clearfix">
@@ -47,14 +47,24 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
                 <div class="content_title">
                     <h3><?php Qs::DsField('AC', 'title') ?></h3>
 
-                    <div class="writer_info">
-                        <span>发表时间：<?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></span>
-                        <span class="writer">作者：<?php Qs::DsField('AC', 'author') ?></span>
-                        <span>浏览：<?php Qs::DsField('AC', 'hits') ?></span>
+                    <div class="writer_info clearfix">
+                        <div class="fl">
+                            <span>发表时间：<?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></span>
+                            <span class="read">浏览：<?php Qs::DsField('AC', 'hits') ?></span>
+                        </div>
+                        <div class="fr share"><span>分享到：</span>
+                            <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1459217014014">
+                                <a class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                                <a class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                                <a  class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                                <a  class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                                <a  class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="module_content" style="min-height: 600px">
-<?php Qs::DsField('AC', 'content') ?>
+                    <?php Qs::DsField('AC', 'content') ?>
                     <!--上一篇下一篇-->                    
                 </div>
                 <div class="prev_next">
@@ -78,6 +88,10 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
                 </div>
             </div>
             <div class="fr main_right">
+                <div class="erweima">
+                    <div id="weixin_code"></div>
+                    <span>扫一扫用手机浏览</span>
+                </div>
                 <h3 class="right_title"><a >最近发布</a></h3>
                 <?php
                 Qs::Label('文章/电商宝典', array('renderTpl' => 'Pc_ContentRightArticle', 'nodeIdentifier' => array('zhuchaoschool'), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 8, 'enablePage' => false, 'listSubNode' => true))
@@ -86,7 +100,7 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
         </div>
         <?php
         Qs::Label('静态类/网站底部');
-        Qs::Sys('loadRequireJs', 'reference/referenceindex');
+        Qs::Sys('loadRequireJs', 'college/collegeinfo');
         ?>
     </body>
 </html>

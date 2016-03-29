@@ -165,7 +165,7 @@ function get_image_cdn_url_operate($resource, $arguments = array(), $watermark =
       if (array_key_exists('bgc', $arguments)) {
          $arguments['e'] = 4;
       }
-      if (!array_key_exists('t', $arguments)) {
+      if (!array_key_exists('t', $arguments) && !empty($arguments)) {
          $arguments['t'] = 'src';
       }
       foreach ($arguments as $key => $val) {
