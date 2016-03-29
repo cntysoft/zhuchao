@@ -10,58 +10,63 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/aboutus.css')); ?>
+        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/environment.css')); ?>
     </head>
     <body>
         <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
         <!--站点指示-->
         <div class="site conwidth">
-            <a href="/">首页</a>
+            <a href="#">首页</a>
             <span>&gt;</span>
-            <a href="/about/ad.html">广告服务</a>
+            <a>关于我们</a>
+            <span>&gt;</span>
+            <a>公司环境</a>
         </div>
         <!--帮助中心-->
-        <div class="main_content clearfix conwidth">
+        <div class="l_main conwidth clearfix">
             <!--左侧内容-->
-            <div class="help_left_nav fl">
-                <ul class="left_menu">
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/company.html">公司简介</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/culture.html">企业文化</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/business.html">业务介绍</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/qualification.html">企业资质</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/join.html">加入我们</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/legal.html">法律声明</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head main_bg_light" href="/about/ad.html">广告服务</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/contact.html">联系我们</a>
-                    </li>
+            <div class="l_left ">
+                <h3 class="main_bg_light">关于我们<span>About us</span></h3>
+                <ul>
+                    <li class=""><a href="/about/company.html">公司简介</a></li>                    
+                    <li class=""><a href="/about/culture.html">企业文化</a></li>
+                    <li class=""><a href="/about/business.html">业务介绍</a></li>
+                    <li class=""><a href="/about/qualification.html">企业资质</a></li>
+                    <li class="active"><a href="/about/ad.html">公司环境</a></li>
+                    <li class=""><a href="/about/join.html">加入我们</a></li>
+                    <li class=" "><a href="/about/legal.html">法律声明</a></li>
+                    <li class=""><a href="/about/contact.html">联系我们</a></li>
                 </ul>
             </div>
             <!--右侧内容-->
-            <div class="right_content fr">
-                <div class="right_content_title">
-                    <h3 class="title">广告服务</h3>
+            <div class="l_right">
+                <h2 class="right_title">公司环境</h2>
+                <div class="right_inner">
+                    <div class="env_ele">
+                        <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env1.jpg') ?>" alt="">
+                        <p>公司环境</p>
+                    </div>
+                    <div class="env_ele">
+                        <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env2.jpg') ?>" alt="">
+                        <p>工作状态</p>
+                    </div>
+                    <div class="env_ele">
+                        <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env3.jpg') ?>" alt="">
+                        <p>领导视察</p>
+                    </div>
+                    <div class="env_ele">
+                        <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env4.jpg') ?>" alt="">
+                        <p>文艺演出</p>
+                    </div>
+                    <div class="env_ele">
+                        <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env5.jpg') ?>" alt="">
+                        <p>员工风采</p>
+                    </div>
                 </div>
-                <div class="about_content" style="text-indent: 2em;">
-                    <p >广告服务热线：0371-55221883</p>
-                   </div>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部');
+        <?php
+        Qs::Label('静态类/网站底部');
         Qs::Sys('loadRequireJs', 'help/help');
         ?>
     </body>

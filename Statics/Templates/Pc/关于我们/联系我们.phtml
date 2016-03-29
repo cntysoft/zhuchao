@@ -10,7 +10,22 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'help/aboutus.css')); ?>
+        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/connect.css')); ?>
+        <script>
+           window._bd_share_config = {
+              "common" : {
+                 "bdSnsKey" : {},
+                 "bdText" : "",
+                 "bdMini" : "2",
+                 "bdMiniList" : false,
+                 "bdPic" : "",
+                 "bdStyle" : "0",
+                 "bdSize" : "16"
+              }, "share" : {"bdSize" : 16}
+           };
+           with (document)
+              0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        </script>
     </head>
     <body>
         <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
@@ -18,56 +33,47 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <div class="site conwidth">
             <a href="/">首页</a>
             <span>&gt;</span>
-            <a href="/about/contact.html">联系我们</a>
+            <a>关于我们</a>
+            <span>&gt;</span>
+            <a>联系我们</a>
         </div>
         <!--帮助中心-->
-        <div class="main_content clearfix conwidth">
+        <div class="l_main conwidth clearfix">
             <!--左侧内容-->
-            <div class="help_left_nav fl">
-                <ul class="left_menu">
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/company.html">公司简介</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/culture.html">企业文化</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/business.html">业务介绍</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/qualification.html">企业资质</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/join.html">加入我们</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/legal.html">法律声明</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head" href="/about/ad.html">广告服务</a>
-                    </li>
-                    <li class="menu_item">
-                        <a class="menu_head main_bg_light" href="/about/contact.html">联系我们</a>
-                    </li>
+            <div class="l_left ">
+                <h3 class="main_bg_light">关于我们<span>About us</span></h3>
+                <ul>
+                    <li class=""><a href="/about/company.html">公司简介</a></li>                    
+                    <li class=""><a href="/about/culture.html">企业文化</a></li>
+                    <li class=""><a href="/about/business.html">业务介绍</a></li>
+                    <li class=""><a href="/about/qualification.html">企业资质</a></li>
+                    <li class=""><a href="/about/ad.html">公司环境</a></li>
+                    <li class=""><a href="/about/join.html">加入我们</a></li>
+                    <li class=" "><a href="/about/legal.html">法律声明</a></li>
+                    <li class="active"><a href="/about/contact.html">联系我们</a></li>
                 </ul>
             </div>
             <!--右侧内容-->
-            <div class="right_content fr">
-                <div class="right_content_title">
-                    <h3 class="title">联系我们</h3>
-                </div>
-                <div class="about_content" style="text-indent: 2em;">
-                    <p>客服热线：0371-55221883</p>
-                    <p>网址：www.fhzc.com</p>
-                    <p>微信：zzfhzc</p>
-                    <p>邮箱：service@sheneninfo.com</p>
-                    <p>地址：郑州市金水区郑汴路玉凤路凤凰城北城五楼</p>
+            <div class="l_right">
+                <h2 class="right_title">联系我们</h2>
+                <div class="clearfix">
+                    <div class="connect_left fl">
+                        <p>客服热线：0371-55221883</p>
+                        <p>网址：www.fhzc.com</p>
+                        <p>微信：zzfhzc</p>
+                        <p>邮箱：service@sheneninfo.com</p>
+                        <p>地址：郑州市金水区郑汴路玉凤路凤凰城北城五楼</p>
+                    </div>
+                    <div class="connect_right fr">
+                        <div style="width:633px;height:395px;border:#ccc solid 1px;font-size:12px" id="map"></div>
+                    </div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BPWH0tb47EkNlH6fGGzh381M"></script>
         <?php
         Qs::Label('静态类/网站底部');
-        Qs::Sys('loadRequireJs', 'help/help');
+        Qs::Sys('loadRequireJs', 'aboutus/connect');
         ?>
     </body>
 </html>
