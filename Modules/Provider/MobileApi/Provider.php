@@ -77,7 +77,7 @@ class Provider extends AbstractScript
       $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
       $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
       if ($acl->checkSmsCode($params['showPhone'], $params['code'], 3)) {
-         return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProvider', array($user->getId(), array(showPhone => $params['showPhone'])));
+         return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProvider', array($user->getId(), array('showPhone' => $params['showPhone'])));
       }
    }
 
@@ -101,8 +101,8 @@ class Provider extends AbstractScript
       $this->checkRequireFields($params, array('phone'));
       $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
       $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
-      if ($acl->checkSmsCode($params['showPhone'], $params['code'], 4)) {
-         return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProvider', array($user->getId(), array(showPhone => $params['phone'])));
+      if ($acl->checkSmsCode($params['phone'], $params['code'], 4)) {
+         return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProvider', array($user->getId(), array('phone' => $params['phone'])));
       }
    }
 

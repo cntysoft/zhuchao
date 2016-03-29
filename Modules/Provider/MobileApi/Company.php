@@ -56,8 +56,8 @@ class Company extends AbstractScript
    {
       $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
       $company = $user->getCompany();
-      $companyProfile = $company->getProfile();
       if ($company) {
+         $companyProfile = $company->getProfile();
          $companyProfile = $companyProfile->toarray();
          $company = $company->toarray();
          $company = array_merge($company, $companyProfile);

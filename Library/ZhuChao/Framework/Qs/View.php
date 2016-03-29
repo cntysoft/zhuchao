@@ -10,7 +10,6 @@ namespace ZhuChao\Framework\Qs;
 use Cntysoft\Framework\Qs\View as BaseView;
 use Cntysoft\Kernel;
 use Cntysoft\Framework\Qs\ErrorType;
-
 class View extends BaseView
 {
    /**
@@ -38,9 +37,8 @@ class View extends BaseView
             if (SYS_RUNTIME_MODE_PRODUCT == SYS_RUNTIME_MODE) {
                $errorType = ErrorType::getInstance();
                Kernel\throw_exception(
-                  new Exception(
-                     sprintf($errorType->msg('E_TPL_MAP_KEY_NOT_EXIST'), $resolveData),
-                     $errorType->code('E_TPL_MAP_KEY_NOT_EXIST')),$errorType);
+                       new Exception(
+                       sprintf($errorType->msg('E_TPL_MAP_KEY_NOT_EXIST'), $resolveData), $errorType->code('E_TPL_MAP_KEY_NOT_EXIST')), $errorType);
             } else {
                die('map : ' . $resolveData . ' is not exist');
             }
@@ -48,4 +46,32 @@ class View extends BaseView
          return $baseDir . DS . $deviceType . DS . self::$tplMap[$resolveData];
       }
    }
+
+   /**
+    * 探测访问设备的类型
+    *
+    * @return string
+    */
+   protected function detactDeviceType()
+   {
+      $agent = $_SERVER['HTTP_USER_AGENT'];
+      $iphone = strstr(strtolower($agent), 'mobile');
+      $android = strstr(strtolower($agent), 'android');
+      $windowsPhone = strstr(strtolower($agent), 'phone');
+      $androidTablet = false;
+      if (strstr(strtolower($agent), 'android')) {
+         if (!strstr(strtolower($agent), 'mobile')) {
+            $androidTablet = true;
+         }
+      }
+      $ipad = strstr(strtolower($agent), 'ipad');
+      if ($androidTablet || $ipad) {
+         return self::DEVICE_MOBILE;
+      } elseif ($iphone && !$ipad || $android && !$androidTablet || $windowsPhone) { //If it's a phone and NOT a tablet
+         return self::DEVICE_MOBILE;
+      } else {
+         return self::DEVICE_PC;
+      }
+   }
+
 }

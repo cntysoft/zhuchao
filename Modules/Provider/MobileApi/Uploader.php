@@ -10,8 +10,7 @@ namespace ProviderMobileApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
 use Cntysoft\Kernel;
 use ZhuChao\Framework\Net\Upload;
-use Cntysoft\Kernel\Exception;
-use Cntysoft\Kernel\StdErrorType;
+use Cntysoft\Kernel\ConfigProxy;
 /**
  * 处理系统上传
  *
@@ -20,7 +19,7 @@ use Cntysoft\Kernel\StdErrorType;
  */
 class Uploader extends AbstractScript
 {
-      /**
+   /**
     * 处理上传图片
     * 
     * @return array
@@ -81,4 +80,5 @@ class Uploader extends AbstractScript
       //在这里是否需要检测是否有错误, 探测到错误的时候抛出异常
       return $pic;
    }
+
 }
