@@ -93,10 +93,10 @@ class User extends AbstractScript
       $curUser = $this->getCurUser();
       Kernel\unset_array_values($params, array('id', 'buyerId', 'password', 'profileId', 'status', 'experience', 'level', 'point'));
       $cndServer = Kernel\get_image_cdn_server_url() .'/';
-      $src = '@.src';
       
       if(count($params['avatar'])){
-         $params['avatar'] = str_replace($src, '', str_replace($cndServer, '', $params['avatar']));
+         $image = explode('@', str_replace($cndServer, '', $params['avatar']));
+         $params['avatar'] = $image[0];
       }
 
       return $this->appCaller->call(

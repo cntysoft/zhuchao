@@ -175,11 +175,6 @@ class Provider extends AbstractScript
             'logo' => '',
             'subAttr' => ''
          );
-      } else {
-         return array(
-            'name' => '未填写,' . $user->getName(),
-            'logo' => ''
-         );
       }
    }
 
