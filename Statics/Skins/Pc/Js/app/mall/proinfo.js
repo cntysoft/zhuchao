@@ -97,6 +97,28 @@ define(['jquery', 'Front', 'app/common'], function (){
             }
          }, true);
       });
+      var origin = window.location.origin;
+
+      $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
+      $('.icon-erweima').mouseenter(function (){
+         var $codeimg = $('.pro_code_box div.code_img');
+         if(!$codeimg.hasClass('loaded')){
+            $codeimg.qrcode({
+               render : "canvas",
+               height : 140,
+               width : 140,
+               text : origin
+            });
+            $codeimg.addClass('loaded');
+         }
+      });
+      var companyurl = $('.company_code_img').attr('url');
+      $('.company_code_img').qrcode({
+         render : "canvas",
+         height : 190,
+         width : 190,
+         text : companyurl
+      });
 //      //创建和初始化地图函数：
 //      function initMap(){
 //         createMap();//创建地图

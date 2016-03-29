@@ -28,14 +28,25 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="l_left ">
                 <h3 class="main_bg_light">关于我们<span>About us</span></h3>
                 <ul>
-                    <li class=""><a href="/about/company.html">公司简介</a></li>                    
-                    <li class=""><a href="/about/culture.html">企业文化</a></li>
-                    <li class=""><a href="/about/business.html">业务介绍</a></li>
-                    <li class=""><a href="/about/qualification.html">企业资质</a></li>
-                    <li class=""><a href="/about/ad.html">公司环境</a></li>
-                    <li class="active"><a href="/about/join.html">加入我们</a></li>
-                    <li class=" "><a href="/about/legal.html">法律声明</a></li>
-                    <li class=""><a href="/about/contact.html">联系我们</a></li>
+                    <li class=""><a href="/about/company.html"><i class="icon-iconfonticonfontgongsijianjie"></i>公司简介</a></li>                    
+                    <li class=""><a href="/about/culture.html"><i class="icon-qiyewenhua"></i>企业文化</a></li>
+                    <li class=""><a href="/about/business.html"><i class="icon-chanpinjieshao"></i>业务介绍</a></li>
+                    <li class=""><a href="/about/qualification.html"><i class="icon-zizhi"></i>企业资质</a></li>
+                    <li class=""><a href="/about/ad.html"><i class="icon-fengcai"></i>公司环境</a></li>
+                    <li class="active">
+                        <a href="/about/join.html"><i class="icon-iconfontlijishenqingxingjia"></i>加入我们</a>
+                        <div class="join_list">
+                            <p><a href="#android">Android开发工程师</a></p>
+                            <p><a href="#ios">IOS开发工程师</a></p>
+                            <p><a href="#php">PHP开发工程师</a></p>
+                            <p><a href="#qianduan">前端工程师</a></p>
+                            <p><a href="#ui">UI设计师</a></p>
+                            <p><a href="#wenan">文案策划</a></p>
+                            <p><a href="#bianji">网站编辑</a></p>
+                        </div>
+                    </li>
+                    <li class=" "><a href="/about/legal.html"><i class="icon-icon"></i>法律声明</a></li>
+                    <li class=""><a href="/about/contact.html"><i class="icon-lianxiwomen"></i>联系我们</a></li>
                 </ul>
             </div>
             <!--右侧-->
@@ -43,7 +54,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 <h2 class="right_title">加入我们</h2>
                 <p>决定一个人的一生，以及整个生命的，有时只是一瞬间的选择，如果你才思敏捷，构思创意如星光般璀璨夺目；如果你睿智冷静，编辑程序如大师般行于流水。</p>
                 <p>世界会向那些有目标和远见的人让路不凡的人生由此开启......</p>
-                <div class="join_ele">
+                <div id="android" class="join_ele">
                     <h3><i class="main_bg"></i>Android开发工程师</h3>
                     <div class="join_detail">
                         <span class="join_intro">岗位职责：</span>
@@ -70,7 +81,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p>9、熟练使用android studio；</p>
                     </div>
                 </div>
-                <div class="join_ele">
+                <div id="ios" class="join_ele">
                     <h3><i class="main_bg"></i>IOS开发工程师</h3>
                     <div class="join_detail">
                         <span class="join_intro">岗位职责：</span>
@@ -93,7 +104,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p>9、熟悉mac os x操作系统和xcode/iphone sdk开发环境；</p>
                     </div>
                 </div>
-                <div class="join_ele">
+                <div id="php"  class="join_ele">
                     <h3><i class="main_bg"></i>PHP开发工程师</h3>
                     <div class="join_detail">
                         <span class="join_intro">岗位职责：</span>
@@ -113,7 +124,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p>6、有团队精神，能够主动和队友沟通、分享；</p>
                     </div>
                 </div>
-                <div class="join_ele">
+                <div id="qianduan" class="join_ele">
                     <h3><i class="main_bg"></i>前端工程师</h3>
                     <div class="join_detail">
                         <span class="join_intro">岗位职责：</span>
@@ -132,7 +143,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p>5、具备优秀的沟通能力和团队协作能力、高度的责任性；</p>
                     </div>
                 </div>
-                <div class="join_ele">
+                <div id="ui" class="join_ele">
                     <h3><i class="main_bg"></i>UI设计师</h3>
                     <div class="join_detail">
                         <span class="join_intro">岗位职责：</span>
@@ -151,7 +162,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p>6、善于与人沟通，良好的团队合作精神和高度的责任感，能够承受压力，有创新精神，保证工作质量；</p>
                     </div>
                 </div>
-                <div class="join_ele">
+                <div id="wenan" class="join_ele">
                     <h3><i class="main_bg"></i>文案策划</h3>
                     <div class="join_detail">
                         <span class="join_intro">岗位职责：</span>
@@ -174,7 +185,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p>5、有激情，有活力，思维活跃，善于沟通；</p>
                     </div>
                 </div>
-                <div class="join_ele">
+                <div id="bianji" class="join_ele">
                     <h3><i class="main_bg"></i>网站编辑</h3>
                     <div class="join_detail">
                         <span class="join_intro">岗位职责：</span>
@@ -195,7 +206,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         </div>
         <?php
         Qs::Label('静态类/网站底部');
-        Qs::Sys('loadRequireJs', 'help/help');
+        Qs::Sys('loadRequireJs', 'aboutus/zhaopin');
         ?>
     </body>
 </html>

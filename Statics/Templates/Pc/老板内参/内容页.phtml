@@ -12,7 +12,7 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
         <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('mall/style.css','reference/style.css', 'reference/referencedetail.css')) ?>
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'reference/style.css', 'reference/referencedetail.css', 'college/collegeinfo.css')) ?>
     </head>
     <body>
         <!--头部-->
@@ -120,6 +120,10 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
                         </ul>
                     </div>
                     <div class="erweima">
+                        <div id="weixin_code"></div>
+                        <span>扫一扫用手机浏览</span>
+                    </div>
+                    <div class="erweima">
                         <h1>微信扫码关注凤凰筑巢</h1>
                         <img src="/Statics/Skins/Pc/Images/icon_erweima_big.jpg">
                     </div>
@@ -139,7 +143,8 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
            with (document)
               0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
-        <?php Qs::Sys('loadRequireJs', 'reference/referenceindex') ?>  
-		  <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'mall/index'); ?>
+        <?php Qs::Sys('loadRequireJs', 'reference/referencedetail') ?>  
+        <?php Qs::Label('静态类/网站底部');
+        ?>
     </body>
 </html>

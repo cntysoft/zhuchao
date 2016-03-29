@@ -25,31 +25,30 @@ $images = $goodsDetail->getImages();
 $bigImage = $smallImage = '';
 $i = 1;
 foreach ($images as $image) {
-	if ($i == 1) {
-		$bigImage .= '<div class="big_img">
+   if ($i == 1) {
+      $bigImage .= '<div class="big_img">
                     <img src="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt="">
                     <span class="next icon-jiantou6"></span>
                     <span class="prev icon-jiantou7"></span>
                 </div>';
-	}
-	$i = 2;
-	$smallImage .= '<div> <img src="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt=""></div>';
+   }
+   $i = 2;
+   $smallImage .= '<div> <img src="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt=""></div>';
 }
 $out .= $bigImage . '</div>
             <div class="share clearfix">
                 <div class="bdsharebuttonbox"><a class="bds_more" data-cmd="more"><i
                         class="main icon-fenxiang1"></i>分享</a></div>';
 if ($this->checkLogin() && $this->checkCollect($goodsInfo->getId())) {
-	$out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
+   $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
 } else {
-	$out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang can_collect"></i>收藏</span>';
+   $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang can_collect"></i>收藏</span>';
 }
 $out .= '<div class="pro_code">
                     <i class="icon-erweima"></i>
                     <div class="pro_code_box">
                         <p>扫一扫&nbsp;&nbsp;用手机查看此页</p>
-                        <div class="code_img">
-                            <img src="/Utils/index/wechatQrCode?data=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '" alt="">
+                        <div class="code_img">                            
                         </div>
                     </div>
                 </div></div>
@@ -71,16 +70,15 @@ $out .= '<div class="pro_about fr">
                     <div class="local_detail">';
 $products = explode(',', $company->getProducts());
 foreach ($products as $product) {
-	$out .= '<span>' . $product . '</span>';
+   $out .= '<span>' . $product . '</span>';
 }
 $out .= '</div>
                 </div>
             </div>
             <div class="company_code">
-                <h4><a href="http://'.$company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN.'">' . $company->getName() . '</a></h4>';
+                <h4><a href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '">' . $company->getName() . '</a></h4>';
 if ($company->getSubAttr()) {
-	$out .= '<div class="company_code_img">
-                    <img src="/Utils/index/wechatQrCode?data=http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" alt="">
+   $out .= '<div class="company_code_img" url="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '">
                 </div>';
 }
 $out .= '</div>
@@ -97,18 +95,18 @@ $out .= '<div class="l_pro_info clearfix">
             <h3 class="main_bg">相关信息</h3>';
 $cid = $goodsInfo->getCategoryId();
 $cond = array(
-	'categoryId = ?1',
-	'bind' => array(
-		1 => $cid
-	)
+   'categoryId = ?1',
+   'bind' => array(
+      1 => $cid
+   )
 );
 $goodsLists = $this->getGoodsList($cond, false, 'id DESC', 0, 5);
 foreach ($goodsLists as $goodsList) {
-	if ($goodsList->getId() == $goodsInfo->getId()) {
-		continue;
-	}
-	$url = $this->getProductUrl($goodsList->getNumber());
-	$out .= '<div class="related_pro">
+   if ($goodsList->getId() == $goodsInfo->getId()) {
+      continue;
+   }
+   $url = $this->getProductUrl($goodsList->getNumber());
+   $out .= '<div class="related_pro">
                 <a href="' . $url . '"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
                 <p class="pro_intro"><a href="' . $url . '" class="main_hover">' . $goodsList->getTitle() . '</a></p>
                 <p class="pro_price main">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
@@ -127,25 +125,25 @@ $out .= '<div class="pro_info l_parameter hide">
 	 <table>
 		  <tbody>';
 foreach ($attribute as $key => $value) {
-	if (count($value)) {
-		$out .= '<tr>
+   if (count($value)) {
+      $out .= '<tr>
 					 <th colspan="2">' . $key . '</th>
 				</tr>';
-		foreach ($value as $attrs => $attr) {
-			$out .= '<tr>
+      foreach ($value as $attrs => $attr) {
+         $out .= '<tr>
                    <td class="c_key">' . $attrs . '</td>
                    <td>' . $attr . '</td>
                </tr>';
-		}
-	}
+      }
+   }
 }
 $out .= '</tbody>
 	 </table>
 </div>';
 
 if ($provider) {
-	$providerDetail = $provider->getProfile();
-	$out .= '<div class="pro_info hide">
+   $providerDetail = $provider->getProfile();
+   $out .= '<div class="pro_info hide">
                 <div class="connect_box">
                     <div>
                         <div class="connect_ele">
