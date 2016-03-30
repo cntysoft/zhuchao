@@ -30,9 +30,13 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
             params['tradeMode'] = getRadioValueByName('tradeMode');
             Cntysoft.Front.callApi('Company', 'updateCompany', params, function (response){
                 if(response.status){
-                     layer.msg('信息保存成功!');
+                     layer.msg('信息保存成功!', {
+                        time : 1000
+                     });
                 } else{
-                    layer.msg('信息保存失败,请稍候再试');
+                    layer.msg('信息保存失败,请稍候再试', {
+                        time : 1000
+                     });
                 }
             });
         });

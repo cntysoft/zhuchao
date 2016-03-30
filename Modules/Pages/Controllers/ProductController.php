@@ -70,7 +70,7 @@ class ProductController extends AbstractController
          ));
       } else {
          $this->dispatcher->forward(array(
-            'module'     => 'Front',
+            'module'     => 'Pages',
             'controller' => 'Exception',
             'action'     => 'pageNotExist'
          ));

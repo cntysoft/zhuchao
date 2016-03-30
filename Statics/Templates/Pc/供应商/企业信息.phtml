@@ -25,7 +25,8 @@ Qs::Ds('商城数据源/商城数据', 'site');
                 <div class="form_box">
                     <div class="form_list">
                         <label><em class="main">*</em>企&nbsp;业&nbsp;名：</label>
-                        <input type="text" id="name" class="checkField" value="<?php Qs::DsField('User', 'name') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                        <?php $name = Qs::DsField('User', 'name', true); ?>
+                        <input type="text" id="name" value="<?php echo $name.'"'; if($name){echo ' disabled ';}?> reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>企业类型：</label>
