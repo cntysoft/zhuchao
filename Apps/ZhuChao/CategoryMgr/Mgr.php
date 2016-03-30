@@ -139,10 +139,10 @@ class Mgr extends AbstractLib
    {
       $cid = (int) $cid;
       return QueryAttrsModel::find(array(
-                 'categoryId = ?0',
-                 'bind' => array(
-                    0 => $cid
-                 )
+         'categoryId = ?0',
+         'bind' => array(
+            0 => $cid
+         )
       ));
    }
 

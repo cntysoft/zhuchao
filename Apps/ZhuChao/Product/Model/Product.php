@@ -238,7 +238,7 @@ class Product extends BaseModel
 
    public function setIndexGenerated($indexGenerated)
    {
-      $this->indexGenerated = $indexGenerated;
+      $this->indexGenerated = (int)$indexGenerated;
    }
 
    public function setIsBatch($isBatch)

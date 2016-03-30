@@ -9,6 +9,7 @@
 namespace TagLibrary\Label\Goods;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
+use App\Sys\Searcher\Constant as SEARCH_CONST;
 use Cntysoft\Kernel;
 use Cntysoft\Framework\Utils\ChinaArea;
 /**
@@ -121,10 +122,10 @@ class Search extends AbstractLabelScript
       $keys = $this->getKeys();
 
       return $this->appCaller->call(
-         PRODUCT_CONST::MODULE_NAME, 
-         PRODUCT_CONST::APP_NAME, 
-         PRODUCT_CONST::APP_API_PRODUCT_MGR, 
-         'searchGoods', 
+         SEARCH_CONST::MODULE_NAME, 
+         SEARCH_CONST::APP_NAME, 
+         SEARCH_CONST::APP_API_SEARCHER, 
+         'query', 
          array($keys['keyword'], $keys['page'], $keys['size'], $keys['sort'], $keys['filter'], true)
       );
    }

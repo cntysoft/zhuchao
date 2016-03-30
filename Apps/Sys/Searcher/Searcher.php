@@ -6,7 +6,7 @@ namespace App\Sys\Searcher;
 use Cntysoft\Kernel\App\AbstractLib;
 use Cntysoft\Framework\Cloud\Ali\OpenSearch\Search as OpenSearch;
 use Cntysoft\Framework\Cloud\Ali\OpenSearch\Suggest as SearchSuggest;
-use App\ZhuChao\Goods\Constant as G_CONST;
+use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATE_CONST;
 use Cntysoft\Kernel;
 /**
@@ -20,6 +20,7 @@ class Searcher extends AbstractLib
    const SORT_HITS = 'hits'; //这种方式程序自己排列
    const SORT_PRICE = 'price';
    const SORT_TIME = 'inputtime';
+   const SORT_GRADE = 'grade';
    const FLAG_UP = '+';
    const FLAG_DOWN = '-';
 
@@ -73,10 +74,6 @@ class Searcher extends AbstractLib
       }
       if (!empty($attrFilter)) {
          $filter = array();
-         if (isset($attrFilter['trademarkid'])) {
-            $filter[] = sprintf('trademarkid = %d', $attrFilter['trademarkid']);
-            unset($attrFilter['trademarkid']);
-         }
          if (isset($attrFilter['price'])) {
             $range = $attrFilter['price'];
             $filter[] = sprintf('price >= %d AND price < %d', $range[0],
@@ -92,7 +89,7 @@ class Searcher extends AbstractLib
          }
       }
       //最简单的搜索
-      $response = $searcher->search($queryCond);
+      $response = $searcher->search($queryCond);var_dump($searcher);exit;
       $response = $response['result'];
       $ret = array();
       $searchRet = array(
@@ -104,8 +101,8 @@ class Searcher extends AbstractLib
       );
       $docs = array();
       //暂时我们重新获取相关商品信息
-      $gmgr = $this->getAppCaller()->getAppObject(G_CONST::MODULE_NAME,
-         G_CONST::APP_NAME, G_CONST::APP_API_MGR);
+      $gmgr = $this->getAppCaller()->getAppObject(PRODUCT_CONST::MODULE_NAME,
+         PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR);
       foreach ($response['items'] as $item) {
          $ginfo = $gmgr->getGoodsInfo($item['id']);
 //         $attrMap = $ginfo->getSearchAttrMap();
@@ -127,11 +124,14 @@ class Searcher extends AbstractLib
 
          $docs[] = array(
             'id' => $ginfo->getId(),
+            'number' => $ginfo->getNumber(),
             'categoryId' => $ginfo->getCategoryId(),
+            'brand' => $ginfo->getBrand(),
             'title' => $ginfo->getTitle(),
+            'description' => $ginfo->getDescription(),
             'hits' => $ginfo->getHits(),
             'grade' => $ginfo->getGrade(),
-            'img' => $ginfo->getImg(),
+            'defaultImage' => $ginfo->getDefaultImage(),
             'price' => $ginfo->getPrice()
          );
       }
@@ -175,25 +175,25 @@ class Searcher extends AbstractLib
             foreach ($category->queryAttrs as $attr) {
                $attrItems[$attr->getName()] = explode(',', $attr->getOptValues());
             }
-            //增加品牌
-            $trademarks = array();
-            foreach ($category->trademarks as $t) {
-               if (!array_key_exists($t->getId(), $trademarks)) {
-                  $trademarks[$t->getId()] = array(
-                     'id' => $t->getId(),
-                     'name' => $t->getName(),
-                     'logo' => $t->getLogo()
-                  );
-               }
-            }
+//            //增加品牌
+//            $trademarks = array();
+//            foreach ($category->trademarks as $t) {
+//               if (!array_key_exists($t->getId(), $trademarks)) {
+//                  $trademarks[$t->getId()] = array(
+//                     'id' => $t->getId(),
+//                     'name' => $t->getName(),
+//                     'logo' => $t->getLogo()
+//                  );
+//               }
+//            }
             $attrs = array_merge_recursive($attrs, $attrItems);
          }
          foreach ($attrs as $key => $values) {
             $attrs[$key] = array_unique($values);
          }
-         if (!empty($trademarks)) {
-            $attrs['品牌'] = $trademarks;
-         }
+//         if (!empty($trademarks)) {
+//            $attrs['品牌'] = $trademarks;
+//         }
          $ret['queryAttrs'] = $attrs;
       }
       return $ret;

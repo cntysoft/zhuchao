@@ -446,6 +446,65 @@ class ProductMgr extends AbstractLib
    }
 
    /**
+    * 获取指定id的商品信息
+    * 
+    * @param array $ids
+    * @return 
+    */
+   public function getProductInfoByIds(array $ids)
+   { 
+      $cond = ProductModel::generateRangeCond('id', $ids);
+      
+      return ProductModel::find(array(
+         $cond
+      ));
+   }
+   
+   /**
+    * 获取指定分类的商品信息
+    * 
+    * @param integer $categoryId
+    * @param boolean $total
+    * @param string $orderBy
+    * @param integer $offset
+    * @param integer $limit
+    * @return 
+    */
+   public function getProductInfosByCategoryId($categoryId, $total = false, $orderBy = 'id desc', $offset = 0, $limit = 15)
+   {
+      $query = array(
+         'order' => $orderBy
+      );
+      $cond = array();
+      if($categoryId){
+         $cond = array(
+            'categoryId=?0',
+            'bind' => array(
+               0 => $categoryId
+            )
+         );
+         $query = array_merge($query, $cond);
+      }
+      
+      if($limit){
+         $query = array_merge($query, array(
+            'limit' => array(
+               'offset' => $offset,
+               'number' => $limit
+            )
+         ));
+      }
+
+      $items = ProductModel::find($query);
+
+      if($total){
+         return array($items, ProductModel::count($cond));
+      }
+      
+      return $items;
+   }
+   
+   /**
     * 根据商品分类获取商品列表，支持属性过滤
     * 
     * @param int $cid
@@ -700,4 +759,19 @@ class ProductMgr extends AbstractLib
       return $product->save();
    }
 
+   /**
+    * 获取指定分类的商品总数
+    * 
+    * @param integer $categoryId
+    * @return integer
+    */
+   public function countCategoryGoods($categoryId)
+   {
+      return ProductModel::count(array(
+         'categoryId=?0',
+         'bind' => array(
+            (int)$categoryId
+         )
+      ));
+   }
 }

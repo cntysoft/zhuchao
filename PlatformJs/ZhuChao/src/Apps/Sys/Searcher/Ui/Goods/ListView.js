@@ -51,7 +51,7 @@ Ext.define('App.Sys.Searcher.Ui.Goods.ListView', {
             {xtype: 'checkcolumn', width: 80, dataIndex: 'checked', text: F.CHECKED, resizable: false, sortable: false, menuDisabled: true},
             {text: F.ID, dataIndex: 'id', width: 120, resizable: false, sortable: false, menuDisabled: true},
             {text: F.TITLE, dataIndex: 'title', flex: 1, resizable: false, sortable: false, menuDisabled: true},
-            {text: F.MERCHANT, dataIndex: 'merchant', width: 180, resizable: false, sortable: false, menuDisabled: true},
+//            {text: F.MERCHANT, dataIndex: 'merchant', width: 180, resizable: false, sortable: false, menuDisabled: true},
             {text: F.GENERATED, dataIndex: 'indexGenerated', width: 80, resizable: false, sortable: false, menuDisabled: true, renderer: Ext.bind(this.generateStatusRenderer, this)}
          ]
       });
@@ -88,7 +88,7 @@ Ext.define('App.Sys.Searcher.Ui.Goods.ListView', {
          fields: [
             {name: 'id', type: 'integer', persist: false},
             {name: 'title', type: 'string', persist: false},
-            {name: 'merchant', type: 'string', persist: false},
+//            {name: 'merchant', type: 'string', persist: false},
             {name: 'indexGenerated', type: 'boolean', persist: false}
          ],
          proxy: {
@@ -97,7 +97,7 @@ Ext.define('App.Sys.Searcher.Ui.Goods.ListView', {
             invokeMetaInfo: {
                module: 'Sys',
                name: 'Searcher',
-               method: 'IndexBuilder/getGoodsList'
+               method: 'IndexBuilder/getProductList'
             },
             reader: {
                type: 'json',

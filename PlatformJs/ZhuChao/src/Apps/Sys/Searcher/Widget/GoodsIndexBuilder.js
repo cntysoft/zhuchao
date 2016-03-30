@@ -75,7 +75,7 @@ Ext.define('App.Sys.Searcher.Widget.GoodsIndexBuilder', {
    },
    itemClickHandler: function(tree, record)
    {
-      if (record.get('nodeType') == 3) {
+      if (record.get('nodeType') == 2) {
          var panel = this.getCurrentActivePanel();
          if (panel.panelType == 'ListView') {
             panel.loadCategoryGoodsInfo(record.get('id'));
@@ -84,7 +84,7 @@ Ext.define('App.Sys.Searcher.Widget.GoodsIndexBuilder', {
    },
    itemContextMenuHandler: function(tree, record, item, index, event)
    {
-      if (record.get('nodeType') != 3) {
+      if (record.get('nodeType') != 2) {
          return;
       }
       var menu = this.getContextMenu(record);

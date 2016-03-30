@@ -10,7 +10,7 @@
 namespace App\Sys\Searcher;
 use Cntysoft\Kernel;
 use Cntysoft\Kernel\App\AbstractLib;
-use App\ZhuChao\Goods\Constant as GOODS_CONST;
+use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 use Cntysoft\Framework\Cloud\Ali\OpenSearch\Document as DocMgr;
 use App\Site\Content\Constant as CNT_CONST;
 use App\Site\CmMgr\Constant as CMMGR_CONST;
@@ -264,10 +264,10 @@ class IndexBuilder extends AbstractLib
    public function buildGoodsIndexByIds(array $ids, $force = false)
    {
       $goodsMgr = $this->getAppCaller()->getAppObject(
-         GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME,
-         GOODS_CONST::APP_API_MGR
+         PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME,
+         PRODUCT_CONST::APP_API_PRODUCT_MGR
       );
-      $ginfos = $goodsMgr->getGoodsInfoByIds($ids);
+      $ginfos = $goodsMgr->getProductInfoByIds($ids);
       $this->doGenerateGoodsIndex($ginfos, $force);
    }
 
@@ -280,8 +280,8 @@ class IndexBuilder extends AbstractLib
    {
       //首先我们的查找出来文档数据
       $list = $this->getAppCaller()->call(
-         GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME,
-         GOODS_CONST::APP_API_MGR, 'getGoodsInfosByCategoryId',
+         PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME,
+         PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductInfosByCategoryId',
          array(
          $cid, true, 'id desc', ($page - 1) * $pageSize, $pageSize
          )
@@ -293,15 +293,10 @@ class IndexBuilder extends AbstractLib
    {
       $docs = array();
       $statusChangeSet = array();
-      $gcategoryMgr = $this->getAppCaller()->getAppObject(GCATE_CONST::MODULE_NAME,
-         GCATE_CONST::APP_NAME, GCATE_CONST::APP_API_MGR);
-      $gmgr = $this->getAppCaller()->getAppObject(GOODS_CONST::MODULE_NAME,
-         GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_MGR);
       $searchKeyPool = array();
       foreach ($infos as $info) {
-         $dinfo = $info->detailInfo;
+         $dinfo = $info->getDetail();
          if ($force || !$info->getIndexGenerated()) {
-            $cid = $info->getCategoryId();
             $attrPool = array();
             $cid = $info->getCategoryId();
             if (!isset($searchKeyPool[$cid])) {
@@ -316,36 +311,8 @@ class IndexBuilder extends AbstractLib
             } else {
                $searchAttrKeys = $searchKeyPool[$cid];
             }
-            $dinfo = $info->detailInfo;
-            $stdAttrMap = $dinfo->getStdAttrMap();
-            $stdAttrs = $gmgr->getGoodsStdAttrs($info->getId());
-            $combinations = array();
-            foreach ($stdAttrs as $attr) {
-               $combination = $attr->getCombination();
-               foreach ($combination as $i => $val) {
-                  if (!isset($combinations[$i])) {
-                     $combinations[$i] = array();
-                  }
-                  if (!in_array($val, $combinations[$i])) {
-                     $combinations[$i][] = $val;
-                  }
-               }
-            }
 
-            $i = 0;
-            foreach ($stdAttrMap as $key => $val) {
-               if (in_array($key, $searchAttrKeys)) {
-                  if (is_array($combinations[$i])) {
-                     var_dump($key.$combinations[$i]);
-                     $attrPool[] = md5(strtolower(preg_replace(Constant::ATTR_FILTER_REGEX, '',$key.implode('/', $combinations[$i]))));
-                  } else {
-                     var_dump($key.$combinations[$i]);
-                     $attrPool[] = md5(strtolower(preg_replace(Constant::ATTR_FILTER_REGEX, '', $key.$combinations[$i])));
-                  }
-               }
-               $i++;
-            }
-            foreach ($dinfo->getNormalAttrs() as $gkey => $normalAttrs) {
+            foreach ($dinfo->getAttribute() as $gkey => $normalAttrs) {
                foreach ($normalAttrs as $akey => $aval) {
                   if (in_array($akey, $searchAttrKeys)) {
                      $attrPool[] = md5(strtolower(preg_replace(Constant::ATTR_FILTER_REGEX, '', $akey.$aval)));
@@ -354,14 +321,19 @@ class IndexBuilder extends AbstractLib
             }
             $docs[] = array(
                'id' => $info->getId(),
+               'categoryid' => $info->getCategoryId(),
+               'providerid' => $info->getProviderId(),
+               'companyid' => $info->getCompanyId(),
+               'brand' => $info->getBrand(),
                'title' => $info->getTitle(),
+               'description' => $info->getDescription(),
                'price' => $info->getPrice(),
-               'merchantid' => $info->getMerchantId(),
-               'categoryId' => $cid,
-               'trademarkId' => $info->getTrademarkId(),
-               'description' => $dinfo->getDescription(),
+               'grade' => $info->getGrade(),
+               'star' => $info->getStar(),
+               'attrmap' => $attrPool,
                'inputtime' => $info->getInputTime(),
-               'attrmap' => $attrPool
+               'adverttext' => $dinfo->getAdvertText(),
+               'keywords' => $dinfo->getKeywords()
             );
             $statusChangeSet[] = $info;
          }
@@ -407,10 +379,10 @@ class IndexBuilder extends AbstractLib
    public function deleteGoodsIndexByIds(array $ids)
    {
       $goodsMgr = $this->getAppCaller()->getAppObject(
-         GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME,
-         GOODS_CONST::APP_API_MGR
+         PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME,
+         PRODUCT_CONST::APP_API_PRODUCT_MGR
       );
-      $ginfos = $goodsMgr->getGoodsInfoByIds($ids);
+      $ginfos = $goodsMgr->getProductInfoByIds($ids);
       $this->doDeleteGoodsIndex($ginfos);
    }
 
@@ -418,8 +390,8 @@ class IndexBuilder extends AbstractLib
    {
       //首先我们的查找出来文档数据
       $list = $this->getAppCaller()->call(
-         GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME,
-         GOODS_CONST::APP_API_MGR, 'getGoodsInfosByCategoryId',
+         PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME,
+         PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductInfosByCategoryId',
          array(
          $cid, true, 'id desc', ($page - 1) * $pageSize, $pageSize
          )

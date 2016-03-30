@@ -10,7 +10,7 @@
 namespace App\Sys\Searcher\AjaxHandler;
 use Cntysoft\Kernel\App\AbstractHandler;
 use App\Sys\Searcher\Constant as SEARCH_CONST;
-use App\ZhuChao\Goods\Constant as G_CONST;
+use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 use App\Site\Category\Constant as CATE_CONST;
 use App\Site\Content\Constant as CNT_CONST;
 use App\Site\CmMgr\Constant as CMMGR_CONST;
@@ -149,36 +149,27 @@ class IndexBuilder extends AbstractHandler
       );
    }
 
-   public function getGoodsList(array $params)
+   public function getProductList(array $params)
    {
       $this->checkRequireFields($params, array('categoryId'));
       $cid = (int) $params['categoryId'];
-      $query = array();
-      if (0 != $cid) {
-         $query = array(
-            'categoryId = ?0',
-            'bind' => array(
-               0 => $cid
-            )
-         );
-      }
+      
       $orderBy = $limit = $offset = null;
       $this->getPageParams($orderBy, $limit, $offset, $params);
       $list = $this->getAppCaller()->call(
-         G_CONST::MODULE_NAME, G_CONST::APP_NAME, G_CONST::APP_API_MGR,
-         'getGoodsListBy',
+         PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR,
+         'getProductInfosByCategoryId',
          array(
-         $query, true, 'indexGenerated asc, id desc', $offset, $limit
+         $cid, true, 'indexGenerated asc, id desc', $offset, $limit
          )
       );
       $total = $list[1];
       $list = $list[0];
+      $ret = array();
       foreach ($list as $item) {
          $category = $item->category;
-         $merchant = $item->merchant;
          $item = $item->toArray(true);
          $item['category'] = $category->getName();
-         $item['merchant'] = $merchant->getName();
          $ret[] = $item;
       }
       return array(
@@ -191,7 +182,7 @@ class IndexBuilder extends AbstractHandler
    {
       $this->checkRequireFields($params, array('cid'));
       return array('total' => $this->getAppCaller()->call(
-            G_CONST::MODULE_NAME, G_CONST::APP_NAME, G_CONST::APP_API_MGR,
+            PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR,
             'countCategoryGoods',
             array(
             (int) $params['cid']
