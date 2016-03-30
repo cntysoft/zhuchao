@@ -2,29 +2,30 @@
  * Created by Administrator on 2016/3/10.
  */
 define(['jquery', 'Front', 'app/common'], function (){
-   $(function (){
-      var number = window.location.pathname.split('/')[2].split('.')[0];
-      //增加点击量
-      Cntysoft.Front.callApi('Utils', 'addHits', {
-         number : number
-      }, function (response){
-         if(response.status){
-         }
-      }, true);
-      //收藏
-      $('.collect_btn').click(function (){
-         Cntysoft.Front.callApi('User', 'addCollect', {
+    $(function (){
+        var number = window.location.pathname.split('/')[2].split('.')[0];
+        //增加点击量
+        Cntysoft.Front.callApi('Utils', 'addHits', {
             number : number
-         }, function (response){
+        }, function (response){
             if(response.status){
-               $(this).removeClass('can_collect');
-               $('.collect_btn').html('<em>|</em><i class="main icon-shoucang"></i>已收藏');
-            } else{
-               if(response.errorCode == 5){
-                  window.location.href = window.BUYER_SITE_NAME + '/login.html';
-               }
             }
         }, true);
+        //收藏
+        $('.collect_btn').click(function (){
+            Cntysoft.Front.callApi('User', 'addCollect', {
+                number : number
+            }, function (response){
+                if(response.status){
+                    $(this).removeClass('can_collect');
+                    $('.collect_btn').html('<em>|</em><i class="main icon-shoucang"></i>已收藏');
+                } else{
+                    if(response.errorCode == 5){
+                        window.location.href = window.BUYER_SITE_NAME + '/login.html';
+                    }
+                }
+            }, true);
+        });
         //收藏
         $('.share').delegate('.can_collect', 'click', function (){
             Cntysoft.Front.callApi('User', 'addCollect', {
@@ -41,11 +42,11 @@ define(['jquery', 'Front', 'app/common'], function (){
             }, true);
         });
         var small_img = $('.small_img').find('div');
-        small_img.hover(function(){
+        small_img.hover(function (){
             small_img.removeClass('small_hover');
             $(this).addClass('small_hover');
             var big_src = $(this).find('img').attr('big');
-            $('.big_img').find('img').attr('src',big_src);
+            $('.big_img').find('img').attr('src', big_src);
         });
         $('.next').click(function (){
             var index = $('.small_img').find('.main_border').index();
@@ -84,10 +85,10 @@ define(['jquery', 'Front', 'app/common'], function (){
         $('.online_close').click(function (){
             $('.online').hide();
         });
-        $('.connect_btn').click(function(){
+        $('.connect_btn').click(function (){
             $('.connect').show();
         });
-        $('.connect_close').click(function(){
+        $('.connect_close').click(function (){
             $('.connect').hide();
         });
         //询价
@@ -100,30 +101,39 @@ define(['jquery', 'Front', 'app/common'], function (){
             if(content.length < 10){
                 return false;
             }
-         }, true);
-      });
-      var origin = window.location.href;
+            Cntysoft.Front.callApi('User', 'addXunjiadan', params, function (response){
+                if(response.status){
+                    $('#xunjia_content').val('');
+                    $('.online').hide();
+                } else{
+                    if(response.errorCode == 5){
+                        window.location.href = window.BUYER_SITE_NAME + '/login.html';
+                    }
+                }
+            }, true);
+        });
+        var origin = window.location.origin;
 
-      $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
-      $('.icon-erweima').mouseenter(function (){
-         var $codeimg = $('.pro_code_box div.code_img');
-         if(!$codeimg.hasClass('loaded')){
-            $codeimg.qrcode({
-               render : "canvas",
-               height : 140,
-               width : 140,
-               text : origin
-            });
-            $codeimg.addClass('loaded');
-         }
-      });
-      var companyurl = $('.company_code_img').attr('url');
-      $('.company_code_img').qrcode({
-         render : "canvas",
-         height : 190,
-         width : 190,
-         text : companyurl
-      });
+        $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
+        $('.icon-erweima').mouseenter(function (){
+            var $codeimg = $('.pro_code_box div.code_img');
+            if(!$codeimg.hasClass('loaded')){
+                $codeimg.qrcode({
+                    render : "canvas",
+                    height : 140,
+                    width : 140,
+                    text : origin
+                });
+                $codeimg.addClass('loaded');
+            }
+        });
+        var companyurl = $('.company_code_img').attr('url');
+        $('.company_code_img').qrcode({
+            render : "canvas",
+            height : 190,
+            width : 190,
+            text : companyurl
+        });
 //      //创建和初始化地图函数：
 //      function initMap(){
 //         createMap();//创建地图
@@ -180,5 +190,5 @@ define(['jquery', 'Front', 'app/common'], function (){
 //      }
 //      var map;
 //      initMap();
-   });
+    });
 });
