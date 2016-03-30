@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/21.
  */
-define(['zepto', 'module/mall_nav', 'Core', 'Front'], function (){
+define(['zepto', 'module/mall_nav', 'Core', 'Front', 'module/totop', ], function (){
    $(function (){
       var sendAjax = true, params = {}, page = 1, limit = 5;
       $(window).scroll(function (){

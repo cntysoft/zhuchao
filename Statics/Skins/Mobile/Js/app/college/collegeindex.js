@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/19.
  */
-define(['zepto', 'swiper'], function (){
+define(['zepto', 'module/totop', 'swiper'], function (){
    $(function (){
       //导航
       $('.more_icon').click(function (){
