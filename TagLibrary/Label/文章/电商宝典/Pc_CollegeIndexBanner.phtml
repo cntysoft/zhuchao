@@ -37,6 +37,7 @@ foreach ($items as $index => $info) {
 				<h3 class="text_ellipsis">' . $info->getTitle() . '</h3>
 		  </a>';
    }
+	$i++;
 }
 $out .= '</div><a class="prev_btn banner_btn "><i class="icon-jiantou7"></i></a>
 <a class="next_btn banner_btn "><i class="icon-jiantou6"></i></a>
@@ -51,11 +52,11 @@ $out .= '<div class="today_news fl">
 	 <h3 class="main">今日推荐</h3>
 	 <ul class="today_news_item main_hover">';
 foreach ($items as $item) {
-   $day = floor((time() - $info->getInputTime()) / (24 * 60 * 60)) ? floor((time() - $info->getInputTime()) / (24 * 60 * 60)) . '天前' : '今天';
+   $day = floor((time() - $item->getInputTime()) / (24 * 60 * 60))>1 ? floor((time() - $item->getInputTime()) / (24 * 60 * 60)) . '天前' : '今天';
    $out .= '<li>
 				<h4>
-					 <a href="' . $this->getInfoUrl($info->getId()) . '">
-						  ' . $info->getTitle() . '</a>
+					 <a href="' . $this->getInfoUrl($item->getId()) . '">
+						  ' . $item->getTitle() . '</a>
 				</h4>
 				<p>' . $day . '</p>
 		  </li>';

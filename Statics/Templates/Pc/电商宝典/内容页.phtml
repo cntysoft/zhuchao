@@ -13,11 +13,11 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
         <meta name="keywords" content="<?php Qs::DsField('article', 'keyword') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('college/style.css', 'college/collegeinfo.css')) ?>
+		  <?php Qs::Sys('loadCss', array('college/style.css', 'college/collegeinfo.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+		  <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--导航-->
         <div class="head main_bg_light">
             <div class="head_box conwidth1100 clearfix">
@@ -26,19 +26,19 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
                     <span><em>|</em>商学院</span>
                 </a>
                 <ul class="fr clearfix">
-                    <?php
-                    $nodeIdentifier = Qs::DsField('AC', 'nodeIdentifier', true);
-                    $sign2 = '';
-                    $sign3 = $nodeIdentifier == 'dianshangzixun' ? 'main_bg' : '';
-                    $sign4 = $nodeIdentifier == 'jingdiananli' ? 'main_bg' : '';
-                    if (strlen($sign3) == 0 && strlen($sign4) == 0) {
-                       $sign2 = 'main_bg';
-                    }
-                    echo '<li><a class="mainbg_hover" href="/category/zhuchaoschool.html">首页</a></li>
+						  <?php
+						  $nodeIdentifier = Qs::DsField('AC', 'nodeIdentifier', true);
+						  $sign2 = '';
+						  $sign3 = $nodeIdentifier == 'dianshangzixun' ? 'main_bg' : '';
+						  $sign4 = $nodeIdentifier == 'jingdiananli' ? 'main_bg' : '';
+						  if (strlen($sign3) == 0 && strlen($sign4) == 0) {
+							  $sign2 = 'main_bg';
+						  }
+						  echo '<li><a class="mainbg_hover" href="/category/zhuchaoschool.html">首页</a></li>
                     <li><a class=" ' . $sign2 . ' mainbg_hover" href="/category/kechengzhongxin/1.html">课程中心</a></li>
                     <li><a class=" ' . $sign3 . ' mainbg_hover" href="/category/dianshangzixun/1.html">电商资讯</a></li>
                     <li><a class=" ' . $sign4 . ' mainbg_hover" href="/category/jingdiananli/1.html">经典案例</a></li>';
-                    ?>
+						  ?>
                 </ul>
             </div>
         </div>
@@ -65,28 +65,31 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
                     </div>
                 </div>
                 <div class="module_content" style="min-height: 600px">
-                    <?php Qs::DsField('AC', 'content') ?>
+						  <?php Qs::DsField('AC', 'content') ?>
                     <!--上一篇下一篇-->                    
                 </div>
-                <div class="prev_next">
-                    <p><em>上一篇：</em><?php
-                        $prev = Qs::DsField('AC', 'prev', true);
-                        if ($prev) {
-                           echo '<a style="font-size: 14px;color: #666;"  href="' . $prev[0] . '">' . iconv_substr($prev[1], 0, 18) . '</a>';
-                        } else {
-                           echo '木有了';
-                        }
-                        ?>
-                    </p>
-                    <p><em>下一篇：</em><?php
-                        $next = Qs::DsField('AC', 'next', true);
-                        if ($next) {
-                           echo '<a style="font-size: 14px;color: #666;" href="' . $next[0] . '">' . iconv_substr($next[1], 0, 18) . '</a>';
-                        } else {
-                           echo '正在更新中，请等待~';
-                        }
-                        ?></p>
-                </div>
+					 <div class="up_down">
+						  <div>
+								上一篇：<?php
+								$prev = Qs::DsField('AC', 'prev', true);
+								if ($prev) {
+									echo '<a href="' . $prev[0] . '" class="main_hover">' . iconv_substr($prev[1], 0, 18) . '</a> <span class="date"></span>';
+								} else {
+									echo '木有了';
+								}
+								?>
+						  </div>
+						  <div>
+								下一篇：<?php
+								$next = Qs::DsField('AC', 'next', true);
+								if ($next) {
+									echo '<a href="' . $next[0] . '" class="main_hover">' . iconv_substr($next[1], 0, 18) . '</a> <span class="date"></span>';
+								} else {
+									echo '正在更新中，请等待~';
+								}
+								?>
+						  </div>
+					 </div>
             </div>
             <div class="fr main_right">
                 <div class="erweima">
@@ -94,14 +97,14 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
                     <span>扫一扫用手机浏览</span>
                 </div>
                 <h3 class="right_title"><a >最近发布</a></h3>
-                <?php
-                Qs::Label('文章/电商宝典', array('renderTpl' => 'Pc_ContentRightArticle', 'nodeIdentifier' => array('zhuchaoschool'), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 8, 'enablePage' => false, 'listSubNode' => true))
-                ?>  
+					 <?php
+					 Qs::Label('文章/电商宝典', array('renderTpl' => 'Pc_ContentRightArticle', 'nodeIdentifier' => array('zhuchaoschool'), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 8, 'enablePage' => false, 'listSubNode' => true))
+					 ?>  
             </div>
         </div>
-        <?php
-        Qs::Label('静态类/网站底部');
-        Qs::Sys('loadRequireJs', 'college/collegeinfo');
-        ?>
+		  <?php
+		  Qs::Label('静态类/网站底部');
+		  Qs::Sys('loadRequireJs', 'college/collegeinfo');
+		  ?>
     </body>
 </html>

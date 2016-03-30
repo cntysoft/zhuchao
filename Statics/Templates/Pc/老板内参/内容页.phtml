@@ -13,11 +13,11 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
         <meta name="keywords" content="<?php Qs::DsField('article', 'keyword') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('mall/style.css', 'reference/style.css', 'reference/referencedetail.css', 'college/collegeinfo.css')) ?>
+		  <?php Qs::Sys('loadCss', array('mall/style.css', 'reference/style.css', 'reference/referencedetail.css', 'college/collegeinfo.css')) ?>
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+		  <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--导航-->
         <div class="head main_bg_light">
             <div class="head_box conwidth1100 clearfix">
@@ -26,17 +26,17 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                     <span><em>|</em>老板内参</span>
                 </a>
                 <ul class="fr clearfix">
-                    <?php
-                    $nodeIdentifier = Qs::DsField('AC', 'nodeIdentifier', true);
-                    $sign1 = $nodeIdentifier == 'laobanneican' ? 'main_bg' : '';
-                    $sign2 = $nodeIdentifier == 'jiancaiqiwen' ? 'main_bg' : '';
-                    $sign3 = $nodeIdentifier == 'shendujiexi' ? 'main_bg' : '';
-                    $sign4 = $nodeIdentifier == 'zhongbangtuijian' ? 'main_bg' : '';
-                    echo '<li><a class=" ' . $sign1 . ' mainbg_hover" href="/category/laobanneican.html">首页</a></li>
+						  <?php
+						  $nodeIdentifier = Qs::DsField('AC', 'nodeIdentifier', true);
+						  $sign1 = $nodeIdentifier == 'laobanneican' ? 'main_bg' : '';
+						  $sign2 = $nodeIdentifier == 'jiancaiqiwen' ? 'main_bg' : '';
+						  $sign3 = $nodeIdentifier == 'shendujiexi' ? 'main_bg' : '';
+						  $sign4 = $nodeIdentifier == 'zhongbangtuijian' ? 'main_bg' : '';
+						  echo '<li><a class=" ' . $sign1 . ' mainbg_hover" href="/category/laobanneican.html">首页</a></li>
                     <li><a class=" ' . $sign2 . ' mainbg_hover" href="/category/jiancaiqiwen/1.html">建材奇闻</a></li>
                     <li><a class=" ' . $sign3 . ' mainbg_hover" href="/category/shendujiexi/1.html">深度解析</a></li>
                     <li><a class=" ' . $sign4 . ' mainbg_hover" href="/category/zhongbangtuijian/1.html">重磅推荐</a></li>';
-                    ?>                    
+						  ?>                    
                 </ul>
             </div>
         </div>
@@ -49,12 +49,12 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                 <!--站点指示-->
                 <div class="site">
                     <a href="/category/laobanneican.html">老板内参</a>
-                    <?php
-                    if ($nodeIdentifier != 'laobanneican') {
-                       echo '<span>&gt;</span>
+						  <?php
+						  if ($nodeIdentifier != 'laobanneican') {
+							  echo '<span>&gt;</span>
                     <a href="/category/' . $nodeIdentifier . '/1.html"> ' . Qs::DsField('AC', 'nodeText', true) . '</a>';
-                    }
-                    ?>                    
+						  }
+						  ?>                    
                     <span>&gt;</span>
                     <a> <?php Qs::DsField('AC', 'title') ?></a>
                 </div>
@@ -83,25 +83,28 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                                     </div>
                                 </div>
                                 <!--上一篇下一篇-->
-                                <div class="prev_next">
-                                    <p><em>上一篇：</em><?php
-                                        $prev = Qs::DsField('AC', 'prev', true);
-                                        if ($prev) {
-                                           echo '<a href="' . $prev[0] . '">' . iconv_substr($prev[1], 0, 18) . '</a>';
-                                        } else {
-                                           echo '木有了';
-                                        }
-                                        ?>
-                                    </p>
-                                    <p><em>下一篇：</em><?php
-                                        $next = Qs::DsField('AC', 'next', true);
-                                        if ($next) {
-                                           echo '<a href="' . $next[0] . '">' . iconv_substr($next[1], 0, 18) . '</a>';
-                                        } else {
-                                           echo '正在更新中，请等待~';
-                                        }
-                                        ?></p>
-                                </div>
+										  <div class="up_down">
+												<div>
+													 上一篇：<?php
+													 $prev = Qs::DsField('AC', 'prev', true);
+													 if ($prev) {
+														 echo '<a href="' . $prev[0] . '" class="main_hover">' . iconv_substr($prev[1], 0, 18) . '</a> <span class="date"></span>';
+													 } else {
+														 echo '木有了';
+													 }
+													 ?>
+												</div>
+												<div>
+													 下一篇：<?php
+													 $next = Qs::DsField('AC', 'next', true);
+													 if ($next) {
+														 echo '<a href="' . $next[0] . '" class="main_hover">' . iconv_substr($next[1], 0, 18) . '</a> <span class="date"></span>';
+													 } else {
+														 echo '正在更新中，请等待~';
+													 }
+													 ?>
+												</div>
+										  </div>
                             </div>
                         </div>
                     </div>
@@ -111,11 +114,11 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                     <div class="infomation">
                         <h1>热点资讯</h1>
                         <ul>
-                            <?php
-                            Qs::Label('文章/老板内参', array('renderTpl'      => 'Pc_HotArticle', 'nodeIdentifier' => array(
-                                  'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
-                               ), 'titleLength'    => 28, 'introLength'    => 20, 'outputNum'      => 6, 'enablePage'     => false, 'listSubNode'    => true))
-                            ?>
+									 <?php
+									 Qs::Label('文章/老板内参', array('renderTpl'			 => 'Pc_HotArticle', 'nodeIdentifier'	 => array(
+											 'laobanneican', 'jiancaiqiwen', 'shendujiexi', 'zhongbangtuijian'
+										 ), 'titleLength'		 => 28, 'introLength'		 => 20, 'outputNum'			 => 6, 'enablePage'		 => false, 'listSubNode'		 => true))
+									 ?>
                         </ul>
                     </div>
                     <div class="erweima">
@@ -130,20 +133,20 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
             </div>
         </div>
         <script>window._bd_share_config = {
-              "common" : {
-                 "bdSnsKey" : {},
-                 "bdText" : "",
-                 "bdMini" : "2",
-                 "bdPic" : "",
-                 "bdStyle" : "0",
-                 "bdSize" : "16"
-              }, "share" : {}
+               "common" : {
+                   "bdSnsKey" : {},
+                   "bdText" : "",
+                   "bdMini" : "2",
+                   "bdPic" : "",
+                   "bdStyle" : "0",
+                   "bdSize" : "16"
+               }, "share" : {}
            };
            with (document)
-              0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+               0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
-        <?php Qs::Sys('loadRequireJs', 'reference/referencedetail') ?>  
-        <?php Qs::Label('静态类/网站底部');
-        ?>
+		  <?php Qs::Sys('loadRequireJs', 'reference/referencedetail') ?>  
+		  <?php Qs::Label('静态类/网站底部');
+		  ?>
     </body>
 </html>
