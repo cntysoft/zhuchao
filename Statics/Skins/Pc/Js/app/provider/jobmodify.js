@@ -7,6 +7,7 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
         var editor;
         init();
         $('input[fh-toggle="datepicker"]').datepicker({
+            format : 'yyyy-mm-dd'
         });
         //提交 submit为保存,draft为生成草稿
         $('#submit').click(function (){

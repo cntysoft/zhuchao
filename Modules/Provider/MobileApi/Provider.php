@@ -167,11 +167,11 @@ class Provider extends AbstractScript
          return array(
             'name' => $company->getName().','.$user->getName(),
             'logo' => \Cntysoft\Kernel\get_image_cdn_url($company->getLogo()),
-            'subAttr' => $company->geySubAttr() ? $company->geySubAttr() : ''
+            'subAttr' => $company->getSubAttr() ? $company->getSubAttr() : ''
          );
       }else{
          return array(
-            'name' => '未填写'.$user->getName(),
+            'name' => '未填写,'.$user->getName(),
             'logo' => '',
             'subAttr' => ''
          );

@@ -69,7 +69,7 @@ class ProductMgr extends AbstractLib
       $detail = new DetailModel();
       $dfields = $detail->getRequireFields(array('id'));
       $this->checkRequireFields($params, $dfields);
-      $pfields = $product->getRequireFields(array('id', 'number', 'hits', 'defaultImage', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
+      $pfields = $product->getRequireFields(array('id', 'number', 'hits', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
       foreach (array('price') as $val) {
          array_push($pfields, $val);
       }

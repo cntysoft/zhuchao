@@ -46,7 +46,7 @@ class Product extends AbstractScript
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image) {
-            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $result = explode('@', str_replace($cndServer, '', $image['url']));
             $item[0] = $result[0];
             $item[1] = $image['id'];
             $fileRefs[] = $image['id'];
@@ -130,7 +130,7 @@ class Product extends AbstractScript
          $images = $params['images'];
          $params['images'] = array();
          foreach ($images as $image) {
-            $result = explode('@', str_replace($cndServer, '', $image[0]));
+            $result = explode('@', str_replace($cndServer, '', $image['url']));
             $item[0] = $result[0];
             $item[1] = $image['id'];
             array_push($params['fileRefs'], $item[1]);
@@ -462,7 +462,6 @@ class Product extends AbstractScript
       unset($info['star']);
       unset($info['inputTime']);
       unset($info['updateTime']);
-      unset($info['status']);
       unset($info['comment']);
       unset($info['providerId']);
       unset($info['companyId']);

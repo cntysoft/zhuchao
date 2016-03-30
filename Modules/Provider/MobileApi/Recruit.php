@@ -23,15 +23,20 @@ class Recruit extends AbstractScript
       $pageSize = (int) $params['pageSize'];
       $pageSize == 0 ? $pageSize = 1 : '';
       $offset = ($page - 1) * $pageSize;
-      $user = $this->appCaller->call(Provider_Content::MODULE_NAME, Provider_Content::APP_NAME, Provider_Content::APP_API_MGR, 'getCurUser');
-      $infoList = $this->appCaller->call(Content_Constant::MODULE_NAME, Content_Constant::APP_NAME, Content_Constant::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(5, 2, $params['status'], false, 'id DESC', $offset, $pageSize));
-      $ret = array();
-      foreach ($infoList as $item) {
-         $job = $this->appCaller->call(Content_Constant::MODULE_NAME, Content_Constant::APP_NAME, Content_Constant::APP_API_MANAGER, 'read', array($item->getId()))[1];
+      $cond = 'job.endTime ';
+      if ((int) $params['status'] == 1) {
+         $cond .= " > " . time();
+      } else {
+         $cond .= " < " . time();
+      }
+      $sql = "select general.id,job.number,general.title from App\Yunzhan\CmMgr\Model\Job as job , App\Yunzhan\CmMgr\Model\General as general where general.isDeleted = 0 and general.itemId = job.id and general.nodeId = 5 and general.cmodelId = 2 and " . $cond . " limit " . $offset . "," . $pageSize;
+      $manage = \Cntysoft\Kernel\get_models_manager();
+      $items = $manage->executeQuery($sql);
+      foreach ($items as $item) {
          $ret[] = array(
-            "id"       => $item->getId(),
-            "position" => $item->getTitle(),
-            "number"   => $job->getNumber(),
+            "id"       => $item['id'],
+            "number"   => $item['number'],
+            "position" => $item['title']
          );
       }
       return $ret;
@@ -44,7 +49,7 @@ class Recruit extends AbstractScript
     */
    public function addRecruit($params)
    {
-      $this->checkRequireFields($params,array('title','department','content','tel','endTime','number'));
+      $this->checkRequireFields($params, array('title', 'department', 'content', 'tel', 'endTime', 'number'));
       unset($params['id']);
       $user = $this->appCaller->call(Provider_Content::MODULE_NAME, Provider_Content::APP_NAME, Provider_Content::APP_API_MGR, 'getCurUser');
       $company = $user->getCompany();
@@ -61,33 +66,37 @@ class Recruit extends AbstractScript
       $this->checkRequireFields($params, array('id'));
       $this->appCaller->call(Content_Constant::MODULE_NAME, Content_Constant::APP_NAME, Content_Constant::APP_API_MANAGER, 'moveToTrashcan', array($params['id']));
    }
+
    /**
     * 获得招聘详情
     * @param type $id
     */
-   public function getRecruitById($params){
-      $this->checkRequireFields($params,array('id'));
+   public function getRecruitById($params)
+   {
+      $this->checkRequireFields($params, array('id'));
       $recruit = $this->appCaller->call(Content_Constant::MODULE_NAME, Content_Constant::APP_NAME, Content_Constant::APP_API_MANAGER, 'read', array($params['id']));
-      if($recruit[0]->getCmodelId() != 2){
+      if ($recruit[0]->getCmodelId() != 2) {
          return false;
       }
       $job = $this->appCaller->call(Content_Constant::MODULE_NAME, Content_Constant::APP_NAME, Content_Constant::APP_API_MANAGER, 'read', array($recruit[0]->getId()));
-      if($job){
+      if ($job) {
          $job = $job[1];
       }
       $job = $job->toarray();
-      $job['title'] = $recruit[0] -> getTitle();
+      $job['title'] = $recruit[0]->getTitle();
       return $job;
    }
+
    /**
     * 修改招聘
     * @param type $params
     */
-   public function modifyRecruit($params){
+   public function modifyRecruit($params)
+   {
       $this->checkRequireFields($params, array('id'));
       $id = $params['id'];
       unset($params['id']);
-      
+
       $cndServer = Kernel\get_image_cdn_server_url() . '/';
       //删除图片的网址
       if (isset($params['defaultPicUrl'])) {
@@ -100,6 +109,5 @@ class Recruit extends AbstractScript
       }
       $this->appCaller->call(Content_Constant::MODULE_NAME, Content_Constant::APP_NAME, Content_Constant::APP_API_MANAGER, 'update', array($id, $params));
    }
-   
-   
+
 }
