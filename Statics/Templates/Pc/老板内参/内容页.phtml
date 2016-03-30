@@ -64,7 +64,6 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                             <h1><a ><?php Qs::DsField('AC', 'title') ?></a></h1>
                             <div class="article_title clearfix">
                                 <div class="article_date fl">
-                                    <a ><?php Qs::DsField('AC', 'author') ?></a>
                                     <em>发表于<b><?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></b></em>
                                 </div>
                                 <div class="article_num fr">
@@ -80,7 +79,6 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                                 <div class="summary_inner" style="min-height: 600px"><?php Qs::DsField('AC', 'content') ?>
                                     <!--出处-->
                                     <div class="article_from">
-                                        <span>作者：<?php Qs::DsField('AC', 'author') ?></span> <br>
                                         <span class="statement">以上内容为原创作品，已获作者独家授权，转载者请注明出处。</span>
                                     </div>
                                 </div>

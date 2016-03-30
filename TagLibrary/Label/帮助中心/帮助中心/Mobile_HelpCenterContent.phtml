@@ -6,9 +6,7 @@ $detail = $detailInfo[1];
 $out = '<div class="main_content">
     <div class="content_title">
         <h3>' . $info->getTitle() . '</h3>
-
         <div class="writer_info">
-            <span>' . $info->getAuthor() . '</span>
             <span class="date">' . date('Y-m-d', $info->getInputTime()) . '</span>
             <span>阅读量：<i>' . $info->getHits() . '</i></span>
         </div>

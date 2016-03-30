@@ -30,7 +30,6 @@ foreach ($items as $index => $item) {
                             <h1><a href="' . $infourl . '">' . $this->formatString($item->getTitle(), $this->invokeParams['titleLength']) . '</a></h1>
                             <div class="article_title clearfix">
                                 <div class="article_date fl">
-                                    <a href="' . $infourl . '">' . $item->getAuthor() . '</a>
                                     <em>发表于<b>' . date('Y-m-d', $item->getInputTime()) . '</b></em>
                                 </div>
                                 <div class="article_num fr">

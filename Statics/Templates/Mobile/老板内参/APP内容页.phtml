@@ -20,7 +20,6 @@ Qs::Ds('内容数据源/标准内容模型', 'AC') ?>
                 <h3><?php Qs::DsField('AC', 'title') ?></h3>
 
                 <div class="writer_info">
-                    <span><?php Qs::DsField('AC', 'author') ?></span>
                     <span class="date"><?php echo date('Y.m.d', QS::DsField('AC', 'inputTime', true)) ?></span>
                     <span>阅读量：<i><?php Qs::DsField('AC', 'hits') ?></i></span>
                 </div>

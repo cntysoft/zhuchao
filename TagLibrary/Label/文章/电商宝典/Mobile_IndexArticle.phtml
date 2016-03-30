@@ -11,7 +11,6 @@ foreach ($items as $index => $info) {
    } else {
       $imgcls = 'no_img';
    }
-//                        <span class="writer fl">' . $info->getAuthor() . '</span>
    $out .= ' <div class="new_item ' . $imgcls . '">
                 <a href="' . $this->getInfoUrl($info->getId()) . '">
                     <div class="new_img">

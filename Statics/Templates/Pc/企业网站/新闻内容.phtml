@@ -86,7 +86,6 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="m_right fr">
                 <h3><?php Qs::DsField('AC', 'title') ?></h3>
                 <p><span>发表时间：<?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></span>
-                    <span>作者：<?php Qs::DsField('AC', 'author') ?> </span>
                     <span >浏览：<?php Qs::DsField('AC', 'hits') ?></span></p>
                 <div class="news_detail" style="min-height: 600px">
                     <?php Qs::DsField('AC', 'content') ?>

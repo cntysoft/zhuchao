@@ -13,7 +13,6 @@ foreach ($generalInfos[0] as $generalInfo) {
 				</div>
 				<p class="new_text">' . $generalInfo->getTitle() . '</p>
 				<p class="writer_info clearfix">
-					 <span class="writer fl">' . $generalInfo->getAuthor() . '</span>
 					 <span class="fl">' . date('Y-m-d', $generalInfo->getInputTime()) . '</span>
 				</p>
 				<span class="look">浏览（' . $generalInfo->getHits() . '）</span>
