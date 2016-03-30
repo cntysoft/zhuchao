@@ -52,7 +52,7 @@ $out .= '<div class="today_news fl">
 	 <h3 class="main">今日推荐</h3>
 	 <ul class="today_news_item main_hover">';
 foreach ($items as $item) {
-   $day = floor((time() - $item->getInputTime()) / (24 * 60 * 60)) ? floor((time() - $item->getInputTime()) / (24 * 60 * 60)) . '天前' : '今天';
+   $day = floor((time() - $item->getInputTime()) / (24 * 60 * 60))>1 ? floor((time() - $item->getInputTime()) / (24 * 60 * 60)) . '天前' : '今天';
    $out .= '<li>
 				<h4>
 					 <a href="' . $this->getInfoUrl($item->getId()) . '">
