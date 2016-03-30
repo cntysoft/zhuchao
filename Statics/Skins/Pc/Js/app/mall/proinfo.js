@@ -112,7 +112,7 @@ define(['jquery', 'Front', 'app/common'], function (){
                 }
             }, true);
         });
-        var origin = window.location.origin;
+        var origin = window.location.href;
 
         $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
         $('.icon-erweima').mouseenter(function (){
