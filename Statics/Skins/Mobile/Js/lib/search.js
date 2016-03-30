@@ -11,6 +11,7 @@ define(['zepto'], function (){
       $('.header_back_box').tap(function (event){
          $('body>div:not(.search_box)').show();
          $('body>ul').show();
+         $('#totop').hide();
          $('.online').hide();
          $('#shaixuanBox').hide();
          $('.search_box').hide();

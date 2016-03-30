@@ -128,16 +128,25 @@
         },
         {
             "key" : "FrontApi",
-            "rule": "\/front-api-entry",
-            "option": {
-                "module": "Buyer",
-                "controller": "FrontApiEntry",
-                "action": "index"
+            "rule" : "\/front-api-entry",
+            "option" : {
+                "module" : "Buyer",
+                "controller" : "FrontApiEntry",
+                "action" : "index"
+            }
+        },
+        {
+            "rule" : "/404.html",
+            "option" : {
+                "module" : "Buyer",
+                "controller" : "Exception",
+                "action" : "notfind"
             }
         }
     ],
     "hostName" : true,
     "tplMap" : {
+        "buyer/404" : "404.phtml",
         "login" : "采购会员\/登录页模板.phtml",
         "register" : "采购会员\/注册页模板.phtml",
         "forget" : "采购会员\/找回密码页模板.phtml",

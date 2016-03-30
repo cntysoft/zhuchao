@@ -19,7 +19,9 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <!--logo-->
             <div class="header_left fl">
                 <span class="icon_logo">
-                    <img src="<?php Qs::Sys('loadImage', 'icon/icon_logo.png') ?>" alt="logo"/>
+                    <a href="<?php echo 'http://' . Cntysoft\RT_SYS_SITE_NAME ?>">
+                        <img src="<?php Qs::Sys('loadImage', 'icon/icon_logo.png') ?>" alt="logo"/>
+                    </a>
                 </span>
             </div>
             <!--搜索框-->
@@ -37,9 +39,9 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <!--导航-->
         <div class="top_nav_box">
             <ul class="top_nav_list clearfix">
-                <li><a href="/">首页</a></li>
-                <li><a href="/">产品搜索</a></li>
-                <li><a href="/">企业搜索</a></li>
+                <li><a href="<?php echo 'http://' . Cntysoft\RT_SYS_SITE_NAME ?>">首页</a></li>
+                <li><a href="<?php echo 'http://' . Cntysoft\RT_SYS_SITE_NAME ?>">产品搜索</a></li>
+                <li><a href="<?php echo 'http://' . Cntysoft\RT_SYS_SITE_NAME ?>">企业搜索</a></li>
                 <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
             </ul>
         </div>
@@ -53,6 +55,6 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 </p>
             </div>
         </div>
-        <?php Qs::Sys('loadRequireJs', 'mall/index'); ?>
+        <?php Qs::Sys('loadRequireJs', 'mall/404'); ?>
     </body>
 </html>

@@ -199,13 +199,13 @@
             }
         },
         {
-          "key":"ProviderMobilrApiEntry",
-          "rule":"\/mobile-api-entry",
-          "option":{
-              "module":"Provider",
-              "controller":"MobileApiEntry",
-              "action":"index"
-          }
+            "key" : "ProviderMobilrApiEntry",
+            "rule" : "\/mobile-api-entry",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "MobileApiEntry",
+                "action" : "index"
+            }
         },
         {
             "key" : "ProviderYunzhan",
@@ -305,10 +305,19 @@
                 "controller" : "Index",
                 "action" : "open"
             }
+        },
+        {
+            "rule" : "/404.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Exception",
+                "action" : "notfind"
+            }
         }
     ],
     "hostName" : true,
     "tplMap" : {
+        "provider/404" : "404.phtml",
         "login" : "供应商\/登录.phtml",
         "register" : "供应商\/注册.phtml",
         "forget" : "供应商\/忘记密码.phtml",
@@ -365,12 +374,12 @@
             "\\ProviderFrontApi\\Site",
             2
         ],
-        "Inquiry":[
+        "Inquiry" : [
             "\\ProviderFrontApi\\Inquiry",
             2
         ]
     },
-    "mobile_api_map":{
+    "mobile_api_map" : {
         "Provider" : [
             "\\ProviderMobileApi\\Provider",
             2
@@ -391,15 +400,15 @@
             "\\ProviderMobileApi\\Utils",
             2
         ],
-        "Inquiry":[
+        "Inquiry" : [
             "\\ProviderMobileApi\\Inquiry",
             2
         ],
-        "Recruit":[
+        "Recruit" : [
             "\\ProviderMobileApi\\Recruit",
             2
         ],
-        "Article":[
+        "Article" : [
             "\\ProviderMobileApi\\Article",
             1
         ]
