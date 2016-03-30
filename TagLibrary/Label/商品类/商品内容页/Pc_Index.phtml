@@ -78,7 +78,7 @@ foreach ($goodsLists as $list) {
                 <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 232, 145) . '" alt=""/>
 
                 <div class="pro_text_box">
-                    <h3 class="text_ellipsis">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</h3>
+                    <h3>' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</h3>
 
                     <p class="text_ellipsis">' . $list->getDetail()->getAdvertText() . '</p>
                     <span class="pro_text_tip">￥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</span>
@@ -129,7 +129,7 @@ $i = 1;
 foreach ($articles as $article) {
 	if ($i == 1) {
 		$out .= '<div class="about_news_list">
-                <h4><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
+                <h4 class="text_ellipsis"><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
                 <p>
                     ' . $article->getIntro() . '
                 </p>
@@ -170,8 +170,7 @@ foreach ($goodsLists as $list) {
             <a href="' . $url . '" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 132) . '" alt=""/></a>
 
             <div class="card_text_box">
-                <h3 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
-                <i class="jiantou icon-jiantou-copy"></i>
+                <h3 class="main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
             </div>
             <span class="pro_card_tip">
                 <b>新品</b>
@@ -195,7 +194,7 @@ foreach ($superNodes as $super) {
         <a class="pro_img" href="' . $url . '">
             <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
         </a>
-        <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+        <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
 
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
@@ -210,7 +209,7 @@ foreach ($superNodes as $super) {
 		$url = $this->getProductUrl($list->getNumber());
 		$out .= '<div class="pro_banner_li clearfix">
 				<div class="fl pro_banner_text">
-					 <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+					 <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
 					 <p class="pro_tip">
 						  <span>' . $list->getDetail()->getAdvertText() . '</span>
 					 </p>
@@ -228,7 +227,7 @@ foreach ($superNodes as $super) {
         <a class="pro_img" href="' . $url . '">
             <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
         </a>
-        <h3 class="pro_text text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+        <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
 
         <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
     </div>';
