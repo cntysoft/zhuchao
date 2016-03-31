@@ -102,7 +102,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         $('.attr_add a').click(function (){
             var out = '<div class="attr_list clearfix customAttr"><span class="attr_title add_title"><input type="text" class="attrTitle" style="text-align:left"  fh-type="length" minlength="1" maxlength="10" required>：</span><input class="attr_info input_text attrInput" type="text"  fh-type="length" minlength="1" maxlength="30" required><span class="attr_delete deleteAttr">删除</span> </div>';
             if($('.customAttr').length > 3){
-                layer.alert('最多添加3个自定义属性');
+                layer.alert('最多添加4个自定义属性');
                 return false;
             }
             $(this).before(out);

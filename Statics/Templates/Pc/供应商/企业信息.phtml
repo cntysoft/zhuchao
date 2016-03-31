@@ -102,7 +102,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>公司简介：</label>
-                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,30}$' tip-value="请输入3-30个汉字" required>
                     </div>
                     <div class="form_list">
                         <label class="label_uploading"><em class="main">*</em>公司logo：</label>
@@ -135,7 +135,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>品牌：</label>
-                        <input type="text" id="brand" class="checkField" value="<?php Qs::DsField('User', 'brand') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-20位品牌名称" required>
+                        <input type="text" id="brand" class="checkField" value="<?php Qs::DsField('User', 'brand') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,15}$' tip-value="请输入1-15位品牌名称" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>注册资金：</label>
