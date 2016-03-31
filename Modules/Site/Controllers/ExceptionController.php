@@ -11,7 +11,7 @@ use Cntysoft\Framework\Qs\View;
 use Cntysoft\Kernel;
 class ExceptionController extends AbstractController
 {
-   public function notfindAction()
+   public function pagenotexistAction()
    {
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'site/404',

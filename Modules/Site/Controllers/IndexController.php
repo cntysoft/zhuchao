@@ -50,7 +50,6 @@ class IndexController extends AbstractController
       //暂时不处理节点不存在的情况
       if (!$node) {
          $this->dispatcher->forward(array(
-            'module'     => 'Pages',
             'controller' => 'Exception',
             'action'     => 'pageNotExist'
          ));
@@ -97,7 +96,6 @@ class IndexController extends AbstractController
          $status = $info->getStatus();
          if ($status != CONTENT_CONST::INFO_S_VERIFY) {
             $this->dispatcher->forward(array(
-               'module'     => 'Pages',
                'controller' => 'Exception',
                'action'     => 'pageNotExist'
             ));
@@ -109,7 +107,6 @@ class IndexController extends AbstractController
                  CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNode', array($info->getNodeId()));
          if (!$node) {
             $this->dispatcher->forward(array(
-               'module'     => 'Pages',
                'controller' => 'Exception',
                'action'     => 'pageNotExist'
             ));
@@ -117,7 +114,6 @@ class IndexController extends AbstractController
          }
          if ($node->getNodeIdentifier() == 'about') {
             $this->dispatcher->forward(array(
-               'module'     => 'Site',
                'controller' => 'Index',
                'action'     => 'about'
             ));
@@ -126,6 +122,7 @@ class IndexController extends AbstractController
          $tpl = $appCaller->call(
                  CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeModelTpl', array((int) $info->getNodeId(), $info->getCmodelId())
          );
+
          $this->view->setRouteInfoItem('nodeIdentifier', $node->getNodeIdentifier());
          $this->setupRenderOpt(array(
             View::KEY_RESOLVE_DATA => $tpl,

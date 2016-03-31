@@ -140,7 +140,8 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
             showHeight : 500, //设置滚动高度时显示
             speed : 500 //返回顶部的速度以毫秒为单位
          });
-      })
+      });
+      exports.lazyicon = 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png';
    });
 });
 

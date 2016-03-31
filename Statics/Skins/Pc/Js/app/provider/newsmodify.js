@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front','app/common'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front', 'app/common'], function (validate, WebUploader){
     $(function (){
         var uploadImg, editor, uploaderConfig;
         init();
@@ -33,13 +33,13 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             var path = window.location.pathname.split('/');
             params.id = parseInt(path.pop());
             Cntysoft.Front.callApi('Site', 'modifyContent', params, function (response){
-                if(response.status) {
-                    layer.msg('发表成功!',{
-                        time:1000
-                    }, function() {
+                if(response.status){
+                    layer.msg('发表成功!', {
+                        time : 1000
+                    }, function (){
                         window.location.href = '/site/news/1.html';
                     });
-                }else {
+                } else{
                     if(response.errorCode == 10004){
                         layer.alert('文章标题重复!');
                         return false;
@@ -148,11 +148,46 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat',
                     'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
                     'anchor', 'link', 'unlink'],
-                pluginsPath : '/Statics/Skins/Pc/Images/kindeditor/plugins/'
+                pluginsPath : '/Statics/Skins/Pc/Images/kindeditor/plugins/',
+                htmlTags : {
+                    font : ['color', 'size', 'face', '.background-color'],
+                    span : [
+                        '.color', '.background-color', '.font-size', '.font-family', '.background',
+                        '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.line-height'
+                    ],
+                    div : [
+                        'align', '.border', '.margin', '.padding', '.text-align', '.color',
+                        '.background-color', '.font-size', '.font-family', '.font-weight', '.background',
+                        '.font-style', '.text-decoration', '.vertical-align', '.margin-left'
+                    ],
+                    table : [
+                        'border', 'cellspacing', 'cellpadding', 'width', 'height', 'align', 'bordercolor',
+                        '.padding', '.margin', '.border', 'bgcolor', '.text-align', '.color', '.background-color',
+                        '.font-size', '.font-family', '.font-weight', '.font-style', '.text-decoration', '.background',
+                        '.width', '.height', '.border-collapse'
+                    ],
+                    'td,th' : [
+                        'align', 'valign', 'width', 'height', 'colspan', 'rowspan', 'bgcolor',
+                        '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.font-weight',
+                        '.font-style', '.text-decoration', '.vertical-align', '.background', '.border'
+                    ],
+                    a : ['href', 'target', 'name'],
+                    embed : ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
+                    img : ['src', 'fh-rid', 'data-original', 'class', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border'],
+                    'p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6' : [
+                        'align', '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.background',
+                        '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.text-indent', '.margin-left'
+                    ],
+                    pre : ['class'],
+                    hr : ['class', '.page-break-after'],
+                    'br,tbody,tr,strong,b,sub,sup,em,i,u,strike,s,del' : []
+                }
             });
-            //给img标签添加fh-rid属性
-            editor.htmlTags.img = ['src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border', 'fh-rid'];
-
+            var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
+            var $introImg = $(iframeBody).find('img');
+            $.each($introImg, function (index, item){
+                $(item).attr('src', $(item).attr('data-original'));
+            });
             //编辑器上传图片
             editorUpload.on('uploadSuccess', function (file, response){
                 if(response.status){

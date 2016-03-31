@@ -25,21 +25,8 @@ Qs::Ds('商城数据源/商城数据', 'site');
                 <div class="form_box">
                     <div class="form_list">
                         <label><em class="main">*</em>企&nbsp;业&nbsp;名：</label>
-								<?php $name = Qs::DsField('User', 'name', true); ?>
-                        <input type="text" id="name" value="<?php
-								echo $name . '"';
-								if ($name) {
-									echo ' disabled ';
-								}
-								?> reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
-                    </div>
-                    <div class="form_list">
-                        <label><em class="main">*</em>公司简介：</label>
-                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,30}$' tip-value="请输入3-30个汉字" required>
-                    </div>
-						  <div class="form_list">
-                        <label><em class="main">*</em>关键字：</label>
-                        <input type="text"  class="checkField" id="keywords" value="<?php Qs::DsField('User', 'keywords') ?>" reg='^([^<>]){3,255}$' tip-value="请输入企业关键字" required>
+                        <?php $name = Qs::DsField('User', 'name', true); ?>
+                        <input type="text" id="name" class="checkField" value="<?php echo $name.'"'; if($name){echo ' disabled ';}?> reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>企业类型：</label>
@@ -107,11 +94,15 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>详细地址：</label>
-                        <input type="text"  class="checkField" id="address" value="<?php Qs::DsField('User', 'address') ?>" reg='^([^<>]){3,15}$' tip-value="请输入3-30位详细地址" required>
+                        <input type="text"  class="checkField" id="address" value="<?php Qs::DsField('User', 'address') ?>" reg='^([^<>]){3,15}$' tip-value="请输入3-30字详细地址" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>邮编：</label>
                         <input type="text" class="checkField" id="postCode" value="<?php Qs::DsField('User', 'postCode') ?>" reg='^[1-9]\d{5}$' tip-value="请输入正确的邮编" required>
+                    </div>
+                    <div class="form_list">
+                        <label><em class="main">*</em>公司简介：</label>
+                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,100}$' tip-value="请输入3-100字企业简介" required>
                     </div>
                     <div class="form_list">
                         <label class="label_uploading"><em class="main">*</em>公司logo：</label>

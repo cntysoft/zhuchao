@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front','app/common'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader, common){
     $(function (){
         var editor;
         init();
@@ -85,11 +85,46 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat',
                     'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
                     'anchor', 'link', 'unlink'],
-                pluginsPath : '/Statics/Skins/Pc/Images/kindeditor/plugins/'
+                pluginsPath : '/Statics/Skins/Pc/Images/kindeditor/plugins/',
+                htmlTags : {
+                    font : ['color', 'size', 'face', '.background-color'],
+                    span : [
+                        '.color', '.background-color', '.font-size', '.font-family', '.background',
+                        '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.line-height'
+                    ],
+                    div : [
+                        'align', '.border', '.margin', '.padding', '.text-align', '.color',
+                        '.background-color', '.font-size', '.font-family', '.font-weight', '.background',
+                        '.font-style', '.text-decoration', '.vertical-align', '.margin-left'
+                    ],
+                    table : [
+                        'border', 'cellspacing', 'cellpadding', 'width', 'height', 'align', 'bordercolor',
+                        '.padding', '.margin', '.border', 'bgcolor', '.text-align', '.color', '.background-color',
+                        '.font-size', '.font-family', '.font-weight', '.font-style', '.text-decoration', '.background',
+                        '.width', '.height', '.border-collapse'
+                    ],
+                    'td,th' : [
+                        'align', 'valign', 'width', 'height', 'colspan', 'rowspan', 'bgcolor',
+                        '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.font-weight',
+                        '.font-style', '.text-decoration', '.vertical-align', '.background', '.border'
+                    ],
+                    a : ['href', 'target', 'name'],
+                    embed : ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
+                    img : ['src', 'fh-rid', 'data-original', 'class', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border'],
+                    'p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6' : [
+                        'align', '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.background',
+                        '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.text-indent', '.margin-left'
+                    ],
+                    pre : ['class'],
+                    hr : ['class', '.page-break-after'],
+                    'br,tbody,tr,strong,b,sub,sup,em,i,u,strike,s,del' : []
+                }
             });
-            //给img标签添加fh-rid属性
-            editor.htmlTags.img = ['src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border', 'fh-rid'];
-
+            var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
+            var $introImg = $(iframeBody).find('img');
+            $.each($introImg, function (index, item){
+                $(item).attr('src', $(item).attr('data-original'));
+            });
             //编辑器上传图片
             editorUpload.on('uploadSuccess', function (file, response){
                 if(response.status){
@@ -99,20 +134,28 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         }
 
 
-        function getEditorFileRef(content){
-            var imgReg = /<img fh-rid="[\d]*" src="[\w\.\/\:\-]*"[\s]*?\/>/gim;
-            var imgArray = content.match(imgReg);
+         function getEditorFileRef(){
+            var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
+            var $introImg = $(iframeBody).find('img');
             var params = {
                 imgRefMap : [],
-                fileRefs : []
+                fileRefs : [],
+                content : ''
             };
-            if(imgArray != null){
-                for(var i = 0, length = imgArray.length; i < length; i++) {
-                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d]*)" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
-                    params.imgRefMap.push([ridSrc[2], ridSrc[1]]);
-                    params.fileRefs.push(ridSrc[1]);
-                }
+            if($introImg.length){
+                $.each($introImg, function (index, item){
+                    params.imgRefMap.push([$(item).attr('src'), $(item).attr('fh-rid')]);
+                    params.fileRefs.push($(item).attr('fh-rid'));
+                });
             }
+            var cloneIframe = $(iframeBody).clone();
+            $.each($(cloneIframe).find('img'), function (index, item){
+                $(item).addClass('lazy');
+                $(item).attr('data-original', $(item).attr('src'));
+                $(item).attr('src', common.lazyicon);
+                $(item).removeAttr('data-ke-src');
+            });
+            params.content = $(cloneIframe).html();
             return params;
         }
     });

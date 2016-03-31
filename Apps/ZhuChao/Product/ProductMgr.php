@@ -80,6 +80,7 @@ class ProductMgr extends AbstractLib
       }
       $this->checkRequireFields($params, $dfields);
       $pfields = $product->getRequireFields(array('id', 'providerId', 'companyId', 'number', 'hits', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
+      unset($pfields['defaultImages']);
       foreach (array('price') as $val) {
          array_push($pfields, $val);
       }
@@ -100,7 +101,7 @@ class ProductMgr extends AbstractLib
       $this->checkRequireFields($params, $pfields);
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
-
+      
       $db = Kernel\get_db_adapter();
       try {
          $db->begin();

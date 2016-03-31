@@ -1,19 +1,19 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front','app/common'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader, common){
     $(function (){
         var images = new Array();
-        var sendQuery =  Cntysoft.fromQueryString(window.location.search);
+        var sendQuery = Cntysoft.fromQueryString(window.location.search);
         var checkArea = '#title,#brand,#description,#advertText,#minimum,#stock,#price';
-        $('#brand,#title,#description,#advertText').keyup(function(){
-           var len = $(this).val().length;
-           $(this).next('span').find('em').text(len);
+        $('#brand,#title,#description,#advertText').keyup(function (){
+            var len = $(this).val().length;
+            $(this).next('span').find('em').text(len);
         });
         //提交 submit为保存,draft为生成草稿
         $('#submit,#draft').click(function (){
             var validation = validate.checkFields($(checkArea + ',#keyword,#keyword2,#keyword3,.basic .attrInput,.customAttr .attr_info,.customAttr .attrTitle'));
-            var imgReg = /<img fh-rid="[\d]*" src="[\w\.\/\:\-]*"[\s]*?\/>/gim;
+            var imgReg = /<img[\w]*?fh-rid="[\d]*"[\w]*?src="[\w\.\/\:\-]*"[\w]*?\/>/gim;
             var params = {};
             var fileRefs = new Array();
             var imgRefMap = new Array();
@@ -40,7 +40,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             params['attribute'] = {
                 '基本参数' : {},
                 '自定义属性' : {}
-            }
+            };
             $.each($('.basic .attrSelect,.basic .attrInput'), function (index, item){
                 params['attribute']['基本参数'][$(item).attr('id')] = $(item).val();
             });
@@ -50,25 +50,32 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 params['attribute']['自定义属性'][key] = val;
             });
             if(0 == images.length){
-               layer.msg('请上传产品的图片，至少1张');
-               return;
+                layer.msg('请上传产品的图片，至少1张');
+                return;
             }
             params['images'] = images;
 
             var editorHtml = editor.html(), editorText = editor.text();
             if(!editorText || editorText.length < 20){
-               layer.msg('请填写商品简介信息，至少20个字！');
-               return;
+                layer.msg('请填写商品简介信息，至少20个字！');
+                return;
             }
-            params['introduction'] = editorHtml;
-            var imgArray = editorHtml.match(imgReg);
-            if(imgArray != null){
-                for(var i = 0, length = imgArray.length; i < length; i++) {
-                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d]*)" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
-                    imgRefMap.push([ridSrc[2], ridSrc[1]]);
-                    fileRefs.push(ridSrc[1]);
-                }
+            var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
+            var $introImg = $(iframeBody).find('img');
+            if($introImg.length){
+                $.each($introImg, function (index, item){
+                    imgRefMap.push([$(item).attr('src'), $(item).attr('fh-rid')]);
+                    fileRefs.push($(item).attr('fh-rid'));
+                });
             }
+            var cloneIframe = $(iframeBody).clone();
+            $.each($(cloneIframe).find('img'), function (index, item){
+                $(item).addClass('lazy');
+                $(item).attr('data-original', $(item).attr('src'));
+                $(item).attr('src', common.lazyicon);
+                $(item).removeAttr('data-ke-src');
+            });
+            params['introduction'] = $(cloneIframe).html();
             params['imgRefMap'] = imgRefMap;
             for(var i = 0, length = images.length; i < length; i++) {
                 fileRefs.push(images[i][1]);
@@ -79,21 +86,21 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             params['categoryId'] = sendQuery['category'];
             if($(this).attr('id') === 'submit'){
                 params['status'] = 3;
-            }else{
+            } else{
                 params['status'] = 1;
             }
-            Cntysoft.Front.callApi('Product','addProduct',params,function(response){
+            Cntysoft.Front.callApi('Product', 'addProduct', params, function (response){
                 if(response.status){
                     layer.alert('商品发布成功！', {
                         btn : '',
-                        success : function(){
-                           var redirect = function(){
-                              window.location = '/product/1.html';
-                           };
-                           setTimeout(redirect, 300);
+                        success : function (){
+                            var redirect = function (){
+                                window.location = '/product/1.html';
+                            };
+                            setTimeout(redirect, 300);
                         }
-                     });
-                }else{
+                    });
+                } else{
                     layer.alert('商品发布错误，请核对您的信息！');
                 }
             });
@@ -158,9 +165,9 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
             }
         });
         //删除商品图片
-        $('.img_uploading').delegate('.deleteImg','click',function(){
+        $('.img_uploading').delegate('.deleteImg', 'click', function (){
             var imgWrap = $(this).closest('li');
-            images.splice($(imgWrap).index(),1);
+            images.splice($(imgWrap).index(), 1);
             showImg();
         });
         //商品标题预览
@@ -196,11 +203,11 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         function showImg(){
             $('#uploadBtn').siblings('li').remove();
             $.each(images, function (index, item){
-                $('#uploadBtn').before('<li><img src="'+item[0]+'"><em class="deleteImg">删除</em></li>');
+                $('#uploadBtn').before('<li><img src="' + item[0] + '"><em class="deleteImg">删除</em></li>');
             });
             if(images.length != 5){
                 $('#uploadBtn').show();
-            }else{
+            } else{
                 $('#uploadBtn').hide();
             }
         }
