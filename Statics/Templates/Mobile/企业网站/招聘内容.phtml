@@ -47,7 +47,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p><em>上一篇：</em><?php
                             $prev = Qs::DsField('AC', 'prev', true);
                             if ($prev) {
-                               $pretitle = mb_strlen($prev[1]) > 13 ? mb_substr($prev[1], 0, 13) . '...' : $prev[1];
+                               $pretitle = mb_substr($prev[1], 0, 13);
                                echo '<a href="' . $prev[0] . '">' . $pretitle . '</a>';
                             } else {
                                echo '木有了';
@@ -57,7 +57,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <p><em>下一篇：</em><?php
                             $next = Qs::DsField('AC', 'next', true);
                             if ($next) {
-                               $nexttitle = mb_strlen($next[1]) > 13 ? mb_substr($next[1], 0, 13) . '...' : $next[1];
+                               $nexttitle = mb_substr($next[1], 0, 13);
                                echo '<a href="' . $next[0] . '">' . $nexttitle . '</a>';
                             } else {
                                echo '正在更新中，请等待~';

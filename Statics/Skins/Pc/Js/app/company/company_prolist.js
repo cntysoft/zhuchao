@@ -30,11 +30,11 @@ define(['jquery', 'app/company/common'], function (){
             window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('sort');
          }
       });
-      $('.rank_btn1 a i').click(function (){
-         if($(this).hasClass('active')){
-            if($(this).attr('sort')){
-               window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('sort');
-            }
+      $('.rank_btn1 a.price ').click(function (){
+         if($(this).hasClass('up')){
+            window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('downsort');
+         } else{
+            window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('upsort');
          }
       });
    });

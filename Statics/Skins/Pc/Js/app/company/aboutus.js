@@ -59,8 +59,13 @@ define(['jquery', 'app/company/common'], function (){
          $('.m_left li a').eq(1).addClass('main');
          $('.m_right >div').hide();
          $('.m_culture').show();
+      } else if(path.indexOf('connect') > 0){
+         $('.m_left li a').eq(3).addClass('main');
+         $('.m_right >div').hide();
+         $('.m_connect').show();
       } else{
          $('.m_left li a').eq(0).addClass('main');
+         $('.m_intro').show();
       }
    });
 });

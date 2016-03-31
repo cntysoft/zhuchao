@@ -21,7 +21,7 @@ if (isset($query['sort']) && $query['sort']) {
       case 2:$sort2 = ' main ';
          break;
       case 3:
-         $sort3 = ' main ';
+         $sort3 = '  main up';
          $icon1 = '';
          break;
       case 4:
@@ -38,9 +38,9 @@ $out.='<div class="rank_choice clearfix">
                     <p class="rank_btn1 fl clearfix">
                         <a class="' . $sort1 . '" sort="1">默认</a>
                         <a  class="' . $sort2 . '" sort="2">最热</a>
-                        <a class="' . $sort3 . '">价格
+                        <a class=" price ' . $sort3 . '" upsort="3" downsort="4">价格
                             <span class="arrow_wrap">
-                                <i class="' . $icon1 . '   icon-black-up" sort="3"></i><i class="' . $icon2 . ' icon-black-down" sort="4"></i>
+                                <i class="' . $icon1 . '   icon-black-up" ></i><i class="' . $icon2 . ' icon-black-down" ></i>
                             </span>
                         </a>
                     </p>

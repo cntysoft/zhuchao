@@ -12,7 +12,7 @@ if (isset($query['sort']) && $query['sort']) {
          break;
       case 3:
          $sort = 3;
-         $sort3 = ' main_border main ';
+         $sort3 = ' main_border main up';
          $icon1 = 'main_border';
          break;
       case 4:
@@ -28,7 +28,7 @@ if (isset($query['sort']) && $query['sort']) {
 }
 $out.='<div class="sort" sort="' . $sort . '" keyword="' . $keyword . '">
                 <span class="sort_new ' . $sort1 . '" sort="1">新品</span>
-                <span class="sort_price ' . $sort3 . '">价格 <i class="price_up ' . $icon1 . '" sort="3"></i><i class="price_down ' . $icon2 . '" sort="4"></i></span>
+                <span class="sort_price ' . $sort3 . '" upsort="3" downsort="4">价格 <i class="price_up ' . $icon1 . '" ></i><i class="price_down ' . $icon2 . '" ></i></span>
             </div>';
 if (count($goodsLists) == 0) {
    echo $out;

@@ -40,7 +40,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                     <p>
                         <?php
                         $inrodata = Qs::DsField('CS', 1, true);
-                        echo mb_strlen($inrodata) > 92 ? mb_strlen($inrodata, 0, 92) . '...' : $inrodata
+                        echo mb_substr(strip_tags($inrodata), 0, 92)
                         ?>
                         <a href="/about.html" class="main">查看详情 >></a></p>
                 </div>

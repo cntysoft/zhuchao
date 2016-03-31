@@ -18,11 +18,11 @@ define(['zepto', 'module/company_classify', 'module/totop', 'Core', 'Front'], fu
             window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('sort');
          }
       });
-      $('.sort_price  i').click(function (){
-         if(!$(this).hasClass('main_border')){
-            if($(this).attr('sort')){
-               window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('sort');
-            }
+      $('.sort_price ').click(function (){
+         if($(this).hasClass('up')){
+            window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('downsort');
+         } else{
+            window.location.href = window.location.pathname + query[0] + 'sort=' + $(this).attr('upsort');
          }
       });
       var sendAjax = true; //是否可发送列表请求
