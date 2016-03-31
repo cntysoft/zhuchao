@@ -702,7 +702,7 @@ class ProductMgr extends AbstractLib
          'order' => $orderBy,
          'limit' => array(
             'number' => $limit,
-            'offset' => ($offset - 1) * $limit
+            'offset' => $offset * $limit
          )
       );
 

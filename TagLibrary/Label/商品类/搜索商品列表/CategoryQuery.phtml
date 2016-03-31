@@ -1,7 +1,9 @@
 <?php
-$goodsLists = $this->searchProduct();
-$queryAttrs = $goodsLists['queryAttrs'];
-$totalPage = ceil($goodsLists['total'] / $this->invokeParams['outputNum']);
+$result = $this->searchProduct();
+$queryAttrs = $result['queryAttrs'];
+$searchInfo = $result['search_info'];
+
+$totalPage = ceil($searchInfo['meta']['total'] / $this->invokeParams['outputNum']);
 $currentPage = $this->getRouteInfo()['pageId'];
 $queryUrl = $this->getQueryUrl();
 $totalquery = count($queryAttrs);

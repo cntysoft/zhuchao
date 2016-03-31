@@ -63,15 +63,14 @@ class Search extends AbstractLabelScript
    {
       $request = $this->di->get('request');
       $keys = $request->getQuery();
+      $routeInfo = $this->getRouteInfo();
+      $page = (int)$routeInfo['pageId'] > 0 ? (int)$routeInfo['pageId'] - 1 : 0;
       unset($keys['_url']);
-      $ret = array('page' => 1, 'size' => 12, 'sort' => array(), 'keyword' => '');
+      $ret = array('page' => $page, 'size' => 12, 'sort' => array(), 'keyword' => '');
       $ret['size'] = $this->invokeParams['outputNum'];
-      if(isset($keys['page'])){
-         $ret['page'] = $keys['page'];
-         unset($keys['page']);
-      }
+      
       $sort = array(
-         1 => 'inputTime',
+         1 => 'inputtime',
          2 => 'hits',
          3 => 'price',
          4 => 'grade'
@@ -84,9 +83,17 @@ class Search extends AbstractLabelScript
       if (isset($keys['sort'])) {
          $sortUrl = explode('_', $keys['sort']);
          if (array_key_exists($sortUrl[0], $sort) && array_key_exists($sortUrl[1], $type)) {
-            $ret['sort'][$sort[$sortUrl[0]]] = $type[$sortUrl[1]];
+            $ret['sort'] = array(
+               'key' => $sort[$sortUrl[0]],
+               'type' => $type[$sortUrl[1]]
+            );
          }
          unset($keys['sort']);
+      }else{
+         $ret['sort'] = array(
+            'key' => 'grade',
+            'type' => '-'
+         );
       }
 
       if (isset($keys['价格'])){
@@ -120,20 +127,13 @@ class Search extends AbstractLabelScript
    public function searchProduct()
    {
       $keys = $this->getKeys();
-
-//      return $this->appCaller->call(
-//         SEARCH_CONST::MODULE_NAME, 
-//         SEARCH_CONST::APP_NAME, 
-//         SEARCH_CONST::APP_API_SEARCHER, 
-//         'query', 
-//         array($keys['keyword'], $keys['page'], $keys['size'], $keys['sort'], $keys['filter'], true)
-//      );
+      
       return $this->appCaller->call(
-         PRODUCT_CONST::MODULE_NAME, 
-         PRODUCT_CONST::APP_NAME, 
-         PRODUCT_CONST::APP_API_PRODUCT_MGR, 
-         'searchGoods', 
-         array($keys['keyword'], $keys['page'], $keys['size'], $keys['sort'], $keys['filter'], true)
+         SEARCH_CONST::MODULE_NAME, 
+         SEARCH_CONST::APP_NAME, 
+         SEARCH_CONST::APP_API_SEARCHER, 
+         'query', 
+         array($keys['keyword'], $keys['page'], $keys['size'], $keys['filter'], $keys['sort'], true)
       );
    }
    

@@ -333,7 +333,7 @@ class IndexBuilder extends AbstractLib
                'attrmap' => $attrPool,
                'inputtime' => $info->getInputTime(),
                'adverttext' => $dinfo->getAdvertText(),
-               'keywords' => $dinfo->getKeywords()
+               'keywords' => implode(',', $dinfo->getKeywords())
             );
             $statusChangeSet[] = $info;
          }

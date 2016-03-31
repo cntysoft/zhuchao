@@ -1,9 +1,10 @@
 <?php
 $out = '';
-$goodsLists = $this->searchProduct();
+$result = $this->searchProduct();
+$searchInfo = $result['search_info'];
 $i = 0;
 $queryUrl = $this->getQueryUrl();
-foreach ($goodsLists['docs'] as $goods) {
+foreach ($searchInfo['docs'] as $goods) {
    $product = $this->getProduct($goods['id']);
    $goodsdetail = $product->getDetail();
    $company = $product->getCompany();
@@ -39,7 +40,7 @@ foreach ($goodsLists['docs'] as $goods) {
                             </div>
                         </div>';
 }
-$totalPage = ceil($goodsLists['total'] / $this->invokeParams['outputNum']);
+$totalPage = ceil($searchInfo['meta']['total'] / $this->invokeParams['outputNum']);
 if ($this->invokeParams['enablePage'] && $totalPage > 1) {
    $out1 = '';
    $currentPage = $this->getRouteInfo()['pageId'];

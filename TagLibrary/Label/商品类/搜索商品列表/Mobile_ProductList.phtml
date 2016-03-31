@@ -8,10 +8,11 @@ $out = '<div id="shaixuanBox" class="shaixuan_box hide">
         </div>
         <ul id="shaixuanListNav" class="module_text_nav">';
 $keys = $this->getKeys();
-$list = $this->searchProduct();
-$queryAttrs = $list['queryAttrs'];
-$goodsLists = $list['docs'];
-$total = $list['total'];
+$result = $this->searchProduct();
+$queryAttrs = $result['queryAttrs'];
+$searchInfo = $result['search_info'];
+$goodsLists = $searchInfo['docs'];
+$total = $searchInfo['meta']['total'];
 foreach ($queryAttrs as $key => $value) {
    $out .= '<li><a>'.$key.'</a><span class="choose_text">不限</span></li>';
 }

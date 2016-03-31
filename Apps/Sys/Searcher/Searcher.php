@@ -50,11 +50,12 @@ class Searcher extends AbstractLib
                'hit' => $pageSize
             )
       ));
+      
       if (!empty($sorts)) {
          $sortKey = $sorts['key'];
          $sortType = $sorts['type'];
          if (!in_array($sortKey,
-               array(self::SORT_HITS, self::SORT_PRICE, self::SORT_TIME))) {
+               array(self::SORT_HITS, self::SORT_PRICE, self::SORT_TIME, self::SORT_GRADE))) {
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
                $errorType->msg('SORT_KEY_NOT_SUPPORT', $sortKey),
@@ -88,6 +89,7 @@ class Searcher extends AbstractLib
             $queryCond['query'][OpenSearch::QUERY_CONF_FILTER] = $filter;
          }
       }
+      
       //最简单的搜索
       $response = $searcher->search($queryCond);
       $response = $response['result'];
@@ -104,7 +106,7 @@ class Searcher extends AbstractLib
       $gmgr = $this->getAppCaller()->getAppObject(PRODUCT_CONST::MODULE_NAME,
          PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR);
       foreach ($response['items'] as $item) {
-         $ginfo = $gmgr->getGoodsInfo($item['id']);
+         $ginfo = $gmgr->getProductById($item['id']);
 //         $attrMap = $ginfo->getSearchAttrMap();
 //         if (!empty($attrFilter)) {
 //            $allow = false;
