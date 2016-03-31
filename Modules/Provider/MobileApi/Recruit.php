@@ -82,7 +82,9 @@ class Recruit extends AbstractScript
       if ($job) {
          $job = $job[1];
       }
-      $job = $job->toarray();
+      $job = $job->toArray(true);
+      unset($job['id']);
+      $job['id'] = $params['id'];
       $job['title'] = $recruit[0]->getTitle();
       $job['id'] = $recruit[0]->getId();
       return $job;
