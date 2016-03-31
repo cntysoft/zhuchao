@@ -102,7 +102,14 @@ $out .= '<div class="module_title">
 </div>
 <ul class="new_box">';
 $laobanneicai = $this->getNodeInfoByIdentifier('laobanneican');
-$articles = $this->getInfoListByNodeAndStatusNotPage($laobanneicai->getId());
+$subNodes = $this->getSubNodesByIdentifier('laobanneican');
+$nodeIds = array(
+	$laobanneicai->getId()
+);
+foreach ($subNodes as $node) {
+	$nodeIds[] = $node->getId();
+}
+$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
 foreach ($articles as $article) {
 	$out .= '<li>
 		  <a href="/article/' . $article->getId() . '.html">
