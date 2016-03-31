@@ -41,7 +41,7 @@ class Product extends AbstractScript
       $cndServer = Kernel\get_image_cdn_server_url() . '/';
 
       $fileRefs = array();
-      $params['defaultImage'] = $params['images'][0]['url'];
+      
       if (count($params['images'])) {
          $images = $params['images'];
          $params['images'] = array();
@@ -53,6 +53,7 @@ class Product extends AbstractScript
             $params['images'][] = $item;
          }
       }
+      $params['defaultImage'] = $params['images'][0]['url'];
       $params['fileRefs'] = $fileRefs;
       $params['imgRefMap'] = array();
       $params['keywords']= explode(',', $params['keywords']);
@@ -75,20 +76,8 @@ class Product extends AbstractScript
           $params['attribute'] = $attribute;  
       }
 
-      $status = 1;
-      if(P_CONST::PRODUCT_STATUS_VERIFY == $params['status']){
-         $status = $params['status'];
-         $params['status'] = P_CONST::PRODUCT_STATUS_PEEDING;
-      }
-      $product = $this->appCaller->call(
-            P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($provider->getId(), $companyId, $params)
-      );
-      
-      $params['number'] = $product->getNumber();
-      $params['status'] = $status;
-      //插入到商家云站数据库中
       $this->appCaller->call(
-              YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($params)
+         P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($provider->getId(), $companyId, $params)
       );
    }
 
@@ -166,27 +155,10 @@ class Product extends AbstractScript
          }
           $params['attribute'] = $attribute;  
       }
-      $status = 1;
-      if(P_CONST::PRODUCT_STATUS_VERIFY == $params['status']){
-         $status = $params['status'];
-         $params['status'] = P_CONST::PRODUCT_STATUS_PEEDING;
-      }
-      $this->appCaller->call(
-              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'updateProduct', array($product->getId(), $params)
-      );
-      $shopprodcut = $this->getShopProductByNumber($params['number']);
 
-      if ($shopprodcut) {
-         $params['status'] = $status;
-         //插入到商家云站数据库中
-         $this->appCaller->call(
-                 YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'updateProduct', array($shopprodcut->getId(), $params)
-         );
-      }else{
-         $this->appCaller->call(
-              YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'addProduct', array($params)
-         );
-      }
+      $this->appCaller->call(
+         P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'updateProduct', array($product->getId(), $params)
+      );
    }
 
    /**
@@ -272,11 +244,7 @@ class Product extends AbstractScript
       }
 
       $this->appCaller->call(
-              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'changeProductsStauts', array($curUser->getId(), $numbers, P_CONST::PRODUCT_STATUS_DELETE, '')
-      );
-
-      $this->appCaller->call(
-              YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'changeProductsStauts', array($numbers, YUN_P_CONST::PRODUCT_STATUS_DELETE)
+         P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'changeProductsStauts', array($curUser->getId(), $numbers, P_CONST::PRODUCT_STATUS_DELETE, '')
       );
    }
 
@@ -295,10 +263,7 @@ class Product extends AbstractScript
          $comment = '自主下架';
       }
       $this->appCaller->call(
-              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'changeProductsStauts', array($curUser->getId(), $params['numberList'], $status, $comment)
-      );
-      $this->appCaller->call(
-              YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'changeProductsStauts', array($params['numberList'], $status)
+         P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'changeProductsStauts', array($curUser->getId(), $params['numberList'], $status, $comment)
       );
    }
 

@@ -50,7 +50,8 @@ class Product extends AbstractScript
             $params['images'][] = $item;
          }
       }
-
+      $params['defaultImage'] = $params['images'][0][0];
+      
       if(count($params['imgRefMap'])){
          $imgRefMap = $params['imgRefMap'];
          $params['imgRefMap'] = array();
@@ -62,31 +63,14 @@ class Product extends AbstractScript
          }
       }
       
-      $status = 1;
-      if(P_CONST::PRODUCT_STATUS_VERIFY == $params['status']){
-         $status = $params['status'];
-         $params['status'] = P_CONST::PRODUCT_STATUS_PEEDING;
-      }
-      $product = $this->appCaller->call(
+      $this->appCaller->call(
          P_CONST::MODULE_NAME,
          P_CONST::APP_NAME,
          P_CONST::APP_API_PRODUCT_MGR,
          'addProduct',
          array($provider->getId(), $companyId, $params)
       );
-      
-      $params['status'] = $status;
-      $params['number'] = $product->getNumber();
-      //插入到商家云站数据库中
-      $this->appCaller->call(
-         YUN_P_CONST::MODULE_NAME,
-         YUN_P_CONST::APP_NAME,
-         YUN_P_CONST::APP_API_PRODUCT_MGR,
-         'addProduct',
-         array($params)
-      );
    }
-   
    
    /**
     * 添加一个商品
@@ -143,18 +127,6 @@ class Product extends AbstractScript
          'updateProduct',
          array($fhproduct->getId(), $params)
       );
-      
-      $shopprodcut = $this->getShopProductByNumber($params['number']);
-      if($shopprodcut){
-         //插入到商家云站数据库中
-         $this->appCaller->call(
-            YUN_P_CONST::MODULE_NAME,
-            YUN_P_CONST::APP_NAME,
-            YUN_P_CONST::APP_API_PRODUCT_MGR,
-            'updateProduct',
-            array($shopprodcut->getId(), $params)
-         );
-      }
    }
    
    /**
@@ -241,14 +213,6 @@ class Product extends AbstractScript
          'changeProductsStauts',
          array($curUser->getId(), $numbers, P_CONST::PRODUCT_STATUS_DELETE,'')
       );
-      
-      $this->appCaller->call(
-         YUN_P_CONST::MODULE_NAME,
-         YUN_P_CONST::APP_NAME,
-         YUN_P_CONST::APP_API_PRODUCT_MGR,
-         'changeProductsStauts',
-         array($numbers, YUN_P_CONST::PRODUCT_STATUS_DELETE)
-      );
    }
    
    /**
@@ -269,14 +233,6 @@ class Product extends AbstractScript
          'changeProductsStauts',
          array($curUser->getId(), $params['numbers'], P_CONST::PRODUCT_STATUS_SHELF, '自主下架')
       );
-      
-      $this->appCaller->call(
-         YUN_P_CONST::MODULE_NAME,
-         YUN_P_CONST::APP_NAME,
-         YUN_P_CONST::APP_API_PRODUCT_MGR,
-         'changeProductsStauts',
-         array($params['numbers'], YUN_P_CONST::PRODUCT_STATUS_SHELF)
-      );
    }
    
    /**
@@ -296,14 +252,6 @@ class Product extends AbstractScript
          P_CONST::APP_API_PRODUCT_MGR,
          'changeProductsStauts',
          array($curUser->getId(), $params['numbers'], P_CONST::PRODUCT_STATUS_VERIFY, '')
-      );
-      
-      $this->appCaller->call(
-         YUN_P_CONST::MODULE_NAME,
-         YUN_P_CONST::APP_NAME,
-         YUN_P_CONST::APP_API_PRODUCT_MGR,
-         'changeProductsStauts',
-         array($params['numbers'], YUN_P_CONST::PRODUCT_STATUS_VERIFY)
       );
    }
    

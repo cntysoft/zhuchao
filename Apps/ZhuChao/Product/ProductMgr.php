@@ -11,9 +11,12 @@ use Cntysoft\Kernel\App\AbstractLib;
 use App\ZhuChao\Product\Model\Product as ProductModel;
 use App\ZhuChao\Product\Model\ProductDetail as DetailModel;
 use App\ZhuChao\Product\Model\Product2Group as PGModel;
-use Cntysoft\Kernel;
+use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
+use App\Yunzhan\Product\Constant as YUNZHAN_CONST;
 use Cntysoft\Framework\Core\FileRef\Manager as RefManager;
+use Cntysoft\Kernel;
+
 class ProductMgr extends AbstractLib
 {
    /**
@@ -64,6 +67,8 @@ class ProductMgr extends AbstractLib
     */
    public function addProduct($providerId, $companyId, array $params)
    {
+      $orginTime = ini_get('max_execution_time');
+      ini_set('max_execution_time', 0);
       $product = new ProductModel();
       $detail = new DetailModel();
       $dfields = $detail->getRequireFields(array('id'));
@@ -78,6 +83,20 @@ class ProductMgr extends AbstractLib
       foreach (array('price') as $val) {
          array_push($pfields, $val);
       }
+      
+      $company = $this->getAppCaller()->call(
+         PROVIDER_CONST::MODULE_NAME,
+         PROVIDER_CONST::APP_NAME,
+         PROVIDER_CONST::APP_API_MANAGER,
+         'getProviderCompany',
+         array($companyId)
+      );
+      
+      if(!$company || !$company->getSubAttr()){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_SUBATTR_NOT_EXIST'), $errorType->code('E_COMPANY_SUBATTR_NOT_EXIST')), $this->getErrorTypeContext());
+      }
+      
       $this->checkRequireFields($params, $pfields);
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
@@ -107,6 +126,7 @@ class ProductMgr extends AbstractLib
          $pdata['indexGenerated'] = 0;
          $pdata['inputTime'] = time();
          $pdata['updateTime'] = 0;
+         $pdata['status'] = $params['status'] == Constant::PRODUCT_STATUS_VERIFY ? Constant::PRODUCT_STATUS_PEEDING : $params['status'];
          $pdata['detailId'] = $detail->getId();
 
          $product->assignBySetter($pdata);
@@ -128,25 +148,40 @@ class ProductMgr extends AbstractLib
          }
          
          $db->commit();
+         $params['number'] = $product->getNumber();
+         
+         $this->appCaller->call(
+            YUNZHAN_CONST::MODULE_NAME,
+            YUNZHAN_CONST::APP_NAME,
+            YUNZHAN_CONST::APP_API_PRODUCT_MGR,
+            'addProduct',
+            array($params)
+         );
+         
+         ini_set('max_execution_time', $orginTime);
          return $product;
       } catch (Exception $ex) {
          $db->rollback();
 
          Kernel\throw_exception($ex, $this->getErrorTypeContext());
       }
+      
    }
 
    /**
-    * 
-    * @param integer $productId
-    * @param array $params
-    * @return type修改一个产品的信息
+    * 修改一个产品的信息
     * 
     * @param integer $productId
     * @param array $params
     */
    public function updateProduct($productId, array $params)
    {
+      $orginTime = ini_get('max_execution_time');
+      ini_set('max_execution_time', 0);
+      
+      $status = Constant::PRODUCT_STATUS_VERIFY;
+      $params['status'] = Constant::PRODUCT_STATUS_PEEDING;
+
       $product = $this->getProductById($productId);
       $detail = $product->getDetail();
       $dfields = $detail->getRequireFields(array('id'));
@@ -216,7 +251,35 @@ class ProductMgr extends AbstractLib
                unset($join);
             }
          }
-         return $db->commit();
+         $db->commit();
+         
+         $yzProduct = $this->getAppCaller()->call(
+            YUNZHAN_CONST::MODULE_NAME,
+            YUNZHAN_CONST::APP_NAME,
+            YUNZHAN_CONST::APP_API_PRODUCT_MGR,
+            'getProductByNumber',
+            array($product->getNumber())
+         );
+         if($yzProduct){
+            $params['status'] = $status;
+            $this->appCaller->call(
+               YUNZHAN_CONST::MODULE_NAME,
+               YUNZHAN_CONST::APP_NAME,
+               YUNZHAN_CONST::APP_API_PRODUCT_MGR,
+               'updateProduct',
+               array($yzProduct->getId(), $params)
+            );
+         }else{
+            $params['status'] = $status;
+            $this->appCaller->call(
+               YUNZHAN_CONST::MODULE_NAME,
+               YUNZHAN_CONST::APP_NAME,
+               YUNZHAN_CONST::APP_API_PRODUCT_MGR,
+               'addProduct',
+               array($params)
+            );
+         }
+         ini_set('max_execution_time', $orginTime);
       } catch (Exception $ex) {
          $db->rollback();
 
@@ -234,6 +297,8 @@ class ProductMgr extends AbstractLib
     */
    public function changeProductsStauts($providerId, array $productNumbers, $status , $comment = '')
    {
+      $originTime = ini_get('max_execution_time');
+      ini_set('max_execution_time', 0);
       if(!in_array($status, array(
          Constant::PRODUCT_STATUS_VERIFY,
          Constant::PRODUCT_STATUS_SHELF,
@@ -255,6 +320,15 @@ class ProductMgr extends AbstractLib
             $product->update();
          }
       }
+      
+      $this->getAppCaller()->call(
+         YUNZHAN_CONST::MODULE_NAME,
+         YUNZHAN_CONST::APP_NAME,
+         YUNZHAN_CONST::APP_API_PRODUCT_MGR,
+         'changeProductsStauts',
+         array($productNumbers, $status)
+      );
+      ini_set('max_execution_time', $originTime);
    }
 
    /**

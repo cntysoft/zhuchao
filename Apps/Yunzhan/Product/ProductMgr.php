@@ -73,6 +73,7 @@ class ProductMgr extends AbstractLib
       foreach (array('price') as $val) {
          array_push($pfields, $val);
       }
+
       $this->checkRequireFields($params, $pfields);
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
@@ -152,22 +153,32 @@ class ProductMgr extends AbstractLib
          $product->setIndexGenerated(0);
          $product->update();
          
-         if(isset($params['group']) && !empty($params['group'])){
+         if (isset($params['group']) && !empty($params['group'])) {
             $group = $params['group'];
-            if(!is_array($group)){
+            if (!is_array($group)) {
                $group = array($group);
             }
+            $oldGroup = array();
+            $groups = $product->getGroups();
+            if(count($groups)){
+               foreach($groups as $one){
+                  array_push($oldGroup, $one->getId());
+               }
+            }
             
-            $modelsManager = Kernel\get_models_manager();
-            $query = sprintf('DELETE FROM %s WHERE productId = ?0', 'App\Yunzhan\Product\Model\Product2Group');
-            $modelsManager->executeQuery($query, array(
-               0 => $productId
-            ));
+            $deleteGroup = array_diff($oldGroup, $group);
+            $addGroup = array_diff($group, $oldGroup);
             
-            foreach($group as $one){
+            if(count($deleteGroup)){
+               $modelsManager = Kernel\get_models_manager();
+               $query = sprintf('DELETE FROM %s WHERE '. PGModel::generateRangeCond('productId', $deleteGroup), 'App\ZhuChao\Product\Model\Product2Group');
+               $modelsManager->executeQuery($query);
+            }
+            
+            foreach ($addGroup as $groupId) {
                $join = new PGModel();
                $join->setProductId($productId);
-               $join->setGroupId($one);
+               $join->setGroupId($groupId);
                $join->create();
                unset($join);
             }
