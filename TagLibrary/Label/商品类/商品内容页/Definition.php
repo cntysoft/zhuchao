@@ -24,6 +24,12 @@ return array(
 			'name'			 => '数量',
 			'require'		 => false,
 			'description'	 => '输出数量'
+		),
+		'floor'		 => array(
+			'dataType'		 => \Cntysoft\INTEGER,
+			'name'			 => '楼数',
+			'require'		 => false,
+			'description'	 => '输出数量'
 		)
 	)
 );

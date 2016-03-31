@@ -1,0 +1,58 @@
+<?php
+$identifierInfo = $this->getCategoryInfoByIdentifier($this->invokeParams['identifier']);
+$out = '<div class="module_title conwidth clearfix">
+    <a><i class="floor_' . $this->invokeParams['floor'] . '"></i><span>' . $identifierInfo->getName() . '</span></a>
+</div>';
+$nodes = $this->getNodePath($identifierInfo->getId());
+$cond = array('categoryId IN (' . implode(',', $nodes) . ') AND status = 3');
+$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 0, 1);
+$out .= '<div class="pro_list clearfix conwidth">';
+foreach ($goodsLists as $list) {
+	$url = $this->getProductUrl($list->getNumber());
+	$out .= '<div class="pro_item fl">
+        <a class="pro_img" href="' . $url . '">
+            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
+        </a>
+        <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
+    </div>';
+}
+$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 1, 4);
+$out .= '<div class="pro_item fl pro_banner noselect">
+	 <a class="switch_btn switch_left_btn left_btn' . $this->invokeParams['floor'] . '"><i class="icon-jiantou4"></i></a>
+	 <a class="switch_btn switch_right_btn right_btn' . $this->invokeParams['floor'] . '"><i class="icon-jiantou2"></i></a>
+	 <div class="pro_banner_box" pro-box="pro-box' . $this->invokeParams['floor'] . '">';
+foreach ($goodsLists as $list) {
+	$url = $this->getProductUrl($list->getNumber());
+	$out .= '<div class="pro_banner_li clearfix">
+				<div class="fl pro_banner_text">
+					 <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+					 <p class="pro_tip">
+						  <span>' . $list->getDetail()->getAdvertText() . '</span>
+					 </p>
+					 <p class="pro_banner_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</p>
+				</div>
+				<a class="pro_banner_img" href="' . $url . '"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 480, 300) . '" alt=""/></a>
+		  </div>';
+}
+$out .= '</div>
+</div>';
+$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 5, 6);
+foreach ($goodsLists as $list) {
+	$url = $this->getProductUrl($list->getNumber());
+	$out .= '<div class="pro_item fl">
+        <a class="pro_img" href="' . $url . '">
+            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
+        </a>
+        <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
+
+        <span class="pro_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</span>
+    </div>';
+}
+$out .= '</div>';
+echo $out;
+?>
+
+
+
