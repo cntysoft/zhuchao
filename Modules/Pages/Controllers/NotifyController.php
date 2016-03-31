@@ -22,22 +22,25 @@ class NotifyController extends AbstractController
 			if ($curUser) {
 				$detail = $curUser->getProfile();
 				$data = array(
-					'is_login'		 => 1,
-					'user_id'		 => $curUser->getId(),
-					'nickname'		 => $curUser->getName() ? $curUser->getName() : $curUser->getPhone(),
-					'img_url'		 => \Cntysoft\Kernel\get_image_cdn_url($detail->getAvatar(), 100, 100),
-					'profile_url'	 => 'http://' . \Cntysoft\RT_SYS_SITE_NAME,
-					'sign'			 => $this->sign(\Cntysoft\Kernel\get_image_cdn_url($detail->getAvatar(), 100, 100), $curUser->getName() ? $curUser->getName() : $curUser->getPhone(), 'http://' . \Cntysoft\RT_SYS_SITE_NAME, $curUser->getId())
+					'is_login'	 => 1,
+					'user'		 => array(
+						'user_id'		 => $curUser->getId(),
+						'nickname'		 => $curUser->getName() ? $curUser->getName() : $curUser->getPhone(),
+						'img_url'		 => \Cntysoft\Kernel\get_image_cdn_url($detail->getAvatar(), 100, 100),
+						'profile_url'	 => 'http://' . \Cntysoft\RT_SYS_SITE_NAME,
+						'sign'			 => $this->sign(\Cntysoft\Kernel\get_image_cdn_url($detail->getAvatar(), 100, 100), $curUser->getName() ? $curUser->getName() : $curUser->getPhone(), 'http://' . \Cntysoft\RT_SYS_SITE_NAME, $curUser->getId())
+					)
 				);
-				echo $_GET['callback'].'('.json_encode($data).')';
+				echo $_GET['callback'] . '(' . json_encode($data) . ')';
 			}
 		} catch (\Exception $exc) {
 			$data = array(
 				'is_login' => 0
 			);
-			echo $_GET['callback'].'('.json_encode($data).')';
+			echo $_GET['callback'] . '(' . json_encode($data) . ')';
 		}
 	}
+
 	/**
 	 * 生成changyan签名
 	 * @param type $imgUrl
@@ -53,6 +56,7 @@ class NotifyController extends AbstractController
 		$signature = base64_encode(hash_hmac("sha1", $toSign, $mate['appkey'], true));
 		return $signature;
 	}
+
 	/**
 	 * 获取changyanID和secret
 	 * @return array

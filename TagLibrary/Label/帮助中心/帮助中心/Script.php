@@ -153,6 +153,16 @@ class HelpCenter extends AbstractLabelScript
 ';
 	}
 
+	public function openCommnetPageWap()
+	{
+		$mate = $this->getChangyanConfig();
+		$router = $this->getRoute();
+		return '<div id="SOHUCS" sid="'.$router['articleId'].'"></div>
+<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" 
+	src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' . $mate['appid'] . '&conf=' . $mate['appkey'] . '">
+</script>';
+	}
+
 	/**
 	 * 获取changyanID和secret
 	 * @return array
