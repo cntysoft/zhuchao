@@ -524,7 +524,7 @@ class Product extends AbstractScript
             "price"        => $item->getPrice(),
             "comment"      => $item->getComment(),
             "status"       => $item->getStatus(),
-            "url"          => 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $item->getNumber() . '.html'
+            "url"          => $this->getProductUrl($item->getNumber())
          ));
       }
       return $ret;
@@ -580,4 +580,13 @@ class Product extends AbstractScript
       return $ret;
    }
 
+   /**
+    * 获取商品的网址
+    * @param string $number
+    * @return string
+    */
+   protected function getProductUrl($number)
+   {
+      return 'http://'.\Cntysoft\RT_SYS_SITE_NAME . '/itemapp/' . $number . '.html';
+   }
 }

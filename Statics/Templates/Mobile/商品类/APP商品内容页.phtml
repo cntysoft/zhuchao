@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('商品数据源/商品信息', 'goods');
+Qs::Ds('商城数据源/商城数据', 'sites');
+?>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('goods', 'name') ?>-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/proinfo.css', 'swiper.min.css')); ?>
+    </head>
+    <body>
+        <!--标题-->
+        <div class="module_title">
+            <a><?php Qs::DsField('goods', 'name') ?></a>
+        </div>
+        <!--一列广告滑动-->
+        <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Mobile_GoodsContent')) ?>
+        <div class="copy">
+				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
+					 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+		  </div>
+        <!--底部填充-->
+        <div class="footer_padding"></div>
+        <!--加入购物车-->
+        <footer class="footer_fixed clearfix <?php Qs::DsField('goods', 'statusText') ?>">
+            <a class="fl main_bg" href="tel:<?php Qs::DsField('goods', 'showPhone') ?>"><i class="icon-dianhua"></i>联系方式</a>
+            <a class="fr zaixianxunjia"><i class="icon-xunjia"></i>在线询价</a>
+        </footer>
+        <div class="online hide">
+            <h3><i class="icon-fanhuijian  online_close"></i>在线询价</h3>
+
+            <div class="warn">注意：供应商将在24小时内给您回复，回复内容将以短信形式发送至您手机。</div>
+            <form class="m_online" action="">
+                <div class="online_ele">
+                    <span class="online_intro">询价产品：</span>
+                    <span class="online_detail"><?php Qs::DsField('goods', 'name') ?></span>
+                </div>
+                <div class="online_ele">
+                    <span class="online_intro">询价主题：</span>
+
+                    <div class="online_detail">
+                        <div class="xunjia_theme">
+                            <label><input type="radio" name="theme" checked><i></i>价格</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="online_ele">
+                    <span class="online_intro">咨询详情：</span>
+                    <textarea class="" placeholder="请输入最少10个汉字！" id="xunjia_content"></textarea>
+                </div>
+                <div class="online_ele">
+                    <input class="submit_btn main_bg_light xunjia_button" type="button" value="发送">
+                </div>
+            </form>
+        </div>
+        <script>
+           window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
+        </script>
+        <?php Qs::Sys('loadRequireJs', 'mall/proinfo'); ?>
+    </body>
+</html>

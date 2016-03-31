@@ -52,6 +52,42 @@ class ProductController extends AbstractController
    }
 
    /**
+    * 商品详情页面路由
+    * 
+    * @return 
+    */
+   public function productappAction()
+   {
+      $number = $this->dispatcher->getParam('number');
+      if (null === $number) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+      
+      $product = $this->getAppCaller()->call(
+              GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number)
+      );
+
+      if (!$product) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+      
+      $this->setupRenderOpt(array(
+         View::KEY_RESOLVE_DATA => 'productapp',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
+   /**
     * 商品分类列表页面
     * 
     * @return 

@@ -65,6 +65,15 @@
             }
         },
         {
+            "key" : "ItemApp",
+            "rule" : "/itemapp/{number:[ZC]{2}[0-9]{16}}.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "Product",
+                "action" : "productapp"
+            }
+        },
+        {
             "key" : "Item",
             "rule" : "/item/{number:[ZC]{2}[0-9]{16}}.html",
             "option" : {
@@ -189,6 +198,7 @@
         "helpcenter" : "帮助中心模板.phtml",
         "productclassifylist" : "商品类/分类商品列表.phtml",
         "product" : "商品类/商品内容页.phtml",
+        "productapp" : "商品类/APP商品内容页.phtml",
         "search" : "商品类/搜索商品列表.phtml",
         "classifylist" : "商品类/商品分类列表.phtml",
         "searchpage" : "商品类/搜索页.phtml",
