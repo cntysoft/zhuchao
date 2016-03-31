@@ -41,6 +41,12 @@ class NotifyController extends AbstractController
 		}
 	}
 
+	public function logout()
+	{
+		$this->getAppCaller()->call(
+				  BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout');
+	}
+
 	/**
 	 * 生成changyan签名
 	 * @param type $imgUrl

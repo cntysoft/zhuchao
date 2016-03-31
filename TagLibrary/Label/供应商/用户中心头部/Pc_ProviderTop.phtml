@@ -1,21 +1,22 @@
+<?php Qs::Ds('用户数据源/供应商', 'provider') ?>
 <div class="header_top">
     <div class="conwidth header_top_inner clearfix">
         <div class="fl">
-            欢迎来到凤凰筑巢！ <a class="login_btn main_hover" id="providerName"></a> <a class="register_btn main_hover" id="providerlogout">安全退出</a>
+            <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>">欢迎来到凤凰筑巢！</a> <a class="login_btn main_hover" id="providerName" href="http://<?php echo \Cntysoft\RT_PROVIDER_SITE_NAME ?>/account/index.html"><?php Qs::DsField('provider', 'name') ?></a><a class="register_btn main_hover" id="providerlogout">安全退出</a>
         </div>
         <ul class="fr header_top_nav main_hover">
-<!--            <li><a href="">我的询价单</a></li>
-            <li class="line"></li>
-            <li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
-            <li class="line"></li>
-            <li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
-            <li class="line"></li>
-            <li><a href="">供应商专区</a></li>
-            <li class="line"></li>
-            <li><a href="">运营商专区</a></li>
-            <li class="line"></li>-->
+				<!--            <li><a href="">我的询价单</a></li>
+								<li class="line"></li>
+								<li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
+								<li class="line"></li>
+								<li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
+								<li class="line"></li>
+								<li><a href="">供应商专区</a></li>
+								<li class="line"></li>
+								<li><a href="">运营商专区</a></li>
+								<li class="line"></li>-->
             <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a>
-               <div class="down_list">
+					 <div class="down_list">
                     <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a>
                     <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/laobanneican.html">老板内参</a>
                     <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/zhuchaoschool.html">筑巢商学院</a>
@@ -38,20 +39,20 @@
         <a class="logo_img fl" href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>"><img src="<?php Qs::Sys('loadImage', 'logo_white.png'); ?>"> </a>
         <ul class="fr clearfix">
             <li><a class=" <?php
-                echo $this->checkFirst();
-                ?> mainbg_hover" href="/">首页</a></li>
+					 echo $this->checkFirst();
+					 ?> mainbg_hover" href="/">首页</a></li>
             <li><a class="<?php
-                echo $this->checkUrl('account');
-                ?> mainbg_hover" href="/account/index.html">账号中心</a></li>
+					 echo $this->checkUrl('account');
+					 ?> mainbg_hover" href="/account/index.html">账号中心</a></li>
             <li><a class="<?php
-                echo $this->checkUrl('inquiry');
-                ?> mainbg_hover" href="/inquiry/1.html">询价单</a></li>
+					 echo $this->checkUrl('inquiry');
+					 ?> mainbg_hover" href="/inquiry/1.html">询价单</a></li>
             <li><a class="<?php
-                echo $this->checkUrl('product');
-                ?> mainbg_hover" href="/product/1.html">产品中心</a></li>
+					 echo $this->checkUrl('product');
+					 ?> mainbg_hover" href="/product/1.html">产品中心</a></li>
             <li><a class="<?php
-                echo $this->checkUrl('site');
-                ?> mainbg_hover" href="/site/news/1.html">店铺设置</a></li>
+					 echo $this->checkUrl('site');
+					 ?> mainbg_hover" href="/site/news/1.html">店铺设置</a></li>
         </ul>
     </div>
 </div>

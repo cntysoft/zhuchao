@@ -215,7 +215,7 @@ foreach ($superNodes as $super) {
 					 </p>
 					 <p class="pro_banner_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</p>
 				</div>
-				<a class="pro_banner_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 480, 300) . '" alt=""/></a>
+				<a class="pro_banner_img" href="' . $url . '"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 480, 300) . '" alt=""/></a>
 		  </div>';
 	}
 	$out .= '</div>

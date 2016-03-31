@@ -175,7 +175,7 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search','app/comm
          });
       });
       
-      $('.add_btn').click(function(){
+      $('.addr_reset').click(function(){
          type = 'add';
          resetForm();
       });
