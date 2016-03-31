@@ -89,7 +89,7 @@ class Searcher extends AbstractLib
          }
       }
       //最简单的搜索
-      $response = $searcher->search($queryCond);var_dump($searcher);exit;
+      $response = $searcher->search($queryCond);
       $response = $response['result'];
       $ret = array();
       $searchRet = array(

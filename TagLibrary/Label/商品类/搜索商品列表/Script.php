@@ -121,11 +121,18 @@ class Search extends AbstractLabelScript
    {
       $keys = $this->getKeys();
 
+//      return $this->appCaller->call(
+//         SEARCH_CONST::MODULE_NAME, 
+//         SEARCH_CONST::APP_NAME, 
+//         SEARCH_CONST::APP_API_SEARCHER, 
+//         'query', 
+//         array($keys['keyword'], $keys['page'], $keys['size'], $keys['sort'], $keys['filter'], true)
+//      );
       return $this->appCaller->call(
-         SEARCH_CONST::MODULE_NAME, 
-         SEARCH_CONST::APP_NAME, 
-         SEARCH_CONST::APP_API_SEARCHER, 
-         'query', 
+         PRODUCT_CONST::MODULE_NAME, 
+         PRODUCT_CONST::APP_NAME, 
+         PRODUCT_CONST::APP_API_PRODUCT_MGR, 
+         'searchGoods', 
          array($keys['keyword'], $keys['page'], $keys['size'], $keys['sort'], $keys['filter'], true)
       );
    }

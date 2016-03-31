@@ -21,7 +21,7 @@ foreach ($goodsLists['docs'] as $goods) {
    $out .= ' <div class="show_list clearfix">
                             <a class="pro_img" href="'.$url.'"><img src="' . $imageUrl. '"> </a>
                             <div class="pro_info">
-                                <h1>' . $name. ' </h1>
+                                <h1><a href="'.$url.'">' . $name. ' </a></h1>
                                 <table>
                                     <tr>
                                         <th>' . implode('</th><th>', array_slice(array_keys($attrvalue), 0, 6)) . '</th>

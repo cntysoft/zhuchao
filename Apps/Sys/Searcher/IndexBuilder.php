@@ -341,6 +341,7 @@ class IndexBuilder extends AbstractLib
       if (empty($docs)) {
          return;
       }
+
       $docMgr = new DocMgr($this->getGoodsIndexName(),
          $this->getOpenSearchApiCaller());
       //@TODO 这个地方可能会有漏洞，可能造成的情况是这边的数据库里面的标志信息已经更新但是搜索引擎的索引没有更新
