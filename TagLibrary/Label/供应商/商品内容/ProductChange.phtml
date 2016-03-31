@@ -123,18 +123,18 @@ if(count($normalAttrs)){
          if($nameExist){
             $out.='<div class="attr_list clearfix basic">
                <span class="attr_title">'.$star.$name.'：</span>
-               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="10" value="'.$attribute['基本参数'][$name].'"></div>';
+               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="30" value="'.$attribute['基本参数'][$name].'"></div>';
          }else{
             $out.='<div class="attr_list clearfix basic">
                <span class="attr_title">'.$star.$name.'：</span>
-               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="10"></div>';
+               <input class="attr_info input_text attrInput" type="text" '.$required.' id="'.$name.'" fh-type="length" minlength="1" maxlength="30"></div>';
          }
       }
    }
 }
 if(isset($attribute['自定义属性']) && count($attribute['自定义属性'])){
       foreach($attribute['自定义属性'] as $name => $val){
-         $out.='<div class="attr_list clearfix customAttr"><span class="attr_title add_title"><input type="text" class="attrTitle" style="text-align:left" fh-type="length" minlength="1" maxlength="6" required="" value="'.$name.'">：</span><input class="attr_info input_text attrInput" type="text" fh-type="length" minlength="1" maxlength="10" required="" value="'.$val.'"><span class="attr_delete deleteAttr">删除</span> </div>';
+         $out.='<div class="attr_list clearfix customAttr"><span class="attr_title add_title"><input type="text" class="attrTitle" style="text-align:left" fh-type="length" minlength="1" maxlength="10" required="" value="'.$name.'">：</span><input class="attr_info input_text attrInput" type="text" fh-type="length" minlength="1" maxlength="30" required="" value="'.$val.'"><span class="attr_delete deleteAttr">删除</span> </div>';
       }
    }
    $out.='<p class="attr_add">

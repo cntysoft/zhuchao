@@ -19,7 +19,7 @@ class Inquiry extends AbstractLabelScript
    {
       $user = $this->getCurUser();
       $orderBy = 'id desc';
-      $cond = "id = " . $user->getId();
+      $cond = array("id = " . $user->getId());
       $pageSize = $this->getOutputNum();
       $offset = ($page - 1) * $pageSize;
       $inquiry = $this->appCaller->call(MessageMgr_Const::MODULE_NAME, MessageMgr_Const::APP_NAME, MessageMgr_Const::APP_API_OFFER, 'getInquiryList', array($cond, true, $orderBy, $pageSize, $offset));
