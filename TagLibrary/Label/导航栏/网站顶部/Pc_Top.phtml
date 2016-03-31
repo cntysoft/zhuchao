@@ -5,7 +5,7 @@
             <?php
             $isLogin = $this->checkLogin();
             if (!$isLogin) {
-               echo '<a class="login_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
+               echo '<a class="login_btn main_hover" target="_blank" hrefdata="http://' . $this->getBuyerSiteName() . '/login.html">请登录</a> <a class="register_btn main_hover" target="_blank" href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>';
             } else {
                $curUser = $this->getCurUser();
                $followed = empty($this->checkFollowed()) ? 0 : 1;

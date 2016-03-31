@@ -8,8 +8,8 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-        <title><?php Qs::DsField('CP', 'name') ?>－产品列表-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <title><?php Qs::DsField('CP', 'name') ?>－搜索-<?php Qs::DsField('CP', 'description') ?></title>
+        <meta name="description" content="<?php Qs::DsField('CP', 'description') ?>">
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
@@ -37,9 +37,9 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         </div>-->
         </div>
         <div class="copy">
-				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
-					 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME)*1000, 2) . 'ms'; ?></p>
-		  </div>
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
         <?php Qs::Sys('loadRequireJs', 'company/search') ?>
     </body>
 </html>

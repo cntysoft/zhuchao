@@ -7,18 +7,18 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><?php Qs::DsField('CP', 'name') ?>－首页-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <title><?php Qs::DsField('CP', 'name') ?>－首页-<?php Qs::DsField('CP', 'description') ?></title>
+        <meta name="description" content="<?php Qs::DsField('CP', 'description') ?>">
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <?php Qs::Sys('loadCss', array('company/style.css', 'swiper.min.css', 'company/index.css')) ?>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'swiper.min.css', 'company/index.css')) ?>
         <meta name="viewport"
               content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     </head>
     <body>
         <!--头部-->
-		  <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
         <!-- 内容-->
         <div class="l_main" id="l_main">
             <!--banner-->
@@ -37,10 +37,10 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="company_intro">
                 <div class="intro_detial">
                     <p>
-								<?php
-								$inrodata = Qs::DsField('CS', 1, true);
-								echo iconv_strlen($inrodata) > 92 ? iconv_substr($inrodata, 0, 92) . '...' : $inrodata
-								?> <a href="/about.html">查看详情>></a>
+                        <?php
+                        $inrodata = Qs::DsField('CS', 1, true);
+                        echo mb_strlen($inrodata) > 92 ? mb_substr($inrodata, 0, 92) . '...' : $inrodata
+                        ?> <a href="/about.html">查看详情>></a>
                     </p>
                 </div>
             </div>
@@ -48,19 +48,19 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="module_title">
                 <i></i><span><a href="/newscenter.html">新闻动态</a></span><i></i>
             </div>
-				<?php
-				Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_IndexNewList', 'nodeIdentifier' => array('newscenter', 'companynews', 'industrynews'), 'titleLength' => 17, 'introLength' => 20, 'outputNum' => 4, 'enablePage' => false, 'listSubNode' => true))
-				?>
+            <?php
+            Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_IndexNewList', 'nodeIdentifier' => array('newscenter', 'companynews', 'industrynews'), 'titleLength' => 17, 'introLength' => 20, 'outputNum' => 4, 'enablePage' => false, 'listSubNode' => true))
+            ?>
             <!--产品展示-->
             <div class="module_title">
                 <i></i><span><a href="/productlist/1.html">产品展示</a></span><i></i>
             </div>
-				<?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_IndexProductList', 'outputNum' => 4, 'enablePage' => false)); ?>
+            <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_IndexProductList', 'outputNum' => 4, 'enablePage' => false)); ?>
         </div>
         <div class="copy">
-				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
-					 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
-		  </div>
-		  <?php Qs::Sys('loadRequireJs', 'company/index') ?>
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'company/index') ?>
     </body>
 </html>

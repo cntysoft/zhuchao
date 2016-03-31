@@ -43,8 +43,9 @@ define(['jquery', 'module/totop', 'Front', 'Core'], function (){
          $('#totop a.shoucang em').html('已加');
       }
       $('#totop a.shoucang').click(function (){
+         var thisurl = window.location.href;
          if($('.header_top a.logout').length == 0){
-            window.location.href = window.BUYER_SITE_NAME + '/login.html';
+            window.location.href = window.BUYER_SITE_NAME + '/login.html?returnUrl=' + encodeURIComponent(thisurl);
          }
          if($(this).hasClass('followed')){
             return;
@@ -58,7 +59,7 @@ define(['jquery', 'module/totop', 'Front', 'Core'], function (){
                $('#totop a.shoucang em').html('已加');
             } else{
                if(response.errorCode == 10014){
-                  window.location.href = window.BUYER_SITE_NAME + '/login.html';
+                  window.location.href = window.BUYER_SITE_NAME + '/login.html?returnUrl=' + encodeURIComponent(thisurl);
                }
             }
          }
@@ -72,6 +73,13 @@ define(['jquery', 'module/totop', 'Front', 'Core'], function (){
                window.location.reload();
             }
          }, true);
+      });
+
+      $('.login_btn').click(function (){
+         if($(this).attr('hrefdata')){
+            var thisurl = window.location.href;
+            window.location.href = $(this).attr('hrefdata') + '?returnUrl=' + encodeURIComponent(thisurl);
+         }
       });
    });
 });

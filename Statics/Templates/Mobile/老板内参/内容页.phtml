@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <?php
-Qs::Ds('商城数据源/商城数据', 'sites');
-Qs::Ds('栏目数据源/栏目SEO', 'category');
+Qs::Ds('内容数据源/标准内容模型', 'AC')
 ?>
-<?php Qs::Ds('内容数据源/标准内容模型', 'AC') ?>
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>老版内参内容页-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <title><?php Qs::DsField('AC', 'title') ?></title>
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">  
-        <meta name="description" content="<?php Qs::DsField('category', 'description') ?>">
-        <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
+        <meta name="description" content="<?php Qs::DsField('AC', 'intro') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('AC', 'keywords') ?>">
         <?php Qs::Sys('loadCss', array('referenceindex/style.css', 'referenceindex/referenceinfo.css', 'swiper.min.css')) ?>
     </head>
     <body>
@@ -43,26 +41,29 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
             </div>
             <div class="module_content">
                 <?php Qs::DsField('AC', 'content') ?>
-                <div class="prev_next">
-                    <p><em>上一篇：</em><?php
+                <div class="up_down">
+                    <div>
+                        上一篇：<?php
                         $prev = Qs::DsField('AC', 'prev', true);
                         if ($prev) {
-                           $prevtitle = iconv_strlen($prev[1]) > 15 ? iconv_substr($prev[1], 0, 15) . '...' : $prev[1];
-                           echo '<a style="color: #333;" href="' . $prev[0] . '">' . $prevtitle . '</a>';
+                           $pretitle = mb_strlen($prev[1]) > 15 ? mb_substr($prev[1], 0, 15) . '...' : $prev[1];
+                           echo '<a style="color: #333;" href="' . $prev[0] . '">' . $pretitle . '</a>';
                         } else {
                            echo '木有了';
                         }
                         ?>
-                    </p>
-                    <p><em>下一篇：</em><?php
+                    </div>
+                    <div>
+                        下一篇：<?php
                         $next = Qs::DsField('AC', 'next', true);
                         if ($next) {
-                           $nexttitle = iconv_strlen($next[1]) > 15 ? iconv_substr($next[1], 0, 15) . '...' : $next[1];
+                           $nexttitle = mb_strlen($next[1]) > 15 ? mb_substr($next[1], 0, 15) . '...' : $next[1];
                            echo '<a style="color: #333;" href="' . $next[0] . '">' . $nexttitle . '</a>';
                         } else {
                            echo '正在更新中，请等待~';
                         }
-                        ?></p>
+                        ?>
+                    </div>
                 </div>
 					 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'ChangyanCommentWap'))  ?>
             </div>
