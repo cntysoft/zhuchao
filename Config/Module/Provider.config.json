@@ -209,6 +209,15 @@
         },
         {
             "key" : "ProviderYunzhan",
+            "rule" : "\/site\/setting.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "setting"
+            }
+        },
+        {
+            "key" : "ProviderYunzhan",
             "rule" : "\/site\/news\/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Provider",
@@ -338,6 +347,7 @@
         "provider\/businessmsg" : "供应商\/服务消息.phtml",
         "provider\/sysmsg" : "供应商\/系统消息.phtml",
         "provider/open" : "供应商\/云站\/站点开通.phtml",
+        "yunzhan/setting" : "供应商\/云站\/店铺设置.phtml",
         "yunzhan/newslist" : "供应商\/云站\/新闻列表.phtml",
         "yunzhan/addnews" : "供应商\/云站\/添加新闻.phtml",
         "yunzhan/modifynews" : "供应商\/云站\/修改新闻.phtml",

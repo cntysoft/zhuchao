@@ -32,6 +32,14 @@ class YunzhanController extends AbstractController
       }
    }
 
+   public function settingAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/setting',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+   
    public function newslistAction()
    {
       return $this->setupRenderOpt(array(

@@ -1,6 +1,6 @@
 <?php
 $routeInfo = $this->getRouteInfo();
-$cls1 = $cls2 = $cls3 = $cls4 = $cls5 = $cls6 = $cls7 = $cls8 = $cls9 = $cls10 = $cls11 = $cls12 = $cls13 = $cls14 = $cls15 = $cls16 = '';
+$cls1 = $cls2 = $cls3 = $cls4 = $cls5 = $cls6 = $cls7 = $cls8 = $cls9 = $cls10 = $cls11 = $cls12 = $cls13 = $cls14 = $cls15 = $cls16 = $cls17 = '';
 switch ($routeInfo['action']) {
    case 'account':
       $cls1 = 'main_bg_light';
@@ -61,6 +61,9 @@ switch ($routeInfo['action']) {
    case 'contact':
       $cls16 = 'main_bg_light';
       break;
+   case 'setting':
+      $cls17 = 'main_bg_light';
+      break;
 }
 
 $out = '<div class="items_wrap fl">
@@ -83,6 +86,7 @@ $out = '<div class="items_wrap fl">
          </dl>
          <dl>
              <dt><i class="icon-shangou"></i>店铺设置</dt>
+             <dd><a class="mainbg_hover_light ' . $cls17 . '" href="/site/setting.html">基本设置</a></dd>
              <dd><a class="mainbg_hover_light ' . $cls9 . '" href="/site/news/1.html">店铺新闻</a></dd>
              <dd><a class="mainbg_hover_light ' . $cls10 . '" href="/site/job/1.html">招聘信息</a></dd>
              <dd><a class="mainbg_hover_light ' . $cls11 . '" href="/site/intro.html">企业介绍</a></dd>
