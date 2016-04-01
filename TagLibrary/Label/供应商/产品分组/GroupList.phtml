@@ -1,0 +1,44 @@
+<?php
+$tree = $this->getGroupTree();
+$groups = $tree->getChildren(0, 1, true);
+$out = '';
+
+if(count($groups)){
+   foreach($groups as $group){
+      $children = $tree->getChildren($group->getId(), 1, true);
+      $out.='<div class="group_li">
+                <div class="group_parent clearfix">
+                    <div class="li_name" fh-id="'.$group->getId().'">
+                        <span>'.(count($children) > 0 ? '+' : '').'</span>
+                        <span class="group_name" fh-id="'.$group->getId().'">'.$group->getName().'</span>
+                    </div>
+                    <div class="li_add_child">
+                        <a class="add_btn" href="javascript:;">添加子分组</a>
+                    </div>
+                    <div class="user_action">
+                        <a class="change_name">修改名称</a>
+                        <span>|</span>
+                        <a class="delete_group">删除</a>
+                    </div>
+                </div>';
+      
+      if(count($children)){
+         foreach($children as $one){
+            $out.='<div class="group_child clearfix">
+                    <div class="li_name">
+                        <span class="group_name" fh-id="'.$one->getId().'">'.$one->getName().'</span>
+                    </div>
+                    <div class="user_action">
+                        <a class="change_name">修改名称</a>
+                        <span>|</span>
+                        <a class="delete_group">删除</a>
+                    </div>
+                </div>';
+         }
+      }
+      $out.='</div>';
+   }
+}
+
+echo $out;
+

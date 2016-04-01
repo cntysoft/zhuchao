@@ -358,6 +358,15 @@
                 "controller" : "Exception",
                 "action" : "notfind"
             }
+        },
+        {
+            "key" : "ProviderGroup",
+            "rule" : "\/group\/{pageId:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Product",
+                "action" : "group"
+            }
         }
     ],
     "hostName" : true,

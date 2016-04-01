@@ -34,4 +34,6 @@ class Constant
    const SORT_GRADE = 'grade';
    const FLAG_UP = '+';
    const FLAG_DOWN = '-';
+   
+   const GROUP_MAX_NUM = 10;
 }

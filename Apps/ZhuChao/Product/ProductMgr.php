@@ -928,4 +928,11 @@ class ProductMgr extends AbstractLib
          return $db;
       });
    }
+   
+   public function getProductByNumbers($numbers)
+   {
+      return ProductModel::find(array(
+         ProductModel::generateRangeCond('number', $numbers)
+      ));
+   }
 }

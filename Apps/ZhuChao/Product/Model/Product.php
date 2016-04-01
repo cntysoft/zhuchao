@@ -56,8 +56,8 @@ class Product extends BaseModel
             'action' => Relation::ACTION_CASCADE
          )
       ));
-      $this->hasManyToMany('id', 'App\ZhuChao\Product\Model\Product2Group', 'productId', 'groupId', 'App\ZhuChao\Product\Model\Group', 'id', array(
-         'alias' => 'groups'
+      $this->hasOne('id', 'App\ZhuChao\Product\Model\Product2Group', 'productId',array(
+         'alias' => 'pg'
       ));
    }
    

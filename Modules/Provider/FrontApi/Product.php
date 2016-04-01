@@ -350,9 +350,74 @@ class Product extends AbstractScript
       );
    }
    
+   /**
+    * 删除分组
+    * 
+    * @param array $params
+    */
    public function deleteGroup(array $params)
    {
+      $curUser = $this->appCaller->call(
+         PROVIDER_CONST::MODULE_NAME,
+         PROVIDER_CONST::APP_NAME,
+         PROVIDER_CONST::APP_API_MGR,
+         'getCurUser'
+      );
+      $this->checkRequireFields($params, array('id'));
       
+      $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_GROUP_MGR,
+         'deleteGroups',
+         array($curUser->getId(), array((int)$params['id']))
+      );
+   }
+   
+   public function changeGroupProduct(array $params)
+   {
+      $this->checkRequireFields($params, array('groupId', 'numbers'));
+      $curUser = $this->appCaller->call(
+         PROVIDER_CONST::MODULE_NAME,
+         PROVIDER_CONST::APP_NAME,
+         PROVIDER_CONST::APP_API_MGR,
+         'getCurUser'
+      );
+      $numbers = is_array($params['numbers']) ? $params['numbers'] : array($params['numbers']);
+      
+      $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_GROUP_MGR,
+         'changeGroupProduct',
+         array($curUser->getId(), $params['groupId'], $numbers)
+      );
+   }
+   
+   /**
+    * 修改分组信息
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function modifyGroup(array $params)
+   {
+      $curUser = $this->appCaller->call(
+         PROVIDER_CONST::MODULE_NAME,
+         PROVIDER_CONST::APP_NAME,
+         PROVIDER_CONST::APP_API_MGR,
+         'getCurUser'
+      );
+      $this->checkRequireFields($params, array('id', 'name'));
+      $id = $params['id'];
+      
+      return $this->appCaller->call(
+         P_CONST::MODULE_NAME,
+         P_CONST::APP_NAME,
+         P_CONST::APP_API_GROUP_MGR,
+         'modifyGroup',
+         array($curUser->getId(), $id, $params)
+      );
    }
    
    /**

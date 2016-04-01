@@ -19,6 +19,16 @@ class Product2Group extends BaseModel
       return 'join_product_group';
    }
    
+   public function initialize()
+   {
+      $this->belongsTo('groupId', 'App\ZhuChao\Product\Model\Group', 'id', array(
+         'alias' => 'group'
+      ));
+      $this->belongsTo('productId', 'App\ZhuChao\Product\Model\Product', 'id', array(
+         'alias' => 'product'
+      ));
+   }
+   
    public function getProductId()
    {
       return (int)$this->productId;

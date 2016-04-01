@@ -9,6 +9,7 @@
 namespace App\ZhuChao\Product;
 use Cntysoft\Kernel\App\AbstractLib;
 use App\ZhuChao\Product\Model\Group as GroupModel;
+use App\ZhuChao\Product\Model\Product2Group as PGModel;
 use Cntysoft\Kernel;
 
 class GroupMgr extends AbstractLib
@@ -58,7 +59,16 @@ class GroupMgr extends AbstractLib
    public function addGroup($providerId, array $params)
    {
       $this->checkRequireFields($params, array('name', 'pid'));
-      $group = new GroupModel();
+      
+      $tree = $this->getGroupTree($providerId);
+      $groups = $tree->getChildren($params['pid'], 1);
+      if(count($groups) >= Constant::GROUP_MAX_NUM){
+         $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+               $errorType->msg('E_GROUP_MAX_NUM'), $errorType->code('E_GROUP_MAX_NUM')
+            ), $this->getErrorTypeContext());
+      }
+      
       if(0 != $params['pid']){
          $group = GroupModel::findFirst(array(
             'id=?0',
@@ -80,6 +90,7 @@ class GroupMgr extends AbstractLib
             ), $this->getErrorTypeContext());
          }
       }
+      $group = new GroupModel();
       $group->setPid($params['pid']);
       $group->setName($params['name']);
       $group->setInputTime(time());
@@ -159,7 +170,7 @@ class GroupMgr extends AbstractLib
    /**
     * 获取指定用户指定id分组的子分组
     * 
-    * @param integer $provider
+    * @param integer $providerId
     * @param integer $id
     * @param boolean $flag
     */
@@ -168,5 +179,121 @@ class GroupMgr extends AbstractLib
       $tree = $this->getGroupTree($providerId);
       
       return $tree->getChildren($id, 1, $flag);
+   }
+   
+   /**
+    * 获取指定供应商的分组信息
+    * 
+    * @param integer $providerId
+    * @return 
+    */
+   public function getGroupByProvider($providerId)
+   {
+      return GroupModel::find(array(
+         'providerId=?0',
+         'bind' => array(
+            0 => $providerId
+         )
+      ));
+   }
+   
+   public function getProductByGroup($providerId, $groupId, $total = false, $orderBy = 'productId DESC', $offset = 0, $limit = 15)
+   {
+      $ids = array();
+      if($groupId){
+         $group = GroupModel::findFirst(array(
+            'providerId=?0 and id=?1',
+            'bind' => array(
+               0 => $providerId,
+               1 => $groupId
+            )
+         ));
+         
+         if(!$group){
+            $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+               $errorType->msg('E_GROUP_NOT_EXIST'), $errorType->code('E_GROUP_NOT_EXIST')
+            ), $this->getErrorTypeContext());
+         }
+         $ids = array($groupId);
+         $cond = PGModel::generateRangeCond('groupId', $ids);
+         $items = PGModel::find(array(
+            $cond,
+            'order' => $orderBy,
+            'limit' => array(
+               'offset' => $offset,
+               'number' => $limit
+            )
+         ));
+         $ret = array();
+         foreach($items as $one){
+            $ret[] = $one->getProduct();
+         }
+         
+         if($total){
+            return array($ret, PGModel::count(array($cond)));
+         }
+         
+         return $ret;  
+      }else{
+         return $this->getAppCaller()->call(
+            Constant::MODULE_NAME,
+            Constant::APP_NAME,
+            Constant::APP_API_PRODUCT_MGR,
+            'getProductList',
+            array(array('providerId='.$providerId .' and status!='. Constant::PRODUCT_STATUS_DRAFT . ' and status!='.Constant::PRODUCT_STATUS_DELETE),  $total, 'id DESC', $offset, $limit)
+         );
+      }
+   }
+   
+   /**
+    * 修改商品和分组的关系
+    * 
+    * @param integer $providerId
+    * @param integer $groupId
+    * @param array $numbers
+    */
+   public function changeGroupProduct($providerId, $groupId, array $numbers)
+   {
+      $products = $this->getAppCaller()->call(
+         Constant::MODULE_NAME,
+         Constant::APP_NAME,
+         Constant::APP_API_PRODUCT_MGR,
+         'getProductByNumbers',
+         array($numbers)
+      );
+      $newPid = array();
+      foreach($products as $product){
+         $newPid[] = $product->getId();
+      }
+      
+      $modelsManager = Kernel\get_models_manager();
+      $query = sprintf('DELETE FROM %s WHERE '. PGModel::generateRangeCond('productId', $newPid), 'App\ZhuChao\Product\Model\Product2Group');
+      $modelsManager->executeQuery($query);
+      
+      if($groupId){
+         $group = GroupModel::findFirst(array(
+            'providerId=?0 and id=?1',
+            'bind' => array(
+               0 => $providerId,
+               1 => $groupId
+            )
+         ));
+
+         if(!$group){
+            $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+               $errorType->msg('E_GROUP_NOT_EXIST'), $errorType->code('E_GROUP_NOT_EXIST')
+            ), $this->getErrorTypeContext());
+         }
+
+         foreach($newPid as $pid){
+            $npg = new PGModel();
+            $npg->setGroupId($groupId);
+            $npg->setProductId($pid);
+            $npg->create();
+            unset($npg);
+         }
+      }
    }
 }
