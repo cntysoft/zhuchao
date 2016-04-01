@@ -6,9 +6,9 @@
     </tr>
     <?php
     use App\Yunzhan\Content\Constant;
-$routeInfo = $this->getRouteInfo();
+    $routeInfo = $this->getRouteInfo();
     $page = $routeInfo['pageId'];
-    $info = $this->getNewsList(Constant::CMODEL_CASEINFO_ID, $page);
+    $info = $this->getCaseList(Constant::CMODEL_CASEINFO_ID, $page);
     $total = $info[1];
     $list = $info[0];
     echo '<script>var pageInfo={total:' . $total . ',currentPage:' . $page . ',pageSize:' . $this->getOutputNum() . '}</script>';
@@ -23,7 +23,7 @@ $routeInfo = $this->getRouteInfo();
                         </td>
                         <td class="news_time">' . date('Y-m-d H:i:s', $info->getInputTime()) . '</td>
                         <td class="news_operate">
-                            <a href="/site/modifynews/' . $info->getId() . '.html">修改</a>
+                            <a href="/site/casemodify/' . $info->getId() . '.html">修改</a>
                             <span>|</span>
                             <a fh-data="' . $info->getId() . '" class="delete">删除</a>
                         </td>

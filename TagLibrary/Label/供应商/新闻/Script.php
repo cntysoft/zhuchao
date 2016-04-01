@@ -19,7 +19,7 @@ class News extends AbstractLabelScript
     * @var int
     */
    protected $outputNum;
-   
+
    /**
     * 获取不同类型的信息列表
     * 
@@ -31,17 +31,13 @@ class News extends AbstractLabelScript
    {
       $orderBy = 'id desc';
       $pageSize = $this->getOutputNum();
-      $offset = ($page-1) * $pageSize;
+      $offset = ($page - 1) * $pageSize;
       $inquiry = $this->appCaller->call(
-              CONTENRT_CONST::MODULE_NAME, 
-              CONTENRT_CONST::APP_NAME, 
-              CONTENRT_CONST::APP_API_INFO_LIST, 
-              'getInfoListByNodeAndStatus', 
-              array(array(CONTENRT_CONST::NODE_COMPANY_ID, CONTENRT_CONST::NODE_INDUSTRY_ID), $type, CONTENRT_CONST::INFO_S_ALL, true, $orderBy, $offset, $pageSize)
-              );
+              CONTENRT_CONST::MODULE_NAME, CONTENRT_CONST::APP_NAME, CONTENRT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array(CONTENRT_CONST::NODE_COMPANY_ID, CONTENRT_CONST::NODE_INDUSTRY_ID), $type, CONTENRT_CONST::INFO_S_ALL, true, $orderBy, $offset, $pageSize)
+      );
       return $inquiry;
    }
-   
+
    /**
     * 获取不同类型的信息列表
     * 
@@ -53,29 +49,40 @@ class News extends AbstractLabelScript
    {
       $orderBy = 'id desc';
       $pageSize = $this->getOutputNum();
-      $offset = ($page-1) * $pageSize;
+      $offset = ($page - 1) * $pageSize;
       $inquiry = $this->appCaller->call(
-              CONTENRT_CONST::MODULE_NAME, 
-              CONTENRT_CONST::APP_NAME, 
-              CONTENRT_CONST::APP_API_INFO_LIST, 
-              'getInfoListByNodeAndStatus', 
-              array(array(CONTENRT_CONST::NODE_JOIN_ID), $type, CONTENRT_CONST::INFO_S_ALL, true, $orderBy, $offset, $pageSize)
-              );
+              CONTENRT_CONST::MODULE_NAME, CONTENRT_CONST::APP_NAME, CONTENRT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array(CONTENRT_CONST::NODE_JOIN_ID), $type, CONTENRT_CONST::INFO_S_ALL, true, $orderBy, $offset, $pageSize)
+      );
       return $inquiry;
    }
-   
+
+   /**
+    * 获取不同类型的信息列表
+    * 
+    * @param int $type
+    * @param int $page
+    * @return 
+    */
+   public function getCaseList($type, $page)
+   {
+      $orderBy = 'id desc';
+      $pageSize = $this->getOutputNum();
+      $offset = ($page - 1) * $pageSize;
+      $inquiry = $this->appCaller->call(
+              CONTENRT_CONST::MODULE_NAME, CONTENRT_CONST::APP_NAME, CONTENRT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array(array(CONTENRT_CONST::NODE_CASE_ID), $type, CONTENRT_CONST::INFO_S_ALL, true, $orderBy, $offset, $pageSize)
+      );
+      return $inquiry;
+   }
+
    public function readInfo($id)
    {
       $info = $this->appCaller->call(
-              CONTENRT_CONST::MODULE_NAME, 
-              CONTENRT_CONST::APP_NAME, 
-              CONTENRT_CONST::APP_API_MANAGER, 
-              'read', array($id)
-              );
-      
+              CONTENRT_CONST::MODULE_NAME, CONTENRT_CONST::APP_NAME, CONTENRT_CONST::APP_API_MANAGER, 'read', array($id)
+      );
+
       return $info[1];
    }
-   
+
    /**
     * 获取信息分页参数
     *

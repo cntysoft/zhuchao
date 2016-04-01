@@ -32,5 +32,10 @@ class Constant
    const MODULE_NAME = 'Yunzhan';
    const APP_NAME = 'Category';
    const APP_API_STRUCTURE = 'Structure';
-
+   //栏目
+   const NODE_COMPANY_ID = 2; //企业新闻栏目
+   const NODE_INDUSTRY_ID = 3; //行业新闻栏目
+   const NODE_ABOUT_ID = 4; //关于我们栏目
+   const NODE_JOIN_ID = 5; //招聘中心栏目
+   const NODE_CASE_ID = 6; //案例中心栏目
 }

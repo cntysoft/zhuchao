@@ -12,6 +12,7 @@ use App\Yunzhan\CmMgr\Constant as CM_CONST;
 use App\Yunzhan\Content\Constant as CN_CONST;
 use App\Yunzhan\Setting\Constant as SETTING_CONST;
 use App\ZhuChao\Provider\Constant as P_CONST;
+use App\Yunzhan\Category\Constant as CATE_CONST;
 use Cntysoft\Kernel;
 class Site extends AbstractScript
 {
@@ -184,6 +185,114 @@ class Site extends AbstractScript
          'setItem',
          array('Seo', 'description', $params['description'])
       );
+   }
+   
+   public function addCase($params)
+   {
+      $this->checkRequireFields($params, array('content', 'nodeId', 'title', 'intro', 'fileRefs'));
+      unset($params['id']);
+
+      $params['nodeId'] = $this->getCaseNodeId($params['nodeId']);
+      $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
+      $company = $user->getCompany();
+      $params['editor'] = $params['author'] = $company->getName();
+      //这里直接审核通过,以后要加上内容审核
+      $params['status'] = CN_CONST::INFO_S_VERIFY;
+      $cndServer = Kernel\get_image_cdn_server_url() . '/';
+
+      //删除图片的网址
+      $content = array();
+      $defaultPicUrl = '';
+      foreach($params['content'] as $key => $item) {
+         $img = str_replace($cndServer, '', $item['src']);
+         if(0 == $key) {
+            $defaultPicUrl = $img;
+         }
+         
+         array_push($content, array(
+            'rid' => $item['rid'],
+            'src' => $img,
+            'intro' => $item['intro']
+         ));
+      }
+      
+      unset($params['content']);
+      $params['content'] = $content;
+      $params['defaultPicUrl'] = $defaultPicUrl;
+      return $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'add', array(CN_CONST::CMODEL_CASEINFO_ID, $params));
+   }
+   
+   public function modifyCase($params)
+   {
+      $this->checkRequireFields($params, array('id', 'content', 'title', 'intro', 'fileRefs'));
+      $id = $params['id'];
+      unset($params['id']);
+      $cndServer = Kernel\get_image_cdn_server_url() . '/';
+
+      //删除图片的网址
+      $content = array();
+      $defaultPicUrl = '';
+      foreach($params['content'] as $key => $item) {
+         $img = str_replace($cndServer, '', $item['src']);
+         if(0 == $key) {
+            $defaultPicUrl = $img;
+         }
+         
+         array_push($content, array(
+            'rid' => $item['rid'],
+            'src' => $img,
+            'intro' => $item['intro']
+         ));
+      }
+      
+      unset($params['content']);
+      $params['content'] = $content;
+      $params['defaultPicUrl'] = $defaultPicUrl;
+      return $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array($id, $params));
+   }
+   
+   public function addCaseCategory()
+   {
+      
+   }
+   
+   /**
+    * 获取案例中心的子栏目列表
+    * 
+    * @return array
+    */
+   public function getCaseCategory()
+   {
+      $list = $this->appCaller->call(CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getSubNodes', array(CATE_CONST::NODE_CASE_ID));
+      $ret = array();
+      foreach($list as $cate) {
+         array_push(array(
+            'id' => $cate->getId(),
+            'text' => $cate->getText()
+         ));
+      }
+      
+      return $ret;
+   }
+   
+   /**
+    * 验证案例的分组
+    * 
+    * @param int $id
+    * @return int
+    */
+   protected function getCaseNodeId($id)
+   {
+      if(CATE_CONST::NODE_CASE_ID == $id) {
+         return $id;
+      }
+      
+      $node = $this->appCaller->call(CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNode', array($id));
+      if(CATE_CONST::NODE_CASE_ID == $node->getPid()) {
+         return $id;
+      }else {
+         return CATE_CONST::NODE_CASE_ID;
+      }
    }
    
 }

@@ -1,7 +1,6 @@
 define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], function (validate, WebUploader, common){
     $(function (){
         var uploadIndex = -1;
-        var images = new Array();
         var uploaderConfig, uploadProductImg;
         init();
         function init()
@@ -10,17 +9,22 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
             if(!$('.img_uploading li.hide').length){
                 createProductUpload();
             }
-            var $uploaded = $('.img_uploading .img_wrap_div');
-            if($uploaded.length > 0){
-                $.each($uploaded, function (index, item){
-                    var $img = $(item).find('img'), $input = $(item).find('input');
-                    images.push([$img.attr('src').split('@.src')[0], $img.attr('fh-id'), $input.val()]);
-                });
-            }
         }
 
         //加载案例中心的子栏目列表
-        
+        Cntysoft.Front.callApi('Site', 'getCaseCategory', {}, function(response) {
+            if(response.status) {
+                var data = response.data;
+                var options = '';
+                $.each(data, function(index) {
+                    var item = data[index];
+                    options += '<option  value="' + item['id'] + '" selected>' + item['text'] + '</option>';
+                });
+                $('#nodeId').append(options);
+            }else {
+                //暂不处理
+            }
+        });
 
         //提交 submit为保存,draft为生成草稿
         $('#submit').click(function (){
@@ -29,13 +33,20 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
                 layer.msg('请正确填写各项');
                 return false;
             }
+            var images = $('.img_wrap_div');
+            var content = [];
+            var fileRefs = [];
             var imageLen = images.length;
-            var banners = $('.img_wrap_div');
             if(imageLen > 0){
-                $.each(banners, function (index, dom){
-                    images[index]['intro'] = $(dom).find('input').val();
+                $.each(images, function (index, dom){
+                    var img = {};
+                    img['rid'] = $(dom).find('img').attr('fh-id');
+                    img['src'] = $(dom).find('img').attr('src');
+                    img['intro'] = $(dom).find('input').val();
+                    content.push(img);
+                    fileRefs.push(img['rid']);
                 });
-            }else {
+            } else{
                 layer.msg('请至少上传一张图片');
                 return false;
             }
@@ -43,23 +54,24 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
             var title = $('#title').val();
             var intro = $('#intro').val();
             var nodeId = $('#nodeId').val();
-            Cntysoft.Front.callApi('Site', 'modifySetting', {
+            Cntysoft.Front.callApi('Site', 'addCase', {
                 nodeId : nodeId,
                 title : title,
                 intro : intro,
-                content : images
+                content : content,
+                fileRefs : fileRefs
             }, function (response){
                 if(response.status){
-                    layer.msg('店铺设置修改成功！', {
+                    layer.msg('案例信息发布成功！', {
                         success : function (){
                             var redirect = function (){
-                                window.location = '/site/setting.html';
+                                window.location = '/site/caselist/1.html';
                             };
                             setTimeout(redirect, 300);
                         }
                     });
                 } else{
-                    layer.msg('店铺设置修改失败，请核对您的信息！');
+                    layer.msg('案例信息发布失败，请核对您的信息！');
                 }
             });
         });
@@ -67,19 +79,15 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
         //删除商品图片
         $('.img_uploading').delegate('.deleteImg', 'click', function (){
             var imgWrap = $(this).parents('.img_wrap_div');
-            images.splice($(imgWrap).index(), 1);
-            showImg();
+            imgWrap.remove();
             if(uploadProductImg == undefined){
                 createProductUpload();
             }
         });
         //展示上传的图片
-        function showImg(){
-            $('#uploadBtn').siblings('.img_wrap_div').remove();
-            $.each(images, function (index, item){
-                $('#uploadBtn').before('<div class="img_wrap_div"><div class="show_img"><img fh-id="' + item[1] + '" src="' + item[0] + '"></div><em class="deleteImg">删除</em><input type="text" placeholder="填写图片的简介" value="' + item[2] + '"></div>');
-            });
-            if(images.length != 10){
+        function showImg(item){
+            $('#uploadBtn').before('<div class="img_wrap_div"><div class="show_img"><img fh-id="' + item['rid'] + '" src="' + item['filename'] + '"></div><em class="deleteImg">删除</em><input type="text" placeholder="填写图片的简介" value=""></div>');
+            if($('.img_wrap_div').length < 10){
                 $('#uploadBtn').show();
             } else{
                 $('#uploadBtn').hide();
@@ -135,7 +143,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
             }));
             //上传商品图片
             uploadProductImg.on('beforeFileQueued', function (){
-                if(images.length == 10){
+                if($('.img_wrap_div').length == 10){
                     layer.msg('最多上传10张图片');
                     return false;
                 }
@@ -143,8 +151,8 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
             //商品图片上传成功
             uploadProductImg.on('uploadSuccess', function (file, response){
                 if(response.status){
-                    images.push(response.data[0]);
-                    showImg();
+                    var data = response.data[0];
+                    showImg(data);
                 }
             });
         }

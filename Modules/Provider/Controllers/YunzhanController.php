@@ -167,13 +167,12 @@ class YunzhanController extends AbstractController
       $id = $this->dispatcher->getParam('id');
       $info = $this->getAppCaller()->call(C_CONST::MODULE_NAME, C_CONST::APP_NAME, C_CONST::APP_API_MANAGER, 'getGInfo', array($id));
       if (!$info) {
-         Kernel\goto_route('site/news/1.html');
+         Kernel\goto_route('site/caselist/1.html');
       } else {
          $node = $info->getNode();
-         $nid = $node->getId();
          //关于我们栏目下面的文章有特定的修改地方,不能在这里修改
-         if (C_CONST::NODE_COMPANY_ID != $nid && C_CONST::NODE_INDUSTRY_ID != $nid) {
-            Kernel\goto_route('site/news/1.html');
+         if (C_CONST::NODE_CASE_ID != $node->getId() && C_CONST::NODE_CASE_ID != $node->getPid()) {
+            Kernel\goto_route('site/caselist/1.html');
          }
       }
       return $this->setupRenderOpt(array(
