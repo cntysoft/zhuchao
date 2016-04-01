@@ -21,7 +21,7 @@ foreach ($items as $index => $item) {
    $infourl = $this->getInfoUrl($item->getId());
    $imgurl = $this->getImgcdn($defpic, 190, 120);
    $out .=' <div class="news_ele">
-                    <a href="' . $infourl . '"><img src="' . $imgurl . '" alt=""></a>
+                    <a href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $imgurl . '" alt=""></a>
                     <h4 class="active_hover"><a href="' . $infourl . '">' . $this->formatString($item->getTitle(), $this->invokeParams['titleLength']) . '</a></h4>
                     <p class="news_detail">' . $item->getIntro() . '</p>
                     <p class="news_time">

@@ -23,7 +23,8 @@ define(['zepto', 'swiper', 'module/totop', 'Core', 'Front'], function (){
          pagination : '.swiper-pagination',
          autoplay : 3000,
          speed : 300,
-         loop : true
+         loop : true,
+         lazyLoading:true
       });
       var sendAjax = true; //是否可发送列表请求
       var page = 0, limit = 6;

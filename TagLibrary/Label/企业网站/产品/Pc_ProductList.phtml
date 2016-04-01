@@ -65,7 +65,7 @@ foreach ($goodsLists[0] as $goods) {
    $price = $price0 > 0 ? '¥' . $price0 : '面议';
    $out .= '<div class="pro_card" >
                         <div>
-                            <a target="_block" href="' . $infourl . '"><img src="' . $this->getImgUrl($defpic, 205, 205) . '" alt=""></a>
+                            <a target="_block" href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 190, 118) . '" alt=""></a>
                             <p class="active_hover"><a target="_block" href="' . $infourl . '">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . ' </a></p>
                             <span class="">' . $price . '</span>
                         </div>

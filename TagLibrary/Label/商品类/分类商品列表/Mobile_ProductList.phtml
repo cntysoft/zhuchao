@@ -15,7 +15,7 @@ foreach ($goodsLists['docs'] as $list) {
 	 <a href="' . $url . '">
 		  <div class="pro_img">
 				<div class="pro_table">
-					 <img src="' . $this->getImgUrl($list->getDefaultImage(), 108, 108) . '" alt=""/>
+					 <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($list->getDefaultImage(), 108, 108) . '" alt=""/>
 				</div>
 		  </div>
 		  <p class="pro_text">' . $name . '</p>

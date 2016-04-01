@@ -23,7 +23,8 @@ define(['zepto', 'module/totop', 'swiper'], function (){
          pagination : '.swiper-pagination',
          autoplay : 3000,
          speed : 300,
-         loop : true
+         loop : true,
+         lazyLoading : true
       });
    });
 });

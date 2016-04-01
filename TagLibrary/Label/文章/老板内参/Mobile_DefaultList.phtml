@@ -19,7 +19,7 @@ foreach ($items as $key => $value) {
       $infourl = $this->getInfoUrl($value->getId());
       $out1.='<div class="module_ad_list swiper-slide">
                     <a href="' . $infourl . '">
-                        <div class="module_ad_img" style="background: url(' . $this->getImgcdn($defpic, 320, 160) . '?_nosprite)">
+                        <div class="module_ad_img swiper-lazy" data-background="' . $this->getImgcdn($defpic, 320, 160) . '" style="background-image:none;">
                             <div class="module_ad_box"></div>
                         </div>
                     </a>
@@ -36,7 +36,7 @@ foreach ($items as $index => $item) {
    if ($defpic) {
       $imgurl = '<div class="new_img">
                         <div class="new_table">
-                            <img src="' . $this->getImgcdn($defpic, 110, 110) . '" alt="">
+                            <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 110, 110) . '" alt="">
                         </div>
                     </div>';
    } else {

@@ -9,9 +9,9 @@ $out = '';
 foreach ($items as $index => $item) {
    $defpic = $item->getDefaultPicUrl()[0];
    $infourl = $this->getInfoUrl($item->getId());
-   $imgurl = $this->getImgcdn($defpic, 60, 60);
+   $imgurl = $this->getImgcdn($defpic, 96, 60);
    $out .='<div class="news_ele">
-                <a href="' . $infourl . '"><img src="' . $imgurl . '" alt=""></a>
+                <a href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $imgurl . '" alt=""></a>
                 <h4><a href="' . $infourl . '">' . $item->getTitle() . '</a></h4>
                 <p><span class="fl">' . date('Y-m-d', $item->getInputTime()) . '</span><span class="fr">浏览（' . $item->getHits() . '）</span></p>
             </div>';

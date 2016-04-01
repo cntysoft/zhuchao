@@ -12,7 +12,7 @@ foreach ($items as $index => $item) {
    if ($index) {
       $imgurl = $this->getImgcdn($defpic, 134, 84);
       $out .=' <div class="small_news_ele clearfix">
-                                <a href="' . $infourl . '"><img src="' . $imgurl . '" alt=""></a>
+                                <a href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $imgurl . '" alt=""></a>
                                 <div class="news_content">
                                     <h4 class="active_hover"><a href="' . $infourl . '">' . $this->formatString($item->getTitle(), $this->invokeParams['titleLength']) . '</a></h4>
                                     <p>' . $item->getIntro() . '</p>
@@ -24,7 +24,7 @@ foreach ($items as $index => $item) {
                             </div>';
    } else {
       $out = '<div class="big_news fl">
-                            <a href="' . $infourl . '"><img src="' . $this->getImgcdn($defpic, 300, 188) . '" alt=""></a>
+                            <a href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 300, 188) . '" alt=""></a>
                             <h4 class="active_hover"><a href="' . $infourl . '">' . $item->getTitle() . '</a></h4>
                             <p>' . $item->getIntro() . '</p>
                             <div class="news_time clearfix">

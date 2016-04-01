@@ -16,7 +16,7 @@ foreach ($items as $index => $info) {
                     <a href="' . $this->getInfoUrl($info->getId()) . '">
                         <div class="new_img">
                             <div class="new_table">
-                                <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 147, 110) . '" alt="">
+                                <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 147, 110) . '" alt="">
                             </div>
                         </div>
                         <h4 class="list_title text_ellipsis">[' . $node->getText() . ']' . $info->getTitle() . '</h4>

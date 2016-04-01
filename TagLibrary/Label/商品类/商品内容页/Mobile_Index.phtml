@@ -83,7 +83,7 @@ foreach ($goodsLists as $list) {
 				<a href="' . $url . '">
 					 <div class="pro_img">
 						  <div class="pro_table">
-								<img src="' . $this->getImageFromCdn($list->getDefaultImage(), 108, 62) . '" alt=""/>
+								<img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($list->getDefaultImage(), 108, 62) . '" alt=""/>
 						  </div>
 					 </div>
 
@@ -113,7 +113,7 @@ $articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
 foreach ($articles as $article) {
 	$out .= '<li>
 		  <a href="/article/' . $article->getId() . '.html">
-				<img src="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 80, 50) . '" alt=""/>
+				<img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 80, 50) . '" alt=""/>
 				<span class="new_title main">[老板内参]</span>
 				<p class="new_text">' . $article->getTitle() . '</p>
 				<p class="new_date tr">' . date('Y-m-d', $article->getInputTime()) . '</p>
