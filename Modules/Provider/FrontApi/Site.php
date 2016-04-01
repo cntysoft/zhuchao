@@ -252,7 +252,7 @@ class Site extends AbstractScript
    public function deleteCase($params)
    {
       $this->checkRequireFields($params, array('id'));
-      $id = (array) $params['id'];
+      $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'moveToTrashcan', array($params['id']));
    }
 
    /**

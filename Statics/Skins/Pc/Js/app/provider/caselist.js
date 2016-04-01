@@ -71,10 +71,11 @@ define(['app/common', 'validate', 'webuploader', 'Core', 'Front', 'app/common'],
         function deleteArtible(params){
             Cntysoft.Front.callApi('Site', 'deleteCase', params, function (response){
                 if(response.status){
-                    layer.msg('删除成功');
-                    setTimeout(function (){
+                    layer.msg('删除成功', {
+                        time : 2
+                    }, function() {
                         window.location.reload();
-                    }, 1000);
+                    });
                 } else{
                     layer.alert('删除失败!');
                 }

@@ -23,7 +23,7 @@ class CaseModel extends AbstractDsScript
          $itemId = $this->invokeParams['caseId'];
       } else {
          $routeInfo = $this->getRouteInfo();
-         $itemId = (int) $routeInfo['caseId'];
+         $itemId = (int) $routeInfo['id'];
       }
 
       $info = $this->appCaller->call(ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_MANAGER, 'read', array($itemId));
