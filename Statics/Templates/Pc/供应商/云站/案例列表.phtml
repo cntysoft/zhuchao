@@ -8,7 +8,7 @@
         <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/zhaopin.css', 'lib/default.css', 'lib/reset.css')) ?>
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/news.css')) ?>
     </head>
     <body>
         <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
@@ -18,16 +18,16 @@
             <?php Qs::Label('供应商/用户中心左侧', array('renderTpl' => 'SiteSetting')) ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
-                <h1 class="items_title">企业招聘<a class="main_bg_light fr" href="/site/job/add.html"><em>+</em>发布招聘信息</a></h1>
+                <h1 class="items_title">案例列表<a class="main_bg_light fr" href="/site/caseadd.html"><em>+</em>发布案例信息</a></h1>
                 <div class="notice main_bg_light">
-                    <a><i class="main icon-notice"></i> 在这里查看您发布的招聘信息</a>
+                    <a><i class="main icon-notice"></i> 在这里查看您发布的案例信息</a>
                 </div>
                 <!--新闻标题-->
                 <!--标题-->
-                <?php Qs::Label('供应商/新闻', array('renderTpl' => 'jobsList', 'outputNum' => 8)); ?>
+                <?php Qs::Label('供应商/新闻', array('renderTpl' => 'caseList', 'outputNum' => 8)); ?>
             </div>
         </div>
         <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
-        <?php Qs::Sys('loadRequireJs', 'provider/jobslist') ?>
+        <?php Qs::Sys('loadRequireJs', 'provider/caselist') ?>
     </body>
 </html>

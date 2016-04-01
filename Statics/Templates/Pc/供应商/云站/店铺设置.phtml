@@ -14,32 +14,32 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
         <style>
             .img_uploading {
-               height : 180px;
+                height : 180px;
             }
             .form_list>label{
-               float:left;
-               padding-right: 10px;
-               width: 112px;
+                float:left;
+                padding-right: 10px;
+                width: 112px;
             }
             .action_btn{
-               padding-left: 122px;
+                padding-left: 122px;
             }
             .img_wrap_div {
-               width: 180px;
-               float : left;
-               margin-right: 20px;
-               padding: 5px;
+                width: 180px;
+                float : left;
+                margin-right: 20px;
+                padding: 5px;
             }
             .img_wrap_div li{
-               width: 180px;
+                width: 180px;
             }
             .img_wrap_div input{
-               margin-top: 10px;
-               padding-left: 3px;
-               width: 180px;
+                margin-top: 10px;
+                padding-left: 3px;
+                width: 180px;
             }
             #uploadBtn{
-               width: 180px;
+                width: 180px;
             }
         </style>
     </head>
@@ -48,47 +48,47 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧') ?>
+            <?php Qs::Label('供应商/用户中心左侧', array('renderTpl' => 'SiteSetting')) ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">基本设置</h1>
                 <div class="form_box">
-						  <div class="form_list clearfix">
+                    <div class="form_list clearfix">
                         <label><em class="main">*</em>SEO描述:</label>
                         <textarea style="resize:none;width:410px;height:76px;"  class="checkField" id="description" required><?php Qs::DsField('setting', 'description') ?></textarea>
                     </div>
-						  <div class="form_list clearfix">
+                    <div class="form_list clearfix">
                         <label><em class="main">*</em>SEO关键字:</label>
                         <textarea style="resize:none;width:410px;height:76px;" class="checkField" id="keywords" required><?php Qs::DsField('setting', 'keywords') ?></textarea>
                     </div>
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>首页banner:</label>
                         <div class="input_wrap img_uploading">
-                        <ul class="clearfix">
-                        <?php 
-                           $banners = Qs::DsField('setting', 'banner', true);
-                           if(count($banners)){
-                              foreach($banners as $item){
-                                 echo '<div class="img_wrap_div"><li><img fh-id="'.$item["id"].'" src="' . $item['image'] . '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的正确网址" value="'.$item['url'].'"></div>';
-                              }
-                              $cls = 'style="display:none"';
-                              if(count($banners) < 4){
-                                 $cls = '';
-                              }
-                              
-                              echo '<li class="img_plus" id="uploadBtn" '.$cls.'>
+                            <ul class="clearfix">
+                                <?php
+                                $banners = Qs::DsField('setting', 'banner', true);
+                                if (count($banners)) {
+                                   foreach ($banners as $item) {
+                                      echo '<div class="img_wrap_div"><li><img fh-id="' . $item["id"] . '" src="' . $item['image'] . '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的正确网址" value="' . $item['url'] . '"></div>';
+                                   }
+                                   $cls = 'style="display:none"';
+                                   if (count($banners) < 4) {
+                                      $cls = '';
+                                   }
+
+                                   echo '<li class="img_plus" id="uploadBtn" ' . $cls . '>
                                        <p>+</p>
                                        <span>添加照片</span>
-                                   </li>'; 
-                           }else{
-                              echo '<li class="img_plus" id="uploadBtn">
+                                   </li>';
+                                } else {
+                                   echo '<li class="img_plus" id="uploadBtn">
                                          <p>+</p>
                                          <span>添加照片</span>
                                      </li>';
-                           }
-                        ?>
-                        </ul>
-                     </div>
+                                }
+                                ?>
+                            </ul>
+                        </div>
                     </div>
                     <div class="form_list tc">
                         <div class="action_btn" style="width: 600px">

@@ -42,13 +42,15 @@ final class Constant
    /**
     * 这里的常量都是写死的信息,一般不会改变
     */
-   const CMODEL_ARTICLE_ID = 1;
-   const CMODEL_JOB_ID = 2;
+   const CMODEL_ARTICLE_ID = 1; //文章模型
+   const CMODEL_JOB_ID = 2; //招聘模型
+   const CMODEL_CASEINFO_ID = 3; //案例模型
    //系统默认的栏目ID
-   const NODE_COMPANY_ID = 2;
-   const NODE_INDUSTRY_ID = 3;
-   const NODE_ABOUT_ID = 4;
-   const NODE_JOIN_ID = 5;
+   const NODE_COMPANY_ID = 2; //企业新闻栏目
+   const NODE_INDUSTRY_ID = 3; //行业新闻栏目
+   const NODE_ABOUT_ID = 4; //关于我们栏目
+   const NODE_JOIN_ID = 5; //招聘中心栏目
+   const NODE_CASE_ID = 6; //案例中心栏目
    //系统默认的文章ID
    const INFO_INTRO_ID = 1;
    const INFO_CULTURE_ID = 2;

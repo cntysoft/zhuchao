@@ -308,7 +308,7 @@
         },
         {
             "key" : "ProviderYunzhanCase",
-            "rule" : "\/site\/caseadd\/{id:[1-9][0-9]*}.html",
+            "rule" : "\/site\/caseadd.html",
             "option" : {
                 "module" : "Provider",
                 "controller" : "Yunzhan",
@@ -395,7 +395,7 @@
         "yunzhan/zizhi" : "供应商\/云站\/企业资质.phtml",
         "yunzhan/contact" : "供应商\/云站\/联系我们.phtml",
         "yunzhan/caselist" : "供应商\/云站\/案例列表.phtml",
-        "yunzhan/ addcase" : "供应商\/云站\/添加案例.phtml",
+        "yunzhan/addcase" : "供应商\/云站\/添加案例.phtml",
         "yunzhan/modifycase" : "供应商\/云站\/修改案例.phtml",
         "yunzhan/casecategory" : "供应商\/云站\/案例分类.phtml"
     },

@@ -32,13 +32,13 @@ $i = 1;
 foreach ($images as $image) {
    if ($i == 1) {
       $bigImage .= '<div class="big_img">
-                    <img src="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt="">
+                    <img src="' . $this->getImageFromCdn($image[0]) . '" alt="">
                     <span class="next icon-jiantou6"></span>
                     <span class="prev icon-jiantou7"></span>
                 </div>';
    }
    $i = 2;
-   $smallImage .= '<div> <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt=""></div>';
+   $smallImage .= '<div> <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0]) . '" alt=""></div>';
 }
 $out .= $bigImage . '</div>
             <div class="share clearfix">

@@ -18,231 +18,235 @@ use App\ZhuChao\CategoryMgr\Constant as CATEGORY;
 use Cntysoft\Framework\Utils\ChinaArea;
 class Goods extends AbstractLabelScript
 {
-	protected $chinaArea = null;
+   protected $chinaArea = null;
 
-	/**
-	 * 获取商品信息
-	 * @return type
-	 */
-	public function getProductByNumber()
-	{
-		$number = $this->getRouteInfo()['number'];
-		return $this->appCaller->call(
-							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
-	}
+   /**
+    * 获取商品信息
+    * @return type
+    */
+   public function getProductByNumber()
+   {
+      $number = $this->getRouteInfo()['number'];
+      return $this->appCaller->call(
+                      GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
+   }
 
-	public function getCurUser()
-	{
-		return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
-	}
+   public function getCurUser()
+   {
+      return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
+   }
 
-	public function getCategoryInfoByIdentifier($identifier)
-	{
-		return $this->appCaller->call(CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeByIdentifier', array($identifier));
-	}
+   public function getCategoryInfoByIdentifier($identifier)
+   {
+      return $this->appCaller->call(CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeByIdentifier', array($identifier));
+   }
 
-	/**
-	 * 获取PID为0的节点信息
-	 * @return type
-	 */
-	public function getSuperNodes()
-	{
-		return $this->appCaller->call(
-							 CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getChildren', array(0));
-	}
+   /**
+    * 获取PID为0的节点信息
+    * @return type
+    */
+   public function getSuperNodes()
+   {
+      return $this->appCaller->call(
+                      CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getChildren', array(0));
+   }
 
-	/**
-	 * 获取叶子节点列表信息
-	 * 
-	 * @return object 
-	 */
-	public function getLeafNodes()
-	{
-		$nodes = $this->appCaller->call(
-				  CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getLeafNodes');
-		return $nodes;
-	}
+   /**
+    * 获取叶子节点列表信息
+    * 
+    * @return object 
+    */
+   public function getLeafNodes()
+   {
+      $nodes = $this->appCaller->call(
+              CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getLeafNodes');
+      return $nodes;
+   }
 
-	/**
-	 * 获取节点树
-	 * @return type
-	 */
-	public function getNodeTree()
-	{
-		return $this->appCaller->call(
-							 CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeTree');
-	}
+   /**
+    * 获取节点树
+    * @return type
+    */
+   public function getNodeTree()
+   {
+      return $this->appCaller->call(
+                      CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeTree');
+   }
 
-	/**
-	 * 根据节点ID，获取节点路径
-	 *
-	 * @param string $id
-	 * @return array
-	 */
-	public function getNodePath($id)
-	{
-		$tree = $this->getNodeTree();
-		$ret = array();
-		if (!$tree->isNodeExist($id)) {
-			return $ret;
-		}
-		return $tree->getChildren($id);
-	}
+   /**
+    * 根据节点ID，获取节点路径
+    *
+    * @param string $id
+    * @return array
+    */
+   public function getNodePath($id)
+   {
+      $tree = $this->getNodeTree();
+      $ret = array();
+      if (!$tree->isNodeExist($id)) {
+         return $ret;
+      }
+      return $tree->getChildren($id);
+   }
 
-	/**
-	 * 检查是否登录
-	 * @return boolean
-	 */
-	public function checkLogin()
-	{
-		return $this->appCaller->call(
-							 BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'isLogin');
-	}
+   /**
+    * 检查是否登录
+    * @return boolean
+    */
+   public function checkLogin()
+   {
+      return $this->appCaller->call(
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'isLogin');
+   }
 
-	/**
-	 * 检查是否收藏该商品
-	 * 
-	 * @return type
-	 */
-	public function checkCollect($id)
-	{
-		$curUser = $this->getCurUser();
-		return $this->appCaller->call(
-							 BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'checkCollect', array($curUser->getId(), $id));
-	}
+   /**
+    * 检查是否收藏该商品
+    * 
+    * @return type
+    */
+   public function checkCollect($id)
+   {
+      $curUser = $this->getCurUser();
+      return $this->appCaller->call(
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_COLLECT, 'checkCollect', array($curUser->getId(), $id));
+   }
 
-	/**
-	 * 获取商品列表
-	 * @param array $cond
-	 * @param boolean $total 是否分页
-	 * @param string $orderBy
-	 * @param integer $offset
-	 * @param integer $limit
-	 * @return list
-	 */
-	public function getGoodsList(array $cond, $total, $orderBy, $offset, $limit)
-	{
-		$cond = array_merge($cond, array("status = 3"));
-		return $this->appCaller->call(
-							 GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, $total, $orderBy, $offset, $limit));
-	}
+   /**
+    * 获取商品列表
+    * @param array $cond
+    * @param boolean $total 是否分页
+    * @param string $orderBy
+    * @param integer $offset
+    * @param integer $limit
+    * @return list
+    */
+   public function getGoodsList(array $cond, $total, $orderBy, $offset, $limit)
+   {
+      $cond = array_merge($cond, array("status = 3"));
+      return $this->appCaller->call(
+                      GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, $total, $orderBy, $offset, $limit));
+   }
 
-	/**
-	 * 从CDN上获取图片
-	 * @param type $source
-	 * @param type $width
-	 * @param type $height
-	 * @return type
-	 */
-	public function getImageFromCdn($source, $width, $height)
-	{
-		return $source ? \Cntysoft\Kernel\get_image_cdn_url_operate($source, array('w' => $width, 'h' => $height, 'c' => 1, 'e' => 1)) : 'Statics/Skins/Pc/Images/lazyicon.png';
-	}
+   /**
+    * 从CDN上获取图片
+    * @param type $source
+    * @param type $width
+    * @param type $height
+    * @return type
+    */
+   public function getImageFromCdn($source, $width = null, $height = null)
+   {
+      if (!$width || !$height) {
+         return $source ? \Cntysoft\Kernel\get_image_cdn_url($source) : 'Statics/Skins/Pc/Images/lazyicon.png';
+      } else {
+         return $source ? \Cntysoft\Kernel\get_image_cdn_url_operate($source, array('w' => $width, 'h' => $height, 'c' => 1, 'e' => 1)) : 'Statics/Skins/Pc/Images/lazyicon.png';
+      }
+   }
 
-	public function getAreaFromCode($code)
-	{
-		$chinaArea = $this->getChinaArea();
-		if ($code == null) {
-			return "暂无";
-		} else {
-			return $chinaArea->getArea($code);
-		}
-	}
+   public function getAreaFromCode($code)
+   {
+      $chinaArea = $this->getChinaArea();
+      if ($code == null) {
+         return "暂无";
+      } else {
+         return $chinaArea->getArea($code);
+      }
+   }
 
-	public function getChinaArea()
-	{
-		if (null == $this->chinaArea) {
-			$this->chinaArea = new ChinaArea();
-		}
-		return $this->chinaArea;
-	}
+   public function getChinaArea()
+   {
+      if (null == $this->chinaArea) {
+         $this->chinaArea = new ChinaArea();
+      }
+      return $this->chinaArea;
+   }
 
-	/**
-	 * 检查节点是否存在
-	 * @param string $identifier
-	 * @return boolean
-	 */
-	public function checkNodeIdentifier($identifier)
-	{
-		return $this->appCaller->call(
-							 CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'checkNodeIdentifier', array($identifier));
-	}
+   /**
+    * 检查节点是否存在
+    * @param string $identifier
+    * @return boolean
+    */
+   public function checkNodeIdentifier($identifier)
+   {
+      return $this->appCaller->call(
+                      CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'checkNodeIdentifier', array($identifier));
+   }
 
-	/**
-	 * 获取节点的字节点信息
-	 * @param string $identilier
-	 * @return 
-	 */
-	public function getSubNodesByIdentifier($identifier)
-	{
-		$nodeInfo = $this->getNodeInfoByIdentifier($identifier);
-		$nodeId = $nodeInfo->getId();
-		$childNodes = $this->appCaller->call(
-				  CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getSubNodes', array($nodeId));
-		return $childNodes;
-	}
+   /**
+    * 获取节点的字节点信息
+    * @param string $identilier
+    * @return 
+    */
+   public function getSubNodesByIdentifier($identifier)
+   {
+      $nodeInfo = $this->getNodeInfoByIdentifier($identifier);
+      $nodeId = $nodeInfo->getId();
+      $childNodes = $this->appCaller->call(
+              CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getSubNodes', array($nodeId));
+      return $childNodes;
+   }
 
-	/**
-	 * 获取节点信息
-	 * @param string $identifier
-	 * @return 
-	 */
-	public function getNodeInfoByIdentifier($identifier)
-	{
-		$this->checkNodeIdentifier($identifier);
-		$nodeInfo = $this->appCaller->call(
-				  CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($identifier));
-		return $nodeInfo;
-	}
+   /**
+    * 获取节点信息
+    * @param string $identifier
+    * @return 
+    */
+   public function getNodeInfoByIdentifier($identifier)
+   {
+      $this->checkNodeIdentifier($identifier);
+      $nodeInfo = $this->appCaller->call(
+              CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getNodeByIdentifier', array($identifier));
+      return $nodeInfo;
+   }
 
-	/**
-	 * 获取文章列表（不带分页）
-	 * @param int $nodeId
-	 * @return type
-	 */
-	public function getInfoListByNodeAndStatusNotPage($nodeId)
-	{
-		$limit = 5;
-		$generalInfo = $this->appCaller->call(
-				  CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, 1, 3, false, 'hits DESC', 0, $limit));
-		return $generalInfo;
-	}
+   /**
+    * 获取文章列表（不带分页）
+    * @param int $nodeId
+    * @return type
+    */
+   public function getInfoListByNodeAndStatusNotPage($nodeId)
+   {
+      $limit = 5;
+      $generalInfo = $this->appCaller->call(
+              CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, 1, 3, false, 'hits DESC', 0, $limit));
+      return $generalInfo;
+   }
 
-	/**
-	 * 获取广告位的位置信息
-	 * 
-	 * @param string $port 设备端
-	 * @param string $module 模块端
-	 * @param string $location 位置信息
-	 * @return integer 返回该位置的位置id
-	 */
-	public function getAdsLocationId($port, $module, $location)
-	{
-		return $this->appCaller->call(
-							 MAR_CONST::MODULE_NAME, MAR_CONST::APP_NAME, MAR_CONST::APP_API_ADS, 'getAdsLocationId', array($port, $module, $location));
-	}
+   /**
+    * 获取广告位的位置信息
+    * 
+    * @param string $port 设备端
+    * @param string $module 模块端
+    * @param string $location 位置信息
+    * @return integer 返回该位置的位置id
+    */
+   public function getAdsLocationId($port, $module, $location)
+   {
+      return $this->appCaller->call(
+                      MAR_CONST::MODULE_NAME, MAR_CONST::APP_NAME, MAR_CONST::APP_API_ADS, 'getAdsLocationId', array($port, $module, $location));
+   }
 
-	/**
-	 * 根据位置id获取该位置下的广告
-	 * 
-	 * @param integer $locationId 广告位置id
-	 * @return object 广告列表对象
-	 */
-	public function getAds($locationId)
-	{
-		$ads = $this->appCaller->call(
-				  MAR_CONST::MODULE_NAME, MAR_CONST::APP_NAME, MAR_CONST::APP_API_ADS, 'getAdsList', array($locationId, 'sort asc'));
-		return $ads;
-	}
+   /**
+    * 根据位置id获取该位置下的广告
+    * 
+    * @param integer $locationId 广告位置id
+    * @return object 广告列表对象
+    */
+   public function getAds($locationId)
+   {
+      $ads = $this->appCaller->call(
+              MAR_CONST::MODULE_NAME, MAR_CONST::APP_NAME, MAR_CONST::APP_API_ADS, 'getAdsList', array($locationId, 'sort asc'));
+      return $ads;
+   }
 
-	public function getBuyerSiteName()
-	{
-		return \Cntysoft\RT_BUYER_SITE_NAME;
-	}
+   public function getBuyerSiteName()
+   {
+      return \Cntysoft\RT_BUYER_SITE_NAME;
+   }
 
-	public function getProductUrl($number)
-	{
-		return '/item/' . $number . '.html';
-	}
+   public function getProductUrl($number)
+   {
+      return '/item/' . $number . '.html';
+   }
 
 }

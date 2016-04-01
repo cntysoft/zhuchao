@@ -100,15 +100,15 @@ class Application extends BaseApplication
     */
    protected function initDbConnection()
    {
-//      $siteId = Kernel\get_site_id();
-//      if (isset($siteId)) {
-//         $cfg = $this->gcfg->db->toArray();
-//         $this->di->setShared('siteDb', function() use($cfg) {
-//            $cfg['dbname'] = Kernel\get_site_db_name();
-//            $db = new Mysql($cfg);
-//            return $db;
-//         });
-//      }
+      $siteId = Kernel\get_site_id();
+      if (isset($siteId)) {
+         $cfg = $this->gcfg->db->toArray();
+         $this->di->setShared('siteDb', function() use($cfg) {
+            $cfg['dbname'] = Kernel\get_site_db_name();
+            $db = new Mysql($cfg);
+            return $db;
+         });
+      }
    }
 
 }

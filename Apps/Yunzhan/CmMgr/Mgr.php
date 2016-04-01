@@ -42,7 +42,8 @@ class Mgr extends AbstractLib
 {
    protected static $buildInMKeys = array(
       'Article',
-      'Job'
+      'Job',
+      'CaseInfo'
    );
    /**
     * @var array

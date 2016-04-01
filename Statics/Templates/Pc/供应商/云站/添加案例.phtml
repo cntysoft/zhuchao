@@ -1,0 +1,60 @@
+<?php Qs::Ds('商城数据源/商城数据', 'site'); ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>案例发布-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css', 'usercenter/caseadd.css')) ?>
+    </head>
+    <body>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <!--个人中心-->
+        <div class="content conwidth clearfix">
+            <!--左侧列表-->
+            <?php Qs::Label('供应商/用户中心左侧', array('renderTpl' => 'SiteSetting')) ?>
+            <div class="content_wrap fr">
+                <h1 class="items_title">发布案例</h1>
+                <div class="form_box">
+                    <div class="form_list clearfix">
+                        <label><em class="main">*</em>案例分类:</label>
+                        <div class="input_wrap select_group select_brand">
+                            <select class="ui-form-select" name="unit" id="nodeId">
+                                <option  value="6" selected>案例中心</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form_list clearfix">
+                        <label><em class="main">*</em>案例标题:</label>
+                        <input type="text" id='title' class="checkField" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){5,30}$" tip-value="请输入5-30个字" required>
+                    </div>
+                    <div class="form_list clearfix">
+                        <label><em class="main">*</em>案例简介:</label>
+                        <textarea style="resize:none;width:600px;height:76px;" class="checkField" id="intro" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){10,256}$" tip-value="请输入10-256个字" required></textarea>
+                    </div>
+                    <div class="form_list clearfix">
+                        <label><em class="main">*</em>案例图片:</label>
+                        <div class="input_wrap img_uploading">
+                            <div class="clearfix">
+                                <div class="img_plus" id="uploadBtn">
+                                    <p>+</p>
+                                    <span>添加照片</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form_list tc">
+                        <div class="action_btn" style="width: 600px">
+                            <a class="main_bg submit" id="submit">保存</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
+        <?php Qs::Sys('loadRequireJs', 'provider/caseadd') ?>
+    </body>
+</html>

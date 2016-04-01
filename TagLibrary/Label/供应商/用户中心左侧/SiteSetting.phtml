@@ -1,0 +1,61 @@
+<?php
+$routeInfo = $this->getRouteInfo();
+$cls1 = $cls2 = $cls3 = $cls4 = $cls5 = $cls6 = $cls7 = $cls8 = $cls9 = $cls10 = $cls11 = '';
+switch ($routeInfo['action']) {
+   case 'addnews':
+   case 'modifynews':
+   case 'newslist':
+      $cls1 = 'main_bg_light';
+      break;
+   case 'joblist':
+   case 'modifyjob':
+   case 'addjob':
+      $cls2 = 'main_bg_light';
+      break;
+   case 'intro':
+      $cls3 = 'main_bg_light';
+      break;
+   case 'businessmsg':
+      $cls4 = 'main_bg_light';
+      break;
+   case 'sysmsg':
+      $cls5 = 'main_bg_light';
+      break;
+   case 'culture':
+      $cls6 = 'main_bg_light';
+      break;
+   case 'zizhi':
+      $cls7 = 'main_bg_light';
+      break;
+   case 'contact':
+      $cls8 = 'main_bg_light';
+      break;
+   case 'setting':
+      $cls9 = 'main_bg_light';
+      break;
+   case 'caselist':
+   case 'addcase':
+   case 'modifycase':
+      $cls10 = 'main_bg_light';
+      break;
+   case 'casecategory':
+      $cls11 = 'main_bg_light';
+      break;
+}
+
+$out = '<div class="items_wrap fl">
+         <dl>
+             <dt><i class="icon-shangou"></i>店铺设置</dt>
+             <dd><a class="mainbg_hover_light ' . $cls9 . '" href="/site/setting.html">基本设置</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls1 . '" href="/site/news/1.html">店铺新闻</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls2 . '" href="/site/job/1.html">招聘信息</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls10 . '" href="/site/caselist/1.html">案例列表</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls11 . '" href="/site/casecategory.html">案例分类</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls3 . '" href="/site/intro.html">企业介绍</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls6 . '" href="/site/culture.html">企业文化</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls7 . '" href="/site/zizhi.html">企业资质</a></dd>
+             <dd><a class="mainbg_hover_light ' . $cls8 . '" href="/site/contact.html">联系我们</a></dd>
+         </dl>
+     </div>';
+
+echo $out;
