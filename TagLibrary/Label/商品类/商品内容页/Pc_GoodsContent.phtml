@@ -38,7 +38,7 @@ foreach ($images as $image) {
                 </div>';
    }
    $i = 2;
-   $smallImage .= '<div> <img src="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt=""></div>';
+   $smallImage .= '<div> <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($image[0], 110, 69) . '" big="' . $this->getImageFromCdn($image[0], 888, 556) . '" alt=""></div>';
 }
 $out .= $bigImage . '</div>
             <div class="share clearfix">
@@ -112,7 +112,7 @@ foreach ($goodsLists as $goodsList) {
    }
    $url = $this->getProductUrl($goodsList->getNumber());
    $out .= '<div class="related_pro">
-                <a href="' . $url . '"> <img src="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
+                <a href="' . $url . '"> <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($goodsList->getDefaultImage(), 220, 137) . '" alt=""> </a>
                 <p class="pro_intro"><a href="' . $url . '" class="main_hover">' . $goodsList->getTitle() . '</a></p>
                 <p class="pro_price main">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
             </div>';

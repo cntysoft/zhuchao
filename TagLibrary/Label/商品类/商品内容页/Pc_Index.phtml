@@ -8,7 +8,7 @@ if (count($ads)) {
 		$url = $ad->getContentUrl();
 		$image = $this->getImageFromCdn($ad->getImage(), 800, 400);
 		$bgcolor = $ad->getBgcolor();
-		$out .= '<div class="item" style="background-color: #' . $bgcolor . '"><a target="_blank" href="' . $url . '"><img src="' . $image . '"></a></div>';
+		$out .= '<div class="item" style="background-color: #' . $bgcolor . '"><a target="_blank" href="' . $url . '"><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-lazy="' . $image . '"></a></div>';
 	}
 }
 $out .= '</div><div class="banner_login_box">
@@ -104,7 +104,7 @@ if (count($ads)) {
 		$image = $this->getImageFromCdn($ad->getImage(), 460, 610);
 		$bgcolor = $ad->getBgcolor();
 		$out .= '<a target="_blank" href="' . $url . '" class="brand_ad_img">
-            <img src="' . $image . '" alt=""/>
+            <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $image . '" alt=""/>
             <p class="text_ellipsis">' . $ad->getName() . '</p>
         </a>';
 		break;
@@ -133,7 +133,7 @@ foreach ($articles as $article) {
                 <p>
                     ' . $article->getIntro() . '
                 </p>
-                <img src="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 196, 138) . '" alt=""/>
+                <img class="lazy" data-original="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 196, 138) . '" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png"/>
             </div>';
 	} else {
 		$out .= '<div class="about_news_list">
@@ -167,7 +167,7 @@ foreach ($goodsLists as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$out .= '<li>
             <p class="card_price">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</p>
-            <a href="' . $url . '" class="card_img"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 132) . '" alt=""/></a>
+            <a href="' . $url . '" class="card_img"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 132) . '" alt=""/></a>
 
             <div class="card_text_box">
                 <h3 class="main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>

@@ -25,7 +25,7 @@ foreach ($goodsLists['docs'] as $goods) {
    }
 
    $out .= ' <div class="show_list clearfix">
-                            <a class="pro_img" href="' . $url . '"><img src="' . $this->getImgUrl($defpic, 195, 195) . '"> </a>
+                            <a class="pro_img" href="' . $url . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 195, 195) . '"> </a>
                             <div class="pro_info">
                                 <h1><a href="' . $url . '">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '</a></h1>
                                 <table>

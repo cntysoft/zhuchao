@@ -11,7 +11,7 @@ foreach ($goodsLists as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$out .= '<div class="pro_item fl">
         <a class="pro_img" href="' . $url . '">
-            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
+            <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
         </a>
         <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
 
@@ -33,7 +33,7 @@ foreach ($goodsLists as $list) {
 					 </p>
 					 <p class="pro_banner_price">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</p>
 				</div>
-				<a class="pro_banner_img" href="' . $url . '"><img src="' . $this->getImageFromCdn($list->getDefaultImage(), 480, 300) . '" alt=""/></a>
+				<a class="pro_banner_img" href="' . $url . '"><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-lazy="' . $this->getImageFromCdn($list->getDefaultImage(), 480, 300) . '"/></a>
 		  </div>';
 }
 $out .= '</div>
@@ -43,7 +43,7 @@ foreach ($goodsLists as $list) {
 	$url = $this->getProductUrl($list->getNumber());
 	$out .= '<div class="pro_item fl">
         <a class="pro_img" href="' . $url . '">
-            <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
+            <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
         </a>
         <h3 class="pro_text main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h3>
 

@@ -1,34 +1,36 @@
 /**
  * Created by jiayin on 2016/3/10.
  */
-define(['jquery','slick','layer','app/common'], function () {
-    $(document).ready(function () {
+define(['jquery', 'slick', 'layer', 'app/common'], function (){
+    $(document).ready(function (){
         // banner
         $('.banner_box').slick({
-            dots: true,
-            arrows: false,
-            dotsClass: 'banner_bottom_btn',
-            easing: 'linear'
+            dots : true,
+            arrows : false,
+            dotsClass : 'banner_bottom_btn',
+            easing : 'linear',
+            lazyLoad : 'ondemand'
         });
         //产品切换
         var proBox = $('div[pro-box^="pro-box"]');
         //循环初始化每个展示商品
-        for (var i = 1; i < proBox.length + 1; i++) {
+        for(var i = 1; i < proBox.length + 1; i++) {
             $('div[pro-box^="pro-box' + i + '"]').slick({
-                dots: false,
-                arrows: true,
-                easing: 'linear',
-                prevArrow: ".left_btn" + i ,
-                nextArrow: ".right_btn"+ i
+                dots : false,
+                arrows : true,
+                easing : 'linear',
+                prevArrow : ".left_btn" + i,
+                nextArrow : ".right_btn" + i,
+                lazyLoad : 'ondemand'
             });
         }
-        $('.search_button').click(function(){
+        $('.search_button').click(function (){
             var key = $('.search_key').val();
             if(key){
-               window.location.href = '/query/1.html?keyword=' + key;
+                window.location.href = '/query/1.html?keyword=' + key;
             }
         });
-        
+
         //产品切换
         //$('.pro_banner_box').slick({
         //    dots: false,

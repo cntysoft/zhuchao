@@ -14,7 +14,7 @@ foreach ($items as $index => $info) {
    $node = $this->getNode($info->getNodeId());
    $out .= ' <div class="class_li">
                         <div class="class_li_img">
-                            <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 261, 120) . '" alt=""/>
+                            <img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-lazy="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 261, 120) . '" alt=""/>
                         </div>
                         <h3 class="class_li_h3 text_ellipsis"><a href="' . $this->getInfoUrl($info->getId()) . '">[' . $node->getText() . ']' . $info->getTitle() . '</a></h3>
                         <p class="class_li_text">' . $info->getIntro() . '</p>

@@ -25,7 +25,8 @@ define(['jquery', 'slick','app/common'], function (){
          arrows : true,
          dots : false,
          prevArrow : '.prev_btn',
-         nextArrow : '.next_btn'
+         nextArrow : '.next_btn',
+         lazyload:'ondemand'
       });
       var path = window.location.pathname;
       if(path.indexOf('zhuchaoschool') > 0){

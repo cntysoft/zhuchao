@@ -20,7 +20,7 @@ foreach ($items as $index => $item) {
    $defpic = $item->getDefaultPicUrl()[0];
    $infourl = $this->getInfoUrl($item->getId());
    if ($defpic) {
-      $imgurl = '<a href="' . $infourl . '"> <img src="' . $this->getImgcdn($defpic, 740, 404) . '" alt=""/></a>';
+      $imgurl = '<a href="' . $infourl . '"> <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 740, 404) . '" alt=""/></a>';
    }
    $out .='<div class="class_item">
                     <h3 class="class_title text_ellipsis main_hover"><a href="' . $infourl . '">' . $item->getTitle() . '</a></h3>
