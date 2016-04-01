@@ -217,7 +217,7 @@
             }
         },
         {
-            "key" : "ProviderYunzhan",
+            "key" : "ProviderYunzhanNewsList",
             "rule" : "\/site\/news\/{pageId:[1-9][0-9]*}.html",
             "option" : {
                 "module" : "Provider",
@@ -271,7 +271,7 @@
             }
         },
         {
-            "key" : "ProviderYunzhanSetting",
+            "key" : "ProviderYunzhanIntro",
             "rule" : "\/site\/intro.html",
             "option" : {
                 "module" : "Provider",
@@ -280,7 +280,7 @@
             }
         },
         {
-            "key" : "ProviderYunzhanSetting",
+            "key" : "ProviderYunzhanZiZhi",
             "rule" : "\/site\/zizhi.html",
             "option" : {
                 "module" : "Provider",
@@ -289,7 +289,7 @@
             }
         },
         {
-            "key" : "ProviderYunzhanSetting",
+            "key" : "ProviderYunzhanCulture",
             "rule" : "\/site\/culture.html",
             "option" : {
                 "module" : "Provider",
@@ -298,7 +298,43 @@
             }
         },
         {
-            "key" : "ProviderYunzhanSetting",
+            "key" : "ProviderYunzhanCaseList",
+            "rule" : "\/site\/caselist\/{pageId:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "caselist"
+            }
+        },
+        {
+            "key" : "ProviderYunzhanCase",
+            "rule" : "\/site\/caseadd\/{id:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "addcase"
+            }
+        },
+        {
+            "key" : "ProviderYunzhanCaseModify",
+            "rule" : "\/site\/casemodify\/{id:[1-9][0-9]*}.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "modifycase"
+            }
+        },
+        {
+            "key" : "ProviderYunzhanCaseCategory",
+            "rule" : "\/site\/casecategory.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Yunzhan",
+                "action" : "casecategory"
+            }
+        },
+        {
+            "key" : "ProviderYunzhanContact",
             "rule" : "\/site\/contact.html",
             "option" : {
                 "module" : "Provider",
@@ -357,7 +393,11 @@
         "yunzhan/intro" : "供应商\/云站\/企业介绍.phtml",
         "yunzhan/culture" : "供应商\/云站\/企业文化.phtml",
         "yunzhan/zizhi" : "供应商\/云站\/企业资质.phtml",
-        "yunzhan/contact" : "供应商\/云站\/联系我们.phtml"
+        "yunzhan/contact" : "供应商\/云站\/联系我们.phtml",
+        "yunzhan/caselist" : "供应商\/云站\/案例列表.phtml",
+        "yunzhan/ addcase" : "供应商\/云站\/添加案例.phtml",
+        "yunzhan/modifycase" : "供应商\/云站\/修改案例.phtml",
+        "yunzhan/casecategory" : "供应商\/云站\/案例分类.phtml"
     },
     "front_api_map" : {
         "Provider" : [

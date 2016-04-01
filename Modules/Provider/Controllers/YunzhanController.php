@@ -39,7 +39,7 @@ class YunzhanController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-   
+
    public function newslistAction()
    {
       return $this->setupRenderOpt(array(
@@ -62,11 +62,11 @@ class YunzhanController extends AbstractController
       $info = $this->getAppCaller()->call(C_CONST::MODULE_NAME, C_CONST::APP_NAME, C_CONST::APP_API_MANAGER, 'getGInfo', array($id));
       if (!$info) {
          Kernel\goto_route('site/news/1.html');
-      }else {
+      } else {
          $node = $info->getNode();
          $nid = $node->getId();
          //关于我们栏目下面的文章有特定的修改地方,不能在这里修改
-         if(C_CONST::NODE_COMPANY_ID != $nid && C_CONST::NODE_INDUSTRY_ID != $nid) {
+         if (C_CONST::NODE_COMPANY_ID != $nid && C_CONST::NODE_INDUSTRY_ID != $nid) {
             Kernel\goto_route('site/news/1.html');
          }
       }
@@ -98,10 +98,10 @@ class YunzhanController extends AbstractController
       $info = $this->getAppCaller()->call(C_CONST::MODULE_NAME, C_CONST::APP_NAME, C_CONST::APP_API_MANAGER, 'getGInfo', array($id));
       if (!$info) {
          Kernel\goto_route('/site/job/1.html');
-      }else {
+      } else {
          $node = $info->getNode();
          //关于我们栏目下面的文章有特定的修改地方,不能在这里修改
-         if(C_CONST::NODE_JOIN_ID != $node->getId()) {
+         if (C_CONST::NODE_JOIN_ID != $node->getId()) {
             Kernel\goto_route('site/job/1.html');
          }
       }
@@ -118,7 +118,7 @@ class YunzhanController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-   
+
    public function cultureAction()
    {
       return $this->setupRenderOpt(array(
@@ -126,7 +126,7 @@ class YunzhanController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-   
+
    public function zizhiAction()
    {
       return $this->setupRenderOpt(array(
@@ -134,11 +134,59 @@ class YunzhanController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
-   
+
    public function contactAction()
    {
       return $this->setupRenderOpt(array(
                  View::KEY_RESOLVE_DATA => 'yunzhan/contact',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+
+   //案例列表
+   public function caselistAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/caselist',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+
+   //案例添加
+   public function addcaseAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/addcase',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+
+   //案例修改
+   public function modifycaseAction()
+   {
+      $id = $this->dispatcher->getParam('id');
+      $info = $this->getAppCaller()->call(C_CONST::MODULE_NAME, C_CONST::APP_NAME, C_CONST::APP_API_MANAGER, 'getGInfo', array($id));
+      if (!$info) {
+         Kernel\goto_route('site/news/1.html');
+      } else {
+         $node = $info->getNode();
+         $nid = $node->getId();
+         //关于我们栏目下面的文章有特定的修改地方,不能在这里修改
+         if (C_CONST::NODE_COMPANY_ID != $nid && C_CONST::NODE_INDUSTRY_ID != $nid) {
+            Kernel\goto_route('site/news/1.html');
+         }
+      }
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/modifycase',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
+
+   //案例分类添加
+   public function casecategoryAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'yunzhan/casecategory',
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }

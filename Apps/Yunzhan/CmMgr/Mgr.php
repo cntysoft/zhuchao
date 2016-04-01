@@ -919,7 +919,8 @@ TPL;
 
    protected function getTargetDbName()
    {
-      return \Cntysoft\Kernel\get_site_db_name();
+      return 'zhuchao_site_1';
+//      return \Cntysoft\Kernel\get_site_db_name();
    }
 
    /**

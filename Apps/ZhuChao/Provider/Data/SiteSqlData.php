@@ -1,5 +1,6 @@
 <?php
 return array(
+   //栏目表
    "CREATE TABLE IF NOT EXISTS `app_site_category_tree` (
 `id` int(10) unsigned NOT NULL COMMENT '节点的ID',
  `pid` int(10) unsigned NOT NULL COMMENT '栏目父节点ID',
@@ -20,12 +21,15 @@ return array(
  `metaKeywords` varchar(512) DEFAULT NULL COMMENT '页面关键字',
  `metaDescription` varchar(512) DEFAULT NULL COMMENT '栏目简单描述'
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 DEFAULT CHARSET = utf8 COMMENT = '网站节点表';",
+   //插入栏目数据
    "INSERT INTO `app_site_category_tree` (`id`, `pid`, `text`, `nodeIdentifier`, `dirname`, `priority`, `createDate`, `nodeType`, `openType`, `showOnMenu`, `showOnListParent`, `listTemplateFile`, `coverTemplateFile`, `itemOpenType`, `linkUrl`, `description`, `metaKeywords`, `metaDescription`) VALUES
 (1, 0, '新闻中心', 'newscenter', 'newscenter', 0, 1458460624, 3, 1, 1, 0, '企业网站/新闻列表.phtml', '企业网站/新闻列表.phtml', 1, NULL, NULL, NULL, NULL),
  (2, 1, '公司新闻', 'companynews', 'companynews', 0, 1458460624, 3, 1, 0, 0, '企业网站/新闻列表.phtml', '企业网站/新闻列表.phtml', 1, NULL, NULL, NULL, NULL),
  (3, 1, '行业新闻', 'industrynews', 'industrynews', 1, 1458460625, 3, 1, 0, 0, '企业网站/新闻列表.phtml', '企业网站/新闻列表.phtml', 1, NULL, NULL, NULL, NULL),
  (4, 0, '关于我们', 'about', 'about', 1, 1458460625, 3, 1, 0, 0, '企业网站/新闻列表.phtml', '企业网站/新闻列表.phtml', 1, NULL, NULL, NULL, NULL),
- (5, 0, '加入我们', 'joinus', 'joinus', 1, 1458460625, 3, 1, 1, 0, '企业网站/招聘列表.phtml', '企业网站/招聘列表.phtml', 1, NULL, NULL, NULL, NULL)",
+ (5, 0, '加入我们', 'joinus', 'joinus', 1, 1458460625, 3, 1, 1, 0, '企业网站/招聘列表.phtml', '企业网站/招聘列表.phtml', 1, NULL, NULL, NULL, NULL),
+ (6, 0, '成功案例', 'case', 'case', 1, 1458460625, 3, 1, 0, 0, '企业网站/案例列表.phtml', '企业网站/案例列表.phtml', 1, NULL, NULL, NULL, NULL);",
+   //内容模型表
    "CREATE TABLE IF NOT EXISTS `app_site_cmmgr_cmodel` (
 `id` tinyint(10) unsigned NOT NULL COMMENT '内容模型id',
  `key` varchar(64) NOT NULL COMMENT '模型描述KEY',
@@ -41,9 +45,12 @@ return array(
  `dataSaver` varchar(128) NOT NULL COMMENT '数据保存器',
  `extraConfig` varchar(512) DEFAULT NULL COMMENT '模型的额外配置'
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 DEFAULT CHARSET = utf8 COMMENT = '系统的内容模型';",
+   //内容模型数据
    "INSERT INTO `app_site_cmmgr_cmodel` (`id`, `key`, `buildIn`, `name`, `description`, `itemName`, `icon`, `itemUnit`, `enabled`, `defaultTemplateFile`, `editor`, `dataSaver`, `extraConfig`) VALUES
 (1, 'Article', 1, '文章模型', '系统默认文章内容模型，这个模型是CMS的基础模型', '文章', NULL, '篇', 1, '新闻内容页.phtml', 'ArticleEditor', 'StdSaver', 'a:0:{}'),
- (2, 'Job', 1, '招聘模型', '系统的招聘信息模型', '信息', NULL, '篇', 1, '招聘信息内容页模板.phtml', 'StdEditor', 'StdSaver', 'a:0:{}');",
+ (2, 'Job', 1, '招聘模型', '系统的招聘信息模型', '信息', NULL, '篇', 1, '招聘信息内容页模板.phtml', 'StdEditor', 'StdSaver', 'a:0:{}'),
+ (3, 'CaseInfo', 1, '案例模型', '系统的案例信息模型', '信息', NULL, '篇', 1, '案例内容页模板.phtml', 'StdEditor', 'StdSaver', 'a:0:{}');",
+   //内容模型字段表
    "CREATE TABLE IF NOT EXISTS `app_site_cmmgr_cmodel_fields` (
 `id` int(10) unsigned NOT NULL,
  `mid` mediumint(8) unsigned NOT NULL COMMENT '模型ID',
@@ -61,6 +68,7 @@ return array(
  `uiOption` text COMMENT '字段UI配置',
  `type` int(10) unsigned NOT NULL COMMENT '字段类型'
 ) ENGINE = InnoDB AUTO_INCREMENT = 18 DEFAULT CHARSET = utf8 COMMENT = '内容模型的字段数据表';",
+   //内容模型字段数据
    "INSERT INTO `app_site_cmmgr_cmodel_fields` (`id`, `mid`, `tip`, `description`, `system`, `virtual`, `name`, `alias`, `fieldType`, `require`, `display`, `defaultValue`, `priority`, `uiOption`, `type`) VALUES
 (1, 1, NULL, NULL, 1, 0, 'nodeId', '所属节点', 'Category', 1, 1, NULL, 0, NULL, 0),
  (2, 1, NULL, NULL, 1, 0, 'title', '信息标题', 'Title', 1, 1, NULL, 0, NULL, 2),
@@ -78,7 +86,14 @@ return array(
  (14, 2, NULL, NULL, 0, 0, 'department', '招聘部门', 'SingleLineText', 1, 1, NULL, 0, NULL, 2),
  (15, 2, NULL, NULL, 0, 0, 'number', '招聘人数', 'Number', 1, 1, NULL, 0, NULL, 0),
  (16, 2, NULL, NULL, 0, 0, 'tel', '招聘电话', 'SingleLineText', 1, 1, NULL, 0, NULL, 2),
- (17, 2, NULL, NULL, 0, 0, 'endTime', '截止时间', 'SingleLineText', 1, 1, NULL, 0, NULL, 0);",
+ (17, 2, NULL, NULL, 0, 0, 'endTime', '截止时间', 'SingleLineText', 1, 1, NULL, 0, NULL, 0),
+ (18, 3, NULL, NULL, 1, 0, 'nodeId', '所属节点', 'Category', 1, 1, NULL, 0, NULL, 0),
+(19, 3, NULL, NULL, 1, 0, 'title', '案例名称', 'Title', 1, 1, NULL, 0, NULL, 2),
+(20, 3, NULL, NULL, 1, 0, 'intro', '案例简介', 'MultiLineText', 0, 1, NULL, 0, '', 2),
+(21, 3, NULL, NULL, 0, 0, 'content', '案例内容', 'WordEditor', 1, 1, NULL, 0, NULL, 6),
+(22, 3, NULL, NULL, 1, 0, 'status', '状态', 'Status', 1, 1, NULL, 0, NULL, 8),
+(23, 3, NULL, NULL, 0, 0, 'fileRefs', '文件引用', 'SingleLineText', 0, 0, NULL, 0, NULL, 2);",
+   //信息基本表
    "CREATE TABLE IF NOT EXISTS `app_site_cmmgr_general_info` (
 `id` int(11) NOT NULL,
  `nodeId` int(10) unsigned NOT NULL COMMENT '关联的节点id',
@@ -99,11 +114,13 @@ return array(
  `defaultPicUrl` varchar(512) DEFAULT NULL COMMENT '默认封面图片',
  `indexGenerated` tinyint(1) DEFAULT NULL COMMENT '搜索索引是否生成'
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 DEFAULT CHARSET = utf8 COMMENT = '内容模型基本信息数据表';",
+   //信息基本表数据
    "INSERT INTO `app_site_cmmgr_general_info` (`id`, `nodeId`, `cmodelId`, `isDeleted`, `itemId`, `title`, `priority`, `intro`, `editor`, `author`, `hits`, `inputTime`, `updateTime`, `infoGrade`, `status`, `passTime`, `defaultPicUrl`, `indexGenerated`) VALUES
-(1, 4, 1, 0, 1, '企业介绍', 0, NULL, '郑州上网信息技术公司', '郑州上网信息技术公司', 1005, 1458725201, 1458727508, NULL, 3, 1458725201, NULL, NULL),
- (2, 4, 1, 0, 2, '企业文化', 0, NULL, '郑州上网信息技术公司', '郑州上网信息技术公司', 1002, 1458725201, 1458727626, NULL, 3, 1458725201, NULL, NULL),
- (3, 4, 1, 0, 3, '企业资质', 0, NULL, '郑州上网信息技术公司', '郑州上网信息技术公司', 1000, 1458725201, 1458725201, NULL, 3, 1458725201, NULL, NULL),
- (4, 4, 1, 0, 4, '发展历程', 0, NULL, '郑州上网信息技术公司', '郑州上网信息技术公司', 1004, 1458725201, 1458727700, NULL, 3, 1458725201, NULL, NULL);",
+(1, 4, 1, 0, 1, '企业介绍', 0, NULL, '', '', 1005, 1458725201, 1458727508, NULL, 3, 1458725201, NULL, NULL),
+ (2, 4, 1, 0, 2, '企业文化', 0, NULL, '', '', 1002, 1458725201, 1458727626, NULL, 3, 1458725201, NULL, NULL),
+ (3, 4, 1, 0, 3, '企业资质', 0, NULL, '', '', 1000, 1458725201, 1458725201, NULL, 3, 1458725201, NULL, NULL),
+ (4, 4, 1, 0, 4, '发展历程', 0, NULL, '', '', 1004, 1458725201, 1458727700, NULL, 3, 1458725201, NULL, NULL);",
+   //文章信息表
    "CREATE TABLE IF NOT EXISTS `app_site_cmmgr_u_article` (
 `id` int(11) NOT NULL,
  `content` text NOT NULL,
@@ -115,6 +132,7 @@ return array(
  (2, '', 'a:0:{}', ''),
  (3, '', 'a:0:{}', NULL),
  (4, '', 'a:0:{}', '');",
+   //招聘信息表
    "CREATE TABLE IF NOT EXISTS `app_site_cmmgr_u_job` (
 `id` int(11) NOT NULL,
  `content` text NOT NULL,
@@ -123,6 +141,13 @@ return array(
  `tel` varchar(64) NOT NULL,
  `endTime` int(10) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;",
+   //案例信息表
+   "CREATE TABLE IF NOT EXISTS `app_site_cmmgr_u_caseinfo` (
+  `id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `fileRefs` varchar(512) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
+   //商品基本信息
    "CREATE TABLE IF NOT EXISTS `app_zhuchao_product_base_info` (
 `id` int(10) unsigned NOT NULL,
  `number` varchar(20) NOT NULL COMMENT '产品编号',
@@ -140,6 +165,7 @@ return array(
  `detailId` int(10) unsigned NOT NULL,
  `status` tinyint(2) unsigned NOT NULL COMMENT '产品的状态'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = '产品基本信息表';",
+   //商品详细信息
    "CREATE TABLE IF NOT EXISTS `app_zhuchao_product_detail` (
 `id` int(10) unsigned NOT NULL,
  `advertText` varchar(60) NOT NULL COMMENT '广告语',
@@ -151,6 +177,7 @@ return array(
  `images` text NOT NULL COMMENT '产品的图片，数组序列化值，一张图片包括url,sort,',
  `introduction` text NOT NULL COMMENT '产品的描述'
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = '产品信息详情表';",
+   //商品分组信息
    "CREATE TABLE IF NOT EXISTS `app_zhuchao_product_group` (
 `id` int(10) unsigned NOT NULL,
  `pid` int(10) unsigned NOT NULL DEFAULT '0',
@@ -158,6 +185,7 @@ return array(
  `name` varchar(255) NOT NULL COMMENT '产品分组名',
  `inputTime` int(10) unsigned NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = '产品分组信息';",
+   //栏目模板映射表
    "CREATE TABLE IF NOT EXISTS `join_category_content_model_template` (
 `categoryId` int(10) unsigned NOT NULL,
  `modelId` int(10) unsigned NOT NULL,
@@ -168,6 +196,7 @@ return array(
  (2, 1, '企业网站/新闻内容.phtml'),
  (3, 1, '企业网站/新闻内容.phtml'),
  (5, 2, '企业网站/招聘内容.phtml');",
+   //商品分组信息映射表
    "CREATE TABLE IF NOT EXISTS `join_product_group` (
 `productId` int(11) NOT NULL,
  `groupId` int(11) NOT NULL
@@ -190,6 +219,8 @@ ADD PRIMARY KEY(`id`);",
 ADD PRIMARY KEY(`id`);",
    "ALTER TABLE `app_site_cmmgr_u_job`
 ADD PRIMARY KEY(`id`);",
+   "ALTER TABLE `app_site_cmmgr_u_caseinfo`
+ADD PRIMARY KEY(`id`);",
    "ALTER TABLE `app_zhuchao_product_base_info`
 ADD PRIMARY KEY(`id`);",
    "ALTER TABLE `app_zhuchao_product_detail`
@@ -203,11 +234,11 @@ ADD PRIMARY KEY(`productId`, `groupId`);",
    "ALTER TABLE `sys_m_std_config`
 ADD PRIMARY KEY(`key`, `group`);",
    "ALTER TABLE `app_site_category_tree`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '节点的ID', AUTO_INCREMENT = 6;",
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '节点的ID', AUTO_INCREMENT = 7;",
    "ALTER TABLE `app_site_cmmgr_cmodel`
-MODIFY `id` tinyint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '内容模型id', AUTO_INCREMENT = 3;",
+MODIFY `id` tinyint(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '内容模型id', AUTO_INCREMENT = 4;",
    "ALTER TABLE `app_site_cmmgr_cmodel_fields`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 18;",
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 24;",
    "ALTER TABLE `app_site_cmmgr_general_info`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;",
    "ALTER TABLE `app_site_cmmgr_u_article`

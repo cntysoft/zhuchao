@@ -180,7 +180,7 @@ return array(
             'system'    => false,
             'display'   => true,
             'type'      => 'integer',
-            'length' => 10
+            'length'    => 10
          ),
          array(
             'name'      => 'tel',
@@ -190,7 +190,7 @@ return array(
             'system'    => false,
             'display'   => true,
             'type'      => 'varchar',
-            'length' => 64
+            'length'    => 64
          ),
          array(
             'name'      => 'endTime',
@@ -200,8 +200,82 @@ return array(
             'system'    => false,
             'display'   => true,
             'type'      => 'integer',
-            'length' => 10
+            'length'    => 10
          ),
+      )
+   ),
+   'CaseInfo'    => array(
+      'meta'   => array(
+         'key'                 => 'CaseInfo',
+         'name'                => '案例模型',
+         'buildIn'             => true,
+         'editor'              => 'StdEditor',
+         'dataSaver'           => 'StdSaver',
+         'description'         => '系统的案例信息模型',
+         'itemName'            => '信息',
+         'itemUnit'            => '篇',
+         'enabled'             => true,
+         'defaultTemplateFile' => '案例内容页模板.phtml',
+         'extraConfig'         =>
+         array()
+      ),
+      'fields' => array(
+         array(
+            'name'      => 'nodeId',
+            'alias'     => '所属节点',
+            'fieldType' => 'Category',
+            'require'   => true,
+            'system'    => true,
+            'type'      => 'integer'
+         ),
+         array(
+            'name'      => 'title',
+            'alias'     => '案例名称',
+            'fieldType' => 'Title',
+            'require'   => true,
+            'system'    => true,
+            'type'      => 'varchar',
+            'length'    => 512
+         ),
+         array(
+            'name'      => 'intro',
+            'alias'     => '案例简介',
+            'fieldType' => 'MultiLineText',
+            'require'   => false,
+            'system'    => true,
+            'type'      => 'varchar',
+            'length'    => 512,
+            'uiOption'  => array(
+               'enableLenCheck' => true,
+               'maxLen'         => 512
+            )
+         ),
+         array(
+            'name'      => 'content',
+            'alias'     => '案例内容',
+            'fieldType' => 'WordEditor',
+            'require'   => true,
+            'system'    => false,
+            'type'      => 'text',
+         ),
+         array(
+            'name'      => 'status',
+            'alias'     => '状态',
+            'fieldType' => 'Status',
+            'require'   => true,
+            'system'    => true,
+            'type'      => 'boolean'
+         ),
+         array(
+            'name'      => 'fileRefs',
+            'alias'     => '文件引用',
+            'fieldType' => 'SingleLineText',
+            'require'   => false,
+            'system'    => false,
+            'display'   => false,
+            'type'      => 'varchar',
+            'length'    => 512
+         )
       )
    )
 );
