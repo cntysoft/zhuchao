@@ -87,8 +87,6 @@ class Product extends AbstractHandler
       unset($params['keywords2']);
       $keyword[] = $params['keywords3'];
       unset($params['keywords3']);
-      $keyword[] = $params['keywords4'];
-      unset($params['keywords4']);
       $params['keywords'] = $keyword;
       
       $product = $this->getAppCaller()->call(
@@ -147,7 +145,6 @@ class Product extends AbstractHandler
       $ret['keywords1'] = $ret['keywords'][0];
       $ret['keywords2'] = $ret['keywords'][1];
       $ret['keywords3'] = $ret['keywords'][2];
-      $ret['keywords4'] = $ret['keywords'][3];
       unset($ret['keywords']);
       $category = $this->getAppCaller()->call(
          CATEGORY_CONST::MODULE_NAME,

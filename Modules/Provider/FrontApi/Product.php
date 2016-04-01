@@ -350,6 +350,11 @@ class Product extends AbstractScript
       );
    }
    
+   public function deleteGroup(array $params)
+   {
+      
+   }
+   
    /**
     * 获取分类树
     * 

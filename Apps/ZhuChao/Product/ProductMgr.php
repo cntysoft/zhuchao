@@ -16,6 +16,8 @@ use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 use App\Yunzhan\Product\Constant as YUNZHAN_CONST;
 use Cntysoft\Framework\Core\FileRef\Manager as RefManager;
 use Cntysoft\Kernel;
+use Cntysoft\Kernel\ConfigProxy;
+use Phalcon\Db\Adapter\Pdo\Mysql;
 
 class ProductMgr extends AbstractLib
 {
@@ -78,9 +80,10 @@ class ProductMgr extends AbstractLib
       if(!isset($params['attribute'])){
          $params['attribute'] = array();
       }
+      $params['defaultImage'] = $params['images'][0][0];
       $this->checkRequireFields($params, $dfields);
       $pfields = $product->getRequireFields(array('id', 'providerId', 'companyId', 'number', 'hits', 'star', 'grade', 'searchAttrMap', 'indexGenerated', 'inputTime', 'updateTime', 'detailId'));
-      unset($pfields['defaultImages']);
+
       foreach (array('price') as $val) {
          array_push($pfields, $val);
       }
@@ -97,6 +100,7 @@ class ProductMgr extends AbstractLib
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_SUBATTR_NOT_EXIST'), $errorType->code('E_COMPANY_SUBATTR_NOT_EXIST')), $this->getErrorTypeContext());
       }
+      $this->setSiteDb($companyId);
       
       $this->checkRequireFields($params, $pfields);
       $ddata = $this->filterData($params, $dfields);
@@ -166,7 +170,6 @@ class ProductMgr extends AbstractLib
 
          Kernel\throw_exception($ex, $this->getErrorTypeContext());
       }
-      
    }
 
    /**
@@ -184,6 +187,13 @@ class ProductMgr extends AbstractLib
       $params['status'] = Constant::PRODUCT_STATUS_PEEDING;
 
       $product = $this->getProductById($productId);
+      $company = $product->getCompany();
+      if(!$company || !$company->getSubAttr()){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_SUBATTR_NOT_EXIST'), $errorType->code('E_COMPANY_SUBATTR_NOT_EXIST')), $this->getErrorTypeContext());
+      }
+      $this->setSiteDb($company->getId());
+      
       $detail = $product->getDetail();
       $dfields = $detail->getRequireFields(array('id'));
       foreach (array('imgRefMap', 'fileRefs') as $val) {
@@ -859,5 +869,18 @@ class ProductMgr extends AbstractLib
             (int)$categoryId
          )
       ));
+   }
+   
+   protected function setSiteDb($id)
+   {
+      Kernel\get_site_id($company->getId());
+            
+      $config = ConfigProxy::getGlobalConfig();
+      $cfg = $config->db->toArray();
+      $this->di->setShared('siteDb', function() use($cfg) {
+         $cfg['dbname'] = Kernel\get_site_db_name();
+         $db = new Mysql($cfg);
+         return $db;
+      });
    }
 }

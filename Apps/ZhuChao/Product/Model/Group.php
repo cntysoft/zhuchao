@@ -22,6 +22,13 @@ class Group extends BaseModel
       return 'app_zhuchao_product_group';
    }
    
+   public function initialize()
+   {
+      $this->hasMany('id', 'App\ZhuChao\Product\Model\Product2Group', 'groupId', array(
+         'alias' => 'p2g'
+      ));
+   }
+   
    public function getId()
    {
       return (int)$this->id;

@@ -88,4 +88,85 @@ class GroupMgr extends AbstractLib
       return $group->create();
    }
    
+   /**
+    * 删除指定用户的指定id的分组
+    * 
+    * @param integer $providerId
+    * @param array $ids
+    * @throws 
+    */
+   public function deleteGroups($providerId, array $ids)
+   {
+      $cond[] = GroupModel::generateRangeCond('id', $ids);
+      $cond[] = 'providerId='.(int)$providerId;
+      $cond = implode(' and ', $cond);
+      
+      $groups = GroupModel::find(array(
+         $cond
+      ));
+      
+      $db = Kernel\get_db_adapter();
+      try{
+         $db->begin();
+
+         foreach($groups as $group){
+            $p2g = $group->getP2g();
+            foreach($p2g as $pg){
+               $pg->delete();
+            }
+            $children = $this->getChildGroup($providerId, $group->getId(), false);
+            if(count($children)){
+               $this->deleteGroups($providerId, $children);
+            }
+            $group->delete();
+         }
+         $db->commit();
+      } catch (Exception $ex) {
+         $db->rollback();
+
+         Kernel\throw_exception($ex);
+      }
+   }
+   
+   /**
+    * 修改分组的信息，目前可以修改名称
+    * 
+    * @param integer $providerId
+    * @param integer $id
+    * @param array $params
+    */
+   public function modifyGroup($providerId, $id, array $params)
+   {
+      $group = GroupModel::findFirst(array(
+         'providerId = ?0 and id = ?1',
+         'bind' => array(
+            0 => (int)$providerId,
+            1 => (int)$id 
+         )
+      ));
+      
+      if(!$group){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception(
+            $errorType->msg('E_GROUP_NOT_EXIST'), $errorType->code('E_GROUP_NOT_EXIST')
+         ), $this->getErrorTypeContext())
+      }
+      
+      $group->setName($params['name']);
+      $group->update();
+   }
+   
+   /**
+    * 获取指定用户指定id分组的子分组
+    * 
+    * @param integer $provider
+    * @param integer $id
+    * @param boolean $flag
+    */
+   public function getChildGroup($providerId, $id, $flag = true)
+   {
+      $tree = $this->getGroupTree($providerId);
+      
+      return $tree->getChildren($id, 1, $flag);
+   }
 }

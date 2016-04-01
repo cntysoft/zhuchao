@@ -631,8 +631,6 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
                   name : 'keywords2'
                },{
                   name : 'keywords3'
-               },{
-                  name : 'keywords4'
                }]
             }, {
                xtype : 'combo',
