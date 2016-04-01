@@ -13,7 +13,6 @@ use App\Yunzhan\Setting\Constant as SETTING_CONST;
 
 class SiteSetting extends AbstractDsScript
 {
-
    public function load()
    {
       $config = $this->appCaller->call(
@@ -42,5 +41,4 @@ class SiteSetting extends AbstractDsScript
       
       return $ret;
    }
-
 }

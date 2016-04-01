@@ -2,6 +2,7 @@
 <?php
 Qs::Ds('内容数据源/企业设置', 'CS');
 Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('内容数据源/店铺设置', 'CSS');
 ?>
 <html lang="en">
     <head>
@@ -23,9 +24,33 @@ Qs::Ds('内容数据源/企业信息', 'CP');
             <!--banner-->
             <div class="banner">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a ><img src="<?php Qs::Sys('loadImage', 'company/test_company_banner.jpg') ?>" alt=""></a>
-                    </div>
+                    <?php
+                        $banners = QS::DsField('CSS', 'banner', true);
+                        foreach($banners as $banner){
+                           if(false === strpos($banner['image'], '@')){
+                              $image = $banner['image'].'@640w_200h_1e_1c.src';
+                           }else{
+                              if(strpos($banner['image'], '.src')){
+                                 $ret = explode('.src', $banner['image']);
+                                 $image = $ret[0].'_200h'.'.src';
+                              }else{
+                                 $image = $ret[0].'_200h'.'.src';
+                              }
+                           }
+  
+                           $url = $banner['url'];
+                           if($url){
+                              echo '<div class="swiper-slide">
+                                    <a href="'.$url.'"><img src="'.$image.'" alt=""></a>
+                                </div>';
+                           }else{
+                              echo '<div class="swiper-slide">
+                                    <a><img src="'.$image.'" alt=""></a>
+                                </div>';
+                           }
+                        }
+                     ?>
+                    
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
