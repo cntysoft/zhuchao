@@ -36,6 +36,8 @@ class SiteSetting extends AbstractDsScript
 		$config = $this->appCaller->call(
 				  SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemsByGroup', array('Seo')
 		);
+		$ret['description'] = '';
+		$ret['keywords'] = '';
 		foreach ($config as $one) {
 			$key = $one->getKey();
 			$value = $one->getValue();
