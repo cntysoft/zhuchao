@@ -1,5 +1,13 @@
-define(['jquery', 'layer', 'Core', 'Front', 'search','app/common'], function(){
+define(['jquery', 'layer', 'Core', 'Front','app/common'], function(){
    $(function (){
+      $('.search_btn').click(function(){
+         var key = $('.search_key').val();
+         var baseUrl = $('.logo_img').attr('href');
+         if(key){
+            window.location.href = baseUrl + '/query/1.html?keyword=' + key;
+         }
+      });
+      
       $('.company_operation .icon-shanchu').click(function(){
          var collect = $(this).parents('.company_ele');
          var id = collect.attr('fh-index');

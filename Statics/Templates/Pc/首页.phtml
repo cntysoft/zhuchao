@@ -3,19 +3,26 @@
 Qs::Ds('商城数据源/商城数据', 'sites');
 ?>
 <html lang="en">
-	 <head>
-		  <meta charset="UTF-8">
-		  <title>首页-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
-		  <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
-		  <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/index.css', 'slick.css', 'layer.css')); ?>
-	 </head>
-	 <body>
-		  <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_IndexTop')) ?>
-		  <!--banner 全屏-->
-		  <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_Index')) ?>
-		  <?php Qs::Label('静态类/网站底部'); Qs::Sys('loadRequireJs', 'mall/index'); ?>
-	 </body>
+    <head>
+        <meta charset="UTF-8">
+        <title>首页-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/index.css', 'slick.css', 'layer.css')); ?>
+        <style>
+            #searchSuggest .current_item{
+               color: #fff;
+               background-color: #63bf82;
+            }
+        </style>
+    </head>
+    <body>
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_IndexTop')) ?>
+        <!--banner 全屏-->
+        <?php Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_Index')) ?>
+        <?php Qs::Label('静态类/网站底部');
+        Qs::Sys('loadRequireJs', 'mall/index'); ?>
+    </body>
 </html>

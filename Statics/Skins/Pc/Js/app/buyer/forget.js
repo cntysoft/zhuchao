@@ -1,5 +1,12 @@
-define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], function (validate){
+define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (validate){
     $(function (){
+       $('.search_btn').click(function(){
+         var key = $('.search_key').val();
+         var baseUrl = $('.logo_img').attr('href');
+         if(key){
+            window.location.href = baseUrl + '/query/1.html?keyword=' + key;
+         }
+      });
         var imgCodeUrl = '/forgetchkcode?v_';
         var codeType = 2, phone = '', phoneChecked = false, phoneExist = false;
         $('#codeImg').attr('src', imgCodeUrl + (new Date()).getTime());

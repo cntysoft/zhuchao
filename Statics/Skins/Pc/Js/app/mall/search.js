@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/9.
  */
-define(['jquery', 'lazyload','app/common'], function (){
+define(['jquery', 'lazyload','app/common', 'search'], function (){
    $(document).ready(function (){
       var search = decodeURI(window.location.search);
       if(search){

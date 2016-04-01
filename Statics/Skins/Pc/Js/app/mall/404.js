@@ -3,13 +3,6 @@
  */
 define(['jquery', 'Front', 'Core'], function (){
    $(function (){
-      //搜索
-      $('.search_button').click(function (){
-         var key = $('.search_key').val();
-         if(key){
-            window.location.href = $('.icon_logo a').attr('href') + '/query/1.html?keyword=' + key;
-         }
-      });
       // 退出登录
       $('.logout').click(function (){
          Cntysoft.Front.callApi('Utils', 'logout', {

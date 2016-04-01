@@ -1,8 +1,15 @@
 /**
  * Created by Administrator on 2016/3/19.
  */
-define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], function (address){
+define(['module/address', 'jquery', 'layer', 'Core', 'Front','app/common'], function (address){
    $(function (){
+      $('.search_btn').click(function(){
+         var key = $('.search_key').val();
+         var baseUrl = $('.logo_img').attr('href');
+         if(key){
+            window.location.href = baseUrl + '/query/1.html?keyword=' + key;
+         }
+      });
       var reg = new RegExp(/^1[0-9]{10}$/);
       var type = 'add', flag = true;
       $('.submit_address').click(function(event){

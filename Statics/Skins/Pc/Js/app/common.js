@@ -23,13 +23,6 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
             }
          }, true);
       });
-      //搜索
-      $('.search_button').click(function (){
-         var key = $('.search_key').val();
-         if(key){
-            window.location.href = '/query/1.html?keyword=' + key;
-         }
-      });
       //实例化页码
       function createPage(getPageUrl){
          if(window.pageInfo == undefined || pageInfo.pageSize >= pageInfo.total){

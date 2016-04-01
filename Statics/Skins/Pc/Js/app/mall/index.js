@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/10.
  */
-define(['jquery', 'slick', 'layer', 'app/common'], function (){
+define(['jquery', 'slick', 'layer', 'app/common', 'search'], function (){
     $(document).ready(function (){
         // banner
         $('.banner_box').slick({
@@ -24,12 +24,6 @@ define(['jquery', 'slick', 'layer', 'app/common'], function (){
                 lazyLoad : 'ondemand'
             });
         }
-        $('.search_button').click(function (){
-            var key = $('.search_key').val();
-            if(key){
-                window.location.href = '/query/1.html?keyword=' + key;
-            }
-        });
 
         //产品切换
         //$('.pro_banner_box').slick({

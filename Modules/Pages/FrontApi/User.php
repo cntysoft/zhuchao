@@ -13,6 +13,7 @@ use Cntysoft\Kernel\Exception;
 use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;
+use App\Sys\Searcher\Constant as SEARCH_CONST;
 use App\ZhuChao\MessageMgr\Constant as MESSAGE_CONST;
 /**
  * 处理系统上传
@@ -93,4 +94,26 @@ class User extends AbstractScript
 		return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout');
 	}
 
+   /**
+    * 获取搜索建议
+    * 
+    * @param array $params
+    * @return 
+    */
+   public function getGoodsQuerySuggests(array $params)
+   {
+      $this->checkRequireFields($params, array('query'));
+      $query = '';
+      if (isset($params['query'])) {
+         $query = $params['query'];
+      }
+      return $this->appCaller->call(
+         SEARCH_CONST::MODULE_NAME, 
+         SEARCH_CONST::APP_NAME, 
+         SEARCH_CONST::APP_API_SEARCHER, 
+         'getGoodsQuerySuggests', 
+         array($query)
+      );
+   }
+   
 }

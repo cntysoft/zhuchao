@@ -1,5 +1,13 @@
-define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'search', 'app/common'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function (validate, WebUploader){
     $(function (){
+       $('.search_btn').click(function(){
+         var key = $('.search_key').val();
+         var baseUrl = $('.logo_img').attr('href');
+         if(key){
+            window.location.href = baseUrl + '/query/1.html?keyword=' + key;
+         }
+      });
+      
         var reg = new RegExp(/^[0-9a-zA-Z-_]{3,10}$/);
         var uploadProductImg, uploaderConfig;
         init();

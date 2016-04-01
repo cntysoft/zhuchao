@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/10.
  */
-define(['jquery', 'Front', 'app/common'], function (){
+define(['jquery', 'Front', 'app/common', 'search'], function (){
    $(function (){
       var number = window.location.pathname.split('/')[2].split('.')[0];
       //增加点击量

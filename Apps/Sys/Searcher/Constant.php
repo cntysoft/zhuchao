@@ -25,7 +25,7 @@ final class Constant
    const GENERAL_DOC_INDEX_NAME_DEBUG = 'fhzc_b2b_general_doc_debug';
    const GENERAL_DOC_INDEX_MAIN_TABLE_NAME = 'main';
    //查询推荐的名称
-   const GOODS_SUGGEST_NAME = 'goods_suggest';
+   const GOODS_SUGGEST_NAME = 'product_suggest';
    const GINFO_SUGGEST_NAME = 'fhzc_doc_suggest';
    const ATTR_FILTER_REGEX = '/[\s:\/\(\)\*&@!#$%\^\-+~\?]/is';
 }

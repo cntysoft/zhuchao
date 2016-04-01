@@ -11,6 +11,12 @@ Qs::Ds('商城数据源/商城数据', 'sites');
 		  <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
 		  <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/search.css')); ?>
+        <style>
+            #searchSuggest .current_item{
+               color: #fff;
+               background-color: #63bf82;
+            }
+        </style>
     </head>
     <body>
         <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_MallTop')) ?>

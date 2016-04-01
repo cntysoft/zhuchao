@@ -1,8 +1,15 @@
 /**
  * Created by Administrator on 2016/3/19.
  */
-define(['validate', 'jquery', 'layer', 'Core', 'Front', 'search','app/common'], function(validate){
+define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function(validate){
    $(function (){ 
+      $('.search_btn').click(function(){
+         var key = $('.search_key').val();
+         var baseUrl = $('.logo_img').attr('href');
+         if(key){
+            window.location.href = baseUrl + '/query/1.html?keyword=' + key;
+         }
+      });
       $('.action_btn .submit').click(function(){
          var validateMsg = validate.checkFields($('#oldpassword,#newpassword,#repassword'));
          if(validateMsg.length){
