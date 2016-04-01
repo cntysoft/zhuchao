@@ -161,7 +161,7 @@ class Site extends AbstractScript
     */
    public function modifySetting(array $params)
    {
-      $this->checkRequireFields($params, array('banner'));
+      $this->checkRequireFields($params, array('banner','keywords','description'));
       
       $this->appCaller->call(
          SETTING_CONST::MODULE_NAME,
@@ -169,6 +169,20 @@ class Site extends AbstractScript
          SETTING_CONST::APP_API_CFG,
          'setItem',
          array('Site', 'Banner', serialize($params['banner']))
+      );
+		$this->appCaller->call(
+         SETTING_CONST::MODULE_NAME,
+         SETTING_CONST::APP_NAME,
+         SETTING_CONST::APP_API_CFG,
+         'setItem',
+         array('Seo', 'keywords', $params['keywords'])
+      );
+		$this->appCaller->call(
+         SETTING_CONST::MODULE_NAME,
+         SETTING_CONST::APP_NAME,
+         SETTING_CONST::APP_API_CFG,
+         'setItem',
+         array('Seo', 'description', $params['description'])
       );
    }
    

@@ -10,35 +10,42 @@
 namespace TagLibrary\Ds\ContentModel;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractDsScript;
 use App\Yunzhan\Setting\Constant as SETTING_CONST;
-
 class SiteSetting extends AbstractDsScript
 {
-   public function load()
-   {
-      $config = $this->appCaller->call(
-         SETTING_CONST::MODULE_NAME,
-         SETTING_CONST::APP_NAME,
-         SETTING_CONST::APP_API_CFG,
-         'getItemsByGroup',
-         array('Site')
-      );
-      
-      $ret = array('banner' => array());
-      foreach ($config as $one){
-         $key = $one->getKey();
-         $value = $one->getValue();
-         if('Banner' == $key){
-            $value = unserialize($value);
-            foreach($value as $val){
-               $ret['banner'][] = array(
-                  'image' => $val[0],
-                  'id'    => $val[1],
-                  'url'   => $val[2]
-               );
-            }
-         }
-      }
-      
-      return $ret;
-   }
+	public function load()
+	{
+		$config = $this->appCaller->call(
+				  SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemsByGroup', array('Site')
+		);
+
+		$ret = array('banner' => array());
+		foreach ($config as $one) {
+			$key = $one->getKey();
+			$value = $one->getValue();
+			if ('Banner' == $key) {
+				$value = unserialize($value);
+				foreach ($value as $val) {
+					$ret['banner'][] = array(
+						'image'	 => $val[0],
+						'id'		 => $val[1],
+						'url'		 => $val[2]
+					);
+				}
+			}
+		}
+		$config = $this->appCaller->call(
+				  SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemsByGroup', array('Seo')
+		);
+		foreach ($config as $one) {
+			$key = $one->getKey();
+			$value = $one->getValue();
+			if ('description' == $key) {
+				$ret['description'] = $value;
+			} else if('keywords' == $key){
+				$ret['keywords'] = $value;
+			}
+		}
+		return $ret;
+	}
+
 }

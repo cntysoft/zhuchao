@@ -1,14 +1,14 @@
+<?php Qs::Ds('商城数据源/商城数据', 'sites'); ?>
 <!DOCTYPE html>
 <?php
-Qs::Ds('用户数据源/企业信息', 'User');
 Qs::Ds('商城数据源/商城数据', 'site');
 ?>
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>忘记密码-<?php Qs::DsField('site', 'SiteTitle') ?></title>
-        <meta name="description" content="<?php Qs::DsField('User', 'description') ?>">
-        <meta name="keywords" content="<?php Qs::DsField('User', 'keywords') ?>">
+        <title>忘记密码-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/login.css')); ?>

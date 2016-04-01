@@ -24,7 +24,6 @@ class Company extends BaseModel
 	protected $postCode;
 	protected $website;
 	protected $description;
-	protected $keywords;
 	protected $logo;
 	protected $status;
 	protected $inputTime;
@@ -112,16 +111,6 @@ class Company extends BaseModel
 	public function getDescription()
 	{
 		return $this->description;
-	}
-
-	public function getKeywords()
-	{
-		return $this->keywords;
-	}
-
-	public function setKeywords($keywords)
-	{
-		$this->keywords = $keywords;
 	}
 
 	public function getLogo()

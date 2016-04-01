@@ -53,6 +53,14 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
             <div class="content_wrap fr">
                 <h1 class="items_title">基本设置</h1>
                 <div class="form_box">
+						  <div class="form_list clearfix">
+                        <label><em class="main">*</em>SEO描述:</label>
+                        <input type="text"  class="checkField" id="description" value="<?php Qs::DsField('setting', 'description') ?>" reg='^([^<>]){3,255}$' tip-value="请输入站点描述" required>
+                    </div>
+						  <div class="form_list clearfix">
+                        <label><em class="main">*</em>SEO关键字:</label>
+                        <input type="text"  class="checkField" id="keywords" value="<?php Qs::DsField('setting', 'keywords') ?>" reg='^([^<>]){3,255}$' tip-value="请输入站点关键字" required>
+                    </div>
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>首页banner:</label>
                         <div class="input_wrap img_uploading">

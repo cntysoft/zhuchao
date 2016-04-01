@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common'], function (WebUploader){
+define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common','layer'], function (WebUploader){
    $(function (){
       var uploadIndex = -1;
       var images = new Array();
@@ -21,6 +21,7 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common'], functi
             });
          }
       }
+      
       //提交 submit为保存,draft为生成草稿
       $('#submit').click(function (){
          var params = {};
@@ -33,7 +34,14 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common'], functi
             });
          }
          params['banner'] = images;
-         
+         var keywords = $('#keywords').val();
+         var description = $('#description').val();
+         if(keywords.length < 1 || description.length < 1){
+             layer.msg('请输入相关信息后再进行保存！');
+             return false;
+         }
+         params['keywords'] = keywords;
+         params['description'] = description;
          Cntysoft.Front.callApi('Site', 'modifySetting', params, function (response){
             if(response.status){
                layer.msg('店铺设置修改成功！', {
