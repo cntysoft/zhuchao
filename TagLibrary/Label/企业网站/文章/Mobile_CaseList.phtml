@@ -1,0 +1,22 @@
+<?php
+$out = '<div class="l_main" id="l_main">
+	 <div class="case caselist">';
+$limit = (int) $this->invokeParams['outputNum'];
+$lists = $this->getCaseList(true, 0, $limit);
+foreach ($lists['items'] as $list) {
+	$out .= '<div class="case_list">
+				<a class="case_img" href="/casedetail/' . $list->getId() . '.html"><img src="' . \Cntysoft\Kernel\get_image_cdn_url($list->getDefaultPicUrl(), 376, 210) . '"></a>
+				<h2><a href="/casedetail/' . $list->getId() . '.html">' . $list->getTitle() . '</a></h2>
+				<div class="case_intro">
+					 <p>
+						  ' . $list->getIntro() . '
+					 </p>
+				</div>
+		  </div>';
+}
+$out .= '</div>
+</div>';
+
+echo $out;
+
+?>
