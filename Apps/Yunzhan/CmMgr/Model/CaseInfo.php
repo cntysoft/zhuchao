@@ -30,7 +30,7 @@ class CaseInfo extends BaseModel
 
     public function getFileRefs()
     {
-       return unserialize($this->fileRefs);
+       return $this->fileRefs;
     }
 
     public function setId($id)
@@ -47,7 +47,7 @@ class CaseInfo extends BaseModel
 
     public function setFileRefs($fileRefs)
     {
-       $this->fileRefs = serialize($fileRefs);
+       $this->fileRefs = $fileRefs;
        return $this;
     }
 

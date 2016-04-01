@@ -63,7 +63,7 @@ class Manager extends AbstractLib
       $data['isDeleted'] = 0;
       $data['inputTime'] = time();
       $data += array(
-         'hits' => 1000,
+         'hits' => mt_rand(100, 1000),
          'priority' => 0
       );
       if(Constant::INFO_S_VERIFY == $data['status']){

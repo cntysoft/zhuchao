@@ -29,9 +29,6 @@ class StdContentModelDs extends AbstractDsScript
       if (!$info) {
          return array();
       } else {
-         $ginfo = $info[0];
-         $ginfo->setHits($ginfo->getHits() + 1);
-         $ginfo->update();
          $main = $info[0];
          $mainValues = $main->toArray(true);
          $sub = $info[1];
@@ -48,7 +45,7 @@ class StdContentModelDs extends AbstractDsScript
          foreach ($skip as $item) {
             unset($ret[$item]);
          }
-         $node = $ginfo->getNode();
+         $node = $main->getNode();
          $ret['nodeId'] = $node->getId();
          $defaultPicUrl = $ret['defaultPicUrl'];
          unset($ret['defaultPicUrl']);

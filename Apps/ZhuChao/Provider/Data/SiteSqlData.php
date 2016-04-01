@@ -245,6 +245,8 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;",
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 5;",
    "ALTER TABLE `app_site_cmmgr_u_job`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;",
+   "ALTER TABLE `app_site_cmmgr_u_caseinfo`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;",
    "ALTER TABLE `app_zhuchao_product_base_info`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
    "ALTER TABLE `app_zhuchao_product_detail`

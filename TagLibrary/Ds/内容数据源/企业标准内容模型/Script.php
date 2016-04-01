@@ -24,11 +24,8 @@ class CompanyStdContentModelDs extends AbstractDsScript
          $routeInfo = $this->getRouteInfo();
          $itemId = (int) $routeInfo['newsid'];
       }
-
+      
       $info = $this->appCaller->call(ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_MANAGER, 'read', array($itemId));
-      $ginfo = $info[0];
-      $ginfo->setHits($ginfo->getHits() + 1);
-      $ginfo->update();
       $main = $info[0];
       $mainValues = $main->toArray(true);
       $sub = $info[1];

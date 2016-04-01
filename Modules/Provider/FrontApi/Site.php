@@ -43,11 +43,14 @@ class Site extends AbstractScript
       }
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'add', array(CM_CONST::CONTENT_MODEL_ARTICLE, $params));
    }
+
    //把文章移如回收站,包括新闻,招聘等
-   public function deleteArticle($params){
-      $this->checkRequireFields($params,array('id'));
-      $this->appCaller->call(CN_CONST::MODULE_NAME,  CN_CONST::APP_NAME,  CN_CONST::APP_API_MANAGER, 'moveToTrashcan',array($params['id']));
+   public function deleteArticle($params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'moveToTrashcan', array($params['id']));
    }
+
    /**
     * 添加招聘信息
     * 
@@ -77,7 +80,7 @@ class Site extends AbstractScript
       $this->checkRequireFields($params, array('id'));
       $id = $params['id'];
       unset($params['id']);
-      
+
       $cndServer = Kernel\get_image_cdn_server_url() . '/';
       //删除图片的网址
       if (isset($params['defaultPicUrl'])) {
@@ -99,14 +102,14 @@ class Site extends AbstractScript
    public function modifyIntro($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
-      
+
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_INTRO_ID, array(
-         'content' => $params['content'],
-         'fileRefs' => $params['fileRefs'],
-         'imgRefMap' => $params['imgRefMap']
+            'content'   => $params['content'],
+            'fileRefs'  => $params['fileRefs'],
+            'imgRefMap' => $params['imgRefMap']
       )));
    }
-   
+
    /**
     * 修改企业文化
     * 
@@ -115,14 +118,14 @@ class Site extends AbstractScript
    public function modifyCulture($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
-      
+
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_CULTURE_ID, array(
-         'content' => $params['content'],
-         'fileRefs' => $params['fileRefs'],
-         'imgRefMap' => $params['imgRefMap']
+            'content'   => $params['content'],
+            'fileRefs'  => $params['fileRefs'],
+            'imgRefMap' => $params['imgRefMap']
       )));
    }
-   
+
    /**
     * 修改企业资质
     * 
@@ -131,14 +134,14 @@ class Site extends AbstractScript
    public function modifyZizhi($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
-      
+
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_ZIZHI_ID, array(
-         'content' => $params['content'],
-         'fileRefs' => $params['fileRefs'],
-         'imgRefMap' => $params['imgRefMap']
+            'content'   => $params['content'],
+            'fileRefs'  => $params['fileRefs'],
+            'imgRefMap' => $params['imgRefMap']
       )));
    }
-   
+
    /**
     * 修改联系我们
     * 
@@ -147,14 +150,14 @@ class Site extends AbstractScript
    public function modifyContact($params)
    {
       $this->checkRequireFields($params, array('content', 'fileRefs', 'imgRefMap'));
-      
+
       $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array(CN_CONST::INFO_CONTACT_ID, array(
-         'content' => $params['content'],
-         'fileRefs' => $params['fileRefs'],
-         'imgRefMap' => $params['imgRefMap']
+            'content'   => $params['content'],
+            'fileRefs'  => $params['fileRefs'],
+            'imgRefMap' => $params['imgRefMap']
       )));
    }
-   
+
    /**
     * 修改店铺的banner信息
     * 
@@ -162,31 +165,19 @@ class Site extends AbstractScript
     */
    public function modifySetting(array $params)
    {
-      $this->checkRequireFields($params, array('banner','keywords','description'));
-      
+      $this->checkRequireFields($params, array('banner', 'keywords', 'description'));
+
       $this->appCaller->call(
-         SETTING_CONST::MODULE_NAME,
-         SETTING_CONST::APP_NAME,
-         SETTING_CONST::APP_API_CFG,
-         'setItem',
-         array('Site', 'Banner', serialize($params['banner']))
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Site', 'Banner', serialize($params['banner']))
       );
-		$this->appCaller->call(
-         SETTING_CONST::MODULE_NAME,
-         SETTING_CONST::APP_NAME,
-         SETTING_CONST::APP_API_CFG,
-         'setItem',
-         array('Seo', 'keywords', $params['keywords'])
+      $this->appCaller->call(
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Seo', 'keywords', $params['keywords'])
       );
-		$this->appCaller->call(
-         SETTING_CONST::MODULE_NAME,
-         SETTING_CONST::APP_NAME,
-         SETTING_CONST::APP_API_CFG,
-         'setItem',
-         array('Seo', 'description', $params['description'])
+      $this->appCaller->call(
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Seo', 'description', $params['description'])
       );
    }
-   
+
    public function addCase($params)
    {
       $this->checkRequireFields($params, array('content', 'nodeId', 'title', 'intro', 'fileRefs'));
@@ -202,26 +193,27 @@ class Site extends AbstractScript
 
       //删除图片的网址
       $content = array();
-      $defaultPicUrl = '';
-      foreach($params['content'] as $key => $item) {
+      $defaultPicUrl = array();
+      foreach ($params['content'] as $key => $item) {
          $img = str_replace($cndServer, '', $item['src']);
-         if(0 == $key) {
-            $defaultPicUrl = $img;
+         if (0 == $key) {
+            $defaultPicUrl[] = $img;
+            $defaultPicUrl[] = $item['rid'];
          }
-         
+
          array_push($content, array(
-            'rid' => $item['rid'],
-            'src' => $img,
+            'rid'   => $item['rid'],
+            'src'   => $img,
             'intro' => $item['intro']
          ));
       }
-      
+
       unset($params['content']);
       $params['content'] = $content;
       $params['defaultPicUrl'] = $defaultPicUrl;
       return $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'add', array(CN_CONST::CMODEL_CASEINFO_ID, $params));
    }
-   
+
    public function modifyCase($params)
    {
       $this->checkRequireFields($params, array('id', 'content', 'title', 'intro', 'fileRefs'));
@@ -231,31 +223,38 @@ class Site extends AbstractScript
 
       //删除图片的网址
       $content = array();
-      $defaultPicUrl = '';
-      foreach($params['content'] as $key => $item) {
+      $defaultPicUrl = array();
+      foreach ($params['content'] as $key => $item) {
          $img = str_replace($cndServer, '', $item['src']);
-         if(0 == $key) {
-            $defaultPicUrl = $img;
+         if (0 == $key) {
+            $defaultPicUrl[] = $img;
+            $defaultPicUrl[] = $item['rid'];
          }
-         
+
          array_push($content, array(
-            'rid' => $item['rid'],
-            'src' => $img,
+            'rid'   => $item['rid'],
+            'src'   => $img,
             'intro' => $item['intro']
          ));
       }
-      
+
       unset($params['content']);
       $params['content'] = $content;
       $params['defaultPicUrl'] = $defaultPicUrl;
       return $this->appCaller->call(CN_CONST::MODULE_NAME, CN_CONST::APP_NAME, CN_CONST::APP_API_MANAGER, 'update', array($id, $params));
    }
-   
+
    public function addCaseCategory()
    {
       
    }
-   
+
+   public function deleteCase($params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      $id = (array) $params['id'];
+   }
+
    /**
     * 获取案例中心的子栏目列表
     * 
@@ -265,16 +264,16 @@ class Site extends AbstractScript
    {
       $list = $this->appCaller->call(CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getSubNodes', array(CATE_CONST::NODE_CASE_ID));
       $ret = array();
-      foreach($list as $cate) {
+      foreach ($list as $cate) {
          array_push(array(
-            'id' => $cate->getId(),
+            'id'   => $cate->getId(),
             'text' => $cate->getText()
          ));
       }
-      
+
       return $ret;
    }
-   
+
    /**
     * 验证案例的分组
     * 
@@ -283,16 +282,16 @@ class Site extends AbstractScript
     */
    protected function getCaseNodeId($id)
    {
-      if(CATE_CONST::NODE_CASE_ID == $id) {
+      if (CATE_CONST::NODE_CASE_ID == $id) {
          return $id;
       }
-      
+
       $node = $this->appCaller->call(CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNode', array($id));
-      if(CATE_CONST::NODE_CASE_ID == $node->getPid()) {
+      if (CATE_CONST::NODE_CASE_ID == $node->getPid()) {
          return $id;
-      }else {
+      } else {
          return CATE_CONST::NODE_CASE_ID;
       }
    }
-   
+
 }
