@@ -15,7 +15,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
             number : /^[0-9]*[1-9][0-9]*$/,
             float : /^\d+(\.\d+)?$/,
             chinese : /^[\u0391-\uFFE5]+$/,
-            subname : /[a-zA-Z0-9]{3,32}/
+            subname : /^[a-zA-Z0-9]{3,16}$/
         },
         message = {
             email : '请输入正确的邮箱',
