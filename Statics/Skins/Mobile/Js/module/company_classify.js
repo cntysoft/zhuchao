@@ -3,22 +3,25 @@
  */
 define(['zepto'], function (){
    $(function (){
-      //导航栏
-      $('.header_left').click(function (e){
-         if($('.classify').width() == 0){
-            $('.classify').css('width', '120px');
-            $('.l_main').css('margin-left', '120px')
-            $('body,html').css({'overflow' : 'hidden', 'height' : '100%'});
-            e.stopPropagation();
-         }
-         else{
-            $('.classify').css('width', '0px');
-            $('.l_main').css('margin-left', '0px');
-            setTimeout(function (){
-               $('body,html').css({'overflow-y' : 'scroll', 'height' : 'auto'});
-            }, 200)
-         }
+      $('.header_left').click(function (){
+         $('.classify').toggleClass('show');
       });
+      //导航栏
+      // $('.header_left').tap(function(e){
+      //     if($('.classify').width() == 0){
+      //         $('.classify').css('width','120px');
+      //         $('.l_main').css('margin-left','120px')
+      //         $('body,html').css({'overflow':'hidden','height':'100%'});
+      //         e.stopPropagation();
+      //     }
+      //     else{
+      //         $('.classify').css('width','0px');
+      //         $('.l_main').css('margin-left','0px');
+      //         setTimeout(function(){
+      //             $('body,html').css({'overflow-y':'scroll','height':'auto'});
+      //         },200)
+      //     }
+      // });
       //$('body,html').click(function(){
       //    if($('.classify').width() > 0){
       //        $('.classify').css('width','0px');
@@ -85,5 +88,5 @@ define(['zepto'], function (){
       //    }
       //},true);
 
-   })
-})
+});
+});

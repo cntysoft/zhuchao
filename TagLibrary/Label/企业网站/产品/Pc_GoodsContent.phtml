@@ -1,0 +1,66 @@
+<?php
+$goodsInfo = $this->getProductByNumber();
+$goodsDetail = $goodsInfo->getDetail();
+$goodStatus = $goodsInfo->getStatus();
+$name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
+$out = '<div class="pro_info">
+                    <div class="pro_title clearfix">
+                        <span class="title_name fl">' . $name . '</span>
+                        <span class="title_code fl">产品编号：<em>' . $goodsInfo->getNumber() . '</em></span>
+                        <div class="icon-erweima fr">
+                            <div class="erweima_box">
+                                <div class="qrcode" id="qrcode2">                                    
+                                </div>
+                                <p>扫一扫，用手机查看</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro_show">';
+$images = $goodsDetail->getImages();
+$bigImage = $smallImage = '';
+$i = 1;
+foreach ($images as $image) {
+   if ($i == 1) {
+      $bigImage .= '<div><a ><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </a></div>';
+   }
+   $i = 2;
+   $smallImage .= '<div class="mainbd_hover"><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </div>';
+}
+$out.='<div class="show_big">' . $bigImage . '                            
+                        </div>
+                        <!--左右按钮-->
+                        <a class="switch_btn prev_btn" ><i class="icon-jiantou4"></i></a>
+                        <a class="switch_btn next_btn" ><i class="icon-jiantou2"></i></a>
+                        <div class="show_small clearfix">
+                            ' . $smallImage . '
+                        </div>
+                    </div>
+                </div>
+                <div class="pro_describe">
+                    <h1 class="describe_title">
+                        <a class="main_border " >产品信息</a>
+                        <a class="mainbd_hover" >属性规格</a>
+                    </h1>
+                    <div class="describle_info">
+                        <div class="info_one ">
+                            ' . $goodsDetail->getIntroduction() . '
+                        </div>
+                        <div class="info_two hide">
+                            <table>';
+$attribute = $goodsDetail->getAttribute();
+foreach ($attribute as $key => $value) {
+   if (count($value)) {
+      foreach ($value as $attrs => $attr) {
+         $out .= '<tr>
+                   <td class="item">' . $attrs . '</td>                      
+                   <td class="item_info">' . $attr . '</td>
+               </tr>';
+      }
+   }
+}
+$out.='</table>
+                        </div>
+                    </div>
+                </div>';
+echo $out;
+?>

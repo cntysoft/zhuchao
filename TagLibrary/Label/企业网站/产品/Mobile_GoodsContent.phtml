@@ -1,0 +1,48 @@
+<?php
+$goodsInfo = $this->getProductByNumber();
+$goodsDetail = $goodsInfo->getDetail();
+$goodStatus = $goodsInfo->getStatus();
+$name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
+$out = '<div class="m_pro_show">
+                <div class="pro_banner">
+                    <div class="swiper-wrapper">';
+$images = $goodsDetail->getImages();
+$i = 1;
+foreach ($images as $image) {
+   $out .= '<div class="swiper-slide">
+                            <img src="' . $this->getImgUrl($image[0], 290, 290) . '" alt="">
+                        </div>';
+}
+$out.='</div>
+                    <div class="pro-pagination"></div>
+                </div>
+                <div class="c_pro_show">
+                    <h4>产品编号：' . $goodsInfo->getNumber() . '</h4>
+                    <p class="pro_show_detail">' . $name . '</p>
+                    <p class="pro_show_price">' . ($goodsInfo->getPrice() > 0 ? '￥ ' . $goodsInfo->getPrice() : "面议") . '</p>
+                </div>
+            </div>
+            <!--产品信息-->
+            <div class="m_pro_info">
+                <h3><span class="main main_border intro">产品信息</span><span>规格属性</span></h3>                
+                <div class="pro_content intro">
+                     ' . $goodsDetail->getIntroduction() . '
+                </div>
+                <div class="pro_content hide attrs">
+                    <table>';
+$attribute = $goodsDetail->getAttribute();
+foreach ($attribute as $key => $value) {
+   if (count($value)) {
+      foreach ($value as $attrs => $attr) {
+         $out .= '<tr>
+                   <td class="item">' . $attrs . '</td>                      
+                   <td class="item_info">' . $attr . '</td>
+               </tr>';
+      }
+   }
+}
+$out.='</table>
+                </div>
+            </div>';
+echo $out;
+?>

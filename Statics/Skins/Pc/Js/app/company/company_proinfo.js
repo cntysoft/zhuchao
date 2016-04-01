@@ -23,13 +23,13 @@ define(['jquery', 'slick', 'app/company/common'], function (){
          draggable : false,
          infinite : true,
          prevArrow : '.prev_btn',
-         nextArrow : '.next_btn',
+         nextArrow : '.next_btn'
       });
 
       $('.show_small img').hover(function (){
          var imgSrc = $(this).attr('src');
          $('.show_big img').attr({
-            "src" : imgSrc,
+            "src" : imgSrc
          });
          $(this).parent('div').addClass('main_border').siblings().removeClass('main_border');
       });
@@ -38,5 +38,38 @@ define(['jquery', 'slick', 'app/company/common'], function (){
          $('.describle_info').children().eq($(this).index()).show().siblings().hide();
          return false;
       });
-   })
-})
+      var origin = window.location.href;
+      $('.pro_info div.icon-erweima').mouseenter(function (){
+         if(!$('#qrcode2').hasClass('loaded')){
+            $('#qrcode2').qrcode({
+               render : "canvas",
+               height : 130,
+               width : 130,
+               text : origin
+            });
+            $('#qrcode2').addClass('loaded');
+         }
+      });
+      var small_img = $('.show_small').find('div.mainbd_hover');
+      $('.next_btn').click(function (){
+         var index = $('.show_small').find('.main_border').index();
+         small_img.eq(index).removeClass('main_border');
+         if(index == small_img.size() - 1){
+            index = -1;
+         }
+         var big_src = small_img.eq(index + 1).find('img').attr('src');
+         $('.show_big').find('img').attr('src', big_src);
+         small_img.eq(index + 1).addClass('main_border');
+      });
+      $('.prev_btn').click(function (){
+         var index = $('.show_small').find('.main_border').index();
+         small_img.eq(index).removeClass('main_border');
+         if(index == 0){
+            index = small_img.size();
+         }
+         var big_src = small_img.eq(index - 1).find('img').attr('src');
+         $('.show_big').find('img').attr('src', big_src);
+         small_img.eq(index - 1).addClass('main_border');
+      });
+   });
+});

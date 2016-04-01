@@ -11,6 +11,7 @@ use Cntysoft\Framework\Qs\View;
 use Cntysoft\Kernel;
 use App\Yunzhan\Category\Constant as CATE_CONST;
 use App\Yunzhan\Content\Constant as CONTENT_CONST;
+use App\Yunzhan\Product\Constant as GOODS_CONST;
 class IndexController extends AbstractController
 {
    public function initialize()
@@ -191,5 +192,41 @@ class IndexController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
 	}
+
+   /**
+    * 商品详情页面路由
+    * 
+    * @return 
+    */
+   public function productAction()
+   {
+      $number = $this->dispatcher->getParam('number');
+      if (null === $number) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+
+      $product = $this->getAppCaller()->call(
+              GOODS_CONST::MODULE_NAME, GOODS_CONST::APP_NAME, GOODS_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number)
+      );
+
+      if (!$product) {
+         $this->dispatcher->forward(array(
+            'module'     => 'Pages',
+            'controller' => 'Exception',
+            'action'     => 'pageNotExist'
+         ));
+         return false;
+      }
+
+      $this->setupRenderOpt(array(
+         View::KEY_RESOLVE_DATA => 'site/product',
+         View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
 
 }

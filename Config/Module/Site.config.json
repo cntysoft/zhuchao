@@ -88,6 +88,15 @@
                 "controller" : "Index",
                 "action" : "productlist"
             }
+        },
+        {
+            "key" : "Item",
+            "rule" : "/item/{number:[ZC]{2}[0-9]{16}}.html",
+            "option" : {
+                "module" : "Site",
+                "controller" : "Index",
+                "action" : "product"
+            }
         }
     ],
     "hostName" : true,
@@ -98,7 +107,8 @@
         "site/search" : "企业网站/搜索页.phtml",
         "site/productlist" : "企业网站/产品列表.phtml",
         "site/caselist" : "企业网站/案例列表.phtml",
-        "site/casedetail" : "企业网站/案例详情页.phtml"
+        "site/casedetail" : "企业网站/案例详情页.phtml",
+        "site/product" : "企业网站/产品内容.phtml"
     },
     "front_api_map" : {
         "Utils" : [

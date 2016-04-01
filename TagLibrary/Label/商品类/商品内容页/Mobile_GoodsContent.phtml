@@ -7,7 +7,7 @@ $category = $goodsInfo->getCategory();
 $company = $goodsInfo->getCompany();
 $images = $goodsDetail->getImages();
 foreach ($images as $image) {
-	$out .= '<div class="module_ad_list swiper-slide">
+   $out .= '<div class="module_ad_list swiper-slide">
 				<a>
 					 <div class="module_ad_img" style="background: url(' . $this->getImageFromCdn($image[0], 332, 331) . ') no-repeat center;">
 						  <div class="module_ad_box"></div>
@@ -24,6 +24,13 @@ $out .= '<div class="item_box">
 		  <span class="add_color">¥' . ($goodsInfo->getPrice() > 0 ? $goodsInfo->getPrice() : "面议") . '</span>
 		  <span class="fr">产品编号：' . $goodsInfo->getNumber() . '</span>
 	 </div>
+     <div class="store">
+        <a class="store_logo" href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '"><img src="' . $this->getImageFromCdn($company->getLogo(), 100, 50) . '"> </a>
+        <div class="store_intro">
+            <h2><a href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '">' . $company->getName() . '</a></h2>
+            <p>' . $company->getDescription() . '</p>
+        </div>
+    </div>
 	 <ul class="info_box">
 		  <li class="box_dl">
 				<span class="box_dt">所在地区：</span>
@@ -39,12 +46,12 @@ $out .= '<div class="item_box">
 $products = explode(',', $company->getProducts());
 $i = 1;
 foreach ($products as $product) {
-	if ($i == 1) {
-		$out .= '<a>' . $product . '</a>';
-	} else {
-		$out .= '<span>|</span><a>' . $product . '</a>';
-	}
-	$i = 2;
+   if ($i == 1) {
+      $out .= '<a>' . $product . '</a>';
+   } else {
+      $out .= '<span>|</span><a>' . $product . '</a>';
+   }
+   $i = 2;
 }
 $out .= '</span>
 		  </li>
@@ -69,12 +76,12 @@ $out .= '<div class="item_box">
 	 <div class="pro_info_box">
 		  <ul class="pro_details_box">';
 foreach ($attribute as $key => $value) {
-	foreach ($value as $attrs => $attr) {
-		$out .= '<li class="item">
-					 <div class="key">'.$attrs.'：</div>
-					 <div class="val">'.$attr.'</div>
+   foreach ($value as $attrs => $attr) {
+      $out .= '<li class="item">
+					 <div class="key">' . $attrs . '：</div>
+					 <div class="val">' . $attr . '</div>
 				</li>';
-	}
+   }
 }
 $out .= '</ul>
 	 </div>

@@ -15,6 +15,17 @@ class Product extends AbstractLabelScript
    protected $outputNum = null;
    protected $query = null;
 
+   /**
+    * 获取商品信息
+    * @return type
+    */
+   public function getProductByNumber()
+   {
+      $number = $this->getRouteInfo()['number'];
+      return $this->appCaller->call(
+                      PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($number));
+   }
+
    public function getProductList()
    {
       $page = $this->getPageParam();
@@ -51,7 +62,7 @@ class Product extends AbstractLabelScript
 
    public function getInfoUrl($item)
    {
-      return 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $item . '.html';
+      return '/item/' . $item . '.html';
    }
 
    /**
