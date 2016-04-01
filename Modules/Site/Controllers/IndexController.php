@@ -175,5 +175,21 @@ class IndexController extends AbstractController
                  View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
       ));
    }
+	
+	public function caselistAction()
+	{
+		return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'site/caselist',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+	}
+	
+	public function casedetailAction()
+	{
+		return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'site/casedetail',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+	}
 
 }

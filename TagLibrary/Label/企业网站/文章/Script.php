@@ -351,5 +351,14 @@ class CompanyArticle extends AbstractLabelScript
       }
       return \Cntysoft\Kernel\get_image_cdn_url_operate($url, array('w' => $width, 'h' => $height));
    }
+	
+	public function getCaseList($total,$offset,$limit)
+	{
+		return $this->appCaller->call(
+				  CONTENTCONST::MODULE_NAME, 
+				  CONTENTCONST::APP_NAME, 
+				  CONTENTCONST::APP_API_INFO_LIST, 
+				  'getCaseList', array($total,$offset,$limit));
+	}
 
 }
