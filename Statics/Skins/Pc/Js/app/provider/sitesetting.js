@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front', 'app/common'], function (validate, WebUploader){
+define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common'], function (WebUploader){
    $(function (){
       var uploadIndex = -1;
       var images = new Array();
@@ -13,11 +13,11 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
          if(!$('.img_uploading li.hide').length){
             createProductUpload();
          }
-         var $uploaded = $('.img_uploading .image_uploaded');
+         var $uploaded = $('.img_uploading .img_wrap_div');
          if($uploaded.length > 0){
             $.each($uploaded, function (index, item){
-               var $img = $(item).find('img');
-               images.push([$img.attr('src').split('@.src')[0], $img.attr('fh-rid')]);
+               var $img = $(item).find('img'), $input = $(item).find('input');
+               images.push([$img.attr('src').split('@.src')[0], $img.attr('fh-id'), $input.val()]);
             });
          }
       }
@@ -32,21 +32,22 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                images[index][2] = $(dom).find('input').val();
             });
          }
+         params['banner'] = images;
          
-//         Cntysoft.Front.callApi('Product', '', params, function (response){
-//            if(response.status){
-//               layer.msg('商品修改成功！', {
-//                  success : function (){
-//                     var redirect = function (){
-//                        window.location = '/product/1.html';
-//                     };
-//                     setTimeout(redirect, 300);
-//                  }
-//               });
-//            } else{
-//               layer.msg('商品修改错误，请核对您的信息！');
-//            }
-//         });
+         Cntysoft.Front.callApi('Site', 'modifySetting', params, function (response){
+            if(response.status){
+               layer.msg('店铺设置修改成功！', {
+                  success : function (){
+                     var redirect = function (){
+                        window.location = '/site/setting.html';
+                     };
+                     setTimeout(redirect, 300);
+                  }
+               });
+            } else{
+               layer.msg('店铺设置修改失败，请核对您的信息！');
+            }
+         });
       });
 
       //删除商品图片
@@ -62,7 +63,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
       function showImg(){
          $('#uploadBtn').siblings('.img_wrap_div').remove();
          $.each(images, function (index, item){
-            $('#uploadBtn').before('<div class="img_wrap_div"><li><img src="' + item[0] + '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的网址"></div>');
+            $('#uploadBtn').before('<div class="img_wrap_div"><li><img fh-id="'+item[1]+'" src="' + item[0] + '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的正确网址" value="'+item[2]+'"></div>');
          });
          if(images.length != 4){
             $('#uploadBtn').show();
@@ -128,7 +129,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
          //商品图片上传成功
          uploadProductImg.on('uploadSuccess', function (file, response){
             if(response.status){
-               images.push([response.data[0].filename, response.data[0].rid]);
+               images.push([response.data[0].filename, response.data[0].rid, '']);
                showImg();
             }
          });

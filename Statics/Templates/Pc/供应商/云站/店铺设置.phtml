@@ -1,7 +1,6 @@
 <?php
-use App\Yunzhan\Content\Constant;
 Qs::Ds('商城数据源/商城数据', 'site');
-Qs::Ds('云站数据源/标准内容模型', 'info', array('itemId' => Constant::INFO_CULTURE_ID));
+Qs::Ds('内容数据源/店铺设置', 'setting');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,13 +56,31 @@ Qs::Ds('云站数据源/标准内容模型', 'info', array('itemId' => Constant:
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>首页banner:</label>
                         <div class="input_wrap img_uploading">
-                            <ul class="clearfix">
-                                <li class="img_plus" id="uploadBtn">
-                                    <p>+</p>
-                                    <span>添加照片</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul class="clearfix">
+                        <?php 
+                           $banners = Qs::DsField('setting', 'banner', true);
+                           if(count($banners)){
+                              foreach($banners as $item){
+                                 echo '<div class="img_wrap_div"><li><img fh-id="'.$item["id"].'" src="' . $item['image'] . '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的正确网址" value="'.$item['url'].'"></div>';
+                              }
+                              $cls = 'style="display:none"';
+                              if(count($banners) < 4){
+                                 $cls = '';
+                              }
+                              
+                              echo '<li class="img_plus" id="uploadBtn" '.$cls.'>
+                                       <p>+</p>
+                                       <span>添加照片</span>
+                                   </li>'; 
+                           }else{
+                              echo '<li class="img_plus" id="uploadBtn">
+                                         <p>+</p>
+                                         <span>添加照片</span>
+                                     </li>';
+                           }
+                        ?>
+                        </ul>
+                     </div>
                     </div>
                     <div class="form_list tc">
                         <div class="action_btn" style="width: 600px">

@@ -2,6 +2,7 @@
 <?php
 Qs::Ds('内容数据源/企业设置', 'CS');
 Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('内容数据源/店铺设置', 'CSS');
 ?>
 <html lang="en">
     <head>
@@ -22,7 +23,18 @@ Qs::Ds('内容数据源/企业信息', 'CP');
         <div class="l_main conwidth">
             <!--banner-->
             <div class="banner">
-                <div><a ><img src="<?php Qs::Sys('loadImage', 'company/test_company_banner.jpg') ?>" alt="<?php Qs::DsField('CP', 'name') ?>"></a></div>
+               <?php
+                  $banners = QS::DsField('CSS', 'banner', true);
+                  foreach($banners as $banner){
+                     $image = $banner['image'];
+                     $url = $banner['url'];
+                     if($url){
+                        echo '<div><a href="'.$url.'" target="__balnk"><img src="'.$image.'" alt=""></a></div>';
+                     }else{
+                        echo '<div><a><img src="'.$image.'" alt=""></a></div>';
+                     }
+                  }
+               ?>
             </div>
             <!--新闻和企业文化-->
             <div class="company_info clearfix">

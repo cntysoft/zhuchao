@@ -10,6 +10,7 @@ namespace ProviderFrontApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\Yunzhan\CmMgr\Constant as CM_CONST;
 use App\Yunzhan\Content\Constant as CN_CONST;
+use App\Yunzhan\Setting\Constant as SETTING_CONST;
 use App\ZhuChao\Provider\Constant as P_CONST;
 use Cntysoft\Kernel;
 class Site extends AbstractScript
@@ -151,6 +152,24 @@ class Site extends AbstractScript
          'fileRefs' => $params['fileRefs'],
          'imgRefMap' => $params['imgRefMap']
       )));
+   }
+   
+   /**
+    * 修改店铺的banner信息
+    * 
+    * @param array $params
+    */
+   public function modifySetting(array $params)
+   {
+      $this->checkRequireFields($params, array('banner'));
+      
+      $this->appCaller->call(
+         SETTING_CONST::MODULE_NAME,
+         SETTING_CONST::APP_NAME,
+         SETTING_CONST::APP_API_CFG,
+         'setItem',
+         array('Site', 'Banner', serialize($params['banner']))
+      );
    }
    
 }

@@ -208,7 +208,7 @@
             }
         },
         {
-            "key" : "ProviderYunzhan",
+            "key" : "ProviderYunzhanSiteSetting",
             "rule" : "\/site\/setting.html",
             "option" : {
                 "module" : "Provider",
