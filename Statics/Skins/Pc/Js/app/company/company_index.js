@@ -11,7 +11,7 @@ define(['jquery', 'slick', 'app/company/common'], function (){
          dots : true,
          arrows : false,
          fade : true,
-         dotsClass : "dots",
+         dotsClass : "dots"
       });
-   })
-})
+   });
+});

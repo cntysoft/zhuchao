@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/4/1.
  */
-define(['jquery','slick'],function () {
+define(['jquery','slick', 'app/company/common'],function () {
     $(function () {
         for(var i=0;i<$('.small_img').size();i++){
             var n=$('.small_img').size();

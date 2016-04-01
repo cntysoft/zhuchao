@@ -4,29 +4,30 @@ Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('内容数据源/店铺设置', 'setting');
 ?>
 <html lang="en">
-	 <head>
-		  <meta charset="UTF-8">
-		  <meta name="description" content="<?php Qs::DsField('setting', 'description') ?>">
+    <head>
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('CP', 'name') ?>-案例列表-<?php Qs::DsField('CP', 'description') ?></title>
+        <meta name="description" content="<?php Qs::DsField('setting', 'description') ?>">
         <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-		  <?php Qs::Sys('loadCss', array('company/style.css', 'slick.css', 'company/case_list.css')) ?>
-	 </head>
-	 <body>
-		  <!--头部-->
-		  <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'slick.css', 'company/case_list.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top',)) ?>
         <!--公司头部-->
         <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
-		  <!--路由-->
-		  <!--站点指示-->
-		  <div class="site conwidth">
-				<a href="/">首页</a>
-				<span>&gt;</span>
-				<a class="main">案例列表</a>
-		  </div>
-		  <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Pc_CaseList','outputNum' => 8));  ?>
-		  <!--底部-->
-		  <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <!--路由-->
+        <!--站点指示-->
+        <div class="site conwidth">
+            <a href="/">首页</a>
+            <span>&gt;</span>
+            <a class="main">案例列表</a>
+        </div>
+        <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Pc_CaseList', 'outputNum' => 8)); ?>
+        <!--底部-->
+        <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <!--侧边栏-->
         <div class="online">
             <div class="online_ele  ">
@@ -43,5 +44,5 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <script>
            window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
         </script>
-	 </body>
+    </body>
 </html>

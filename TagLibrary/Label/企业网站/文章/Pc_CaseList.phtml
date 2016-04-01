@@ -6,7 +6,7 @@ $offset = (((int) $this->getRoute()['pageId']) - 1) * $limit;
 $lists = $this->getCaseList(true, $offset, $limit);
 foreach ($lists['items'] as $list) {
 	$out .= '<div class="case_ele">
-				<a href="/casedetail/' . $list->getId() . '.html" class="case_img"><img src="' . \Cntysoft\Kernel\get_image_cdn_url($list->getDefaultPicUrl(), 360, 226) . '" alt=""></a>
+				<a href="/casedetail/' . $list->getId() . '.html" class="case_img"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($list->getDefaultPicUrl()[0], 360, 226) . '" alt="' . $list->getTitle() . '"></a>
 				<h4 class="main_hover"><a href="/casedetail/' . $list->getId() . '.html" class="" >' . $list->getTitle() . '</a></h4>
 				<p class="case_info">
 					 ' . $list->getIntro() . '

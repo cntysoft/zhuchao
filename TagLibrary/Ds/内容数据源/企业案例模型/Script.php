@@ -61,7 +61,6 @@ class CaseModel extends AbstractDsScript
       }
       
       $ret['content'] = $content;
-//		var_dump($ret);exit;
       return $ret;
    }
 
