@@ -14,45 +14,50 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/employ.css')) ?>
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/aboutus.css')) ?>
     </head>
     <body>
         <!--头部-->
         <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
         <!--内容-->
         <div class="l_main">
+            <!--关于我们-->
+            <div class="module_title about_us">
+                <i class="icon-aboutus"></i><span>关于我们</span>
+            </div>
             <!--公司介绍-->
             <div class="module_title">
-                <i></i><span>关于我们</span><i></i>
+                <i class="icon-iconfonticonfontgongsijianjie"></i><span>企业介绍</span>
             </div>
-            <div class="employ_ele intro">
-                <h3><i></i>企业介绍</h3>
-                <div class="employ_detail hide">
-                    <?php Qs::DsField('CS', 1)
-                    ?>
-                </div>
+            <div class="about_content hide">
+                <?php Qs::DsField('CS', 1)
+                ?>
             </div>
-            <div class="employ_ele culture">
-                <h3><i></i>企业文化</h3>
-                <div class="employ_detail hide">
-                    <?php Qs::DsField('CS', 2)
-                    ?>
-                </div>
+            <!--企业文化-->
+            <div class="module_title">
+                <i class="icon-qiyewenhua"></i><span>企业文化</span>
             </div>
-            <div class="employ_ele zizhi">
-                <h3><i></i>企业资质</h3>
-                <div class="employ_detail hide">
-                    <?php Qs::DsField('CS', 3)
-                    ?>
-                </div>
+            <div class="about_content hide">
+                <?php Qs::DsField('CS', 2)
+                ?>
             </div>
-            <div class="employ_ele connect">
-                <h3><i></i>联系我们</h3>
-                <div class="employ_detail hide">
-                    <?php Qs::DsField('CS', 4)
-                    ?>
-                </div>
+            <!--企业资质-->
+            <div class="module_title">
+                <i class="icon-zizhi"></i><span>企业资质</span>
             </div>
+            <div class="about_content hide">
+                <?php Qs::DsField('CS', 3)
+                ?>
+            </div>
+            <!--联系我们-->
+            <div class="module_title">
+                <i class="icon-lianxiwomen"></i><span>联系我们</span>
+            </div>
+            <div class="about_content hide">
+                <?php Qs::DsField('CS', 4)
+                ?>
+            </div>
+
         </div>
         <?php
         Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));

@@ -42,12 +42,6 @@ define(['jquery', 'app/company/common'], function (){
 //      map.addOverlay(label);
 //
 //      map.openInfoWindow(infoWindow, map.getCenter());// 打开信息窗口
-        var path = window.location.search;
-        if(path.indexOf('zizhi') > 0){
-            $('.m_left li a').eq(2).addClass('main');
-            $('.m_right >div').hide();
-            $('.m_right >div').eq($.inArray(this, $('.m_left li').find('a'))).show();
-        }
     });
     var path = window.location.search;
     if(path.indexOf('zizhi') > 0){

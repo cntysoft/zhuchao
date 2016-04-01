@@ -29,7 +29,7 @@
             "option" : {
                 "module" : "Site",
                 "controller" : "Exception",
-                "action" : "notfind"
+                "action" : "pagenotexist"
             }
         },
         {

@@ -49,9 +49,15 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 </div>
                 <div class="l_intro fr">
                     <h3>企业介绍 <a href="/about.html" class="active_hover">更多 >></a></h3>
+                    <?php
+                    $inrodata = Qs::DsField('CS', 1, true);
+                    if (iconv_strpos($inrodata, '<img')) {
+                       $imgs = mb_split('data-original="', $inrodata);
+                       echo'<a href="/about.html"> <img src="' . mb_split('"', $imgs[1])[0] . '" alt=""></a>';
+                    }
+                    ?>
                     <p>
                         <?php
-                        $inrodata = Qs::DsField('CS', 1, true);
                         echo mb_substr(strip_tags($inrodata), 0, 92)
                         ?>
                         <a href="/about.html" class="main">查看详情 >></a></p>

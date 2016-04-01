@@ -182,11 +182,8 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
                   SALE : '销售型',
                   PRODUCE : '生产型',
                   DESIGN : '设计型',
-                  INFO : '信息服务型',
-                  STOP : '销售+生产型',
-                  STOD : '销售+设计型',
-                  PTOD : '生产+设计型',
-                  DPS : '销售+生产+设计型'
+                  INFO : '服务型',
+                  ZONGHE : '综合型'
                }
             },
             MSG : {

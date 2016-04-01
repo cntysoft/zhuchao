@@ -60,10 +60,25 @@ Qs::Ds('内容数据源/店铺设置', 'CSS');
                     <i class="icon-iconfonticonfontgongsijianjie"></i><span>公司介绍</span>
                 </div></a>
             <div class="company_intro">
+                <div class="intro_img ">
+                    <?php
+                    $inrodata = Qs::DsField('CS', 1, true);
+                    if (iconv_strpos($inrodata, '<img')) {
+                       $imgs = mb_split('data-original="', $inrodata);
+                       $nowimgs = array_slice($imgs, 1, 3);
+                       foreach ($nowimgs as $index => $value) {
+                          if ($index == 2) {
+                             echo '<img class="no_mr" src="' . mb_split('"', $value)[0] . '" alt="">';
+                             break;
+                          }
+                          echo'<img  src="' . mb_split('"', $value)[0] . '" alt="">';
+                       }
+                    }
+                    ?>
+                </div>
                 <div class="intro_detial">
                     <p>
                         <?php
-                        $inrodata = Qs::DsField('CS', 1, true);
                         echo mb_substr(strip_tags($inrodata), 0, 92)
                         ?> <a href="/about.html">查看详情>></a>
                     </p>

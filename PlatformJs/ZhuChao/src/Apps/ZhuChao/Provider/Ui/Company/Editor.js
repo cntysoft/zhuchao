@@ -368,7 +368,9 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
                   {"code" : "5", "name" : F.TYPE_NAME.LIANYING},
                   {"code" : "6", "name" : F.TYPE_NAME.WAISHANG},
                   {"code" : "7", "name" : F.TYPE_NAME.GOT},
-                  {"code" : "8", "name" : F.TYPE_NAME.GUFENGHEZUO}
+                  {"code" : "8", "name" : F.TYPE_NAME.GUFENGHEZUO},
+                  {"code" : "9", "name" : F.TYPE_NAME.GETI},
+                  {"code" : "10", "name" : F.TYPE_NAME.OTHER}
                ]
             })
          }, {
@@ -388,10 +390,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
                   {"code" : "2", "name" : F.TRADEMODE_NAME.PRODUCE},
                   {"code" : "3", "name" : F.TRADEMODE_NAME.DESIGN},
                   {"code" : "4", "name" : F.TRADEMODE_NAME.INFO},
-                  {"code" : "5", "name" : F.TRADEMODE_NAME.STOP},
-                  {"code" : "6", "name" : F.TRADEMODE_NAME.STOD},
-                  {"code" : "7", "name" : F.TRADEMODE_NAME.PTOD},
-                  {"code" : "8", "name" : F.TRADEMODE_NAME.DPS}
+                  {"code" : "5", "name" : F.TRADEMODE_NAME.ZONGHE}
                ]
             })
          }, {fieldLabel : F.POSTCODE,
