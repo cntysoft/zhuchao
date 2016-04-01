@@ -46,7 +46,7 @@ Qs::Ds('内容数据源/标准内容模型', 'AC')
                         上一篇：<?php
                         $prev = Qs::DsField('AC', 'prev', true);
                         if ($prev) {
-                           $pretitle = mb_substr($prev[1], 0, 15);
+                           $pretitle = iconv_substr($prev[1], 0, 15, 'UTF-8');
                            echo '<a style="color: #333;" href="' . $prev[0] . '">' . $pretitle . '</a>';
                         } else {
                            echo '木有了';
@@ -57,7 +57,7 @@ Qs::Ds('内容数据源/标准内容模型', 'AC')
                         下一篇：<?php
                         $next = Qs::DsField('AC', 'next', true);
                         if ($next) {
-                           $nexttitle = mb_substr($next[1], 0, 15);
+                           $nexttitle = iconv_substr($next[1], 0, 15, 'UTF-8');
                            echo '<a style="color: #333;" href="' . $next[0] . '">' . $nexttitle . '</a>';
                         } else {
                            echo '正在更新中，请等待~';
@@ -65,7 +65,7 @@ Qs::Ds('内容数据源/标准内容模型', 'AC')
                         ?>
                     </div>
                 </div>
-					 <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'ChangyanCommentWap'))  ?>
+                <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'ChangyanCommentWap')) ?>
             </div>
             <div class="relevant_box">
                 <h3 class="relevant_title"><a href="/category/laobanneican.html">相关推荐</a></h3>

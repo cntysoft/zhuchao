@@ -50,7 +50,7 @@ define(['zepto', 'module/totop', 'Core', 'Front'], function (){
                out += '</div><div class="class_img">' + item.imgurl + '</div><p class="class_text">' + item.intro + '</p><div class="user_action tr clearfix">';
                out += ' <a class="study_btn fl main_bg" href="' + item.infourl + '">立即阅读</a><span>' + item.hits + '人已学</span></div></div>';
             });
-            $('body').append(out);
+            $('div.copy').before(out);
             sendAjax = out ? true : false;
          }
          , this);

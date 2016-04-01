@@ -9,10 +9,10 @@ $page = $routeInfo['pageId'];
 $info = $this->getInquiryList($status, $page);
 $list = $info['item'];
 $total = $info['total'];
-$cls = array(1=>'',2=>'',3=>'');
+$cls = array(1 => '', 2 => '', 3 => '');
 $cls[$status] = 'main_bg';
-echo '<ul class="reply clearfix"><li><a class="'.$cls[1].'" href="/inquiry/1.html?status=1">全部</a></li><li><a class="'.$cls[2].'" href="/inquiry/1.html?status=2">已回复</a></li><li><a class="'.$cls[3].'" href="/inquiry/1.html?status=3">未回复</a></li></ul>';
-echo '<script>var pageInfo={total:'.$total.',currentPage:'.$page.',pageSize:'.$this->getOutputNum().'}</script>';
+echo '<ul class="reply clearfix"><li><a class="' . $cls[1] . '" href="/inquiry/1.html?status=1">全部</a></li><li><a class="' . $cls[2] . '" href="/inquiry/1.html?status=2">已回复</a></li><li><a class="' . $cls[3] . '" href="/inquiry/1.html?status=3">未回复</a></li></ul>';
+echo '<script>var pageInfo={total:' . $total . ',currentPage:' . $page . ',pageSize:' . $this->getOutputNum() . '}</script>';
 
 $out = '<table>';
 $out .= '<tr class="inquiry_items">
@@ -47,7 +47,7 @@ if ($out1 != '') {
 
 
 $out .= '</table>';
-echo $out.'<div class="page_list"></div>';
+echo $out . '<div class="page_list"></div>';
 function getTemplate($data, $status)
 {
    if ($status == 2) {
@@ -55,7 +55,7 @@ function getTemplate($data, $status)
         <td class="inquiry_title">
             <span class="check"><em><i></i></em></span>
             <div class="acticle_box fr">
-                <span>' . mb_substr($data->getContent(), 0, 80) . '</span>
+                <span>' . iconv_substr($data->getContent(), 0, 80, 'UTF-8') . '</span>
                 <a class="more" href="/inquirycontent/' . $data->getId() . '.html">更多</a>
             </div>
         </td>
@@ -69,13 +69,13 @@ function getTemplate($data, $status)
         <td class="inquiry_title">
             <span class="check"><em><i></i></em></span>
             <div class="acticle_box fr">
-                <span>' . mb_substr($data->getContent(), 0, 80) . '</span>
+                <span>' . iconv_substr($data->getContent(), 0, 80, 'UTF-8') . '</span>
                 <a class="more" href="/inquirycontent/' . $data->getId() . '.html">更多</a>
             </div>
         </td>
         <td class="inquiry_state">未回复</td>
         <td class="inquiry_operate">
-            <a href="/inquirycontent/'.$data->getId().'.html">回复</a>
+            <a href="/inquirycontent/' . $data->getId() . '.html">回复</a>
         </td>
     </tr>';
    }

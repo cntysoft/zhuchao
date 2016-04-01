@@ -26,32 +26,32 @@ Qs::Ds('内容数据源/店铺设置', 'CSS');
             <div class="banner">
                 <div class="swiper-wrapper">
                     <?php
-                        $banners = QS::DsField('CSS', 'banner', true);
-                        foreach($banners as $banner){
-                           if(false === strpos($banner['image'], '@')){
-                              $image = $banner['image'].'@640w_200h_1e_1c.src';
-                           }else{
-                              if(strpos($banner['image'], '.src')){
-                                 $ret = explode('.src', $banner['image']);
-                                 $image = $ret[0].'_200h'.'.src';
-                              }else{
-                                 $image = $ret[0].'_200h'.'.src';
-                              }
-                           }
-  
-                           $url = $banner['url'];
-                           if($url){
-                              echo '<div class="swiper-slide">
-                                    <a href="'.$url.'"><img src="'.$image.'" alt=""></a>
+                    $banners = QS::DsField('CSS', 'banner', true);
+                    foreach ($banners as $banner) {
+                       if (false === strpos($banner['image'], '@')) {
+                          $image = $banner['image'] . '@640w_200h_1e_1c.src';
+                       } else {
+                          if (strpos($banner['image'], '.src')) {
+                             $ret = explode('.src', $banner['image']);
+                             $image = $ret[0] . '_200h' . '.src';
+                          } else {
+                             $image = $ret[0] . '_200h' . '.src';
+                          }
+                       }
+
+                       $url = $banner['url'];
+                       if ($url) {
+                          echo '<div class="swiper-slide">
+                                    <a href="' . $url . '"><img src="' . $image . '" alt=""></a>
                                 </div>';
-                           }else{
-                              echo '<div class="swiper-slide">
-                                    <a><img src="'.$image.'" alt=""></a>
+                       } else {
+                          echo '<div class="swiper-slide">
+                                    <a><img src="' . $image . '" alt=""></a>
                                 </div>';
-                           }
-                        }
-                     ?>
-                    
+                       }
+                    }
+                    ?>
+
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -79,7 +79,7 @@ Qs::Ds('内容数据源/店铺设置', 'CSS');
                 <div class="intro_detial">
                     <p>
                         <?php
-                        echo mb_substr(strip_tags($inrodata), 0, 92)
+                        echo iconv_substr(strip_tags($inrodata), 0, 92, 'UTF-8')
                         ?> <a href="/about.html">查看详情>></a>
                     </p>
                 </div>

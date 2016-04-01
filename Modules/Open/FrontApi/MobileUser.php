@@ -42,7 +42,7 @@ class MobileUser extends AbstractScript
       foreach ($msglist as $value) {
          $message = $value->text;
          $msg = $message->getMsgText();
-         $item['content'] = strlen($msg) > 80 ? mb_substr($msg, 0, 80) . '...' : $msg;
+         $item['content'] = strlen($msg) > 80 ? iconv_substr($msg, 0, 80, 'UTF-8')  : $msg;
          $item['umid'] = $value->getId();
          $item['time'] = $this->formatDate($message->getSendTime());
          $ret[] = $item;

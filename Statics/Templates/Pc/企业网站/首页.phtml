@@ -24,18 +24,18 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <div class="l_main conwidth">
             <!--banner-->
             <div class="banner">
-               <?php
-                  $banners = QS::DsField('setting', 'banner', true);
-                  foreach($banners as $banner){
-                     $image = $banner['image'];
-                     $url = $banner['url'];
-                     if($url){
-                        echo '<div><a href="'.$url.'" target="__balnk"><img src="'.$image.'" alt=""></a></div>';
-                     }else{
-                        echo '<div><a><img src="'.$image.'" alt=""></a></div>';
-                     }
-                  }
-               ?>
+                <?php
+                $banners = QS::DsField('setting', 'banner', true);
+                foreach ($banners as $banner) {
+                   $image = $banner['image'];
+                   $url = $banner['url'];
+                   if ($url) {
+                      echo '<div><a href="' . $url . '" target="__balnk"><img src="' . $image . '" alt=""></a></div>';
+                   } else {
+                      echo '<div><a><img src="' . $image . '" alt=""></a></div>';
+                   }
+                }
+                ?>
             </div>
             <!--新闻和企业文化-->
             <div class="company_info clearfix">
@@ -58,7 +58,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     ?>
                     <p>
                         <?php
-                        echo mb_substr(strip_tags($inrodata), 0, 92)
+                        echo iconv_substr(strip_tags($inrodata), 0, 92, 'UTF-8')
                         ?>
                         <a href="/about.html" class="main">查看详情 >></a></p>
                 </div>

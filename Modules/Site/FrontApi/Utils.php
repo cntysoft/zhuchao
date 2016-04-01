@@ -198,7 +198,7 @@ class Utils extends AbstractScript
 			$child = array(
 				'title'	 => $list->getTitle(),
 				'id'		 => $list->getId(),
-				'image'	 => \Cntysoft\Kernel\get_image_cdn_url($list->getDefaultPicUrl(), 376, 210),
+				'image'	 => $this->getImgUrl($list->getDefaultPicUrl()[0], 376, 210),
 				'intro'	 => $list->getIntro()
 			);
 			$ret[] = $child;
