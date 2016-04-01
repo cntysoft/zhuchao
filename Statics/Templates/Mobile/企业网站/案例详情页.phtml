@@ -1,40 +1,50 @@
 <!DOCTYPE html>
+<?php
+Qs::Ds('内容数据源/店铺设置', 'setting');
+Qs::Ds('内容数据源/企业案例模型', 'case');
+Qs::Ds('内容数据源/企业信息', 'CP');
+?>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-    <title>成功案例详情</title>
-    <link rel="stylesheet" href="../../Css/company/style.css">
-    <link rel="stylesheet" href="../../Css/swiper.min.css"/>
-    <link rel="stylesheet" href="../../Css/company/caseinfo.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <title><?php Qs::DsField('case', 'title'); ?></title>
+        <meta name="description" content="<?php Qs::DsField('setting', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('swiper.min.css', 'company/style.css', 'company/caseinfo.css')) ?>
+    </head>
+    <body>
 
-<!-- 内容-->
-<div class="l_main" id="l_main">
-    <p class="goback"><i class="icon-fanhuijian"></i></p>
-    <!--一列广告滑动-->
-    <div class= "swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-               <img src="../../Images/test/test_pro_img.jpg">
+        <!-- 内容-->
+        <div class="l_main" id="l_main">
+            <p class="goback"><i class="icon-fanhuijian"></i></p>
+            <!--一列广告滑动-->
+            <div class= "swiper-container">
+                <div class="swiper-wrapper">
+                    <?php
+                    $content = Qs::DsField('case', 'content', true);
+                    foreach ($content as $index => $value) {
+                       echo '<div class="swiper-slide">
+                        <img src="' . $value['src'] . '">
+                    </div>';
+                    }
+                    ?>
+                </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="swiper-slide">
-                <img src="../../Images/test/test_pro_img.jpg">
+            <p class="case_num"><em>1</em>/<span><?php echo $index + 1; ?></span></p>
+            <div class="case_intro">
+                <h2><?php Qs::DsField('case', 'title'); ?></h2>
+                <p><?php Qs::DsField('case', 'intro'); ?>
+                </p>
             </div>
         </div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <p class="case_num"><em>1</em>/<span>10</span></p>
-    <div class="case_intro">
-        <h2>金水区凤凰城</h2>
-        <p>主要做家装别墅，偶有涉及到工装，项目有天骄园，东亚逸品阁，偶有 预约
-            参观工哈远洋山水主要做家装，别墅，主要做家装别墅，偶有涉及到工装，
-            项目有天骄园，东亚逸品阁，偶有 预约参观工哈远洋山水主要做家装。
-        </p>
-    </div>
-</div>
-<script data-main="../../Js/requireenter" id="require" app="company/caseinfo" src="../../Js/lib/require.js"></script>
-</body>
+        <?php
+        Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
+        Qs::Sys('loadRequireJs', 'company/caseinfo')
+        ?>
+    </body>
 </html>
