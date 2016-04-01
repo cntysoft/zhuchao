@@ -30,9 +30,9 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                 <div class="swiper-pagination"></div>
             </div>
             <!--公司介绍-->
-            <div class="module_title">
-                <i></i><span> <a href="/about.html">公司介绍</a></span><i></i>
-            </div>
+            <a href="/about.html"><div class="module_title">
+                    <i class="icon-iconfonticonfontgongsijianjie"></i><span>公司介绍</span>
+                </div></a>
             <div class="company_intro">
                 <div class="intro_detial">
                     <p>
@@ -44,22 +44,21 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                 </div>
             </div>
             <!--新闻动态-->
-            <div class="module_title">
-                <i></i><span><a href="/newscenter.html">新闻动态</a></span><i></i>
-            </div>
+            <a href="/newscenter.html"><div class="module_title">
+                    <i class="icon-xinwen"></i><span>新闻动态</span>
+                </div></a>
             <?php
             Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_IndexNewList', 'nodeIdentifier' => array('newscenter', 'companynews', 'industrynews'), 'titleLength' => 17, 'introLength' => 20, 'outputNum' => 4, 'enablePage' => false, 'listSubNode' => true))
             ?>
             <!--产品展示-->
-            <div class="module_title">
-                <i></i><span><a href="/productlist/1.html">产品展示</a></span><i></i>
-            </div>
+            <a href="/productlist/1.html"><div class="module_title">
+                    <i class="icon-chanpinzhanshi"></i><span>产品展示</span>
+                </div></a>
             <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_IndexProductList', 'outputNum' => 4, 'enablePage' => false)); ?>
         </div>
-        <div class="copy">
-            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
-                &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
-        </div>
-        <?php Qs::Sys('loadRequireJs', 'company/index') ?>
+        <?php
+        Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
+        Qs::Sys('loadRequireJs', 'company/index')
+        ?>
     </body>
 </html>

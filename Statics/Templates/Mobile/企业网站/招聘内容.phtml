@@ -67,10 +67,9 @@ Qs::Ds('内容数据源/企业信息', 'CP');
 
             </div>
         </div>
-        <div class="copy">
-            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
-                &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
-        </div>
-        <?php Qs::Sys('loadRequireJs', 'company/employdetail') ?>
+        <?php
+        Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
+        Qs::Sys('loadRequireJs', 'company/employdetail')
+        ?>
     </body>
 </html>
