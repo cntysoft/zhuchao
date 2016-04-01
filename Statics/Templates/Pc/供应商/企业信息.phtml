@@ -7,30 +7,43 @@ Qs::Ds('商城数据源/商城数据', 'site');
     <head>
         <meta charset="UTF-8">
         <title>企业信息-<?php Qs::DsField('site', 'SiteTitle') ?></title>
-        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
-        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <meta name="description" content="<?php Qs::DsField('User', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('User', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
+		  <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
     </head>
     <body>
-        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+		  <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
         <!--个人中心-->
         <div class="content conwidth clearfix">
             <!--左侧列表-->
-            <?php Qs::Label('供应商/用户中心左侧') ?>
+				<?php Qs::Label('供应商/用户中心左侧') ?>
             <!--右侧内容-->
             <div class="content_wrap fr">
                 <h1 class="items_title">企业信息</h1>
                 <div class="form_box">
                     <div class="form_list">
                         <label><em class="main">*</em>企&nbsp;业&nbsp;名：</label>
-                        <?php $name = Qs::DsField('User', 'name', true); ?>
-                        <input type="text" id="name" value="<?php echo $name.'"'; if($name){echo ' disabled ';}?> reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+								<?php $name = Qs::DsField('User', 'name', true); ?>
+                        <input type="text" id="name" value="<?php
+								echo $name . '"';
+								if ($name) {
+									echo ' disabled ';
+								}
+								?> reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位企业名称" required>
+                    </div>
+                    <div class="form_list">
+                        <label><em class="main">*</em>公司简介：</label>
+                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,30}$' tip-value="请输入3-30个汉字" required>
+                    </div>
+						  <div class="form_list">
+                        <label><em class="main">*</em>关键字：</label>
+                        <input type="text"  class="checkField" id="keywords" value="<?php Qs::DsField('User', 'keywords') ?>" reg='^([^<>]){3,255}$' tip-value="请输入企业关键字" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>企业类型：</label>
-                        <select id="type" fh-index="<?php Qs::DsField('User', 'type');?>">
+                        <select id="type" fh-index="<?php Qs::DsField('User', 'type'); ?>">
                             <option value="1">国有企业</option>
                             <option value="2">集体企业</option>
                             <option value="3">私营企业</option>
@@ -45,39 +58,39 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>经营模式：</label>
-                        <?php
-                        $tradeMode = Qs::DsField('User', 'tradeMode', true);
-                        $list = array(1 => '销售型', '生产型', '设计型', '服务型', '综合型');
-                        $cls = '';
-                        foreach($list as $index=>$val){
-                           if($index == $tradeMode){
-                              $cls = 'checked';
-                           }else{
-                              $cls = '';
-                           }
-                           echo '<div class="radio">
-                              <label for="tradeMode'.$index.'">
-                                  <input id="tradeMode'.$index.'" name="tradeMode" type="radio" tabindex="'.$index.'" value="'.$index.'" '.$cls.'>
+								<?php
+								$tradeMode = Qs::DsField('User', 'tradeMode', true);
+								$list = array(1 => '销售型', '生产型', '设计型', '服务型', '综合型');
+								$cls = '';
+								foreach ($list as $index => $val) {
+									if ($index == $tradeMode) {
+										$cls = 'checked';
+									} else {
+										$cls = '';
+									}
+									echo '<div class="radio">
+                              <label for="tradeMode' . $index . '">
+                                  <input id="tradeMode' . $index . '" name="tradeMode" type="radio" tabindex="' . $index . '" value="' . $index . '" ' . $cls . '>
                                   <i></i>
-                                  <span>'.$val.'</span>
+                                  <span>' . $val . '</span>
                               </label>
                            </div>';
-                        }
-                        ?>
+								}
+								?>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>主营产品：</label>
-                        <?php
-                        $products = Qs::DsField('User', 'products', true);
-                        $products = empty($products) ? array() : $products;
-                        for ($i = 0; $i < 4; $i++) {
-                           if (0 == $i) {
-                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
-                           } else {
-                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
-                           }
-                        }
-                        ?>
+								<?php
+								$products = Qs::DsField('User', 'products', true);
+								$products = empty($products) ? array() : $products;
+								for ($i = 0; $i < 4; $i++) {
+									if (0 == $i) {
+										echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
+									} else {
+										echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
+									}
+								}
+								?>
                     </div>
 
                     <div class="form_list">
@@ -101,16 +114,12 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         <input type="text" class="checkField" id="postCode" value="<?php Qs::DsField('User', 'postCode') ?>" reg='^[1-9]\d{5}$' tip-value="请输入正确的邮编" required>
                     </div>
                     <div class="form_list">
-                        <label><em class="main">*</em>公司简介：</label>
-                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,30}$' tip-value="请输入3-30个汉字" required>
-                    </div>
-                    <div class="form_list">
                         <label class="label_uploading"><em class="main">*</em>公司logo：</label>
                         <ul class="img_uploading clearfix">
-                            <?php
-                            $img = Qs::DsField('User', 'logo', true);
-                            if ($img) {
-                               echo '<li class="logo">
+									 <?php
+									 $img = Qs::DsField('User', 'logo', true);
+									 if ($img) {
+										 echo '<li class="logo">
                                 <img id="logo" src="' . $img . '">
                                 <em class="deleteImg">删除</em>
                             </li>
@@ -118,14 +127,14 @@ Qs::Ds('商城数据源/商城数据', 'site');
                                 <p>+</p>
                                 <span>添加照片</span>
                             </li>';
-                            } else {
-                               echo '
+									 } else {
+										 echo '
                             <li class="img_plus logo">
                                 <p>+</p>
                                 <span>添加照片</span>
                             </li>';
-                            }
-                            ?>
+									 }
+									 ?>
 
                         </ul>
                     </div>
@@ -177,7 +186,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                 </div>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
-        <?php Qs::Sys('loadRequireJs', 'provider/companyinfo') ?>
+<?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
+<?php Qs::Sys('loadRequireJs', 'provider/companyinfo') ?>
     </body>
 </html>

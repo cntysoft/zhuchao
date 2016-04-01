@@ -1,5 +1,6 @@
 <?php
 Qs::Ds('用户数据源/供应商', 'User');
+Qs::Ds('用户数据源/企业信息', 'Company');
 Qs::Ds('商城数据源/商城数据', 'site');
 ?>
 <!DOCTYPE html>
@@ -7,8 +8,8 @@ Qs::Ds('商城数据源/商城数据', 'site');
     <head>
         <meta charset="UTF-8">
         <title>我的信息-<?php Qs::DsField('site', 'SiteTitle') ?></title>
-        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
-        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <meta name="description" content="<?php Qs::DsField('Company', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('Company', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>

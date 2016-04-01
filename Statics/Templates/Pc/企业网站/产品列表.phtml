@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <?php
 Qs::Ds('内容数据源/企业信息', 'CP');
-Qs::Ds('商城数据源/商城数据', 'sites');
 ?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title><?php Qs::DsField('CP', 'name') ?>－产品中心-<?php Qs::DsField('CP', 'description') ?></title>
         <meta name="description" content="<?php Qs::DsField('CP', 'description') ?>">
-        <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('CP', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('company/style.css', 'company/company_prolist.css')) ?>

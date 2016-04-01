@@ -11,222 +11,233 @@ use Cntysoft\Phalcon\Mvc\Model as BaseModel;
 use Phalcon\Mvc\Model\Relation;
 class Company extends BaseModel
 {
-   protected $id;
-   protected $providerId;
-   protected $name;
-   protected $type;
-   protected $tradeMode;
-   protected $products;
-   protected $province;
-   protected $city;
-   protected $district;
-   protected $address;
-   protected $postCode;
-   protected $website;
-   protected $description;
-   protected $logo;
-   protected $status;
-   protected $inputTime;
-   protected $profileId;
-   protected $subAttr;
+	protected $id;
+	protected $providerId;
+	protected $name;
+	protected $type;
+	protected $tradeMode;
+	protected $products;
+	protected $province;
+	protected $city;
+	protected $district;
+	protected $address;
+	protected $postCode;
+	protected $website;
+	protected $description;
+	protected $keywords;
+	protected $logo;
+	protected $status;
+	protected $inputTime;
+	protected $profileId;
+	protected $subAttr;
 
-   public function getSource()
-   {
-      return 'app_zhuchao_provider_company_info';
-   }
+	public function getSource()
+	{
+		return 'app_zhuchao_provider_company_info';
+	}
 
-   public function initialize()
-   {
-      $this->hasOne('profileId', 'App\ZhuChao\Provider\Model\CompanyProfile', 'id', array(
-         'alias'      => 'profile',
-         'foreignKey' => array(
-            'action' => Relation::ACTION_CASCADE
-         )
-      ));
-      $this->hasOne('providerId', 'App\ZhuChao\Provider\Model\BaseInfo', 'id', array(
-         'alias' => 'provider'
-      ));
-   }
+	public function initialize()
+	{
+		$this->hasOne('profileId', 'App\ZhuChao\Provider\Model\CompanyProfile', 'id', array(
+			'alias'		 => 'profile',
+			'foreignKey' => array(
+				'action' => Relation::ACTION_CASCADE
+			)
+		));
+		$this->hasOne('providerId', 'App\ZhuChao\Provider\Model\BaseInfo', 'id', array(
+			'alias' => 'provider'
+		));
+	}
 
-   public function getId()
-   {
-      return (int) $this->id;
-   }
+	public function getId()
+	{
+		return (int) $this->id;
+	}
 
-   public function getProviderId()
-   {
-      return (int) $this->providerId;
-   }
+	public function getProviderId()
+	{
+		return (int) $this->providerId;
+	}
 
-   public function getName()
-   {
-      return $this->name;
-   }
+	public function getName()
+	{
+		return $this->name;
+	}
 
-   public function getType()
-   {
-      return (int) $this->type;
-   }
+	public function getType()
+	{
+		return (int) $this->type;
+	}
 
-   public function getTradeMode()
-   {
-      return (int) $this->tradeMode;
-   }
+	public function getTradeMode()
+	{
+		return (int) $this->tradeMode;
+	}
 
-   public function getProducts()
-   {
-      return $this->products;
-   }
+	public function getProducts()
+	{
+		return $this->products;
+	}
 
-   public function getProvince()
-   {
-      return (int) $this->province;
-   }
+	public function getProvince()
+	{
+		return (int) $this->province;
+	}
 
-   public function getCity()
-   {
-      return (int) $this->city;
-   }
+	public function getCity()
+	{
+		return (int) $this->city;
+	}
 
-   public function getDistrict()
-   {
-      return (int) $this->district;
-   }
+	public function getDistrict()
+	{
+		return (int) $this->district;
+	}
 
-   public function getAddress()
-   {
-      return $this->address;
-   }
+	public function getAddress()
+	{
+		return $this->address;
+	}
 
-   public function getPostCode()
-   {
-      return (int) $this->postCode;
-   }
+	public function getPostCode()
+	{
+		return (int) $this->postCode;
+	}
 
-   public function getWebsite()
-   {
-      return $this->website;
-   }
+	public function getWebsite()
+	{
+		return $this->website;
+	}
 
-   public function getDescription()
-   {
-      return $this->description;
-   }
+	public function getDescription()
+	{
+		return $this->description;
+	}
 
-   public function getLogo()
-   {
-      return $this->logo;
-   }
+	public function getKeywords()
+	{
+		return $this->keywords;
+	}
 
-   public function getStatus()
-   {
-      return (int) $this->status;
-   }
+	public function setKeywords($keywords)
+	{
+		$this->keywords = $keywords;
+	}
 
-   public function getInputTime()
-   {
-      return (int) $this->inputTime;
-   }
+	public function getLogo()
+	{
+		return $this->logo;
+	}
 
-   public function getProfileId()
-   {
-      return (int) $this->profileId;
-   }
+	public function getStatus()
+	{
+		return (int) $this->status;
+	}
 
-   public function setId($id)
-   {
-      $this->id = (int) $id;
-   }
+	public function getInputTime()
+	{
+		return (int) $this->inputTime;
+	}
 
-   public function setProviderId($providerId)
-   {
-      $this->providerId = (int) $providerId;
-   }
+	public function getProfileId()
+	{
+		return (int) $this->profileId;
+	}
 
-   public function setName($name)
-   {
-      $this->name = $name;
-   }
+	public function setId($id)
+	{
+		$this->id = (int) $id;
+	}
 
-   public function setType($type)
-   {
-      $this->type = (int) $type;
-   }
+	public function setProviderId($providerId)
+	{
+		$this->providerId = (int) $providerId;
+	}
 
-   public function setTradeMode($tradeMode)
-   {
-      $this->tradeMode = (int) $tradeMode;
-   }
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
 
-   public function setProducts($products)
-   {
-      $this->products = $products;
-   }
+	public function setType($type)
+	{
+		$this->type = (int) $type;
+	}
 
-   public function setProvince($province)
-   {
-      $this->province = (int) $province;
-   }
+	public function setTradeMode($tradeMode)
+	{
+		$this->tradeMode = (int) $tradeMode;
+	}
 
-   public function setCity($city)
-   {
-      $this->city = (int) $city;
-   }
+	public function setProducts($products)
+	{
+		$this->products = $products;
+	}
 
-   public function setDistrict($district)
-   {
-      $this->district = (int) $district;
-   }
+	public function setProvince($province)
+	{
+		$this->province = (int) $province;
+	}
 
-   public function setAddress($address)
-   {
-      $this->address = $address;
-   }
+	public function setCity($city)
+	{
+		$this->city = (int) $city;
+	}
 
-   public function setPostCode($postCode)
-   {
-      $this->postCode = (int) $postCode;
-   }
+	public function setDistrict($district)
+	{
+		$this->district = (int) $district;
+	}
 
-   public function setWebsite($website)
-   {
-      $this->website = $website;
-   }
+	public function setAddress($address)
+	{
+		$this->address = $address;
+	}
 
-   public function setDescription($description)
-   {
-      $this->description = $description;
-   }
+	public function setPostCode($postCode)
+	{
+		$this->postCode = (int) $postCode;
+	}
 
-   public function setLogo($logo)
-   {
-      $this->logo = $logo;
-   }
+	public function setWebsite($website)
+	{
+		$this->website = $website;
+	}
 
-   public function setStatus($status)
-   {
-      $this->status = (int) $status;
-   }
+	public function setDescription($description)
+	{
+		$this->description = $description;
+	}
 
-   public function setInputTime($inputTime)
-   {
-      $this->inputTime = (int) $inputTime;
-   }
+	public function setLogo($logo)
+	{
+		$this->logo = $logo;
+	}
 
-   public function setProfileId($profileId)
-   {
-      $this->profileId = (int) $profileId;
-   }
+	public function setStatus($status)
+	{
+		$this->status = (int) $status;
+	}
 
-   public function getSubAttr()
-   {
-      return $this->subAttr;
-   }
+	public function setInputTime($inputTime)
+	{
+		$this->inputTime = (int) $inputTime;
+	}
 
-   public function setSubAttr($subAttr)
-   {
-      $this->subAttr = $subAttr;
-      return $this;
-   }
+	public function setProfileId($profileId)
+	{
+		$this->profileId = (int) $profileId;
+	}
+
+	public function getSubAttr()
+	{
+		return $this->subAttr;
+	}
+
+	public function setSubAttr($subAttr)
+	{
+		$this->subAttr = $subAttr;
+		return $this;
+	}
 
 }
