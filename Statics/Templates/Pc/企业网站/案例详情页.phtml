@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 Qs::Ds('内容数据源/店铺设置', 'setting');
+Qs::Ds('内容数据源/企业案例模型', 'case');
+Qs::Ds('内容数据源/企业信息', 'CP');
 ?>
 <html lang="en">
 	 <head>
@@ -28,87 +30,19 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
 				<div class="detail_left ">
 					 <div class="container">
 						  <div class="slick">
-								<div class="big_img">
+								<?php
+								$content = Qs::DsField('case', 'content', true);
+								foreach ($content as $value) {
+										echo '<div class="big_img">
 									 <div>
-										  <img src="../../Images/company/test/test_xgt_detail2.jpg">
+										  <img src="'.$value['src'].'">
 										  <div class="store clearfix">
 												<span class="store_img"></span>
 										  </div>
 									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_banner.jpg">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_detail3.png">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_detail4.png">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_detail2.jpg">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_detail3.png">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_detail2.jpg">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_banner.jpg">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_detail3.png">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
-								<div class="big_img">
-									 <div>
-										  <img src="../../Images/company/test//test_xgt_detail3.png">
-										  <div class="store clearfix">
-												<span class="store_img"></span>
-										  </div>
-									 </div>
-								</div>
+								</div>';
+								}
+								?>
 						  </div>
 						  <div class="big_left big_com">
 								<div class="big_margin left_com"></div>
@@ -119,46 +53,15 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
 					 </div>
 					 <div class="slick_bg">
 						  <div class="slick_nav">
-								<div class="small_img">
-									 <img class="border_green" src="../../Images/company/test//test_xgt_detail2.jpg">
+								<?php
+								$content = Qs::DsField('case', 'content', true);
+								foreach ($content as $value) {
+										echo '<div class="small_img">
+									 <img class="border_green" src="'.$value['src'].'">
 									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_banner.jpg">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_detail3.png">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_detail4.png">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_detail2.jpg">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_detail3.png">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_detail2.jpg">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_banner.jpg">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_detail3.png">
-									 <div class="count"></div>
-								</div>
-								<div class="small_img">
-									 <img src="../../Images/company/test//test_xgt_detail3.png">
-									 <div class="count"></div>
-								</div>
+								</div>';
+								}
+								?>
 						  </div>
 						  <div class="small_left">
 								<div class="small_margin left_com"></div>
@@ -167,12 +70,30 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
 								<div class="small_margin right_com"></div>
 						  </div>
 						  <div class="prev_pic prev_next_com">
-								<img src="../../Images/company/test//test_xgt_detail4.png">
-								<a href=""><span>上一图册</span></a>
+								<?php
+								$prev = Qs::DsField('case', 'prev', true);
+								if($prev){
+									echo '<img src="'. Cntysoft\Kernel\get_image_cdn_url($prev[2], 124, 79).'">
+								<a href="'.$prev[0].'"><span>上一图册</span></a>';
+								} else {
+									echo '<img src="">
+								<a><span>没有了</span></a>';
+								}
+								
+								?>
 						  </div>
 						  <div class="next_pic prev_next_com">
-								<img src="../../Images/company/test//test_xgt_detail3.png">
-								<a href=""><span>下一图册</span></a>
+								<?php
+								$next = Qs::DsField('case', 'next', true);
+								if($next){
+									echo '<img src="'. \Cntysoft\Kernel\get_image_cdn_url($next[2], 124, 79).'">
+								<a href="'.$next[0].'"><span>下一图册</span></a>';
+								} else {
+									echo '<img src="">
+								<a><span>没有了</span></a>';
+								}
+								
+								?>
 						  </div>
 					 </div>
 				</div>

@@ -17,7 +17,7 @@ foreach ($lists['items'] as $list) {
 $out .= '</div>';
 
 $out .= '<div class="page_list"><p>';
-$totalPage = ceil($list['total'] / $limit);
+$totalPage = ceil($lists['total'] / $limit);
 if (0 != $totalPage) {
 	$out .= '<a href="/caselist/1.html">首页</a>';
 }

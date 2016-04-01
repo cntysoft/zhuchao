@@ -333,7 +333,7 @@ class InfoList extends AbstractLib
 		$lists = GeneralModel::find(array(
 					  'cmodelId = ?1',
 					  'bind'	 => array(
-						  1 => Constant::CMODEL_CASE_INFO
+						  1 => Constant::CMODEL_CASEINFO_ID
 					  ),
 					  'limit'	 => array(
 						  'offset'	 => $offset,
@@ -344,7 +344,7 @@ class InfoList extends AbstractLib
 			return array('items'	 => $lists, 'total'	 => GeneralModel::count(array(
 					'cmodelId = ?1',
 					'bind' => array(
-						1 => Constant::CMODEL_CASE_INFO
+						1 => Constant::CMODEL_CASEINFO_ID
 					)
 			)));
 		} else {
