@@ -111,7 +111,7 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
                speed : 1000
             };
             var options = $.extend(defaults, options);
-            $('body').prepend('<div id="totop" style="display: block;" > <a id="totop_up"><i class = "icon-jiantou1" > </i></a> <a href="http://wpa.qq.com/msgrd?v=3&uin=2788984873&site=qq&menu=yes"> <i class = "icon-kefu"> </i><em>客服</em > </a></div >');
+            $('body').prepend('<div id="totop" style="display: block;" > <a id="totop_up"><i class = "icon-jiantou1" > </i></a> <a href="http://wpa.qq.com/msgrd?v=3&uin=2788984873&site=qq&menu=yes" target="_blank"> <i class = "icon-kefu"> </i><em>客服</em > </a></div >');
             var $toTop = $(this);
             var $top = $('#totop');
             var $totopUp = $('#totop_up');
