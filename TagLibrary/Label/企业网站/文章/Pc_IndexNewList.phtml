@@ -14,7 +14,7 @@ foreach ($items as $index => $item) {
       $out .=' <div class="small_news_ele clearfix">
                                 <a href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $imgurl . '" alt=""></a>
                                 <div class="news_content">
-                                    <h4 class="active_hover"><a href="' . $infourl . '">' . $this->formatString($item->getTitle(), $this->invokeParams['titleLength']) . '</a></h4>
+                                    <h4 class="active_hover"><a href="' . $infourl . '">' . $item->getTitle() . '</a></h4>
                                     <p>' . $item->getIntro() . '</p>
                                     <div class="news_time clearfix">
                                         <span class="fl">' . date('Y-m-d', $item->getInputTime()) . '</span>
