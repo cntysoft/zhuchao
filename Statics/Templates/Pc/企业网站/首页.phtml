@@ -26,11 +26,16 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
             <div class="banner">
                 <?php
                 $banners = QS::DsField('setting', 'banner', true);
+                if (count($banners) == 0) {
+                   ?>
+                   <div><a ><img src="<?php Qs::Sys('loadImage', 'company/test_company_banner.jpg') ?>" alt="<?php Qs::DsField('CP', 'name') ?>"></a></div>
+                   <?php
+                }
                 foreach ($banners as $banner) {
                    $image = $banner['image'];
                    $url = $banner['url'];
                    if ($url) {
-                      echo '<div><a href="' . $url . '" target="__balnk"><img src="' . $image . '" alt=""></a></div>';
+                      echo '<div><a href="' . $url . '" target="_blank"><img src="' . $image . '" alt=""></a></div>';
                    } else {
                       echo '<div><a><img src="' . $image . '" alt=""></a></div>';
                    }

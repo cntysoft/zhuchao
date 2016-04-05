@@ -28,7 +28,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             <div class="header_title">
                 <div class="search_input_box">
                     <i class="icon-sousuo"></i>
-                    <input class="search_input" id="search_input" disabled type="text" required placeholder="搜索建材/攻略/商铺"/>
+                    <input class="search_input" id="search_input" disabled type="text" required placeholder="搜索产品"/>
                 </div>
             </div>
             <!--更多按钮-->
@@ -45,7 +45,7 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 <!--搜索框-->
                 <div class="header_title">
                     <div class="search_input_box">
-                        <input class="search_input_real search_input" type="text" required placeholder="搜索建材/攻略/商铺"/>
+                        <input class="search_input_real search_input" type="text" required placeholder="搜索产品"/>
                     </div>
                 </div>
                 <!--更多按钮-->
@@ -89,9 +89,9 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <!--筛选条件-->
         <?php Qs::Label('商品类/搜索商品列表', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 2)) ?>
         <div class="copy">
-				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
-					 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME)*1000, 2) . 'ms'; ?></p>
-		  </div>
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
         <?php Qs::Sys('loadRequireJs', 'mall/prosearch'); ?>
     </body>
 </html>

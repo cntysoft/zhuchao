@@ -15,7 +15,7 @@ $indetifier = $this->invokeParams['nodeIdentifier'][0];
 $node0 = $this->getNodeByNodeIndentifier($indetifier);
 $subNodes = $this->getSubNode($node0->getId());
 foreach ($subNodes as $value) {
-   $cls = $node->getNodeIdentifier() == $value->getNodeIdentifier() ? 'main_bg_light' : '';
+   $cls = $node->getNodeIdentifier() == $value->getNodeIdentifier() ? 'main' : '';
    $href = $node->getNodeIdentifier() == $value->getNodeIdentifier() ? '' : 'href="/category/' . $value->getNodeIdentifier() . '/1.html"';
    $out .= '    <dl class="choose_list clearfix">                  
    <a ' . $href . ' ><dt class="choose_key fl ' . $cls . '">' . $value->getText() . '</dt></a>

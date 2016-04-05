@@ -4,7 +4,7 @@
 define(['jquery', 'module/totop', 'Front', 'Core', 'lazyload'], function (){
    $(function (){
       var path = window.location.pathname;
-      if(path.indexOf('productlist/') >= 0){
+      if(path.indexOf('productlist/') >= 0 || path.indexOf('item/') >= 0){
          $('.l_nav ul li.mainbd_hover').eq(1).addClass('main_border main');
       } else if(path.indexOf('/case') >= 0){
          $('.l_nav ul li.mainbd_hover').eq(2).addClass('main_border main');

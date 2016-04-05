@@ -35,7 +35,7 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                         foreach ($content as $value) {
                            echo '<div class="big_img">
 									 <div>
-										  <img src="'.$value['src'].'">
+										  <img src="' . $value['src'] . '">
 										  <div class="store clearfix">
 												<span class="store_img"></span>
 										  </div>
@@ -56,7 +56,7 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                         <?php
                         foreach ($content as $value) {
                            echo '<div class="small_img">
-									 <img class="border_green" src="'.$value['src'].'">
+									 <img class="border_green" src="' . $value['src'] . '">
 									 <div class="count"></div>
 								</div>';
                         }
@@ -66,7 +66,7 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                         <?php
                         $prev = Qs::DsField('case', 'prev', true);
                         if ($prev) {
-                           echo '<img src="' . isset($prev[2]) ? Cntysoft\Kernel\get_image_cdn_url($prev[2], 124, 79) : 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png' . '">
+                           echo '<img src="' . (isset($prev[2]) ? Cntysoft\Kernel\get_image_cdn_url($prev[2], 124, 79) : 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png' ) . '">
 								<a href="' . $prev[0] . '"><span>上一图册</span></a>';
                         } else {
                            echo '<img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png">
@@ -78,7 +78,7 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                         <?php
                         $next = Qs::DsField('case', 'next', true);
                         if ($next) {
-                           echo '<img src="' . isset($prev[2]) ? Cntysoft\Kernel\get_image_cdn_url($next[2], 124, 79) : 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png' . '">
+                           echo '<img src="' . (isset($next[2]) ? Cntysoft\Kernel\get_image_cdn_url($next[2], 124, 79) : 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png') . '">
 								<a href="' . $next[0] . '"><span>下一图册</span></a>';
                         } else {
                            echo '<img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png">
@@ -90,7 +90,7 @@ Qs::Ds('内容数据源/企业信息', 'CP');
             </div>
         </div>
         <!--底部-->
-<?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
+        <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <!--侧边栏-->
         <div class="online">
             <div class="online_ele  ">
@@ -103,7 +103,7 @@ Qs::Ds('内容数据源/企业信息', 'CP');
         </div>
         <div id='totop'><a style="display: none"><i class='icon-jiantou1'></i></a><a class='shoucang'><i class='icon-empty-star'></i><em>关注</em></a><a><i class='icon-kefu'></i><em>客服</em>
                 <div class='block'><span>电话：<?php Qs::DsField('CP', 'contact') ?></span></div></a></div>
-<?php Qs::Sys('loadRequireJs', 'company/case_detail') ?>
+                <?php Qs::Sys('loadRequireJs', 'company/case_detail') ?>
         <script>
            window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
         </script>

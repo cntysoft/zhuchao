@@ -5,8 +5,8 @@ if ($this->getRouteNodeIdentifier() == 'laobanneican') {
    $infoList = $this->getArticleList();
 }
 if (!$infoList) {
-	echo "<script>window.location = '/'</script>";
-	return false;
+   echo "<script>window.location = '/'</script>";
+   return false;
 }
 $items = is_array($infoList) ? $infoList[0] : $infoList;
 $out = '';
@@ -17,7 +17,8 @@ foreach ($items as $index => $item) {
    $defpic = $item->getDefaultPicUrl()[0];
    $infourl = $this->getInfoUrl($item->getId());
    if ($defpic) {
-      $imgurl = '<img class="article_img lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 240, 160) . '">';
+      $imgurl = '<a href="' . $infourl . '">'
+              . '<img class="article_img lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 240, 160) . '"></a>';
    } else {
       $imgcls = 'no_images';
    }
@@ -27,7 +28,7 @@ foreach ($items as $index => $item) {
    $out .='<div class=" article_list ' . $imgcls . ' ' . $border . ' clearfix">
                         ' . $imgurl . '
                         <div class="article">
-                            <h1><a href="' . $infourl . '">' . $this->formatString($item->getTitle(), $this->invokeParams['titleLength']) . '</a></h1>
+                            <h1><a href="' . $infourl . '">' . $item->getTitle() . '</a></h1>
                             <div class="article_title clearfix">
                                 <div class="article_date fl">
                                     <em>发表于<b>' . date('Y-m-d', $item->getInputTime()) . '</b></em>
@@ -50,57 +51,57 @@ foreach ($items as $index => $item) {
 $a = $this->getPaging($infoList[1]);
 if ($this->getParam('enablePage') && $a['total'] > 1) {
 
-	$currentPage = $a['current'];
-	$pageOne = ''; //首页要加的类名
-	$pageLast = '';  //未页要加的类名
-	$pageFirstUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], 1) . '"';
-	$pageLastUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], $a['total']) . '"';
-	if ($currentPage == 1) {
-		$pageOne = 'now_page';
-		$pageFirstUrl = '#';
-	}
-	if ($currentPage == $a['total']) {
-		$pageLast = 'now_page';
-		$pageLastUrl = '';
-	}
-	$cls = "";
-	$out .= ' <div class="page_list">
+   $currentPage = $a['current'];
+   $pageOne = ''; //首页要加的类名
+   $pageLast = '';  //未页要加的类名
+   $pageFirstUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], 1) . '"';
+   $pageLastUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], $a['total']) . '"';
+   if ($currentPage == 1) {
+      $pageOne = 'now_page';
+      $pageFirstUrl = '#';
+   }
+   if ($currentPage == $a['total']) {
+      $pageLast = 'now_page';
+      $pageLastUrl = '';
+   }
+   $cls = "";
+   $out .= ' <div class="page_list">
                         <p>';
-	$out .='<a class="' . $pageOne . '" ' . $pageFirstUrl . '>首页</a>';
-	if ($currentPage > 1) {
-		$out.='<a href="' . $this->getPageUrl($a['nodeIdentifier'], $currentPage - 1) . '">&lt; 上一页</a>';
-	}
-	if ($currentPage > 5) {
-		$out.='<a href="' . $this->getPageUrl($a['nodeIdentifier'], 1) . '">1</a>... ';
-		for ($i = ($currentPage - 2); $i <= $a['total'] && $i <= $currentPage + 2; $i++) {
-			$cls = "";
-			$nowPageUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], $i) . '"';
-			if ($i == $currentPage) {
-				$cls = "main_bg main_border";
-				$nowPageUrl = '';
-			}
-			$out .= '<a  class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
-		}
-	} else {
-		for ($i = 1; $i <= $a['total'] && $i <= 6; $i++) {
-			$cls = "";
-			$nowPageUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], $i) . '"';
-			if ($i == $currentPage) {
-				$cls = "main_bg main_border";
-				$nowPageUrl = '';
-			}
-			$out .= '<a class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
-		}
-		if ($a['total'] > 6) {
-			$out1 .='... ' . '<a href="' . $this->getPageUrl($a['nodeIdentifier'], 7) . '">7</a>';
-		}
-	}
-	$out .= $out1;
-	if ($a['total'] > 0 && $currentPage != $a['total']) {
-		$out .= '<a href="' . $this->getPageUrl($a['nodeIdentifier'], $currentPage + 1) . '">下一页 &gt;</a>';
-	}
-	$out .= '<a class="' . $pageLast . '" ' . $pageLastUrl . '>尾页</a>';
-	$out .= '</p>
+   $out .='<a class="' . $pageOne . '" ' . $pageFirstUrl . '>首页</a>';
+   if ($currentPage > 1) {
+      $out.='<a href="' . $this->getPageUrl($a['nodeIdentifier'], $currentPage - 1) . '">&lt; 上一页</a>';
+   }
+   if ($currentPage > 5) {
+      $out.='<a href="' . $this->getPageUrl($a['nodeIdentifier'], 1) . '">1</a>... ';
+      for ($i = ($currentPage - 2); $i <= $a['total'] && $i <= $currentPage + 2; $i++) {
+         $cls = "";
+         $nowPageUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], $i) . '"';
+         if ($i == $currentPage) {
+            $cls = "main_bg main_border";
+            $nowPageUrl = '';
+         }
+         $out .= '<a  class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
+      }
+   } else {
+      for ($i = 1; $i <= $a['total'] && $i <= 6; $i++) {
+         $cls = "";
+         $nowPageUrl = 'href="' . $this->getPageUrl($a['nodeIdentifier'], $i) . '"';
+         if ($i == $currentPage) {
+            $cls = "main_bg main_border";
+            $nowPageUrl = '';
+         }
+         $out .= '<a class="' . $cls . '" ' . $nowPageUrl . '>' . $i . '</a>';
+      }
+      if ($a['total'] > 6) {
+         $out1 .='... ' . '<a href="' . $this->getPageUrl($a['nodeIdentifier'], 7) . '">7</a>';
+      }
+   }
+   $out .= $out1;
+   if ($a['total'] > 0 && $currentPage != $a['total']) {
+      $out .= '<a href="' . $this->getPageUrl($a['nodeIdentifier'], $currentPage + 1) . '">下一页 &gt;</a>';
+   }
+   $out .= '<a class="' . $pageLast . '" ' . $pageLastUrl . '>尾页</a>';
+   $out .= '</p>
                     </div>';
 }
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-Qs::Ds('内容数据源/企业设置', 'CS');
+use App\Yunzhan\Content\Constant;
+Qs::Ds('内容数据源/企业标准内容模型', 'CS', array('newsid' => Constant::INFO_INTRO_ID));
 Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('内容数据源/店铺设置', 'setting');
 Qs::Ds('内容数据源/店铺设置', 'CSS');
@@ -62,7 +63,7 @@ Qs::Ds('内容数据源/店铺设置', 'CSS');
             <div class="company_intro">
                 <div class="intro_img ">
                     <?php
-                    $inrodata = Qs::DsField('CS', 1, true);
+                    $inrodata = Qs::DsField('CS', 'content', true);
                     if (iconv_strpos($inrodata, '<img')) {
                        $imgs = mb_split('data-original="', $inrodata);
                        $nowimgs = array_slice($imgs, 1, 3);

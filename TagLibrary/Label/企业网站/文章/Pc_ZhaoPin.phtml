@@ -17,10 +17,10 @@ foreach ($items as $index => $item) {
    $infourl = $this->getInfoUrl($item->getId());
    $itemInfo = $this->getContent($item->getId());
    $out .=' <div class="recruit_table">     
-                <div class=" recruit_name"> <a href="' . $infourl . '">   ' . $item->getTitle() . ' </a></div>
-                <div class=" recruit_category"><a href="' . $infourl . '">   ' . $itemInfo->getDepartment() . '</a></div>
-                <div class=" recruit_city"><a href="' . $infourl . '">   ' . $itemInfo->getNumber() . '</a></div>
-                <div class=" recruit_date"><a href="' . $infourl . '">   ' . date('Y-m-d', $item->getInputTime()) . '</a></div>
+                <div class=" recruit_name"> <a href="' . $infourl . '" class="main_hover">   ' . $item->getTitle() . ' </a></div>
+                <div class=" recruit_category"><a href="' . $infourl . '" class="main_hover">   ' . $itemInfo->getDepartment() . '</a></div>
+                <div class=" recruit_city"><a href="' . $infourl . '" class="main_hover">   ' . $itemInfo->getNumber() . '</a></div>
+                <div class=" recruit_date"><a href="' . $infourl . '" class="main_hover">   ' . date('Y-m-d', $item->getInputTime()) . '</a></div>
             </div>';
 }
 $out.='</div>';

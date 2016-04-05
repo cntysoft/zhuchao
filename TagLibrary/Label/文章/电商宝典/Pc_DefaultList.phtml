@@ -23,20 +23,24 @@ foreach ($items as $index => $item) {
       $imgurl = '<a href="' . $infourl . '"> <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 740, 404) . '" alt=""/></a>';
    }
    $out .='<div class="class_item">
-                    <h3 class="class_title text_ellipsis main_hover"><a href="' . $infourl . '">' . $item->getTitle() . '</a></h3>
+                    <h3 class="class_title  main_hover"><a href="' . $infourl . '">' . $item->getTitle() . '</a></h3>
                     <div class="writer_info clearfix">
                         <div class="fl">
                             <span>发表时间：' . date('Y-m-d', $item->getInputTime()) . '</span>
                         </div>
                         <span class="look fr"><i class="icon-yan"></i>' . $item->getHits() . '</span>
                     </div>
-                    <div class="class_img">' . $imgurl . '                        
+                    <div class="class_info clearfix">
+                    <div class="class_img fl">' . $imgurl . '                        
                     </div>
+                    <div class="class_article fr">
                     <p class="class_text">' . $item->getIntro() . '
                     </p>
                     <div class="user_action tr clearfix">
                         <a class="study_btn fl main_bg" href="' . $infourl . '">立即阅读</a>
                         <span>' . $item->getHits() . '人已学</span>
+                    </div>
+                    </div>
                     </div>
                 </div>';
 }

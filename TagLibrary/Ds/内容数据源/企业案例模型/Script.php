@@ -51,15 +51,15 @@ class CaseModel extends AbstractDsScript
       $ret['nodeIdentifier'] = $node->getNodeIdentifier();
       $ret['url'] = $this->getItemUrl($itemId);
       $this->setupItemPrevAndNext($mainValues, $ret);
-      
+
       //处理content
       $cndServer = Kernel\get_image_cdn_server_url() . '/';
       $content = $ret['content'];
       unset($ret['content']);
-      foreach($content as &$a) {
+      foreach ($content as &$a) {
          $a['src'] = $cndServer . $a['src'];
       }
-      
+
       $ret['content'] = $content;
       return $ret;
    }
@@ -75,9 +75,13 @@ class CaseModel extends AbstractDsScript
       $links = $this->appCaller->call(
               ContentConst::MODULE_NAME, ContentConst::APP_NAME, ContentConst::APP_API_INFO_LIST, 'getPrevAndNextItem', array($main['nodeId'], $main['id'])
       );
-
       foreach ($links as $key => $val) {
-         $data[$key] = $val;
+         if (empty($val)) {
+            $data[$key] = $val;
+         } else {
+            $val[0] = str_replace('news', 'casedetail', $val[0]);
+            $data[$key] = $val;
+         }
       }
    }
 
@@ -87,7 +91,7 @@ class CaseModel extends AbstractDsScript
     */
    protected function getItemUrl($itemId)
    {
-      return '/news/' . $itemId . '.html';
+      return '/casedetail/' . $itemId . '.html';
    }
 
 }

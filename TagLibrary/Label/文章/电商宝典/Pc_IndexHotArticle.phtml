@@ -17,7 +17,7 @@ foreach ($items as $index => $info) {
                                 <p>' . date('d', $info->getInputTime()) . '</p>
                                 <span>' . date('Y-m', $info->getInputTime()) . '</span>
                             </div>
-                            <h4 class="title_h4 text_ellipsis main_hover"><a href="' . $this->getInfoUrl($info->getId()) . '">[' . $node->getText() . ']' . $info->getTitle() . '</a></h4>
+                            <h4 class="title_h4  main_hover"><a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a></h4>
                             <p class="text_info">' . $info->getIntro() . '</p>
                         </li>';
 }

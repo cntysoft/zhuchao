@@ -7,8 +7,9 @@ if ($this->getRouteNodeIdentifier() == 'laobanneican') {
 $out = '';
 foreach ($items as $info) {
    $out .= '<li>
-                    <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 360, 200) . '">
-                    <a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a>
+                    <a href="' . $this->getInfoUrl($info->getId()) . '">'
+           . '<img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 360, 200) . '">
+              <p>' . $info->getTitle() . '</p></a>
                 </li>';
 }
 echo $out;
