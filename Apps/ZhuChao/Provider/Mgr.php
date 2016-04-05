@@ -410,8 +410,8 @@ class Mgr extends AbstractLib
    {
       $company = $this->getCompanyById($companyId);
       $siteDbName = \Cntysoft\ZHUCHAO_SITE_DB_PREFIX . $companyId;
-      
-      $executeTime  = ini_get('max_execution_time');
+
+      $executeTime = ini_get('max_execution_time');
       set_time_limit(0);
       $global = ConfigProxy::getGlobalConfig();
       $dbConfig = $global->db->toArray();
@@ -426,13 +426,18 @@ class Mgr extends AbstractLib
          $connection->execute($sql);
       }
       $connection->close();
-      
-      //最后将域名插入企业信息表中
+
+      //然后将域名插入企业信息表中
       $company->setSubAttr($subAttr);
       ini_set('max_execution_time', $executeTime);
-      return $company->save();
+      $company->save();
+
+      //最后清空站点信息缓存
+      $cacher = $this->getAppObject()->getCacheObject();
+      $cacher->delete(Constant::SITE_CACHE_KEY);
+      return ;
    }
-   
+
    /**
     * 验证二级域名是否存在
     * 
@@ -442,7 +447,7 @@ class Mgr extends AbstractLib
    public function checkSubAttr($subAttr)
    {
       $company = CompanyModel::findFirst("subAttr = '$subAttr' ");
-      
+
       return $company ? true : false;
    }
 
