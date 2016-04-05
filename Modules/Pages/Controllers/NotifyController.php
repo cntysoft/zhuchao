@@ -47,6 +47,7 @@ class NotifyController extends AbstractController
    {
       $this->getAppCaller()->call(
               BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout');
+      exit;
    }
 
    /**

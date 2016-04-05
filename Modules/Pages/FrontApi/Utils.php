@@ -8,10 +8,10 @@
  */
 namespace PagesFrontApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
-use App\Site\Category\Constant as CATEGORYCONST;
 use App\Site\Content\Constant as CONTENT_CONST;
 use App\Site\Category\Constant as CATEGORY_CONST;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
+use App\ZhuChao\CategoryMgr\Constant as CATEGORY;
 /**
  * 处理系统上传
  *
@@ -122,8 +122,18 @@ class Utils extends AbstractScript
    {
       $limit = (int) $params['limit'];
       $offset = ((int) $params['page'] - 1) * $limit;
+      $cid = $params['cid'];
+      $tree = $this->appCaller->call(
+              CATEGORY::MODULE_NAME, CATEGORY::APP_NAME, CATEGORY::APP_API_MGR, 'getNodeTree'
+      );
+      $ids = $tree->getChildren($cid, -1);
+      array_push($ids, $cid);
+      $idsText = 'categoryId IN ('.implode(",", $ids).') AND status = 3';
+      $cond = array(
+         $idsText
+      );
       $goodsList = $this->appCaller->call(
-              PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductList', array(array(), false, 'inputTime DESC', $offset, $limit));
+              PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($cond, false, 'inputTime DESC', $offset, $limit));
       $ret = array();
       foreach ($goodsList as $list) {
          $children = array(
@@ -212,7 +222,7 @@ class Utils extends AbstractScript
    protected function getArticles($params)
    {
       $nodeId = array();
-      $node = $this->appCaller->call(CATEGORYCONST::MODULE_NAME, CATEGORYCONST::APP_NAME, CATEGORYCONST::APP_API_STRUCTURE, 'getNodesByIdentifiers', array(
+      $node = $this->appCaller->call(CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_STRUCTURE, 'getNodesByIdentifiers', array(
          explode(',', $params['nodeIdentifier'])
       ));
       foreach ($node as $item) {

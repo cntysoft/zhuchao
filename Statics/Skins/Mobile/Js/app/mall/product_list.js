@@ -6,6 +6,7 @@ define(['zepto', 'swiper', 'module/totop', 'Front'], function (){
         var ajaxParams = {};
         var page = 1;
         var limit = 10;
+        var cid = parseInt(window.location.pathname.split('/')[2]);
         var sendAjax = true;
         $(window).scroll(function (){
             var scrollTop = $(window).scrollTop();
@@ -21,6 +22,7 @@ define(['zepto', 'swiper', 'module/totop', 'Front'], function (){
             page += 1;
             ajaxParams.page = page;
             ajaxParams.limit = limit;
+            ajaxParams.cid = cid;
             Cntysoft.Front.callApi('Utils', 'getGoodsListBy',
             ajaxParams, function (response){
                 if(response.status){
@@ -34,8 +36,7 @@ define(['zepto', 'swiper', 'module/totop', 'Front'], function (){
                     $('.card3').append($out);
                     sendAjax = $out ? true : false;
                 }
-            }
-            , this);
+            });
         }
         //导航
         $('.header_right').click(function (){
