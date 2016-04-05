@@ -81,12 +81,17 @@ define(['validate', 'zepto', 'layer', 'Core', 'Front'], function (validate){
            var $this = $(this);
            if($this.hasClass('checked')){
               $this.removeClass('checked');
+              $('#submit').addClass('login_disable');
            }else{
               $this.addClass('checked');
+              $('#submit').removeClass('login_disable');
            }
         });
 
         $('#submit').tap(function (event){
+            if($(this).hasClass('login_disable')){
+                return false;
+            }
             event.preventDefault();
             var validateMsg = validate.checkFields($('#phone,#password,#password2,#imgCode'));
             if(validateMsg.length){
