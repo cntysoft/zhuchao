@@ -158,9 +158,9 @@ class IndexBuilder extends AbstractHandler
       $this->getPageParams($orderBy, $limit, $offset, $params);
       $list = $this->getAppCaller()->call(
          PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR,
-         'getProductInfosByCategoryId',
+         'getProductInfosByCategoryIdAndStatus',
          array(
-         $cid, true, 'indexGenerated asc, id desc', $offset, $limit
+         $cid, true, 'indexGenerated asc, id desc', PRODUCT_CONST::PRODUCT_STATUS_VERIFY, $offset, $limit
          )
       );
       $total = $list[1];

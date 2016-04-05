@@ -601,6 +601,51 @@ class ProductMgr extends AbstractLib
    }
    
    /**
+    * 获取指定栏目下制定状态的商品列表
+    * 
+    * @param int $categoryId
+    * @param boolean $total
+    * @param string $orderBy
+    * @param int $status
+    * @param int $offset
+    * @param int $limit
+    * @return array
+    */
+   public function getProductInfosByCategoryIdAndStatus($categoryId, $total = false, $orderBy = 'id desc', $status = Constant::PRODUCT_STATUS_VERIFY, $offset = 0, $limit = 15)
+   {
+      $cond = array();
+      if($categoryId) {
+         $cond[] = 'categoryId = ' . $categoryId;
+      }
+      
+      if($status) {
+         $cond[] = ' status = ' . $status;
+      }
+      
+      $cond = implode(' and ', $cond);
+      $query = array(
+         $cond,
+         'order' => $orderBy
+      );
+      if($limit){
+         $query = array_merge($query, array(
+            'limit' => array(
+               'offset' => $offset,
+               'number' => $limit
+            )
+         ));
+      }
+
+      $items = ProductModel::find($query);
+
+      if($total){
+         return array($items, ProductModel::count($cond));
+      }
+      
+      return $items;
+   }
+   
+   /**
     * 根据商品分类获取商品列表，支持属性过滤
     * 
     * @param int $cid
