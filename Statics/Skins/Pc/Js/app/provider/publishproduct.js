@@ -37,6 +37,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
             if($('#keyword3').val()){
                 params['keywords'].push($('#keyword3').val());
             }
+            params['group'] = $('#proGroup').val();
             params['attribute'] = {
                 '基本参数' : {},
                 '自定义属性' : {}

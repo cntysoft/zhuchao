@@ -28,4 +28,6 @@ class Constant
    const PK_WIDGET_PRODUCT = 'ProductMgr';
    
    const ATTR_FILTER_REGEX = '/[\s:\/\(\)\*&@!#$%\^\-+~\?]/is';
+   
+   const GROUP_MAX_NUM = 10;
 }

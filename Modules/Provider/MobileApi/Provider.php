@@ -9,7 +9,6 @@
 namespace ProviderMobileApi;
 use ZhuChao\Framework\OpenApi\AbstractScript;
 use App\ZhuChao\Provider\Constant as P_CONST;
-use Cntysoft\Kernel;
 /**
  * 主要是处理采购商相关的的Ajax调用
  * 

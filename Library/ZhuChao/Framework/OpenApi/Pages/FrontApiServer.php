@@ -97,7 +97,7 @@ class FrontApiServer
     protected function initApiWhiteList()
     {
         $this->whiteList = array(
-           
+           'User.getGoodsQuerySuggests'
         );
     }
 

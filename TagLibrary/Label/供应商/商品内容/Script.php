@@ -9,6 +9,8 @@
 namespace TagLibrary\Label\Provider;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
+use App\Yunzhan\Product\Constant as YUN_PRODUCT_CONST;
+use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 use Cntysoft\Kernel;
 
@@ -77,6 +79,63 @@ class ProductChange extends AbstractLabelScript
          CATEGORY_CONST::APP_API_MGR,
          'getNodeAttrs',
          array($categoryId)
+      );
+   }
+   
+   /**
+    * 获取指定用户的分组列表
+    * 
+    */
+   public function getGroupList()
+   {
+      $groupTree = $this->appCaller->call(
+         YUN_PRODUCT_CONST::MODULE_NAME,
+         YUN_PRODUCT_CONST::APP_NAME,
+         YUN_PRODUCT_CONST::APP_API_GROUP_MGR,
+         'getGroupTree',
+         array()
+      );
+      $ret = array();
+      $firstList = $groupTree->getChildren(0, 1, true);
+      
+      foreach($firstList as $group){
+         $twsList = $groupTree->getChildren($group->getId(), 1, true);
+         $two = array();
+         if(count($twsList)){
+            foreach($twsList as $twoOne){
+               $item = array(
+                  'id' => $twoOne->getId(),
+                  'name' => $twoOne->getName()
+               );
+               
+               $two[] = $item;
+            }
+         }
+         
+         $ret[] = array(
+            'id' => $group->getId(),
+            'name' => $group->getName(),
+            'children' => $two
+         );
+      }
+      
+      return $ret;
+   }
+   
+   /**
+    * 获取指定编码的云站商品
+    * 
+    * @param string $number
+    * @return 
+    */
+   public function getYunzhanProduct($number)
+   {
+      return $this->appCaller->call(
+         YUN_PRODUCT_CONST::MODULE_NAME,
+         YUN_PRODUCT_CONST::APP_NAME,
+         YUN_PRODUCT_CONST::APP_API_PRODUCT_MGR,
+         'getProductByNumber',
+         array($number)
       );
    }
    

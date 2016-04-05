@@ -285,46 +285,6 @@ class Product extends AbstractScript
    }
    
    /**
-    * 获取指定采购商的商品分组信息，支持两层结构
-    */
-   public function getProviderGroup()
-   {
-      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      $groupTree = $this->appCaller->call(
-         P_CONST::MODULE_NAME,
-         P_CONST::APP_NAME,
-         P_CONST::APP_API_GROUP_MGR,
-         'getGroupTree',
-         array($curUser->getId())
-      );
-      $ret = array();
-      $firstList = $groupTree->getChildren(0, 1, true);
-      
-      foreach($firstList as $group){
-         $twsList = $groupTree->getChildren($group->getId(), 1, true);
-         $two = array();
-         if(count($twsList)){
-            foreach($twsList as $two){
-               $item = array(
-                  'id' => $two->getId(),
-                  'name' => $two->getName()
-               );
-               
-               $two[] = $item;
-            }
-         }
-         
-         $ret[] = array(
-            'id' => $group->getId(),
-            'name' => $group->getName(),
-            'children' => $two
-         );
-      }
-      
-      return $ret;
-   }
-   
-   /**
     * 添加一个分组信息
     * 
     * @param array $params
@@ -333,8 +293,7 @@ class Product extends AbstractScript
    public function addGroup(array $params)
    {
       $this->checkRequireFields($params, array('name'));
-      $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      
+
       if(isset($params['pid'])){
          $params['pid'] = (int)$params['pid'];
       }else{
@@ -342,11 +301,11 @@ class Product extends AbstractScript
       }
       
       return $this->appCaller->call(
-         P_CONST::MODULE_NAME,
-         P_CONST::APP_NAME,
-         P_CONST::APP_API_GROUP_MGR,
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_GROUP_MGR,
          'addGroup',
-         array($provider->getId(), $params)
+         array($params)
       );
    }
    
@@ -357,40 +316,39 @@ class Product extends AbstractScript
     */
    public function deleteGroup(array $params)
    {
-      $curUser = $this->appCaller->call(
-         PROVIDER_CONST::MODULE_NAME,
-         PROVIDER_CONST::APP_NAME,
-         PROVIDER_CONST::APP_API_MGR,
-         'getCurUser'
-      );
       $this->checkRequireFields($params, array('id'));
       
+      if(is_array($params['id'])){
+         $ids = $params['id'];
+      }else{
+         $ids = array($params['id']);
+      }
+      
       $this->appCaller->call(
-         P_CONST::MODULE_NAME,
-         P_CONST::APP_NAME,
-         P_CONST::APP_API_GROUP_MGR,
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_GROUP_MGR,
          'deleteGroups',
-         array($curUser->getId(), array((int)$params['id']))
+         array($ids)
       );
    }
    
+   /**
+    * 修改分组与商品的关系
+    * 
+    * @param array $params
+    */
    public function changeGroupProduct(array $params)
    {
       $this->checkRequireFields($params, array('groupId', 'numbers'));
-      $curUser = $this->appCaller->call(
-         PROVIDER_CONST::MODULE_NAME,
-         PROVIDER_CONST::APP_NAME,
-         PROVIDER_CONST::APP_API_MGR,
-         'getCurUser'
-      );
       $numbers = is_array($params['numbers']) ? $params['numbers'] : array($params['numbers']);
       
       $this->appCaller->call(
-         P_CONST::MODULE_NAME,
-         P_CONST::APP_NAME,
-         P_CONST::APP_API_GROUP_MGR,
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_GROUP_MGR,
          'changeGroupProduct',
-         array($curUser->getId(), $params['groupId'], $numbers)
+         array($params['groupId'], $numbers)
       );
    }
    
@@ -402,21 +360,15 @@ class Product extends AbstractScript
     */
    public function modifyGroup(array $params)
    {
-      $curUser = $this->appCaller->call(
-         PROVIDER_CONST::MODULE_NAME,
-         PROVIDER_CONST::APP_NAME,
-         PROVIDER_CONST::APP_API_MGR,
-         'getCurUser'
-      );
       $this->checkRequireFields($params, array('id', 'name'));
       $id = $params['id'];
       
       return $this->appCaller->call(
-         P_CONST::MODULE_NAME,
-         P_CONST::APP_NAME,
-         P_CONST::APP_API_GROUP_MGR,
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_GROUP_MGR,
          'modifyGroup',
-         array($curUser->getId(), $id, $params)
+         array($id, $params)
       );
    }
    

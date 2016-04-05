@@ -56,8 +56,8 @@ class Product extends BaseModel
             'action' => Relation::ACTION_CASCADE
          )
       ));
-      $this->hasOne('id', 'App\ZhuChao\Product\Model\Product2Group', 'productId',array(
-         'alias' => 'pg'
+      $this->hasMany('id', 'App\ZhuChao\Product\Model\Product2Group', 'productId',array(
+         'alias' => 'pgs'
       ));
    }
    

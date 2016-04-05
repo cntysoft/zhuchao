@@ -1,0 +1,20 @@
+<?php
+$tree = $this->getGroupTree();
+$groups = $tree->getChildren(0, 1, true);
+$out = '<option value=0>默认分组</option>';
+
+if(count($groups)){
+   foreach($groups as $group){
+      $children = $tree->getChildren($group->getId(), 1, true);
+      $out.='<option value='.$group->getId().'>'.$group->getName().'</option>';
+              
+      if(count($children)){
+         foreach($children as $one){
+            $out.='<option value='.$one->getId().'>&nbsp;&nbsp;&nbsp;'.$one->getName().'</option>';
+         }
+      }
+   }
+}
+
+echo $out;
+

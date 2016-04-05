@@ -13,14 +13,27 @@ define(['jquery', 'Core', 'Front', 'layer', 'app/common'], function (){
                title : '请输入分组名'
             }, function(value, index){
                if(value){
+                  if(value.length > 10){
+                     layer.tips('请输入10位以内的名称!', '.layui-layer-prompt .layui-layer-content', {
+                        tips : [2, '#63bf82'],
+                        time : 1000
+                     });
+                     return false;
+                  }
                   Cntysoft.Front.callApi('Product', 'addGroup', {
                      id : 0,
                      name : value
                   }, function(response){
                      if(!response.status){
-                        layer.msg('添加分组名称失败！', {
-                           time : 1000
-                        });
+                        if(10007 == response.errorCode){
+                           layer.msg('最多添加10个分组！', {
+                              time : 1000
+                           });
+                        }else{
+                           layer.msg('添加分组名称失败！', {
+                              time : 1000
+                           });
+                        }
                      }else{
                         layer.msg('添加分组名称成功！', {
                            time : 1000

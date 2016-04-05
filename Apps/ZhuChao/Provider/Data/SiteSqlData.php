@@ -181,7 +181,6 @@ return array(
    "CREATE TABLE IF NOT EXISTS `app_zhuchao_product_group` (
 `id` int(10) unsigned NOT NULL,
  `pid` int(10) unsigned NOT NULL DEFAULT '0',
- `providerId` int(10) unsigned NOT NULL COMMENT '供应商id',
  `name` varchar(255) NOT NULL COMMENT '产品分组名',
  `inputTime` int(10) unsigned NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = '产品分组信息';",

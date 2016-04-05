@@ -8,6 +8,7 @@
 */
 namespace App\Yunzhan\Product\Model;
 use ZhuChao\Phalcon\Mvc\Model as BaseModel;
+use Phalcon\Mvc\Model\Relation;
 
 class Product extends BaseModel
 {
@@ -38,14 +39,14 @@ class Product extends BaseModel
    public function initialize()
    {
       parent::initialize();
-      $this->belongsTo('categoryId', 'App\Yunzhan\CategoryMgr\Model\Category', 'id', array(
-         'alias' => 'category'
-      ));
       $this->hasOne('detailId', 'App\Yunzhan\Product\Model\ProductDetail', 'id', array(
-         'alias' => 'detail'
+         'alias' => 'detail',
+         'foreignKey' => array(
+            'action' => Relation::ACTION_CASCADE
+         )
       ));
-      $this->hasManyToMany('id', 'App\Yunzhan\Product\Model\Product2Group', 'productId', 'groupId', 'App\Yunzhan\Product\Model\Group', 'id', array(
-         'alias' => 'groups'
+      $this->hasMany('id', 'App\Yunzhan\Product\Model\Product2Group', 'productId',array(
+         'alias' => 'pgs'
       ));
    }
    

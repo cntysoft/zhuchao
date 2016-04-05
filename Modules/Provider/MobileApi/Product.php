@@ -299,34 +299,23 @@ class Product extends AbstractScript
    /**
     * 获取指定采购商的商品分组信息，支持两层结构
     */
-   public function getProviderGroup()
+   public function getGroupList()
    {
-      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
       $groupTree = $this->appCaller->call(
-              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_GROUP_MGR, 'getGroupTree', array($curUser->getId())
+              YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_GROUP_MGR, 'getGroupTree', array()
       );
       $ret = array();
-      $firstList = $groupTree->getChildren(0, 1, true);
+      $list = $groupTree->getChildren(0, -1, true);
 
-      foreach ($firstList as $group) {
-         $twsList = $groupTree->getChildren($group->getId(), 1, true);
-         $two = array();
-         if (count($twsList)) {
-            foreach ($twsList as $two) {
-               $item = array(
-                  'id'   => $two->getId(),
-                  'name' => $two->getName()
-               );
-
-               $two[] = $item;
-            }
-         }
-
-         $ret[] = array(
-            'id'       => $group->getId(),
-            'name'     => $group->getName(),
-            'children' => $two
+      foreach($list as $group){
+         $item = array(
+            'id'   => $group->getId(),
+            'pId'  => $group->getPid(),
+            'name' => $group->getName(),
+            'leaf' => 0 != $group->getPid()
          );
+         
+         array_push($ret, $item);
       }
 
       return $ret;
@@ -340,20 +329,70 @@ class Product extends AbstractScript
     */
    public function addGroup(array $params)
    {
-      $this->checkRequireFields($params, array('name'));
-      $provider = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
+      $this->checkRequireFields($params, array('name', 'pId'));
 
-      if (isset($params['pid'])) {
-         $params['pid'] = (int) $params['pid'];
+      $data = array();
+      
+      if (isset($params['pId'])) {
+         $data['pid'] = (int) $params['pId'];
       } else {
-         $params['pid'] = 0;
+         $data['pid'] = 0;
       }
+      
+      $names = is_array($params['name']) ? $params['name'] : array($params['name']);
+      
+      foreach($names as $name){
+         $data['name'] = $name;
+         $this->appCaller->call(
+            YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_GROUP_MGR, 'addGroup', array($data)
+         );
+      }
+   }
 
-      return $this->appCaller->call(
-                      P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_GROUP_MGR, 'addGroup', array($provider->getId(), $params)
+   /**
+    * 删除分组
+    * 
+    * @param array $params
+    */
+   public function deleteGroup(array $params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      
+      if(is_array($params['id'])){
+         $ids = $params['id'];
+      }else{
+         $ids = array($params['id']);
+      }
+      
+      $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_GROUP_MGR,
+         'deleteGroups',
+         array($ids)
       );
    }
 
+   /**
+    * 修改分组信息
+    * 
+    * @param array $params
+    * @return type
+    */
+   public function modifyGroup(array $params)
+   {
+      $this->checkRequireFields($params, array('id', 'name'));
+      $id = $params['id'];
+      
+      return $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_GROUP_MGR,
+         'modifyGroup',
+         array($id, $params)
+      );
+   }
+   
    /**
     * 获取分类树
     * 
@@ -372,17 +411,18 @@ class Product extends AbstractScript
    /**
     * 获取指定编码的产品信息
     * 
-    * @param string $number
+    * @param array $params
     * @return 
     */
    public function getProductByNumber($params)
    {
       $this->checkRequireFields($params, array('number'));
       $product = $this->appCaller->call(
-              P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($params['number'])
+         P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($params['number'])
       );
+
       $detail = $product->getDetail();
-      $detail = $detail->toarray();
+      $detail = $detail->toArray();
       $product = $product->toArray();
       $info = array_merge($detail, $product);
       $info['images'] = unserialize($info['images']);
@@ -417,6 +457,45 @@ class Product extends AbstractScript
       }
       $info['attribute'] = $retAttrs;
       $info['categoryName'] = $this->getAllParentName($info['categoryId']);
+      $tree = $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_GROUP_MGR,
+         'getGroupTree'
+      );
+      
+      $yzProduct = $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME,
+         YUN_P_CONST::APP_NAME,
+         YUN_P_CONST::APP_API_PRODUCT_MGR,
+         'getProductByNumber',
+         array($params['number'])
+      );
+      if(!$yzProduct){
+         return;
+      }
+      $pgs = $yzProduct->getPgs();
+      $groups = array();
+      $children = $tree->getChildren(0, -1, true);
+      $groupId = 0;
+      if(count($pgs)){
+         foreach($pgs as $pg){
+            $groupInfo = $pg->getGroup();
+            $groupId = $groupInfo->getId();
+         }
+      }
+      foreach($children as $group){
+         $item = array(
+            'id'      => $group->getId(),
+            'name'    => $group->getName(),
+            'checked' => $groupId == $group->getId() ? true : false
+         );
+         
+         array_push($groups, $item);
+      }
+      
+      $info['groups'] = $groups;
+      
       unset($info['id']);
       unset($info['imgRefMap']);
       unset($info['fileRefs']);

@@ -73,6 +73,14 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         </div>
                     </div>
                     <div class="itmes_lsit clearfix">
+                        <label><em class="main">*</em>产品分组:</label>
+                        <div class="input_wrap select_group select_brand">
+                            <select class="ui-form-select" name="group" id="proGroup">
+                                <?php Qs::Label('供应商/产品分组', array('renderTpl'=>'Pc_ProductGroupList')) ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="itmes_lsit clearfix">
                         <label><em class="main">*</em>产品属性:</label>
                         <div class="input_wrap select_attr">
                             <p class="attr_tips">产品属性越完整，目标客户越容易搜索到</p>
@@ -185,7 +193,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     <div class="itmes_lsit clearfix">
                         <p class="next_operate">
                             <a class="operate_btn1 main_bg" id="submit">发布产品</a>
-                            <a class="operate_btn2" id="draft">保存到草稿箱</a>
+                            <!--<a class="operate_btn2" id="draft">保存到草稿箱</a>-->
                         </p>
                     </div>
                 </div>

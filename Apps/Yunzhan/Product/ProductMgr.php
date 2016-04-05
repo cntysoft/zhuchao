@@ -12,8 +12,7 @@ use App\Yunzhan\Product\Model\Product as ProductModel;
 use App\Yunzhan\Product\Model\ProductDetail as DetailModel;
 use App\Yunzhan\Product\Model\Product2Group as PGModel;
 use Cntysoft\Kernel;
-use App\Yunzhan\CategoryMgr\Constant as CATEGORY_CONST;
-use Cntysoft\Framework\Core\FileRef\Manager as RefManager;
+use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 
 class ProductMgr extends AbstractLib
 {
@@ -78,7 +77,7 @@ class ProductMgr extends AbstractLib
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
 
-      $db = Kernel\get_db_adapter();
+      $db = Kernel\get_site_db_adapter();
       try {
          $db->begin();
          $detail->assignBySetter($ddata);
@@ -96,7 +95,8 @@ class ProductMgr extends AbstractLib
          $pdata['detailId'] = $detail->getId();
 
          $product->assignBySetter($pdata);
-
+         $product->create();
+         
          if (isset($params['group']) && !empty($params['group'])) {
             $group = $params['group'];
             if (!is_array($group)) {
@@ -111,7 +111,7 @@ class ProductMgr extends AbstractLib
                unset($join);
             }
          }
-         $product->create();
+         
          return $db->commit();
       } catch (Exception $ex) {
          $db->rollback();
@@ -121,10 +121,7 @@ class ProductMgr extends AbstractLib
    }
    
    /**
-    * 
-    * @param integer $productId
-    * @param array $params
-    * @return type修改一个产品的信息
+    * 修改一个产品的信息
     * 
     * @param integer $productId
     * @param array $params
@@ -141,7 +138,7 @@ class ProductMgr extends AbstractLib
       $ddata = $this->filterData($params, $dfields);
       $pdata = $this->filterData($params, $pfields);
       
-      $db = Kernel\get_db_adapter();
+      $db = Kernel\get_site_db_adapter();
       try{
          $db->begin();
          $detail->assignBySetter($ddata);
@@ -153,25 +150,31 @@ class ProductMgr extends AbstractLib
          $product->setIndexGenerated(0);
          $product->update();
          
-         if (isset($params['group']) && !empty($params['group'])) {
+         if (isset($params['group'])) {
             $group = $params['group'];
             if (!is_array($group)) {
-               $group = array($group);
+               $group = array((int)$group);
             }
+            
             $oldGroup = array();
-            $groups = $product->getGroups();
-            if(count($groups)){
-               foreach($groups as $one){
-                  array_push($oldGroup, $one->getId());
+            $pgs = $product->getPgs();
+            if(count($pgs)){
+               foreach($pgs as $pg){
+                  array_push($oldGroup, $pg->getGroupId());
                }
             }
             
-            $deleteGroup = array_diff($oldGroup, $group);
-            $addGroup = array_diff($group, $oldGroup);
+            if(in_array(0, $group)){
+               $deleteGroup = $oldGroup;
+               $addGroup = array();
+            }else{
+               $deleteGroup = array_diff($oldGroup, $group);
+               $addGroup = array_diff($group, $oldGroup);
+            }
             
             if(count($deleteGroup)){
                $modelsManager = Kernel\get_models_manager();
-               $query = sprintf('DELETE FROM %s WHERE '. PGModel::generateRangeCond('productId', $deleteGroup), 'App\ZhuChao\Product\Model\Product2Group');
+               $query = sprintf('DELETE FROM %s WHERE productId='.$productId.' and '. PGModel::generateRangeCond('groupId', $deleteGroup), 'App\Yunzhan\Product\Model\Product2Group');
                $modelsManager->executeQuery($query);
             }
             
@@ -183,6 +186,7 @@ class ProductMgr extends AbstractLib
                unset($join);
             }
          }
+         
          return $db->commit();
       } catch (Exception $ex) {
          $db->rollback();
@@ -224,6 +228,14 @@ class ProductMgr extends AbstractLib
       $list = $this->getProductList(array($cond), false, 'id DESC', 0, 0);
       if(count($list)){
          foreach ($list as $product){
+            if(Constant::PRODUCT_STATUS_DELETE == $status){
+               $pgs = $product->getPgs();
+               if(count($pgs)){
+                  foreach($pgs as $pg){
+                     $pg->delete();
+                  }
+               }
+            }
             $product->setStatus($status);
             $product->setUpdateTime(time());
             $product->update();
@@ -414,6 +426,19 @@ class ProductMgr extends AbstractLib
             return $ginfo->save();
          }
       }
+   }
+   
+   /**
+    * 获取指定编码的商品信息
+    * 
+    * @param array $numbers
+    * @return 
+    */
+   public function getProductByNumbers(array $numbers)
+   {
+      return ProductModel::find(array(
+         ProductModel::generateRangeCond('number', $numbers)
+      ));
    }
    
 }

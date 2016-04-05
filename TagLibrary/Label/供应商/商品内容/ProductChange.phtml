@@ -31,62 +31,84 @@ if(1 == $product->getIsBatch()){
 }else{
    $batchChecked2 = 'checked';
 }
-'
-<li class="img_plus" id="uploadBtn">
-                                    <p>+</p>
-                                    <span>添加照片</span>
-                                </li>';
 
 $out = '<div class="itmes_form">
-                    <div class="itmes_lsit clearfix">
-                        <label>当前类目:</label>
-                        <!--站点指示-->
-                        '. $cateText .'
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>产品标题:</label>
-                        <div class="input_wrap product_title">
-                            <input class="ipt1 brand" type="text" id="brand" placeholder="请填写产品品牌" fh-type="length" minlength="2" maxlength="10" required value='.$brand.'>
-                            <span><em>'.strlen($brand).'</em>/10</span>
-                            <input class="ipt2 title" type="text" id="title" placeholder="请填写产品名称+型号" fh-type="length" minlength="2" maxlength="15" required value='.$title.'>
-                            <span><em>'.strlen($title).'</em>/15</span>
-                            <input class="ipt3 description" type="text" id="description" placeholder="请填写产品特征及具体描述" fh-type="length" minlength="2" maxlength="20" required value='.$description.'>
-                            <span><em>'.strlen($description).'</em>/20</span>
-                            <p><a class="main_hover" href="">如何填写标题？</a></p>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>产品广告语:</label>
-                        <div class="input_wrap add_slogan">
-                            <input type="text" class="advertText" placeholder="请填写产品宣传广告语及促销优惠活动等信息" fh-type="length" id="advertText" minlength="5" maxlength="45" required value='.$advertText.'><span><em>'.strlen($advertText).'</em>/45</span>
-                            <a class="main_hover" href="">如何填写广告语？</a>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>效果预览:</label>
-                        <div class="input_wrap preview" id="preview">
-                            <dl>
-                                <dt>
-                                <strong >'.$brand.'  </strong>
-                                <strong >'.$title.' </strong>
-                                <strong >'.$description.'</strong>
-                                </dt>
-                                <dd>'.$advertText.'</dd>
-                            </dl>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>产品关键词:</label>
-                        <div class="input_wrap keywords">
-                            <input type="text" placeholder="关键字" id="keyword" minlength="1" maxlength="8" fh-type="length" required value='.(isset($keywords[0]) ? $keywords[0] : "").'>
-                            <input type="text" placeholder="关键字" id="keyword2" minlength="1" maxlength="8" fh-type="length" value='.(isset($keywords[1]) ? $keywords[1] : '').'>
-                            <input class="no_mr" type="text" placeholder="关键字"  id="keyword3"  maxlength="8" minlength="1" fh-type="length" value='.(isset($keywords[2]) ? $keywords[2] : "").'>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label>产品属性:</label>
-                        <div class="input_wrap select_attr">
-                            <p class="attr_tips">产品属性越完整，目标客户越容易搜索到</p>';
+      <div class="itmes_lsit clearfix">
+          <label>当前类目:</label>
+          <!--站点指示-->
+          '. $cateText .'
+      </div>
+      <div class="itmes_lsit clearfix">
+          <label><em class="main">*</em>产品标题:</label>
+          <div class="input_wrap product_title">
+              <input class="ipt1 brand" type="text" id="brand" placeholder="请填写产品品牌" fh-type="length" minlength="2" maxlength="10" required value='.$brand.'>
+              <span><em>'.strlen($brand).'</em>/10</span>
+              <input class="ipt2 title" type="text" id="title" placeholder="请填写产品名称+型号" fh-type="length" minlength="2" maxlength="15" required value='.$title.'>
+              <span><em>'.strlen($title).'</em>/15</span>
+              <input class="ipt3 description" type="text" id="description" placeholder="请填写产品特征及具体描述" fh-type="length" minlength="2" maxlength="20" required value='.$description.'>
+              <span><em>'.strlen($description).'</em>/20</span>
+              <p><a class="main_hover" href="">如何填写标题？</a></p>
+          </div>
+      </div>
+      <div class="itmes_lsit clearfix">
+          <label><em class="main">*</em>产品广告语:</label>
+          <div class="input_wrap add_slogan">
+              <input type="text" class="advertText" placeholder="请填写产品宣传广告语及促销优惠活动等信息" fh-type="length" id="advertText" minlength="5" maxlength="45" required value='.$advertText.'><span><em>'.strlen($advertText).'</em>/45</span>
+              <a class="main_hover" href="">如何填写广告语？</a>
+          </div>
+      </div>
+      <div class="itmes_lsit clearfix">
+          <label><em class="main">*</em>效果预览:</label>
+          <div class="input_wrap preview" id="preview">
+              <dl>
+                  <dt>
+                  <strong >'.$brand.'  </strong>
+                  <strong >'.$title.' </strong>
+                  <strong >'.$description.'</strong>
+                  </dt>
+                  <dd>'.$advertText.'</dd>
+              </dl>
+          </div>
+      </div>
+      <div class="itmes_lsit clearfix">
+          <label><em class="main">*</em>产品关键词:</label>
+          <div class="input_wrap keywords">
+              <input type="text" placeholder="关键字" id="keyword" minlength="1" maxlength="8" fh-type="length" required value='.(isset($keywords[0]) ? $keywords[0] : "").'>
+              <input type="text" placeholder="关键字" id="keyword2" minlength="1" maxlength="8" fh-type="length" value='.(isset($keywords[1]) ? $keywords[1] : '').'>
+              <input class="no_mr" type="text" placeholder="关键字"  id="keyword3"  maxlength="8" minlength="1" fh-type="length" value='.(isset($keywords[2]) ? $keywords[2] : "").'>
+          </div>
+      </div>';
+
+$yzProduct = $this->getYunzhanProduct($product->getNumber());
+$pgs = $yzProduct->getPgs();
+$groupList = $this->getGroupList();
+$out.='<div class="itmes_lsit clearfix">
+         <label><em class="main">*</em>产品分组:</label>
+         <div class="input_wrap select_group select_brand">
+             <select class="ui-form-select" name="group" id="proGroup">';
+
+if(count($pgs)){
+   foreach($pgs as $pg){
+      $group = $pg->getGroup();
+      $out.='<option value='.$group->getId().'>'.$group->getName().'</option>';
+   }
+}
+$out.='<option value=0>默认分组</option>';
+foreach($groupList as $group){
+   $out.='<option value='.$group["id"].'>'.$group["name"].'</option>';
+   if(count($group['children'])){
+      foreach($group['children'] as $child){
+         $out.='<option value='.$child["id"].'>&nbsp;&nbsp;&nbsp;'.$child["name"].'</option>';
+      }
+   }
+}
+
+$out.='</select></div></div>';
+
+$out.='<div class="itmes_lsit clearfix">
+          <label>产品属性:</label>
+          <div class="input_wrap select_attr">
+              <p class="attr_tips">产品属性越完整，目标客户越容易搜索到</p>';
    $out.= '<div class="attr_wrap">';
 if(count($normalAttrs)){
    $attrExist = isset($attribute['基本参数']);
@@ -108,9 +130,9 @@ if(count($normalAttrs)){
       $star = $attr->getRequired() ? '<em class="main">*</em>' : '';
       if(count($optValue)){
          $out.='<div class="attr_list clearfix basic">
-               <span class="attr_title">'.$star.$name.'：</span>
-               <div class="attr_info select_brand">
-                   <select class="attrSelect" id="'.$name.'"  '.$required.'>';
+            <span class="attr_title">'.$star.$name.'：</span>
+            <div class="attr_info select_brand">
+                <select class="attrSelect" id="'.$name.'"  '.$required.'>';
          foreach($optValue as $one){
             if($nameExist && $one == $attribute['基本参数'][$name]){
                $out.='<option value="'.$one.'" selected>'.$one.'</option>';
@@ -144,9 +166,9 @@ if(isset($attribute['自定义属性']) && count($attribute['自定义属性']))
 $out.='</div>';
 
    $out.='</div></div><div class="itmes_lsit clearfix">
-                        <label>计量单位:</label>
-                        <div class="input_wrap select_group select_brand">
-                            <select class="ui-form-select" name="unit" id="proUnit">';
+      <label>计量单位:</label>
+      <div class="input_wrap select_group select_brand">
+          <select class="ui-form-select" name="unit" id="proUnit">';
    foreach($this->units as $val){
       if($unit == $val){
          $out.='<option value="'.$val.'" selected>'.$val.'</option>';
@@ -155,49 +177,49 @@ $out.='</div>';
       }
    }
 $out.='</select></div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>最小起订量:</label>
-                        <div class="input_wrap least_book">
-                            <input type="text" fh-type="number" id="minimum" required value='.$minimum.'>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>可售数量:</label>
-                        <div class="input_wrap sale_num">
-                            <input type="text" fh-type="number" id="stock" required value="'.$stock.'">
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label>价格:</label>
-                        <div class="input_wrap set_price">
-                            <input type="text" fh-type="float" id="price" fh-type="number" value="'.$price.'" placeholder="不填写为面议">
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label>批发采购:</label>
-                        <div class="input_wrap input_radio">
-                            <div class="radio">
-                                <label for="yes2">
-                                    <input id="yes2" name="isBatch" type="radio" value="1" '.$batchChecked1.'>
-                                    <i></i>
-                                    <span>是</span>
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label for="no2">
-                                    <input id="no2" name="isBatch" type="radio" value="0" '.$batchChecked2.'>
-                                    <i></i>
-                                    <span>否</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>产品图片:</label>
-                        <div class="input_wrap img_uploading">
-                            <p class="img_tips">最多可上传5张。支持jpg、jpeg、gif、png格式</p>
-                            <ul class="clearfix">';
+         </div>
+         <div class="itmes_lsit clearfix">
+             <label><em class="main">*</em>最小起订量:</label>
+             <div class="input_wrap least_book">
+                 <input type="text" fh-type="number" id="minimum" required value='.$minimum.'>
+             </div>
+         </div>
+         <div class="itmes_lsit clearfix">
+             <label><em class="main">*</em>可售数量:</label>
+             <div class="input_wrap sale_num">
+                 <input type="text" fh-type="number" id="stock" required value="'.$stock.'">
+             </div>
+         </div>
+         <div class="itmes_lsit clearfix">
+             <label>价格:</label>
+             <div class="input_wrap set_price">
+                 <input type="text" fh-type="float" id="price" fh-type="number" value="'.$price.'" placeholder="不填写为面议">
+             </div>
+         </div>
+         <div class="itmes_lsit clearfix">
+             <label>批发采购:</label>
+             <div class="input_wrap input_radio">
+                 <div class="radio">
+                     <label for="yes2">
+                         <input id="yes2" name="isBatch" type="radio" value="1" '.$batchChecked1.'>
+                         <i></i>
+                         <span>是</span>
+                     </label>
+                 </div>
+                 <div class="radio">
+                     <label for="no2">
+                         <input id="no2" name="isBatch" type="radio" value="0" '.$batchChecked2.'>
+                         <i></i>
+                         <span>否</span>
+                     </label>
+                 </div>
+             </div>
+         </div>
+         <div class="itmes_lsit clearfix">
+             <label><em class="main">*</em>产品图片:</label>
+             <div class="input_wrap img_uploading">
+                 <p class="img_tips">最多可上传5张。支持jpg、jpeg、gif、png格式</p>
+                 <ul class="clearfix">';
 $imageNum = 0;
 if(count($images)){
    foreach($images as $image){
@@ -208,31 +230,28 @@ if(count($images)){
 }
 if($imageNum < 5){
    $out.='<li class="img_plus" id="uploadBtn">
-                                    <p>+</p>
-                                    <span>添加照片</span>
-                                </li>';
+      <p>+</p>
+      <span>添加照片</span>
+   </li>';
 }else{
    $out.='<li class="hide img_plus" id="uploadBtn">
-                                    <p>+</p>
-                                    <span>添加照片</span>
-                                </li>';
+      <p>+</p>
+      <span>添加照片</span>
+   </li>';
 }
-$out.='</ul>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <label><em class="main">*</em>产品详情:</label>
-                        <div class="input_wrap product_info">
-                            <p class="product_info_tips">插入产品图片、文字数量200以上都可以提升产品星级哦。<a class="main_hover" href="#">如何填写产品详情？</a>
-                            </p>
-                            <textarea id="info_editor" name="content" style="width:700px;height:300px;">'.$introduction.'</textarea>
-                        </div>
-                    </div>
-                    <div class="itmes_lsit clearfix">
-                        <p class="next_operate">
-                            <a class="operate_btn1 main_bg" id="submit">发布产品</a>
-                            <a class="operate_btn2" id="draft">保存到草稿箱</a>
-                        </p>
-                    </div>
-                </div>';
+$out.='</ul></div></div>
+     <div class="itmes_lsit clearfix">
+         <label><em class="main">*</em>产品详情:</label>
+         <div class="input_wrap product_info">
+             <p class="product_info_tips">插入产品图片、文字数量200以上都可以提升产品星级哦。<a class="main_hover" href="#">如何填写产品详情？</a>
+             </p>
+             <textarea id="info_editor" name="content" style="width:700px;height:300px;">'.$introduction.'</textarea>
+         </div>
+     </div>
+     <div class="itmes_lsit clearfix">
+         <p class="next_operate">
+             <a class="operate_btn1 main_bg" id="submit">发布产品</a>
+         </p>
+     </div>
+ </div>';
 echo $out;

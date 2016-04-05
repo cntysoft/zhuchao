@@ -2,7 +2,8 @@
 $tree = $this->getGroupTree();
 $groups = $tree->getChildren(0, 1, true);
 $out = '<div class="group_list hide">';
-$select = '<option value="0">全部分组</option>';
+$select1 = '<option value="0">全部分组</option>';
+$select2 = '<option value="0">默认分组</option>';
 $pro = '';
 $result = $this->getProductGroupList();
 $products = $result[0];
@@ -11,30 +12,35 @@ $total = $result[1];
 if(count($groups)){
    foreach($groups as $group){
       $children = $tree->getChildren($group->getId(), 1, true);
-      $select.='<option value="'.$group->getId().'">'.$group->getName().'</option>';
+      $select1.='<option value="'.$group->getId().'">'.$group->getName().'</option>';
+      $select2.='<option value="'.$group->getId().'">'.$group->getName().'</option>';
       if(count($children)){
          foreach($children as $one){
-            $select.='<option value="'.$one->getId().'">&nbsp;&nbsp;&nbsp;&nbsp;  '.$one->getName().'</option>';
+            $select1.='<option value="'.$one->getId().'">&nbsp;&nbsp;&nbsp;'.$one->getName().'</option>';
+            $select2.='<option value="'.$one->getId().'">&nbsp;&nbsp;&nbsp;'.$one->getName().'</option>';
          }
       }
    }
 }
-$allSelect = $select;
+$allSelect = $select1;
 $query = $this->getQuery();
 if(isset($query['group']) && $query['group']){
    $group = $this->getGroup($query['group']);
    if($group){
-      $allSelect = '<option value="'.$group->getId().'">'.$group->getName().'</option>' . $select;
+      $allSelect = '<option value="'.$group->getId().'">'.$group->getName().'</option>' . $select1;
    }
 }
 
 if(count($products)){
    foreach($products as $product){
-      $pg = $product->getPg();
+      $pgs = $product->getPgs();
       $groupName = '';
-      if($pg){
-         $group = $pg->getGroup();
-         $groupName = $group->getName();
+      if(count($pgs)){
+         foreach($pgs as $pg){
+            $group = $pg->getGroup();
+            $groupName = $group->getName();
+            break;
+         }
       }
 
       $name = $product->getBrand() . ' '. $product->getTitle() . ' '. $product->getDescription();
@@ -50,11 +56,11 @@ if(count($products)){
                 </div>
                 <div class="list_group">'. $groupName .'</div>
                 <div class="list_action">
-                    <select>';
+               <select>';
       if($groupName){
          $pro.='<option value="'.$group->getId().'">'.$groupName.'</option>';
       }
-      $pro .= $select . '</select></div></div>';
+      $pro .= $select2 . '</select></div></div>';
    }
 }
 $out .='<div class="search_select" style="margin-bottom:10px">
@@ -65,7 +71,7 @@ $out .='<div class="search_select" style="margin-bottom:10px">
                 <span class="check"><em><i></i></em>全选</span>
                 <span>将选中的产品添加到</span>
                     <select>
-                        '.$select.'
+                        '.$select2.'
                     </select>
             </div>
             <div class="list_title">

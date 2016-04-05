@@ -137,21 +137,6 @@ class ProductMgr extends AbstractLib
          $product->assignBySetter($pdata);
          $product->create();
          
-         if (isset($params['group']) && !empty($params['group'])) {
-            $group = $params['group'];
-            if (!is_array($group)) {
-               $group = array($group);
-            }
-            $productId = $product->getId();
-            foreach ($group as $one) {
-               $join = new PGModel();
-               $join->setProductId($productId);
-               $join->setGroupId($one);
-               $join->create();
-               unset($join);
-            }
-         }
-         
          $db->commit();
          $params['number'] = $product->getNumber();
          
@@ -231,38 +216,6 @@ class ProductMgr extends AbstractLib
          $product->setUpdateTime(time());
          $product->setIndexGenerated(0);
          $product->update();
-
-         if (isset($params['group']) && !empty($params['group'])) {
-            $group = $params['group'];
-            if (!is_array($group)) {
-               $group = array($group);
-            }
-            $oldGroup = array();
-            $groups = $product->getGroups();
-            if(count($groups)){
-               foreach($groups as $one){
-                  array_push($oldGroup, $one->getId());
-               }
-            }
-            
-            $deleteGroup = array_diff($oldGroup, $group);
-            $addGroup = array_diff($group, $oldGroup);
-            
-            if(count($deleteGroup)){
-               $modelsManager = Kernel\get_models_manager();
-               $query = sprintf('DELETE FROM %s WHERE '. PGModel::generateRangeCond('productId', $deleteGroup), 'App\ZhuChao\Product\Model\Product2Group');
-               $modelsManager->executeQuery($query);
-            }
-            
-            foreach ($addGroup as $groupId) {
-               $join = new PGModel();
-               $join->setProductId($productId);
-               $join->setGroupId($groupId);
-               $join->create();
-               unset($join);
-            }
-         }
-         $db->commit();
          
          $yzProduct = $this->getAppCaller()->call(
             YUNZHAN_CONST::MODULE_NAME,
@@ -290,6 +243,7 @@ class ProductMgr extends AbstractLib
                array($params)
             );
          }
+         $db->commit();
          ini_set('max_execution_time', $orginTime);
       } catch (Exception $ex) {
          $db->rollback();

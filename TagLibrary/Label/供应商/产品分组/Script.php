@@ -8,7 +8,7 @@
  */
 namespace TagLibrary\Label\Provider;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
-use App\ZhuChao\Product\Constant as PRODUCT_CONST;
+use App\Yunzhan\Product\Constant as PRODUCT_CONST;
 use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 use Cntysoft\Kernel;
 
@@ -18,7 +18,6 @@ class GroupList extends AbstractLabelScript
    
    public function getProductGroupList()
    {
-      $curUser = $this->getCurUser();
       $query = $this->getQuery();
       $group = 0;
       if(isset($query['group'])){
@@ -31,7 +30,7 @@ class GroupList extends AbstractLabelScript
          PRODUCT_CONST::APP_NAME,
          PRODUCT_CONST::APP_API_GROUP_MGR,
          'getProductByGroup',
-         array($curUser->getId(), $group, true, 'productId DESC', $page['offset'], $page['limit'])
+         array(array(PRODUCT_CONST::PRODUCT_STATUS_PEEDING, PRODUCT_CONST::PRODUCT_STATUS_VERIFY, PRODUCT_CONST::PRODUCT_STATUS_REJECTION, PRODUCT_CONST::PRODUCT_STATUS_SHELF), $group, true, 'productId DESC', $page['offset'], $page['limit'])
       );
    }
    
@@ -57,13 +56,12 @@ class GroupList extends AbstractLabelScript
    
    public function getGroupTree()
    {
-      $curUser = $this->getCurUser();
       return $this->appCaller->call(
          PRODUCT_CONST::MODULE_NAME,
          PRODUCT_CONST::APP_NAME,
          PRODUCT_CONST::APP_API_GROUP_MGR,
          'getGroupTree',
-         array($curUser->getId())
+         array()
       );
    }
     
