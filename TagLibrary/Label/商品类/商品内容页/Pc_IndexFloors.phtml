@@ -39,9 +39,13 @@ foreach ($goodsLists as $list) {
 $out .= '</div>
 </div>';
 $goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 5, 6);
-foreach ($goodsLists as $list) {
+foreach ($goodsLists as $key=>$list) {
+   $cls = 'no_bb';
+   if($key == 0){
+      $cls= 'no_br border-left';
+   }
 	$url = $this->getProductUrl($list->getNumber());
-	$out .= '<div class="pro_item fl">
+	$out .= '<div class="pro_item fl '.$cls.'">
         <a class="pro_img" href="' . $url . '">
             <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($list->getDefaultImage(), 220, 137) . '" alt=""/>
         </a>
