@@ -137,7 +137,7 @@ define(['jquery', 'Front', 'Core'], function ($){
                      $searchSuggest.addClass('hide');
                     }
                 }
-            });
+            }, true);
         }
     });
 });
