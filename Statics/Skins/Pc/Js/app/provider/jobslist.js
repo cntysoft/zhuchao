@@ -1,4 +1,4 @@
-define(['app/common', 'validate', 'webuploader', 'Core', 'Front', 'app/common'], function (common){
+define(['app/common', 'validate', 'webuploader', 'Core', 'Front'], function (common){
     $(function (){
         init();
         $('.recruit_title .check').click(function (){

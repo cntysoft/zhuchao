@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'jquery', 'Core', 'Front'], function (validate){
+define(['validate', 'jquery', 'Core', 'Front', 'app/common'], function (validate){
     $(function (){
         $('#submit').click(function (){
             var validateMsg = validate.checkFields($('#subattr'));
