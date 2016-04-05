@@ -1,7 +1,7 @@
 <?php
 $identifierInfo = $this->getCategoryInfoByIdentifier($this->invokeParams['identifier']);
 $out = '<div class="module_title conwidth clearfix">
-    <a><i class="floor_' . $this->invokeParams['floor'] . '"></i><span>' . $identifierInfo->getName() . '</span></a>
+    <a><b>'.$this->invokeParams['floor'].'F</b><span> / '.$identifierInfo->getName().'</span></a>
 </div>';
 $nodes = $this->getNodePath($identifierInfo->getId());
 $cond = array('categoryId IN (' . implode(',', $nodes) . ') AND status = 3');

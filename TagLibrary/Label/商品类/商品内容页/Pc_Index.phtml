@@ -4,17 +4,17 @@ $out = '<div class="banner">
 $locationId = $this->getAdsLocationId('电脑端', '首页', 'banner');
 $ads = $this->getAds($locationId);
 if (count($ads)) {
-	foreach ($ads as $ad) {
-		$url = $ad->getContentUrl();
-		$image = $this->getImageFromCdn($ad->getImage(), 800, 400);
-		$bgcolor = $ad->getBgcolor();
-		$out .= '<div class="item" style="background-color: #' . $bgcolor . '"><a target="_blank" href="' . $url . '"><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-lazy="' . $image . '"></a></div>';
-	}
+   foreach ($ads as $ad) {
+      $url = $ad->getContentUrl();
+      $image = $this->getImageFromCdn($ad->getImage(), 800, 400);
+      $bgcolor = $ad->getBgcolor();
+      $out .= '<div class="item" style="background-color: #' . $bgcolor . '"><a target="_blank" href="' . $url . '"><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-lazy="' . $image . '"></a></div>';
+   }
 }
 $out .= '</div><div class="banner_login_box">
             <div class="login_box">';
 if (!$this->checkLogin()) {
-	$out .= '<div class="login_user clearfix">
+   $out .= '<div class="login_user clearfix">
                     <a href=""><img src="Statics/Skins/Pc/Images/lazyicon.png" alt=""/></a>
                     <h3 class="text_ellipsis">上午好，采购经理</h3>
                     <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
@@ -24,11 +24,11 @@ if (!$this->checkLogin()) {
                     <a href="http://' . $this->getBuyerSiteName() . '/register.html">注册</a>
                 </div>';
 } else {
-	$curUser = $this->getCurUser();
-	$detail = $curUser->getProfile();
-	$out .= '<div class="login_user clearfix">
-                    <a href="http://' . $this->getBuyerSiteName() . '/login.html"><img src="' . $this->getImageFromCdn($detail->getAvatar(), 75, 53) . '" alt=""/></a>
-                    <h3 class="text_ellipsis">上午好，采购经理</h3>
+   $curUser = $this->getCurUser();
+   $detail = $curUser->getProfile();
+   $out .= '<div class="login_user clearfix">
+                    <a href="http://' . $this->getBuyerSiteName() . '/login.html"><img src="' . $this->getImageFromCdn($detail->getAvatar(), 53, 53) . '" alt=""/></a>
+                    <h3 class="text_ellipsis">您好，采购经理</h3>
                     <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
                 </div>
 					 <div class="login_action">
@@ -45,15 +45,15 @@ $out .= '</div>
 $laobanneicai = $this->getNodeInfoByIdentifier('zhuchaoschool');
 $subNodes = $this->getSubNodesByIdentifier('zhuchaoschool');
 $nodeIds = array(
-	$laobanneicai->getId()
+   $laobanneicai->getId()
 );
 foreach ($subNodes as $node) {
-	$nodeIds[] = $node->getId();
+   $nodeIds[] = $node->getId();
 }
 $articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
 foreach ($articles as $article) {
-	$out .= '<a href = "/article/' . $article->getId() . '.html"><i>' . $article->getTitle() . ' </i><span cla'
-			  . 'ss = "date">' . date('m-d', $article->getInputTime()) . '</span></a>';
+   $out .= '<a href = "/article/' . $article->getId() . '.html"><i>' . $article->getTitle() . ' </i><span cla'
+           . 'ss = "date">' . date('m-d', $article->getInputTime()) . '</span></a>';
 }
 $out .= '</div>
 </div><div class="login_news login_news2">
@@ -62,8 +62,8 @@ $out .= '</div>
 $zhuchaogonggao = $this->getNodeInfoByIdentifier('zhuchaogonggao');
 $articles = $this->getInfoListByNodeAndStatusNotPage($zhuchaogonggao->getId());
 foreach ($articles as $article) {
-	$out .= '<a href="/article/' . $article->getId() . '.html">'
-			  . '<i>' . $article->getTitle() . ' </i><span class="date">' . date('m-d', $article->getInputTime()) . '</span></a>';
+   $out .= '<a href="/article/' . $article->getId() . '.html">'
+           . '<i>' . $article->getTitle() . ' </i><span class="date">' . date('m-d', $article->getInputTime()) . '</span></a>';
 }
 $out .= '</div>
         </div>
@@ -72,8 +72,8 @@ $out .= '</div>
     <ul class="clearfix">';
 $goodsLists = $this->getGoodsList(array(), false, 'hits DESC', 0, 4);
 foreach ($goodsLists as $list) {
-	$url = $this->getProductUrl($list->getNumber());
-	$out .= '<li>
+   $url = $this->getProductUrl($list->getNumber());
+   $out .= '<li>
             <a href="' . $url . '">
                 <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 232, 145) . '" alt=""/>
 
@@ -91,7 +91,7 @@ foreach ($goodsLists as $list) {
 }
 $out .= '</ul>
 </div><h3 class="module_title conwidth">
-    <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_aboutus_title.png" alt=""/></a>
+    <a>资讯栏目<span> / news column</span></a>
 </h3><div class="about_us conwidth clearfix">
     <!--品牌广告-->
     <div class="brand_ad fl about_item">
@@ -99,73 +99,71 @@ $out .= '</ul>
 $locationId = $this->getAdsLocationId('电脑端', '首页', 'body1');
 $ads = $this->getAds($locationId);
 if (count($ads)) {
-	foreach ($ads as $ad) {
-		$url = $ad->getContentUrl();
-		$image = $this->getImageFromCdn($ad->getImage(), 460, 610);
-		$bgcolor = $ad->getBgcolor();
-		$out .= '<a target="_blank" href="' . $url . '" class="brand_ad_img">
+   foreach ($ads as $ad) {
+      $url = $ad->getContentUrl();
+      $image = $this->getImageFromCdn($ad->getImage(), 460, 610);
+      $bgcolor = $ad->getBgcolor();
+      $out .= '<a target="_blank" href="' . $url . '" class="brand_ad_img">
             <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $image . '" alt=""/>
             <p class="text_ellipsis">' . $ad->getName() . '</p>
         </a>';
-		break;
-	}
+      break;
+   }
 }
 
 $out .= '</div>';
 $laobanneicai = $this->getNodeInfoByIdentifier('laobanneican');
 $subNodes = $this->getSubNodesByIdentifier('laobanneican');
 $nodeIds = array(
-	$laobanneicai->getId()
+   $laobanneicai->getId()
 );
 foreach ($subNodes as $node) {
-	$nodeIds[] = $node->getId();
+   $nodeIds[] = $node->getId();
 }
-$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
+$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds, 0, 2);
 $out .= '<div class="about_news fl about_item">
         <a href="/category/laobanneican.html" class="item_title main_bg">老板内参</a>
 
-        <div class="about_news_items main_hover">';
-$i = 1;
+        <div class="about_news_items main_hover">
+            <div class="about_news_list clearfix">';
 foreach ($articles as $article) {
-	if ($i == 1) {
-		$out .= '<div class="about_news_list">
-                <h4 class="text_ellipsis"><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
-                <p>
-                    ' . $article->getIntro() . '
-                </p>
-                <img class="lazy" data-original="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 196, 138) . '" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png"/>
-            </div>';
-	} else {
-		$out .= '<div class="about_news_list">
+   $out .= '<div class="list_left fl">
+                    <h4><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
+                    <p>
+                        ' . $article->getIntro() . '
+                    </p>
+                </div>';
+}
+$out .= '</div>';
+$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds, 2, 4);
+foreach ($articles as $article) {
+   $out .= '<div class="about_news_list">
                 <h4><a href="/article/' . $article->getId() . '.html"><i></i>' . $article->getTitle() . '</a></h4>
-                <span class="date">' . date('Y-m-d', $article->getInputTime()) . '</span>
+                <span class="date">' . date('Y-m-d H:i:s', $article->getInputTime()) . '</span>
             </div>';
-	}
-	$i = 2;
 }
 $out .= '</div>
     </div>';
-
 $out .= '<div class="about_right_box fl about_item">
         <a class="item_title main_bg">采购实况</a>
         <div class="about_right_item">';
 foreach ($goodsLists as $list) {
-	$url = $this->getProductUrl($list->getNumber());
-	$out .= '<div class="about_right_list">
+   $url = $this->getProductUrl($list->getNumber());
+   $out .= '<div class="about_right_list">
                 <span class="address text_ellipsis">河南省郑州市</span>
                 <span class="time">' . rand(1, 10) . '秒前</span>
                 <h4 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h4>
             </div>';
 }
 $out .= '</div>
-</div></div><h3 class="module_title conwidth">
-    <a href=""> <img src="/Statics/Skins/Pc/Images/mall/icon/icon_pro_title.png" alt=""/></a>
+</div></div><h3 class="module_title conwidth text_title">
+    <a>最新商品<span> / latest goods</span></a>
 </h3><div class="pro_card conwidth">
     <ul class="clearfix">';
 $goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 5);
 foreach ($goodsLists as $list) {
-	$url = $this->getProductUrl($list->getNumber());
-	$out .= '<li>
+   $url = $this->getProductUrl($list->getNumber());
+   $out .= '<li>
             <p class="card_price">¥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</p>
             <a href="' . $url . '" class="card_img"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($list->getDefaultImage(), 212, 132) . '" alt=""/></a>
 
@@ -180,14 +178,14 @@ foreach ($goodsLists as $list) {
 }
 $out .= '</ul>';
 echo $out;
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'zhuangshicailiao','floor' => 1));
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'jiaju','floor' => 2));
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'jiashijiafang','floor' => 3));
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'zhinengjiaju','floor' => 4));
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'wujingongju','floor' => 5));
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'diangongdianliao','floor' => 6));
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'jiegoucailiao','floor' => 7));
-Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'dingzhi','floor' => 8));
+Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors', 'identifier' => 'zhuangshicailiao', 'floor' => 1));
+Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors', 'identifier' => 'jiaju', 'floor' => 2));
+Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors', 'identifier' => 'jiashijiafang', 'floor' => 3));
+//Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'zhinengjiaju','floor' => 4));
+//Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'wujingongju','floor' => 5));
+//Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'diangongdianliao','floor' => 6));
+//Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'jiegoucailiao','floor' => 7));
+//Qs::Label('商品类/商品内容页', array('renderTpl' => 'Pc_IndexFloors','identifier' => 'dingzhi','floor' => 8));
 echo '</div>';
 ?>
 

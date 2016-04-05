@@ -204,11 +204,13 @@ class Goods extends AbstractLabelScript
     * @param int $nodeId
     * @return type
     */
-   public function getInfoListByNodeAndStatusNotPage($nodeId)
+   public function getInfoListByNodeAndStatusNotPage($nodeId,$offset = 0,$limit = null)
    {
-      $limit = 5;
+      if($limit == null){
+         $limit = 5;
+      }
       $generalInfo = $this->appCaller->call(
-              CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, 1, 3, false, 'hits DESC', 0, $limit));
+              CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, 1, 3, false, 'inputTime DESC', $offset, $limit));
       return $generalInfo;
    }
 

@@ -1,7 +1,7 @@
 <?php
 $identifier = $this->getRouteInfo()['nodeIdentifier'];
 $nodeInfo = $this->getNodeInfoByIdentifier($identifier);
-$out = '<div class="right_content fr">
+$out = '<div class="right_content fl">
 	 <h3>' . $nodeInfo->getText() . '</h3>';
 $generalInfos = $this->getInfoListByNodeAndStatus($nodeInfo->getId());
 foreach ($generalInfos[0] as $generalInfo) {

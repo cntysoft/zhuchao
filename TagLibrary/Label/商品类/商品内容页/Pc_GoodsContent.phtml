@@ -96,7 +96,7 @@ $out .= '</div>
 $out .= '<div class="small_img clearfix">' . $smallImage . '</div>';
 $out .= '<div class="l_pro_info clearfix">
         <!--相关信息-->
-        <div class="related_info fl">
+        <div class="related_info fr">
             <h3 class="main_bg">相关信息</h3>';
 $cid = $goodsInfo->getCategoryId();
 $cond = array(
@@ -117,7 +117,7 @@ foreach ($goodsLists as $goodsList) {
                 <p class="pro_price main">￥' . ($goodsList->getPrice() > 0 ? $goodsList->getPrice() : "面议") . '</p>
             </div>';
 }
-$out .= '</div><div class="m_pro_info fr">
+$out .= '</div><div class="m_pro_info fl">
 		  <h3 class="pro_infor_nav clearfix">
 				<span class="main_bg">商品信息</span>
 				<span>详细属性</span>

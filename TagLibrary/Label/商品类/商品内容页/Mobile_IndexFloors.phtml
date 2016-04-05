@@ -1,0 +1,30 @@
+<?php
+$identifierInfo = $this->getCategoryInfoByIdentifier($this->invokeParams['identifier']);
+$out = '<div class="module_title">
+    <a href="/productclassify/' . $identifierInfo->getId() . '/1.html">' . $this->invokeParams['floor'] . 'F / ' . $identifierInfo->getName() . '</a>
+    <i class="icon-gengduo"></i>
+</div>';
+$nodes = $this->getNodePath($identifierInfo->getId());
+$cond = array('categoryId IN (' . implode(',', $nodes) . ') AND status = 3');
+$goodsLists = $this->getGoodsList($cond, false, 'hits DESC', 0, 5);
+$out .= '<div class="card_box">
+    <!--card3-->
+    <ul class="card3">';
+foreach ($goodsLists as $list) {
+   $url = $this->getProductUrl($list->getNumber());
+   $out .= '<li>
+            <a href="' . $url . '">
+                <div class="pro_img">
+                    <div class="pro_table">
+                        <img src="' . $this->getImageFromCdn($list->getDefaultImage(), 108, 62) . '" alt=""/>
+                    </div>
+                </div>
+                <p class="pro_text">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</p>
+                <p class="pro_price add_color">' . ($list->getPrice() > 0 ? "￥" . $list->getPrice() : "￥面议") . '</p>
+            </a>
+        </li>';
+}
+$out .= '</ul>
+</div>';
+echo $out;
+?>

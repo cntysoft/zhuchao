@@ -1,18 +1,8 @@
 /**
  * Created by jiayin on 2016/1/6.
  */
-define(['zepto', 'module/totop', 'search'], function (){
-   //导航
-   $('.header_right').not('.header_right_icon_search').tap(function (){
-      var that = $('.top_nav_box');
-      if(that.hasClass('in')){
-         $(that).removeClass('in');
-         return false;
-      } else{
-         $(that).addClass('in');
-         return false;
-      }
-   });
+define(['zepto', 'module/totop', 'search','module/mall_nav'], function (){
+   
    //头部导航样式
    $(function (){
       var search = decodeURI(window.location.search);

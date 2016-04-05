@@ -33,15 +33,15 @@ Qs::Ds('商品数据源/商品分类信息', 'goodscate');
             <div class="header_right fr">
                 <span class="more_icon"><i class="icon-xiala"></i></span>
             </div>
-        </div>
-        <!--导航-->
-        <div class="top_nav_box">
-            <ul class="top_nav_list clearfix">
-                <li><a href="/">首页</a></li>
-                <li><a href="/">产品搜索</a></li>
-                <li><a href="/">企业搜索</a></li>
-                <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
-            </ul>
+            <!--导航-->
+            <div class="top_nav_box hide">
+                <ul class="top_nav_list">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/">产品搜索</a></li>
+                    <li><a href="/">企业搜索</a></li>
+                    <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
+                </ul>
+            </div>
         </div>
         <!--推荐商品-->
         <?php Qs::Label('商品类/分类商品列表', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 10)) ?>

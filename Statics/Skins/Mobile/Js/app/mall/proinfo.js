@@ -1,28 +1,17 @@
 /**
  * Created by jiayin on 2016/3/17.
  */
-define(['zepto', 'swiper', 'Front', 'search', 'module/totop'], function (){
+define(['zepto', 'swiper', 'Front', 'search', 'module/totop', 'module/mall_nav'], function (){
     $(function (){
         var number = window.location.pathname.split('/')[2].split('.')[0];
-//增加点击量
+        //增加点击量
         Cntysoft.Front.callApi('Utils', 'addHits', {
             number : number
         }, function (response){
             if(response.status){
             }
         }, true);
-//导航
-        $('.header_right').not('.header_right_icon_search').tap(function (){
-            var that = $('.top_nav_box');
-            if(that.hasClass('in')){
-                $(that).removeClass('in');
-                return false;
-            } else{
-                $(that).addClass('in');
-                return false;
-            }
-        });
-//在线询价弹窗
+        //在线询价弹窗
         $('.zaixianxunjia').click(function (){
             $('.online').show();
             $('.footer_fixed').hide();
@@ -52,14 +41,14 @@ define(['zepto', 'swiper', 'Front', 'search', 'module/totop'], function (){
                 }
             }, true);
         });
-//广告
+        //广告
         var Ad = new Swiper('.module_ad3', {
             pagination : '.swiper-pagination',
             autoplay : 3000,
             speed : 300,
             loop : true
         });
-//产品介绍
+        //产品介绍
         $('.item_box').click(function (){
             var that = $(this);
             if(that.hasClass('current')){
