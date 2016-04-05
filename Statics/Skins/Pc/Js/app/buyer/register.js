@@ -28,7 +28,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (
             Cntysoft.Front.callApi('User', 'checkPhoneExist', {
                 phone : user
             }, function (response){
-                if(!response.status){
+                if(!response.data[0]){
                     Cntysoft.Front.callApi('User', 'checkPicCode', {
                         phone : $('#phone').val(),
                         code : $('#imgCode').val(),
