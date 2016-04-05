@@ -149,7 +149,7 @@ class GroupMgr extends AbstractLib
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
             $errorType->msg('E_GROUP_NOT_EXIST'), $errorType->code('E_GROUP_NOT_EXIST')
-         ), $this->getErrorTypeContext())
+         ), $this->getErrorTypeContext());
       }
       
       $group->setName($params['name']);

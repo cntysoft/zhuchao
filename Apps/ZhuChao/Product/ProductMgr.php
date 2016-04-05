@@ -873,7 +873,7 @@ class ProductMgr extends AbstractLib
    
    protected function setSiteDb($id)
    {
-      Kernel\get_site_id($company->getId());
+      Kernel\get_site_id($id);
             
       $config = ConfigProxy::getGlobalConfig();
       $cfg = $config->db->toArray();
