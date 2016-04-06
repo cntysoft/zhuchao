@@ -337,11 +337,12 @@ class Product extends AbstractHandler
    {
       $this->checkRequireFields($params, array('cid'));
       return array('total' => $this->getAppCaller()->call(
-              PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 
-              'countCategoryProduct', 
-              array(
-                 (int) $params['cid'], true
-                 )));
+         PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 
+         'countCategoryProduct', 
+         array(
+            (int) $params['cid'], true
+            ))
+      );
    }
 
    /**

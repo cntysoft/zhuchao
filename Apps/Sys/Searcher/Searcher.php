@@ -77,7 +77,7 @@ class Searcher extends AbstractLib
          $filter = array();
          if (isset($attrFilter['price'])) {
             $range = $attrFilter['price'];
-            $filter[] = sprintf('price >= %d AND price < %d', $range[0],
+            $filter[] = sprintf('price >= %.2f AND price < %.2f', $range[0],
                $range[1]);
             unset($attrFilter['price']);
          }

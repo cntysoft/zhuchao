@@ -91,15 +91,6 @@
             }
         },
         {
-            "key" : "ProviderProductGroup",
-            "rule" : "\/product\/group.html",
-            "option" : {
-                "module" : "Provider",
-                "controller" : "Product",
-                "action" : "group"
-            }
-        },
-        {
             "key" : "ProviderInquiry",
             "rule" : "\/inquiry\/{pageId:[1-9][0-9]*}.html",
             "option" : {

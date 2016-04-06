@@ -58,7 +58,7 @@ class Article extends AbstractScript
       foreach($result as $node){
          $children = $tree->getChildren($node->getId(), 1, true);
          foreach($children as $one){
-            $list = $this->appCaller->call(CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($one->getId(), 1, CONTENT_CONST::INFO_S_VERIFY, true, 'hits DESC', 0, 4));
+            $list = $this->appCaller->call(CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($one->getId(), 1, CONTENT_CONST::INFO_S_VERIFY, true, 'id DESC', 0, 4));
             if(count($list[0])){
                $item = array(
                   'id'   => $one->getId(),

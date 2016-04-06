@@ -102,6 +102,8 @@ class MobileApiServer
            'Provider.sendCode',
            'Provider.register',
            'Provider.login',
+           'Provider.checkForgetAuthCode',
+           'Provider.findPassword'
         );
     }
 

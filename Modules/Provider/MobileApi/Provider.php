@@ -112,11 +112,9 @@ class Provider extends AbstractScript
     */
    public function checkForgetAuthCode($params)
    {
-      $this->checkRequireFields($params, array('phone', 'chkcode'));
+      $this->checkRequireFields($params, array('phone', 'code'));
       $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
-      $acl->checkPicCode($params['chkcode'], P_CONST::PIC_CODE_TYPE_FORGET);
-      $acl->checkPhoneExist($params['phone'], true);
-      $acl->sendSmsCode($params['phone'], P_CONST::SMS_TYPE_FORGET);
+      $acl->checkSmsCode($params['phone'], $params['code'], 2);
    }
 
    /**
@@ -124,11 +122,11 @@ class Provider extends AbstractScript
     * 
     * @param array $params
     */
-   public function resetPasswordWithCode($params)
+   public function findPassword($params)
    {
-      $this->checkRequireFields($params, array('phone', 'code', 'password'));
+      $this->checkRequireFields($params, array('phone', 'pswd'));
       $acl = $this->appCaller->getAppObject(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR);
-      $acl->findPassword($params['phone'], $params['password'], $params['code']);
+      $acl->findPassword($params['phone'], $params['pswd']);
    }
 
    /**

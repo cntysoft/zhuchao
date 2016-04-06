@@ -31,7 +31,7 @@ class Inquiry extends AbstractScript
       $ret = array();
       foreach ($info as $item) {
          $product = $item->getProduct();
-         $item = $item->toarray();
+         $item = $item->toArray();
          $item['pic'] = \Cntysoft\Kernel\get_image_cdn_url($product->getDefaultImage());
          unset($item['uid']);
          unset($item['gid']);
@@ -53,17 +53,15 @@ class Inquiry extends AbstractScript
       $inquiry = $info['inquiry'];
       $product = $inquiry->getProduct();
       $user = $inquiry->getBuyer();
-      $ret = $inquiry->toarray();
+      $ret = $inquiry->toArray();
       $ret['pic'] = \Cntysoft\Kernel\get_image_cdn_url($product->getDefaultImage());
       $ret['price'] = $product->getPrice();
       $ret['title'] = $product->getTitle();
       $ret['name'] = $user->getName();
       $ret['phone'] = $user->getPhone();
       $offer = $info['offer'];
-      if ($offer == '尚未报价') {
-         $ret['reply'] = array();
-      } else {
-         $ret['reply'] = $offer->toarray();
+      if ($offer != '尚未报价') {
+         $ret['reply'] = $offer->toArray();
       }
       unset($ret['uid']);
       unset($ret['gid']);
@@ -80,7 +78,7 @@ class Inquiry extends AbstractScript
    {
       $this->checkRequireFields($params, array('inquiryId', 'highPrice', 'lowPrice', 'content'));
       $provider = $this->appCaller->call(Provider_Content::MODULE_NAME, Provider_Content::APP_NAME, Provider_Content::APP_API_MGR, 'getCurUser');
-      $info = $this->appCaller->call(MessageMgr_Constant::MODULE_NAME, MessageMgr_Constant::APP_NAME, MessageMgr_Constant::APP_API_OFFER, 'addOffer', array(array(
+      $this->appCaller->call(MessageMgr_Constant::MODULE_NAME, MessageMgr_Constant::APP_NAME, MessageMgr_Constant::APP_API_OFFER, 'addOffer', array(array(
             'inquiryId'  => $params['inquiryId'],
             'supplierId' => $provider->getId(),
             'lowPrice'   => $params['lowPrice'],

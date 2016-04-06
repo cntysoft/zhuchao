@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front', 'app/common'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader, common){
     $(function (){
         var uploadIndex = -1;
         var images = new Array();
@@ -80,15 +80,24 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 layer.msg('请填写商品简介信息，至少20个字！');
                 return;
             }
-            params['introduction'] = editorHtml;
-            var imgArray = editorHtml.match(imgReg);
-            if(imgArray != null){
-                for(var i = 0, length = imgArray.length; i < length; i++) {
-                    var ridSrc = imgArray[i].match(/<img fh-rid="([\d]*)" src="([\w\.\/\:\-]*)"[\s]*?\/>/);
-                    imgRefMap.push([ridSrc[2], ridSrc[1]]);
-                    fileRefs.push(ridSrc[1]);
-                }
+            
+            var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
+            var $introImg = $(iframeBody).find('img');
+            if($introImg.length){
+                $.each($introImg, function (index, item){
+                    imgRefMap.push([$(item).attr('src'), $(item).attr('fh-rid')]);
+                    fileRefs.push($(item).attr('fh-rid'));
+                });
             }
+            var cloneIframe = $(iframeBody).clone();
+            $.each($(cloneIframe).find('img'), function (index, item){
+                $(item).addClass('lazy');
+                $(item).attr('data-original', $(item).attr('src'));
+                $(item).attr('src', common.lazyicon);
+                $(item).removeAttr('data-ke-src');
+            });
+
+            params['introduction'] = $(cloneIframe).html();
             params['imgRefMap'] = imgRefMap;
             for(var i = 0, length = images.length; i < length; i++) {
                 fileRefs.push(images[i][1]);

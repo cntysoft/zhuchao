@@ -95,6 +95,14 @@ class Search extends AbstractLabelScript
             'type' => '-'
          );
       }
+      
+      if(isset($keys['enableprice'])){
+         $keys['price'] = array(
+            0.01, 99999999
+         );
+
+         unset($keys['enableprice']);
+      }
 
       if (isset($keys['价格'])){
          $price = preg_split('/[^0-9]+/', $keys['价格']);
@@ -120,7 +128,7 @@ class Search extends AbstractLabelScript
       }
 
       $ret['filter'] = $keys;
-
+      
       return $ret;
    }
    
