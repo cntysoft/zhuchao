@@ -154,6 +154,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         }));
         //上传商品图片
         uploadProductImg.on('beforeFileQueued', function (){
+            console.log(uploadProductImg.getFiles());
             if(images.length == 5){
                 layer.alert('最多上传5张图片');
                 return false;

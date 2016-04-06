@@ -24,7 +24,6 @@ define(['jquery', 'app/common', 'layer', 'layer.ext'], function (){
             height : 200,
             text : origin
         });
-        << << << < HEAD
         if($('.article_summary').attr('article')){
             Cntysoft.Front.callApi('Utils', 'addArticleHits',
             {
