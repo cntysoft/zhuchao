@@ -76,6 +76,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 chunked : false,
                 auto : true,
                 threads : 1,
+                duplicate:true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',

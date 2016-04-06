@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (validate){
+define(['validate', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function (validate){
     $(function (){
         $('#submit').click(function (){
             var validation = validate.checkFields($('#name,#realName,#department,#position,#email,#showPhone,#qq,#telNum,#telCountry,#telArea,#faxNum,#faxCountry,#faxArea'));
@@ -8,13 +8,37 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (
                 return false;
             }
             if(validate.reg.num.test($('#name').val())){
-                validate.tips('用户名不能为纯数字','#name');
+                validate.tips('用户名不能为纯数字', '#name');
             }
             var params = {};
             $.each($('#name,#realName,#department,#position,#email,#showPhone,#qq'), function (index, item){
                 params[$(item).attr('id')] = $(item).val();
             });
             params.sex = getRadioValueByName('sex');
+            if($('#telNum').val() != ''){
+                if($('#telCountry').val() == ''){
+                    validate.tips($('#telCountry').attr('tip-value'), $('#telCountry').attr('tip-target'));
+                    $('#telCountry').focus();
+                    return false;
+                }
+                if($('#telArea').val() == ''){
+                    validate.tips($('#telArea').attr('tip-value'), $('#telArea').attr('tip-target'));
+                    $('#telArea').focus();
+                    return false;
+                }
+            }
+            if($('#faxNum').val() != ''){
+                if($('#faxCountry').val() == ''){
+                    validate.tips($('#faxCountry').attr('tip-value'), $('#faxCountry').attr('tip-target'));
+                    $('#faxCountry').focus();
+                    return false;
+                }
+                if($('#faxArea').val() == ''){
+                    validate.tips($('#faxArea').attr('tip-value'), $('#telArea').attr('tip-target'));
+                    $('#faxArea').focus();
+                    return false;
+                }
+            }
             params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val();
             params.fax = $('#faxCountry').val() + '-' + $('#faxArea').val() + '-' + $('#faxNum').val();
             Cntysoft.Front.callApi('Provider', 'updateUserInfo', params, function (response){

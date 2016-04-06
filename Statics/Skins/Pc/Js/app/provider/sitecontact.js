@@ -31,6 +31,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 chunked : false,
                 auto : true,
                 threads : 1,
+                duplicate:true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',

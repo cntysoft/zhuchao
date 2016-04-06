@@ -102,7 +102,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>公司简介：</label>
-                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,100}$' tip-value="请输入3-100字企业简介" required>
+                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='[.]*' tip-value="请输入3-100字企业简介" required>
                     </div>
                     <div class="form_list">
                         <label class="label_uploading"><em class="main">*</em>公司logo：</label>

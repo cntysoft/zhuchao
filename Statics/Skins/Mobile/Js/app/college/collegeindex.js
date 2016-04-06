@@ -33,5 +33,13 @@ define(['zepto', 'module/totop', 'swiper', 'Core', 'Front'], function (){
          loop : true,
          lazyLoading : true
       });
+      
+      $('#historyBack').click(function(){
+           if(window.history.length == 1 || window.history == 0){
+               window.location = '/category/zhuchaoschool.html';
+           }else{
+               window.history.back();
+           }
+       });
    });
 });

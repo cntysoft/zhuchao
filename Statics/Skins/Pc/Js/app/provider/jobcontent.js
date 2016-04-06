@@ -27,6 +27,18 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
             params = validate.getInputValue($('#title,#department,#number'));
             params.content = content;
             params.endTime = parseInt($('#endTime').datepicker('getDate', false).getTime() / 1000);
+            if($('#telNum').val() != ''){
+                if($('#telCountry').val() == ''){
+                    validate.tips($('#telCountry').attr('tip-value'), $('#telCountry').attr('tip-target'));
+                    $('#telCountry').focus();
+                    return false;
+                }
+                if($('#telArea').val() == ''){
+                    validate.tips($('#telArea').attr('tip-value'), $('#telArea').attr('tip-target'));
+                    $('#telArea').focus();
+                    return false;
+                }
+            }
             params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val()
             Cntysoft.Front.callApi('Site', 'addJob', params, function (response){
                 if(response.status){

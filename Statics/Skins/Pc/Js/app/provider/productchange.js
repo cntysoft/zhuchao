@@ -208,6 +208,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 auto : true,
                 dnd : '#uploadBtn',
                 threads : 1,
+                duplicate:true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',

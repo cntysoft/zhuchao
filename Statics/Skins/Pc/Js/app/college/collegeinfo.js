@@ -5,28 +5,32 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license   Expression $license is undefined on line 6, column 17 in Templates/ClientSide/javascript.js.
  */
-define(['jquery', 'module/share', 'app/common'], function (){
+define(['jquery', 'module/share', 'app/common', 'layer', 'layer.ext'], function (){
 
-   //手机二维码
-   $(function (){
-      $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
-      var origin = window.location.href;
+    //手机二维码
+    $(function (){
+        $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
+        var origin = window.location.href;
 //      setTimeout(function (){
-      $('#weixin_code').qrcode({
-         width : 200,
-         height : 200,
-         text : origin
-      });
+        $('#weixin_code').qrcode({
+            width : 200,
+            height : 200,
+            text : origin
+        });
 //      }, 1);
-      if($('.module_content').attr('article')){
-         Cntysoft.Front.callApi('Utils', 'addArticleHits',
-         {
-            id : $('.module_content').attr('article')
-         }, function (response){
-         }
-         , this);
-      }
-   });
+        if($('.module_content').attr('article')){
+            Cntysoft.Front.callApi('Utils', 'addArticleHits',
+            {
+                id : $('.module_content').attr('article')
+            }, function (response){
+            }
+            , this);
+        }
+        layer.photos({
+            photos : '.module_content',
+            shift : 0
+        });
+    });
 });
 
 

@@ -1,4 +1,4 @@
-define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (exports, COOKIE){
+define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (exports){
    $(function (){
       // 退出登录
       $('.logout').click(function (){
@@ -134,6 +134,9 @@ define(['exports', 'jquery', 'Front', 'Core', 'layer', 'lazyload'], function (ex
             speed : 500 //返回顶部的速度以毫秒为单位
          });
       });
+      //图片预览
+      
+      
       exports.lazyicon = 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png';
    });
 });

@@ -117,19 +117,19 @@ Qs::Ds('商城数据源/商城数据', 'site');
 
                     <div class="form_list">
                         <label>座机:</label>
-                        <input class="tel_china" id="telCountry" tip-target="#telNum" type="text" value="<?php echo $telArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
+                        <input class="tel_china" id="telCountry" placeholder="86" tip-target="#telNum" type="text" value="<?php echo $telArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
                         <span class="tel_line">-</span>
-                        <input class="tel_code" id="telArea" tip-target="#telNum" type="text" value="<?php echo $telArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
+                        <input class="tel_code" id="telArea" placeholder="区号" tip-target="#telNum" type="text" value="<?php echo $telArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
                         <span class="tel_line">-</span>
-                        <input class="tel_num" id="telNum" type="text" value="<?php echo $telArray[2] ?>" fh-type="tel">
+                        <input class="tel_num" id="telNum" placeholder="手机号" type="text" value="<?php echo $telArray[2] ?>" fh-type="tel">
                     </div>
                     <div class="form_list">
                         <label>传真:</label>
-                        <input class="tel_china" id="faxCountry" tip-target="#faxNum" type="text" value="<?php echo $faxArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
+                        <input class="tel_china" id="faxCountry" placeholder="86" tip-target="#faxNum" type="text" value="<?php echo $faxArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
                         <span class="tel_line">-</span>
-                        <input class="tel_code" id="faxArea" tip-target="#faxNum" type="text" value="<?php echo $faxArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
+                        <input class="tel_code" id="faxArea" placeholder="区号" tip-target="#faxNum" type="text" value="<?php echo $faxArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
                         <span class="tel_line">-</span>
-                        <input class="tel_num" id="faxNum"  type="text" value="<?php echo $faxArray[2] ?>" fh-type="fax">
+                        <input class="tel_num" id="faxNum" placeholder="传真号"  type="text" value="<?php echo $faxArray[2] ?>" fh-type="fax">
                     </div>
                     <div class="form_list">
                         <div class="action_btn">
