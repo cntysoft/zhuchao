@@ -1,8 +1,7 @@
 <?php
 $identifierInfo = $this->getCategoryInfoByIdentifier($this->invokeParams['identifier']);
 $out = '<div class="module_title">
-    <a href="/productclassify/' . $identifierInfo->getId() . '/1.html">' . $this->invokeParams['floor'] . 'F / ' . $identifierInfo->getName() . '</a>
-    <i class="icon-gengduo"></i>
+    <a href="/productclassify/' . $identifierInfo->getId() . '/1.html">' . $this->invokeParams['floor'] . 'F / ' . $identifierInfo->getName() . '<i class="icon-gengduo"></i></a>    
 </div>';
 $nodes = $this->getNodePath($identifierInfo->getId());
 $cond = array('categoryId IN (' . implode(',', $nodes) . ') AND status = 3');

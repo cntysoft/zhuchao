@@ -16,7 +16,7 @@ $out .= '</div><div class="banner_login_box">
 if (!$this->checkLogin()) {
    $out .= '<div class="login_user clearfix">
                     <a href=""><img src="Statics/Skins/Pc/Images/lazyicon.png" alt=""/></a>
-                    <h3 class="text_ellipsis">上午好，采购经理</h3>
+                    <h3 class="text_ellipsis">您好，采购经理</h3>
                     <p class="text_ellipsis">欢迎来到凤凰筑巢！</p>
                 </div>
                 <div class="login_action">
@@ -80,7 +80,7 @@ foreach ($goodsLists as $list) {
                 <div class="pro_text_box">
                     <h3>' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</h3>
 
-                    <p class="text_ellipsis">' . $list->getDetail()->getAdvertText() . '</p>
+                    <p class="">' . $list->getDetail()->getAdvertText() . '</p>
                     <span class="pro_text_tip">￥' . ($list->getPrice() > 0 ? $list->getPrice() : "面议") . '</span>
                 </div>
                 <span class="sale_tip main_bg_light">
@@ -91,7 +91,7 @@ foreach ($goodsLists as $list) {
 }
 $out .= '</ul>
 </div><h3 class="module_title conwidth">
-    <a>资讯栏目<span> / news </span></a>
+    <a>资讯栏目</a>
 </h3><div class="about_us conwidth clearfix">
     <!--品牌广告-->
     <div class="brand_ad fl about_item">
@@ -163,12 +163,12 @@ foreach ($goodsLists as $list) {
    $out .= '<div class="about_right_list">
                 <span class="address text_ellipsis">河南省郑州市</span>
                 <span class="time">' . rand(1, 10) . '秒前</span>
-                <h4 class="text_ellipsis main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h4>
+                <h4 class=" main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h4>
             </div>';
 }
 $out .= '</div>
 </div></div><h3 class="module_title conwidth text_title">
-    <a>最新商品<span> / latest goods</span></a>
+    <a>最新商品</a>
 </h3><div class="pro_card conwidth">
     <ul class="clearfix">';
 $goodsLists = $this->getGoodsList(array(), false, 'inputTime DESC', 0, 5);

@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/4/1.
  */
-define(['zepto', 'module/company_classify', 'swiper', 'module/totop'], function (){
+define(['zepto', 'module/company_classify', 'swiper', 'module/totop', 'Front'], function (){
    $(function (){
       //广告
       var $len = $('.swiper-slide').length;
@@ -20,5 +20,13 @@ define(['zepto', 'module/company_classify', 'swiper', 'module/totop'], function 
       $('.goback').click(function (){
          history.back();
       });
+      if($('.l_main').attr('newsid')){
+         Cntysoft.Front.callApi('Utils', 'addArticleHits',
+         {
+            id : $('.l_main').attr('newsid')
+         }, function (response){
+         }
+         , this);
+      }
    });
 });

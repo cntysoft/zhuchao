@@ -29,6 +29,17 @@ class Utils extends AbstractScript
    }
 
    /**
+    * 增加文章点击量
+    * 
+    * @param array $params
+    */
+   public function addArticleHits($params)
+   {
+      $this->checkRequireFields($params, array('id'));
+      $this->appCaller->call(CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_MANAGER, 'addHit', array($params['id']));
+   }
+
+   /**
     * 增加产品点击量
     * 
     * @param array $params

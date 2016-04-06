@@ -22,11 +22,21 @@ Qs::Ds('内容数据源/标准内容模型', 'AC')
             </div>
             <!--标题-->
             <div class="header_title">
-                <h2 class="text_ellipsis tc">老板内参</h2>
+                <h2 class="text_ellipsis tc"><?php Qs::DsField('AC', 'title') ?></h2>
             </div>
             <!--搜索-->
+            <!--更多按钮-->
             <div class="header_right fr">
-                <!--<span class="search_icon"><i class="icon-sousuo"></i></span>-->
+                <span class="more_icon"><i class="icon-xiala"></i></span>
+            </div>
+            <!--下拉列表-->
+            <div class="top_nav_box hide">
+                <ul class="top_nav_list">
+                    <li><a href="/category/laobanneican.html">首页</a></li>
+                    <li><a href="/category/jiancaiqiwen/1.html">建材奇闻</a></li>
+                    <li><a href="/category/shendujiexi/1.html">深度解析</a></li>
+                    <li><a href="/category/zhongbangtuijian/1.html">重磅推荐</a></li>
+                </ul>
             </div>
         </div>
         <!--内容详情-->
