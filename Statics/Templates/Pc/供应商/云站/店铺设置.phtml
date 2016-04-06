@@ -42,12 +42,17 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 width: 180px;
             }
             .form_list input[type="checkbox"]{
-               margin: 0 7px;
-               width: auto;
+                margin: 0 7px;
+                width: auto;
             }
             .nav_box{
                 line-height: 40px;
-               font-size: 14px;
+                font-size: 14px;
+            }
+            .tips{
+                padding-left:130px;
+                font-size: 12px;
+                color: #999;
             }
         </style>
     </head>
@@ -100,11 +105,27 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     </div>
                     <div class="form_list clearfix nav_box">
                         <label><em class="main">*</em>导航栏配置:</label>
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'product', true);if($bool){echo 'checked';} ?> name="product" class="product_nav">产品中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'case', true);if($bool){echo 'checked';} ?> name="case" class="case_nav">案例中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'news', true);if($bool){echo 'checked';} ?> name="news" class="news_nav">新闻中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'zhaopin', true);if($bool){echo 'checked';} ?> name="zhaopin" class="zhaopin_nav">招聘中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'aboutus', true);if($bool){echo 'checked';} ?> name="aboutus" class="aboutus_nav">关于我们
+                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'product', true);
+                                if ($bool) {
+                                   echo 'checked';
+                                } ?> name="product" class="product_nav">产品中心
+                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'case', true);
+                                if ($bool) {
+                                   echo 'checked';
+                                } ?> name="case" class="case_nav">案例中心
+                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'news', true);
+                                if ($bool) {
+                                   echo 'checked';
+                                } ?> name="news" class="news_nav">新闻中心
+                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'zhaopin', true);
+                                if ($bool) {
+                                   echo 'checked';
+                                } ?> name="zhaopin" class="zhaopin_nav">招聘中心
+                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'aboutus', true);
+        if ($bool) {
+           echo 'checked';
+        } ?> name="aboutus" class="aboutus_nav">关于我们                        
+                        <p class="tips">挂选栏目即表示在自己的站点导航栏显示该栏目！</p>
                     </div>
                     <div class="form_list tc">
                         <div class="action_btn" style="width: 600px">
@@ -114,7 +135,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 </div>
             </div>
         </div>
-        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
-        <?php Qs::Sys('loadRequireJs', 'provider/sitesetting') ?>
+<?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
+<?php Qs::Sys('loadRequireJs', 'provider/sitesetting') ?>
     </body>
 </html>
