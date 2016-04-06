@@ -29,6 +29,7 @@ class Company extends BaseModel
 	protected $inputTime;
 	protected $profileId;
 	protected $subAttr;
+   protected $rid;
 
 	public function getSource()
 	{
@@ -82,6 +83,15 @@ class Company extends BaseModel
 	{
 		return (int) $this->province;
 	}
+   public function getRid()
+   {
+      return (int)$this->rid;
+   }
+
+   public function setRid($rid)
+   {
+      $this->rid = (int)$rid;
+   }
 
 	public function getCity()
 	{

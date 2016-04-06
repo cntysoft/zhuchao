@@ -295,7 +295,8 @@ class Mgr extends AbstractLib
          $companyInfo->setProfileId($profile->getId());
          $companyInfo->assignBySetter($data);
          $companyInfo->create();
-
+         $fileRefMgr = $this->di->get('FileRefManager');
+         $fileRefMgr->confirmFileRef($data['rid']);
          $db->commit();
       } catch (\Exception $ex) {
          $db->rollback();
@@ -334,7 +335,11 @@ class Mgr extends AbstractLib
          $db->begin();
          $profile->assignBySetter($profileData);
          $profile->save();
-
+         if ($data['rid'] != $providercom->getRid()) {
+            $fileRefMgr = $this->di->get('FileRefManager');
+            $fileRefMgr->removeFileRef($providercom->getRid());
+            $fileRefMgr->confirmFileRef($data['rid']);
+         }
          $providercom->assignBySetter($data);
          $providercom->save();
          $db->commit();
@@ -435,7 +440,7 @@ class Mgr extends AbstractLib
       //最后清空站点信息缓存
       $cacher = $this->getAppObject()->getCacheObject();
       $cacher->delete(Constant::SITE_CACHE_KEY);
-      return ;
+      return;
    }
 
    /**

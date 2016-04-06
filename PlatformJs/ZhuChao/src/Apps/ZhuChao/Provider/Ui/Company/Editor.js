@@ -33,6 +33,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
    targetLoadId : null,
    nameFieldRef : null,
    iconSrc : null,
+   logoRid : null,
    imageRef : null,
    constructor : function (config)
    {
@@ -150,7 +151,8 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
          if(C.NEW_MODE == this.mode){
             var values = form.getValues();
             Ext.apply(values, {
-               logo : this.iconSrc
+               logo : this.iconSrc,
+               rid : this.logoRid
             });
             this.setLoading(Cntysoft.GET_LANG_TEXT('MSG.SAVE'));
             this.mainPanelRef.appRef.createProviderCompany(values, this.afterSaveHandler, this);
@@ -158,7 +160,8 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
             var id = this.targetLoadId;
             var values = form.getValues();
             Ext.apply(values, {
-               logo : this.iconSrc
+               logo : this.iconSrc,
+               rid : this.logoRid
             });
             var rawData = this.currentCompany;
             Ext.each(values, function (name){
@@ -341,7 +344,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
                   fileTypeExts : ['gif', 'png', 'jpg', 'jpeg'],
                   margin : '0 0 0 5',
                   maskTarget : this,
-                  enableFileRef : false,
+                  enableFileRef : true,
                   overwrite : true,
                   buttonText : F.UPLOAD,
                   listeners : {fileuploadsuccess : this.uploadSuccessHandler,
@@ -553,6 +556,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
    uploadSuccessHandler : function (file)
    {
       var file = file.pop();
+      this.logoRid = file.rid;
       this.iconSrc = file.filename;
       this.imageRef.setSrc(ZC.getZhuChaoImageUrl(file.filename));
    },
