@@ -889,4 +889,44 @@ class ProductMgr extends AbstractLib
          ProductModel::generateRangeCond('number', $numbers)
       ));
    }
+
+   /**
+    * 增加产品点击量
+    * 
+    * @param string $number
+    */
+   public function addProductHits($number)
+   {
+      $orginTime = ini_get('max_execution_time');
+      ini_set('max_execution_time', 0);
+      $product = $this->getProductByNumber($number);
+      $company = $product->getCompany();
+      if (!$company || !$company->getSubAttr()) {
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_SUBATTR_NOT_EXIST'), $errorType->code('E_COMPANY_SUBATTR_NOT_EXIST')), $this->getErrorTypeContext());
+      }
+      $this->setSiteDb($company->getId());
+      $db = Kernel\get_db_adapter();
+      try {
+         $db->begin();
+         $hits = $product->getHits();
+         $product->setHits($hits + 1);
+         $product->save();
+         $yzProduct = $this->getAppCaller()->call(
+                 YUNZHAN_CONST::MODULE_NAME, YUNZHAN_CONST::APP_NAME, YUNZHAN_CONST::APP_API_PRODUCT_MGR, 'getProductByNumber', array($product->getNumber())
+         );
+         if ($yzProduct) {
+            $hits = $yzProduct->getHits();
+            $yzProduct->setHits($hits + 1);
+            $yzProduct->save();
+         }
+         $db->commit();
+         ini_set('max_execution_time', $orginTime);
+      } catch (Exception $ex) {
+         $db->rollback();
+
+         Kernel\throw_exception($ex, $this->getErrorTypeContext());
+      }
+   }
+
 }

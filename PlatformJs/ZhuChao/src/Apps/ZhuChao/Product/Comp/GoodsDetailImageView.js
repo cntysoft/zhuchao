@@ -10,8 +10,8 @@ Ext.define('App.ZhuChao.Product.Comp.GoodsDetailImageView', {
    alias: 'widget.zhuchaocompgoodsdetailimageview',
    tpl : [
       '<tpl for=".">',
-      '<div class="image-wrap app-zhuchao-product-image-wrap" style = "position:relative; margin:{itemMargin}px;">',
-      '<img src="{url}" style = "width:{imageWidth}px;height:{imageHeight}px;"/>',
+      '<div class="image-wrap app-zhuchao-product-image-wrap" style = "position:relative; margin:{itemMargin}px;display:table-cell; text-align:center; vertical-align:middle;float:none;">',
+      '<img src="{url}" style = "width:{imageWidth}px;height:{imageHeight}px;vertical-align:middle;"/>',
       '</div>',
       '</tpl>'
    ],

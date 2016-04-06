@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/17.
  */
-define(['zepto', 'module/company_classify', 'swiper', 'module/totop'], function (){
+define(['zepto', 'module/company_classify', 'swiper', 'module/totop', 'Core', 'Front'], function (){
    $(function (){
       var banner = new Swiper('.pro_banner', {
          pagination : '.pro-pagination',
@@ -23,6 +23,13 @@ define(['zepto', 'module/company_classify', 'swiper', 'module/totop'], function 
             $('.pro_content.intro').hide();
          }
       });
-
+      if($('.m_pro_show').attr('num')){
+         Cntysoft.Front.callApi('Utils', 'addProductHits',
+         {
+            number : $('.m_pro_show').attr('num')
+         }, function (response){
+         }
+         , this);
+      }
    });
 });

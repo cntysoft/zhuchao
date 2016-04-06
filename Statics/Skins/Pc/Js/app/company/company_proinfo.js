@@ -71,5 +71,13 @@ define(['jquery', 'slick', 'app/company/common'], function (){
          $('.show_big').find('img').attr('src', big_src);
          small_img.eq(index - 1).addClass('main_border');
       });
+      if($('.pro_info').attr('num')){
+         Cntysoft.Front.callApi('Utils', 'addProductHits',
+         {
+            number : $('.pro_info').attr('num')
+         }, function (response){
+         }
+         , this);
+      }
    });
 });

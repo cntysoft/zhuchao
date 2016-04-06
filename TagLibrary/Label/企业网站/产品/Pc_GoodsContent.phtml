@@ -3,7 +3,7 @@ $goodsInfo = $this->getProductByNumber();
 $goodsDetail = $goodsInfo->getDetail();
 $goodStatus = $goodsInfo->getStatus();
 $name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
-$out = '<div class="pro_info">
+$out = '<div class="pro_info" num="' . $goodsInfo->getNumber() . '">
                     <div class="pro_title clearfix">
                         <span class="title_name fl">' . $name . '</span>
                         <span class="title_code fl">产品编号：<em>' . $goodsInfo->getNumber() . '</em></span>

@@ -10,7 +10,7 @@ foreach ($items as $index => $info) {
       $last = 'no_bb';
    }
    $out .= '<li class="clearfix ' . $last . '">
-                    <a href="' . $this->getInfoUrl($info->getId()) . '"><img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 60, 40) . '">
+                    <a href="' . $this->getInfoUrl($info->getId()) . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 60, 40) . '">
                        <p>' . $info->getTitle() . '</p></a>
                 </li>';
 }

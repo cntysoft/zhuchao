@@ -13,7 +13,7 @@ $out = '';
 foreach ($items as $index => $info) {
    $out .= '<div class="right_item">
                     <div class="right_img">
-                        <a href="' . $this->getInfoUrl($info->getId()) . '"> <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 260, 146) . '" alt=""/></a>
+                        <a href="' . $this->getInfoUrl($info->getId()) . '"> <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 260, 146) . '" alt=""/></a>
                     </div>
                     <h3 class="right_item_title  main_hover"><a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a></h3>
                     <p class="right_text">' . $info->getIntro() . '

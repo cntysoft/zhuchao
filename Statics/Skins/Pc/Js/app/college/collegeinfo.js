@@ -18,7 +18,14 @@ define(['jquery', 'module/share', 'app/common'], function (){
          text : origin
       });
 //      }, 1);
-
+      if($('.module_content').attr('article')){
+         Cntysoft.Front.callApi('Utils', 'addArticleHits',
+         {
+            id : $('.module_content').attr('article')
+         }, function (response){
+         }
+         , this);
+      }
    });
 });
 

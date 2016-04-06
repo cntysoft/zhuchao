@@ -835,7 +835,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
          },
          items : [{
                xtype : 'zhuchaocompgoodsdetailimageview',
-               imageHeight : 260,
+//               imageHeight : 260,
                imageWidth : 146,
                height : 300,
                autoScroll : true,

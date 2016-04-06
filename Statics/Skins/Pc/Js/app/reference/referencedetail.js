@@ -24,5 +24,13 @@ define(['jquery', 'app/common'], function (){
          height : 200,
          text : origin
       });
+      if($('.article_summary').attr('article')){
+         Cntysoft.Front.callApi('Utils', 'addArticleHits',
+         {
+            id : $('.article_summary').attr('article')
+         }, function (response){
+         }
+         , this);
+      }
    });
 });

@@ -3,7 +3,7 @@ $goodsInfo = $this->getProductByNumber();
 $goodsDetail = $goodsInfo->getDetail();
 $goodStatus = $goodsInfo->getStatus();
 $name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
-$out = '<div class="m_pro_show">
+$out = '<div class="m_pro_show" num="' . $goodsInfo->getNumber() . '">
                 <div class="pro_banner">
                     <div class="swiper-wrapper">';
 $images = $goodsDetail->getImages();
