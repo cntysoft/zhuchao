@@ -1,0 +1,70 @@
+<?php
+$identifier = $this->getRouteInfo()['nodeIdentifier'];
+$nodeInfo = $this->getNodeInfoByIdentifier($identifier);
+$out = '<div class="notice_progress fl">';
+$generalInfos = $this->getInfoListByNodeAndStatus($nodeInfo->getId());
+foreach ($generalInfos[0] as $generalInfo) {
+   $out .= '<div class="progress current clearfix">
+        <div class="progress_circle fl">
+            <span><em ></em></span>
+        </div>
+        <div class="progress_info fl">
+            <a class="main_hover" href="/article/' . $generalInfo->getId() . '.html">' . $generalInfo->getTitle() . '</a>
+            <p class="p_text">' . $generalInfo->getIntro() . '</p>
+            <p class="p_date">' . date('Y-m-d   H:i:s', $generalInfo->getInputTime()) . '</p>
+        </div>
+    </div>';
+}
+$out .= '<div class="page_list"><p>';
+$totalPage = ceil($generalInfos[1] / $this->invokeParams['outputNum']);
+if (0 != $totalPage) {
+	$out .= '<a href="/category/' . $identifier . '/1.html">首页</a>';
+}
+$pageId = (int) $this->getRouteInfo()['pageid'];
+if ($pageId != 1) {
+	$out .= '<a href="/category/' . $identifier . '/' . ($pageId - 1) . '.html">&lt; 上一页</a>';
+}
+if ($totalPage <= 6) {
+	for ($i = 1; $i <= $totalPage; $i++) {
+		if ($i != $pageId) {
+			$out .= '<a class="" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+		} else {
+			$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+		}
+	}
+} else {
+	if ($pageId >= 3 && $pageId < $totalPage - 3) {
+		for ($i = $pageId - 2; $i <= $pageId + 3; $i++) {
+			if ($i != $pageId) {
+				$out .= '<a class="" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+			} else {
+				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+			}
+		}
+	} else if ($pageId < 3) {
+		for ($i = 1; $i <= 6; $i++) {
+			if ($i != $pageId) {
+				$out .= '<a class="" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+			} else {
+				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+			}
+		}
+	} else if ($pageId >= $totalPage - 3) {
+		for ($i = $totalPage - 5; $i <= $totalPage; $i++) {
+			if ($i != $pageId) {
+				$out .= '<a class="" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+			} else {
+				$out .= '<a class="main_bg main_border" href="/category/' . $identifier . '/' . $i . '.html">' . $i . '</a>';
+			}
+		}
+	}
+}
+if ($pageId != $totalPage && $totalPage != 0) {
+	$out .= '<a href="/category/' . $identifier . '/' . ($pageId + 1) . '.html">下一页 &gt;</a>';
+}
+if (0 != $totalPage) {
+	$out .= '<a href="/category/' . $identifier . '/' . $totalPage . '.html">尾页</a>';
+}
+$out .= '</p></div></div>';
+echo $out;
+?>

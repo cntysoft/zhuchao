@@ -123,7 +123,7 @@ class IndexController extends AbstractController
          $tpl = $appCaller->call(
                  CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_STRUCTURE, 'getNodeModelTpl', array((int) $info->getNodeId(), $info->getCmodelId())
          );
-
+         
          $this->view->setRouteInfoItem('nodeIdentifier', $node->getNodeIdentifier());
          $this->setupRenderOpt(array(
             View::KEY_RESOLVE_DATA => $tpl,

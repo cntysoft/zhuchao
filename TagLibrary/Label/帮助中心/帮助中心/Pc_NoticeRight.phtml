@@ -1,0 +1,33 @@
+<?php
+$out = '<div class="notice_news fr">
+    <div class="erweima qrcode_notice">
+    <img src="/Utils/Index/wechatQrCode?data=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '">
+        <p>扫一扫用手机浏览</p>
+    </div>
+    <div class="college_news">
+        <h1>最新公告</h1>
+        <ul>';
+$nodeInfo = $this->getNodeInfoByIdentifier('zhuchaogonggao');
+$generalInfos = $this->getInfoListByNodeAndStatusNotPage($nodeInfo->getId());
+foreach ($generalInfos as $generalInfo) {
+   $out .= '<li>
+                <a class="main_hover" href="/article/' . $generalInfo->getId() . '.html">' . $generalInfo->getTitle() . '</a>
+            </li>';
+}
+$out .= '</ul>
+    </div>';
+//$out .= '<div class="deepness">
+//        <a class="a_img" href="#"><img src="../../Images/test/test_brand_ad.jpg"> </a>
+//        <a class="a_link" href="#">解读：上架和下架产品的区别！</a>
+//        <p class="p_intro">如何在工厂网高效发布产品?如何在电商平
+//            台上让自己的产品信息万众</p>
+//        <p class="p_info clearfix">
+//            <span class="fl">讲师：<em>郭德纲</em></span>
+//            <span class="fr"><em>7752</em>人已学</span>
+//        </p>
+//    </div>';
+$out .= '</div>';
+echo $out;
+?>
+
+    

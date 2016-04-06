@@ -47,6 +47,30 @@ class SiteSetting extends AbstractDsScript
 				$ret['keywords'] = $value;
 			}
 		}
+      
+      $config = $this->appCaller->call(
+				  SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemsByGroup', array('Nav')
+		);
+      $ret['product'] = '';
+      $ret['case'] = '';
+      $ret['news'] = '';
+      $ret['zhaopin'] = '';
+      $ret['aboutus'] = '';
+      foreach ($config as $one) {
+         $key = $one->getKey();
+			$value = $one->getValue();
+         if ('product' == $key) {
+				$ret['product'] = $value;
+			} else if('case' == $key){
+				$ret['case'] = $value;
+			} else if('news' == $key){
+				$ret['news'] = $value;
+			} else if('zhaopin' == $key){
+				$ret['zhaopin'] = $value;
+			} else if('aboutus' == $key){
+				$ret['aboutus'] = $value;
+			}
+      }
 		return $ret;
 	}
 

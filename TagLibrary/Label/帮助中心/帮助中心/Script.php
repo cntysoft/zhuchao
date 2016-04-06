@@ -95,7 +95,7 @@ class HelpCenter extends AbstractLabelScript
 	{
 		$limit = $this->invokeParams['outputNum'];
 		$generalInfo = $this->appCaller->call(
-				  CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, 1, 3, false, 'hits DESC', 0, $limit));
+				  CONTENT_CONST::MODULE_NAME, CONTENT_CONST::APP_NAME, CONTENT_CONST::APP_API_INFO_LIST, 'getInfoListByNodeAndStatus', array($nodeId, 1, 3, false, 'inputTime DESC', 0, $limit));
 		return $generalInfo;
 	}
 

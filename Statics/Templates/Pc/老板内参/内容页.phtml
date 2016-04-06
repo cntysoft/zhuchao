@@ -86,7 +86,7 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                                         $prev = Qs::DsField('AC', 'prev', true);
                                         if ($prev) {
                                            $pretitle = iconv_substr($prev[1], 0, 18, 'UTF-8');
-                                           echo '<a href="' . $prev[0] . '">' . $pretitle . '</a>';
+                                           echo '<a href="' . $prev[0] . '" class="main_hover">' . $pretitle . '</a>';
                                         } else {
                                            echo '木有了';
                                         }
@@ -97,7 +97,7 @@ Qs::Ds('内容数据源/标准内容模型', 'AC');
                                         $next = Qs::DsField('AC', 'next', true);
                                         if ($next) {
                                            $nexttitle = iconv_substr($next[1], 0, 18, 'UTF-8');
-                                           echo '<a href="' . $next[0] . '">' . $nexttitle . '</a>';
+                                           echo '<a href="' . $next[0] . '" class="main_hover">' . $nexttitle . '</a>';
                                         } else {
                                            echo '正在更新中，请等待~';
                                         }

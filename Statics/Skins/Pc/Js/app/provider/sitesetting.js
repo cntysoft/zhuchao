@@ -42,6 +42,11 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common','layer']
          }
          params['keywords'] = keywords;
          params['description'] = description;
+         params['product'] = $('.product_nav').prop('checked');
+         params['case'] = $('.case_nav').prop('checked');
+         params['news'] = $('.news_nav').prop('checked');
+         params['zhaopin'] = $('.zhaopin_nav').prop('checked');
+         params['aboutus'] = $('.aboutus_nav').prop('checked');
          Cntysoft.Front.callApi('Site', 'modifySetting', params, function (response){
             if(response.status){
                layer.msg('店铺设置修改成功！', {

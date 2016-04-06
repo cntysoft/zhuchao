@@ -40,28 +40,46 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
             <div class="conwidth">
                 <ul class="clearfix ">
                     <li class="mainbd_hover active_hover "><a href="/">首页</a></li>
-                    <li class="mainbd_hover active_hover"><a href="/productlist/1.html">产品中心</a></li>
-                    <li class="mainbd_hover active_hover"><a href="/caselist/1.html">案例中心</a></li>
-                    <li class="mainbd_hover active_hover main_border main">
-                        <a href="/newscenter.html">新闻中心</a>
-                        <div class="nav_box">
-                            <ul>
-                                <li class="active_hover"><a href="/companynews.html">公司新闻</a></li>
-                                <li class="active_hover"><a href="/industrynews.html">行业新闻</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mainbd_hover active_hover"><a href="/joinus.html">招聘中心</a></li>
-                    <li class="mainbd_hover active_hover">
-                        <a href="/about.html">关于我们</a>
-                        <div class="nav_box">
-                            <ul>
-                                <li class="active_hover"><a href="/about.html">公司介绍</a></li>
-                                <li class="active_hover"><a href="/about.html">公司资质</a></li>
-                                <li class="active_hover"><a href="/about.html">公司文化</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    <?php
+                    $bool = Qs::DsField('setting', 'product', true);
+                    if ($bool) {
+                       echo '<li class="mainbd_hover active_hover"><a href="/productlist/1.html">产品中心</a></li>';
+                    }
+                    $bool = Qs::DsField('setting', 'case', true);
+                    if ($bool) {
+                       echo '<li class="mainbd_hover active_hover"><a href="/caselist/1.html">案例中心</a></li>';
+                    }
+                    $bool = Qs::DsField('setting', 'news', true);
+                    if ($bool) {
+                       echo '<li class="mainbd_hover active_hover main_border main">
+                <a href="/newscenter.html">新闻中心</a>
+                <div class="nav_box">
+                    <ul>
+                        <li class="active_hover"><a href="/companynews.html">企业新闻</a></li>
+                        <li class="active_hover"><a href="/industrynews.html">行业新闻</a></li>
+                    </ul>
+                </div>
+            </li>';
+                    }
+                    $bool = Qs::DsField('setting', 'zhaopin', true);
+                    if ($bool) {
+                       echo '<li class="mainbd_hover active_hover"><a href="/joinus.html">招聘中心</a></li>';
+                    }
+                    $bool = Qs::DsField('setting', 'aboutus', true);
+                    if ($bool) {
+                       echo '<li class="mainbd_hover active_hover">
+                <a href="/about.html">关于我们</a>
+                <div class="nav_box">
+                    <ul>
+                        <li class="active_hover"><a href="/about.html?intro">企业介绍</a></li>
+                        <li class="active_hover"><a href="/about.html?culture">企业文化</a></li>
+                        <li class="active_hover"><a href="/about.html?zizhi">企业资质</a></li>
+                        <li class="active_hover"><a href="/about.html?connect">联系我们</a></li>
+                    </ul>
+                </div>
+            </li>';
+                    }
+                    ?>
                 </ul>
                 <div class="search">
                     <input type="text">

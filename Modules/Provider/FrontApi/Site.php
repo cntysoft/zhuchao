@@ -165,7 +165,7 @@ class Site extends AbstractScript
     */
    public function modifySetting(array $params)
    {
-      $this->checkRequireFields($params, array('banner', 'keywords', 'description'));
+      $this->checkRequireFields($params, array('banner', 'keywords', 'description','product','case','aboutus','news','zhaopin'));
 
       $this->appCaller->call(
               SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Site', 'Banner', serialize($params['banner']))
@@ -175,6 +175,21 @@ class Site extends AbstractScript
       );
       $this->appCaller->call(
               SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Seo', 'description', $params['description'])
+      );
+      $this->appCaller->call(
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Nav', 'product', $params['product'] ? 1 : 0)
+      );
+      $this->appCaller->call(
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Nav', 'case', $params['case'] ? 1 : 0)
+      );
+      $this->appCaller->call(
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Nav', 'news', $params['news'] ? 1 : 0)
+      );
+      $this->appCaller->call(
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Nav', 'zhaopin', $params['zhaopin'] ? 1 : 0)
+      );
+      $this->appCaller->call(
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Nav', 'aboutus', $params['aboutus'] ? 1 : 0)
       );
    }
 

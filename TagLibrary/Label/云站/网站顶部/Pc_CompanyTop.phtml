@@ -1,3 +1,6 @@
+<?php
+Qs::Ds('内容数据源/店铺设置', 'setting');
+?>
 <div class="l_top ">
     <div class="conwidth clearfix">
         <div class="l_top_left">
@@ -20,9 +23,18 @@
     <div class="conwidth">
         <ul class="clearfix ">
             <li class="mainbd_hover active_hover "><a href="/">首页</a></li>
-            <li class="mainbd_hover active_hover"><a href="/productlist/1.html">产品中心</a></li>
-            <li class="mainbd_hover active_hover"><a href="/caselist/1.html">案例中心</a></li>
-            <li class="mainbd_hover active_hover">
+            <?php
+            $bool = Qs::DsField('setting', 'product', true);
+            if ($bool) {
+               echo '<li class="mainbd_hover active_hover product_nav"><a href="/productlist/1.html">产品中心</a></li>';
+            }
+            $bool = Qs::DsField('setting', 'case', true);
+            if ($bool) {
+               echo '<li class="mainbd_hover active_hover case_nav"><a href="/caselist/1.html">案例中心</a></li>';
+            }
+            $bool = Qs::DsField('setting', 'news', true);
+            if ($bool) {
+               echo '<li class="mainbd_hover active_hover news_nav">
                 <a href="/newscenter.html">新闻中心</a>
                 <div class="nav_box">
                     <ul>
@@ -30,9 +42,15 @@
                         <li class="active_hover"><a href="/industrynews.html">行业新闻</a></li>
                     </ul>
                 </div>
-            </li>
-            <li class="mainbd_hover active_hover"><a href="/joinus.html">招聘中心</a></li>
-            <li class="mainbd_hover active_hover">
+            </li>';
+            }
+            $bool = Qs::DsField('setting', 'zhaopin', true);
+            if ($bool) {
+               echo '<li class="mainbd_hover active_hover zhaopin_nav"><a href="/joinus.html">招聘中心</a></li>';
+            }
+            $bool = Qs::DsField('setting', 'aboutus', true);
+            if ($bool) {
+               echo '<li class="mainbd_hover active_hover aboutus_nav">
                 <a href="/about.html">关于我们</a>
                 <div class="nav_box">
                     <ul>
@@ -42,7 +60,9 @@
                         <li class="active_hover"><a href="/about.html?connect">联系我们</a></li>
                     </ul>
                 </div>
-            </li>
+            </li>';
+            }
+            ?>
         </ul>
         <div class="search">
             <input type="text">

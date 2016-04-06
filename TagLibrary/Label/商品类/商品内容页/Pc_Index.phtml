@@ -126,13 +126,24 @@ $out .= '<div class="about_news fl about_item">
 
         <div class="about_news_items main_hover">
             <div class="about_news_list clearfix">';
+$i = 1;
 foreach ($articles as $article) {
-   $out .= '<div class="list_left fl">
+   if ($i == 1) {
+      $out .= '<div class="list_left fl">
                     <h4><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
                     <p>
                         ' . $article->getIntro() . '
                     </p>
                 </div>';
+   } else {
+      $out .= '<div class="list_left fr">
+                    <h4><a href="/article/' . $article->getId() . '.html">' . $article->getTitle() . '</a></h4>
+                    <p>
+                        ' . $article->getIntro() . '
+                    </p>
+                </div>';
+   }
+   $i++;
 }
 $out .= '</div>';
 $articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds, 2, 4);

@@ -47,6 +47,23 @@ class NotifyController extends AbstractController
    {
       $this->getAppCaller()->call(
               BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout');
+      $isLogin = $this->getAppCaller()->call(
+              BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'isLogin');
+      $data = array();
+      if($isLogin){
+         $data = array(
+            'code' => 0,
+            'reload_page' => 1,
+            'js_src' => ''
+         );
+      } else {
+         $data = array(
+            'code' => 1,
+            'reload_page' => 1,
+            'js_src' => ''
+         );
+      }
+      echo $_GET['callback'] . '(' . json_encode($data) . ')';
       exit;
    }
 

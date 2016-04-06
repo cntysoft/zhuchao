@@ -1,0 +1,37 @@
+<?php
+$id = $this->getRouteInfo()['articleId'];
+$detailInfo = $this->getDetail($id);
+$info = $detailInfo[0];
+$detail = $detailInfo[1];
+$out = '<div class="notice_progress main_left fl">
+    <div class="content_title">
+        <h3>' . $info->getTitle() . '</h3>
+        <div class="writer_info clearfix">
+            <div class="fl">
+                <span>发表时间：' . date('Y-m-d   H:i:s', $info->getInputTime()) . '</span>
+                <span class="read">浏览：' . $info->getHits() . '</span>
+            </div>
+            <div class="fr share"><span>分享到：</span>
+                <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1459217014014">
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="module_content">' . $detail->getContent() . '</div>';
+$pn = $this->getPrevAndNextItem($info->getNodeId(), $info->getId());
+$out .= '<div class="up_down">
+	 <div>
+		  上一篇：<a ' . ($pn['prev'] ? 'href="' . $pn['prev'][0] . '"' : "") . ' class="main_hover">' . ($pn['prev'][1] ? $pn['prev'][1] : "真的木有了") . '</a>
+	 </div>
+	 <div>
+		  下一篇：<a ' . ($pn['next'] ? 'href="' . $pn['next'][0] . '"' : "") . ' class="main_hover">' . ($pn['next'][1] ? $pn['next'][1] : "真的木有了") . '</a>
+	 </div>
+</div>
+</div>';
+echo $out;
+?>

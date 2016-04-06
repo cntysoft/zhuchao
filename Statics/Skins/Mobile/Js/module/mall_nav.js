@@ -14,7 +14,7 @@ define(['zepto'],function(){
                 return false;
             }
         });
-        $('body').tap(function(){
+        $(this).scroll(function(){
             $(".top_nav_box").addClass('hide');
         });
     })

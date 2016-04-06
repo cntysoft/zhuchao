@@ -5,15 +5,15 @@ define(['jquery', 'module/totop', 'Front', 'Core', 'lazyload'], function (){
    $(function (){
       var path = window.location.pathname;
       if(path.indexOf('productlist/') >= 0 || path.indexOf('item/') >= 0){
-         $('.l_nav ul li.mainbd_hover').eq(1).addClass('main_border main');
+         $('.product_nav').addClass('main_border main');
       } else if(path.indexOf('/case') >= 0){
-         $('.l_nav ul li.mainbd_hover').eq(2).addClass('main_border main');
+         $('.case_nav').addClass('main_border main');
       } else if(path.indexOf('/newscenter') >= 0 || path.indexOf('/companynews') >= 0 || path.indexOf('/industrynews') >= 0){
-         $('.l_nav ul li.mainbd_hover').eq(3).addClass('main_border main');
+         $('.news_nav').addClass('main_border main');
       } else if(path.indexOf('/joinus') >= 0){
-         $('.l_nav ul li.mainbd_hover').eq(4).addClass('main_border main');
+         $('.zhaopin_nav').addClass('main_border main');
       } else if(path.indexOf('/about') >= 0){
-         $('.l_nav ul li.mainbd_hover').eq(5).addClass('main_border main');
+         $('.aboutus_nav').addClass('main_border main');
       }
       if(!$('.l_nav ul li.mainbd_hover.main_border').length){
          $('.l_nav ul li.mainbd_hover').eq(0).addClass('main_border main');
