@@ -22,6 +22,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
             });
             if($('#logo').length){
                 params['logo'] = $('#logo').attr('src');
+                params['rid'] = $('#logo').attr('fh-rid');
             } else{
                 validate.tips('请上传企业logo', '.img_plus');
                 layer.msg('请正确填写各项');

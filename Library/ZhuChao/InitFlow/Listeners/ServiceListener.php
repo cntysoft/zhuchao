@@ -8,7 +8,7 @@
  */
 namespace ZhuChao\InitFlow\Listeners;
 use Phalcon\Events\Manager as EventsManager;
-use Cntysoft\Framework\Core\FileRef\Manager as FileRefManager;
+use ZhuChao\Framework\Core\FileRef\Manager as FileRefManager;
 use Cntysoft\Phalcon\Mvc\Listeners\ServiceListener as BaseListener;
 use Cntysoft\Framework\Cloud\Ali\OpenSearch\ApiCaller as AliOpenSearchApiCaller;
 use Cntysoft\Framework\Cloud\Ali\Ots\Client as OtsClient;

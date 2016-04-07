@@ -27,20 +27,30 @@ class Company extends AbstractScript
       //删除不能修改的字段
       unset($params['id']);
       unset($params['providerId']);
-
-      if(isset($params['logo'])) {
-         $cndServer = Kernel\get_image_cdn_server_url() .'/';
-         $image = explode('@', str_replace($cndServer, '', $params['logo']));
-         $params['logo'] = $image[0];
-      }
       $user = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'getCurUser');
       $company = $user->getCompany();
 
       //已经存在企业信息
       if ($company) {
+         if (isset($params['rid']) && $params['rid'] > 0 && $company->getRid() != (int) $params['rid']) {
+            $fileRefMgr = $this->di->get('FileRefManager');
+            $fileRefMgr->removeFileRef($company->getRid());
+            $fileRefMgr->confirmFileRef($params['rid']);
+            $cndServer = Kernel\get_image_cdn_server_url() . '/';
+            $image = explode('@', str_replace($cndServer, '', $params['logo']));
+            $params['logo'] = $image[0];
+         } else {
+            unset($params['rid']);
+            unset($params['logo']);
+         }
          unset($params['name']); //企业名称不允许修改
          $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'updateProviderCompany', array($company->getId(), $params));
       } else {
+         $fileRefMgr = $this->di->get('FileRefManager');
+         $fileRefMgr->confirmFileRef($params['rid']);
+         $cndServer = Kernel\get_image_cdn_server_url() . '/';
+         $image = explode('@', str_replace($cndServer, '', $params['logo']));
+         $params['logo'] = $image[0];
          $params['providerId'] = $user->getId();
          $params['status'] = P_CONST::COMPANY_STATUS_NORMAL;
          $params['type'] = 9;

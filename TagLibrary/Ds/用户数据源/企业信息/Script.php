@@ -30,6 +30,7 @@ class CompanyInfo extends AbstractDsScript
             'website' => '',
             'description' => '',
             'logo' => '',
+            'rid' => '',
             'status' => 1,
             'profileId' => '',
             'customer' => '',
