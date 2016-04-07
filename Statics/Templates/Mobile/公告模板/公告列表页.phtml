@@ -20,7 +20,7 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
             <!--logo-->
             <div class="header_left fl">
                 <span class="icon_logo">
-                    <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
+                    <a href="/"><img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/></a>
                 </span>
             </div>
             <!--搜索框-->
@@ -38,9 +38,11 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
             <div class="top_nav_box hide">
                 <ul class="top_nav_list">
                     <li><a href="/">首页</a></li>
-                    <li><a href="/">产品搜索</a></li>
-                    <li><a href="/">企业搜索</a></li>
-                    <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/zhuchaoschool.html">筑巢商学院</a></li>
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/laobanneican.html">老板内参</a></li>
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a></li>
+                    <!--<li><a href="http://<\?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/about/company.html">关于我们</a></li>-->
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/zhuchaogonggao/1.html">筑巢公告</a></li>
                 </ul>
             </div>
         </div>
@@ -80,7 +82,7 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
             </div>
         </div>
         <div class="gonggao_list">
-            
+
         </div>
         <?php Qs::Sys('loadRequireJs', 'mall/gonggao'); ?>
     </body>

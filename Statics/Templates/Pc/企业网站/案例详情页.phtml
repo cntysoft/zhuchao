@@ -54,11 +54,18 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                 <div class="slick_bg">
                     <div class="slick_nav">
                         <?php
-                        foreach ($content as $value) {
-                           echo '<div class="small_img">
+                        foreach ($content as $index => $value) {
+                           if ($index) {
+                              echo '<div class="small_img">
+									 <img  src="' . $value['src'] . '">
+									 <div class="count"></div>
+								</div>';
+                           } else {
+                              echo '<div class="small_img">
 									 <img class="border_green" src="' . $value['src'] . '">
 									 <div class="count"></div>
 								</div>';
+                           }
                         }
                         ?>
                     </div>

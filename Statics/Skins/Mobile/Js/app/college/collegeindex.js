@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/19.
  */
-define(['app/common','zepto', 'swiper'], function (common){
+define(['app/common', 'module/totop', 'swiper', 'Core', 'Front'], function (common){
    $(function (){
       //导航
       $('.more_icon').click(function (){
@@ -33,9 +33,9 @@ define(['app/common','zepto', 'swiper'], function (common){
          loop : true,
          lazyLoading : true
       });
-      
-      $('#historyBack').click(function(){
-          common.goBack('/category/zhuchaoschool.html');
-       });
+
+      $('#historyBack').click(function (){
+         common.goBack('/category/zhuchaoschool.html');
+      });
    });
 });
