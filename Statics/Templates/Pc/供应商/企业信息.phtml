@@ -12,6 +12,16 @@ Qs::Ds('商城数据源/商城数据', 'site');
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
+        <style>
+            div.radio i {
+                width: 16px;
+                height: 16px;
+                width:16px\9\0;
+                height:16px\9\0;
+                *width:0;
+                *height:0;
+            }
+        </style>
     </head>
     <body>
         <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
@@ -99,7 +109,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>详细地址：</label>
-                        <input type="text"  class="checkField" id="address" value="<?php Qs::DsField('User', 'address') ?>" reg='^([.]){3,15}$' tip-value="请输入3-30字详细地址" required>
+                        <input type="text"  class="checkField" id="address" value="<?php Qs::DsField('User', 'address') ?>" reg='^.{3,15}$' tip-value="请输入3-30字详细地址" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>邮编：</label>
@@ -107,7 +117,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>公司简介：</label>
-                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='[.]*' tip-value="请输入3-100字企业简介" required>
+                        <input type="text" id="description" class="checkField" value="<?php Qs::DsField('User', 'description') ?>" reg='.{3,100}' tip-value="请输入3-100字企业简介" required>
                     </div>
                     <div class="form_list">
                         <label class="label_uploading"><em class="main">*</em>公司logo：</label>

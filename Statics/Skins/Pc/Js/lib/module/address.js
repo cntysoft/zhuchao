@@ -38,6 +38,9 @@ define(['require', 'exports', 'jquery', 'Front'], function (require, exports){
         }
 
         function getChildArea(code, callback){
+            if(code == 0){
+                return false;
+            }
             Cntysoft.Front.callApi('Utils', 'getChildArea', {
                 code : code
             }, function (response){
