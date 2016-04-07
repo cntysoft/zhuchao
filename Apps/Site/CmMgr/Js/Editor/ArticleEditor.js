@@ -68,6 +68,7 @@ Ext.define('App.Site.CmMgr.Lib.Editor.ArticleEditor', {
       while (result = this.imgRegex.exec(values.content)) {
          imgs.push(result[1].replace(cdnServer + '/', ''));
       }
+
       var maps = [];
       this.imgRefMap.each(function(key, value) {
          if (!Ext.Array.contains(imgs, key)) {

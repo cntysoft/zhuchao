@@ -14,6 +14,8 @@ use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 
 class Product extends AbstractHandler
 {
+   protected $lazyImage = 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png';
+
    /**
     * 获取指定条件下的产品的信息
     * 
@@ -89,6 +91,9 @@ class Product extends AbstractHandler
       unset($params['keywords3']);
       $params['keywords'] = $keyword;
       
+      $introduction = $params['introduction'];
+      $params['introduction'] = str_replace('<img src="', '<img src="'.$this->lazyImage.'" class="lazy" data-original="', $introduction);
+      
       $product = $this->getAppCaller()->call(
          PRODUCT_CONST::MODULE_NAME,
          PRODUCT_CONST::APP_NAME,
@@ -110,6 +115,9 @@ class Product extends AbstractHandler
       $productId = $params['productId'];
       unset($params['productId']);
       
+      $introduction = $params['introduction'];
+      $params['introduction'] = str_ireplace('<img src="', '<img src="'.$this->lazyImage.'" class="lazy" data-original="', $introduction);
+
       return $this->getAppCaller()->call(
          PRODUCT_CONST::MODULE_NAME,
          PRODUCT_CONST::APP_NAME,
@@ -168,6 +176,12 @@ class Product extends AbstractHandler
          );
          $ret['company'] = $company->getName();
       }
+      
+      $introduction = $ret['introduction'];
+      if(stripos($introduction, 'img') && stripos($introduction, 'data-original')){
+         $ret['introduction'] = preg_replace('/src="([^>]*?)"([^>]*?)data-original="(.*?)"/', 'src="${3}"', $introduction);
+      }
+    
       return $ret;
    }
    /**

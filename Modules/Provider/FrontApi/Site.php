@@ -14,6 +14,8 @@ use App\Yunzhan\Setting\Constant as SETTING_CONST;
 use App\ZhuChao\Provider\Constant as P_CONST;
 use App\Yunzhan\Category\Constant as CATE_CONST;
 use Cntysoft\Kernel;
+use ZhuChao\Framework\Core\FileRef\Manager as RefManager;
+
 class Site extends AbstractScript
 {
    /**
@@ -168,9 +170,6 @@ class Site extends AbstractScript
       $this->checkRequireFields($params, array('banner', 'keywords', 'description','product','case','aboutus','news','zhaopin'));
 
       $this->appCaller->call(
-              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Site', 'Banner', serialize($params['banner']))
-      );
-      $this->appCaller->call(
               SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Seo', 'keywords', $params['keywords'])
       );
       $this->appCaller->call(
@@ -190,6 +189,44 @@ class Site extends AbstractScript
       );
       $this->appCaller->call(
               SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Nav', 'aboutus', $params['aboutus'] ? 1 : 0)
+      );
+      
+      
+      $refManager = new RefManager();
+      $newBanners = $params['banner'];
+      
+      $oldBanners = $this->appCaller->call(
+         SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemByKey', array('Banner')
+      );
+      $oldBanners = unserialize($oldBanners[0]->getValue());
+      
+      $newFileRefs = $oldFileRefs = array();
+      
+      foreach($newBanners as $nb){
+         $newFileRefs[] = (int)$nb[1];
+      }
+      
+      foreach($oldBanners as $ob){
+         $oldFileRefs[] = (int)$ob[1];
+      }
+      
+      $deleteFileRefs = array_diff($oldFileRefs, $newFileRefs);
+      $addFileRefs = array_diff($newFileRefs, $oldFileRefs);
+      
+      if(count($deleteFileRefs)){
+         foreach($deleteFileRefs as $df){
+            $refManager->removeFileRef($df);
+         }
+      }
+      
+      if(count($addFileRefs)){
+         foreach($addFileRefs as $of){
+            $refManager->confirmFileRef($of);
+         }
+      }
+      
+      $this->appCaller->call(
+         SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Site', 'Banner', serialize($params['banner']))
       );
    }
 

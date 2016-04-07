@@ -17,6 +17,7 @@ use App\Site\Content\Exception;
 
 class Manager extends AbstractHandler
 {
+   protected $lazyImage = 'http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png';
    /**
     * 获取模型编辑器名称映射, 代理内容模型管理的接口
     */
@@ -102,6 +103,11 @@ class Manager extends AbstractHandler
       $modelId = (int)$params['modelId'];
       unset($params['modelId']);
       $nodeId = $params['nodeId'];
+      
+      if(isset($params['content'])){
+         $content = $params['content'];
+         $params['content'] = str_replace('<img src="', '<img src="'.$this->lazyImage.'" class="lazy" data-original="', $content);
+      }
       //在这里是否要判断status的值是否正确
       if(isset($params['id'])){
          //修改信息
@@ -228,6 +234,11 @@ class Manager extends AbstractHandler
          if (in_array($key, $timeArray) && !is_null($value)) {
             $ret[$key] = Kernel\format_timestamp($value);
          }
+      }
+      
+      $content = $ret['content'];
+      if(stripos($content, 'img') && stripos($content, 'data-original')){
+         $ret['content'] = preg_replace('/src="([^>]*?)"([^>]*?)data-original="(.*?)"/', 'src="${3}"', $content);
       }
       return $ret;
    }

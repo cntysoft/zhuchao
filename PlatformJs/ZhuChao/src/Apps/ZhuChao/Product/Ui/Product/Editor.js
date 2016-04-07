@@ -154,7 +154,6 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
          this.statusFieldRef.setValue({
             status : data.status
          });
-
          this.wordEditorRef.setData(data.introduction);
          
          //设置普通属性
@@ -203,7 +202,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
          if(Ext.isDefined(data.images)){
             Ext.Array.forEach(data.images, function (item){
                this.goodsDetailViewRef.store.add({
-                  url : ZC.getZhuChaoImageUrl(item[0]),
+                  url : ZC.getZhuChaoImageUrl(item[0], true),
                   fileRefId : item[1]
                });
             }, this);
@@ -225,7 +224,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
    getEditorValues: function(values, mode)
    {
       var imgs = [];
-      var cdnServer = ZC.getImgOssServer();
+      var cdnServer = ZC.getImageCdnServer();
       var result;
       while (result = this.imgRegex.exec(values.introduction)) {
          imgs.push(result[1].replace(cdnServer + '/', ''));
@@ -285,12 +284,12 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
       }
 
       var detailImages = [];
-      var ossServer = ZC.getImgOssServer() + '/';
+      var cdnServer = ZC.getImageCdnServer() + '/';
       
       this.goodsDetailViewRef.store.each(function (record){
          var url = record.get('url');
-         if(Ext.String.startsWith(url, ossServer)){
-            url = url.replace(ossServer, '');
+         if(Ext.String.startsWith(url, cdnServer)){
+            url = url.replace(cdnServer, '');
          }
          detailImages.push([
             url,
@@ -929,7 +928,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
                   createSubDir : true,
                   uploadMaxSize : phpSetting.uploadMaxFileSize,
                   threads : 1,
-                  useOss : ZC.getUseOss(),
+                  useOss : ZC.getUseOss()
                },
                listeners : {
                   fileuploadsuccess : function (file, btn){
@@ -937,7 +936,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
                         var file = file.pop();
                         this.fileRefs.push(parseInt(file.rid));
                         this.goodsDetailViewRef.store.add({
-                           url : ZC.getZhuChaoImageUrl(file.filename),
+                           url : ZC.getZhuChaoImageUrl(file.filename, true),
                            fileRefId : file.rid
                         });
                      }
@@ -985,7 +984,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
       var phpSetting = WebOs.getSysEnv().get(WebOs.Const.ENV_PHP_SETTING);
       var basePath = ZC.getAppUploadFilesPath('ZhuChao', 'Product');
       this.wordEditorRef = Ext.create('WebOs.Component.CkEditor.Editor',{
-         height : 400,
+         height : 245,
          toobarType : 'standard',
          defaultUploadPath : basePath,
          uploadMaxSize : phpSetting.uploadMaxFileSize,
@@ -993,7 +992,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.Editor', {
          listeners : {
             filerefrequest : function(ref, form)
             {
-               form.setValues({url : ZC.getZhuChaoImageUrl(ref.filename)});
+               form.setValues({url : ZC.getZhuChaoImageUrl(ref.filename, true)});
                var rid = parseInt(ref.rid);
                this.fileRefs.push(rid);
                if(this.imgRefMap){
