@@ -50,10 +50,10 @@ $out .= '</table>';
 echo $out . '<div class="page_list"></div>';
 function getTemplate($data, $status)
 {
+//   <span class="check"><em><i></i></em></span>
    if ($status == 2) {
       return '<tr class="inquiry_list ">
-        <td class="inquiry_title">
-            <span class="check"><em><i></i></em></span>
+        <td class="inquiry_title">            
             <div class="acticle_box fr">
                 <span>' . iconv_substr($data->getContent(), 0, 80, 'UTF-8') . '</span>
                 <a class="more" href="/inquirycontent/' . $data->getId() . '.html">更多</a>
@@ -67,7 +67,6 @@ function getTemplate($data, $status)
    } else {
       return '<tr class="inquiry_list ">
         <td class="inquiry_title">
-            <span class="check"><em><i></i></em></span>
             <div class="acticle_box fr">
                 <span>' . iconv_substr($data->getContent(), 0, 80, 'UTF-8') . '</span>
                 <a class="more" href="/inquirycontent/' . $data->getId() . '.html">更多</a>

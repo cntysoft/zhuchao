@@ -36,6 +36,20 @@ class Nav extends AbstractLabelScript
    }
 
    /**
+    * 获取商品信息
+    * @return type
+    */
+   public function isCompany()
+   {
+      $iscompany = $this->invokeParams['company'];
+      if ($iscompany && $iscompany == 'companysite') {
+         return 'hide';
+      } else {
+         return '';
+      }
+   }
+
+   /**
     * 检查是否登录
     * @return boolean
     */

@@ -28,15 +28,18 @@ foreach ($goodsLists['docs'] as $goods) {
                             <a class="pro_img" href="' . $url . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 195, 195) . '"> </a>
                             <div class="pro_info">
                                 <h1><a href="' . $url . '">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '</a></h1>
-                                <table>
+                                   ';
+   if (count($attrvalue)) {
+      $out.='<table>
                                     <tr>
                                         <th>' . implode('</th><th>', array_slice(array_keys($attrvalue), 0, 6)) . '</th>
                                     </tr>
                                     <tr>
                                         <td>' . implode('</td><td>', array_slice(array_values($attrvalue), 0, 6)) . '</td>
                                     </tr>
-                                </table>
-                                <p>' . $company->getName() . '</p>
+                                </table>';
+   }
+   $out.='<p><a href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" class="main_hover">' . $company->getName() . '</a></p>
                                 <p>所在地：<em>' . $this->getArea($company) . '</em><span>加入时间：' . date('Y-m-d', $company->getInputTime()) . '</span></p>
                             </div>
                             <div class="pro_buy">
