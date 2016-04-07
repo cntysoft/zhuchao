@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader, common){
+define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader,common){
     $(function (){
         var uploadIndex = -1;
         var images = new Array();
@@ -80,7 +80,6 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 layer.msg('请填写商品简介信息，至少20个字！');
                 return;
             }
-            
             var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
             var $introImg = $(iframeBody).find('img');
             if($introImg.length){
@@ -96,7 +95,6 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 $(item).attr('src', common.lazyicon);
                 $(item).removeAttr('data-ke-src');
             });
-
             params['introduction'] = $(cloneIframe).html();
             params['imgRefMap'] = imgRefMap;
             for(var i = 0, length = images.length; i < length; i++) {
@@ -326,6 +324,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         $.each($introImg,function(index,item){
             $(item).attr('src',$(item).attr('data-original'));
         });
+        editor.html($(iframeBody).html());
         var editorUpload = WebUploader.create($.extend(uploaderConfig, {
             pick : '#editorUpload'
         }));

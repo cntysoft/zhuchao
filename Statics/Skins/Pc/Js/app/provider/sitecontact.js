@@ -125,6 +125,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
             $.each($introImg, function (index, item){
                 $(item).attr('src', $(item).attr('data-original'));
             });
+            editor.html($(iframeBody).html());
             //给img标签添加fh-rid属性
             editor.htmlTags.img = ['src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border', 'fh-rid'];
 

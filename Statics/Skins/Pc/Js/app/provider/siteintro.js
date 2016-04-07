@@ -126,6 +126,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
             $.each($introImg, function (index, item){
                 $(item).attr('src', $(item).attr('data-original'));
             });
+            editor.html($(iframeBody).html());
             //编辑器上传图片
             editorUpload.on('uploadSuccess', function (file, response){
                 if(response.status){

@@ -80,6 +80,9 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
         $('.img_uploading').delegate('.deleteImg', 'click', function (){
             var imgWrap = $(this).parents('.img_wrap_div');
             imgWrap.remove();
+            if($('.img_wrap_div').length<10){
+                $('#uploadBtn').show();
+            }
             if(uploadProductImg == undefined){
                 createProductUpload();
             }
@@ -100,6 +103,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
                 auto : true,
                 dnd : '#uploadBtn',
                 threads : 1,
+                duplicate:true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',

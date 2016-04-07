@@ -73,7 +73,7 @@ class Product extends AbstractScript
    }
    
    /**
-    * 添加一个商品
+    * 修改一个商品
     * 
     * @param array $params
     * @return 
