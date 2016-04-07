@@ -50,7 +50,7 @@ define(['zepto', 'module/company_classify', 'module/totop', 'Core', 'Front'], fu
          }, function (response){
             var out = '';
             $.each(response.data, function (index, item){
-               out += '<div class="pro_ele"><a target="_blank" href="' + item.infourl + '"><img src="' + item.imgurl + '" alt=""></a><h3 class="pro_ele_title"><a target="_blank" href="';
+               out += '<div class="pro_ele"><a  href="' + item.infourl + '"><img src="' + item.imgurl + '" alt=""></a><h3 class="pro_ele_title"><a  href="';
                out += item.infourl + '">' + item.title + '  </a></h3><p class="pro_ele_price">' + item.price + '</p></div>';
             });
             $('.pro_list').append(out);

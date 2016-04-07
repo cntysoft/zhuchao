@@ -10,11 +10,11 @@ if ($goodStatus != 3) {
 $name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
 
 $out = '<div class="site conwidth">
-				<a href="/index.html">首页</a>';
+				<a class="main_hover" href="/index.html">首页</a>';
 $out .= '<span>&gt;</span>
-				<a href="/productclassify/' . $category->getId() . '/1.html">' . $category->getName() . '</a>';
+				<a class="main_hover" href="/productclassify/' . $category->getId() . '/1.html">' . $category->getName() . '</a>';
 $out .= '<span>&gt;</span>
-				<a>' . $name . '</a></div>';
+				<a class="main">' . $name . '</a></div>';
 $out .= '<div class="l_main conwidth">
     <!--商品展示-->
     <div class="pro_display clearfix">

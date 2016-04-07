@@ -41,8 +41,8 @@ foreach ($goodsLists as $goods) {
    $price0 = $goods->getPrice();
    $price = $price0 > 0 ? '¥' . $price0 : '面议';
    $out .= '<div class="pro_ele">
-                    <a target="_blank" href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 112, 70) . '" alt=""></a>
-                    <h3 class="pro_ele_title"><a target="_blank" href="' . $infourl . '">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '  </a></h3>
+                    <a  href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 112, 70) . '" alt=""></a>
+                    <h3 class="pro_ele_title"><a  href="' . $infourl . '">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '  </a></h3>
                     <p class="pro_ele_price">' . $price . '</p>
                 </div>';
 }
