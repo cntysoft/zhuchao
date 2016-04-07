@@ -1,7 +1,5 @@
+<?php Qs::Ds('商城数据源/商城数据', 'sites');?>
 <!DOCTYPE html>
-<?php
-Qs::Ds('商城数据源/商城数据', 'sites');
-?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -29,9 +27,6 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 </div>
             </div>
         </div>
-        <?php
-        Qs::Label('静态类/网站底部');
-        Qs::Sys('loadRequireJs', 'mall/404');
-        ?>
+        <?php Qs::Label('静态类/网站底部');Qs::Sys('loadRequireJs', 'mall/404');?>
     </body>
 </html>

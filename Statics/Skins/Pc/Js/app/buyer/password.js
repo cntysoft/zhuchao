@@ -16,6 +16,14 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function(v
             validateMsg[0].ele.focus();
              return false;
          }
+         
+         if($('#newpassword').val() != $('#repassword').val()){
+            layer.tips('两次输入的密码不一致！', '#repassword',{
+                tipsMore : true,
+                tips : [2, '#63bf82']
+            });
+            return false;
+         }
 
          Cntysoft.Front.callApi('User', 'resetPassword', {
             oldPassword : Cntysoft.Core.sha256($('#oldpassword').val()),
@@ -23,9 +31,13 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function(v
          }, function(response){
             if(!response.status){
                if(10013 == response.errorCode){
-                  layer.alert('旧密码错误，请核对您输入的密码！');
+                  layer.msg('旧密码错误，请核对您输入的密码！', {
+                     time : 1000
+                  });
                }else{
-                  layer.alert('密码修改失败，请稍后重试！');
+                  layer.msg('密码修改失败，请稍后重试！', {
+                     time : 1000
+                  });
                }
             }else{
                layer.alert('密码修改成功',{

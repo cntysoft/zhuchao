@@ -37,7 +37,7 @@
                         <form>
                             <div class="recevier clearfix">
                                 <span class="address_intro"><i class="main">*</i>收货人姓名：</span>
-                                <input type="text" required id="name">
+                                <input type="text" required id="name" maxlength="10">
                                 <span class="tip hide">收货人姓名不能为空</span>
                             </div>
                             <div class="form_list">
@@ -54,20 +54,19 @@
                             </div>
                             <div class="new_address_detail clearfix">
                                 <span class="address_intro"><i class="main">*</i>收货地址：</span>
-                                <input type="text" required id="address">
+                                <input type="text" required id="address" maxlength="100">
                                 <span class="tip hide">收货地址不能为空</span>
                             </div>
                             <div class="new_address_phone clearfix">
                                 <span class="address_intro"><i class="main">*</i>手机：</span>
-                                <input type="text" id="phone" required>
+                                <input type="text" id="phone" required maxlength="11">
                                 <span class="tip hide">手机号不能为空</span>
                             </div>
                             <div class="new_postal clearfix">
                                 <span class="address_intro">邮编：</span>
-                                <input type="text" id="postCode">
+                                <input type="text" id="postCode" maxlength="6">
                             </div>
                             <p class="new_defult clearfix">
-                                <!--<span><i></i> 设为默认</span>-->
                                 <input type="checkbox" id="new_defult" name="defult">
                                 <label for="new_defult">设为默认</label>
                             </p>
@@ -80,7 +79,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <?php Qs::Label('静态类/登陆注册网站底部');
         Qs::Sys('loadRequireJs', 'buyer/addr') ?>

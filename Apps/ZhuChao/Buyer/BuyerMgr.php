@@ -184,13 +184,24 @@ class BuyerMgr extends AbstractLib
                $data[$key] = $val;
             }
          }
-
+         
          if (!empty($pdata['fileRefs'])) {
-            $fileRefs = $profile->getFileRefs();
+            $oldFileRefs = $profile->getFileRefs();
+            $newFileRefs = $pdata['fileRefs'];
+            
+            $deleteFileRefs = array_diff($oldFileRefs, $newFileRefs);
+            $addFileRefs = array_diff($newFileRefs, $oldFileRefs);
             $refManager = new RefManager();
-            if(count($fileRefs) && $fileRefs[0] != $pdata['fileRefs']){
-               $refManager->removeFileRef($fileRefs[0]);
-               $refManager->confirmFileRef($pdata['fileRefs']);
+            if(count($deleteFileRefs)){
+               foreach($deleteFileRefs as $df){
+                  $refManager->removeFileRef($df);
+               }
+            }
+            
+            if(count($addFileRefs)){
+               foreach($addFileRefs as $af){
+                  $refManager->confirmFileRef($af);
+               }
             }
          }
          

@@ -10,7 +10,6 @@ namespace App\ZhuChao\Product;
 use Cntysoft\Kernel\App\AbstractLib;
 use App\ZhuChao\Product\Model\Product as ProductModel;
 use App\ZhuChao\Product\Model\ProductDetail as DetailModel;
-use App\ZhuChao\Product\Model\Product2Group as PGModel;
 use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 use App\Yunzhan\Product\Constant as YUNZHAN_CONST;
