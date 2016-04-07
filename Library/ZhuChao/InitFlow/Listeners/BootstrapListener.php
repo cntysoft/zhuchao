@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Cntysoft Cloud Software Team
  *
@@ -7,20 +6,17 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license    http://www.cntysoft.com/license/new-bsd     New BSD License
  */
-
 namespace ZhuChao\InitFlow\Listeners;
-
 use Cntysoft\Phalcon\Mvc\Listeners\BootstrapListener as BaseBootstrapListener;
 use Phalcon\Mvc\Router\Group as RouterGroup;
 use Phalcon\Mvc\Router;
 use Cntysoft\Kernel\ConfigProxy;
-
+use Cntysoft\Kernel;
 /**
  * 系统一些小东西初始化监听类
  */
 class BootstrapListener extends BaseBootstrapListener
 {
-
    /**
     * @param \Phalcon\Mvc\Router $router
     * @param \Phalcon\Config $config
@@ -28,14 +24,14 @@ class BootstrapListener extends BaseBootstrapListener
    protected function configRouter($router, $config)
    {
       $router->add('/' . $config->sysEntry, array(
-          'module' => 'Sys',
-          'controller' => 'Index',
-          'action' => 'index'
+         'module'     => 'Sys',
+         'controller' => 'Index',
+         'action'     => 'index'
       ))->setHostname(\Cntysoft\RT_SYS_SITE_NAME);
       $router->add('/' . $config->sysEntry . 'devel', array(
-          'module' => 'Sys',
-          'controller' => 'Index',
-          'action' => 'devel'
+         'module'     => 'Sys',
+         'controller' => 'Index',
+         'action'     => 'devel'
       ))->setHostname(\Cntysoft\RT_SYS_SITE_NAME);
    }
 
@@ -50,10 +46,10 @@ class BootstrapListener extends BaseBootstrapListener
       $globalConfig = ConfigProxy::getGlobalConfig();
       $modules = $globalConfig->modules;
       $moduleHostNames = array(
-          "Provider" => \Cntysoft\RT_PROVIDER_SITE_NAME,
-          "Buyer" => \Cntysoft\RT_BUYER_SITE_NAME,
-          "Site" => \Cntysoft\RT_SITE_SUBDOMAIN,
-          "Pages" => \Cntysoft\RT_SYS_SITE_NAME
+         "Provider" => \Cntysoft\RT_PROVIDER_SITE_NAME,
+         "Buyer"    => \Cntysoft\RT_BUYER_SITE_NAME,
+         "Site"     => \Cntysoft\RT_SITE_SUBDOMAIN,
+         "Pages"    => \Cntysoft\RT_SYS_SITE_NAME
       );
       foreach ($modules as $mname => $module) {
          if ($module->hasConfig) {
@@ -70,6 +66,19 @@ class BootstrapListener extends BaseBootstrapListener
                $router->mount($group);
             }
          }
+      }
+
+      //如果是绑定的其他域名, 在这里直接进行路由的绑定
+      $siteDomain = Kernel\get_site_domain();
+      if ($siteDomain) {
+         $group = new RouterGroup();
+         $group->setHostname($siteDomain);
+         $mcfg = ConfigProxy::getModuleConfig('Site');
+         foreach ($mcfg->routes as $route) {
+            $group->add($route->rule, $route->option->toArray());
+         }
+
+         $router->mount($group);
       }
    }
 

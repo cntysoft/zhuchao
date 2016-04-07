@@ -11,6 +11,7 @@ use Cntysoft\Phalcon\Mvc\Application as BaseApplication;
 use ZhuChao\InitFlow\Listeners;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use App\ZhuChao\Provider\ListView as SiteMgr;
+use App\ZhuChao\Provider\DomainBinder;
 use Cntysoft\Kernel;
 /**
  * @package ZhuChao\Phalcon\Mvc
@@ -76,7 +77,7 @@ class Application extends BaseApplication
       $parts = explode('.', $domain);
 
       //判断是否访问的是主站
-      if (count($parts) > 3) {
+      if (\Cntysoft\RT_SYS_SITE_NAME !== $domain) {
          $siteId = -1;
          $siteName = array_shift($parts);
          //判断主域名是否正确
@@ -86,6 +87,18 @@ class Application extends BaseApplication
             $siteId = $siteMaper->getSiteIdBySubAttr($siteName);
             if ($siteId > 0) {
                Kernel\get_site_id($siteId);
+            } else {
+               if (SYS_RUNTIME_MODE == SYS_RUNTIME_MODE_DEBUG) {
+                  die('站点不存在');
+               }
+            }
+         } else {
+            //判断当前域名是否是已经绑定在平台上面
+            $siteMaper = new DomainBinder();
+            $siteId = $siteMaper->getSiteIdByDomain($domain);
+            if ($siteId > 0) {
+               Kernel\get_site_id($siteId);
+               Kernel\get_site_domain($domain);
             } else {
                if (SYS_RUNTIME_MODE == SYS_RUNTIME_MODE_DEBUG) {
                   die('站点不存在');

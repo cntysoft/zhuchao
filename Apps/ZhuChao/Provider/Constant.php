@@ -48,6 +48,7 @@ class Constant
    
    //用户网站的域名映射缓存键值
    const SITE_CACHE_KEY = 'site_name_map_cache_key';
+   const SITE_DOMAIN_CACHE_KEY = 'site_domain_map_cache_key';
    
    //企业类型
    const COMPANY_TYPE_GUOYOU = 1;  //国有企业

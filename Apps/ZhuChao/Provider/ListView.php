@@ -119,12 +119,12 @@ class ListView extends AbstractLib
          foreach ($set as $site) {
             $attr = $site->getSubAttr();
             if (isset($attr)) {
-               $map[$site->getSubAttr()] = $site->getId();
+               $map[$attr] = $site->getId();
             }
          }
          $cacher->save(Constant::SITE_CACHE_KEY, $map);
       }
       return isset($map[$name]) ? $map[$name] : -1;
    }
-
+   
 }

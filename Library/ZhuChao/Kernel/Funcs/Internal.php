@@ -235,6 +235,27 @@ function get_site_id($id = null)
    return $siteId;
 }
 
+/**
+ * 获取当前访问的商家站点的域名
+ * 
+ * @staticvar string $siteDomain
+ * @param string $domain
+ * @return sreing
+ */
+function get_site_domain($domain = null)
+{
+   static $siteDomain = null;
+   if (null == $siteDomain && isset($domain)) {
+      $siteDomain = $domain;
+   }
+   return $siteDomain;
+}
+
+/**
+ * 获取商家站点数据库名称
+ * 
+ * @return string
+ */
 function get_site_db_name()
 {
    return \Cntysoft\ZHUCHAO_SITE_DB_PREFIX . get_site_id();
