@@ -30,6 +30,7 @@ if(3 == $status){
 }
 $out.='<th class="pro_star">质量星级</th>
          <th class="pro_operate">操作</th>
+         <th class="pro_img">产品二维码</th>
       </tr>';
 if(count($list)){
    foreach ($list as $product){
@@ -41,6 +42,7 @@ if(count($list)){
       $comment = $product->getComment();
       $image = $this->getImageCdnUrl($product->getDefaultImage());
       $url = $this->getProductUrl($number);
+      $siteurl=$this->getSiteProductUrl($number);
       $star = $product->getStar();
       $out.='<tr class="prolist_list " fh-number="'.$number.'">
             <td class="pro-code">
@@ -68,6 +70,9 @@ if(count($list)){
                <a href="/product/change/'.$number.'.html">修改</a>
                <span>|</span>
                <a class="delete">删除</a>
+            </td>
+            <td class="pro_img ">
+            <div class="icon-erweima " style="font-size: 73px;"><div class="proerweima hide" style="width: 90px; height: 90px;" url="'.$siteurl.'" title="'.$name.'"></div></div>               
             </td>
          </tr>';
    }

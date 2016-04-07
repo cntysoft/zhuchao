@@ -37,18 +37,21 @@ Qs::Ds('商品数据源/商品分类信息', 'goodscate');
             <div class="top_nav_box hide">
                 <ul class="top_nav_list">
                     <li><a href="/">首页</a></li>
-                    <li><a href="/">产品搜索</a></li>
-                    <li><a href="/">企业搜索</a></li>
-                    <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/classifylist.html">全部分类</a></li>
+                    <!--<li><a href="/">产品搜索</a></li>-->
+                    <!--<li><a href="/">企业搜索</a></li>-->
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a></li>
+                    <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">个人中心</a></li>
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/laobanneican.html">老板内参</a></li>
                 </ul>
             </div>
         </div>
         <!--推荐商品-->
         <?php Qs::Label('商品类/分类商品列表', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 10)) ?>
         <div class="copy">
-				<p>增值电信业务经营许可证：豫 B2-20160047<br/>
-					 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME)*1000, 2) . 'ms'; ?></p>
-		  </div>
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
+        </div>
         <?php Qs::Sys('loadRequireJs', 'mall/product_list'); ?>
     </body>
 </html>

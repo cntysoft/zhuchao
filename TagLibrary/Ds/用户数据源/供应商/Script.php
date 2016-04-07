@@ -18,19 +18,21 @@ class ProviderInfo extends AbstractDsScript
       $details = $user->getProfile();
       $company = $user->getCompany();
       $subattr = $company ? $company->getSubAttr() : '';
+      $companyname = $company ? $company->getName() : '';
       $ret = array(
-         'name'       => $user->getName(),
-         'phone'      => $user->getPhone(),
-         'realName'   => $details->getRealName(),
-         'sex'        => $details->getSex(),
-         'department' => $details->getDepartment(),
-         'position'   => $details->getPosition(),
-         'email'      => $details->getEmail(),
-         'showPhone'  => $details->getShowPhone(),
-         'qq'         => $details->getQq(),
-         'tel'        => $details->getTel(),
-         'fax'        => $details->getFax(),
-         'subAttr'    => $subattr
+         'name'        => $user->getName(),
+         'phone'       => $user->getPhone(),
+         'realName'    => $details->getRealName(),
+         'sex'         => $details->getSex(),
+         'department'  => $details->getDepartment(),
+         'position'    => $details->getPosition(),
+         'email'       => $details->getEmail(),
+         'showPhone'   => $details->getShowPhone(),
+         'qq'          => $details->getQq(),
+         'tel'         => $details->getTel(),
+         'fax'         => $details->getFax(),
+         'subAttr'     => $subattr,
+         'companyname' => $companyname
       );
       return $ret;
    }

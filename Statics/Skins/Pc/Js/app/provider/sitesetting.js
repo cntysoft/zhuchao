@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common','layer'], function (WebUploader){
+define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'], function (WebUploader){
    $(function (){
       var uploadIndex = -1;
       var images = new Array();
@@ -21,15 +21,15 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common','layer']
             });
          }
       }
-      
+
       //提交 submit为保存,draft为生成草稿
       $('#submit').click(function (){
          var params = {};
          var imageLen = images.length;
          var banners = $('.img_wrap_div');
-         
+
          if(imageLen > 0){
-            $.each(banners, function(index, dom){
+            $.each(banners, function (index, dom){
                images[index][2] = $(dom).find('input').val();
             });
          }
@@ -37,8 +37,8 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common','layer']
          var keywords = $('#keywords').val();
          var description = $('#description').val();
          if(keywords.length < 1 || description.length < 1){
-             layer.msg('请输入相关信息后再进行保存！');
-             return false;
+            layer.msg('请输入相关信息后再进行保存！');
+            return false;
          }
          params['keywords'] = keywords;
          params['description'] = description;
@@ -76,7 +76,7 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common','layer']
       function showImg(){
          $('#uploadBtn').siblings('.img_wrap_div').remove();
          $.each(images, function (index, item){
-            $('#uploadBtn').before('<div class="img_wrap_div"><li><img fh-id="'+item[1]+'" src="' + item[0] + '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的正确网址" value="'+item[2]+'"></div>');
+            $('#uploadBtn').before('<div class="img_wrap_div"><li><img fh-id="' + item[1] + '" src="' + item[0] + '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的正确网址" value="' + item[2] + '"></div>');
          });
          if(images.length != 4){
             $('#uploadBtn').show();
@@ -148,6 +148,40 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common','layer']
             }
          });
       }
+      var imgData = '';
+      $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
+      if(!$('#companycode').hasClass('loaded')){
+         $('#companycode').qrcode({
+            render : "canvas",
+            height : 140,
+            width : 140,
+            text : $('#companycode').attr('url')
+         });
+         $('#companycode').addClass('loaded');
+         var canvas = $('#companycode canvas')[0];
+// 图片导出为 png 格式
+         var type = 'image/jpeg';
+         imgData = canvas.toDataURL(type);
+      }
+      /**
+       * 在本地进行文件保存
+       * @param  {String} data     要保存到本地的图片数据
+       * @param  {String} filename 文件名
+       */
+      var saveFile = function (data, filename){
+         var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+         save_link.href = data;
+         save_link.download = filename;
+
+         var event = document.createEvent('MouseEvents');
+         event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+         save_link.dispatchEvent(event);
+      };
+
+// download
+      $('#companycode').delegate('canvas', 'click', function (){
+         saveFile(imgData, $('#companycode').attr('company'));
+      });
 
    });
 });

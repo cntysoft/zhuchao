@@ -15,6 +15,7 @@ use Cntysoft\Kernel;
 class ProductList extends AbstractLabelScript
 {
    protected $outputNum = 0;
+   protected $curUser = null;
    protected $statusEnable = array(
       PRODUCT_CONST::PRODUCT_STATUS_PEEDING,
       PRODUCT_CONST::PRODUCT_STATUS_VERIFY,
@@ -154,14 +155,14 @@ class ProductList extends AbstractLabelScript
    
    public function getCurUser()
    {
-      return $this->appCaller->call(
-         PROVIDER_CONST::MODULE_NAME,
-         PROVIDER_CONST::APP_NAME,
-         PROVIDER_CONST::APP_API_MGR,
-         'getCurUser'
-      );
+      if (null == $this->curUser) {
+         $this->curUser = $this->appCaller->call(
+                 PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser'
+         );
+      }
+      return $this->curUser;
    }
-   
+
    /**
     * 获取cdn图片的地址
     * 
@@ -188,4 +189,18 @@ class ProductList extends AbstractLabelScript
    {
       return 'http://'.  \Cntysoft\RT_SYS_SITE_NAME.'/item/'.$number.'.html';
    }
+   /**
+    * 获取企业网站商品的网址
+    * 
+    * @param string number
+    * @return string
+    */
+   public function getSiteProductUrl($number)
+   {
+      $provider = $this->getCurUser();
+      $company = $provider->getCompany();
+      $subattr = $company ? $company->getSubAttr() : '';
+      return 'http://' . $subattr . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '/item/' . $number . '.html';
+   }
+
 }

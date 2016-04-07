@@ -39,6 +39,7 @@ define(['jquery', 'slick', 'app/company/common'], function (){
          return false;
       });
       var origin = window.location.href;
+      var proImgData = '';
       $('.pro_info div.icon-erweima').mouseenter(function (){
          if(!$('#qrcode2').hasClass('loaded')){
             $('#qrcode2').qrcode({
@@ -48,7 +49,30 @@ define(['jquery', 'slick', 'app/company/common'], function (){
                text : origin
             });
             $('#qrcode2').addClass('loaded');
+            var canvas = $('#qrcode2 canvas')[0];
+// 图片导出为 png 格式
+            var type = 'image/jpeg';
+            proImgData = canvas.toDataURL(type);
          }
+      });
+      /**
+       * 在本地进行文件保存
+       * @param  {String} data     要保存到本地的图片数据
+       * @param  {String} filename 文件名
+       */
+      var saveFile = function (data, filename){
+         var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+         save_link.href = data;
+         save_link.download = filename;
+
+         var event = document.createEvent('MouseEvents');
+         event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+         save_link.dispatchEvent(event);
+      };
+
+// download
+      $('#qrcode2').delegate('canvas', 'click', function (){
+         saveFile(proImgData, $('.pro_title span.title_name').text());
       });
       var small_img = $('.show_small').find('div.mainbd_hover');
       $('.next_btn').click(function (){

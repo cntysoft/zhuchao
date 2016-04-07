@@ -213,6 +213,38 @@ define(['jquery', 'Core', 'Front', 'layer','app/common'], function() {
                }
             });
         });
-     } 
-    });
+      }
+      $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
+      /**
+       * 在本地进行文件保存
+       * @param  {String} data     要保存到本地的图片数据
+       * @param  {String} filename 文件名
+       */
+      var saveFile = function (data, filename){
+         var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+         save_link.href = data;
+         save_link.download = filename;
+
+         var event = document.createEvent('MouseEvents');
+         event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+         save_link.dispatchEvent(event);
+      };
+
+// download
+      $('.icon-erweima').click(function (){
+         var $proerweima = $(this).find('div.proerweima');
+         var filename = $proerweima.attr('title');
+         if(!$proerweima.hasClass('loaded')){
+            $proerweima.qrcode({
+               render : "canvas",
+               height : 150,
+               width : 150,
+               text : $proerweima.attr('url')
+            });
+            $proerweima.addClass('loaded');
+         }
+         var imgData = $proerweima.find('canvas')[0].toDataURL('image/jpeg');
+         saveFile(imgData, filename);
+      });
+   });
 });

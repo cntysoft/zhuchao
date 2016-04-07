@@ -87,16 +87,16 @@ $articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
 foreach ($articles as $article) {
    $out .= '<li>
 		  <a href="/article/' . $article->getId() . '.html">
-				<img src="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 80, 50) . '" alt=""/>
+				<img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImageFromCdn($article->getDefaultPicUrl()[0], 80, 50) . '" alt=""/>
 				<p class="new_text">' . $article->getTitle() . '</p>
 				<p class="new_date tr">' . date('Y-m-d', $article->getInputTime()) . '</p>
 		  </a>
 	 </li>';
 }
 $out .= '</ul>';
-$goodsLists = $this->getGoodsList(array(), false, 'hits DESC', 0, 4);
+$goodsLists = $this->getGoodsList(array(), false, 'id DESC', 0, 4);
 $out .= '<div class="module_title">
-	 <a>热门商品</a>
+	 <a>最新商品</a>
 </div><div class="card_box">
 	 <!--card3-->
 	 <ul class="card3">';
@@ -127,5 +127,4 @@ Qs::Label('商品类/商品内容页', array('renderTpl' => 'Mobile_IndexFloors'
 //Qs::Label('商品类/商品内容页', array('renderTpl' => 'Mobile_IndexFloors','identifier' => 'diangongdianliao','floor' => 6));
 //Qs::Label('商品类/商品内容页', array('renderTpl' => 'Mobile_IndexFloors','identifier' => 'jiegoucailiao','floor' => 7));
 //Qs::Label('商品类/商品内容页', array('renderTpl' => 'Mobile_IndexFloors','identifier' => 'dingzhi','floor' => 8));
-
 ?>

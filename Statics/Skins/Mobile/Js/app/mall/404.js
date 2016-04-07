@@ -6,11 +6,11 @@ define(['zepto'], function (){
       //导航
       $('.header_right').not('.header_right_icon_search').tap(function (){
          var that = $('.top_nav_box');
-         if(that.hasClass('in')){
-            $(that).removeClass('in');
+         if(that.hasClass('hide')){
+            $(that).removeClass('hide');
             return false;
          } else{
-            $(that).addClass('in');
+            $(that).addClass('hide');
             return false;
          }
       });

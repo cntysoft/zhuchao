@@ -67,6 +67,12 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 <h1 class="items_title">基本设置</h1>
                 <div class="form_box">
                     <div class="form_list clearfix">
+                        <label><em class="main">*</em>店铺二维码:</label>
+                        <div id="companycode" company="<?php Qs::DsField('provider', 'companyname') ?>" url="http://<?php echo Qs::DsField('provider', 'subAttr', true) . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN ?>" style="margin-left: 120px;width: 250px;height: 150px">
+                            <div style="margin-top: 5px;float: right;font-size: 15px"><label>点击图片下载</label></div>
+                        </div>
+                    </div>
+                    <div class="form_list clearfix">
                         <label><em class="main">*</em>SEO描述:</label>
                         <textarea style="resize:none;width:410px;height:76px;"  class="checkField" id="description" required><?php Qs::DsField('setting', 'description') ?></textarea>
                     </div>
@@ -105,37 +111,47 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     </div>
                     <div class="form_list clearfix nav_box">
                         <label><em class="main">*</em>导航栏配置:</label>
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'product', true);
-                                if ($bool) {
-                                   echo 'checked';
-                                } ?> name="product" class="product_nav">产品中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'case', true);
-                                if ($bool) {
-                                   echo 'checked';
-                                } ?> name="case" class="case_nav">案例中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'news', true);
-                                if ($bool) {
-                                   echo 'checked';
-                                } ?> name="news" class="news_nav">新闻中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'zhaopin', true);
-                                if ($bool) {
-                                   echo 'checked';
-                                } ?> name="zhaopin" class="zhaopin_nav">招聘中心
-                        <input type="checkbox" <?php $bool = Qs::DsField('setting', 'aboutus', true);
-        if ($bool) {
-           echo 'checked';
-        } ?> name="aboutus" class="aboutus_nav">关于我们                        
+                        <input type="checkbox" <?php
+                        $bool = Qs::DsField('setting', 'product', true);
+                        if ($bool) {
+                           echo 'checked';
+                        }
+                        ?> name="product" class="product_nav">产品中心
+                        <input type="checkbox" <?php
+                        $bool = Qs::DsField('setting', 'case', true);
+                        if ($bool) {
+                           echo 'checked';
+                        }
+                        ?> name="case" class="case_nav">案例中心
+                        <input type="checkbox" <?php
+                        $bool = Qs::DsField('setting', 'news', true);
+                        if ($bool) {
+                           echo 'checked';
+                        }
+                        ?> name="news" class="news_nav">新闻中心
+                        <input type="checkbox" <?php
+                        $bool = Qs::DsField('setting', 'zhaopin', true);
+                        if ($bool) {
+                           echo 'checked';
+                        }
+                        ?> name="zhaopin" class="zhaopin_nav">招聘中心
+                        <input type="checkbox" <?php
+                        $bool = Qs::DsField('setting', 'aboutus', true);
+                        if ($bool) {
+                           echo 'checked';
+                        }
+                        ?> name="aboutus" class="aboutus_nav">关于我们                        
                         <p class="tips">挂选栏目即表示在自己的站点导航栏显示该栏目！</p>
                     </div>
                     <div class="form_list tc">
                         <div class="action_btn" style="width: 600px">
-                            <a class="main_bg submit" id="submit">保存</a>
+                            <a class="main_bg submit" id="submit">保存</a>                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-<?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
-<?php Qs::Sys('loadRequireJs', 'provider/sitesetting') ?>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
+        <?php Qs::Sys('loadRequireJs', 'provider/sitesetting') ?>
     </body>
 </html>

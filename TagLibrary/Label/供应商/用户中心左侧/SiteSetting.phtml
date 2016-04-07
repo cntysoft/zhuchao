@@ -45,7 +45,11 @@ switch ($routeInfo['action']) {
 
 $out = '<div class="items_wrap fl">
          <dl>
-             <dt><i class="icon-shangou"></i>店铺设置</dt>
+             <dt><i class="icon-shangou"></i>店铺设置&nbsp;&nbsp;&nbsp;<a class="mainbg_hover_light" target="_blank" href="http://';
+?>
+<?php $out.= Qs::DsField('provider', 'subAttr', true) . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN ?>
+<?php
+$out.='">我的店铺</a></dt>
              <dd><a class="mainbg_hover_light ' . $cls9 . '" href="/site/setting.html">基本设置</a></dd>
              <dd><a class="mainbg_hover_light ' . $cls1 . '" href="/site/news/1.html">店铺新闻</a></dd>
              <dd><a class="mainbg_hover_light ' . $cls2 . '" href="/site/job/1.html">招聘信息</a></dd>

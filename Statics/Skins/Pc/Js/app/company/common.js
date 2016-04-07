@@ -25,6 +25,7 @@ define(['jquery', 'module/totop', 'Front', 'Core', 'lazyload'], function (){
          }
       });
       var origin = window.location.origin;
+      var imgData = '';
       setTimeout(function (){
          $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
       }, 1);
@@ -37,7 +38,30 @@ define(['jquery', 'module/totop', 'Front', 'Core', 'lazyload'], function (){
                text : origin
             });
             $('#qrcode1').addClass('loaded');
+            var canvas = $('#qrcode1 canvas')[0];
+// 图片导出为 png 格式
+            var type = 'image/jpeg';
+            imgData = canvas.toDataURL(type);
          }
+      });
+      /**
+       * 在本地进行文件保存
+       * @param  {String} data     要保存到本地的图片数据
+       * @param  {String} filename 文件名
+       */
+      var saveFile = function (data, filename){
+         var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+         save_link.href = data;
+         save_link.download = filename;
+
+         var event = document.createEvent('MouseEvents');
+         event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+         save_link.dispatchEvent(event);
+      };
+
+// download
+      $('#qrcode1').delegate('canvas', 'click', function (){
+         saveFile(imgData, $('.l_top_left span').text());
       });
       var shouchang = $('.header_top a.logout').attr('followed');
       if(shouchang == 1){
@@ -65,21 +89,6 @@ define(['jquery', 'module/totop', 'Front', 'Core', 'lazyload'], function (){
                }
             }
          });
-         var origin = window.location.origin;
-         setTimeout(function (){
-            $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
-         }, 1);
-         $('.l_top_right').mouseenter(function (){
-            if(!$('#qrcode1').hasClass('loaded')){
-               $('#qrcode1').qrcode({
-                  render : "canvas",
-                  height : 130,
-                  width : 130,
-                  text : origin
-               });
-               $('#qrcode1').addClass('loaded');
-            }
-         }, true);
       });
 
       $('.login_btn').click(function (){
