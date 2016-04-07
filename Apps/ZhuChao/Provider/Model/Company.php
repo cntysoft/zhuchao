@@ -29,6 +29,8 @@ class Company extends BaseModel
    protected $inputTime;
    protected $profileId;
    protected $subAttr;
+   protected $pcTpl;
+   protected $mobileTpl;
    protected $rid;
 
    public function getSource()
@@ -143,6 +145,16 @@ class Company extends BaseModel
    {
       return (int) $this->profileId;
    }
+   
+   public function getPcTpl()
+   {
+      return (int)$this->pcTpl;
+   }
+   
+   public function getMobileTpl()
+   {
+      return (int)$this->MobileTpl;
+   }
 
    public function setId($id)
    {
@@ -238,6 +250,16 @@ class Company extends BaseModel
    {
       $this->subAttr = $subAttr;
       return $this;
+   }
+   
+   public function setPcTpl($pcTpl)
+   {
+      $this->pcTpl = (int)$pcTpl;
+   }
+   
+   public function setMobileTpl($mobileTpl)
+   {
+      $this->mobileTpl = (int)$mobileTpl;
    }
 
 }

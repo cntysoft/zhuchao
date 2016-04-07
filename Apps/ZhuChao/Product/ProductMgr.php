@@ -200,10 +200,18 @@ class ProductMgr extends AbstractLib
             $newRefs = array_diff($nowRefs, $oldRefs);
             $refManager = new RefManager();
             foreach ($deleteRefs as $ref) {
-               $refManager->removeFileRef($ref);
+               try{
+                  $refManager->removeFileRef($ref);
+               } catch (\Exception $ex) {
+                  continue;
+               }
             }
             foreach ($newRefs as $ref) {
-               $refManager->confirmFileRef($ref);
+               try{
+                  $refManager->confirmFileRef($ref);
+               } catch (\Exception $ex) {
+                  continue;
+               }
             }
          }
 

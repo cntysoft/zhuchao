@@ -115,15 +115,9 @@ class ComMgr extends AbstractHandler
          $params['providerId'] = 0;
       }
       if (!$params['logo']) {
-         $params['logo'] = 'default';
+         $params['logo'] = '';
       }
 
-      if (0 !== $params['providerId']) {
-         $provider = $this->getAppCaller()->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'getProvider', array($params['providerId']));
-         $params['subAttr'] = $provider->getName();
-      }else {
-         $params['subAttr'] = null;
-      }
       return $this->getAppCaller()->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'addProviderCompany', array($params));
    }
 

@@ -264,6 +264,10 @@ class Mgr extends AbstractLib
    public function addProviderCompany($data)
    {
       unset($data['id']);
+      if($this->checkSubAttr($data['subAttr'])){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_SUBATTR_EXIST'), $errorType->code('E_COMPANY_SUBATTR_EXIST')), $this->getErrorTypeContext());
+      }
       $companyInfo = new CompanyModel();
       $requires = $companyInfo->getRequireFields(array('id', 'profileId'));
       $data += array(
@@ -318,9 +322,14 @@ class Mgr extends AbstractLib
       if (!$providercom) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-                 $errorType->msg('E_PROVIDER_COMPANY_NOT_EXIST', $id), $errorType->code('E_PROVIDER_COMPANY_NOT_EXIST')
-                 ), $this->getErrorTypeContext());
+            $errorType->msg('E_PROVIDER_COMPANY_NOT_EXIST', $id), $errorType->code('E_PROVIDER_COMPANY_NOT_EXIST')
+            ), $this->getErrorTypeContext());
       }
+      if($data['subAttr'] != $providercom->getSubAttr() && $this->checkSubAttr($data['subAttr'])){
+         $errorType = $this->getErrorType();
+         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_SUBATTR_EXIST'), $errorType->code('E_COMPANY_SUBATTR_EXIST')), $this->getErrorTypeContext());
+      }
+
       $profile = $providercom->getProfile();
       $profileDataFields = $profile->getDataFields();
       $profileData = array();

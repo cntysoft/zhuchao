@@ -42,7 +42,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'app/comm
          }
          Cntysoft.Front.callApi('User', 'updateBuyer', params, function (response){
             if(!response.status){
-               layer.alert('当前用户名不可用！', {
+               layer.alert('用户信息修改失败！', {
                   time : 1000
                });
             } else{

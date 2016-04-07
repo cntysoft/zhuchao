@@ -110,6 +110,9 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
          this.currentCompany = response.data;
          this.getForm().setValues(this.currentCompany);
          this.iconSrc = this.currentCompany.logo;
+         if(this.currentCompany.subAttr){
+            this.subAttrRef.setDisabled(false);
+         }
          this.imageRef.setSrc(ZC.getZhuChaoImageUrl(this.currentCompany.logo));
       }
    },
@@ -118,6 +121,8 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
       if(this.mode == ZhuChao.Const.MODIFY_MODE){
          this.gotoModifyMode(true);
          this.loadNode(this.targetLoadId);
+      }else{
+         this.gotoNewMode(true);
       }
    },
    gotoModifyMode : function (force)
@@ -197,8 +202,6 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
    getFormConfig : function ()
    {
       var F = this.LANG_TEXT.FIELD;
-      var M = this.LANG_TEXT.MSG;
-      var d = new Date();
       return [{
             fieldLabel : F.NAME,
             allowBlank : false,
@@ -209,6 +212,40 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
                },
                scope : this
             }
+         }, {
+            fieldLabel : F.SUBATTR,
+            allowBlank : false,
+            name : 'subAttr',
+            disabled : true,
+            listeners : {
+               afterrender : function (subAttr){
+                  this.subAttrRef = subAttr;
+               },
+               scope : this
+            }
+         }, {
+            xtype : 'numberfield',
+            minValue : 1,
+            fieldLabel : F.TEMPLATE_PC,
+            allowBlank : false,
+            name : 'pcTpl'
+         }, {
+            xtype : 'numberfield',
+            minValue : 1,
+            fieldLabel : F.TEMPLATE_MOBILE,
+            allowBlank : false,
+            name : 'mobileTpl'
+         }, {
+            xtype : 'radiogroup',
+            fieldLabel : F.STATUS,
+            items : [{
+                  boxLabel : F.STATUS_NAME.NORMAL,
+                  name : 'status',
+                  inputValue : 1,
+                  checked : true
+               }, {boxLabel : F.STATUS_NAME.LOCK,
+                  name : 'status',
+                  inputValue : 2}]
          }, {
             xtype : 'combo',
             name : 'providerId',
@@ -318,10 +355,12 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
                      scope : this
                   }
                }]
-         }, {fieldLabel : F.ADDR,
+         }, {
+            fieldLabel : F.ADDR,
             allowBlank : false,
             name : 'address'
-         }, {xtype : 'fieldcontainer',
+         }, {
+            xtype : 'fieldcontainer',
             colspan : 2,
             fieldLabel : F.IMG,
             layout : {type : 'hbox',
@@ -396,37 +435,29 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
                   {"code" : "5", "name" : F.TRADEMODE_NAME.ZONGHE}
                ]
             })
-         }, {fieldLabel : F.POSTCODE,
+         }, {
+            fieldLabel : F.POSTCODE,
             name : 'postCode'
-         }, {fieldLabel : F.WEBSITE,
+         }, {
+            fieldLabel : F.WEBSITE,
             name : 'website'
-         }, {xtype : 'textarea',
+         }, {
+            xtype : 'textarea',
             fieldLabel : F.DESCRIPTION,
             allowBlank : false,
             name : 'description',
             width : 730,
             height : 80
-         }, {xtype : 'textarea',
+         }, {
+            xtype : 'textarea',
             allowBlank : false,
             fieldLabel : F.PRODUCTS,
             emptyText : F.PEMPTY_TEXT,
-            regex : /([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[0-9a-zA-Z_])*(,)([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[0-9a-zA-Z_])*/,
+            regex : /([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[0-9a-zA-Z_]|,)+/,
             regexText : F.PEMPTY_TEXT,
             name : 'products',
             width : 730,
             height : 80
-         }, {xtype : 'radiogroup',
-            colspan : 2,
-            columns : 2,
-            fieldLabel : F.STATUS,
-            items : [{
-                  boxLabel : F.STATUS_NAME.NORMAL,
-                  name : 'status',
-                  inputValue : 1,
-                  checked : true
-               }, {boxLabel : F.STATUS_NAME.LOCK,
-                  name : 'status',
-                  inputValue : 2}]
          }, {xtype : 'textarea',
             colspan : 2,
             fieldLabel : F.CUSTOMER,

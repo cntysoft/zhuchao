@@ -1,7 +1,4 @@
-define(['jquery', 'Core', 'Front', 'layer', 'app/common'], function (){
-   layer.config({
-      extend: 'layer.ext.js'
-   });
+define(['jquery', 'Core', 'Front', 'layer', 'app/common', 'layer.ext'], function (){
    $(document).ready(function (){
       var location = window.location, type = 1;
       init();

@@ -135,8 +135,11 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
                PROFILE : '详细信息',
                ID : '企业ID',
                NAME : '企业名',
+               SUBATTR : '二级域名',
+               TEMPLATE_PC : '电脑模板',
+               TEMPLATE_MOBILE : '手机模板',
                PCD : '企业地址',
-               PROVIDER : '供应商',
+               PROVIDER : '所属供应商',
                PRODUCTS : '主营产品',
                PEMPTY_TEXT : '产品间以\',\'隔开',
                TYPE : '企业类型',
@@ -196,7 +199,8 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
             ERROR_MAP : {
                "App/ZhuChao/Provider/Mgr" : {
                   10001 : '手机号码已经存在！',
-                  10002 : '用户名称已经存在！'
+                  10002 : '用户名称已经存在！',
+                  10015 : '店铺二级域名已经存在'
                }
             }
          }

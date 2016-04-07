@@ -150,7 +150,7 @@ class BuyerMgr extends AbstractLib
             $errorType->msg('E_BUYER_USER_NOT_EXIST', $id), $errorType->code('E_BUYER_USER_NOT_EXIST')
          ), $this->getErrorTypeContext());
       }
-
+      
       if(isset($params['name']) && $params['name'] && $params['name'] != $buyer->getName() && $this->checkNameExist($params['name'])){
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
@@ -194,13 +194,21 @@ class BuyerMgr extends AbstractLib
             $refManager = new RefManager();
             if(count($deleteFileRefs)){
                foreach($deleteFileRefs as $df){
-                  $refManager->removeFileRef($df);
+                  try{
+                     $refManager->removeFileRef($df);
+                  } catch (\Exception $ex) {
+                     continue;
+                  }
                }
             }
             
             if(count($addFileRefs)){
                foreach($addFileRefs as $af){
-                  $refManager->confirmFileRef($af);
+                  try{
+                     $refManager->confirmFileRef($af);
+                  } catch (\Exception $ex) {
+                     continue;
+                  }
                }
             }
          }
