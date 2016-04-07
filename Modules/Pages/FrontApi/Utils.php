@@ -71,7 +71,8 @@ class Utils extends AbstractScript
             'time'   => date('Y-m-d', $value->getInputTime()),
             'hits'   => $value->getHits(),
             'image'  => \Cntysoft\Kernel\get_image_cdn_url($value->getDefaultPicUrl()[0], 110, 110),
-            'id'     => $value->getId()
+            'id'     => $value->getId(),
+            'intro'  => $value->getIntro()
          );
          $ret[] = $children;
       }

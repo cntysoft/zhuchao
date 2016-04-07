@@ -336,9 +336,14 @@ class Mgr extends AbstractLib
          $profile->assignBySetter($profileData);
          $profile->save();
          if ($data['rid'] != $providercom->getRid()) {
-            $fileRefMgr = $this->di->get('FileRefManager');
-            $fileRefMgr->removeFileRef($providercom->getRid());
-            $fileRefMgr->confirmFileRef($data['rid']);
+            if ($providercom->getRid()) {
+               $fileRefMgr = $this->di->get('FileRefManager');
+               $fileRefMgr->removeFileRef($providercom->getRid());
+               $fileRefMgr->confirmFileRef($data['rid']);
+            } else {
+               $fileRefMgr = $this->di->get('FileRefManager');
+               $fileRefMgr->confirmFileRef($data['rid']);
+            }
          }
          $providercom->assignBySetter($data);
          $providercom->save();

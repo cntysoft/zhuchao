@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+Qs::Ds('栏目数据源/栏目SEO', 'category');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>公告中心-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
+        <meta name="description" content="<?php Qs::DsField('category', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('mall/gonggao.css', 'mall/style.css')); ?>
+    </head>
+    <body>
+        <!--logo，搜索,名称-->
+        <div class="headbar w clearfix main_bg">
+            <!--logo-->
+            <div class="header_left fl">
+                <span class="icon_logo">
+                    <img src="/Statics/Skins/Mobile/Images/icon/icon_logo.png" alt="logo"/>
+                </span>
+            </div>
+            <!--搜索框-->
+            <div class="header_title">
+                <div class="search_input_box">
+                    <i class="icon-sousuo"></i>
+                    <input id="search_input" class="search_input" type="text" required placeholder="搜索产品"/>
+                </div>
+            </div>
+            <!--更多按钮-->
+            <div class="header_right fr">
+                <span class="more_icon"><i class="icon-xiala"></i></span>
+            </div>
+            <!--导航-->
+            <div class="top_nav_box hide">
+                <ul class="top_nav_list">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/">产品搜索</a></li>
+                    <li><a href="/">企业搜索</a></li>
+                    <li><a href="<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>">会员中心</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="search_box">
+            <div class="headbar">
+                <!--取消-->
+                <div class="header_back_box fl">
+                    <a class="header_back"><i class="icon-cuowu"></i></a>
+                </div>
+                <!--更多按钮-->
+                <div class="header_right header_right_icon_search fr">
+                    <span class="search_icon"><i class="icon-sousuo"></i></span>
+                </div>
+                <!--搜索框-->
+                <div class="header_title">
+                    <div class="search_input_box">
+                        <input class="search_input_real search_input" type="text" required placeholder="搜索产品"/>
+                    </div>
+                </div>
+            </div>
+            <div class="search_hot">
+                <h3>大家都在搜</h3>
+                <ul class="search_hot_key" style="padding-top:12px;">
+                    <li>壁纸</li>
+                    <li>木床</li>
+                    <li>橱柜</li>
+                    <li>马桶</li>
+                    <li>台灯</li>
+                    <li>枕头</li>
+                    <li>开关</li>
+                    <li>衣柜</li>
+                    <li>窗帘</li>
+                    <li>餐桌</li>
+                    <li>定制衣柜</li>
+                    <li>浴缸</li>
+                </ul>
+            </div>
+        </div>
+        <div class="gonggao_list">
+            
+        </div>
+        <?php Qs::Sys('loadRequireJs', 'mall/gonggao'); ?>
+    </body>
+</html>
