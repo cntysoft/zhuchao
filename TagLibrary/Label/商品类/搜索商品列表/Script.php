@@ -106,14 +106,12 @@ class Search extends AbstractLabelScript
 
       if (isset($keys['价格'])){
          $price = preg_split('/[^0-9]+/', $keys['价格']);
-
-         if(!isset($price[1]) && strpos($keys['价格'], '以上')){
+         
+         if((!isset($price[1]) || empty($price[1])) && strpos($keys['价格'], '以上')){
             $price[1] = 99999999;
-         }else if(!isset($price[1]) && strpos($keys['价格'], '以下')){
+         }else if((!isset($price[1]) || empty($price[1])) && strpos($keys['价格'], '以下')){
             $price[1] = $price[0];
             $price[0] = 0;
-         }else{
-            $price[1] = 99999999;
          }
          $keys['price'] = array(
             0 => (int)$price[0],
@@ -121,7 +119,7 @@ class Search extends AbstractLabelScript
          );
          unset($keys['价格']);
       }
-
+      
       if(isset($keys['keyword'])){
          $ret['keyword'] = $keys['keyword'];
          unset($keys['keyword']);

@@ -7,6 +7,7 @@ define(['jquery', 'lazyload','app/common', 'search'], function (){
       if(search){
          var params = search.substring(1);
          var cond = params.split('&');
+         addQuery(cond);
          addRoute(cond);
          addSort(cond);
       }
@@ -38,14 +39,49 @@ define(['jquery', 'lazyload','app/common', 'search'], function (){
             var id = arr[0];
             var data = arr[1];
             if('keyword' != id && 'sort' != id && 'enableprice' != id){
-               $('.list_item.choosed dd').append('<span fh-name="' + id + '" fh-data="' + data + '">' + data + '<i class="icon-smallcuo"></i></span>');
+               var has = false;
+               var $hasspan = null;
+               $('.list_item.choosed dd span').each(function (){
+                  if($(this).attr('fh-name') === id){
+                     has = true;
+                     $hasspan = $(this);
+                  }
+               });
+               if(has){
+                  $hasspan.html(data + '<i class="icon-smallcuo"></i>');
+                  $hasspan.attr('fh-name', id);
+                  $hasspan.attr('fh-data', data);
+               } else{
+                  $('.list_item.choosed dd').append('<span fh-name="' + id + '" fh-data="' + data + '">' + data + '<i class="icon-smallcuo"></i></span>');
+               }
             }
+         });
+      }
+      //增加query 选中-------------------------------------
+      function addQuery(params){
+         $.each(params, function (index, item){
+            var arr = item.split('=');
+            var id = arr[0];
+            var data = arr[1];
+            $.each($('.list_item a[index=' + id + ']'), function (){
+               var span = $(this);
+               if(span.attr('data') == data){
+                  span.addClass('main');
+               }
+            });
          });
       }
       //筛选条件点击------------------------------------------
       $('.list_item dd a').click(function (){
-         addRoute([$(this).attr('index') + '=' + $(this).attr('data')]);
-         redirectUrl();
+         var item = $(this);
+         if(!item.hasClass('main')){
+            addRoute([$(this).attr('index') + '=' + $(this).attr('data')]);
+            item.parent().siblings().find('a').removeClass('main');
+            item.addClass('main');
+            redirectUrl();
+         }
+//         addRoute([$(this).attr('index') + '=' + $(this).attr('data')]);
+//         redirectUrl();
       });
       //重定向网址---------------------------------------
       function redirectUrl(){
