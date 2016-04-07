@@ -1,0 +1,1 @@
+UpgradeEnv.dbQuery("ALTER TABLE `app_site_cmmgr_general_info` CHANGE `editor` `editor` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '编辑', CHANGE `author` `author` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '作者'");
