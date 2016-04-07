@@ -14,20 +14,23 @@ class ProviderInfo extends AbstractDsScript
 {
    public function load()
    {
-      $user = $this->appCaller->call(UserContent::MODULE_NAME, UserContent::APP_NAME, UserContent::APP_API_MGR, 'getCurUser',array());
+      $user = $this->appCaller->call(UserContent::MODULE_NAME, UserContent::APP_NAME, UserContent::APP_API_MGR, 'getCurUser', array());
       $details = $user->getProfile();
+      $company = $user->getCompany();
+      $subattr = $company ? $company->getSubAttr() : '';
       $ret = array(
-         'name'=>$user->getName(),
-         'phone'=>$user->getPhone(),
-         'realName'=>$details->getRealName(),
-         'sex' => $details->getSex(),
+         'name'       => $user->getName(),
+         'phone'      => $user->getPhone(),
+         'realName'   => $details->getRealName(),
+         'sex'        => $details->getSex(),
          'department' => $details->getDepartment(),
-         'position' => $details->getPosition(),
-         'email' => $details->getEmail(),
-         'showPhone' => $details->getShowPhone(),
-         'qq' => $details->getQq(),
-         'tel' => $details->getTel(),
-         'fax' => $details->getFax()
+         'position'   => $details->getPosition(),
+         'email'      => $details->getEmail(),
+         'showPhone'  => $details->getShowPhone(),
+         'qq'         => $details->getQq(),
+         'tel'        => $details->getTel(),
+         'fax'        => $details->getFax(),
+         'subAttr'    => $subattr
       );
       return $ret;
    }

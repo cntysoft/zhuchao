@@ -122,8 +122,8 @@ define(['jquery', 'Front', 'app/common', 'search'], function (){
          if(!$codeimg.hasClass('loaded')){
             $codeimg.qrcode({
                render : "canvas",
-               height : 140,
-               width : 140,
+               height : 120,
+               width : 120,
                text : origin
             });
             $codeimg.addClass('loaded');

@@ -41,8 +41,8 @@ class Nav extends AbstractLabelScript
     */
    public function isCompany()
    {
-      $iscompany = $this->invokeParams['company'];
-      if ($iscompany && $iscompany == 'companysite') {
+      $iscompany = $this->invokeParams;
+      if (isset($iscompany['company']) && $iscompany['company'] == 'companysite') {
          return 'hide';
       } else {
          return '';
