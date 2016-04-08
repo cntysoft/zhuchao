@@ -3,10 +3,6 @@ $goodsInfo = $this->getProductByNumber();
 $goodsDetail = $goodsInfo->getDetail();
 $category = $goodsInfo->getCategory();
 $goodStatus = $goodsInfo->getStatus();
-$statusText = '';
-if ($goodStatus != 3) {
-   $statusText = ' hide';
-}
 $name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
 
 $out = '<div class="site conwidth">
@@ -87,10 +83,15 @@ if ($company->getSubAttr()) {
                 </div>';
 }
 $out .= '</div>
-            <div class="pro_connect">
-                <div class="connect_btn' . $statusText . '"><i class="icon-dianhua2"></i>联系方式</div>
-                <div class="online_btn zaixian_xunjia' . $statusText . '"><i class="icon-tubiao"></i>在线询价</div>
-            </div>
+            <div class="pro_connect">';
+if ($goodStatus == 3) {
+   $out .= '<div class="connect_btn"><i class="icon-dianhua2"></i>联系方式</div>
+                <div class="online_btn zaixian_xunjia"><i class="icon-tubiao"></i>在线询价</div>';
+} else {
+   $out .= '<div class="online_btn" style="background:#999;margin-top:50px;">不在出售状态</div>';
+}
+
+$out .= '</div>
         </div>
     </div>';
 $out .= '<div class="small_img clearfix">' . $smallImage . '</div>';

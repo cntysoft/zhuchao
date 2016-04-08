@@ -6,7 +6,7 @@ define(['jquery', 'slick', 'layer', 'app/common', 'search'], function (){
         // banner
         $('.banner_box').slick({
             dots : true,
-            arrows : false,
+            arrows : true,
             dotsClass : 'banner_bottom_btn',
             easing : 'linear',
             lazyLoad : 'ondemand'

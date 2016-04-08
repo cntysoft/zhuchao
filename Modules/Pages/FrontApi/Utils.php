@@ -12,6 +12,7 @@ use App\Site\Content\Constant as CONTENT_CONST;
 use App\Site\Category\Constant as CATEGORY_CONST;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY;
+use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 /**
  * 处理系统上传
  *
@@ -242,6 +243,16 @@ class Utils extends AbstractScript
          $url = 'Statics/Skins/Pc/Images/lazyicon.png';
       }
       return \Cntysoft\Kernel\get_image_cdn_url_operate($url, array('w' => $width, 'h' => $height));
+   }
+
+   /**
+    * 判断是否登录
+    * @return bool
+    */
+   public function isLogin()
+   {
+      return $this->appCaller->call(
+                      BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'isLogin');
    }
 
 }

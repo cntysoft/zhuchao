@@ -43,7 +43,7 @@ class NotifyController extends AbstractController
       }
    }
 
-   public function logout()
+   public function logoutAction()
    {
       $this->getAppCaller()->call(
               BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'logout');

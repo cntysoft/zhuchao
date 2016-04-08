@@ -252,10 +252,6 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
    "ALTER TABLE `app_zhuchao_product_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
-   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('product','Nav',1);",
-   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('case','Nav',1);",
-   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('news','Nav',1);",
-   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('zhaopin','Nav',1);",
-   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('aboutus','Nav',1);",
+   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('product','Nav',1),('case','Nav',1),('news','Nav',1),('zhaopin','Nav',1),('aboutus','Nav',1);",
    "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('Banner','Site','a:0:{}');",
 );
