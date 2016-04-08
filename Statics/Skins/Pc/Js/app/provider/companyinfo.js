@@ -99,7 +99,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
         function createUploader(){
             //处理上传
             uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-                pick : '.img_plus'
+                pick :{ id:'.img_plus',multiple:false}
             }));
             //logo上传成功
             uploadProductImg.on('uploadSuccess', function (file, response){

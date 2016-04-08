@@ -13,7 +13,7 @@ $out = '<ul class="right_list_box main_hover">';
 foreach ($items as $index => $info) {
    $out .= ' <li class="right_li"><a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a></li>';
 }
-$this->invokeParams['outputNum'] = 2;
+$this->outputNum = 3;
 $items2 = $this->getArticleList();
 $out.='</ul>';
 foreach ($items2 as $index => $info2) {

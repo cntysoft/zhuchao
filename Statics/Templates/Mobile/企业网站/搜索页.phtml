@@ -17,7 +17,25 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
     </head>
     <body>
         <!--头部-->
-        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
+        <div class="header">
+            <div class="header_left">
+                <span class="icon-fenlei"></span>
+            </div>
+            <div class="header_title"><?php Qs::DsField('CP', 'name') ?></div>
+        </div>
+        <!--导航-->
+        <div class="classify">
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/productlist/1.html">产品中心</a></li>
+                <li><a href="/newscenter.html">新闻中心</a></li>
+                <li><a href="/caselist/1.html">成功案例</a></li>
+                <li><a href="/joinus.html">招聘中心</a></li>
+                <li><a href="/about.html">关于我们</a></li>
+                <!--        <li><a href="connect.html">联系我们</a></li>
+                        <li><a href="zizhi.html">企业资质</a></li>-->
+            </ul>
+        </div>
         <!--内容-->
         <div class="l_main">
             <div class="m_search">

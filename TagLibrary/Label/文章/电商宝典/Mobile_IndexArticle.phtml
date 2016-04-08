@@ -7,7 +7,7 @@ foreach ($items as $index => $info) {
    $defpic = $info->getDefaultPicUrl()[0];
    $infourl = $this->getInfoUrl($info->getId());
    if ($defpic) {
-      $imgurl = '<img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 110, 110) . '" alt=""/>';
+      $imgurl = '<img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($defpic, 110, 68) . '" alt=""/>';
    } else {
       $imgcls = 'no_img';
    }

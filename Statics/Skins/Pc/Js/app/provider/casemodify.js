@@ -140,7 +140,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'Core', 'Front'], fun
             };
             //处理上传
             uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-                pick : '#uploadBtn'
+                pick :{ id: '#uploadBtn',multiple:false}
             }));
             //上传商品图片
             uploadProductImg.on('beforeFileQueued', function (){

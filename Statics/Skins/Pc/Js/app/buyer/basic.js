@@ -112,7 +112,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'app/comm
       function createWebuploader()
       {
          uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-            pick : '.img_plus'
+             pick :{ id: '.img_plus',multiple:false}
          }));
 
          //商品图片上传成功

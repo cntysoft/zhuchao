@@ -105,7 +105,7 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
         function createUploader(){
             //处理上传
             uploadImg = WebUploader.create($.extend(uploaderConfig, {
-                pick : '.img_plus'
+               pick :{ id:'.img_plus',multiple:false}
             }));
             //logo上传成功
             uploadImg.on('uploadSuccess', function (file, response){

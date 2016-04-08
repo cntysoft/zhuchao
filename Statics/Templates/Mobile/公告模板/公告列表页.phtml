@@ -41,7 +41,7 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
                     <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/zhuchaoschool.html">筑巢商学院</a></li>
                     <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/laobanneican.html">老板内参</a></li>
                     <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a></li>
-                    <!--<li><a href="http://<\?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/about/company.html">关于我们</a></li>-->
+                    <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/about/company.html">关于我们</a></li>
                     <li><a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/zhuchaogonggao/1.html">筑巢公告</a></li>
                 </ul>
             </div>
@@ -83,6 +83,10 @@ Qs::Ds('栏目数据源/栏目SEO', 'category');
         </div>
         <div class="gonggao_list">
 
+        </div>
+        <div class="copy">
+            <p>增值电信业务经营许可证：豫 B2-20160047<br/>
+                &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
         </div>
         <?php Qs::Sys('loadRequireJs', 'mall/gonggao'); ?>
     </body>

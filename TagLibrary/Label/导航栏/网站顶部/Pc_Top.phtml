@@ -28,7 +28,13 @@
             <li class="line"></li>
             <li><a >我是 <i class="icon-xiangxiajiantou"></i></a>
                 <div class="down_list">
-                    <a href="http://<?php echo \Cntysoft\RT_BUYER_SITE_NAME ?>">采购商</a>
+                    <?php
+                    if (!$isLogin) {
+                       echo '<a class="buyerin" hrefdata="http://' . \Cntysoft\RT_BUYER_SITE_NAME . '/login.html">采购商</a>';
+                    } else {
+                       echo '<a class="buyerin" href="http://' . \Cntysoft\RT_BUYER_SITE_NAME . '">采购商</a>';
+                    }
+                    ?>                    
                     <a href="http://<?php echo \Cntysoft\RT_PROVIDER_SITE_NAME ?>">供应商</a>
                 </div></li>
             <li class="line"></li>
