@@ -1,4 +1,4 @@
-define(['exports', 'zepto','lazyload'], function (exports){
+define(['exports', 'zepto', 'lazyload'], function (exports){
     $(function (){
         /**
          * 返回上一页
@@ -12,7 +12,6 @@ define(['exports', 'zepto','lazyload'], function (exports){
                 window.location = window.history.back();
             }
         }
-
         /**
          * 返回顶部
          */
@@ -62,6 +61,14 @@ define(['exports', 'zepto','lazyload'], function (exports){
             $(window).scrollTop($(window).scrollTop() + 1);
             $(window).scrollTop($(window).scrollTop() - 1);
         });
+        //统计
+        var _hmt = _hmt || [];
+        (function (){
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?150b10a8e39ef8fb51d20dc9293353fe";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
         exports.goBack = goBack;
     });
 });

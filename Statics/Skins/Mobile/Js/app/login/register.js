@@ -1,4 +1,4 @@
-define(['validate', 'zepto', 'layer', 'Core', 'Front'], function (validate){
+define(['validate', 'zepto', 'layer', 'Core', 'Front','app/common'], function (validate){
     $(function (){
         var imgCodeUrl = '/registerchkcode?v_';
         var codeType = 1;

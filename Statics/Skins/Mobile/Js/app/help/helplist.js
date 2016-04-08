@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/19.
  */
-define(['zepto', 'module/totop', 'Front'], function (){
+define(['zepto', 'app/common', 'Front'], function (){
    $(function (){
         var url = window.location.pathname.split('/');
         var ajaxParams = {};

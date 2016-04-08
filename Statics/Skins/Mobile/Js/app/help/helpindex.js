@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/19.
  */
-define(['zepto', 'module/totop', 'Front'], function (){
+define(['zepto', 'app/common', 'Front'], function (){
    $(function (){
       //增加文章阅读量
       var url = window.location.pathname.split('/');

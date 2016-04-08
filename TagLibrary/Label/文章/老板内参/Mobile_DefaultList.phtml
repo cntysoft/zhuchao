@@ -19,6 +19,7 @@ foreach ($items as $key => $value) {
       $infourl = $this->getInfoUrl($value->getId());
       $out1.='<div class="module_ad_list swiper-slide">
                     <a href="' . $infourl . '">
+                       <h2>'.$value->getTitle().'</h2>
                         <div class="module_ad_img swiper-lazy" data-background="' . $this->getImgcdn($defpic, 320, 160) . '" style="background-image:none;">
                             <div class="module_ad_box"></div>
                         </div>

@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/18.
  */
-define(['app/common', 'module/totop', 'Core', 'Front'], function (common){
+define(['app/common', 'Core', 'Front'], function (common){
    $(function (){
       //导航
       $('.more_icon').click(function (){

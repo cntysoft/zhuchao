@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/16.
  */
-define(['zepto', 'swiper', 'module/totop', 'Front','module/mall_nav'], function (){
+define(['zepto', 'swiper', 'app/common', 'Front','module/mall_nav'], function (){
    $(function (){
       var ajaxParams = {};
       var page = 1;

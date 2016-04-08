@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/16.
  */
-define(['zepto', 'swiper', 'module/company_classify', 'module/totop'], function (){
+define(['zepto', 'swiper', 'module/company_classify', 'app/common'], function (){
    $(function (){
       var banner = new Swiper('.banner', {
          pagination : '.swiper-pagination',

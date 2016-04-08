@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/17.
  */
-define(['zepto', 'swiper', 'Front', 'search', 'module/totop', 'module/mall_nav'], function (){
+define(['zepto', 'swiper', 'Front', 'search', 'app/common', 'module/mall_nav'], function (){
     $(function (){
         var number = window.location.pathname.split('/')[2].split('.')[0];
         //增加点击量

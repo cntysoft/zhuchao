@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/1/6.
  */
-define(['zepto', 'module/totop', 'search','module/mall_nav'], function (){
+define(['zepto', 'app/common', 'search','module/mall_nav'], function (){
    
    //头部导航样式
    $(function (){

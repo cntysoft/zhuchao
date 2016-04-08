@@ -1,4 +1,4 @@
-define(['zepto', 'layer', 'Core', 'Front'], function (){
+define(['zepto', 'layer', 'Core', 'Front','app/common'], function (){
     $(function (){
         $('.submit_btn').tap(function (event){
             event.preventDefault();

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/21.
  */
-define(['zepto', 'module/mall_nav', 'module/totop'], function (){
+define(['zepto', 'module/mall_nav', 'app/common'], function (){
    $(function (){
       $('.l_nav span').tap(function (){
          $('.his_lis').hide();

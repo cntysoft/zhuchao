@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/16.
  */
-define(['zepto', 'swiper', 'search', 'module/totop','module/mall_nav'], function (){
+define(['zepto', 'swiper', 'search', 'app/common','module/mall_nav'], function (){
    $(function (){
       //广告
       var Ad = new Swiper('.module_ad3', {

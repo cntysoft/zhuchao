@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/4/7.
  */
-define(['zepto', 'module/mall_nav', 'module/totop', 'search', 'Front'], function (){
+define(['zepto', 'module/mall_nav', 'app/common', 'search', 'Front'], function (){
     $(function (){
         var url = window.location.pathname.split('/');
         var ajaxParams = {};

@@ -14,6 +14,7 @@ foreach ($items as $index => $info) {
    $url = $this->getInfoUrl($info->getId());
    $out .= '<div class="module_ad_list swiper-slide">
                     <a href="' . $url . '">
+                        <h2>'.$info->getTitle().'</h2>
                         <div class="module_ad_img swiper-lazy" data-background="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 320, 160) . '">
                             <div class="module_ad_box"></div>
                         </div>

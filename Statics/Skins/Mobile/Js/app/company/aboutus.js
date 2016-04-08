@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/17.
  */
-define(['zepto', 'module/company_classify', 'module/totop', 'lazyload'], function (){
+define(['zepto', 'module/company_classify', 'app/common', 'lazyload'], function (){
    $(function (){
       $('.module_title').not('.about_us').click(function (){
          if($(this).hasClass('active')){
