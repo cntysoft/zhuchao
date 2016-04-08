@@ -4,7 +4,6 @@ use App\Yunzhan\Content\Constant;
 Qs::Ds('内容数据源/企业标准内容模型', 'CS', array('newsid' => Constant::INFO_INTRO_ID));
 Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('内容数据源/店铺设置', 'setting');
-Qs::Ds('内容数据源/店铺设置', 'CSS');
 ?>
 <html lang="en">
     <head>
@@ -27,32 +26,33 @@ Qs::Ds('内容数据源/店铺设置', 'CSS');
             <div class="banner">
                 <div class="swiper-wrapper">
                     <?php
-                    $banners = QS::DsField('CSS', 'banner', true);
-                    foreach ($banners as $banner) {
-                       if (false === strpos($banner['image'], '@')) {
-                          $image = $banner['image'] . '@640w_200h_1e_1c.src';
-                       } else {
-                          if (strpos($banner['image'], '.src')) {
-                             $ret = explode('.src', $banner['image']);
-                             $image = $ret[0] . '_200h' . '.src';
-                          } else {
-                             $image = $ret[0] . '_200h' . '.src';
-                          }
-                       }
+                    $banners = QS::DsField('setting', 'banner', true);
+                    if(count($banners)){
+                       foreach ($banners as $banner) {
+                           if (false === strpos($banner['image'], '@')) {
+                              $image = $banner['image'] . '@640w_200h_1e_1c.src';
+                           } else {
+                              if (strpos($banner['image'], '.src')) {
+                                 $ret = explode('.src', $banner['image']);
+                                 $image = $ret[0] . '_200h' . '.src';
+                              } else {
+                                 $image = $ret[0] . '_200h' . '.src';
+                              }
+                           }
 
-                       $url = $banner['url'];
-                       if ($url) {
-                          echo '<div class="swiper-slide">
-                                    <a href="' . $url . '"><img src="' . $image . '" alt=""></a>
-                                </div>';
-                       } else {
-                          echo '<div class="swiper-slide">
-                                    <a><img src="' . $image . '" alt=""></a>
-                                </div>';
-                       }
+                           $url = $banner['url'];
+                           if ($url) {
+                              echo '<div class="swiper-slide">
+                                        <a href="' . $url . '"><img src="' . $image . '" alt=""></a>
+                                    </div>';
+                           } else {
+                              echo '<div class="swiper-slide">
+                                        <a><img src="' . $image . '" alt=""></a>
+                                    </div>';
+                           }
+                        }
                     }
                     ?>
-
                 </div>
                 <div class="swiper-pagination"></div>
             </div>

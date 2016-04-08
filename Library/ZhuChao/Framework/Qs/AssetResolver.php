@@ -67,7 +67,7 @@ class AssetResolver implements AssetResolverInterface
     */
    public function getJsBasePath()
    {
-      $basePath = StdHtmlPath::getSkinPath();
+      $basePath = $this->getAssetBasePath();
       $deviceType = $this->detactDeviceType();
       return $basePath . '/' . $deviceType . '/' . Cntysoft\JS;
    }

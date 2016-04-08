@@ -198,7 +198,12 @@ class Site extends AbstractScript
       $oldBanners = $this->appCaller->call(
          SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemByKey', array('Banner')
       );
-      $oldBanners = unserialize($oldBanners[0]->getValue());
+      
+      if(count($oldBanners)){
+         $oldBanners = unserialize($oldBanners[0]->getValue());
+      }else{
+         $oldBanners = array();
+      }
       
       $newFileRefs = $oldFileRefs = array();
       

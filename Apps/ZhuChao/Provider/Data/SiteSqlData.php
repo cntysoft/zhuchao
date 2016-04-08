@@ -257,5 +257,5 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
    "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('news','Nav',1);",
    "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('zhaopin','Nav',1);",
    "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('aboutus','Nav',1);",
-   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('Banner','Site','');",
+   "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('Banner','Site','a:0:{}');",
 );
