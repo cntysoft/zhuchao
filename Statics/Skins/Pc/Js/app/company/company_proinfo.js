@@ -72,7 +72,10 @@ define(['jquery', 'slick', 'app/company/common'], function (){
 
 // download
       $('#qrcode2').delegate('canvas', 'click', function (){
-         saveFile(proImgData, $('.pro_title span.title_name').text());
+         layer.confirm('您确定要下载该产品二维码吗?', function (index){
+            layer.close(index);
+            saveFile(proImgData, $('.pro_title span.title_name').text());
+         });
       });
       var small_img = $('.show_small').find('div.mainbd_hover');
       $('.next_btn').click(function (){

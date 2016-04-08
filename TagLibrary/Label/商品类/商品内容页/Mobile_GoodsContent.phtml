@@ -77,10 +77,12 @@ $out .= '<div class="item_box">
 		  <ul class="pro_details_box">';
 foreach ($attribute as $key => $value) {
    foreach ($value as $attrs => $attr) {
-      $out .= '<li class="item">
+      if (strlen($attr)) {
+         $out .= '<li class="item">
 					 <div class="key">' . $attrs . '：</div>
 					 <div class="val">' . $attr . '</div>
 				</li>';
+      }
    }
 }
 $out .= '</ul>

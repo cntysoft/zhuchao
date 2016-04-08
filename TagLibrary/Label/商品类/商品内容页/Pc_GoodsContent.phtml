@@ -5,7 +5,7 @@ $category = $goodsInfo->getCategory();
 $goodStatus = $goodsInfo->getStatus();
 $statusText = '';
 if ($goodStatus != 3) {
-	$statusText = ' hide';
+   $statusText = ' hide';
 }
 $name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
 
@@ -47,7 +47,7 @@ $out .= $bigImage . '</div>
 if ($this->checkLogin() && $this->checkCollect($goodsInfo->getId())) {
    $out .= ' <span class="collect_btn"><em>|</em><i class="main icon-shoucang"></i>已收藏</span>';
 } else {
-	$out .= ' <span class="collect_btn can_collect"><em>|</em><i class="main icon-shoucang"></i>收藏</span>';
+   $out .= ' <span class="collect_btn can_collect"><em>|</em><i class="main icon-shoucang"></i>收藏</span>';
 }
 $out .= '<div class="pro_code">
                     <i class="icon-erweima"></i>
@@ -100,10 +100,10 @@ $out .= '<div class="l_pro_info clearfix">
             <h3 class="main_bg">相关信息</h3>';
 $cid = $goodsInfo->getCategoryId();
 $cond = array(
-	'categoryId = ?1 AND status = 3',
-	'bind' => array(
-		1 => $cid
-	)
+   'categoryId = ?1 AND status = 3',
+   'bind' => array(
+      1 => $cid
+   )
 );
 $goodsLists = $this->getGoodsList($cond, false, 'id DESC', 0, 5);
 foreach ($goodsLists as $goodsList) {
@@ -135,10 +135,12 @@ foreach ($attribute as $key => $value) {
 					 <th colspan="2">' . $key . '</th>
 				</tr>';
       foreach ($value as $attrs => $attr) {
-         $out .= '<tr>
+         if (strlen($attr)) {
+            $out .= '<tr>
                    <td class="c_key">' . $attrs . '</td>
                    <td>' . $attr . '</td>
                </tr>';
+         }
       }
    }
 }

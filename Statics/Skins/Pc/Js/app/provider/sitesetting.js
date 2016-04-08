@@ -91,7 +91,7 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'
             auto : true,
             dnd : '#uploadBtn',
             threads : 1,
-            duplicate:true,
+            duplicate : true,
             accept : {
                title : 'Images',
                extensions : 'gif,jpg,jpeg,bmp,png',
@@ -131,7 +131,7 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'
          };
          //处理上传
          uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-            pick :{ id:'#uploadBtn',multiple:false}
+            pick : {id : '#uploadBtn', multiple : false}
          }));
          //上传商品图片
          uploadProductImg.on('beforeFileQueued', function (){
@@ -180,7 +180,10 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'
 
 // download
       $('#companycode').delegate('canvas', 'click', function (){
-         saveFile(imgData, $('#companycode').attr('company'));
+         layer.confirm('您确定要下载店铺二维码吗?', function (index){
+            layer.close(index);
+            saveFile(imgData, $('#companycode').attr('company'));
+         });
       });
 
    });

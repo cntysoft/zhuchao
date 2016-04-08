@@ -11,7 +11,7 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
          }
       });
       
-      $('.category_search').click(function(){
+      $('.icon-sousuo').click(function(){
          var key = $('.search_key').val();
          if(key){
             if($search.is(':hidden')){
@@ -46,7 +46,7 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
          }
       });
       
-      $search.delegate('li', 'click', function(){
+      $search.delegate('li label', 'click', function(){
          $('.selected_tips p').html('选择的类目是：'+$(this).find('span').html());
       });
       

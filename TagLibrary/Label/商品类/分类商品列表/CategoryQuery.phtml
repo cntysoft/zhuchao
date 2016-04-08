@@ -18,7 +18,7 @@ foreach ($queryAttrs as $index => $queryAttr) {
    $attr = $queryAttr->getOptValues();
    $attrs = explode(',', $attr);
    $out .= '<dl class="list_item';
-   if ($index == 1) {
+   if ($index == 1 || $totalquery == 1) {
       $out .= ' no_bb';
    } else if ($index > 1) {
       $out .=$index == ($totalquery - 1) ? ' no_bb hide' : ' hide';

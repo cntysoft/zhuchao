@@ -11,7 +11,11 @@ foreach ($searchInfo['docs'] as $goods) {
    $attrslist = $goodsdetail->getAttribute();
    $attrvalue = array();
    foreach ($attrslist as $attrs) {
-      $attrvalue+=$attrs;
+      foreach ($attrs as $key1 => $val1) {
+         if (strlen($val1)) {
+            $attrvalue+=array($key1 => $val1);
+         }
+      }
    }
    $url = $this->getProductUrl($goods['number']);
    $time = date('Y-m-d', $company->getInputTime());

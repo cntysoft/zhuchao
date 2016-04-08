@@ -51,10 +51,12 @@ $attribute = $goodsDetail->getAttribute();
 foreach ($attribute as $key => $value) {
    if (count($value)) {
       foreach ($value as $attrs => $attr) {
-         $out .= '<tr>
+         if (strlen($attr)) {
+            $out .= '<tr>
                    <td class="item">' . $attrs . '</td>                      
                    <td class="item_info">' . $attr . '</td>
                </tr>';
+         }
       }
    }
 }
