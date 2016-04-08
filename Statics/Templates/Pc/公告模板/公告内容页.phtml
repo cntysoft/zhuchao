@@ -11,7 +11,7 @@ Qs::Ds('栏目数据源/文章SEO', 'article');
         <meta name="keywords" content="<?php Qs::DsField('article', 'keyword') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/notice.css')); ?>
+        <?php Qs::Sys('loadCss', array('mall/style.css', 'mall/notice.css','layer.ext.css')); ?>
     </head>
     <body>
         <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
@@ -28,7 +28,7 @@ Qs::Ds('栏目数据源/文章SEO', 'article');
             <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_NoticeRight','outputNum' => 6)) ?>
         </div>
         <?php Qs::Label('静态类/网站底部');
-        Qs::Sys('loadRequireJs', 'mall/notice');
+        Qs::Sys('loadRequireJs', 'mall/noticeDetail');
         ?>
     </body>
 </html>

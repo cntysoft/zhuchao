@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/11.
  */
-define(['jquery', 'Front','app/common'], function (){
+define(['jquery', 'Front','app/common','layer','layer.ext'], function (){
     $(function (){
         var url = window.location.pathname.split('/');
         if(url[1] == 'article'){
@@ -42,6 +42,41 @@ define(['jquery', 'Front','app/common'], function (){
                     $(this).addClass('main');
                 }
             });
+        }
+         //文章图片预览
+        initContentPhotos('.help_content,.right_inner');
+
+        function initContentPhotos(select){
+
+            var imgs = $(select).find('img');
+            var ret = {
+                title : '图片预览',
+                data : []
+            }
+            $.each(imgs, function (index, item){
+                var info = {pid : index};
+                if($(item).attr('data-original')){
+                    info.src = $(item).attr('data-original');
+                } else{
+                    info.src = $(item).attr('src');
+                }
+                ret.data.push(info);
+            });
+            $.each(imgs, function (index, item){
+                ret.start = index;
+                $(item).click(function (){
+                    layer.photos({
+                        photos : {
+                            title : '图片预览',
+                            data : [],
+                            start:index,
+                            data:ret.data
+                        },
+                        shift : 0
+                    });
+                });
+            });
+            return ret;
         }
     });
 });

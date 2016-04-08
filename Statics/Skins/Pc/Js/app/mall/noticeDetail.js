@@ -1,23 +1,15 @@
-/*
- * Cntysoft Cloud Software Team
- * 
- * @author wql <wql1211608804@163.com>
- * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
- * @license   Expression $license is undefined on line 6, column 17 in Templates/ClientSide/javascript.js.
- */
-define(['jquery', 'app/company/common','layer','layer.ext'], function (){
-   $(function (){
-      if($('.l_main').attr('newsid')){
-         Cntysoft.Front.callApi('Utils', 'addArticleHits',
-         {
-            id : $('.l_main').attr('newsid')
-         }, function (response){
-         }
-         , this);
-      }
-       //文章图片预览
-        initContentPhotos('.news_detail');
-
+define(['jquery', 'module/share', 'Front', 'app/common','layer','layer.ext'], function (){
+    $(function (){
+        var url = window.location.pathname.split('/');
+        if(url[1] == 'article'){
+            var itemId = url[2].split('.')[0];
+            Cntysoft.Front.callApi('Utils', 'addArticleHits', {
+                id : itemId
+            }, function (response){
+            }, this);
+        }
+        //文章图片预览
+        initContentPhotos('.module_content');
         function initContentPhotos(select){
 
             var imgs = $(select).find('img');
@@ -41,7 +33,7 @@ define(['jquery', 'app/company/common','layer','layer.ext'], function (){
                         photos : {
                             title : '图片预览',
                             data : [],
-                            start:index,
+                            start : index,
                             data:ret.data
                         },
                         shift : 0
@@ -50,7 +42,6 @@ define(['jquery', 'app/company/common','layer','layer.ext'], function (){
             });
             return ret;
         }
-   });
+
+    });
 });
-
-

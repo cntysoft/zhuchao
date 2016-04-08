@@ -32,9 +32,40 @@ define(['jquery', 'app/common', 'layer', 'layer.ext'], function (){
             }
             , this);
         }
-        layer.photos({
-            photos : '.summary_inner',
-            shift : 0
-        });
+        //文章图片预览
+        initContentPhotos('.summary_inner');
+
+        function initContentPhotos(select){
+
+            var imgs = $(select).find('img');
+            var ret = {
+                title : '图片预览',
+                data : []
+            }
+            $.each(imgs, function (index, item){
+                var info = {pid : index};
+                if($(item).attr('data-original')){
+                    info.src = $(item).attr('data-original');
+                } else{
+                    info.src = $(item).attr('src');
+                }
+                ret.data.push(info);
+            });
+            $.each(imgs, function (index, item){
+                ret.start = index;
+                $(item).click(function (){
+                    layer.photos({
+                        photos : {
+                            title : '图片预览',
+                            data : [],
+                            start:index,
+                            data:ret.data
+                        },
+                        shift : 0
+                    });
+                });
+            });
+            return ret;
+        }
     });
 });
