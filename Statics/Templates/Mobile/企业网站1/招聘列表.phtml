@@ -1,0 +1,32 @@
+<!DOCTYPE html><?php
+Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('内容数据源/店铺设置', 'setting');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+        <title><?php Qs::DsField('CP', 'name') ?>－招聘中心-<?php Qs::DsField('CP', 'description') ?></title>
+        <meta name="description" content="<?php Qs::DsField('setting', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('company/style.css', 'company/employ.css')) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
+        <!--内容-->
+        <div class="l_main">
+            <!--新闻动态-->
+            <?php
+            Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_ZhaoPin', 'nodeIdentifier' => array('joinus'), 'titleLength' => 34, 'introLength' => 20, 'outputNum' => 6, 'enablePage' => false, 'listSubNode' => true))
+            ?>           
+        </div>
+        <?php
+        Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
+        Qs::Sys('loadRequireJs', 'company/employ')
+        ?>
+    </body>
+</html>

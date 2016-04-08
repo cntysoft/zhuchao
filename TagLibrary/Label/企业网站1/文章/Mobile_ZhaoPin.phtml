@@ -1,0 +1,30 @@
+<?php
+$infoList = $this->execute();
+if (!$infoList) {
+   echo "<script>window.location = '/'</script>";
+   return false;
+}
+$items = is_array($infoList) ? $infoList[0] : $infoList;
+$out = ' <div class="module_title" ident="' . $this->getRouteNodeIdentifier() . '">
+                <i></i><span>招聘中心</span><i></i>
+            </div>';
+foreach ($items as $index => $item) {
+   $infourl = $this->getInfoUrl($item->getId());
+   $itemInfo = $this->getContent($item->getId());
+   $out .=' <div class="employ_ele">
+                <h3><i></i>' . $item->getTitle() . '<a href="' . $infourl . '">详细>></a></h3>
+                <div class="employ_detail">
+                    <p>
+                        任职部门： ' . $itemInfo->getDepartment() . '
+                    </p>
+                    <p>
+                        招聘人数：' . $itemInfo->getNumber() . '
+                    </p> 
+                    <p>
+                        发布时间：' . date('Y-m-d', $item->getInputTime()) . '
+                    </p>
+                </div>
+            </div>';
+}
+echo $out;
+?>

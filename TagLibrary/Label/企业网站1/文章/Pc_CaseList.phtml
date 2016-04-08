@@ -1,0 +1,71 @@
+<?php
+$out = '<div class="l_main conwidth">
+	 <div class="case_list">';
+$limit = (int) $this->invokeParams['outputNum'];
+$offset = (((int) $this->getRoute()['pageId']) - 1) * $limit;
+$lists = $this->getCaseList(true, $offset, $limit);
+foreach ($lists['items'] as $list) {
+	$out .= '<div class="case_ele">
+				<a href="/casedetail/' . $list->getId() . '.html" class="case_img"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgcdn($list->getDefaultPicUrl()[0], 360, 226) . '" alt="' . $list->getTitle() . '"></a>
+				<h4 class="main_hover"><a href="/casedetail/' . $list->getId() . '.html" class="" >' . $list->getTitle() . '</a></h4>
+				<p class="case_info">
+					 ' . $list->getIntro() . '
+				</p>
+				<p class="case_time">发表时间：' . date('Y-m-d', $list->getInputTime()) . '</p>
+		  </div>';
+}
+$out .= '</div>';
+
+$out .= '<div class="page_list"><p>';
+$totalPage = ceil($lists['total'] / $limit);
+if (0 != $totalPage) {
+	$out .= '<a href="/caselist/1.html">首页</a>';
+}
+$pageId = (int) $this->getRouteInfo()['pageId'];
+if ($pageId != 1) {
+	$out .= '<a href="/caselist/' . ($pageId - 1) . '.html">&lt; 上一页</a>';
+}
+if ($totalPage <= 6) {
+	for ($i = 1; $i <= $totalPage; $i++) {
+		if ($i != $pageId) {
+			$out .= '<a class="" href="/caselist/' . $i . '.html">' . $i . '</a>';
+		} else {
+			$out .= '<a class="main_bg main_border" href="/caselist/' . $i . '.html">' . $i . '</a>';
+		}
+	}
+} else {
+	if ($pageId >= 3 && $pageId < $totalPage - 3) {
+		for ($i = $pageId - 2; $i <= $pageId + 3; $i++) {
+			if ($i != $pageId) {
+				$out .= '<a class="" href="/caselist/' . $i . '.html">' . $i . '</a>';
+			} else {
+				$out .= '<a class="main_bg main_border" href="/caselist/' . $i . '.html">' . $i . '</a>';
+			}
+		}
+	} else if ($pageId < 3) {
+		for ($i = 1; $i <= 6; $i++) {
+			if ($i != $pageId) {
+				$out .= '<a class="" href="/caselist/' . $i . '.html">' . $i . '</a>';
+			} else {
+				$out .= '<a class="main_bg main_border" href="/caselist/' . $i . '.html">' . $i . '</a>';
+			}
+		}
+	} else if ($pageId >= $totalPage - 3) {
+		for ($i = $totalPage - 5; $i <= $totalPage; $i++) {
+			if ($i != $pageId) {
+				$out .= '<a class="" href="/caselist/' . $i . '.html">' . $i . '</a>';
+			} else {
+				$out .= '<a class="main_bg main_border" href="/caselist/' . $i . '.html">' . $i . '</a>';
+			}
+		}
+	}
+}
+if ($pageId != $totalPage && $totalPage != 0) {
+	$out .= '<a href="/caselist/' . ($pageId + 1) . '.html">下一页 &gt;</a>';
+}
+if (0 != $totalPage) {
+	$out .= '<a href="/caselist/' . $totalPage . '.html">尾页</a>';
+}
+$out .= '</p></div></div>';
+echo $out;
+?>

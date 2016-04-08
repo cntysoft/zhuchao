@@ -1,0 +1,30 @@
+<?php
+$node0 = $this->getDefalutNode($this->getRouteNodeIdentifier());
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+   $subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $node0->getNodeIdentifier());
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$infoList = $this->execute();
+if (!$infoList) {
+   echo "<script>window.location = '/'</script>";
+   return false;
+}
+$items = is_array($infoList) ? $infoList[0] : $infoList;
+$out = '<div class="news_list" ident="' . implode(',', $subindetifiers) . '">';
+$out1 = '';
+foreach ($items as $index => $item) {
+   $defpic = $item->getDefaultPicUrl()[0];
+   $infourl = $this->getInfoUrl($item->getId());
+   $imgurl = $this->getImgcdn($defpic, 96, 60);
+   $out .='<div class="news_ele">
+                    <a href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $imgurl . '" alt=""></a>
+                    <h4><a href="' . $infourl . '">' . $item->getTitle() . '</a></h4>
+                    <p><span class="fl">' . date('Y-m-d', $item->getInputTime()) . '</span><span class="fr">浏览（' . $item->getHits() . '）</span></p>
+                </div>';
+}
+
+echo $out . '</div>';
+?>
