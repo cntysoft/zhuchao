@@ -146,7 +146,7 @@ foreach ($articles as $article) {
    $i++;
 }
 $out .= '</div>';
-$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds, 2, 4);
+$articles = $this->getInfoListByNodeAndStatusNotPage($nodeIds, 2, 5);
 foreach ($articles as $article) {
    $out .= '<div class="about_news_list">
                 <h4><a href="/article/' . $article->getId() . '.html"><i></i>' . $article->getTitle() . '</a></h4>

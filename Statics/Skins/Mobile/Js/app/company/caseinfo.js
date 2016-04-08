@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/4/1.
  */
-define(['app/common','zepto', 'module/company_classify', 'swiper'], function (common){
+define(['app/common', 'zepto', 'module/company_classify', 'swiper', 'Front'], function (common){
    $(function (){
       //广告
       var $len = $('.swiper-slide').length;
@@ -18,7 +18,7 @@ define(['app/common','zepto', 'module/company_classify', 'swiper'], function (co
          }
       });
       $('.goback').click(function (){
-          common.goBack('/');
+         common.goBack('/caselist/1.html');
       });
       if($('.l_main').attr('newsid')){
          Cntysoft.Front.callApi('Utils', 'addArticleHits',
