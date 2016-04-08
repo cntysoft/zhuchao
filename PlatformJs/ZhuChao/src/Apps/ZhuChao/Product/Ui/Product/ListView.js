@@ -26,7 +26,10 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
     * @inheritdoc
     */
    panelType : 'ListView',
-   currentPhone : null,
+   currentName : null,
+   loadedCid : 0,
+   companyId : 0,
+   status : 0,
    /*
     * @property Ext.menu.Menu
     */
@@ -49,6 +52,9 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
       config = config || {};
       this.LANG_TEXT = this.GET_LANG_TEXT('UI.PRODUCT.LIST_VIEW');
       this.applyConstraintConfig(config);
+      if('targetLoadedCid' in config){
+         this.loadedCid = config.targetLoadedCid;
+      }
       this.callParent([config]);
    },
    applyConstraintConfig : function (config)
@@ -68,11 +74,12 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
          columns : [
             {text : COLS.ID, dataIndex : 'id', width : 80, resizable : false, menuDisabled : true},
             {text : COLS.NAME, dataIndex : 'name', flex : 1, resizable : false, sortable : false, menuDisabled : true},
-            {text : COLS.NUMBER, dataIndex : 'number', width : 300, resizable : false, sortable : false, menuDisabled : true},
+            {text : COLS.COMPANY_NAME, dataIndex : 'companyName', flex : 1, resizable : false, sortable : false, menuDisabled : true},
+            {text : COLS.NUMBER, dataIndex : 'number', width : 220, resizable : false, sortable : false, menuDisabled : true},
             {text : COLS.PRICE, dataIndex : 'price', width : 200, resizable : false, sortable : false, menuDisabled : true},
-            {text : COLS.GRADE, dataIndex : 'grade', width : 240, resizable : false, sortable : false, menuDisabled : true},
-            {text : COLS.INPUT_TIME, dataIndex : 'inputTime', width : 240, resizable : false, sortable : false, menuDisabled : true},
-            {text : COLS.STATUS, dataIndex : 'status', width : 140, resizable : false, sortable : false, menuDisabled : true, renderer : Ext.bind(this.statusRenderer, this)}
+            {text : COLS.GRADE, dataIndex : 'grade', width : 70, resizable : false, sortable : false, menuDisabled : true},
+            {text : COLS.INPUT_TIME, dataIndex : 'inputTime', width : 200, resizable : false, sortable : false, menuDisabled : true},
+            {text : COLS.STATUS, dataIndex : 'status', width : 100, resizable : false, sortable : false, menuDisabled : true, renderer : Ext.bind(this.statusRenderer, this)}
          ],
          store : store,
          bbar : Ext.create('Ext.PagingToolbar', {
@@ -110,10 +117,66 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
          }, {
             xtype : 'tbfill'
          }, {
+            xtype : 'combo',
+            fieldLabel : '状态',
+            store : Ext.create('Ext.data.Store', {
+               fields : ['text', 'status'],
+               data : [
+                  { text : '不限', status : '0'},
+                  { text : '审核中', status : '2'},
+                  { text : '已审核', status : '3'},
+                  { text : '已拒绝', status : '4'},
+                  { text : '已下架', status : '5'},
+                  { text : '已删除', status : '6'}
+               ]
+            }),
+            value : 0,
+            queryMode : 'local',
+            displayField : 'text',
+            valueField : 'status',
+            listeners : {
+               afterrender : function(status)
+               {
+                  this.statusRef = status;
+               },
+               select : function(combo, record){
+                  this.status = record.get('status');
+               },
+               scope : this
+            }
+         }, {
+            xtype : 'combo',
+            fieldLabel : '商家名称',
+            store : this.createCompanyStore(),
+            queryMode : 'local',
+            displayField : 'text',
+            valueField : 'companyId',
+            value : 0,
+            listeners : {
+               focus : function (combo)
+               {
+                  combo.expand();
+               },
+               afterrender : function(company)
+               {
+                  this.companyRef = company;
+               },
+               select : function(combo, record){
+                  this.companyId = record.get('companyId');
+               },
+               scope : this
+            }
+         }, {
             xtype : 'textfield',
             width : 400,
             name : 'name',
-            emptyText : L.TIP
+            emptyText : L.TIP,
+            listeners : {
+               change : function(textfield, newValue){
+                  this.currentName = newValue;
+               },
+               scope : this
+            }
          }, {
             xtype : 'button',
             text : L.QUERY,
@@ -123,6 +186,32 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
             }
          }];
    },
+   
+   createCompanyStore : function ()
+   {
+      return new Ext.data.Store({
+         autoLoad : true,
+         fields : [
+            {name : 'companyId', type : 'integer', persist : false},
+            {name : 'text', type : 'string', persist : false}
+         ],
+         proxy : {
+            type : 'apigateway',
+            callType : 'App',
+            invokeMetaInfo : {
+               module : 'ZhuChao',
+               name : 'Product',
+               method : 'Product/getCompanyList'
+            },
+            reader : {
+               type : 'json',
+               rootProperty : 'items',
+               totalProperty : 'total'
+            }
+         }
+      });
+   },
+   
    itemDbClickHandler : function (view, record)
    {
       this.mainPanelRef.renderNewTabPanel('Editor', {
@@ -160,9 +249,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
          listeners : {
             beforeload : function (store, operation){
                if(!operation.getParams()){
-                  operation.setParams({
-                     phone : this.currentPhone
-                  });
+                  operation.setParams(this.getCondParams());
                }
             },
             scope : this
@@ -174,33 +261,19 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
     *
     * @property {Object} cond
     */
-   loadUsers : function (cond)
-   {
-      if(this.currentPhone !== cond){
-         var store = this.getStore();
-         store.load({
-            params : {
-               name : cond
-            }
-         });
-         this.currentPhone = cond;
-      }
-   },
-   /*
-    * 重新加载用户
-    */
-   reloadUsers : function ()
+   loadProducts : function (cond)
    {
       var store = this.getStore();
-      Cntysoft.Utils.Common.reloadGridPage(store, {
-         phone : this.currentPhone
+      store.load({
+         params : this.getCondParams()
       });
    },
+   
    getContextMenu : function (record)
    {
       var CODE = this.self.A_CODES;
       var L = this.LANG_TEXT.MENU;
-      var C = App.ZhuChao.Product.Const;
+
       if(null == this.contextMenuRef){
          var items = [{
                text : L.MODIFY,
@@ -226,26 +299,12 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
          });
       }
 
-      var status = record.get('status');
-      if(C.PRODUCT_STATUS_DRAFT == status || C.PRODUCT_STATUS_DELETE == status || C.PRODUCT_STATUS_SHELF == status){
-         this.contextMenuRef.items.getAt(1).setDisabled(true);
-         this.contextMenuRef.items.getAt(2).setDisabled(true);
-         this.contextMenuRef.items.getAt(3).setDisabled(true);
-      } else if(C.PRODUCT_STATUS_PEEDING == status){
-         this.contextMenuRef.items.getAt(1).setDisabled(false);
-         this.contextMenuRef.items.getAt(2).setDisabled(false);
-         this.contextMenuRef.items.getAt(3).setDisabled(false);
-      } else if(C.PRODUCT_STATUS_VERIFY == status || C.PRODUCT_STATUS_REJECTION == status){
-         this.contextMenuRef.items.getAt(1).setDisabled(true);
-         this.contextMenuRef.items.getAt(2).setDisabled(true);
-         this.contextMenuRef.items.getAt(3).setDisabled(true);
-      }
-
       this.contextMenuRef.record = record;
       return this.contextMenuRef;
    },
+   
    /*
-    * 更改用户的状态
+    * 更改状态
     */
    changStatus : function (record, status)
    {
@@ -259,6 +318,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
          }
       }, this);
    },
+   
    loadCategoryProduct : function (cid)
    {
       if(cid != this.loadedCid){
@@ -267,13 +327,12 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
          //将仓库当前页复位
          store.currentPage = 1;
          store.load({
-            params : {
-               cid : cid
-            }
+            params : this.getCondParams()
          });
          store.loadedCid = cid;
       }
    },
+   
    menuItemClickHandler : function (menu, item)
    {
       if(item){
@@ -298,6 +357,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
          }
       }
    },
+   
    itemRightClickHandler : function (grid, record, htmlItem, index, event)
    {
       var menu = this.getContextMenu(record);
@@ -305,17 +365,40 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
       event.stopEvent();
       menu.showAt(pos[0], pos[1]);
    },
-   tbarQueryButtonClickHandler : function (btn)
+   
+   tbarQueryButtonClickHandler : function ()
    {
-      var condRef = btn.previousSibling('textfield');
-      if(condRef.isValid()){
-         this.loadUsers(condRef.getValue());
-      }
+      this.loadProducts();
    },
+   
+   getCondParams : function()
+   {
+      var params = {};
+      
+      if(this.currentName){
+         params.name = this.currentName;
+      }
+      
+      if(this.companyId){
+         params.companyId = this.companyId;
+      }
+      
+      if(this.status){
+         params.status = this.status;
+      }
+      
+      if(this.loadedCid){
+         params.cid = this.loadedCid;
+      }
+      
+      return params;
+   },
+   
    viewAfterrenderHandler : function ()
    {
-      this.loadUsers();
+      this.loadProducts();
    },
+   
    statusRenderer : function (value)
    {
       var U_TEXT = this.LANG_TEXT.STATUS;
@@ -335,6 +418,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
             return '<span>' + U_TEXT.DELETE + '</span>';
       }
    },
+   
    sexRenderer : function (value)
    {
       var U_TEXT = this.LANG_TEXT.SEX;
@@ -348,6 +432,7 @@ Ext.define('App.ZhuChao.Product.Ui.Product.ListView', {
             return '<span>' + U_TEXT.SECRET + '</span>';
       }
    },
+   
    destroy : function ()
    {
       if(this.contextMenuRef){

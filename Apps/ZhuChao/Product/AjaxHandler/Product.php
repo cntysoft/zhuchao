@@ -40,7 +40,15 @@ class Product extends AbstractHandler
          array_unshift($cNodes, $cid);
          $cond[] = \Cntysoft\Phalcon\Mvc\Model::generateRangeCond('categoryId', $cNodes);
       }
-
+      
+      if(isset($params['status']) && 0 != $params['status']){
+         $cond[] = 'status='.(int)$params['status'];
+      }
+      
+      if(isset($params['companyId']) && 0 != $params['companyId']){
+         $cond[] = 'companyId='.(int)$params['companyId'];
+      }
+      
       $query = array(implode(' and ', $cond));
       $list = $this->getAppCaller()->call(
          PRODUCT_CONST::MODULE_NAME, 
@@ -204,12 +212,15 @@ class Product extends AbstractHandler
          array($name)
       );
       
-      $ret = array();
+      $ret = array(array(
+         'text' => '不限',
+         'companyId' => 0
+      ));
       
       foreach($list as $company){
          $item = array(
             'text' => $company->getName(),
-            'id' => $company->getId()
+            'companyId' => $company->getId()
          );
          array_push($ret, $item);
       }
@@ -293,13 +304,16 @@ class Product extends AbstractHandler
       $ret = array();
       
       foreach($list as $val){
+         $company = $val->getCompany();
+         
          $item = array(
             'id' => $val->getId(),
-            'name' => $val->getBrand() . $val->getTitle() . $val->getDescription(),
+            'name' => $val->getBrand() . ' '. $val->getTitle() . ' ' . $val->getDescription(),
+            'companyName' => $company ? $company->getName() : '',
             'number' => $val->getNumber(),
             'price' => $val->getPrice() ? $val->getPrice() : '面议',
             'grade' => $val->getGrade(),
-            'inputTime' => date('Y-m-d', $val->getInputTime()),
+            'inputTime' => date('Y-m-d H:i:s', $val->getInputTime()),
             'status' => $val->getStatus()
          );
 

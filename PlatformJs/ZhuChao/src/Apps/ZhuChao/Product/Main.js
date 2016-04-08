@@ -65,5 +65,5 @@ Ext.define('App.ZhuChao.Product.Main', {
          page : page,
          pageSize : pageSize
       }, callback, scope);
-   },
+   }
 });

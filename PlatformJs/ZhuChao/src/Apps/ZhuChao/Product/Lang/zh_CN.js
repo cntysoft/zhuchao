@@ -29,7 +29,8 @@ Ext.define('App.ZhuChao.Product.Lang.zh_CN', {
                TITLE : '产品列表',
                COLS : {
                   ID : 'ID',
-                  NAME : '用户名称',
+                  NAME : '产品名称',
+                  COMPANY_NAME : '企业名称',
                   NUMBER : '产品编号',
                   PRICE : '产品价格',
                   GRADE : '评分',
