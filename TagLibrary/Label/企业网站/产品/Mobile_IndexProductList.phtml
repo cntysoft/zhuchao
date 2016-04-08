@@ -10,14 +10,16 @@ foreach ($goodsLists as $goods) {
    $price0 = $goods->getPrice();
    $infourl = $this->getInfoUrl($goods->getNumber());
    $price = $price0 > 0 ? '¥' . $price0 : '面议';
-   $out .= '<div class="pro_show">
-                <h4>产品编号：' . $goods->getNumber() . '</h4>
-                <p class="clearfix">
-                    <span class="pro_price">' . $price . '</span>
-                    <span class="pro_detail">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '</span>
-                </p>
-                <a  href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 290, 181) . '" alt=""></a>
-            </div>';
+   $out .= '<div class="pro_list">
+    <a href="' . $infourl . '" class="pro_list_a">
+        <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 384, 241) . '" alt=""/>
+        <h3>' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '</h3>
+        <p>产品编号：' . $goods->getNumber() . '</p>
+        <div class="price_btn main">' . $price . '
+            <span class="main_bg">立即抢购</span>
+        </div>
+    </a>
+</div>';
 }
 
 echo $out;

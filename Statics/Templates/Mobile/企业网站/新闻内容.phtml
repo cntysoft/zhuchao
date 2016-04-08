@@ -1,10 +1,11 @@
-<!DOCTYPE html><?php
+<!DOCTYPE html>
+<?php
 Qs::Ds('内容数据源/企业标准内容模型', 'AC');
 Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('内容数据源/店铺设置', 'setting');
 ?>
-<html lang="en">
-    <head>
+<html>
+    <head lang="en">
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
@@ -13,24 +14,26 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/newsdetail.css')) ?>
+        <?php Qs::Sys('loadCss', array('dianpu/style.css', 'dianpu/newsdetail.css')) ?>
     </head>
     <body>
-        <!--头部-->
+        <!--logo，搜索,名称-->
         <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
-        <!--内容-->
-        <div class="l_main"  newsid="<?php Qs::DsField('AC', 'id') ?>">
-            <div class="news_title">
+        <!--内容详情-->
+        <div class="main_content" newsid="<?php Qs::DsField('AC', 'id') ?>">
+            <div class="content_title">
                 <h3><?php Qs::DsField('AC', 'title') ?></h3>
-                <p class="clearfix">
-                    <span>发表时间：<?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></span>
-                    <span>浏览：<?php Qs::DsField('AC', 'hits') ?></span>
-                </p>
+
+                <div class="writer_info">
+                    <span class="date">发表时间：<?php echo date('Y-m-d', QS::DsField('AC', 'inputTime', true)) ?></span>
+                    <span>阅读量：<i><?php Qs::DsField('AC', 'hits') ?></i></span>
+                </div>
             </div>
-            <div class="news_detail">
+            <div class="module_content">
                 <?php Qs::DsField('AC', 'content') ?><br/>
-                <div class="prev_next">
-                    <p><em>上一篇：</em><?php
+                <div class="up_down">
+                    <div>
+                        上一篇：<?php
                         $prev = Qs::DsField('AC', 'prev', true);
                         if ($prev) {
                            $pretitle = iconv_substr($prev[1], 0, 13, 'UTF-8');
@@ -38,9 +41,9 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                         } else {
                            echo '木有了';
                         }
-                        ?>
-                    </p>
-                    <p><em>下一篇：</em><?php
+                        ?>                    </div>
+                    <div>
+                        下一篇：<?php
                         $next = Qs::DsField('AC', 'next', true);
                         if ($next) {
                            $nexttitle = iconv_substr($next[1], 0, 13, 'UTF-8');
@@ -48,13 +51,13 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                         } else {
                            echo '正在更新中，请等待~';
                         }
-                        ?></p>
+                        ?>                    </div>
                 </div>
             </div>
-            <?php
-            Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
-            Qs::Sys('loadRequireJs', 'company/newsdetail')
-            ?>
         </div>
+        <?php
+        Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
+        Qs::Sys('loadRequireJs', 'dianpu/newsdetail')
+        ?>
     </body>
 </html>

@@ -88,8 +88,9 @@ class Utils extends AbstractScript
          $ret[] = array(
             'infourl' => $infourl,
             'title'   => $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription(),
-            'imgurl'  => $this->getImgUrl($defpic, 70, 70),
-            'price'   => $price
+            'imgurl'  => $this->getImgUrl($defpic, 384, 240),
+            'price'   => $price,
+            'number'  => $goods->getNumber()
          );
       }
       return $ret;
@@ -147,7 +148,7 @@ class Utils extends AbstractScript
          $defpic = $info->getDefaultPicUrl()[0];
          $infourl = '/news/' . $info->getId() . '.html';
          if ($defpic) {
-            $imgurl = $this->getImgUrl($defpic, 60, 60);
+            $imgurl = $this->getImgUrl($defpic, 110, 68);
          }
          $ret[] = array(
             'infourl' => $infourl,
@@ -221,7 +222,7 @@ class Utils extends AbstractScript
          $child = array(
             'title' => $list->getTitle(),
             'id'    => $list->getId(),
-            'image' => $this->getImgUrl($list->getDefaultPicUrl()[0], 376, 210),
+            'image' => $this->getImgUrl($list->getDefaultPicUrl()[0], 384, 384),
             'intro' => $list->getIntro()
          );
          $ret[] = $child;

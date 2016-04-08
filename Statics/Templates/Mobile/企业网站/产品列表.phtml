@@ -3,8 +3,8 @@
 Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('内容数据源/店铺设置', 'setting');
 ?>
-<html lang="en">
-    <head>
+<html>
+    <head lang="en">
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
@@ -13,18 +13,16 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/prolist.css')) ?>
+        <?php Qs::Sys('loadCss', array('dianpu/style.css', 'dianpu/prolist.css', 'swiper.min.css')) ?>
     </head>
     <body>
-        <!--头部-->
+        <!--logo，搜索,名称-->
         <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
-        <!--内容-->
-        <div class="l_main">
-            <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 6, 'enablePage' => false)); ?>
-        </div>
+        <!--商品分类列表导航-->
+        <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_ProductList', 'outputNum' => 6, 'enablePage' => false)); ?>
         <?php
         Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
-        Qs::Sys('loadRequireJs', 'company/prolist')
+        Qs::Sys('loadRequireJs', 'dianpu/prolist')
         ?> 
     </body>
 </html>

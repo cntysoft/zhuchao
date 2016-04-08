@@ -5,9 +5,7 @@ if (!$infoList) {
    return false;
 }
 $items = is_array($infoList) ? $infoList[0] : $infoList;
-$out = ' <div class="module_title" ident="' . $this->getRouteNodeIdentifier() . '">
-                <i></i><span>招聘中心</span><i></i>
-            </div>';
+$out = '<ul class="new_box">';
 foreach ($items as $index => $item) {
    $infourl = $this->getInfoUrl($item->getId());
    $itemInfo = $this->getContent($item->getId());
@@ -25,6 +23,118 @@ foreach ($items as $index => $item) {
                     </p>
                 </div>
             </div>';
+   $out .= '<li class="no_img">
+        <a href="../dianpu/newsdetail.html">
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌</p>
+            <p class="writer_info clearfix">
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>';
 }
+$out .= '</ul>';
 echo $out;
 ?>
+<ul class="new_box">
+    <li class="no_img">
+        <a href="../dianpu/newsdetail.html">
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌</p>
+
+            <p class="writer_info clearfix">
+
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>
+    <li>
+        <a href="../dianpu/newsdetail.html">
+            <img src="../../Images/test/test_pro_img.jpg" alt="">
+
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+
+            <p class="writer_info clearfix">
+
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>
+    <li>
+        <a href="../dianpu/newsdetail.html">
+            <img src="../../Images/test/test_pro_img.jpg" alt="">
+
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+
+            <p class="writer_info clearfix">
+
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>
+    <li class="no_img">
+        <a href="../dianpu/newsdetail.html">
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌</p>
+
+            <p class="writer_info clearfix">
+
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>
+    <li>
+        <a href="../dianpu/newsdetail.html">
+            <img src="../../Images/test/test_pro_img.jpg" alt="">
+
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+
+            <p class="writer_info clearfix">
+
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>
+    <li class="no_img">
+        <a href="../dianpu/newsdetail.html">
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌移动式动态空气消毒机南昌安尔森牌</p>
+
+            <p class="writer_info clearfix">
+
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>
+    <li>
+        <a href="../dianpu/newsdetail.html">
+            <img src="../../Images/test/test_pro_img.jpg" alt="">
+
+            <h3 class="new_title">卡萨帝灵珑传奇热水器</h3>
+
+            <p class="new_text">南昌安尔森牌 移动式动态空气消毒机南昌安尔森牌</p>
+
+            <p class="writer_info clearfix">
+
+                <span class="fl">2015-01-06</span>
+            </p>
+            <span class="look">浏览（123）</span>
+        </a>
+    </li>
+</ul>

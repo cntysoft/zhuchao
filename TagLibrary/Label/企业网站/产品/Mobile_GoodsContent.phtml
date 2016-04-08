@@ -3,48 +3,54 @@ $goodsInfo = $this->getProductByNumber();
 $goodsDetail = $goodsInfo->getDetail();
 $goodStatus = $goodsInfo->getStatus();
 $name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
-$out = '<div class="m_pro_show" num="' . $goodsInfo->getNumber() . '">
-                <div class="pro_banner">
-                    <div class="swiper-wrapper">';
+$out = '<div class="module_ad3 module_ad clearfix  swiper-container" num="' . $goodsInfo->getNumber() . '">
+    <div class="swiper-wrapper">';
 $images = $goodsDetail->getImages();
 $i = 1;
 foreach ($images as $image) {
-   $out .= '<div class="swiper-slide">
-                            <img src="' . $this->getImgUrl($image[0], 290, 290) . '" alt="">
-                        </div>';
+   $out .= '<div class="module_ad_list swiper-slide">
+            <a>
+                <div class="module_ad_img"
+                     style="background: url(' . $this->getImgUrl($image[0], 386, 385) . ') no-repeat center  ;">
+                    <div class="module_ad_box"></div>
+                </div>
+            </a>
+        </div>';
 }
-$out.='</div>
-                    <div class="pro-pagination"></div>
-                </div>
-                <div class="c_pro_show">
-                    <h4>产品编号：' . $goodsInfo->getNumber() . '</h4>
-                    <p class="pro_show_detail">' . $name . '</p>
-                    <p class="pro_show_price">' . ($goodsInfo->getPrice() > 0 ? '￥ ' . $goodsInfo->getPrice() : "面议") . '</p>
-                </div>
-            </div>
-            <!--产品信息-->
-            <div class="m_pro_info">
-                <h3><span class="main main_border intro">产品信息</span><span>规格属性</span></h3>                
-                <div class="pro_content intro">
-                     ' . $goodsDetail->getIntroduction() . '
-                </div>
-                <div class="pro_content hide attrs">
-                    <table>';
+$out .= '</div>
+    <div class="swiper-pagination"></div>
+</div>';
+$out.='<div class="pro_info_box">
+    <p class="pro_price main">' . ($goodsInfo->getPrice() > 0 ? '￥ ' . $goodsInfo->getPrice() : "面议") . '</p>
+    <p class="pro_num">产品编号：' . $goodsInfo->getNumber() . '</p>
+    <h3 class="pro_title">' . $name . '</h3>
+    <p class="pro_text">
+        ' . $goodsDetail->getAdvertText() . '
+    </p>
+</div><div class="pro_detail_box">
+    <!--导航-->
+    <ul class="module_nav_bar">
+        <li class="current"><span>产品信息</span></li>
+        <li><span>规格属性</span></li>
+    </ul>
+    <div class="pro_content">
+        ' . $goodsDetail->getIntroduction() . '
+    </div>
+    <div class="pro_content hide">
+        <ul class="pro_content_inner">';
 $attribute = $goodsDetail->getAttribute();
 foreach ($attribute as $key => $value) {
    if (count($value)) {
       foreach ($value as $attrs => $attr) {
-         if (strlen($attr)) {
-            $out .= '<tr>
-                   <td class="item">' . $attrs . '</td>                      
-                   <td class="item_info">' . $attr . '</td>
-               </tr>';
-         }
+         $out .= '<li class="item">
+                <div class="key">' . $attrs . '：</div>
+                <div class="val">' . $attr . '</div>
+            </li>';
       }
    }
 }
-$out.='</table>
-                </div>
-            </div>';
+$out.='</ul>
+    </div>
+</div>';
 echo $out;
 ?>

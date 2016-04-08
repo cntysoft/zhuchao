@@ -1,50 +1,21 @@
 <?php
-$out = '';
+$out = '<div class="pro_list_box">';
 $goodsLists = $this->getProductList();
-$query = $this->getQuery();
-$sort1 = $sort3 = '';
-$icon1 = $icon2 = '';
-$sort = 1;
-$keyword = isset($query['keyword']) ? $query['keyword'] : '';
-if (isset($query['sort']) && $query['sort']) {
-   switch ((int) $query['sort']) {
-      case 1:$sort1 = ' main_border main ';
-         break;
-      case 3:
-         $sort = 3;
-         $sort3 = ' main_border main up';
-         $icon1 = 'main_border';
-         break;
-      case 4:
-         $sort = 4;
-         $sort3 = ' main_border main ';
-         $icon2 = 'main_border';
-         break;
-      default:
-         break;
-   }
-} else {
-   $sort1 = ' main_border main ';
-}
-$out.='<div class="sort" sort="' . $sort . '" keyword="' . $keyword . '">
-                <span class="sort_new ' . $sort1 . '" sort="1">新品</span>
-                <span class="sort_price ' . $sort3 . '" upsort="3" downsort="4">价格 <i class="price_up ' . $icon1 . '" ></i><i class="price_down ' . $icon2 . '" ></i></span>
-            </div>';
-if (count($goodsLists) == 0) {
-   echo $out;
-   return;
-}
-$out.='<!--商品列表-->       <div class="pro_list">';
 foreach ($goodsLists as $goods) {
    $infourl = $this->getInfoUrl($goods->getNumber());
    $defpic = $goods->getDefaultImage();
    $price0 = $goods->getPrice();
    $price = $price0 > 0 ? '¥' . $price0 : '面议';
-   $out .= '<div class="pro_ele">
-                    <a  href="' . $infourl . '"><img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 112, 70) . '" alt=""></a>
-                    <h3 class="pro_ele_title"><a  href="' . $infourl . '">' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '  </a></h3>
-                    <p class="pro_ele_price">' . $price . '</p>
-                </div>';
+   $out .= '<div class="pro_list">
+        <a href="' . $infourl . '" class="pro_list_a">
+            <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 384, 240) . '" alt="">
+            <h3>' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '</h3>
+            <p>产品编号：' . $goods->getNumber() . '</p>
+            <div class="price_btn main">' . $price . '</div>
+            <span class="tip"><i>新品</i></span>
+        </a>
+    </div>';
 }
 $out.='</div>';
 echo $out;
+?>
