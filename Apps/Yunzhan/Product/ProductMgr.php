@@ -112,8 +112,6 @@ class ProductMgr extends AbstractLib
                unset($join);
             }
          }
-
-         $this->addUsedCategory($params);
          
          return $db->commit();
       } catch (Exception $ex) {
@@ -189,9 +187,7 @@ class ProductMgr extends AbstractLib
                unset($join);
             }
          }
-         
-         $this->addUsedCategory($params);
-         
+
          return $db->commit();
       } catch (Exception $ex) {
          $db->rollback();
@@ -451,38 +447,61 @@ class ProductMgr extends AbstractLib
     * 
     * @return 
     */
-   public function getUsedCategoryList()
+   public function getUsedCategoryList($cond = '')
    {
-      return UCModel::find();
+      return UCModel::find(array(
+         $cond
+      ));
    }
    
    /**
     * 增加已经常用的分类
     * 
-    * @param array $pdata
+    * @param array $data
     */
-   public function addUsedCategory($pdata)
+   public function addUsedCategory(array $data)
    {
       $categoryList = $this->getUsedCategoryList();
-      $number = count($categoryList);
-      $flag = true;
-      foreach($categoryList as $category){
-         if($category->getId() == $pdata['categoryId']){
-            $flag = false;
-         }
-      }
+      $oldCategory = $newCategory = array();
 
-      if($flag){
-         if($number >= Constant::USED_CATEGORY_MAXNUM){
-            foreach($categoryList as $category){
-               $category->delete();
-               break;
+      foreach($categoryList as $category){
+         $oldCategory[] = $category->getCategoryId();
+      }
+      
+      foreach($data as $category){
+         $newCategory[] = $category['categoryId'];
+      }
+      
+      $delete = array_diff($oldCategory, $newCategory);
+      $add = array_diff($newCategory, $oldCategory);
+      
+      $db = Kernel\get_site_db_adapter();
+      
+      try{
+         $db->begin();
+         if(count($delete)){
+            $oldList = $this->getUsedCategoryList(UCModel::generateRangeCond('categoryId', $delete));
+            foreach($oldList as $one){
+               $one->delete();
             }
          }
 
-         $uc = new UCModel();
-         $uc->setCategoryId($pdata['categoryId']);
-         $uc->create();
+         if(count($add)){
+            foreach($data as $one){
+               if(in_array($one['categoryId'], $add)){
+                  $uc = new UCModel();
+                  $uc->setCategoryId($data['categoryId']);
+                  $uc->setCategoryText($data['categoryText']);
+                  $uc->create();
+                  unset($uc);
+               }
+            }
+         }
+         $db->commit();
+      } catch (\Exception $ex) {
+         $db->rollback();
+         
+         Kernel\throw_exception($ex);
       }
    }
 }

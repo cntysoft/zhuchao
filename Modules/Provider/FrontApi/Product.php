@@ -139,6 +139,7 @@ class Product extends AbstractScript
    {
       $this->checkRequireFields($params, array('categoryId'));
       
+      $tree = $this->getCategoryTree();
       $list = $this->appCaller->call(
          CATEGORY_CONST::MODULE_NAME,
          CATEGORY_CONST::APP_NAME,
@@ -151,7 +152,8 @@ class Product extends AbstractScript
       foreach($list as $category){
          $item = array(
             'id' => $category->getId(),
-            'text' => $category->getName()
+            'text' => $category->getName(),
+            'leaf' => (int)$tree->isLeaf($category->getId())
          );
          
          array_push($ret, $item);
@@ -379,7 +381,7 @@ class Product extends AbstractScript
     */
    protected function getCategoryTree()
    {
-      if(null == $this->tree){
+      if(null == $this->categoryTree){
          $this->categoryTree = $this->appCaller->call(
             CATEGORY_CONST::MODULE_NAME,
             CATEGORY_CONST::APP_NAME,
@@ -423,25 +425,5 @@ class Product extends AbstractScript
          'getProductByNumber',
          array($number)
       );
-   }
-   
-   /**
-    * 获取供应商常用分类的列表
-    */
-   public function getProviderCategoryList()
-   {
-      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      
-      $list = $this->appCaller->call(YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'getUsedCategoryList', array($curUser->getId()));
-      $ret = array();
-      
-      foreach($list as $pc){
-         $item = array();
-         $this->getParentCategory($pc->getCategoryId(), $item);
-         $item = array_reverse($item);
-         $ret[] = $item;
-      }
-      
-      return $ret;
    }
 }

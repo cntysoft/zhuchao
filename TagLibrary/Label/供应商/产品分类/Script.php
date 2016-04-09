@@ -9,6 +9,8 @@
 namespace TagLibrary\Label\Provider;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
+use App\Yunzhan\Product\Constant as YUN_P_CONST;
+
 class Category extends AbstractLabelScript
 {
 	protected $tree = null;
@@ -27,7 +29,8 @@ class Category extends AbstractLabelScript
 			foreach ($children as $one) {
 				$item = array(
 					'id'	 => $one->getId(),
-					'text' => $one->getName()
+					'text' => $one->getName(),
+               'leaf' => (int)$tree->isLeaf($one->getId())
 				);
 
 				array_push($ret, $item);
@@ -100,4 +103,15 @@ class Category extends AbstractLabelScript
 		return $this->tree;
 	}
 
+   /**
+    * 获取常用的分类列表
+    * 
+    * @return 
+    */
+   public function getUsedCategoryList()
+   {
+      return $this->appCaller->call(
+         YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'getUsedCategoryList'
+      );
+   }
 }

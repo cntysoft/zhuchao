@@ -13,6 +13,7 @@ class UsedCategory extends BaseModel
 {
    private $id;
    private $categoryId;
+   private $categoryText;
 
    public function getSource()
    {
@@ -24,24 +25,34 @@ class UsedCategory extends BaseModel
       parent::initialize();
    }
    
-   function getId()
+   public function getId()
    {
-      return (int)$this->providerId;
+      return (int)$this->id;
    }
 
-   function getCategoryId()
+   public function getCategoryId()
    {
       return (int)$this->categoryId;
    }
 
-   function setId($id)
+   public function getCategoryText()
+   {
+      return $this->categoryText;
+   }
+
+   public function setId($id)
    {
       $this->id = (int)$id;
    }
 
-   function setCategoryId($categoryId)
+   public function setCategoryId($categoryId)
    {
       $this->categoryId = (int)$categoryId;
+   }
+
+   public function setCategoryText($categoryText)
+   {
+      $this->categoryText = $categoryText;
    }
 
 }

@@ -4,7 +4,6 @@
 define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
    $(function (){
       var $search = $('.searched_wrap'), $select = $('.select_wrap'), $used = $('.used_wrap');
-      var flag = true;
       $('.category_select').click(function(){
          if($select.is(':hidden')){
             $search.hide();
@@ -19,39 +18,11 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
             that.siblings('.main_bg').removeClass('main_bg');
             that.addClass('main_bg');
             var index = $('.search_type a').index($(this));
-            if(1 == index){
+            if(0 == index){
                $search.hide();
                $select.hide();
                $used.show();
                $('.search_btn').hide();
-               
-               if(flag){
-                  Cntysoft.Front.callApi('Product', 'getProviderCategoryList', {}, function (response){
-                     if(response.status){
-                        var data = response.data, len = data.length, ul = $used.find('ul');
-                        var out='';
-                        ul.empty();
-                        if(len > 0){
-                           for(var i = 0; i < len; i++){
-                              var len1 = data[i].length, list = [];
-                              var cate = data[i], categoryId = 0;
-                              for(var j = 0; j < len1; j++){
-                                 list.push('<em index='+cate[j]['id']+'>'+cate[j]['text']+'</em>');
-                                 categoryId = cate[j]['id'];
-                              }
-                              out+='<li index='+categoryId+'><label><input type="radio"  name="searched" /><span>';
-                              out +=list.join('<b>&gt;</b>');
-                              out +='</span></label></li>';
-                           }
-                           ul.append($(out));
-                        }else{
-                           ul.empty();
-                           ul.append($('<span>抱歉，没有找到您的常用类目，请使用其他的方式</span>'));
-                        }
-                     }
-                  });
-                  flag = false;
-               }
             }else{
                $search.hide();
                $used.hide();
@@ -61,7 +32,7 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
          }
       });
       
-      $('.category_search', '.icon-sousuo').click(function(){
+      $('.category_search, .icon-sousuo').click(function(){
          var key = $('.search_key').val();
          if(key){
             if($search.is(':hidden')){
@@ -90,7 +61,7 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
                      }
                      ul.append($(out));
                   }else{
-                     ul.append($('<span>抱歉，没有找到您想要的类目，请去手动选择</span>'));
+                     ul.append($('<span>抱歉，没有找到您想要的类目，请去手动选择或者使用常用分类功能</span>'));
                   }
                }
             });
@@ -100,7 +71,7 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
       $search.delegate('li label', 'click', function(){
          $('.selected_tips p').html('选择的类目是：'+$(this).find('span').html());
       });
-      $used.delegate('li', 'click', function(){
+      $used.delegate('li label', 'click', function(){
          $('.selected_tips p').html('选择的类目是：'+$(this).find('span').html());
       });
       
@@ -113,24 +84,26 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
             var $currentSelect = $this.parents('.select_list');
             $currentSelect.nextAll('.select_list').remove();
             
-            Cntysoft.Front.callApi('Product', 'getChildCategory', {
-               categoryId : $this.attr('index')
-            }, function (response){
-               if(response.status){
-                  var data = response.data, len = data.length;
-                  if(len > 0){
-                     var out = '<div class="select_list"><span>产品分类</span><ul>';
-                     for(var i = 0; i<len; i++){
-                        out+='<li index="'+data[i]["id"]+'">'+data[i]["text"]+'</li>';
+            if(0 == $this.attr('leaf')){
+               Cntysoft.Front.callApi('Product', 'getChildCategory', {
+                  categoryId : $this.attr('index')
+               }, function (response){
+                  if(response.status){
+                     var data = response.data, len = data.length;
+                     if(len > 0){
+                        var out = '<div class="select_list"><span>产品分类</span><ul>';
+                        for(var i = 0; i<len; i++){
+                           out+='<li index="'+data[i]["id"]+'" leaf='+data[i]["leaf"]+'>'+data[i]["text"]+'</li>';
+                        }
+                        out+='</ul></div>';
+                        $currentSelect.after($(out));
+                     }else{
+                        $('.submit_next');
                      }
-                     out+='</ul></div>';
-                     $currentSelect.after($(out));
-                  }else{
-                     $('.submit_next');
                   }
-               }
-            });
-            
+               });
+            }
+
             var selected = [];
             $('.select_list li.current').each(function(index, dom){
                selected.push('<em>'+$(dom).text()+'</em>');

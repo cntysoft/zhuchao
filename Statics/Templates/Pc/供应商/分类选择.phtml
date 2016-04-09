@@ -50,10 +50,10 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     <i class="main icon-notice"></i> 凤凰筑巢网关于处理站内低质量信息的公告
                 </div>
                 <div class="search_type">
-                    <a class="main_bg">搜索类目</a>
-                    <a>我的常用类目</a>
+                    <a class="main_bg">我的常用类目</a>
+                    <a>搜索类目</a>
                 </div>
-                <div class="search_btn">
+                <div class="search_btn hide">
                     <div class="input_text fl"><input type="text" placeholder="搜索分类关键词" class="search_key"><i class="icon-sousuo"></i></div>
                     <input class="input_btn main_bg fl category_search" type="submit" value="类目搜索">
                     <a class="main category_select">手动选择分类>></a>
@@ -61,14 +61,10 @@ Qs::Ds('商城数据源/商城数据', 'site');
                 <!--搜索后选择框-->
                 <div class="searched_wrap hide">
                     <ul>
-
                     </ul>
                 </div>
-                <div class="used_wrap hide">
-                    <ul>
-
-                    </ul>
-                </div>
+                <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'UsedCategory')); ?>
+                
                 <!--选择-->
                 <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'CategorySelect')); ?>
                 <!--已选择提示条-->

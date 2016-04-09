@@ -207,7 +207,8 @@ return array(
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = '系统配置信息表';",
 "CREATE TABLE IF NOT EXISTS `app_zhuchao_product_used_category` (
   `id` int(11) NOT NULL,
-  `categoryId` int(11) NOT NULL COMMENT '分类id'
+  `categoryId` int(11) NOT NULL COMMENT '分类id',
+  `categoryText` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
    "ALTER TABLE `app_site_category_tree`
 ADD PRIMARY KEY (`id`),

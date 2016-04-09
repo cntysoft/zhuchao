@@ -639,15 +639,13 @@ class Product extends AbstractScript
     */
    public function getProviderCategoryList()
    {
-      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
-      
-      $list = $this->appCaller->call(YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'getUsedCategoryList', array($curUser->getId()));
+      $list = $this->appCaller->call(YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'getUsedCategoryList');
       $ret = array();
       
       foreach($list as $pc){
          $item = array(
             'id'   => $pc->getCategoryId(),
-            'name' => $this->getAllParentName($pc->getCategoryId())
+            'name' => implode('/', explode(',', $pc->getCategoryText()))
          );
          $ret[] = $item;
       }

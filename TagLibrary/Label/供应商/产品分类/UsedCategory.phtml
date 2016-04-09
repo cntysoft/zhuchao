@@ -1,0 +1,24 @@
+<?php
+$list = $this->getUsedCategoryList();
+
+$out = '<div class="used_wrap">
+                    <ul>';
+
+if(count($list)){
+   foreach($list as $category){
+      $categoryId = $category->getCategoryId();
+      $categoryText = $category->getCategoryText();
+      $categoryArray = explode(',', $categoryText);
+      $out1 = array();
+      foreach($categoryArray as $text){
+         $out1[] = '<em>'.$text.'</em>';
+      }
+
+      $out.='<li index="'.$categoryId.'"><label><input type="radio" name="used"><span>'. $out1[count($out1) - 1] .' : '. implode('<b>&gt;</b>', $out1).'</span></label></li>';
+   } 
+}else{
+   $out.='<li><span>抱歉，您没有设置常用的分类，可以使用其他分类选择功能，或者<a style="color:#e64b47"> 去设置常用分类</a></span></li>';
+}
+
+$out.='</ul></div>';
+echo $out;
