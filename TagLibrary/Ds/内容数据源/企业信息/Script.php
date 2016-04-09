@@ -53,14 +53,15 @@ class CompanyInfo extends AbstractDsScript
       }
       $companyProfile = $company->getProfile();
       $companyProvider = $company->getProvider();
+      $providerProfile = $companyProvider->getProfile();
       $company = $company->toarray();
       $company['logo'] = $this->getImgcdn($company['logo'], 100, 54);
       $company['PCD'] = $this->getChPcd($company['province'], $company['city'], $company['district']);
       $companyProfile = $companyProfile->toarray();
-      $company['contact'] = $companyProvider ? $companyProvider->getProfile()->getShowPhone() : '';
-      $company['providername'] = $companyProvider ? $companyProvider->getName() : '';
-      $company['providerqq'] = $companyProvider ? $companyProvider->getProfile()->getQq() : '';
-      $company['provideremail'] = $companyProvider ? $companyProvider->getProfile()->getEmail() : '';
+      $company['contact'] = $companyProvider ? $providerProfile->getShowPhone() : '';
+      $company['providername'] = $companyProvider ? $providerProfile->getRealName() : '';
+      $company['providerqq'] = $companyProvider ? $providerProfile->getQq() : '';
+      $company['provideremail'] = $companyProvider ? $providerProfile->getEmail() : '';
       $ret = array_merge($company, $companyProfile);
       $ret['company'] = $ret['id'];
       unset($ret['id']);
