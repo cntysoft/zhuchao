@@ -15,9 +15,7 @@ foreach ($goodsLists as $goods) {
         <img class="lazy" src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-original="' . $this->getImgUrl($defpic, 384, 241) . '" alt=""/>
         <h3>' . $goods->getBrand() . ' ' . $goods->getTitle() . ' ' . $goods->getDescription() . '</h3>
         <p>产品编号：' . $goods->getNumber() . '</p>
-        <div class="price_btn main">' . $price . '
-            <span class="main_bg">立即抢购</span>
-        </div>
+        <div class="price_btn main">' . $price . '</div>
     </a>
 </div>';
 }
