@@ -22,6 +22,12 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <!--投送简历-->
         <div class="itemsbox">
             <h2><?php Qs::DsField('AC', 'title') ?></h2>
+            <ul class="join_li clearfix">
+                <li>部门：<?php Qs::DsField('AC', 'department') ?></li>
+                <li>人数：<?php Qs::DsField('AC', 'number') ?>人</li>
+                <li class="line">截止时间：<?php echo date('Y-m-d', QS::DsField('AC', 'endTime', true)) ?></li>
+                <li class="line">电话：<?php Qs::DsField('AC', 'tel') ?></li>
+            </ul>
             <p><?php Qs::DsField('AC', 'content') ?></p>
         </div>
         <div id='contact'><span><a class='phone'></a></span></div>
@@ -30,7 +36,6 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 <div class="bg"></div>
                 <div class="detail">
                     <h2><i class="icon-lianxiwomen main"></i>联系我们</h2>
-
                     <p>电&nbsp;&nbsp;&nbsp;话：<a href="tel:<?php Qs::DsField('AC', 'tel') ?>"><?php Qs::DsField('AC', 'tel') ?></a></p>
 
                 </div>
