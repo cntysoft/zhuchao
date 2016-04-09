@@ -4,64 +4,96 @@ Qs::Ds('内容数据源/企业设置', 'CS');
 Qs::Ds('内容数据源/企业信息', 'CP');
 Qs::Ds('内容数据源/店铺设置', 'setting');
 ?>
-<html lang="en">
-    <head>
+<html>
+    <head lang="en">
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-        <title><?php Qs::DsField('CP', 'name') ?>－关于我们-<?php Qs::DsField('CP', 'description') ?></title>
+        <title><?php Qs::DsField('CP', 'name') ?>－招聘中心-<?php Qs::DsField('CP', 'description') ?></title>
         <meta name="description" content="<?php Qs::DsField('setting', 'description') ?>">
         <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('company/style.css', 'company/aboutus.css')) ?>
+        <?php Qs::Sys('loadCss', array('dianpu/style.css', 'dianpu/aboutus.css')) ?>
     </head>
     <body>
-        <!--头部-->
-        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
-        <!--内容-->
-        <div class="l_main">
-            <!--关于我们-->
-            <div class="module_title about_us">
-                <i class="icon-aboutus"></i><span>关于我们</span>
+        <!--logo，搜索,名称-->
+        <div class="headbar w clearfix main_bg">
+            <!--logo-->
+            <div class="header_left fl">
+                <a href="/">
+                    <span class="icon_logo">
+                        <img src="<?php Qs::DsField('CP', 'logo') ?>" alt="<?php Qs::DsField('CP', 'name') ?>"/>
+                    </span>
+                </a>
             </div>
-            <!--公司介绍-->
+            <!--标题-->
+            <div class="header_title">
+                <h2 class="text_ellipsis tc"><?php Qs::DsField('CP', 'name') ?></h2>
+            </div>
+            <!--更多按钮-->
+            <div class="header_right fr">
+                <span class="more_icon"><i class="icon-xiala"></i></span>
+            </div>
+            <!--下拉列表-->
+            <div class="top_nav_box hide">
+                <ul class="top_nav_list">
+                    <li><a  href="/">首页</a></li>
+                    <li><a  href="/about.html?intro">企业介绍</a></li>
+                    <li><a  href="/about.html?culture">企业文化</a></li>
+                    <li><a href="/about.html?zizhi">企业资质</a></li>
+                    <li ><a href="/about.html?connect">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!--列表-->
+        <div class="items_box hide intro">
+            <!--标题-->
             <div class="module_title">
-                <i class="icon-gsjianjie"></i><span>企业介绍</span>
+                <a ><i class="icon-gsjianjie"></i>企业介绍</a>
             </div>
-            <div class="about_content hide">
+            <div class="items_info">
                 <?php Qs::DsField('CS', 1)
                 ?>
             </div>
-            <!--企业文化-->
+        </div>
+        <!--列表-->
+        <div class="items_box hide culture">
+            <!--标题-->
             <div class="module_title">
-                <i class="icon-qiyewenhua"></i><span>企业文化</span>
+                <a ><i class="icon-qiyewenhua"></i>企业文化</a>
             </div>
-            <div class="about_content hide">
+            <div class="items_info">
                 <?php Qs::DsField('CS', 2)
                 ?>
             </div>
-            <!--企业资质-->
+        </div>
+        <!--列表-->
+        <div class="items_box hide qiyezizhi">
+            <!--标题-->
             <div class="module_title">
-                <i class="icon-zizhi"></i><span>企业资质</span>
+                <a ><i class="icon-zizhi"></i>企业资质</a>
             </div>
-            <div class="about_content hide">
+            <div class="items_info ">
                 <?php Qs::DsField('CS', 3)
                 ?>
             </div>
-            <!--联系我们-->
+        </div>
+        <!--列表-->
+        <div class="items_box hide connect">
+            <!--标题-->
             <div class="module_title">
-                <i class="icon-lianxiwomen"></i><span>联系我们</span>
+                <a ><i class="icon-lianxiwomen"></i>联系我们</a>
             </div>
-            <div class="about_content hide">
+            <div class="items_info contact_us">
                 <?php Qs::DsField('CS', 4)
                 ?>
             </div>
-
         </div>
         <?php
         Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
-        Qs::Sys('loadRequireJs', 'company/aboutus')
+        Qs::Sys('loadRequireJs', 'dianpu/aboutus')
         ?> 
     </body>
 </html>

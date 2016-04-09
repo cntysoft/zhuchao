@@ -21,7 +21,9 @@ define(['jquery', 'module/totop', 'Front', 'Core', 'lazyload'], function (){
       $('.l_nav i.icon-sousuo').click(function (){
          var text = $(this).siblings('input').val();
          if(text.length){
-            window.location.href = '/productlist/1.html?keyword=' + text;
+            var querydata = Cntysoft.fromQueryString(window.location.search, this);
+            querydata.keyword = text;
+            window.location.href = '/productlist/1.html?' + Cntysoft.toQueryString(querydata, true);
          }
       });
       var origin = window.location.origin;

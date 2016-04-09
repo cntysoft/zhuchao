@@ -1,0 +1,19 @@
+<?php
+$grouptree = $this->getProudctGroupTree();
+$out = '<h1>全部分组</h1>';
+$first = $grouptree->getChildren(0, 1, true);
+foreach ($first as $key => $value) {
+   $total1 = count($value->getP2g()) > 0 ? count($value->getP2g()) : '';
+   $out.= ' <div class="classify_list">
+                        <h2><i class="icon-black-right"></i><a groupdata="' . $value->getId() . '">' . $value->getName() . '<em>' . $total1 . '</em></a></h2>
+                        <ul>';
+   $second = $grouptree->getChildren($value->getId(), 1, true);
+   foreach ($second as $value2) {
+      $total2 = count($value2->getP2g()) > 0 ? count($value2->getP2g()) : '';
+      $out.=' <li><a groupdata="' . $value2->getId() . '">' . $value2->getName() . '<em>' . $total2 . '</em></a></li>';
+   }
+   $out.='</ul>
+                    </div>';
+}
+echo $out;
+?>

@@ -3,50 +3,98 @@ $goodsInfo = $this->getProductByNumber();
 $goodsDetail = $goodsInfo->getDetail();
 $goodStatus = $goodsInfo->getStatus();
 $name = ($goodsInfo->getBrand() . $goodsInfo->getTitle() . $goodsInfo->getDescription());
-$out = '<div class="pro_info" num="' . $goodsInfo->getNumber() . '">
-                    <div class="pro_title clearfix">
-                        <span class="title_name fl">' . $name . '</span>
-                        <span class="title_code fl">产品编号：<em>' . $goodsInfo->getNumber() . '</em></span>
-                        <div class="icon-erweima fr">
-                            <div class="erweima_box">
-                                <div class="qrcode" id="qrcode2">                                    
-                                </div>
-                                <p>扫一扫，用手机查看</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pro_show">';
+$out = '';
 $images = $goodsDetail->getImages();
 $bigImage = $smallImage = '';
 $i = 1;
 foreach ($images as $image) {
    if ($i == 1) {
       $bigImage .= '<div><a ><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </a></div>';
+      $smallImage .= '<div class="mainbd_hover main_border"><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </div>';
+   } else {
+      $smallImage .= '<div class="mainbd_hover"><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </div>';
    }
    $i = 2;
-   $smallImage .= '<div class="mainbd_hover"><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </div>';
 }
-$out.='<div class="show_big">' . $bigImage . '                            
-                        </div>
-                        <!--左右按钮-->
-                        <a class="switch_btn prev_btn" ><i class="icon-jiantou4"></i></a>
-                        <a class="switch_btn next_btn" ><i class="icon-jiantou2"></i></a>
-                        <div class="show_small clearfix">
-                            ' . $smallImage . '
-                        </div>
-                    </div>
+$out.='<div class="content conwidth clearfix">
+    <!--站点指示-->
+    <div class="site">
+        <a class="main_hover" href="/">首页</a>
+        <span>&gt;</span>
+        <a class="main_hover" href="/productlist/1.html">产品中心</a>
+        <span>&gt;</span>
+        <a class="main" >' . $name . '</a>
+    </div>
+
+    <!--商品内容-->
+    <div class="r_section fl">
+        <!--产品详情-->
+        <div class="pro_info" num="' . $goodsInfo->getNumber() . '">
+            <div class="pro_title">
+                <span class="title_name">' . $name . '</span>
+                <div class="bdsharebuttonbox"><a class="bds_more" data-cmd="more"><i
+                        class="main icon-fenxiang1"></i>分享</a></div>
+            </div>
+            <div class="pro_show">
+                <div class="show_big">
+                    ' . $bigImage . '  
                 </div>
-                <div class="pro_describe">
-                    <h1 class="describe_title">
-                        <a class="main_border " >产品信息</a>
-                        <a class="mainbd_hover" >属性规格</a>
-                    </h1>
-                    <div class="describle_info">
-                        <div class="info_one ">
-                            ' . $goodsDetail->getIntroduction() . '
-                        </div>
-                        <div class="info_two hide">
-                            <table>';
+                <!--左右按钮-->
+                <a class="switch_btn prev_btn"><i class="icon-jiantou4"></i></a>
+                <a class="switch_btn next_btn"><i class="icon-jiantou2"></i></a>
+                <div class="show_small clearfix">
+                    ' . $smallImage . '
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--左侧公司信息-->
+    <div class="l_section fr">
+        <!--公司信息-->
+        <div class="company_info">
+            <div class="company_name">
+                <h1>编号：' . $goodsInfo->getNumber() . '</h1>
+            </div>
+            <div class="company_intro">
+                <dl>
+                    <dt>经营模式</dt>
+                    <dd>';
+?><?php
+$trade = array(1 => '销售型', '生产型', '设计型', '服务型', '综合型');
+$out.= $trade[Qs::DsField('CP', 'tradeMode', true)]
+?><?php
+$out.='</dd>
+                </dl>
+                <dl>
+                    <dt>所在地区</dt>
+                    <dd>';
+?><?php $out.=implode(' ', Qs::DsField('CP', 'PCD', true)) ?><?php
+$out.='</dd>
+                </dl>
+            </div>
+            <div class="company_erweima">
+                <p>' . $name . '</p>
+                <div class="qrcode" id="qrcode2" style="    text-align: center;    height: 160px;">                                    
+                 </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--产品描述-->
+<div class="pro_describe conwidth">
+    <h1 class="describe_title">
+        <a class="main_border ">产品信息</a>
+        <a class="mainbd_hover" >属性规格</a>
+        <a class="mainbd_hover" >联系我们</a>
+    </h1>
+    <div class="describle_info">
+        <div class="info_one ">
+             ' . $goodsDetail->getIntroduction() . '
+        </div>
+        <div class="info_two hide">
+            <table>';
 $attribute = $goodsDetail->getAttribute();
 foreach ($attribute as $key => $value) {
    if (count($value)) {
@@ -61,8 +109,43 @@ foreach ($attribute as $key => $value) {
    }
 }
 $out.='</table>
-                        </div>
+        </div>
+        <div class="info_three hide">
+            <div class="connect_box">
+                <div>
+                    <div class="connect_ele">
+                        <span class="icon-dianhua1 main_light"></span>
+                        <h4>电话</h4>
+                        <p>';
+?><?php $out.=Qs::DsField('CP', 'contact', true) ?><?php
+$out.='</p>
                     </div>
-                </div>';
+                    <div class="connect_ele">
+                        <span class="icon-youxiang main_light"></span>
+                        <h4>邮箱</h4>
+                        <p>';
+?><?php $out.=Qs::DsField('CP', 'provideremail', true) ?><?php
+$out.='</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="connect_ele">
+                        <span class="icon-weixin main_light"></span>
+                        <h4>QQ</h4>
+                        <p>';
+?><?php $out.=Qs::DsField('CP', 'providerqq', true) ?><?php
+$out.='</p>
+                    </div>
+                    <div class="connect_ele">
+                        <span class="icon-iconfontzuobiao main_light"></span>
+                        <h4>地址</h4>
+                        <p>';
+?><?php $out.=implode('', Qs::DsField('CP', 'PCD', true)) . ' ' . Qs::DsField('CP', 'address', true); ?><?php
+$out.='</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>';
 echo $out;
 ?>

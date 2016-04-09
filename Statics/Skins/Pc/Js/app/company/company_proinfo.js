@@ -3,17 +3,17 @@
  */
 define(['jquery', 'slick', 'app/company/common'], function (){
    $(function (){
-      $('.classify_list h2').click(function (){
-         if($(this).hasClass('active')){
-            $(this).find('i').addClass('icon-black-right').removeClass('icon-black-down');
-            $(this).next().hide();
-            $(this).removeClass('active');
-         } else{
-            $(this).find('i').removeClass('icon-black-right').addClass('icon-black-down');
-            $(this).next().show();
-            $(this).addClass('active');
-         }
-      });
+//      $('.classify_list h2').click(function (){
+//         if($(this).hasClass('active')){
+//            $(this).find('i').addClass('icon-black-right').removeClass('icon-black-down');
+//            $(this).next().hide();
+//            $(this).removeClass('active');
+//         } else{
+//            $(this).find('i').removeClass('icon-black-right').addClass('icon-black-down');
+//            $(this).next().show();
+//            $(this).addClass('active');
+//         }
+//      });
       $('.show_small').slick({
          speed : 500,
          slidesToShow : 5,
@@ -40,12 +40,12 @@ define(['jquery', 'slick', 'app/company/common'], function (){
       });
       var origin = window.location.href;
       var proImgData = '';
-      $('.pro_info div.icon-erweima').mouseenter(function (){
+      setTimeout(function (){
          if(!$('#qrcode2').hasClass('loaded')){
             $('#qrcode2').qrcode({
                render : "canvas",
-               height : 130,
-               width : 130,
+               height : 150,
+               width : 150,
                text : origin
             });
             $('#qrcode2').addClass('loaded');
@@ -54,7 +54,7 @@ define(['jquery', 'slick', 'app/company/common'], function (){
             var type = 'image/jpeg';
             proImgData = canvas.toDataURL(type);
          }
-      });
+      }, 1);
       /**
        * 在本地进行文件保存
        * @param  {String} data     要保存到本地的图片数据

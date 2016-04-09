@@ -10,6 +10,7 @@ namespace App\Yunzhan\Product;
 use Cntysoft\Kernel\App\AbstractLib;
 use App\Yunzhan\Product\Model\Group as GroupModel;
 use App\Yunzhan\Product\Model\Product2Group as PGModel;
+use App\Yunzhan\Product\Model\Product as PModel;
 use Cntysoft\Kernel;
 
 class GroupMgr extends AbstractLib
@@ -236,7 +237,56 @@ class GroupMgr extends AbstractLib
          );
       }
    }
-   
+   /**
+    * 获取指定分组的商品列表
+    * 
+    * @param array $status
+    * @param integer $groupId
+    * @param boolean $total
+    * @param string $orderBy
+    * @param integer $offset
+    * @param integer $limit
+    * @return 
+    */
+   public function queryProductByGroup(array $querycond, $groupId, $total = false, $orderBy = 'productId DESC', $offset = 0, $limit = 15)
+   {
+      $ids = array();
+      if (count($groupId) && 0 != $groupId) {
+         $group = GroupModel::findFirst(array(
+                    'id=?0',
+                    'bind' => array(
+                       0 => $groupId
+                    )
+         ));
+
+         if (!$group) {
+            $errorType = $this->getErrorType();
+            Kernel\throw_exception(new Exception(
+                    $errorType->msg('E_GROUP_NOT_EXIST'), $errorType->code('E_GROUP_NOT_EXIST')
+                    ), $this->getErrorTypeContext());
+         }
+         $ids = array($groupId);
+         $cond[] = PModel::generateRangeCond('groupId', $ids);
+         $cond = implode(' and ', $cond);
+         $items = PGModel::find(array(
+                    $cond
+         ));         
+         $gids = array();
+         foreach ($items as $one) {
+            $gids[] = $one->getProductId();
+         }
+
+         $querycond[] = PModel::generateRangeCond('id', $gids);
+         return $this->getAppCaller()->call(
+                 Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_PRODUCT_MGR, 'getProductList', array(array(implode(' and ', $querycond)), $total, $orderBy, $offset, $limit)
+         );
+      } else {
+         return $this->getAppCaller()->call(
+                         Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_PRODUCT_MGR, 'getProductList', array(array(implode(' and ', $querycond)), $total, $orderBy, $offset, $limit)
+         );
+      }
+   }
+
    /**
     * 修改商品和分组的关系
     * 

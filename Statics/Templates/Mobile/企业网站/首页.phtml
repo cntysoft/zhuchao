@@ -67,8 +67,8 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 <p>
                     <?php
                     $inrodata = Qs::DsField('CS', 'content', true);
-                    echo iconv_substr(strip_tags($inrodata), 0, 92, 'UTF-8')
-                    ?> <a href="/about.html">查看详情>></a></p>
+                    echo iconv_substr(strip_tags($inrodata), 0, 86, 'UTF-8')
+                    ?> <a href="/about.html" style="float: right">查看详情>></a></p>
                     <?php
                     if (iconv_strpos($inrodata, '<img')) {
                        $imgs = mb_split('data-original="', $inrodata);
@@ -88,7 +88,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <div class="items_box">
             <!--标题-->
             <div class="module_title">
-                <a href=""><i class="icon-chanpin"></i>产品展示</a>
+                <a href="/productlist/1.html"><i class="icon-chanpin"></i>产品展示</a>
             </div>
             <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Mobile_IndexProductList', 'outputNum' => 4, 'enablePage' => false)); ?>
         </div>

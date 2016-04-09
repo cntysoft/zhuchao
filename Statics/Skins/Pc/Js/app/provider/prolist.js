@@ -231,19 +231,21 @@ define(['jquery', 'Core', 'Front', 'layer', 'app/common'], function (){
       };
 
 // download
-      $('.icon-erweima').click(function (){
-         var $proerweima = $(this).find('div.proerweima');
-         var filename = $proerweima.attr('title');
+      $('.prolist_list td.pro_code2').mouseenter(function (){
+         var $proerweima = $(this).find('div.code_img');
          if(!$proerweima.hasClass('loaded')){
             $proerweima.qrcode({
                render : "canvas",
-               height : 150,
-               width : 150,
+               height : 120,
+               width : 120,
                text : $proerweima.attr('url')
             });
             $proerweima.addClass('loaded');
          }
-         var imgData = $proerweima.find('canvas')[0].toDataURL('image/jpeg');
+      });
+      $('.pro_code_box div.code_img').click(function (){
+         var filename = $(this).attr('title');
+         var imgData = $(this).find('canvas')[0].toDataURL('image/jpeg');
          layer.confirm('您确定要下载该产品二维码吗?', function (index){
             layer.close(index);
             saveFile(imgData, filename);

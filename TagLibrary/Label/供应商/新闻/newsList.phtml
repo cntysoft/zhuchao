@@ -19,13 +19,15 @@ $routeInfo = $this->getRouteInfo();
           echo '<tr class="news_list ">
                         <td class="news_title">
                         <span class="check"><em><i></i></em></span>
-                            <span class="caption"><em>[' . $node->getText() . ']</em>' . $info->getTitle() . '</span>
+                            <span class="caption"><a target="_blank" class="main_hover" href="' . $this->getSiteNewsUrl($info->getId()) . '"><em>[' . $node->getText() . ']</em>' . $info->getTitle() . '</a></span>
                         </td>
                         <td class="news_time">' . date('Y-m-d H:i:s', $info->getInputTime()) . '</td>
                         <td class="news_operate">
                             <a href="/site/modifynews/' . $info->getId() . '.html">修改</a>
                             <span>|</span>
                             <a fh-data="' . $info->getId() . '" class="delete">删除</a>
+                                 <span>|</span>
+                            <a  target="_blank" class="main_hover" href="' . $this->getSiteNewsUrl($info->getId()) . '">预览</a>
                         </td>
                      </tr>';
        }

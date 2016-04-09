@@ -30,7 +30,7 @@ if(3 == $status){
 }
 $out.='<th class="pro_star">质量星级</th>
          <th class="pro_operate">操作</th>
-         <th class="pro_img">产品二维码</th>
+         <th class="pro_code2">产品二维码</th>
       </tr>';
 if(count($list)){
    foreach ($list as $product){
@@ -71,9 +71,14 @@ if(count($list)){
                <span>|</span>
                <a class="delete">删除</a>
             </td>
-            <td class="pro_img ">
-            <div class="icon-erweima " style="font-size: 73px;"><div class="proerweima hide" style="width: 90px; height: 90px;" url="'.$siteurl.'" title="'.$name.'"></div></div>               
-            </td>
+            <td class="pro_code2">
+                        <i class="icon-erweima"></i>
+                        <div class="pro_code_box">
+                            <p>点击下载二维码</p>
+                            <div class="code_img" url="'.$siteurl.'" title="'.$name.'">
+                            </div>
+                        </div>
+                    </td>
          </tr>';
    }
 }else{

@@ -13,6 +13,20 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('slick.css', 'company/style.css', 'company/commpany_proinfo.css')) ?>
+        <script>window._bd_share_config = {
+              "common" : {
+                 "bdSnsKey" : {},
+                 "bdText" : "",
+                 "bdMini" : "2",
+                 "bdMiniList" : false,
+                 "bdPic" : "",
+                 "bdStyle" : "0",
+                 "bdSize" : "16"
+              }, "share" : {"bdSize" : 16}
+           };
+           with (document)
+              0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+        </script>
     </head>
     <body>
         <!--头部-->
@@ -20,104 +34,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <!--公司头部-->
         <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
         <!--内容-->
-        <div class="content conwidth clearfix">
-            <!--站点指示-->
-            <div class="site">
-                <a class="main_hover" href="/">首页</a>
-                <span>&gt;</span>
-                <a  href="/productlist/1.html" >产品中心</a>
-                <span>&gt;</span>
-                <a class="main"><?php Qs::DsField('goods', 'name') ?></a>
-            </div>
-            <!--左侧公司信息-->
-            <div class="l_section fl">
-                <!--公司信息-->
-                <div class="company_info">
-                    <div class="company_name">
-                        <h1><?php Qs::DsField('CP', 'name') ?></h1>
-                        <p>
-                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi1.png') ?>" title="资质好" alt="资质好">
-                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="诚信商家" alt="诚信商家">
-                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="有良心商家" alt="有良心商家">
-                        </p>
-                    </div>
-                    <div class="company_intro">
-                        <dl>
-                            <dt>经营模式</dt>
-                            <dd><?php
-                                $trade = array(1 => '销售型', '生产型', '设计型', '服务型', '综合型');
-                                echo $trade[Qs::DsField('CP', 'tradeMode', true)]
-                                ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>所在地区</dt>
-                            <dd><?php echo ' ' . implode(' ', Qs::DsField('CP', 'PCD', true)) ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>联系人</dt>
-                            <dd><?php Qs::DsField('CP', 'providername') ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>联系电话</dt>
-                            <dd><?php Qs::DsField('CP', 'contact') ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>工作时间</dt>
-                            <dd>
-                                <p>周一到周日</p>
-                                <p>(08:30-18:30)</p>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-                <!--产品分类-->
-                <!--                <div class="product_classify">
-                                    <h1>全部分类<em>121355</em></h1>
-                                    <div class="classify_list">
-                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                                        <ul>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="classify_list">
-                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                                        <ul>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="classify_list">
-                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                                        <ul>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="classify_list">
-                                        <h2><i class="icon-black-right"></i>一级分类<em>12352</em></h2>
-                                        <ul>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                            <li><a href="#">二级分类<em>322</em></a></li>
-                                        </ul>
-                                    </div>
-                                </div>-->
-            </div>
-
-            <!--商品内容-->
-            <div class="r_section fr">
-                <!--产品详情-->
-                <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Pc_GoodsContent')) ?>
-            </div>
-        </div>
+        <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Pc_GoodsContent')) ?>
         <!--底部-->
         <?php Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',)) ?>
         <div class="online">

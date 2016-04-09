@@ -14,6 +14,7 @@ class Product extends AbstractLabelScript
 {
    protected $outputNum = null;
    protected $query = null;
+   protected $tree = null;
 
    /**
     * 获取商品信息
@@ -32,8 +33,12 @@ class Product extends AbstractLabelScript
       $query = $this->getQuery();
       $cond = array();
       $orderBy = 'id DESC';
+      $groupId = 0;
       if (isset($query['keyword']) && $query['keyword']) {
          $cond[] = "(brand like '%" . $query['keyword'] . "%' or title like '%" . $query['keyword'] . "%' or description like '%" . $query['keyword'] . "%' )";
+      }
+      if (isset($query['group'])) {
+         $groupId = $query['group'];
       }
       if (isset($query['sort']) && $query['sort']) {
          switch ((int) $query['sort']) {
@@ -48,11 +53,25 @@ class Product extends AbstractLabelScript
          }
       }
       $cond[] = 'status=' . PRODUCT_CONST::PRODUCT_STATUS_VERIFY;
-      $queryCond = array(implode(' and ', $cond));
+//      $queryCond = array(implode(' and ', $cond));
 
       return $this->appCaller->call(
-                      PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_PRODUCT_MGR, 'getProductList', array($queryCond, $this->invokeParams['enablePage'], $orderBy, $page['offset'], $page['limit'])
+                      PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_GROUP_MGR, 'queryProductByGroup', array($cond, $groupId, $this->invokeParams['enablePage'], $orderBy, $page['offset'], $page['limit'])
       );
+   }
+
+   /**
+    * 获取产品分组树
+    * 
+    */
+   public function getProudctGroupTree()
+   {
+      if (null == $this->tree) {
+         $this->tree = $this->appCaller->call(
+                 PRODUCT_CONST::MODULE_NAME, PRODUCT_CONST::APP_NAME, PRODUCT_CONST::APP_API_GROUP_MGR, 'getGroupTree', array()
+         );
+      }
+      return $this->tree;
    }
 
    public function getPageUrl($pageId)
