@@ -64,10 +64,14 @@ define(['exports', 'zepto', 'lazyload'], function (exports){
         //统计
         var _hmt = _hmt || [];
         (function (){
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?150b10a8e39ef8fb51d20dc9293353fe";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
+            var host = window.location.host;
+            //当域名为fhzc.com时加载统计js
+            if(/fhzc.com/.test(host)){
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?150b10a8e39ef8fb51d20dc9293353fe";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            }
         })();
         exports.goBack = goBack;
     });
