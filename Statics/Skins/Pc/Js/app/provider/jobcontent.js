@@ -24,7 +24,7 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
                 layer.msg('招聘详情内容过少');
                 return false;
             }
-            params = validate.getInputValue($('#title,#department,#number'));
+            params = validate.getInputValue($('#title,#department,#number,#phone'));
             params.content = content;
             params.endTime = parseInt($('#endTime').datepicker('getDate', false).getTime() / 1000);
             if($('#telNum').val() != ''){
@@ -39,15 +39,16 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
                     return false;
                 }
             }
-            params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val()
+            params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val();
+            params.phone = $('#phone').val();
             Cntysoft.Front.callApi('Site', 'addJob', params, function (response){
                 if(response.status){
-                    layer.msg('发表成功!');
+                    layer.msg('发布招聘信息成功!');
                     setTimeout(function (){
                         window.location.href = '/site/job/1.html';
                     });
                 } else{
-                    layer.msg('发表失败,请稍候再试!');
+                    layer.msg('发布招聘信息失败,请稍候再试!');
                 }
             });
         });

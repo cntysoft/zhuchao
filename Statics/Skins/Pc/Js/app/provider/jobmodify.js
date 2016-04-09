@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front','app/common'], function (validate, WebUploader){
+define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front', 'app/common'], function (validate, WebUploader){
     $(function (){
         var images = new Array();
         var editor;
@@ -37,16 +37,17 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
                     return false;
                 }
             }
-            params.tel = $('#telCountry').val()+'-'+$('#telArea').val()+'-'+$('#telNum').val();
+            params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val();
             var path = window.location.pathname.split('/');
             params.id = parseInt(path.pop());
-            Cntysoft.Front.callApi('Site', 'modifyContent', params, function(response) {
-                if(response.status) {
-                    layer.msg('发表成功!', function() {
+            params.phone = $('#phone').val();
+            Cntysoft.Front.callApi('Site', 'modifyContent', params, function (response){
+                if(response.status){
+                    layer.msg('修改招聘信息成功!', function (){
                         window.location.href = '/site/job/1.html';
                     });
-                }else {
-                    layer.msg('发表失败,请稍候再试!');
+                } else{
+                    layer.msg('修改招聘信息失败,请稍候再试!');
                 }
             });
         });

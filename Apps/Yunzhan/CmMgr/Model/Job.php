@@ -1,113 +1,116 @@
-<?php
-
-namespace App\Yunzhan\CmMgr\Model;
-
+<?php namespace App\Yunzhan\CmMgr\Model;
 use ZhuChao\Phalcon\Mvc\Model as BaseModel;
-
 class Job extends BaseModel
 {
+   private $id = null;
+   private $content = null;
+   private $department = null;
+   private $number = null;
+   private $tel = null;
+   private $phone = null;
+   private $endTime = null;
 
-    private $id = null;
+   public function getSource()
+   {
+      return "app_site_cmmgr_u_job";
+   }
 
-    private $content = null;
+   public function getId()
+   {
+      return (int) $this->id;
+   }
 
-    private $department = null;
+   /**
+    * @return \App\Yunzhan\CmMgr\Model\Job
+    */
+   public function setId($id)
+   {
+      $this->id = (int) $id;
+      return $this;
+   }
 
-    private $number = null;
+   public function getContent()
+   {
+      return $this->content;
+   }
 
-    private $tel = null;
+   /**
+    * @return \App\Yunzhan\CmMgr\Model\Job
+    */
+   public function setContent($content)
+   {
+      $this->content = $content;
+      return $this;
+   }
 
-    private $endTime = null;
+   public function getDepartment()
+   {
+      return $this->department;
+   }
 
-    public function getSource()
-    {
-        return "app_site_cmmgr_u_job";
-    }
+   /**
+    * @return \App\Yunzhan\CmMgr\Model\Job
+    */
+   public function setDepartment($department)
+   {
+      $this->department = $department;
+      return $this;
+   }
 
-    public function getId()
-    {
-        return (int)$this->id;
-    }
+   public function getNumber()
+   {
+      return (int) $this->number;
+   }
 
-    /**
-     * @return \App\Yunzhan\CmMgr\Model\Job
-     */
-    public function setId($id)
-    {
-        $this->id = (int)$id;
-        return $this;
-    }
+   /**
+    * @return \App\Yunzhan\CmMgr\Model\Job
+    */
+   public function setNumber($number)
+   {
+      $this->number = (int) $number;
+      return $this;
+   }
 
-    public function getContent()
-    {
-        return $this->content;
-    }
+   public function getTel()
+   {
+      return $this->tel;
+   }
 
-    /**
-     * @return \App\Yunzhan\CmMgr\Model\Job
-     */
-    public function setContent($content)
-    {
-        $this->content = $content;
-        return $this;
-    }
+   /**
+    * @return \App\Yunzhan\CmMgr\Model\Job
+    */
+   public function setTel($tel)
+   {
+      $this->tel = $tel;
+      return $this;
+   }
 
-    public function getDepartment()
-    {
-        return $this->department;
-    }
+   public function getEndTime()
+   {
+      return (int) $this->endTime;
+   }
 
-    /**
-     * @return \App\Yunzhan\CmMgr\Model\Job
-     */
-    public function setDepartment($department)
-    {
-        $this->department = $department;
-        return $this;
-    }
+   /**
+    * @return \App\Yunzhan\CmMgr\Model\Job
+    */
+   public function setEndTime($endTime)
+   {
+      $this->endTime = (int) $endTime;
+      return $this;
+   }
 
-    public function getNumber()
-    {
-        return (int)$this->number;
-    }
+   public function getPhone()
+   {
+      return $this->phone;
+   }
 
-    /**
-     * @return \App\Yunzhan\CmMgr\Model\Job
-     */
-    public function setNumber($number)
-    {
-        $this->number = (int)$number;
-        return $this;
-    }
-
-    public function getTel()
-    {
-        return $this->tel;
-    }
-
-    /**
-     * @return \App\Yunzhan\CmMgr\Model\Job
-     */
-    public function setTel($tel)
-    {
-        $this->tel = $tel;
-        return $this;
-    }
-
-    public function getEndTime()
-    {
-        return (int)$this->endTime;
-    }
-
-    /**
-     * @return \App\Yunzhan\CmMgr\Model\Job
-     */
-    public function setEndTime($endTime)
-    {
-        $this->endTime = (int)$endTime;
-        return $this;
-    }
-
+   /**
+    * @return \App\Yunzhan\CmMgr\Model\Job
+    */
+   public function setPhone($phone)
+   {
+      $this->phone = $phone;
+      return $this;
+   }
 
 }
-

@@ -193,6 +193,16 @@ return array(
             'length'    => 64
          ),
          array(
+            'name'      => 'phone',
+            'alias'     => '手机号码',
+            'fieldType' => 'SingleLineText',
+            'require'   => false,
+            'system'    => false,
+            'display'   => true,
+            'type'      => 'varchar',
+            'length'    => 16
+         ),
+         array(
             'name'      => 'endTime',
             'alias'     => '截止时间',
             'fieldType' => 'SingleLineText',
