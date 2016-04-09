@@ -146,8 +146,8 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         </ul>
                     </div>
                     <div class="form_list">
-                        <label><em class="main">*</em>客户群体：</label>
-                        <input type="text" id="customer" class="checkField" value="<?php Qs::DsField('User', 'customer') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-20位主要用户群体" required>
+                        <label>客户群体：</label>
+                        <input type="text" id="customer" class="checkField" value="<?php Qs::DsField('User', 'customer') ?>" reg='^.{3,15}$' tip-value="请输入3-20位主要用户群体">
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>品牌：</label>
