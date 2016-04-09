@@ -1,0 +1,30 @@
+<?php
+$firstList = $this->getChildCategory(0);
+$out1 = '<div class="select_wrap clearfix"><div class="select_list">
+						<span>产品分类</span>
+						<ul>';
+$out2 = '';
+$out3 = '';
+foreach ($firstList as $index => $one) {
+	if (0 == $index) {
+		$out1.='<li class="current" index="' . $one["id"] . '" leaf='.$one["leaf"].'>' . $one["text"] . '</li>';
+		$out3.='<div class="selected_tips">
+					<p>选择的类目是：<em>' . $one["text"] . '</em></p>
+				</div>';
+		$secondList = $this->getChildCategory($one['id']);
+		if (count($secondList)) {
+			$out2.='<div class="select_list">
+						<span>产品分类</span>
+						<ul>';
+			foreach ($secondList as $two) {
+				$out2.='<li index="' . $two["id"] . '" leaf='.$two["leaf"].'>' . $two["text"] . '</li>';
+			}
+			$out2.='</ul></div>';
+		}
+	} else {
+		$out1.='<li index="' . $one["id"] . '" leaf='.$one["leaf"].'>' . $one["text"] . '</li>';
+	}
+}
+$out1.='</ul></div>';
+
+echo $out1 . $out2 . '</div>' . $out3;

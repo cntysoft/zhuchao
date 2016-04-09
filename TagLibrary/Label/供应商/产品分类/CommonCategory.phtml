@@ -1,0 +1,22 @@
+<?php
+$list = $this->getUsedCategoryList();
+
+$out = '<div class="searched_wrap common_category">
+                    <ul>';
+
+if(count($list)){
+   foreach($list as $category){
+      $categoryId = $category->getCategoryId();
+      $categoryText = $category->getCategoryText();
+      $categoryArray = explode(',', $categoryText);
+      $out1 = array();
+      foreach($categoryArray as $text){
+         $out1[] = '<em>'.$text.'</em>';
+      }
+
+      $out.='<li index="'.$categoryId.'"><label><input type="radio" name="used"><span>'. $out1[count($out1) - 1] .' : '. implode('<b>&gt;</b>', $out1).'</span></label><i class="icon-shanchu"></i></li>';
+   } 
+}
+
+$out.='</ul></div>';
+echo $out;

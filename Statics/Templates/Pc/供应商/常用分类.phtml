@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'site');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>常用分类-<?php Qs::DsField('site', 'SiteTitle') ?></title>
+        <meta name="description" content="<?php Qs::DsField('site', 'SiteDescription') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('site', 'SiteKeywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/commoncategory.css')); ?>
+    </head>
+    <body>
+        <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
+        <!--个人中心-->
+        <div class="content conwidth clearfix">
+            <!--左侧列表-->
+            <?php Qs::Label('供应商/用户中心左侧') ?>
+            <!--右侧内容-->
+            <div class="content_wrap fr">
+                <h1 class="items_title">常用分类</h1>
+                
+                <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'CommonCategory')); ?>
+                <div class="search_type">
+                    <a class="main_bg">搜索类目</a>
+                </div>
+                <div class="search_btn">
+                    <div class="input_text fl"><input type="text" placeholder="搜索分类关键词" class="search_key"><i class="icon-sousuo"></i></div>
+                    <input class="input_btn main_bg fl category_search" type="submit" value="类目搜索">
+                    <a class="main category_select">手动选择分类>></a>
+                </div>
+                <!--搜索后选择框-->
+                <div class="searched_wrap searched hide">
+                    <ul>
+                    </ul>
+                </div>
+                
+                <!--选择-->
+                <?php Qs::Label('供应商/产品分类', array('renderTpl' => 'CommonCategorySelect')); ?>
+                <!--已选择提示条-->
+                <!--下一步信息-->
+                <p class="next_step"><a class="main_bg submit">添加类目</a></p>
+            </div>
+        </div>
+        <?php Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_ProviderBottom')) ?>
+        <?php Qs::Sys('loadRequireJs', 'provider/commoncategory') ?>
+    </body>
+</html>

@@ -103,4 +103,12 @@ class ProductController extends AbstractController
          View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
        ));
    }
+   
+   public function commonAction()
+   {
+      return $this->setupRenderOpt(array(
+                 View::KEY_RESOLVE_DATA => 'provider/commoncategory',
+                 View::KEY_RESOLVE_TYPE => View::TPL_RESOLVE_MAP
+      ));
+   }
 }

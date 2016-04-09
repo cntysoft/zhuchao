@@ -426,4 +426,35 @@ class Product extends AbstractScript
          array($number)
       );
    }
+   
+   /**
+    * 增加一个常用分组
+    * 
+    * @param array $params
+    */
+   public function addCommonCategory(array $params)
+   {
+      $this->checkRequireFields($params, array('categoryId'));
+      
+      $ret = array();
+      $this->getParentCategory($params['categoryId'], $ret);
+      $categoryText = array();
+      foreach($ret as $one){
+         array_unshift($categoryText, $one['text']);
+      }
+      
+      $this->appCaller->call(YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'addUsedCategory', array(array('categoryId' => (int)$params['categoryId'], 'categoryText'=> implode(',', $categoryText))));
+   }
+   
+   /**
+    * 删除一个常用分组
+    * 
+    * @param array $params
+    */
+   public function deleteCommonCategory(array $params)
+   {
+      $this->checkRequireFields($params, array('categoryId'));
+      
+      $this->appCaller->call(YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'deleteCommonCategory', array((int)$params['categoryId']));
+   }
 }

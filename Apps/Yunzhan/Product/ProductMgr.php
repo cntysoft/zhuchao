@@ -455,53 +455,41 @@ class ProductMgr extends AbstractLib
    }
    
    /**
-    * 增加已经常用的分类
+    * 增加常用的分类
     * 
     * @param array $data
     */
    public function addUsedCategory(array $data)
    {
       $categoryList = $this->getUsedCategoryList();
-      $oldCategory = $newCategory = array();
-
       foreach($categoryList as $category){
-         $oldCategory[] = $category->getCategoryId();
+         if($category->getCategoryId() == $data['categoryId']){
+            return;
+         }
       }
       
-      foreach($data as $category){
-         $newCategory[] = $category['categoryId'];
-      }
+      $uc = new UCModel();
+      $uc->setCategoryId($data['categoryId']);
+      $uc->setCategoryText($data['categoryText']);
+      $uc->create();
+   }
+   
+   /**
+    * 删除常用分类
+    * 
+    * @param type $categoryId
+    */
+   public function deleteCommonCategory($categoryId)
+   {
+      $category = UCModel::findFirst(array(
+         'categoryId=?0',
+         'bind' => array(
+            0 => $categoryId
+         )
+      ));
       
-      $delete = array_diff($oldCategory, $newCategory);
-      $add = array_diff($newCategory, $oldCategory);
-      
-      $db = Kernel\get_site_db_adapter();
-      
-      try{
-         $db->begin();
-         if(count($delete)){
-            $oldList = $this->getUsedCategoryList(UCModel::generateRangeCond('categoryId', $delete));
-            foreach($oldList as $one){
-               $one->delete();
-            }
-         }
-
-         if(count($add)){
-            foreach($data as $one){
-               if(in_array($one['categoryId'], $add)){
-                  $uc = new UCModel();
-                  $uc->setCategoryId($data['categoryId']);
-                  $uc->setCategoryText($data['categoryText']);
-                  $uc->create();
-                  unset($uc);
-               }
-            }
-         }
-         $db->commit();
-      } catch (\Exception $ex) {
-         $db->rollback();
-         
-         Kernel\throw_exception($ex);
+      if($category){
+         $category->delete();
       }
    }
 }
