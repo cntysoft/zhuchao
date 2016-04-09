@@ -16,7 +16,7 @@ foreach ($items as $index => $info) {
                         <div class="class_li_img">
                             <a href="' . $this->getInfoUrl($info->getId()) . '" style=""><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" data-lazy="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 261, 120) . '" alt=""/></a>
                         </div>
-                        <h3 class="class_li_h3 text_ellipsis"><a href="' . $this->getInfoUrl($info->getId()) . '">' . mb_substr($info->getTitle(), 0, 16) . '</a></h3>
+                        <h3 class="class_li_h3 text_ellipsis"><a href="' . $this->getInfoUrl($info->getId()) . '">' . iconv_substr($info->getTitle(), 0, 16, "UTF-8") . '</a></h3>
                         <p class="class_li_text">' . $info->getIntro() . '</p>
                         <a href="' . $this->getInfoUrl($info->getId()) . '" class="read_more main_bg_light">立即查看</a>
                     </div>';
