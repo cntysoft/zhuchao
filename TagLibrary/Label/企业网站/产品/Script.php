@@ -189,7 +189,8 @@ class Product extends AbstractLabelScript
    public function getImgUrl($imgUrl, $width, $height)
    {
       if ($imgUrl) {
-         return Kernel\get_image_cdn_url_operate($imgUrl, array('w' => $width, 'h' => $height, 'e' => 1, 'c' => 1));
+         return $width && $height ? Kernel\get_image_cdn_url_operate($imgUrl, array('w' => $width, 'h' => $height, 'e' => 1, 'c' => 1)) :
+                 Kernel\get_image_cdn_url_operate($imgUrl, array());
       } else {
          return 'Statics/Skins/Pc/Images/lazyicon.png';
       }

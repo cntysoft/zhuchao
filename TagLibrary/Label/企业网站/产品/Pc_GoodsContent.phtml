@@ -9,10 +9,10 @@ $bigImage = $smallImage = '';
 $i = 1;
 foreach ($images as $image) {
    if ($i == 1) {
-      $bigImage .= '<div><a ><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </a></div>';
-      $smallImage .= '<div class="mainbd_hover main_border"><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </div>';
+      $bigImage .= '<div><a ><img src="' . $this->getImgUrl($image[0], 0, 0) . '"> </a></div>';
+      $smallImage .= '<div class="mainbd_hover main_border"><img src="' . $this->getImgUrl($image[0], 0, 0) . '"> </div>';
    } else {
-      $smallImage .= '<div class="mainbd_hover"><img src="' . $this->getImgUrl($image[0], 500, 500) . '"> </div>';
+      $smallImage .= '<div class="mainbd_hover"><img src="' . $this->getImgUrl($image[0], 0, 0) . '"> </div>';
    }
    $i = 2;
 }
