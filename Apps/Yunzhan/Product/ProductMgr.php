@@ -11,6 +11,7 @@ use Cntysoft\Kernel\App\AbstractLib;
 use App\Yunzhan\Product\Model\Product as ProductModel;
 use App\Yunzhan\Product\Model\ProductDetail as DetailModel;
 use App\Yunzhan\Product\Model\Product2Group as PGModel;
+use App\Yunzhan\Product\Model\UsedCategory as UCModel;
 use Cntysoft\Kernel;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 
@@ -111,6 +112,8 @@ class ProductMgr extends AbstractLib
                unset($join);
             }
          }
+
+         $this->addUsedCategory($params);
          
          return $db->commit();
       } catch (Exception $ex) {
@@ -186,6 +189,8 @@ class ProductMgr extends AbstractLib
                unset($join);
             }
          }
+         
+         $this->addUsedCategory($params);
          
          return $db->commit();
       } catch (Exception $ex) {
@@ -441,4 +446,43 @@ class ProductMgr extends AbstractLib
       ));
    }
    
+   /**
+    * 获取当前站点的常用分组信息
+    * 
+    * @return 
+    */
+   public function getUsedCategoryList()
+   {
+      return UCModel::find();
+   }
+   
+   /**
+    * 增加已经常用的分类
+    * 
+    * @param array $pdata
+    */
+   public function addUsedCategory($pdata)
+   {
+      $categoryList = $this->getUsedCategoryList();
+      $number = count($categoryList);
+      $flag = true;
+      foreach($categoryList as $category){
+         if($category->getId() == $pdata['categoryId']){
+            $flag = false;
+         }
+      }
+
+      if($flag){
+         if($number >= Constant::USED_CATEGORY_MAXNUM){
+            foreach($categoryList as $category){
+               $category->delete();
+               break;
+            }
+         }
+
+         $uc = new UCModel();
+         $uc->setCategoryId($pdata['categoryId']);
+         $uc->create();
+      }
+   }
 }

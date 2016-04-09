@@ -3,19 +3,70 @@
  */
 define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
    $(function (){
-      var $search = $('.searched_wrap'), $select = $('.select_wrap');
+      var $search = $('.searched_wrap'), $select = $('.select_wrap'), $used = $('.used_wrap');
+      var flag = true;
       $('.category_select').click(function(){
-         if(!$search.is(':hidden')){
+         if($select.is(':hidden')){
             $search.hide();
+            $used.hide();
             $select.show();
          }
       });
       
-      $('.icon-sousuo').click(function(){
+      $('.search_type a').click(function(){
+         var that = $(this);
+         if(!that.hasClass('main_bg')){
+            that.siblings('.main_bg').removeClass('main_bg');
+            that.addClass('main_bg');
+            var index = $('.search_type a').index($(this));
+            if(1 == index){
+               $search.hide();
+               $select.hide();
+               $used.show();
+               $('.search_btn').hide();
+               
+               if(flag){
+                  Cntysoft.Front.callApi('Product', 'getProviderCategoryList', {}, function (response){
+                     if(response.status){
+                        var data = response.data, len = data.length, ul = $used.find('ul');
+                        var out='';
+                        ul.empty();
+                        if(len > 0){
+                           for(var i = 0; i < len; i++){
+                              var len1 = data[i].length, list = [];
+                              var cate = data[i], categoryId = 0;
+                              for(var j = 0; j < len1; j++){
+                                 list.push('<em index='+cate[j]['id']+'>'+cate[j]['text']+'</em>');
+                                 categoryId = cate[j]['id'];
+                              }
+                              out+='<li index='+categoryId+'><label><input type="radio"  name="searched" /><span>';
+                              out +=list.join('<b>&gt;</b>');
+                              out +='</span></label></li>';
+                           }
+                           ul.append($(out));
+                        }else{
+                           ul.empty();
+                           ul.append($('<span>抱歉，没有找到您的常用类目，请使用其他的方式</span>'));
+                        }
+                     }
+                  });
+                  flag = false;
+               }
+            }else{
+               $search.hide();
+               $used.hide();
+               $select.show();
+               $('.search_btn').show();
+            }
+         }
+      });
+      
+      $('.category_search', '.icon-sousuo').click(function(){
          var key = $('.search_key').val();
          if(key){
             if($search.is(':hidden')){
                $search.show();
+               $used.hide();
                $select.hide();
             }
             Cntysoft.Front.callApi('Product', 'searchCategory', {
@@ -47,6 +98,9 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
       });
       
       $search.delegate('li label', 'click', function(){
+         $('.selected_tips p').html('选择的类目是：'+$(this).find('span').html());
+      });
+      $used.delegate('li', 'click', function(){
          $('.selected_tips p').html('选择的类目是：'+$(this).find('span').html());
       });
       
@@ -101,14 +155,19 @@ define(['jquery', 'layer', 'Core', 'Front','app/common'], function (){
             if(flag){
                window.location.href='/product/addproduct/2.html?category='+categoryId;
             }
-         }else{
+         }else if(!$search.is(':hidden')){
             var checked = $search.find('li input:checked');
             if(checked.length > 0){
                var categoryId = checked.parents('li').attr('index');
                window.location.href='/product/addproduct/2.html?category='+categoryId;
             }
+         }else{
+            var checked = $used.find('li input:checked');
+            if(checked.length > 0){
+               var categoryId = checked.parents('li').attr('index');
+               window.location.href='/product/addproduct/2.html?category='+categoryId;
+            }
          }
-      });
-      
+      }); 
    });
 });

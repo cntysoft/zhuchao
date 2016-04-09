@@ -205,6 +205,10 @@ return array(
  `group` varchar(128) NOT NULL COMMENT '配置分组',
  `value` text NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COMMENT = '系统配置信息表';",
+"CREATE TABLE IF NOT EXISTS `app_zhuchao_product_used_category` (
+  `id` int(11) NOT NULL,
+  `categoryId` int(11) NOT NULL COMMENT '分类id'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;",
    "ALTER TABLE `app_site_category_tree`
 ADD PRIMARY KEY (`id`),
  ADD UNIQUE KEY `nodeIdentifier` (`nodeIdentifier`);",
@@ -232,6 +236,8 @@ ADD PRIMARY KEY(`categoryId`, `modelId`);",
 ADD PRIMARY KEY(`productId`, `groupId`);",
    "ALTER TABLE `sys_m_std_config`
 ADD PRIMARY KEY(`key`, `group`);",
+   "ALTER TABLE `app_zhuchao_product_used_category`
+  ADD PRIMARY KEY (`id`);",
    "ALTER TABLE `app_site_category_tree`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '节点的ID', AUTO_INCREMENT = 7;",
    "ALTER TABLE `app_site_cmmgr_cmodel`
@@ -252,6 +258,8 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
    "ALTER TABLE `app_zhuchao_product_group`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;",
+   "ALTER TABLE `app_zhuchao_product_used_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;",
    "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('product','Nav',1),('case','Nav',1),('news','Nav',1),('zhaopin','Nav',1),('aboutus','Nav',1);",
    "INSERT INTO `sys_m_std_config` (`key`,`group`,`value`) VALUES ('Banner','Site','a:0:{}');",
 );

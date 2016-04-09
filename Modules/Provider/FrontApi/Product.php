@@ -377,7 +377,7 @@ class Product extends AbstractScript
     * 
     * @return 
     */
-   public function getCategoryTree()
+   protected function getCategoryTree()
    {
       if(null == $this->tree){
          $this->categoryTree = $this->appCaller->call(
@@ -423,5 +423,25 @@ class Product extends AbstractScript
          'getProductByNumber',
          array($number)
       );
+   }
+   
+   /**
+    * 获取供应商常用分类的列表
+    */
+   public function getProviderCategoryList()
+   {
+      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
+      
+      $list = $this->appCaller->call(YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'getUsedCategoryList', array($curUser->getId()));
+      $ret = array();
+      
+      foreach($list as $pc){
+         $item = array();
+         $this->getParentCategory($pc->getCategoryId(), $item);
+         $item = array_reverse($item);
+         $ret[] = $item;
+      }
+      
+      return $ret;
    }
 }

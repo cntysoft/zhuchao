@@ -13,5 +13,5 @@ return array(
    'E_PROVIDER_ACL_SMS_ERROR'       => array(10011, 'sms code error'),
    'E_PROVIDER_COMPANY_NOT_EXIST'   => array(10012, 'provider company not exist'),
    'E_COMPANY_SUBATTR_EXIST'        => array(10015, 'The company subattr is exist'),
-   'E_DOMAIN_MAP_NOT_EXIST' => array(10016, 'domain map is not exist')
+   'E_DOMAIN_MAP_NOT_EXIST'         => array(10016, 'domain map is not exist')
 );

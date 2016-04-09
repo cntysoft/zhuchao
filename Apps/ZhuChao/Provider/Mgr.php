@@ -14,6 +14,7 @@ use App\ZhuChao\Provider\Model\BaseInfo as BaseModel;
 use App\ZhuChao\Provider\Model\Profile as ProfileModel;
 use App\ZhuChao\Provider\Model\Company as CompanyModel;
 use App\ZhuChao\Provider\Model\CompanyProfile as CompanyProfileModel;
+use App\ZhuChao\Provider\Model\ProviderCategory as ProviderCategoryModel;
 use Phalcon\Db\Adapter\Pdo\MySql;
 use Cntysoft\Kernel\ConfigProxy;
 /**
@@ -469,5 +470,4 @@ class Mgr extends AbstractLib
 
       return $company ? true : false;
    }
-
 }

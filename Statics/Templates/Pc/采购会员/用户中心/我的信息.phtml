@@ -55,11 +55,11 @@
                     ?>
                     <div class="form_list">
                         <label><em class="main">*</em>用&nbsp;户&nbsp;名:</label>
-                        <input type="text" id='name' value="<?php echo $name; ?>" fh-type="nickname" <?php echo $canChange ?>>
+                        <input type="text" id='name' value="<?php echo $name; ?>" reg="/^[a-zA-Z0-9]{3,10}$/" <?php echo $canChange ?>>
                     </div>
                     <div class="form_list">
                         <label><em class="main"></em>等&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</label>
-                        <input type="text" id='name' value="<?php echo 'LV' . Qs::DsField('User', 'level', true); ?>" fh-type="nickname" disabled class="no_border">
+                        <input type="text" id='level' value="<?php echo 'LV' . Qs::DsField('User', 'level', true); ?>" disabled class="no_border">
                     </div>
                     <div class="form_list">
                         <label><em class="main"></em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>

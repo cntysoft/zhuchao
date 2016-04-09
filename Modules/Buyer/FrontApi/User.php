@@ -98,6 +98,10 @@ class User extends AbstractScript
          $image = explode('@', str_replace($cndServer, '', $params['avatar']));
          $params['avatar'] = $image[0];
       }
+      
+      if($curUser->getName()){
+         unset($params['name']);
+      }
 
       return $this->appCaller->call(
          BUYER_CONST::MODULE_NAME,

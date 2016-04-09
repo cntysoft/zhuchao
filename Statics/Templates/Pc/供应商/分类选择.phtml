@@ -11,6 +11,31 @@ Qs::Ds('商城数据源/商城数据', 'site');
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/publish.css')); ?>
+        <style>
+           .used_wrap {
+            border: 1px solid #e6e6e6;
+            padding: 5px 20px;
+            height: 250px;
+            overflow-y: scroll;
+            margin-top: 20px;
+           }
+           .used_wrap ul>li label{
+               cursor:pointer
+           }
+           .used_wrap ul>li input{
+               vertical-align:middle;
+               margin-right:8px
+           }
+           .used_wrap ul>li em{
+               font-size:14px;
+               color:#666
+           }
+           .used_wrap ul>li b{
+               padding:0 3px;
+               font-size:13px;
+               color:#666
+           }
+        </style>
     </head>
     <body>
         <?php Qs::Label('供应商/用户中心头部', array('renderTpl' => 'Pc_ProviderTop')); ?>
@@ -26,7 +51,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                 </div>
                 <div class="search_type">
                     <a class="main_bg">搜索类目</a>
-                    <!--<a href="#">我的常用类目</a>-->
+                    <a>我的常用类目</a>
                 </div>
                 <div class="search_btn">
                     <div class="input_text fl"><input type="text" placeholder="搜索分类关键词" class="search_key"><i class="icon-sousuo"></i></div>
@@ -35,6 +60,11 @@ Qs::Ds('商城数据源/商城数据', 'site');
                 </div>
                 <!--搜索后选择框-->
                 <div class="searched_wrap hide">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div class="used_wrap hide">
                     <ul>
 
                     </ul>

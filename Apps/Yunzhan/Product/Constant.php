@@ -30,4 +30,5 @@ class Constant
    const ATTR_FILTER_REGEX = '/[\s:\/\(\)\*&@!#$%\^\-+~\?]/is';
    
    const GROUP_MAX_NUM = 10;
+   const USED_CATEGORY_MAXNUM = 10;
 }

@@ -400,7 +400,7 @@ class Product extends AbstractScript
     */
    public function getCategoryTree()
    {
-      if (null == $this->tree) {
+      if (null == $this->categoryTree) {
          $this->categoryTree = $this->appCaller->call(
                  CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR, 'getNodeTree'
          );
@@ -632,5 +632,26 @@ class Product extends AbstractScript
    protected function getProductUrl($number)
    {
       return 'http://'.\Cntysoft\RT_SYS_SITE_NAME . '/itemapp/' . $number . '.html';
+   }
+   
+   /**
+    * 获取供应商常用分类的列表
+    */
+   public function getProviderCategoryList()
+   {
+      $curUser = $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
+      
+      $list = $this->appCaller->call(YUN_P_CONST::MODULE_NAME, YUN_P_CONST::APP_NAME, YUN_P_CONST::APP_API_PRODUCT_MGR, 'getUsedCategoryList', array($curUser->getId()));
+      $ret = array();
+      
+      foreach($list as $pc){
+         $item = array(
+            'id'   => $pc->getCategoryId(),
+            'name' => $this->getAllParentName($pc->getCategoryId())
+         );
+         $ret[] = $item;
+      }
+      
+      return $ret;
    }
 }

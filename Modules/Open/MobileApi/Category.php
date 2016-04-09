@@ -106,7 +106,7 @@ class Category extends AbstractScript
    public function getCategoryTree(array $params)
    {
       $mgr = $this->appCaller->getAppObject(
-              CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_MGR
+         CATE_CONST::MODULE_NAME, CATE_CONST::APP_NAME, CATE_CONST::APP_API_MGR
       );
       $tree = $mgr->getNodeTree();
       $nodes = CategoryModel::find();
