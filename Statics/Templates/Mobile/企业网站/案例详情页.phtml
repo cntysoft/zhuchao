@@ -42,7 +42,7 @@ Qs::Ds('内容数据源/企业信息', 'CP');
                             <div class="module_ad_box"></div>
                         </div>
                     </a>
-                     <h3 class="case_title">'.Qs::DsField('case', 'title', true).'</h3>
+                     <h3 class="case_title">' . Qs::DsField('case', 'title', true) . '</h3>
                     <p class="case_text">' . $value['intro'] . '</p>
                 </div>';
                 }
@@ -51,6 +51,19 @@ Qs::Ds('内容数据源/企业信息', 'CP');
 
             </div>
             <div class="swiper-pagination"></div>
+        </div>
+        <div id='contact'><span><a class='phone'></a></span></div>
+        <div id="contactWrap">
+            <div class="wrap">
+                <div class="bg"></div>
+                <div class="detail">
+                    <h2><i class="icon-lianxiwomen main"></i>联系我们</h2>
+
+                    <p>电&nbsp;&nbsp;&nbsp;话：<a href="tel:15639707313">15639707313</a></p>
+
+                    <p>联系人：张大海</p>
+                </div>
+            </div>
         </div>
         <!--分享保存-->
         <?php

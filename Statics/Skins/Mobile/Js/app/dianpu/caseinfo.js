@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/4/8.
  */
-define(['zepto','swiper','module/totop'],function(){
+define(['zepto','swiper','app/dianpu/common'],function(){
     $(function(){
         //广告
         var Ad = new Swiper('#caseinfo', {

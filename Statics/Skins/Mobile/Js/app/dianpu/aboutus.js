@@ -5,7 +5,7 @@
  * @copyright  Copyright (c) 2010-2011 Cntysoft Technologies China Inc. <http://www.cntysoft.com>
  * @license   Expression $license is undefined on line 6, column 17 in Templates/ClientSide/javascript.js.
  */
-define(['zepto', 'module/mall_nav', 'module/totop'], function (){
+define(['zepto', 'module/mall_nav', 'app/dianpu/common'], function (){
    $(function (){
       var path = window.location.search;
       if(path.indexOf('zizhi') > 0){

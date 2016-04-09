@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/3/17.
  */
-define(['zepto', 'module/company_classify', 'module/mall_nav', 'module/totop', 'Core', 'Front'], function (){
+define(['zepto', 'module/company_classify', 'module/mall_nav', 'app/dianpu/common', 'Core', 'Front'], function (){
     $(function (){
         var sendAjax = true; //是否可发送列表请求
         var page = 0, limit = 8;

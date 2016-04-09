@@ -20,7 +20,20 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Mobile_CompanyTop',)) ?>
         <!--案例展示-->
         <div class="caselist">
-        <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_CaseList', 'outputNum' => 8)) ?>
+            <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_CaseList', 'outputNum' => 8)) ?>
+        </div>
+        <div id='contact'><span><a class='phone'></a></span></div>
+        <div id="contactWrap">
+            <div class="wrap">
+                <div class="bg"></div>
+                <div class="detail">
+                    <h2><i class="icon-lianxiwomen main"></i>联系我们</h2>
+
+                    <p>电&nbsp;&nbsp;&nbsp;话：<a href="tel:15639707313">15639707313</a></p>
+
+                    <p>联系人：张大海</p>
+                </div>
+            </div>
         </div>
         <?php
         Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));

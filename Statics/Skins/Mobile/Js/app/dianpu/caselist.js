@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/4/1.
  */
-define(['zepto', 'module/mall_nav', 'module/totop', 'Front'], function (){
+define(['zepto', 'module/mall_nav', 'app/dianpu/common', 'Front'], function (){
     $(function (){
         var ajaxParams = {};
         var page = 1;

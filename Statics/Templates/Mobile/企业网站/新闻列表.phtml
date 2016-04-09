@@ -22,6 +22,19 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
 
         <!--列表-->
         <?php Qs::Label('企业网站/文章', array('renderTpl' => 'Mobile_DefaultList', 'nodeIdentifier' => array(), 'titleLength' => 34, 'introLength' => 20, 'outputNum' => 8, 'enablePage' => false, 'listSubNode' => true)) ?> 
+        <div id='contact'><span><a class='phone'></a></span></div>
+        <div id="contactWrap">
+            <div class="wrap">
+                <div class="bg"></div>
+                <div class="detail">
+                    <h2><i class="icon-lianxiwomen main"></i>联系我们</h2>
+
+                    <p>电&nbsp;&nbsp;&nbsp;话：<a href="tel:15639707313">15639707313</a></p>
+
+                    <p>联系人：张大海</p>
+                </div>
+            </div>
+        </div>
         <?php
         Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
         Qs::Sys('loadRequireJs', 'dianpu/newslist')

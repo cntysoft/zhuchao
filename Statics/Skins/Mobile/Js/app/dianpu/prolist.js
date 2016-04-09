@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/4/7.
  */
-define(['zepto', 'swiper', 'module/mall_nav', 'module/totop','Front'], function (){
+define(['zepto', 'swiper', 'module/mall_nav', 'app/dianpu/common','Front'], function (){
 
     var sendAjax = true; //是否可发送列表请求
     var page = 0, limit = 6;
