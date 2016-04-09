@@ -47,8 +47,8 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         <input type="text" id='name' value="<?php echo $name; ?>" reg="^[\w]{3,10}$" tip-value="请输入3-10位字母数字下划线" required <?php echo $canChange ?>>
                     </div>
                     <div class="form_list">
-                        <label><em class="main">*</em>真实姓名:</label>
-                        <input type="text" id="realName" value="<?php Qs::DsField('User', 'realName') ?>" reg="[\u4e00-\u9fa5]{2,6}" tip-value="请输入2-6位中文" required>
+                        <label>真实姓名:</label>
+                        <input type="text" id="realName" value="<?php Qs::DsField('User', 'realName') ?>" reg="[\u4e00-\u9fa5]{2,6}" tip-value="请输入2-6位中文">
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
@@ -90,8 +90,8 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         <input type="text" id="phone" value="<?php Qs::DsField('User', 'phone') ?>" disabled>
                     </div>
                     <div class="form_list">
-                        <label><em class="main">*</em>部门:</label>
-                        <input type="text" id="department" value="<?php Qs::DsField('User', 'department') ?>" required fh-type="length" minlength="2" maxlength="20"  required>
+                        <label>部门:</label>
+                        <input type="text" id="department" value="<?php Qs::DsField('User', 'department') ?>" required fh-type="length" minlength="2" maxlength="20" >
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>职位:</label>
@@ -107,7 +107,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>QQ:</label>
-                        <input type="text" id="qq" value="<?php Qs::DsField('User', 'qq') ?>" fh-type="qq" required>
+                        <input type="text" id="qq" value="<?php Qs::DsField('User', 'qq') ?>" fh-type="qq" placeholder="此QQ可以直接在线聊天" required>
                     </div>
 
                     <?php

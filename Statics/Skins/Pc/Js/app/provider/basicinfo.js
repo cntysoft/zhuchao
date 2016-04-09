@@ -1,7 +1,7 @@
 define(['validate', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function (validate){
     $(function (){
         $('#submit').click(function (){
-            var validation = validate.checkFields($('#name,#realName,#department,#position,#email,#showPhone,#qq,#telNum,#telCountry,#telArea,#faxNum,#faxCountry,#faxArea'));
+            var validation = validate.checkFields($('#name,#position,#email,#showPhone,#qq,#telNum,#telCountry,#telArea,#faxNum,#faxCountry,#faxArea'));
             if(validation.length){
                 validation[0].ele.focus();
                 layer.msg('请正确填写相应信息');

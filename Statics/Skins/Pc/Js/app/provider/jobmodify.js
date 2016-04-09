@@ -43,7 +43,9 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
             params.phone = $('#phone').val();
             Cntysoft.Front.callApi('Site', 'modifyContent', params, function (response){
                 if(response.status){
-                    layer.msg('修改招聘信息成功!', function (){
+                    layer.msg('修改招聘信息成功!', {
+                        time : 2000
+                    }, function (){
                         window.location.href = '/site/job/1.html';
                     });
                 } else{

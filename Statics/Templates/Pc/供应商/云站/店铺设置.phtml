@@ -69,16 +69,17 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>店铺二维码:</label>
                         <div id="companycode" company="<?php Qs::DsField('provider', 'companyname') ?>" url="http://<?php echo Qs::DsField('provider', 'subAttr', true) . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN ?>" style="margin-left: 120px;width: 250px;height: 150px">
-                            <div style="margin-top: 5px;float: right;font-size: 15px"><label>点击图片下载</label></div>
+                            <div style="margin-top: 5px;float: right;font-size: 14px"><label>点击图片下载</label></div>
                         </div>
                     </div>
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>SEO描述:</label>
-                        <textarea style="resize:none;width:410px;height:76px;"  class="checkField" id="description" required><?php Qs::DsField('setting', 'description') ?></textarea>
+                        <textarea style="resize:none;width:410px;height:76px;"  class="checkField" id="description" placeholder="站点的简单描述，这些信息会直接显示在META信息中，认真填写会提高站点的搜索引擎排名" required><?php Qs::DsField('setting', 'description') ?></textarea>
+                        <a target="_blank" href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME; ?>/category/yingxiaoseo/1.html" class="main_hover" style="font-size: 14px;margin-left: 10px;margin-bottom: 30px;">查看网站SEO相关知识</a>
                     </div>
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>SEO关键字:</label>
-                        <textarea style="resize:none;width:410px;height:76px;" class="checkField" id="keywords" required><?php Qs::DsField('setting', 'keywords') ?></textarea>
+                        <textarea style="resize:none;width:410px;height:76px;" class="checkField" id="keywords" placeholder="站点的关键字，这些信息会直接显示在META信息中，填写会提高站点的关键字搜索排名" required><?php Qs::DsField('setting', 'keywords') ?></textarea>
                     </div>
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>首页banner:</label>
