@@ -1,6 +1,8 @@
 <?php
 $grouptree = $this->getProudctGroupTree();
-$out = '<h1>全部分组</h1>';
+$out = '<h1>全部分组</h1>
+   <div class="classify_list">
+                        <h2><i class="icon-black-right"></i><a groupdata="-1">未分组<em></em></a></h2></div>';
 $first = $grouptree->getChildren(0, 1, true);
 foreach ($first as $key => $value) {
    $total1 = count($value->getP2g()) > 0 ? count($value->getP2g()) : '';

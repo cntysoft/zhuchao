@@ -28,45 +28,6 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
             </div>
             <!--左侧公司信息-->
             <div class="l_section fl">
-                <!--公司信息-->
-                <div class="company_info">
-                    <div class="company_name">
-                        <h1><?php Qs::DsField('CP', 'name') ?></h1>
-                        <p>
-                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi1.png') ?>" title="资质好" alt="资质好">
-                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="诚信商家" alt="诚信商家">
-                            <img src="<?php Qs::Sys('loadImage', 'company/test_icon_zizhi2.png') ?>" title="有良心商家" alt="有良心商家">
-                        </p>
-                    </div>
-                    <div class="company_intro">
-                        <dl>
-                            <dt>经营模式</dt>
-                            <dd><?php
-                                $trade = array(1 => '销售型', '生产型', '设计型', '服务型', '综合型');
-                                echo $trade[Qs::DsField('CP', 'tradeMode', true)]
-                                ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>所在地区</dt>
-                            <dd><?php echo ' ' . implode(' ', Qs::DsField('CP', 'PCD', true)) ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>联系人</dt>
-                            <dd><?php Qs::DsField('CP', 'providername') ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>联系电话</dt>
-                            <dd><?php Qs::DsField('CP', 'contact') ?></dd>
-                        </dl>
-                        <dl>
-                            <dt>工作时间</dt>
-                            <dd>
-                                <p>周一到周日</p>
-                                <p>(08:30-18:30)</p>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
                 <!--产品分类-->
                 <div class="product_classify">
                     <?php Qs::Label('企业网站/产品', array('renderTpl' => 'Pc_ProductGroupNav')); ?>

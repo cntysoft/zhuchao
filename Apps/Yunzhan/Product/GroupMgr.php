@@ -250,40 +250,53 @@ class GroupMgr extends AbstractLib
     */
    public function queryProductByGroup(array $querycond, $groupId, $total = false, $orderBy = 'productId DESC', $offset = 0, $limit = 15)
    {
-      $ids = array();
-      if (count($groupId) && 0 != $groupId) {
-         $group = GroupModel::findFirst(array(
-                    'id=?0',
-                    'bind' => array(
-                       0 => $groupId
-                    )
-         ));
+      try {
+         $ids = array();
+         if (count($groupId) && 0 != $groupId) {
+            $group = GroupModel::findFirst(array(
+                       'id=?0',
+                       'bind' => array(
+                          0 => $groupId
+                       )
+            ));
 
-         if (!$group) {
-            $errorType = $this->getErrorType();
-            Kernel\throw_exception(new Exception(
-                    $errorType->msg('E_GROUP_NOT_EXIST'), $errorType->code('E_GROUP_NOT_EXIST')
-                    ), $this->getErrorTypeContext());
+            if ($groupId != -1 && !$group) {
+               $errorType = $this->getErrorType();
+               Kernel\throw_exception(new Exception(
+                       $errorType->msg('E_GROUP_NOT_EXIST'), $errorType->code('E_GROUP_NOT_EXIST')
+                       ), $this->getErrorTypeContext());
+            }
+            $ids = array($groupId);
+            $cond[] = PModel::generateRangeCond('groupId', $ids);
+            $cond = $groupId == -1 ? '' : implode(' and ', $cond);
+            $items = PGModel::find(array(
+                       $cond
+            ));
+            $gids = array();
+            foreach ($items as $one) {
+               $gids[] = $one->getProductId();
+            }
+            if ($groupId == -1) {
+               if (count($gids)) {
+                  $querycond[] = 'id not in (' . implode(',', $gids) . ')';
+               }
+            } else {
+               $querycond[] = PModel::generateRangeCond('id', $gids);
+            }
+            return $this->getAppCaller()->call(
+                            Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_PRODUCT_MGR, 'getProductList', array(array(implode(' and ', $querycond)), $total, $orderBy, $offset, $limit)
+            );
+         } else {
+            return $this->getAppCaller()->call(
+                            Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_PRODUCT_MGR, 'getProductList', array(array(implode(' and ', $querycond)), $total, $orderBy, $offset, $limit)
+            );
          }
-         $ids = array($groupId);
-         $cond[] = PModel::generateRangeCond('groupId', $ids);
-         $cond = implode(' and ', $cond);
-         $items = PGModel::find(array(
-                    $cond
-         ));         
-         $gids = array();
-         foreach ($items as $one) {
-            $gids[] = $one->getProductId();
+      } catch (\Exception $exc) {
+         if (SYS_RUNTIME_MODE == SYS_RUNTIME_MODE_DEBUG) {
+            throw $exc;
+         } else {
+            \Cntysoft\Kernel\goto_route('404.html');
          }
-
-         $querycond[] = PModel::generateRangeCond('id', $gids);
-         return $this->getAppCaller()->call(
-                 Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_PRODUCT_MGR, 'getProductList', array(array(implode(' and ', $querycond)), $total, $orderBy, $offset, $limit)
-         );
-      } else {
-         return $this->getAppCaller()->call(
-                         Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_PRODUCT_MGR, 'getProductList', array(array(implode(' and ', $querycond)), $total, $orderBy, $offset, $limit)
-         );
       }
    }
 
