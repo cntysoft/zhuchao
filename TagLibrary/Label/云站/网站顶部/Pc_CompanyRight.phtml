@@ -1,0 +1,20 @@
+<!--侧边栏-->
+<div class="online">
+    <div class="online_ele  ">
+        <a target="_blank" <?php echo strlen(Qs::DsField('CP', 'providerqq', true)) ? 'href="http://wpa.qq.com/msgrd?v=3&uin=' . Qs::DsField('CP', 'providerqq', true) . '&site=qq&menu=yes"' : ''; ?>>
+            <i class="icon-qq main"></i>
+            <p class="main">在线客服</p>
+            <span class="main_bg"></span>
+        </a>
+    </div>
+    <div class="online_ele  no_mb">
+        <a>
+            <i class="icon-dianhua main"></i>
+            <p class="main">电话联系</p>
+            <span class="main_bg"></span>
+            <div class="block">
+                <em>电话：<?php Qs::DsField('CP', 'contact') ?></em>
+            </div>
+        </a>
+    </div>
+</div>

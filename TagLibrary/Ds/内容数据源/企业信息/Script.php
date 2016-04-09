@@ -57,7 +57,7 @@ class CompanyInfo extends AbstractDsScript
       $company['logo'] = $this->getImgcdn($company['logo'], 100, 54);
       $company['PCD'] = $this->getChPcd($company['province'], $company['city'], $company['district']);
       $companyProfile = $companyProfile->toarray();
-      $company['contact'] = $companyProvider ? $companyProvider->getPhone() : '';
+      $company['contact'] = $companyProvider ? $companyProvider->getProfile()->getShowPhone() : '';
       $company['providername'] = $companyProvider ? $companyProvider->getName() : '';
       $company['providerqq'] = $companyProvider ? $companyProvider->getProfile()->getQq() : '';
       $company['provideremail'] = $companyProvider ? $companyProvider->getProfile()->getEmail() : '';

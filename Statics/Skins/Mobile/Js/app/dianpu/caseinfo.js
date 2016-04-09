@@ -17,7 +17,7 @@ define(['zepto','swiper','module/totop'],function(){
                 var swiperTotal = $('.swiper-slide').size();
                 swiperPage.find('b').html(swiperTotal - 2);
             }
-        })
+        });
 
     });
 });
