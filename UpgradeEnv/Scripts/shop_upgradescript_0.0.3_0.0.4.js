@@ -1,0 +1,1 @@
+UpgradeEnv.dbQuery("ALTER TABLE `app_site_cmmgr_u_job` ADD `phone` VARCHAR(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '招聘电话' AFTER `tel`;");
