@@ -1,4 +1,4 @@
-define(['jquery', 'module/share', 'Front', 'app/common','layer','layer.ext'], function (){
+define(['jquery', 'module/share', 'Front', 'app/common','layer','layer.ext','search'], function (){
     $(function (){
         var url = window.location.pathname.split('/');
         if(url[1] == 'article'){

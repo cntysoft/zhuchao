@@ -4,8 +4,8 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
 Qs::Ds('内容数据源/企业案例模型', 'case');
 Qs::Ds('内容数据源/企业信息', 'CP');
 ?>
-<html lang="en">
-    <head>
+<html>
+    <head lang="en">
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
@@ -14,36 +14,47 @@ Qs::Ds('内容数据源/企业信息', 'CP');
         <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('swiper.min.css', 'company/style.css', 'company/caseinfo.css')) ?>
+        <?php Qs::Sys('loadCss', array('swiper.min.css', 'dianpu/style.css', 'dianpu/caseinfo.css')) ?>
     </head>
     <body>
-        <!-- 内容-->
-        <div class="l_main" id="l_main"  newsid="<?php Qs::DsField('case', 'id') ?>">
-            <p class="goback"><i class="icon-fanhuijian"></i></p>
-            <!--一列广告滑动-->
-            <div class= "swiper-container">
-                <div class="swiper-wrapper">
-                    <?php
-                    $content = Qs::DsField('case', 'content', true);
-                    foreach ($content as $index => $value) {
-                       echo '<div class="swiper-slide">
-                        <img src="' . $value['src'] . '">
-                    </div>';
-                    }
-                    ?>
-                </div>
-                <div class="swiper-pagination"></div>
+        <!--返回，-->
+        <div class="headbar w clearfix">
+            <!--返回-->
+            <div class="header_back_box fl">
+                <a class="header_back" href="javascript:history.back();"><i class="icon-fanhuijian"></i></a>
             </div>
-            <p class="case_num"><em>1</em>/<span><?php echo $index + 1; ?></span></p>
-            <div class="case_intro">
-                <h2><?php Qs::DsField('case', 'title'); ?></h2>
-                <p><?php Qs::DsField('case', 'intro'); ?>
-                </p>
+            <!--标题-->
+            <div class="header_title">
+                <h2 class="text_ellipsis tc"><span>1</span>/ <b></b></h2>
             </div>
         </div>
+        <!--案例内容-->
+        <div id="caseinfo" class="module_ad3 module_ad clearfix  swiper-container">
+            <div class="swiper-wrapper">
+                <?php
+                $content = Qs::DsField('case', 'content', true);
+                $out = '';
+                foreach ($content as $value) {
+                   $out .= '<div class="module_ad_list swiper-slide">
+                    <a>
+                        <div class="module_ad_img"
+                             style="background: url(' . $value['src'] . '@365w_365h_1c_1e.src) no-repeat center  ;">
+                            <div class="module_ad_box"></div>
+                        </div>
+                    </a>
+                     <h3 class="case_title">'.Qs::DsField('case', 'title', true).'</h3>
+                    <p class="case_text">' . $value['intro'] . '</p>
+                </div>';
+                }
+                echo $out;
+                ?>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <!--分享保存-->
         <?php
-        Qs::Label('云站/网站底部', array('renderTpl' => 'Mobile_CompanyBottom',));
-        Qs::Sys('loadRequireJs', 'company/caseinfo')
+        Qs::Sys('loadRequireJs', 'dianpu/caseinfo')
         ?>
     </body>
 </html>
