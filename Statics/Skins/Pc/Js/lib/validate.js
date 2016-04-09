@@ -7,7 +7,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
             fax : /[1-9][0-9]{6,7}/,
             qq : /^[1-9][0-9]{4,10}$/,
             nickname : /^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,8}$/,
-            name : /^[\w]{5,11}$/,
+            name : /^[\w]{3,11}$/,
             num : /^[\d]*$/,
             password : /^[\w~`\!@#\$%\^&\*\(\)_\-\=\+\[\]\{\}\:"\|;'\\<>\?,\.\/"]{6,15}$/,
             phoneAuthCode : /^[\d]{6}$/,
@@ -15,7 +15,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
             number : /^[0-9]*[1-9][0-9]*$/,
             float : /^\d+(\.\d+)?$/,
             chinese : /^[\u0391-\uFFE5]+$/,
-            subname : /^[a-zA-Z0-9]{3,16}$/
+            subname : /^[a-z]{3,16}$/
         },
         message = {
             email : '请输入正确的邮箱',
@@ -39,7 +39,7 @@ define(['exports', 'jquery', 'layer'], function (exports){
             number : '请输入整数',
             float : '请输入数字',
             chinese : '请输入中文',
-            subname : '请输入3至32位域名'
+            subname : '请输入3至16位小写字母组成的域名'
         },
         lengthMessage = {
             eq : '请输入{1}个字符',

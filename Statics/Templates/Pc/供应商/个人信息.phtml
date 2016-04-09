@@ -44,7 +44,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     ?>
                     <div class="form_list">
                         <label><em class="main">*</em>用户名:</label>
-                        <input type="text" id='name' value="<?php echo $name; ?>" fh-type="nickname" <?php echo $canChange ?>>
+                        <input type="text" id='name' value="<?php echo $name; ?>" reg="^[\w]{3,10}$" tip-value="请输入3-10位字母数字下划线" required <?php echo $canChange ?>>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>真实姓名:</label>
