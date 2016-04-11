@@ -1,23 +1,9 @@
 /**
  * Created by jiayin on 2016/3/18.
  */
-define(['zepto', 'swiper', 'app/common', 'Core', 'Front'], function (){
+define(['zepto', 'swiper', 'module/mall_nav', 'app/common', 'Core', 'Front'], function (){
    $(function (){
       //导航
-      $('.more_icon').click(function (){
-         if($('.top_nav_box').hasClass('hide')){
-            $(this).parents('.header_right').next('.top_nav_box').removeClass('hide');
-            return false;
-         }
-         else{
-            $(".top_nav_box").addClass('hide');
-            return false;
-         }
-      });
-      $('body').click(function (){
-         $(".top_nav_box").addClass('hide');
-      });
-
       //广告
       var Ad = new Swiper('.module_ad3', {
          pagination : '.swiper-pagination',

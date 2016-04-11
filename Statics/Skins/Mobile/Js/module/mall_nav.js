@@ -16,6 +16,9 @@ define(['zepto'],function(){
         });
         $(this).scroll(function(){
             $(".top_nav_box").addClass('hide');
-        });
-    })
-})
+        });        
+      $('body').click(function (){
+         $(".top_nav_box").addClass('hide');
+      });
+    });
+});

@@ -43,7 +43,7 @@ foreach ($goodsLists['docs'] as $goods) {
                                     </tr>
                                 </table>';
    }
-   $out.='<p><a href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" class="main_hover">' . $company->getName() . '</a></p>
+   $out.='<p><a target="_blank" href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" class="main_hover">' . $company->getName() . '</a></p>
                                 <p>所在地：<em>' . $this->getArea($company) . '</em><span>加入时间：' . date('Y-m-d', $company->getInputTime()) . '</span></p>
                             </div>
                             <div class="pro_buy">

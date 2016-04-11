@@ -35,7 +35,7 @@ foreach ($searchInfo['docs'] as $goods) {
                                         <td>' . implode('</td><td>', array_slice(array_values($attrvalue), 0, 6)) . '</td>
                                     </tr>
                                 </table>
-                                <p><a href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" class="main_hover">' . $company->getName() . '</a></p>
+                                <p><a target="_blank" href="http://' . $company->getSubAttr() . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '" class="main_hover">' . $company->getName() . '</a></p>
                                 <p>所在地：<em>' . $this->getArea($company) . '</em><span>加入时间：' . $time . '</span></p>
                             </div>
                             <div class="pro_buy">

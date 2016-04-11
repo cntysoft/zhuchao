@@ -13,7 +13,7 @@ define(['jquery', 'app/common'], function (){
       }
       function createMap(){
          map = new BMap.Map("map");
-         map.centerAndZoom(new BMap.Point(113.723188, 34.749882), 16);
+         map.centerAndZoom(new BMap.Point(113.719225,34.750964), 16);
       }
       function setMapEvent(){
          map.enableScrollWheelZoom();

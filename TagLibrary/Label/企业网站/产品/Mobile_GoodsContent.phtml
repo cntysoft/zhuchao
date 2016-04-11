@@ -42,10 +42,12 @@ $attribute = $goodsDetail->getAttribute();
 foreach ($attribute as $key => $value) {
    if (count($value)) {
       foreach ($value as $attrs => $attr) {
-         $out .= '<li class="item">
+         if (strlen($attr)) {
+            $out .= '<li class="item">
                 <div class="key">' . $attrs . '：</div>
                 <div class="val">' . $attr . '</div>
             </li>';
+         }
       }
    }
 }

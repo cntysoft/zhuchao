@@ -67,7 +67,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 <p>
                     <?php
                     $inrodata = Qs::DsField('CS', 'content', true);
-                    echo iconv_substr(strip_tags($inrodata), 0, 86, 'UTF-8')
+                    echo iconv_substr(strip_tags($inrodata), 0, 74, 'UTF-8')
                     ?> <a href="/about.html" style="float: right">查看详情>></a></p>
                     <?php
                     if (iconv_strpos($inrodata, '<img')) {

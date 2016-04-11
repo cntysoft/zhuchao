@@ -14,7 +14,7 @@ define(['zepto', 'module/mall_nav', 'app/common'], function (){
       //创建地图函数：
       function createMap(){
          var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
-         var point = new BMap.Point(113.720597, 34.751093);//定义一个中心点坐标
+         var point = new BMap.Point(113.719225,34.750964);//定义一个中心点坐标
          map.centerAndZoom(point, 17);//设定地图的中心点和坐标并将地图显示在地图容器中
          window.map = map;//将map变量存储在全局
       }
@@ -41,7 +41,7 @@ define(['zepto', 'module/mall_nav', 'app/common'], function (){
       }
 
       //标注点数组
-      var markerArr = [{title : "郑州神恩信息技术有限公司", content : "河南省郑州市金水区郑汴路与玉凤路凤凰城北城五楼", point : "113.719168|34.751656", isOpen : 0, icon : {w : 23, h : 25, l : 46, t : 21, x : 9, lb : 12}}
+      var markerArr = [{title : "郑州神恩信息技术有限公司", content : "河南省郑州市金水区郑汴路与玉凤路凤凰城北城五楼", point : "113.719225|34.750964", isOpen : 0, icon : {w : 23, h : 25, l : 46, t : 21, x : 9, lb : 12}}
       ];
       //创建marker
       function addMarker(){
