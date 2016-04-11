@@ -1,0 +1,19 @@
+<?php
+$help = $this->getNodeInfoByIdentifier('help');
+$subNodes = $this->getSubNodesByIdentifier('help');
+$nodeIds = array(
+	$help->getId()
+);
+foreach ($subNodes as $node) {
+	$nodeIds[] = $node->getId();
+	$itemNodes = $this->getSubNodesByIdentifier($node->getNodeIdentifier());
+	foreach ($itemNodes as $v) {
+		$nodeIds[] = $v->getId();
+	}
+}
+$infos = $this->getInfoListByNodeAndStatusNotPage($nodeIds);
+$out = '';
+foreach ($infos as $info) {
+   $out .= '<li class="right_li"><a href="/article/' . $info->getId() . '.html">' . $info->getTitle() . '</a></li>';
+}
+echo $out;

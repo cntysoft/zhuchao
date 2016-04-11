@@ -1,0 +1,26 @@
+<?php
+$indetifier = $this->invokeParams['nodeIdentifier'][0];
+$node0 = $this->getNodeByNodeIndentifier($indetifier);
+$subNodes = $this->getSubNodeIds($node0->getId());
+$subindetifiers = array();
+foreach ($subNodes as $value) {
+   $subindetifiers[] = $value->getNodeIdentifier();
+}
+array_push($subindetifiers, $indetifier);
+$this->invokeParams['nodeIdentifier'] = $subindetifiers;
+$items = $this->execute();
+$out = '';
+foreach ($items as $index => $info) {
+   $out .= '<div class="right_item">
+                    <div class="right_img">
+                        <a href="' . $this->getInfoUrl($info->getId()) . '"> <img src="' . $this->getImgcdn($info->getDefaultPicUrl()[0], 260, 146) . '" alt=""/></a>
+                    </div>
+                    <h3 class="right_item_title  main_hover"><a href="' . $this->getInfoUrl($info->getId()) . '">' . $info->getTitle() . '</a></h3>
+                    <p class="right_text">' . $info->getIntro() . '
+                    </p>
+                    <div class="right_user tr clearfix">
+                        <span><i class="main">' . $info->getHits() . '</i>人已学</span>
+                    </div>
+                </div>';
+}
+echo $out;

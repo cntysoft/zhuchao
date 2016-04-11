@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+Qs::Ds('栏目数据源/栏目SEO', 'category');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>用户反馈-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+   <meta name="description" content="<?php Qs::DsField('category', 'description') ?>">
+   <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
+   <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+   <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">		  
+   <?php Qs::Sys('loadCss', array('help/helpstyle.css', 'service/feedback.css')); ?>
+</head>
+<body>
+<?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_HelpCenterTop')) ?>
+<!--站点指示-->
+<div class="site conwidth">
+    <a  href="/index.html">首页</a>
+    <span>&gt;</span>
+    <a href="/category/help.html">帮助中心</a>
+    <span>&gt;</span>
+    <a>问题反馈</a>
+</div>
+<!--问题反馈-->
+<div class="clearfix conwidth">
+    <!--左侧内容-->
+    <div class="right_content fl">
+        <h2>问题反馈</h2>
+        <div class="form_box">
+            <div class="form_list">
+                <label>问题分类：</label>
+                <div class="class_li clearfix">
+                    <span class="check checked" index=1><em><i class="icon-checked"></i></em>网站错误</span>
+                    <span class="check" index=2><em><i class="icon-checked"></i></em>使用问题</span>
+                    <span class="check" index=3><em><i class="icon-checked"></i></em>意见建议</span>
+                    <span class="check" index=4><em><i class="icon-checked"></i></em>其他反馈</span>
+                </div>
+            </div>
+            <div class="form_list">
+                <label><em class="main">*</em>反馈内容：</label>
+                <textarea class="write_chars" placeholder="请输入您的需要、意见和建议"></textarea>
+            </div>
+            <p class="tip_text hide">请留下你的联系方式，方便客服人员跟你联系。建议一经采纳，即有积分奖励！</p>
+            <div class="form_list">
+                <label><em class="main">*</em>姓名:</label>
+                <input type="text" id="name">
+            </div>
+            <div class="form_list">
+                <label>邮箱:</label>
+                <input type="text" id="email">
+            </div>
+            <div class="form_list">
+                <label>手机:</label>
+                <input type="text" id="phone">
+            </div>
+            <div class="form_list">
+                <label>QQ:</label>
+                <input type="text" id="qq">
+            </div>
+            <div class="action_btn">
+                <a class="main_bg">提交</a>
+            </div>
+        </div>
+    </div>
+    <!--右侧侧内容-->
+    <div class="fr main_right">
+        <h3 class="right_title"><a href="">热门问题</a></h3>
+        <ul class="right_list_box main_hover">
+            <?php Qs::Label('帮助中心/帮助中心', array('renderTpl' => 'Pc_FeedbackHotQuestions', 'outputNum' => 8)); ?>
+        </ul>
+        
+        <?php Qs::Label('文章/电商宝典', array('renderTpl' => 'Pc_FeedbackNewArticle', 'nodeIdentifier' => array('kechengzhongxin'), 'titleLength' => 28, 'introLength' => 20, 'outputNum' => 1, 'enablePage' => false, 'listSubNode' => true))?>
+    </div>
+
+</div>
+<?php Qs::Label('静态类/网站底部');Qs::Sys('loadRequireJs', 'service/feedback'); ?>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<?php
+Qs::Ds('商城数据源/商城数据', 'sites');
+Qs::Ds('栏目数据源/栏目SEO', 'category');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>用户反馈-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+   <meta name="description" content="<?php Qs::DsField('category', 'description') ?>">
+   <meta name="keywords" content="<?php Qs::DsField('category', 'keyword') ?>">
+   <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+   <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">		  
+   <?php Qs::Sys('loadCss', array('help/style.css', 'service/feedback.css', 'layer.css')); ?>
+</head>
+<body>
+<!--返回,名称,提交-->
+<div class="headbar w clearfix main_bg">
+    <!--返回-->
+    <div class="header_back_box fl">
+        <a class="header_back" href="javascript:history.back();"><i class="icon-fanhuijian"></i></a>
+    </div>
+    <!--标题-->
+    <div class="header_title">
+        <h2 class="text_ellipsis tc">问题反馈</h2>
+    </div>
+
+</div>
+<div class="feedback_box">
+    <h3><i class="icon-fankui main"></i>反馈类型</h3>
+    <ul class="class_li clearfix">
+        <li class="main_bg" index=1>网站错误</li>
+        <li index=2>使用问题</li>
+        <li index=3>意见建议</li>
+        <li index=4>其他反馈</li>
+    </ul>
+    <ul class="form_box">
+        <li>
+            <textarea class="write_chars" placeholder="请输入您的需要、意见和建议"></textarea>
+        </li>
+        <li>
+            <input id="name" name="name" type="text" placeholder="请输入姓名，必须">
+        </li>
+        <li>
+            <input id="phone" name="phone"  type="text" placeholder="请输入手机号码">
+        </li>
+        <li>
+            <input id="email" name="email"  type="text" placeholder="请输入邮箱">
+        </li>
+        <li>
+            <input id="qq" name="qq"  type="text" placeholder="请输入QQ">
+        </li>
+    </ul>
+    <div class="user_action">
+        <a class="submit_btn main_bg">提交</a>
+    </div>
+</div>
+      <?php Qs::Sys('loadRequireJs', 'service/feedback'); ?>
+</body>
+</html>

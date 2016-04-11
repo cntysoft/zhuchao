@@ -189,6 +189,15 @@
                 "controller" : "About",
                 "action" : "contact"
             }
+        },
+        {
+            "key" : "Feedback",
+            "rule" : "\/feedback.html",
+            "option" : {
+                "module" : "Pages",
+                "controller" : "Service",
+                "action" : "feedback"
+            }
         }
     ],
     "hostName" : true,
@@ -209,7 +218,8 @@
         "about\/ad" : "关于我们\/广告服务.phtml",
         "about\/contact" : "关于我们\/联系我们.phtml",
         "about\/qualification" : "关于我们\/企业资质.phtml",
-        "about\/join" : "关于我们\/人才招聘.phtml"
+        "about\/join" : "关于我们\/人才招聘.phtml",
+        "service\/feedback" : "客户服务\/用户反馈.phtml"
     },
     "front_api_map" : {
         "User" : [
@@ -218,6 +228,10 @@
         ],
         "Utils" : [
             "\\PagesFrontApi\\Utils",
+            1
+        ],
+        "Service" : [
+            "\\PagesFrontApi\\Service",
             1
         ]
     }
