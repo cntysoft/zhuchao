@@ -85,7 +85,7 @@ if ($company->getSubAttr()) {
 $out .= '</div>
             <div class="pro_connect">';
 if ($goodStatus == 3) {
-   $out .= '<div class="connect_btn"><i class="icon-dianhua2"></i>联系方式</div>
+   $out .= '<div class="connect_btn"><i class="icon-kefu"></i>联系方式</div>
                 <div class="online_btn zaixian_xunjia"><i class="icon-tubiao"></i>在线询价</div>';
 } else {
    $out .= '<div class="online_btn" style="background:#999;margin-top:50px;">不在出售状态</div>';
@@ -167,12 +167,12 @@ if ($provider) {
                     </div>
                     <div>
                         <div class="connect_ele">
-                            <span class="icon-weixin main_light"></span>
+                            <span class="icon-qq main_light"></span>
                             <h4>QQ</h4>
                             <p>' . $providerDetail->getQq() . '</p>
                         </div>
                         <div class="connect_ele">
-                            <span class="icon-iconfontzuobiao main_light"></span>
+                            <span class="icon-zuobiao main_light"></span>
                             <h4>地址</h4>
                             <p>' . $this->getAreaFromCode($company->getProvince()) . $this->getAreaFromCode($company->getCity()) . $this->getAreaFromCode($company->getDistrict()) . $company->getAddress() . '</p>
                         </div>

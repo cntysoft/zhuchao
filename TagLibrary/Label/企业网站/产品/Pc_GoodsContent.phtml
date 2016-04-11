@@ -130,14 +130,14 @@ $out.='</p>
                 </div>
                 <div>
                     <div class="connect_ele">
-                        <span class="icon-weixin main_light"></span>
+                        <span class="icon-qq main_light"></span>
                         <h4>QQ</h4>
                         <p>';
 ?><?php $out.=Qs::DsField('CP', 'providerqq', true) ?><?php
 $out.='</p>
                     </div>
                     <div class="connect_ele">
-                        <span class="icon-iconfontzuobiao main_light"></span>
+                        <span class="icon-zuobiao main_light"></span>
                         <h4>地址</h4>
                         <p>';
 ?><?php $out.=implode('', Qs::DsField('CP', 'PCD', true)) . ' ' . Qs::DsField('CP', 'address', true); ?><?php
