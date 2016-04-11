@@ -68,5 +68,53 @@ define(['zepto', 'lazyload'], function (){
                 s.parentNode.insertBefore(hm, s);
             }
         })();
+        //生成微信分享图片
+        var shareImg = false;//标识是否生成分享图片
+        var cdnImgReg = /http\:\/\/img-b2b.*/;
+        if(!shareImg){
+            var pathname = window.location.pathname;
+            var logoPath = [
+                '/newscenter.html',
+                '/companynews.html',
+                '/industrynews.html',
+                '/joinus.html',
+                '/about.html',
+                '/'
+            ];
+            if($.inArray(pathname, logoPath) != -1 || pathname.match(/^(\/productlist\/[\d]*?.html|\/caselist\/1.html)$/)){
+                shareImg = $('.icon_logo img').attr('src');
+            }
+        }
+        if(!shareImg && $('.module_ad_img').length && $('.module_ad_img').eq(0).css('background-image')){
+            var shareImg = $('.module_ad_img').eq(0).css('background-image');
+            shareImg = shareImg.match(/(http\:\/\/.+?\.(?:gif|jpg|jpeg|bmp|png))\@(?:[\d]*?w\_)(?:[\d]*?h\_).*?\.src/);
+            if(shareImg.length == 2){
+                shareImg = shareImg[1];
+            }
+        }
+         if(!shareImg && $('img').length > 0){
+            $.each($('img'), function (index, item){
+                if(!$(item).attr('alt')){
+                    if($(item).attr('data-original')){
+                        shareImg = $(item).attr('data-original');
+                    } else{
+                        shareImg = $(item).attr('src');
+                    }
+                    return false;
+                }
+            });
+        }
+        if(!shareImg){
+            shareImg = $('.icon_logo img').src();
+        }
+        if(cdnImgReg.test(shareImg)){
+            shareImg = shareImg.match(/(http\:\/\/.+?\.(?:gif|jpg|jpeg|bmp|png))/);
+            if(shareImg.length && shareImg.length>0){
+                shareImg = shareImg[1];
+            }
+            shareImg = shareImg + '@300w_300h_1c_1e.src';
+            $('body').prepend('<div class="hide"><img src="' + shareImg + '"></div>');
+        }
+
     });
 });

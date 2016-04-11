@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/4/8.
  */
-define(['zepto', 'module/mall_nav', 'module/totop'], function (){
+define(['zepto', 'module/mall_nav', 'app/common'], function (){
    $(function (){
       //创建和初始化地图函数：
       function initMap(){

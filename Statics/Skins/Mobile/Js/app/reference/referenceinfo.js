@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/18.
  */
-define(['app/common', 'Core', 'Front'], function (common){
+define(['app/common', 'Core', 'Front','module/showImage'], function (common){
    $(function (){
       //导航
       $('.more_icon').click(function (){
@@ -24,6 +24,10 @@ define(['app/common', 'Core', 'Front'], function (common){
          }
          , this);
       }
+      //图片预览
+       require(['module/showImage','css!http://statics-b2b.fhzc.com/Mobile/Css/swiper.min.css'],function(){
+          $('.module_content .content').showImage();
+      });
       $('#historyBack').click(function (){
          window.location = '/category/laobanneican.html';
       });

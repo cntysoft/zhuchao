@@ -21,5 +21,9 @@ define(['zepto', 'app/common', 'Front'], function (){
             $(this).addClass('current').siblings().removeClass('current');
          }
       });
+      //图片预览
+      require(['module/showImage','css!http://statics-b2b.fhzc.com/Mobile/Css/swiper.min.css'],function(){
+          $('.module_content').showImage();
+      });
    });
 });

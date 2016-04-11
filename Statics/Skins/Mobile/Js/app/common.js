@@ -73,6 +73,51 @@ define(['exports', 'zepto', 'lazyload'], function (exports){
                 s.parentNode.insertBefore(hm, s);
             }
         })();
+        //生成微信分享图片
+        var shareImg = false;//标识是否生成分享图片
+        var cdnImgReg = /http\:\/\/(img|statics)-b2b.*/;
+        var logoImg = 'http://statics-b2b.fhzc.com/Pc/Images/mall/icon/test_iocn_logo.png';
+        if(!shareImg && $('.module_ad_img').length && $('.module_ad_img').eq(0).css('background-image')){
+            if($('.module_ad_img').eq(0).attr('data-background')){
+                shareImg = $('.module_ad_img').eq(0).attr('data-background');
+            } else{
+                shareImg = $('.module_ad_img').eq(0).css('background-image');
+            }
+            shareImg = shareImg.match(/(http\:\/\/.+?\.(?:gif|jpg|jpeg|bmp|png))\@(?:[\d]*?w\_)(?:[\d]*?h\_).*?\.src/);
+            if(shareImg.length == 2){
+                shareImg = shareImg[1];
+            }
+        }
+        if(!shareImg){
+            var pathname = window.location.pathname;
+            var logoPath = [
+                '/',
+            ];
+            if($.inArray(pathname, logoPath) != -1 || pathname.match(/('\/category\/|'\/about\/')/)){
+                shareImg = logoImg;
+            }
+        }
+        if(!shareImg && $('img').length > 0){
+            $.each($('img'), function (index, item){
+                if(!$(item).attr('alt')){
+                    if($(item).attr('data-original')){
+                        shareImg = $(item).attr('data-original');
+                    } else{
+                        shareImg = $(item).attr('src');
+                    }
+                    return false;
+                }
+            });
+        }
+        if(!shareImg || !cdnImgReg.test(shareImg)){
+            shareImg = logoImg;
+        }
+        shareImg = shareImg.match(/(http\:\/\/.+?\.(?:gif|jpg|jpeg|bmp|png))/);
+        if(shareImg.length && shareImg.length > 0){
+            shareImg = shareImg[1];
+        }
+        shareImg = shareImg + '@300w_300h_1c_1e.src';
+        $('body').prepend('<div class="hide"><img src="' + shareImg + '"></div>');
         exports.goBack = goBack;
     });
 });

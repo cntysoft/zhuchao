@@ -11,7 +11,7 @@ Qs::Ds('内容数据源/标准内容模型', 'AC')
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">  
         <meta name="description" content="<?php Qs::DsField('AC', 'intro') ?>">
         <meta name="keywords" content="<?php Qs::DsField('AC', 'keywords') ?>">
-        <?php Qs::Sys('loadCss', array('referenceindex/style.css', 'referenceindex/referenceinfo.css', 'swiper.min.css')) ?>
+        <?php Qs::Sys('loadCss', array('referenceindex/style.css', 'referenceindex/referenceinfo.css')) ?>
     </head>
     <body>
         <!--返回，搜索,名称-->
@@ -50,7 +50,9 @@ Qs::Ds('内容数据源/标准内容模型', 'AC')
                 </div>
             </div>
             <div class="module_content">
-                <?php Qs::DsField('AC', 'content') ?>
+                <div class="content">
+                    <?php Qs::DsField('AC', 'content') ?>
+                </div>
                 <div class="up_down">
                     <div>
                         上一篇：<?php

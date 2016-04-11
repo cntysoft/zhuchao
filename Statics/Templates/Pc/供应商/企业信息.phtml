@@ -41,7 +41,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         if ($name) {
                            echo ' disabled ';
                         }
-                        ?> reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[\w]){1,25}$' tip-value="请输入1-25位企业名称" required>
+                        ?> reg='^.{1,25}$' tip-value="请输入1-25位企业名称" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>企业类型：</label>
@@ -87,9 +87,9 @@ Qs::Ds('商城数据源/商城数据', 'site');
                         $products = empty($products) ? array() : $products;
                         for ($i = 0; $i < 4; $i++) {
                            if (0 == $i) {
-                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称" required>';
+                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '" tip-target="#product4"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^.{1,6}$" tip-value="请输入1-6位产品名称" required>';
                            } else {
-                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '"  type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,6}$" tip-value="请输入1-6位产品名称">';
+                              echo '<input class="middle_input checkField" id="product' . ($i + 1) . '" tip-target="#product4" type="text" value="' . (isset($products[$i]) ? $products[$i] : '') . '" reg="^.{1,6}$" tip-value="请输入1-6位产品名称">';
                            }
                         }
                         ?>
@@ -109,7 +109,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>详细地址：</label>
-                        <input type="text"  class="checkField" id="address" value="<?php Qs::DsField('User', 'address') ?>" reg='^.{3,15}$' tip-value="请输入3-30字详细地址" required>
+                        <input type="text"  class="checkField" id="address" value="<?php Qs::DsField('User', 'address') ?>" reg='^.{3,30}$' tip-value="请输入3-30字详细地址" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>邮编：</label>
@@ -151,7 +151,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>品牌：</label>
-                        <input type="text" id="brand" class="checkField" value="<?php Qs::DsField('User', 'brand') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){1,15}$' tip-value="请输入1-15位品牌名称" required>
+                        <input type="text" id="brand" class="checkField" value="<?php Qs::DsField('User', 'brand') ?>" reg='^.{1,15}$' tip-value="请输入1-15位品牌名称" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>注册资金：</label>
@@ -175,11 +175,11 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>法人：</label>
-                        <input type="text" id="legalPerson" class="checkField" value="<?php Qs::DsField('User', 'legalPerson') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]){2,6}$' tip-value="请输入2-6位名字" required>
+                        <input type="text" id="legalPerson" class="checkField" value="<?php Qs::DsField('User', 'legalPerson') ?>" reg='^.{2,6}$' tip-value="请输入2-6位名字" required>
                     </div>
                     <div class="form_list">
                         <label>开户银行：</label>
-                        <input type="text" id="bank" class="checkField" value="<?php Qs::DsField('User', 'bank') ?>" reg='^([\u4E00-\uFA29]|[\uE7C7-\uE7F3]|[a-zA-Z0-9]){3,15}$' tip-value="请输入3-15位银行名称">
+                        <input type="text" id="bank" class="checkField" value="<?php Qs::DsField('User', 'bank') ?>" reg='^.{3,15}$' tip-value="请输入3-15位银行名称">
                     </div>
                     <div class="form_list">
                         <label>开户帐号：</label>

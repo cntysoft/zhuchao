@@ -7,6 +7,7 @@ define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'module/a
             var validation = validate.checkFields($('.checkField,.company,.register'));
             if(validation.length){
                 layer.msg('请正确填写各项');
+                validation[0].ele.focus();
                 return false;
             }
             var params = {};

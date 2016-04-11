@@ -37,5 +37,9 @@ define(['app/common', 'module/totop', 'swiper', 'Core', 'Front'], function (comm
       $('#historyBack').click(function (){
          common.goBack('/category/zhuchaoschool.html');
       });
+       //图片预览
+       require(['module/showImage','css!http://statics-b2b.fhzc.com/Mobile/Css/swiper.min.css'],function(){
+          $('.module_content .content').showImage();
+      });
    });
 });
