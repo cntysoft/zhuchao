@@ -25,7 +25,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (
             }
             Cntysoft.Front.callApi('Provider', 'login', params, function (response){
                 if(response.status){
-                    window.location = '/';
+                    window.location.reload();
                 }
                 else{
                     if(response.errorCode === 10009){

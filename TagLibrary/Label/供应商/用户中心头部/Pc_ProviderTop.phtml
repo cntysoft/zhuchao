@@ -2,21 +2,11 @@
 <div class="header_top">
     <div class="conwidth header_top_inner clearfix">
         <div class="fl">
-            <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>">欢迎来到凤凰筑巢！</a> <a class="login_btn main_hover" id="providerName" href="http://<?php echo \Cntysoft\RT_PROVIDER_SITE_NAME ?>/account/index.html"><?php Qs::DsField('provider', 'name') ?></a><a class="register_btn main_hover" id="providerlogout">安全退出</a>
+            <a href="http://<?php echo \Cntysoft\PROVIDER_SITE_NAME_DEVEL; ?>">欢迎使用可乐云商！</a> <a class="login_btn main_hover" id="providerName" href="http://<?php echo \Cntysoft\RT_PROVIDER_SITE_NAME ?>/account/index.html"><?php Qs::DsField('provider', 'name') ?></a><a class="register_btn main_hover" id="providerlogout">安全退出</a>
         </div>
         <ul class="fr header_top_nav main_hover">
-				<!--            <li><a href="">我的询价单</a></li>
-								<li class="line"></li>
-								<li><a href="">会员中心 <i class="icon-xiangxiajiantou"></i></a></li>
-								<li class="line"></li>
-								<li><a href="">我是 <i class="icon-xiangxiajiantou"></i></a></li>
-								<li class="line"></li>
-								<li><a href="">供应商专区</a></li>
-								<li class="line"></li>
-								<li><a href="">运营商专区</a></li>
-								<li class="line"></li>-->
             <li><a href="">网站地图 <i class="icon-xiangxiajiantou"></i></a>
-					 <div class="down_list">
+                <div class="down_list">
                     <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/help.html">帮助中心</a>
                     <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/laobanneican.html">老板内参</a>
                     <a href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>/category/zhuchaoschool.html">筑巢商学院</a>
@@ -27,7 +17,7 @@
             <li class="more_btn mainbg_hover"><a>关注我们 <i class="iicon-xiangxiajiantou"></i></a>
                 <div class="pull_more main_bg">
                     <img class="erweima" src="<?php Qs::Sys('loadImage', 'icon_erweima.png'); ?>">
-                    <span>扫一扫<br>关注凤凰筑巢</span>
+                    <span>扫一扫<br>关注可乐云商</span>
                 </div>
             </li>
         </ul>
@@ -36,7 +26,7 @@
 <!--个人中心头部-->
 <div class="head_wrap main_bg_light">
     <div class="head_box conwidth clearfix">
-        <a class="logo_img fl" href="http://<?php echo \Cntysoft\RT_SYS_SITE_NAME ?>"><img src="<?php Qs::Sys('loadImage', 'logo_white.png'); ?>"> </a>
+        <a class="logo_img fl" href="http://<?php echo \Cntysoft\PROVIDER_SITE_NAME_DEVEL ?>"><img src="<?php Qs::Sys('loadImage', 'logo_white.png'); ?>"> </a>
         <ul class="fr clearfix">
             <li><a class=" <?php
 					 echo $this->checkFirst();

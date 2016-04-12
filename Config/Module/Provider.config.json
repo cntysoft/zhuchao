@@ -1,6 +1,15 @@
 {
     "routes" : [
         {
+            "key" : "SiteIndex",
+            "rule" : "\/",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "Site",
+                "action" : "Index"
+            }
+        },
+        {
             "key" : "Login",
             "rule" : "\/login.html",
             "option" : {
@@ -52,15 +61,6 @@
                 "module" : "Provider",
                 "controller" : "Utils",
                 "action" : "forgetchk"
-            }
-        },
-        {
-            "key" : "ProviderIndex",
-            "rule" : "\/",
-            "option" : {
-                "module" : "Provider",
-                "controller" : "Index",
-                "action" : "index"
             }
         },
         {
@@ -371,28 +371,29 @@
     ],
     "hostName" : true,
     "tplMap" : {
-        "provider/404" : "404.phtml",
-        "login" : "供应商\/登录.phtml",
-        "register" : "供应商\/注册.phtml",
-        "forget" : "供应商\/忘记密码.phtml",
-        "provider\/index" : "供应商\/首页.phtml",
-        "provider\/categoryselect" : "供应商\/分类选择.phtml",
-        "provider\/addproduct" : "供应商\/发布产品.phtml",
-        "provider\/changeproduct" : "供应商\/修改产品.phtml",
-        "provider\/inquiry" : "供应商\/询价单.phtml",
-        "provider\/inquirycontent" : "供应商\/询价单内容.phtml",
-        "provider\/productlist" : "供应商\/管理产品.phtml",
-        "provider\/productgroup" : "供应商\/产品分组.phtml",
-        "provider\/account" : "供应商\/个人信息.phtml",
-        "provider\/accountsafe" : "供应商\/账户安全.phtml",
-        "provider\/album" : "供应商\/相册管理.phtml",
-        "provider\/company" : "供应商\/企业信息.phtml",
-        "provider\/video" : "供应商\/视频管理.phtml",
-        "provider\/msg" : "供应商\/全部消息.phtml",
-        "provider\/businessmsg" : "供应商\/服务消息.phtml",
-        "provider\/sysmsg" : "供应商\/系统消息.phtml",
+        "provider/404" : "供应商\/404.phtml",
+        "provider/siteindex" : "供应商\/首页.phtml",
+        "login" : "供应商\/用户中心\/登录.phtml",
+        "register" : "供应商\/用户中心\/注册.phtml",
+        "forget" : "供应商\/用户中心\/忘记密码.phtml",
+        "provider\/index" : "供应商\/用户中心\/首页.phtml",
+        "provider\/categoryselect" : "供应商\/用户中心\/分类选择.phtml",
+        "provider\/addproduct" : "供应商\/用户中心\/发布产品.phtml",
+        "provider\/changeproduct" : "供应商\/用户中心\/修改产品.phtml",
+        "provider\/inquiry" : "供应商\/用户中心\/询价单.phtml",
+        "provider\/inquirycontent" : "供应商\/用户中心\/询价单内容.phtml",
+        "provider\/productlist" : "供应商\/用户中心\/管理产品.phtml",
+        "provider\/productgroup" : "供应商\/用户中心\/产品分组.phtml",
+        "provider\/account" : "供应商\/用户中心\/个人信息.phtml",
+        "provider\/accountsafe" : "供应商\/用户中心\/账户安全.phtml",
+        "provider\/album" : "供应商\/用户中心\/相册管理.phtml",
+        "provider\/company" : "供应商\/用户中心\/企业信息.phtml",
+        "provider\/video" : "供应商\/用户中心\/视频管理.phtml",
+        "provider\/msg" : "供应商\/用户中心\/全部消息.phtml",
+        "provider\/businessmsg" : "供应商\/用户中心\/服务消息.phtml",
+        "provider\/sysmsg" : "供应商\/用户中心\/系统消息.phtml",
+        "provider\/commoncategory" : "供应商\/用户中心\/常用分类.phtml",
         "provider/open" : "供应商\/云站\/站点开通.phtml",
-        "provider\/commoncategory" : "供应商\/常用分类.phtml",
         "yunzhan/setting" : "供应商\/云站\/店铺设置.phtml",
         "yunzhan/newslist" : "供应商\/云站\/新闻列表.phtml",
         "yunzhan/addnews" : "供应商\/云站\/添加新闻.phtml",
