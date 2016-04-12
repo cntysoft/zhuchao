@@ -28,21 +28,22 @@
     <div class="head_box conwidth clearfix">
         <a class="logo_img fl" href="http://<?php echo \Cntysoft\PROVIDER_SITE_NAME_DEVEL ?>"><img src="<?php Qs::Sys('loadImage', 'logo_white.png'); ?>"> </a>
         <ul class="fr clearfix">
-            <li><a class=" <?php
-					 echo $this->checkFirst();
-					 ?> mainbg_hover" href="/">首页</a></li>
+<!--            <li><a class=" <?php
+//                echo $this->checkFirst();
+                ?> mainbg_hover" href="/">首页</a>
+            </li>-->
             <li><a class="<?php
-					 echo $this->checkUrl('account');
-					 ?> mainbg_hover" href="/account/index.html">账号中心</a></li>
+                echo $this->checkUrl('account');
+                ?> mainbg_hover" href="/account/index.html">账户中心</a></li>
             <li><a class="<?php
-					 echo $this->checkUrl('inquiry');
-					 ?> mainbg_hover" href="/inquiry/1.html">询价单</a></li>
+                echo $this->checkUrl('inquiry');
+                ?> mainbg_hover" href="/inquiry/1.html">询价单</a></li>
             <li><a class="<?php
-					 echo $this->checkUrl('product');
-					 ?> mainbg_hover" href="/product/1.html">产品中心</a></li>
+                echo $this->checkUrl('product');
+                ?> mainbg_hover" href="/product/1.html">产品中心</a></li>
             <li><a class="<?php
-					 echo $this->checkUrl('site');
-					 ?> mainbg_hover" href="/site/news/1.html">店铺设置</a></li>
+                echo $this->checkUrl('site');
+                ?> mainbg_hover" href="/site/news/1.html">店铺设置</a></li>
         </ul>
     </div>
 </div>
