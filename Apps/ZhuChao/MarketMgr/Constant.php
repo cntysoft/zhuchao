@@ -26,6 +26,7 @@ class Constant
    const PK_WIDGET_ORDER_STATISTICS = 'OrderStatistics';
    const PK_WIDGET_COMMENT = 'Comment';
    const PK_WIDGET_ADS = 'Ads';
+   const PK_WIDGET_FEEDBACK = 'Feedback';
    
    
    //用户优惠券状态

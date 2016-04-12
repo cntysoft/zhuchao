@@ -18,6 +18,12 @@ return array(
          'hasDetail'   => false,
          'internalKey' => Constant::PK_WIDGET_ADS,
          'codes'       => array()
+      ),
+      array(
+         'text'        => '用户反馈管理',
+         'hasDetail'   => false,
+         'internalKey' => Constant::PK_WIDGET_FEEDBACK,
+         'codes'       => array()
       )
    )
 );
