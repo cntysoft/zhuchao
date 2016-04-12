@@ -13,8 +13,14 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <?php Qs::Sys('loadCss', array('usercenter/style.css', 'usercenter/user_index1.css')) ?>
         <style>
-            .img_uploading {
+            .img_banner {
                 height : 180px;
+            }
+            .img_facade {
+                height : 150px;
+            }
+            .img_environ{
+                height : 150px;
             }
             .form_list>label{
                 float:left;
@@ -83,7 +89,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     </div>
                     <div class="form_list clearfix">
                         <label><em class="main">*</em>首页banner:</label>
-                        <div class="input_wrap img_uploading">
+                        <div class="input_wrap img_uploading img_banner">
                             <ul class="clearfix">
                                 <?php
                                 $banners = Qs::DsField('setting', 'banner', true);
@@ -143,6 +149,59 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                         }
                         ?> name="aboutus" class="aboutus_nav">关于我们                        
                         <p class="tips">挂选栏目即表示在自己的站点导航栏显示该栏目！</p>
+                    </div>
+                    <div class="form_list clearfix">
+                        <label>门面:</label>
+                        <div class="input_wrap img_uploading img_facade">
+                            <ul class="clearfix">
+                                <?php
+                                $facades = Qs::DsField('setting', 'facade', true);
+                                if (count($facades)) {
+                                   foreach ($facades as $item) {
+                                      echo '<div class="img_wrap_div"><li><img fh-id="' . $item["id"] . '" src="' . $item['image'] . '"><em class="deleteFacadeImg">删除</em></li></div>';
+                                   }
+                                   $cls = 'style="display:none"';
+                                   echo '<li class="img_plus" id="uploadFacadeBtn" ' . $cls . '>
+                                       <p>+</p>
+                                       <span>添加照片</span>
+                                   </li>';
+                                } else {
+                                   echo '<li class="img_plus" id="uploadFacadeBtn">
+                                         <p>+</p>
+                                         <span>添加照片</span>
+                                     </li>';
+                                }
+                                ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form_list clearfix">
+                        <label>店铺环境:</label>
+                        <div class="input_wrap img_uploading img_environ">
+                            <ul class="clearfix">
+                                <?php
+                                $environments = Qs::DsField('setting', 'environment', true);
+                                if (count($environments)) {
+                                   foreach ($environments as $item) {
+                                      echo '<div class="img_wrap_div"><li><img fh-id="' . $item["id"] . '" src="' . $item['image'] . '"><em class="deleteEnvironImg">删除</em></li></div>';
+                                   }
+                                   $cls = 'style="display:none"';
+                                   if (count($banners) < 4) {
+                                      $cls = '';
+                                   }
+                                   echo '<li class="img_plus" id="uploadEnvironBtn" ' . $cls . '>
+                                       <p>+</p>
+                                       <span>添加照片</span>
+                                   </li>';
+                                } else {
+                                   echo '<li class="img_plus" id="uploadEnvironBtn">
+                                         <p>+</p>
+                                         <span>添加照片</span>
+                                     </li>';
+                                }
+                                ?>
+                            </ul>
+                        </div>
                     </div>
                     <div class="form_list tc">
                         <div class="action_btn" style="width: 600px">

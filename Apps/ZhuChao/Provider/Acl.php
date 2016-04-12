@@ -676,6 +676,9 @@ class Acl extends AbstractLib
       $user = $this->getCurUser();
       if (!$user) {
          return false;
+      } else if (Constant::COMPANY_STATUS_NORMAL != $user->getStatus()) {
+         $this->logout();
+         return false;
       }
 
       return true;

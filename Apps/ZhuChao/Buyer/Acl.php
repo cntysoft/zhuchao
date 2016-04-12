@@ -5,14 +5,13 @@
  * @author Arvin <cntyfeng@163.com>
  * @copyright Copyright (c) 2010-2016 Cntysoft Technologies China Inc. <http://www.sheneninfo.com>
  * @license http://www.cntysoft.com/license/new-bsd     New BSD License
-*/
+ */
 namespace App\ZhuChao\Buyer;
 use Cntysoft\Kernel\App\AbstractLib;
 use Cntysoft\Kernel\ConfigProxy;
 use Cntysoft\Kernel;
 use Cntysoft\Framework\Net\Sms\YunPian;
 use Cntysoft\Stdlib\Filesystem;
-
 class Acl extends AbstractLib
 {
    /**
@@ -51,7 +50,7 @@ class Acl extends AbstractLib
       $this->sessionManager = $this->di->get('SessionManager');
       $this->cookieManager = $this->di->get('CookieManager');
    }
-   
+
    /**
     * 采购商注册
     * 
@@ -63,20 +62,16 @@ class Acl extends AbstractLib
    {
       $this->checkSmsCode($phone, $smsCode, Constant::SMS_TYPE_REG);
       $userInfo = array(
-         'password'   => $password,
-         'name'       => '',
-         'phone'      => $phone
+         'password' => $password,
+         'name'     => '',
+         'phone'    => $phone
       );
 
       return $this->getAppCaller()->call(
-         Constant::MODULE_NAME, 
-         Constant::APP_NAME, 
-         Constant::APP_API_BUYER_MGR, 
-         'addBuyer', 
-         array($userInfo)
+                      Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_BUYER_MGR, 'addBuyer', array($userInfo)
       );
    }
-   
+
    /**
     * 获取短信验证码存的sessionkey值
     * 
@@ -116,7 +111,7 @@ class Acl extends AbstractLib
             return \Cntysoft\FRONT_USER_S_KEY_REG_CHK_CODE;
       }
    }
-   
+
    /**
     * 验证图片验证码是否正确
     * 
@@ -152,14 +147,14 @@ class Acl extends AbstractLib
     */
    public function sendSmsCode($phone, $type = Constant::SMS_TYPE_REG)
    {
-      if(!in_array($type, array(
-         Constant::SMS_TYPE_REG,
-         Constant::SMS_TYPE_FORGET
-      ))){
+      if (!in_array($type, array(
+                 Constant::SMS_TYPE_REG,
+                 Constant::SMS_TYPE_FORGET
+              ))) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_ACL_SMS_TYPE_ERROR', $type), $errorType->code('E_BUYER_ACL_SMS_TYPE_ERROR') 
-         ), $this->getErrorTypeContext());
+                 $errorType->msg('E_BUYER_ACL_SMS_TYPE_ERROR', $type), $errorType->code('E_BUYER_ACL_SMS_TYPE_ERROR')
+                 ), $this->getErrorTypeContext());
       }
       $code = $this->getVerifyCode(6);
       //首先发送短信验证码
@@ -170,8 +165,8 @@ class Acl extends AbstractLib
       if (0 != $ret['code']) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_ACL_SMS_SEND_ERROR'), $errorType->code('E_BUYER_ACL_SMS_SEND_ERROR')
-         ), $this->getErrorTypeContext());
+                 $errorType->msg('E_BUYER_ACL_SMS_SEND_ERROR'), $errorType->code('E_BUYER_ACL_SMS_SEND_ERROR')
+                 ), $this->getErrorTypeContext());
       }
 
       //发送成功, 保存Session, 默认保存时间为2分钟
@@ -225,7 +220,7 @@ class Acl extends AbstractLib
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
                  $errorType->msg('E_BUYER_ACL_LOGIN_TYPE_ERROR'), $errorType->code('E_BUYER_ACL_LOGIN_TYPE_ERROR')
-         ), $this->getErrorTypeContext());
+                 ), $this->getErrorTypeContext());
       }
 
       $method = '';
@@ -240,7 +235,7 @@ class Acl extends AbstractLib
 
       return $method;
    }
-   
+
    /**
     * 获取cookies键值
     *
@@ -259,7 +254,7 @@ class Acl extends AbstractLib
       }
       return $this->cookieKeys;
    }
-   
+
    /**
     * 默认的COOKIE键
     *
@@ -272,7 +267,7 @@ class Acl extends AbstractLib
          Constant::STATUS_KEY => '#$ERSDFerd$$5'
       );
    }
-   
+
    /**
     * 生成登录的token
     * 默认的token信息分成三个部分:  用户的识别码(用户名, 手机号, 邮箱), 与用户识别码对应的登录方式, 系统生成的机器特征码
@@ -291,7 +286,7 @@ class Acl extends AbstractLib
       );
       return implode('|', $token);
    }
-   
+
    /**
     * 用户登录, 主要是设置Session和Cookie
     * 登录的时候没有设置验证码
@@ -306,23 +301,19 @@ class Acl extends AbstractLib
       $method = $this->getLoginMethod($type);
       //获取用户信息
       $user = $this->getAppCaller()->call(
-         Constant::MODULE_NAME, 
-         Constant::APP_NAME, 
-         Constant::APP_API_BUYER_MGR, 
-         $method, 
-         array($key)
+              Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_BUYER_MGR, $method, array($key)
       );
       if (!$user) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_USER_NOT_EXIST', $key), $errorType->code('E_BUYER_USER_NOT_EXIST')
-         ), $this->getErrorTypeContext());
+                 $errorType->msg('E_BUYER_USER_NOT_EXIST', $key), $errorType->code('E_BUYER_USER_NOT_EXIST')
+                 ), $this->getErrorTypeContext());
       }
       if (Constant::USER_STATUS_LOCK == $user->getStatus()) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
                  $errorType->msg('E_BUYER_ACL_USER_LOCKED'), $errorType->code('E_BUYER_ACL_USER_LOCKED')
-         ), $this->getErrorTypeContext());
+                 ), $this->getErrorTypeContext());
       }
       try {
          $pwdHasher = $this->di->getShared('security');
@@ -331,7 +322,7 @@ class Acl extends AbstractLib
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
                     $errorType->msg('E_BUYER_ACL_PASSWORD_ERROR'), $errorType->code('E_BUYER_ACL_PASSWORD_ERROR')
-            ), $this->getErrorTypeContext());
+                    ), $this->getErrorTypeContext());
          }
 
          //记录相关登录时间和IP
@@ -367,19 +358,15 @@ class Acl extends AbstractLib
          if (empty($data)) {
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
-               $errorType->msg('E_BUYER_ACL_COOKIE_NOT_EXIST'), $errorType->code('E_BUYER_ACL_COOKIE_NOT_EXIST')
-            ), $this->getErrorTypeContext());
+                    $errorType->msg('E_BUYER_ACL_COOKIE_NOT_EXIST'), $errorType->code('E_BUYER_ACL_COOKIE_NOT_EXIST')
+                    ), $this->getErrorTypeContext());
          }
          $data = explode('|', $data);
          $key = $data[0];
          $type = $data[1];
          $method = $this->getLoginMethod($type);
          $this->curUser = $this->getAppCaller()->call(
-            Constant::MODULE_NAME, 
-            Constant::APP_NAME, 
-            Constant::APP_API_BUYER_MGR, 
-            $method, 
-            array($key)
+                 Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_BUYER_MGR, $method, array($key)
          );
       }
 
@@ -401,7 +388,7 @@ class Acl extends AbstractLib
 
       return $this->curCookieData;
    }
-   
+
    /**
     * 通过Cookie登录
     * 
@@ -417,8 +404,8 @@ class Acl extends AbstractLib
          if (empty($token)) {
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
-               $errorType->msg('E_BUYER_ACL_COOKIE_NOT_EXIST'), $errorType->code('E_BUYER_ACL_COOKIE_NOT_EXIST')
-               ), $this->getErrorTypeContext());
+                    $errorType->msg('E_BUYER_ACL_COOKIE_NOT_EXIST'), $errorType->code('E_BUYER_ACL_COOKIE_NOT_EXIST')
+                    ), $this->getErrorTypeContext());
          }
          //验证Cookie中保存的值是否正确
          $clientToken = Kernel\get_trait_token();
@@ -426,8 +413,8 @@ class Acl extends AbstractLib
          if ($clientToken !== $token[2]) {
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
-               $errorType->msg('E_BUYER_ACL_COOKIE_ERROR'), $errorType->code('E_BUYER_ACL_COOKIE_ERROR')
-            ), $this->getErrorTypeContext());
+                    $errorType->msg('E_BUYER_ACL_COOKIE_ERROR'), $errorType->code('E_BUYER_ACL_COOKIE_ERROR')
+                    ), $this->getErrorTypeContext());
          }
          //获取当前等用用户的信息
          $user = $this->getCurUser();
@@ -436,15 +423,15 @@ class Acl extends AbstractLib
             $this->logout();
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
-               $errorType->msg('E_BUYER_ACL_USER_LOCKED'), $errorType->code('E_BUYER_ACL_USER_LOCKED')
-               ), $this->getErrorTypeContext()
+                    $errorType->msg('E_BUYER_ACL_USER_LOCKED'), $errorType->code('E_BUYER_ACL_USER_LOCKED')
+                    ), $this->getErrorTypeContext()
             );
          } else if (!$user) {
             $this->logout();
             $errorType = $this->getErrorType();
             Kernel\throw_exception(new Exception(
-               $errorType->msg('E_BUYER_USER_NOT_EXIST', $token[1]), $errorType->code('E_BUYER_USER_NOT_EXIST')
-               ), $this->getErrorTypeContext()
+                    $errorType->msg('E_BUYER_USER_NOT_EXIST', $token[1]), $errorType->code('E_BUYER_USER_NOT_EXIST')
+                    ), $this->getErrorTypeContext()
             );
          }
          //登录成功
@@ -467,31 +454,26 @@ class Acl extends AbstractLib
     */
    public function findPassword($phone, $password, $code = '')
    {
-      if($code){
+      if ($code) {
          $this->checkSmsCode($phone, $code, Constant::SMS_TYPE_FORGET);
       }
       $user = $user = $this->getAppCaller()->call(
-         Constant::MODULE_NAME, 
-         Constant::APP_NAME, 
-         Constant::APP_API_BUYER_MGR, 
-         'getUserByPhone', 
-         array($phone)
+              Constant::MODULE_NAME, Constant::APP_NAME, Constant::APP_API_BUYER_MGR, 'getUserByPhone', array($phone)
       );
-      
-      if(!$user){
+
+      if (!$user) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_USER_NOT_EXIST', $phone), $errorType->code('E_BUYER_USER_NOT_EXIST')
-         ), $this->getErrorTypeContext());
+                 $errorType->msg('E_BUYER_USER_NOT_EXIST', $phone), $errorType->code('E_BUYER_USER_NOT_EXIST')
+                 ), $this->getErrorTypeContext());
       }
-      
+
       $hasher = $this->di->getShared('security');
       $password = $hasher->hash($password);
       $user->setPassword($password);
       $user->setLastModifyPwdTime(time());
       return $user->save();
    }
-   
 
    /**
     * 修改用户的密码
@@ -509,8 +491,8 @@ class Acl extends AbstractLib
       if (!$hasher->checkHash($oldPassword, $curPassword)) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_ACL_PASSWORD_ERROR'), $errorType->code('E_BUYER_ACL_PASSWORD_ERROR')
-            ), $this->getErrorTypeContext());
+                 $errorType->msg('E_BUYER_ACL_PASSWORD_ERROR'), $errorType->code('E_BUYER_ACL_PASSWORD_ERROR')
+                 ), $this->getErrorTypeContext());
       }
 
       //将新密码写入数据库
@@ -580,8 +562,8 @@ class Acl extends AbstractLib
             if (!$isDelete) {
                $errorType = $this->getErrorType();
                Kernel\throw_exception(new Exception(
-                  $errorType->msg('E_BUYER_DELETE_AVATAR_ERROR'), $errorType->code('E_BUYER_DELETE_AVATAR_ERROR')
-                  ), $this->getErrorTypeContext());
+                       $errorType->msg('E_BUYER_DELETE_AVATAR_ERROR'), $errorType->code('E_BUYER_DELETE_AVATAR_ERROR')
+                       ), $this->getErrorTypeContext());
             }
          }
 
@@ -597,8 +579,8 @@ class Acl extends AbstractLib
       } catch (\Exception $e) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception(
-            $errorType->msg('E_BUYER_ACL_SAVE_AVATAR_ERROR'), $errorType->code('E_BUYER_ACL_SAVE_AVATAR_ERROR')
-            ), $this->getErrorTypeContext());
+                 $errorType->msg('E_BUYER_ACL_SAVE_AVATAR_ERROR'), $errorType->code('E_BUYER_ACL_SAVE_AVATAR_ERROR')
+                 ), $this->getErrorTypeContext());
       }
    }
 
@@ -629,6 +611,9 @@ class Acl extends AbstractLib
       //获取当前登录的用户
       $user = $this->getCurUser();
       if (!$user) {
+         return false;
+      } else if (Constant::USER_STATUS_NORMAL != $user->getStatus()) {
+         $this->logout();
          return false;
       }
 

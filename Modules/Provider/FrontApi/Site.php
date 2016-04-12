@@ -15,7 +15,6 @@ use App\ZhuChao\Provider\Constant as P_CONST;
 use App\Yunzhan\Category\Constant as CATE_CONST;
 use Cntysoft\Kernel;
 use ZhuChao\Framework\Core\FileRef\Manager as RefManager;
-
 class Site extends AbstractScript
 {
    /**
@@ -167,7 +166,7 @@ class Site extends AbstractScript
     */
    public function modifySetting(array $params)
    {
-      $this->checkRequireFields($params, array('banner', 'keywords', 'description','product','case','aboutus','news','zhaopin'));
+      $this->checkRequireFields($params, array('banner', 'keywords', 'description', 'product', 'case', 'aboutus', 'news', 'zhaopin'));
 
       $this->appCaller->call(
               SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Seo', 'keywords', $params['keywords'])
@@ -190,48 +189,57 @@ class Site extends AbstractScript
       $this->appCaller->call(
               SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Nav', 'aboutus', $params['aboutus'] ? 1 : 0)
       );
-      
-      
+      $this->dealSetingImg('Banner', 'Site', $params['banner']);
+      if (isset($params['facade'])) {
+         $this->dealSetingImg('Facade', 'Site', $params['facade']);
+      }
+      if (isset($params['environment'])) {
+         $this->dealSetingImg('Environment', 'Site', $params['environment']);
+      }
+   }
+
+   private function dealSetingImg($key, $group, $newimgs)
+   {
       $refManager = new RefManager();
-      $newBanners = $params['banner'];
-      
+      $newBanners = $newimgs;
+
       $oldBanners = $this->appCaller->call(
-         SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemByKey', array('Banner')
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'getItemByKey', array($key)
       );
-      
-      if(count($oldBanners)){
+
+      if (count($oldBanners)) {
          $oldBanners = unserialize($oldBanners[0]->getValue());
-      }else{
+      } else {
          $oldBanners = array();
       }
-      
+
       $newFileRefs = $oldFileRefs = array();
-      
-      foreach($newBanners as $nb){
-         $newFileRefs[] = (int)$nb[1];
+
+      foreach ($newBanners as $nb) {
+         $newFileRefs[] = (int) $nb[1];
       }
-      
-      foreach($oldBanners as $ob){
-         $oldFileRefs[] = (int)$ob[1];
+
+      foreach ($oldBanners as $ob) {
+         $oldFileRefs[] = (int) $ob[1];
       }
-      
+
       $deleteFileRefs = array_diff($oldFileRefs, $newFileRefs);
       $addFileRefs = array_diff($newFileRefs, $oldFileRefs);
-      
-      if(count($deleteFileRefs)){
-         foreach($deleteFileRefs as $df){
+
+      if (count($deleteFileRefs)) {
+         foreach ($deleteFileRefs as $df) {
             $refManager->removeFileRef($df);
          }
       }
-      
-      if(count($addFileRefs)){
-         foreach($addFileRefs as $of){
+
+      if (count($addFileRefs)) {
+         foreach ($addFileRefs as $of) {
             $refManager->confirmFileRef($of);
          }
       }
-      
+
       $this->appCaller->call(
-         SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array('Site', 'Banner', serialize($params['banner']))
+              SETTING_CONST::MODULE_NAME, SETTING_CONST::APP_NAME, SETTING_CONST::APP_API_CFG, 'setItem', array($group, $key, serialize($newimgs))
       );
    }
 
