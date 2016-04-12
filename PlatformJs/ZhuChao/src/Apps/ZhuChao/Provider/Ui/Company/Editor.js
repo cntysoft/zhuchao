@@ -110,9 +110,6 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
          this.currentCompany = response.data;
          this.getForm().setValues(this.currentCompany);
          this.iconSrc = this.currentCompany.logo;
-         if(this.currentCompany.subAttr){
-            this.subAttrRef.setDisabled(false);
-         }
          this.imageRef.setSrc(ZC.getZhuChaoImageUrl(this.currentCompany.logo));
       }
    },
@@ -214,15 +211,8 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.Editor', {
             }
          }, {
             fieldLabel : F.SUBATTR,
-            allowBlank : false,
             name : 'subAttr',
-            disabled : true,
-            listeners : {
-               afterrender : function (subAttr){
-                  this.subAttrRef = subAttr;
-               },
-               scope : this
-            }
+            disabled : true
          }, {
             xtype : 'numberfield',
             minValue : 1,

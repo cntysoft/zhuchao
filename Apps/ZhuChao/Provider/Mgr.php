@@ -326,10 +326,6 @@ class Mgr extends AbstractLib
             $errorType->msg('E_PROVIDER_COMPANY_NOT_EXIST', $id), $errorType->code('E_PROVIDER_COMPANY_NOT_EXIST')
             ), $this->getErrorTypeContext());
       }
-      if($data['subAttr'] != $providercom->getSubAttr() && $this->checkSubAttr($data['subAttr'])){
-         $errorType = $this->getErrorType();
-         Kernel\throw_exception(new Exception($errorType->msg('E_COMPANY_SUBATTR_EXIST'), $errorType->code('E_COMPANY_SUBATTR_EXIST')), $this->getErrorTypeContext());
-      }
 
       $profile = $providercom->getProfile();
       $profileDataFields = $profile->getDataFields();

@@ -10,7 +10,6 @@ namespace TagLibrary\Label\Provider;
 use Cntysoft\Framework\Qs\Engine\Tag\AbstractLabelScript;
 use App\ZhuChao\Product\Constant as PRODUCT_CONST;
 use App\Yunzhan\Product\Constant as YUN_PRODUCT_CONST;
-use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY_CONST;
 use Cntysoft\Kernel;
 
