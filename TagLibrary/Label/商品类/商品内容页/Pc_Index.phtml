@@ -159,10 +159,10 @@ $out .= '<div class="about_right_box fl about_item">
         <a class="item_title main_bg">采购实况</a>
         <div class="about_right_item">';
 foreach ($goodsLists as $list) {
+//                   <span class="time">' . rand(1, 10) . '秒前</span>
    $url = $this->getProductUrl($list->getNumber());
    $out .= '<div class="about_right_list">
                 <span class="address text_ellipsis">河南省郑州市</span>
-                <span class="time">' . rand(1, 10) . '秒前</span>
                 <h4 class=" main_hover"><a href="' . $url . '">' . $list->getBrand() . $list->getTitle() . $list->getDescription() . '</a></h4>
             </div>';
 }
