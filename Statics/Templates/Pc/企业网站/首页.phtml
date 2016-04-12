@@ -58,9 +58,14 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     <h3>企业介绍 <a href="/about.html" class="active_hover">更多 >></a></h3>
                     <?php
                     $inrodata = Qs::DsField('CS', 'content', true);
-                    if (iconv_strpos($inrodata, '<img')) {
-                       $imgs = mb_split('data-original="', $inrodata);
-                       echo'<a href="/about.html"> <img src="' . mb_split('"', $imgs[1])[0] . '" alt=""></a>';
+                    $facade = Qs::DsField('setting', 'facade', true);
+                    if (count($facade)) {
+                       echo '<a href="/about.html"> <img src="' . $facade[0]['image'] . '" alt=""></a>';
+                    } else {
+                       if (iconv_strpos($inrodata, '<img')) {
+                          $imgs = mb_split('data-original="', $inrodata);
+                          echo'<a href="/about.html"> <img src="' . mb_split('"', $imgs[1])[0] . '" alt=""></a>';
+                       }
                     }
                     ?>
                     <p>
@@ -85,7 +90,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',));
         Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyRight',))
         ?>
-        <div id='totop'><a style="display: none"><i class='icon-jiantou1'></i></a><a class='shoucang'><i class='icon-empty-star'></i><em>关注</em></a><a><i class='icon-kefu'></i><em>客服</em>
+        <div id='totop'><a style="display: none"><i class='icon-jiantou1'></i></a><a><i class='icon-kefu'></i><em>客服</em>
                 <div class='block'><span>电话：<?php Qs::DsField('CP', 'contact') ?></span></div></a></div>
                 <?php Qs::Sys('loadRequireJs', 'company/company_index'); ?>
         <script>

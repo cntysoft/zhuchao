@@ -38,10 +38,10 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
             <!--下拉列表-->
             <div class="top_nav_box hide">
                 <ul class="top_nav_list">
-                    <li><a  href="/">首页</a></li>
                     <li><a  href="/about.html?intro">企业介绍</a></li>
                     <li><a  href="/about.html?culture">企业文化</a></li>
                     <li><a href="/about.html?zizhi">企业资质</a></li>
+                    <li><a href="/about.html?environ">企业环境</a></li>
                     <li ><a href="/about.html?connect">联系我们</a></li>
                 </ul>
             </div>
@@ -88,6 +88,20 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
             </div>
             <div class="items_info contact_us">
                 <?php Qs::DsField('CS', 4)
+                ?>
+            </div>
+        </div>
+        <div class="items_box hide environ">
+            <!--标题-->
+            <div class="module_title">
+                <a ><i class="icon-fengcai"></i>企业环境</a>
+            </div>
+            <div class="items_info ">
+                <?php
+                $environments = Qs::DsField('setting', 'environment', true);
+                foreach ($environments as $value) {
+                   echo' <p><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" class="lazy" data-original="' . $value['image'] . '" style="display: block;"></p>';
+                }
                 ?>
             </div>
         </div>

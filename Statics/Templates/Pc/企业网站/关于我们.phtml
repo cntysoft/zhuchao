@@ -32,7 +32,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     <li><a  class="active_hover" href="/about.html?intro">企业介绍</a></li>
                     <li><a  class="active_hover" href="/about.html?culture">企业文化</a></li>
                     <li><a class="active_hover" href="/about.html?zizhi">企业资质</a></li>
-                    <!--<li><a  class="active_hover">发展历程</a></li>-->
+                    <li><a class="active_hover" href="/about.html?environ">企业环境</a></li>
                     <li class="no_bb "><a class="active_hover" href="/about.html?connect">联系我们</a></li>
                 </ul>
             </div>
@@ -55,7 +55,16 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                     <?php Qs::DsField('CS', 3)
                     ?>
                 </div>
-
+                <!--企业环境-->
+                <div class="m_culture  hide company_environ" style="margin-left: 0px">
+                    <h3>企业环境</h3>
+                    <?php
+                    $environments = Qs::DsField('setting', 'environment', true);
+                    foreach ($environments as $value) {
+                       echo' <p><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" class="lazy" data-original="' . $value['image'] . '" style="display: block;"></p>';
+                    }
+                    ?>
+                </div>
                 <!--联系我们-->
                 <div class="m_connect m_intro hide company_connect" style="margin-left: 0px">
                     <h3>联系我们</h3>
@@ -69,7 +78,7 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
         Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',));
         Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyRight',))
         ?>
-        <div id='totop'><a style="display: none"><i class='icon-jiantou1'></i></a><a class='shoucang'><i class='icon-empty-star'></i><em>关注</em></a><a><i class='icon-kefu'></i><em>客服</em>
+        <div id='totop'><a style="display: none"><i class='icon-jiantou1'></i></a><a><i class='icon-kefu'></i><em>客服</em>
                 <div class='block'><span>电话：<?php Qs::DsField('CP', 'contact') ?></span></div></a></div>
                 <?php Qs::Sys('loadRequireJs', 'company/aboutus') ?>
         <script>

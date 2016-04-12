@@ -9,7 +9,7 @@ define(['jquery'],function(){
                 speed: 1000
             };
             var options = $.extend(defaults, options);
-            $("body").prepend("<div id='totop'><a><i class='icon-jiantou1'></i></a><a class='shoucang'><i class='icon-empty-star'></i><em>收藏</em></a><a><i class='icon-kefu1'></i><em>客服</em>" +
+            $("body").prepend("<div id='totop'><a><i class='icon-jiantou1'></i></a><a><i class='icon-kefu1'></i><em>客服</em>" +
                 "<div class='block'><span>电话：12345678910</span><span>QQ：123456789</span></div>" +
                 "</a></div>");
             var $toTop = $(this);

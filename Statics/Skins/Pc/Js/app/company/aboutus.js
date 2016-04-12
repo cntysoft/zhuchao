@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/3/14.
  */
 define(['jquery', 'app/company/common'], function (){
-    $(function (){
+   $(function (){
 //      var map = new BMap.Map("Map");          // 创建地图实例
 //      var point = new BMap.Point(113.719409, 34.751165);  // 创建点坐标
 //      map.centerAndZoom(point, 18);                 // 初始化地图，设置中心点坐标和地图级别
@@ -42,24 +42,28 @@ define(['jquery', 'app/company/common'], function (){
 //      map.addOverlay(label);
 //
 //      map.openInfoWindow(infoWindow, map.getCenter());// 打开信息窗口
-    });
-    var path = window.location.search;
-    if(path.indexOf('zizhi') > 0){
-        $('.m_left li a').eq(2).addClass('main');
-        $('.m_right >div').hide();
-        $('.company_zizhi').show();
-    } else if(path.indexOf('culture') > 0){
-        $('.m_left li a').eq(1).addClass('main');
-        $('.m_right >div').hide();
-        $('.company_culture').show();
-    } else if(path.indexOf('connect') > 0){
-        $('.m_left li a').eq(3).addClass('main');
-        $('.m_right >div').hide();
-        $('.company_connect').show();
-    } else{
-        $('.m_left li a').eq(0).addClass('main');
-        $('.company_intro').show();
-    }
-    $(window).scrollTop($(window).scrollTop() + 1);
-    $(window).scrollTop($(window).scrollTop() - 1);
+   });
+   var path = window.location.search;
+   if(path.indexOf('zizhi') > 0){
+      $('.m_left li a').eq(2).addClass('main');
+      $('.m_right >div').hide();
+      $('.company_zizhi').show();
+   } else if(path.indexOf('culture') > 0){
+      $('.m_left li a').eq(1).addClass('main');
+      $('.m_right >div').hide();
+      $('.company_culture').show();
+   } else if(path.indexOf('connect') > 0){
+      $('.m_left li a').eq(4).addClass('main');
+      $('.m_right >div').hide();
+      $('.company_connect').show();
+   } else if(path.indexOf('environ') > 0){
+      $('.m_left li a').eq(3).addClass('main');
+      $('.m_right >div').hide();
+      $('.company_environ').show();
+   } else{
+      $('.m_left li a').eq(0).addClass('main');
+      $('.company_intro').show();
+   }
+   $(window).scrollTop($(window).scrollTop() + 1);
+   $(window).scrollTop($(window).scrollTop() - 1);
 });

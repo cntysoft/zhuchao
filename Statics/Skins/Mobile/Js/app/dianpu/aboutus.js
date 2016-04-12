@@ -14,6 +14,8 @@ define(['zepto', 'module/mall_nav', 'app/dianpu/common'], function (){
          $('.items_box.culture').show();
       } else if(path.indexOf('connect') > 0){
          $('.items_box.connect').show();
+      } else if(path.indexOf('environ') > 0){
+         $('.items_box.environ').show();
       } else{
          $('.items_box.intro').show();
       }

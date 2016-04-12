@@ -129,7 +129,10 @@ class Provider extends AbstractScript
    public function changePassword($params)
    {
       $this->checkRequireFields($params, array('oldPwd', 'newPwd'));
-      return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'resetPassword', array($params['oldPwd'], $params['newPwd']));
+      $flag = $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'resetPassword', array($params['oldPwd'], $params['newPwd']));
+      if ($flag) {
+         $this->logout();
+      }
    }
 
    /**
@@ -158,7 +161,7 @@ class Provider extends AbstractScript
                  $errorType->msg('E_SUBATTR_EXIST'), $errorType->code('E_SUBATTR_EXIST')
          ));
       }
-      
+
       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MANAGER, 'createSite', array($company->getId(), $subAttr));
    }
 
@@ -171,4 +174,5 @@ class Provider extends AbstractScript
    {
       return $this->appCaller->call(P_CONST::MODULE_NAME, P_CONST::APP_NAME, P_CONST::APP_API_MGR, 'logout');
    }
+
 }

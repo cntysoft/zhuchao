@@ -68,50 +68,50 @@ define(['jquery', 'module/totop', 'Front', 'Core', 'lazyload'], function (){
             saveFile(imgData, $('.l_top_left span').text());
          });
       });
-      var shouchang = $('.header_top a.logout').attr('followed');
-      if(shouchang == 1){
-         $('#totop a.shoucang').addClass('followed');
-         $('#totop a.shoucang em').html('已加');
-      }
-      $('#totop a.shoucang').click(function (){
-         var thisurl = window.location.href;
-         if($('.header_top a.logout').length == 0){
-            window.location.href = window.BUYER_SITE_NAME + '/login.html?returnUrl=' + encodeURIComponent(thisurl);
-         }
-         if($(this).hasClass('followed')){
-            return;
-         }
-         Cntysoft.Front.callApi('Utils', 'addFollow',
-         {
-            id : $('#qrcode1').attr('company')
-         }, function (response){
-            if(response.status){
-               $('#totop a.shoucang').addClass('followed');
-               $('#totop a.shoucang em').html('已加');
-            } else{
-               if(response.errorCode == 10014){
-                  window.location.href = window.BUYER_SITE_NAME + '/login.html?returnUrl=' + encodeURIComponent(thisurl);
-               }
-            }
-         });
-      });
+//      var shouchang = $('.header_top a.logout').attr('followed');
+//      if(shouchang == 1){
+//         $('#totop a.shoucang').addClass('followed');
+//         $('#totop a.shoucang em').html('已加');
+//      }
+//      $('#totop a.shoucang').click(function (){
+//         var thisurl = window.location.href;
+//         if($('.header_top a.logout').length == 0){
+//            window.location.href = window.BUYER_SITE_NAME + '/login.html?returnUrl=' + encodeURIComponent(thisurl);
+//         }
+//         if($(this).hasClass('followed')){
+//            return;
+//         }
+//         Cntysoft.Front.callApi('Utils', 'addFollow',
+//         {
+//            id : $('#qrcode1').attr('company')
+//         }, function (response){
+//            if(response.status){
+//               $('#totop a.shoucang').addClass('followed');
+//               $('#totop a.shoucang em').html('已加');
+//            } else{
+//               if(response.errorCode == 10014){
+//                  window.location.href = window.BUYER_SITE_NAME + '/login.html?returnUrl=' + encodeURIComponent(thisurl);
+//               }
+//            }
+//         });
+//      });
 
-      $('.login_btn').click(function (){
-         if($(this).attr('hrefdata')){
-            var thisurl = window.location.href;
-            window.location.href = $(this).attr('hrefdata') + '?returnUrl=' + encodeURIComponent(thisurl);
-         }
-      });
+//      $('.login_btn').click(function (){
+//         if($(this).attr('hrefdata')){
+//            var thisurl = window.location.href;
+//            window.location.href = $(this).attr('hrefdata') + '?returnUrl=' + encodeURIComponent(thisurl);
+//         }
+//      });
    });
    // 退出登录
-   $('.logout').click(function (){
-      Cntysoft.Front.callApi('Utils', 'logout', {
-      }, function (response){
-         if(response.status){
-            window.location.reload();
-         }
-      }, true);
-   });
+//   $('.logout').click(function (){
+//      Cntysoft.Front.callApi('Utils', 'logout', {
+//      }, function (response){
+//         if(response.status){
+//            window.location.reload();
+//         }
+//      }, true);
+//   });
    //延迟加载
    $(".lazy").lazyload({
       threshold : 10,
