@@ -9,7 +9,7 @@ foreach ($subNodes as $value) {
 array_push($subindetifiers, $indetifier);
 $this->invokeParams['nodeIdentifier'] = $subindetifiers;
 $items = $this->execute('hits desc');
-$out = '<section class="news_box conwidth1100 clearfix">
+$out = '<div class="news_box conwidth1100 clearfix">
     <!--banner -->
     <div class="banner fl">
         <div class="banner_box">';
@@ -67,7 +67,7 @@ foreach ($items as $item) {
 }
 $out .= '</ul>
 </div>
-</section>';
+</div>';
 echo $out;
 ?>
 
