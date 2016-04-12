@@ -44,7 +44,7 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     ?>
                     <div class="form_list">
                         <label><em class="main">*</em>用户名:</label>
-                        <input type="text" id='name' value="<?php echo $name; ?>" reg="^[\w]{3,10}$" tip-value="请输入3-10位字母数字下划线" required <?php echo $canChange ?>>
+                        <input type="text" id="name" class="checkField" value="<?php echo $name; ?>" reg="^[\w]{3,10}$" tip-value="请输入3-10位字母数字下划线" required <?php echo $canChange ?>>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
@@ -87,27 +87,27 @@ Qs::Ds('商城数据源/商城数据', 'site');
                     </div>
                     <div class="form_list">
                         <label>部门:</label>
-                        <input type="text" id="department" value="<?php Qs::DsField('User', 'department') ?>" required fh-type="length" minlength="2" maxlength="20" >
+                        <input type="text" id="department" class="checkFiled" value="<?php Qs::DsField('User', 'department') ?>" fh-type="length" minlength="2" maxlength="20" >
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>职位:</label>
-                        <input type="text" id="position" value="<?php Qs::DsField('User', 'position') ?>" required fh-type="length" minlength="2" maxlength="20"  required>
+                        <input type="text" id="position" class="checkField" value="<?php Qs::DsField('User', 'position') ?>" required fh-type="length" minlength="2" maxlength="20"  required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>邮箱:</label>
-                        <input type="text" id="email" value="<?php Qs::DsField('User', 'email') ?>" fh-type="email" fh-type="email"  required>
+                        <input type="text" id="email" class="checkField" value="<?php Qs::DsField('User', 'email') ?>" fh-type="email" fh-type="email"  required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>联系人:</label>
-                        <input type="text" id="realName" value="<?php Qs::DsField('User', 'realName') ?>" reg=".{2,6}" required tip-value="请输入2-6位中文"> 此姓名在网站内容页展示以便联系
+                        <input type="text" id="realName" class="checkField" value="<?php Qs::DsField('User', 'realName') ?>" reg=".{2,6}" required tip-value="请输入2-6位中文"> 此姓名在网站内容页展示以便联系
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>联系电话:</label>
-                        <input type="text" id="showPhone" value="<?php Qs::DsField('User', 'showPhone') ?>" reg="[0-9\-]{7,25}"  required tip-value="请输入展示电话"> 此电话号码是公开展示在网页上的号码
+                        <input type="text" id="showPhone" class="checkField" value="<?php Qs::DsField('User', 'showPhone') ?>" reg="[0-9\-]{7,25}"  required tip-value="请输入展示电话"> 此电话号码是公开展示在网页上的号码
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>QQ:</label>
-                        <input type="text" id="qq" value="<?php Qs::DsField('User', 'qq') ?>" fh-type="qq" placeholder="此QQ可以直接在线聊天" required>
+                        <input type="text" id="qq" class="checkField" value="<?php Qs::DsField('User', 'qq') ?>" fh-type="qq" placeholder="此QQ可以直接在线聊天" required>
                     </div>
 
                     <?php
@@ -127,19 +127,19 @@ Qs::Ds('商城数据源/商城数据', 'site');
 
                     <div class="form_list">
                         <label>座机:</label>
-                        <input class="tel_china" id="telCountry" value="86" placeholder="86" tip-target="#telNum" type="text" value="<?php echo $telArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
+                        <input class="tel_china checkField" id="telCountry" value="86" placeholder="86" tip-target="#telNum" type="text" value="<?php echo $telArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
                         <span class="tel_line">-</span>
-                        <input class="tel_code" id="telArea" placeholder="区号" tip-target="#telNum" type="text" value="<?php echo $telArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
+                        <input class="tel_code checkField" id="telArea" placeholder="区号" tip-target="#telNum" type="text" value="<?php echo $telArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
                         <span class="tel_line">-</span>
-                        <input class="tel_num" id="telNum" placeholder="手机号" type="text" value="<?php echo $telArray[2] ?>" fh-type="tel">
+                        <input class="tel_num checkField" id="telNum" placeholder="手机号" type="text" value="<?php echo $telArray[2] ?>" fh-type="tel">
                     </div>
                     <div class="form_list">
                         <label>传真:</label>
-                        <input class="tel_china" id="faxCountry" value="86" placeholder="86" tip-target="#faxNum" type="text" value="<?php echo $faxArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
+                        <input id="faxCountry" class="tel_china checkField" value="86" placeholder="86" tip-target="#faxNum" type="text" value="<?php echo $faxArray[0] ?>" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
                         <span class="tel_line">-</span>
-                        <input class="tel_code" id="faxArea" placeholder="区号" tip-target="#faxNum" type="text" value="<?php echo $faxArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
+                        <input id="faxArea" class="tel_code checkField" placeholder="区号" tip-target="#faxNum" type="text" value="<?php echo $faxArray[1] ?>" reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
                         <span class="tel_line">-</span>
-                        <input class="tel_num" id="faxNum" placeholder="传真号"  type="text" value="<?php echo $faxArray[2] ?>" fh-type="fax">
+                        <input id="faxNum" class="tel_num checkField" placeholder="传真号"  type="text" value="<?php echo $faxArray[2] ?>" fh-type="fax">
                     </div>
                     <div class="form_list">
                         <div class="action_btn">

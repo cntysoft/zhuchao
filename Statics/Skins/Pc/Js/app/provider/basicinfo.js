@@ -1,7 +1,7 @@
 define(['validate', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function (validate){
     $(function (){
         $('#submit').click(function (){
-            var validation = validate.checkFields($('#name,#position,#email,#showPhone,#qq,#telNum,#telCountry,#telArea,#faxNum,#faxCountry,#faxArea'));
+            var validation = validate.checkFields($('.checkField'));
             if(validation.length){
                 validation[0].ele.focus();
                 layer.msg('请正确填写相应信息');
@@ -26,6 +26,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function 
                     $('#telArea').focus();
                     return false;
                 }
+                params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val();
             }
             if($('#faxNum').val() != ''){
                 if($('#faxCountry').val() == ''){
@@ -38,9 +39,9 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function 
                     $('#faxArea').focus();
                     return false;
                 }
+                params.fax = $('#faxCountry').val() + '-' + $('#faxArea').val() + '-' + $('#faxNum').val();
             }
-            params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val();
-            params.fax = $('#faxCountry').val() + '-' + $('#faxArea').val() + '-' + $('#faxNum').val();
+
             Cntysoft.Front.callApi('Provider', 'updateUserInfo', params, function (response){
                 if(response.status){
                     layer.msg('信息更新成功');
