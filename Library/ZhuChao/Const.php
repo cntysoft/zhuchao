@@ -60,13 +60,15 @@ const SYS_SITE_NAME_DEVEL = 'devel.abc.com';
 const SYS_SITE_NAME = 'www.fhzc.com';
 const BUYER_SITE_NAME_DEVEL = 'i.abc.com';
 const BUYER_SITE_NAME = 'i.fhzc.com';
-const SITE_SUBDOMAIN_DEVEL = '([a-z0-9]+).site.abc.com';
-const SITE_SUBDOMAIN = '([a-z0-9]+).site.fhzc.com';
-const PROVIDER_SITE_NAME_DEVEL = 'provider.abc.com';
-const PROVIDER_SITE_NAME = 'provider.fhzc.com';
+const SITE_SUBDOMAIN_DEVEL = '([a-z0-9]+).site.kele.com';
+const SITE_SUBDOMAIN = '([a-z0-9]+).site.kelecloud.com';
+const PROVIDER_SITE_NAME_DEVEL = 'www.kele.com';
+const PROVIDER_SITE_NAME = 'www.kelecloud.com';
 //站点系统的主域名
-const ZHUCHAO_SITE_DOMAIN = 'site.fhzc.com';
-const ZHUCHAO_SITE_DOMAIN_DEVEL = 'site.abc.com';
+const ZHUCHAO_SITE_DOMAIN = 'site.kelecloud.com';
+const ZHUCHAO_SITE_DOMAIN_DEVEL = 'site.kele.com';
+const ZHUCHAO_PROVIDER_SITE_DOMAIN = 'kelecloud.com';
+const ZHUCHAO_PROVIDER_SITE_DOMAIN_DEVEL = 'kele.com';
 const ZHUCHAO_SITE_DB_PREFIX = 'zhuchao_site_';
 
 //阿里OTS配置

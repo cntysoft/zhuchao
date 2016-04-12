@@ -91,7 +91,7 @@ class Application extends BaseApplication
                die('站点不存在');
             }
          }
-      } elseif (\Cntysoft\RT_SYS_DOMAIN !== implode('.', $parts))  {//判断是否是平台内部域名
+      } elseif (\Cntysoft\RT_SYS_DOMAIN !== implode('.', $parts) && \Cntysoft\RT_ZHUCHAO_PROVIDER_SITE_DOMAIN !== implode('.', $parts))  {//判断是否是平台内部域名
          //判断当前域名是否是已经绑定在平台上面
          $siteMaper = new DomainBinder();
          $siteId = $siteMaper->getSiteIdByDomain($domain);
