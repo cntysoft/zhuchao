@@ -45,7 +45,7 @@ if(count($products)){
 
       $name = $product->getBrand() . ' '. $product->getTitle() . ' '. $product->getDescription();
       $number = $product->getNumber();
-      $url = $this->getProductUrl($number);
+      $url = $this->getSiteProductUrl($number);
       $image = $this->getImageCdnUrl($product->getDefaultImage());
       
       $pro .= '<div class="list_items clearfix" fh-num="'.$number.'">

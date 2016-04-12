@@ -366,7 +366,7 @@ class Acl extends AbstractLib
          if ($remember) {//记住密码, 默认保存一周
             $cookieLife = 7 * 24 * 60 * 60;
          }
-         $this->cookieManager->setCookie($authKey, $token, $cookieLife, \Cntysoft\RT_SYS_DOMAIN);
+         $this->cookieManager->setCookie($authKey, $token, $cookieLife, \Cntysoft\RT_ZHUCHAO_PROVIDER_SITE_DOMAIN);
          $this->sessionManager->offsetSet(\Cntysoft\FRONT_USER_PROVIDER_S_KEY_INFO, $key . '|' . $type);
          return true;
       } catch (\Exception $ex) {
@@ -657,7 +657,7 @@ class Acl extends AbstractLib
    {
       $keys = $this->getCookieKeys();
       $key = $keys[Constant::AUTH_KEY];
-      $this->cookieManager->deleteCookie($key, \Cntysoft\RT_SYS_DOMAIN);
+      $this->cookieManager->deleteCookie($key, \Cntysoft\RT_ZHUCHAO_PROVIDER_SITE_DOMAIN);
       $this->sessionManager->offsetUnset(\Cntysoft\FRONT_USER_PROVIDER_S_KEY_INFO);
    }
 

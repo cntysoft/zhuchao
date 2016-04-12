@@ -117,4 +117,18 @@ class Inquiry extends AbstractLabelScript
       return 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $id . '.html';
    }
 
+   /**
+    * 获取企业网站商品的网址
+    * 
+    * @param string number
+    * @return string
+    */
+   public function getSiteProductUrl($number)
+   {
+      $provider = $this->getCurUser();
+      $company = $provider->getCompany();
+      $subattr = $company ? $company->getSubAttr() : '';
+      return 'http://' . $subattr . '.' . \Cntysoft\RT_ZHUCHAO_SITE_DOMAIN . '/item/' . $number . '.html';
+   }
+   
 }

@@ -164,17 +164,6 @@ class News extends AbstractLabelScript
    }
 
    /**
-    * 获取商品的网址
-    * 
-    * @param integer $id
-    * @return string
-    */
-   public function getProductUrl($id)
-   {
-      return 'http://' . \Cntysoft\RT_SYS_SITE_NAME . '/item/' . $id . '.html';
-   }
-
-   /**
     * 获取企业网站案例的网址
     * 
     * @param string number

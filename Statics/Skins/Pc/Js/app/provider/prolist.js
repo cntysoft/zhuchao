@@ -1,5 +1,6 @@
 define(['jquery', 'Core', 'Front', 'layer', 'app/common'], function (){
    $(document).ready(function (){
+      init();
       //全選
       $('.prolist_operate').find('.check').click(function (){
          var $this = $(this);
@@ -75,6 +76,7 @@ define(['jquery', 'Core', 'Front', 'layer', 'app/common'], function (){
                cond['status'] = 4;
                break;
          }
+         
          var query = '?';
          $.each(cond, function (key, item){
             query += key + '=' + item + '&';
@@ -214,6 +216,30 @@ define(['jquery', 'Core', 'Front', 'layer', 'app/common'], function (){
             });
          });
       }
+      
+      function init()
+      {
+         var query = Cntysoft.fromQueryString(window.location.search, true);
+         for(var key in query){
+            if('status' == key){
+               switch(parseInt(query[key])){
+                  case 2:
+                     $('.pro_status li').eq(1).addClass('current');
+                     break;
+                  case 3:
+                     $('.pro_status li').eq(0).addClass('current');
+                     break;
+                  case 4:
+                     $('.pro_status li').eq(3).addClass('current');
+                     break;
+                  case 5:
+                     $('.pro_status li').eq(2).addClass('current');
+                     break;
+               }
+            }
+         }
+      }
+      
       $('head').append('<script type="text/javascript" charset="utf-8" async=""  src="/Statics/Skins/Pc/Js/lib/qrcode.js"></script>');
       /**
        * 在本地进行文件保存
