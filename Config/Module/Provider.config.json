@@ -367,6 +367,15 @@
                 "controller" : "Product",
                 "action" : "common"
             }
+        },
+        {
+            "key" : "KeleFunction",
+            "rule" : "\/function.html",
+            "option" : {
+                "module" : "Provider",
+                "controller" : "kele",
+                "action" : "function"
+            }
         }
     ],
     "hostName" : true,
@@ -408,7 +417,8 @@
         "yunzhan/caselist" : "供应商\/云站\/案例列表.phtml",
         "yunzhan/addcase" : "供应商\/云站\/添加案例.phtml",
         "yunzhan/modifycase" : "供应商\/云站\/修改案例.phtml",
-        "yunzhan/casecategory" : "供应商\/云站\/案例分类.phtml"
+        "yunzhan/casecategory" : "供应商\/云站\/案例分类.phtml",
+        "kele/function"      : "供应商\/功能页模板.phtml"
     },
     "front_api_map" : {
         "Provider" : [

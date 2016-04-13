@@ -28,10 +28,6 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                         <form action="">
                             <div class="login_form_input">
                                 <input class="form_text" type="text" fh-type="phone"  id="phone" placeholder="请输入手机号" required>
-                                <!--密码-->
-                                <input class="form_text" type="password" fh-type="password"  id="password" placeholder="请输入字母、数字、符号均可，6-25个字符的密码" required>
-                                <!--再次输入密码-->
-                                <input class="form_text" type="password" fh-type="password"  id="password2" placeholder="请再次输入密码" required>
                                 <!--验证码-->
                                 <div class="input_code clearfix">
                                     <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required >
@@ -47,12 +43,17 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                                         <span>获取短信验证码</span>
                                     </a>
                                 </div>
+                                <!--密码-->
+                                <input class="form_text" type="password" fh-type="password"  id="password" placeholder="请输入字母、数字、符号均可，6-25个字符的密码" required>
+                                <!--再次输入密码-->
+                                <input class="form_text" type="password" fh-type="password"  id="password2" placeholder="请再次输入密码" required>
                             </div>
                             <!--忘记密码-->
                             <div class="login_forget clearfix">
                                 <div class="login_auto checked">
-                                    <i class="icon-checked main_light"></i><span>我已经同意《凤凰筑巢用户注册协议》</span>
+                                    <i class="icon-checked main_light"></i><span>我已经同意《可乐云商用户注册协议》</span>
                                 </div>
+                                <a href="/login.html" class="main_light">已有帐号？直接登录</a>
                             </div>
                             <!--提交-->
                             <input class="submit_btn main_bg_light" type="submit" id="submit" value="立即注册">
