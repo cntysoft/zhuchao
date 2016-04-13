@@ -5,6 +5,8 @@
 namespace App\Yunzhan\Setting;
 use Cntysoft\Kernel\App\AbstractLib;
 use Cntysoft\Kernel;
+use Cntysoft\Kernel\ConfigProxy;
+use Phalcon\Db\Adapter\Pdo\Mysql;
 use App\Yunzhan\Setting\Model\Config as ConfigModel;
 
 /**
@@ -48,8 +50,11 @@ class Config extends AbstractLib
     * @param string $group
     * @return \Phalcon\Mvc\Model\ResultSet
     */
-   public function getItemsByGroup($group)
+   public function getItemsByGroup($group,$companyid=-1)
    {
+      if($companyid>0){
+         $this->setSiteDb($companyid);
+      }
       return ConfigModel::find(array(
          '[group] = ?0',
          'bind' => array(
@@ -172,5 +177,17 @@ class Config extends AbstractLib
       if($cacher->exists($key)) {
          $cacher->delete($key);
       }
+   }
+   protected function setSiteDb($id)
+   {
+      Kernel\get_site_id($id);
+            
+      $config = ConfigProxy::getGlobalConfig();
+      $cfg = $config->db->toArray();
+      $this->di->setShared('siteDb', function() use($cfg) {
+         $cfg['dbname'] = Kernel\get_site_db_name();
+         $db = new Mysql($cfg);
+         return $db;
+      });
    }
 }

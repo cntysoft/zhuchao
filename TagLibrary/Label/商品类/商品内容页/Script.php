@@ -15,6 +15,7 @@ use App\Site\Category\Constant as CATEGORY_CONST;
 use App\Site\Content\Constant as CONTENT_CONST;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;
 use App\ZhuChao\CategoryMgr\Constant as CATEGORY;
+use App\Yunzhan\Setting\Constant as YUNZHAN_SETCONST;
 use Cntysoft\Framework\Utils\ChinaArea;
 class Goods extends AbstractLabelScript
 {
@@ -204,9 +205,9 @@ class Goods extends AbstractLabelScript
     * @param int $nodeId
     * @return type
     */
-   public function getInfoListByNodeAndStatusNotPage($nodeId,$offset = 0,$limit = null)
+   public function getInfoListByNodeAndStatusNotPage($nodeId, $offset = 0, $limit = null)
    {
-      if($limit == null){
+      if ($limit == null) {
          $limit = 5;
       }
       $generalInfo = $this->appCaller->call(
@@ -239,6 +240,42 @@ class Goods extends AbstractLabelScript
       $ads = $this->appCaller->call(
               MAR_CONST::MODULE_NAME, MAR_CONST::APP_NAME, MAR_CONST::APP_API_ADS, 'getAdsList', array($locationId, 'sort asc'));
       return $ads;
+   }
+
+   /**
+    * 根据位置id获取该位置下的广告
+    * 
+    * @param integer $companyid 企业id
+    */
+   public function getSiteSetting($companyid)
+   {
+      $config = $this->appCaller->call(
+              YUNZHAN_SETCONST::MODULE_NAME, YUNZHAN_SETCONST::APP_NAME, YUNZHAN_SETCONST::APP_API_CFG, 'getItemsByGroup', array('Site',$companyid)
+      );
+      $ret = array('facade' => array(), 'environment' => array());
+      foreach ($config as $one) {
+         $key = $one->getKey();
+         $value = $one->getValue();
+         if ('Facade' == $key) {
+            $value = unserialize($value);
+            foreach ($value as $val) {
+               $ret['facade'][] = array(
+                  'image' => $val[0],
+                  'id'    => $val[1]
+               );
+            }
+         }
+         if ('Environment' == $key) {
+            $value = unserialize($value);
+            foreach ($value as $val) {
+               $ret['environment'][] = array(
+                  'image' => $val[0],
+                  'id'    => $val[1]
+               );
+            }
+         }
+      }
+      return $ret;
    }
 
    public function getBuyerSiteName()

@@ -178,6 +178,22 @@ if ($provider) {
                         </div>
                     </div>
                 </div>
+                <div class="pro_info_content">';
+   $facadeandenviron = $this->getSiteSetting($company->getId());
+   $facade = $facadeandenviron['facade'];
+   $environments = $facadeandenviron['environment'];
+   if (count($facade)) {
+      $out.='<p style=" text-align: center;font-size: 25px;">门面</p>';
+      $out.=' <p><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" class="lazy" data-original="' . $facade[0]['image'] . '" 
+     ></p>';
+   }
+   if (count($environments)) {
+      $out.='<p  style=" text-align: center;font-size: 25px;">企业环境</p>';
+   }
+   foreach ($environments as $value) {
+      $out.=' <p><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" class="lazy" data-original="' . $value['image'] . '"></p>';
+   }
+   $out.='</div>
             </div>';
 }
 $out .= '<div class="pro_info"><div class="pro_info_content"></div></div>

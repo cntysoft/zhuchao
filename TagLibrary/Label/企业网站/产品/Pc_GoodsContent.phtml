@@ -143,8 +143,24 @@ $out.='</p>
 ?><?php $out.=implode('', Qs::DsField('CP', 'PCD', true)) . ' ' . Qs::DsField('CP', 'address', true); ?><?php
 $out.='</div>
                 </div>
-            </div>
-        </div>
+            </div>';
+?><?php
+$facade = Qs::DsField('setting', 'facade', true);
+$environments = Qs::DsField('setting', 'environment', true);
+if (count($facade)) {
+   $out.='<p style=" text-align: center;font-size: 25px;">门面</p>';
+   $out.=' <p><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" class="lazy" data-original="' . $facade[0]['image'] . '" 
+      style=" display: block!important;max-width: 100%!important;height: auto!important;margin: 10px auto!important;"></p>';
+}
+if (count($environments)) {
+   $out.='<p  style=" text-align: center;font-size: 25px;">企业环境</p>';
+}
+foreach ($environments as $value) {
+   $out.=' <p><img src="http://statics-b2b.fhzc.com/Pc/Images/lazyicon.png" class="lazy" data-original="' . $value['image'] . '" '
+           . 'style=" display: block!important;max-width: 100%!important;height: auto!important;margin: 10px auto!important;"></p>';
+}
+?><?php
+$out.='       </div>
     </div>
 </div>';
 echo $out;
