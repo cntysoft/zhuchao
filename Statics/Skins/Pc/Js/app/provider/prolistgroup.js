@@ -12,7 +12,7 @@ define(['jquery', 'Core', 'Front', 'layer', 'app/common', 'layer.ext'], function
                if(value){
                   if(value.length > 10){
                      layer.tips('请输入10位以内的名称!', '.layui-layer-prompt .layui-layer-content', {
-                        tips : [2, '#63bf82'],
+                        tips : [2, '#0af'],
                         time : 1000
                      });
                      return false;

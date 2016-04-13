@@ -20,7 +20,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function(v
          if($('#newpassword').val() != $('#repassword').val()){
             layer.tips('两次输入的密码不一致！', '#repassword',{
                 tipsMore : true,
-                tips : [2, '#63bf82']
+                tips : [2, '#0af']
             });
             return false;
          }

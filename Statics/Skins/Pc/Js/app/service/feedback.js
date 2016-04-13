@@ -90,7 +90,7 @@ define(['jquery', 'app/common', 'layer', 'Core', 'Front'], function (){
       {
          layer.tips(msg, item, {
             tipsMore : true,
-            tips : [2, '#63bf82'],
+            tips : [2, '#0af'],
             time : 1000
          });
       }

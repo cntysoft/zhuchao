@@ -168,7 +168,8 @@ define(['exports', 'jquery', 'layer'], function (exports){
         function tips(msg, $item){
             layer.tips(msg, $item, {
                 tipsMore : true,
-                tips : [2, '#63bf82']
+                tips : [2, '#0af'],
+                time:100000
             });
         }
 

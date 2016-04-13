@@ -16,6 +16,7 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
             var params;
             var validation = validate.checkFields($('.checkfield'));
             if(validation.length){
+                validation[0].ele.focus();
                 layer.msg('请正确填写各项');
                 return false;
             }
@@ -38,8 +39,8 @@ define(['validate', 'webuploader', 'datepicker', 'jquery', 'kindEditor', 'zh_CN'
                     $('#telArea').focus();
                     return false;
                 }
+                params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val();
             }
-            params.tel = $('#telCountry').val() + '-' + $('#telArea').val() + '-' + $('#telNum').val();
             params.phone = $('#phone').val();
             Cntysoft.Front.callApi('Site', 'addJob', params, function (response){
                 if(response.status){

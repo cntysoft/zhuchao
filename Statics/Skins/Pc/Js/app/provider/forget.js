@@ -13,7 +13,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (
                 }, function (response){
                     if(response.status && response.data[0] === false){
                         layer.tips(validate.message.phoneNotExist, $('#username'), {
-                            tips : [2, '#63bf82']
+                            tips : [2, '#0af']
                         });
                         phoneExist = false;
                     } else{
@@ -33,7 +33,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (
             }
             if(!phoneExist){
                 layer.tips(validate.message.phoneNotExist, $('#username'), {
-                    tips : [2, '#63bf82']
+                    tips : [2, '#0af']
                 });
                 return false;
             }
@@ -81,7 +81,7 @@ define(['validate', 'jquery', 'Core', 'Front', 'layer','app/common'], function (
             if(password !== repassword){
                 layer.tips('两次密码输入不一致', '#passwordAgain', {
                     tipsMore : true,
-                    tips : [2, '#63bf82']
+                    tips : [2, '#0af']
                 });
                 return false;
             }

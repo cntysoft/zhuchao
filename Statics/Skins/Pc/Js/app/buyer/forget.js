@@ -23,7 +23,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (
                 }, function (response){
                     if(response.status && response.data[0] === false){
                         layer.tips(validate.message.phoneNotExist, $('#phone'), {
-                            tips : [2, '#63bf82']
+                            tips : [2, '#0af']
                         });
                         phoneExist = false;
                     } else{
@@ -40,7 +40,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (
             }
             if(!phoneExist){
                 layer.tips(validate.message.phoneNotExist, $('#phone'), {
-                    tips : [2, '#63bf82']
+                    tips : [2, '#0af']
                 });
                 return false;
             }
@@ -73,7 +73,7 @@ define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (
             }
             if($('#password').val() != $('#password2').val()){
                 layer.tips(validate.message.passwordNotEqual, $('#password2'), {
-                    tips : [2, '#63bf82']
+                    tips : [2, '#0af']
                 });
                 return false;
             }

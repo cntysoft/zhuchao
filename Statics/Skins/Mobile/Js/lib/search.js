@@ -1,22 +1,19 @@
 define(['zepto'], function (){
    $(function (){
-      $('#search_input').tap(function (event){
-         $('.search_box').show().css({
-            position : 'absolute',
-            zIndex : '1988'
-         });
-         $('body>div:not(.search_box)').hide();
-         $('body>ul').hide();
-      });
-      $('.header_back_box').tap(function (event){
-         $('body>div:not(.search_box)').show();
-         $('body>ul').show();
-         $('#totop').hide();
-         $('.online').hide();
-         $('#shaixuanBox').hide();
-         $('.search_box').hide();
-
-      });
+      $('#search_input').tap(function(){
+            $('.search_box').show();
+            $('html,body').css({
+                height:'100%',
+                overflowY:'hidden'
+            });
+        });
+        $('.header_back_box ').tap(function(){
+            $('.search_box').hide();
+            $('html,body').css({
+                height:'auto',
+                overflowY:'auto'
+            });
+        });
       $('.header_right_icon_search').tap(function (){
          var keyword = $('.search_input_real').val();
          var location = window.location;
