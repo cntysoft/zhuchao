@@ -31,21 +31,21 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                 padding-left: 122px;
             }
             .img_wrap_div {
-                width: 180px;
+                width: 170px;
                 float : left;
                 margin-right: 20px;
                 padding: 5px;
             }
             .img_wrap_div li{
-                width: 180px;
+                width: 170px;
             }
             .img_wrap_div input{
                 margin-top: 10px;
                 padding-left: 3px;
-                width: 180px;
+                width: 170px;
             }
             #uploadBtn{
-                width: 180px;
+                width: 170px;
             }
             .form_list input[type="checkbox"]{
                 margin: 0 7px;
@@ -97,12 +97,12 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                                    foreach ($banners as $item) {
                                       echo '<div class="img_wrap_div"><li><img fh-id="' . $item["id"] . '" src="' . $item['image'] . '"><em class="deleteImg">删除</em></li><input type="text" placeholder="请输入图片对应的正确网址" value="' . $item['url'] . '"></div>';
                                    }
-                                   $cls = 'style="display:none"';
+                                   $cls = 'hide';
                                    if (count($banners) < 4) {
                                       $cls = '';
                                    }
 
-                                   echo '<li class="img_plus" id="uploadBtn" ' . $cls . '>
+                                   echo '<li class="img_plus ' . $cls . '" id="uploadBtn" >
                                        <p>+</p>
                                        <span>添加照片</span>
                                    </li>';
@@ -160,8 +160,8 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                                    foreach ($facades as $item) {
                                       echo '<div class="img_wrap_div"><li><img fh-id="' . $item["id"] . '" src="' . $item['image'] . '"><em class="deleteFacadeImg">删除</em></li></div>';
                                    }
-                                   $cls = 'style="display:none"';
-                                   echo '<li class="img_plus" id="uploadFacadeBtn" ' . $cls . '>
+                                   $cls = 'hide';
+                                   echo '<li class="img_plus  ' . $cls . '" id="uploadFacadeBtn">
                                        <p>+</p>
                                        <span>添加照片</span>
                                    </li>';
@@ -185,11 +185,11 @@ Qs::Ds('内容数据源/店铺设置', 'setting');
                                    foreach ($environments as $item) {
                                       echo '<div class="img_wrap_div"><li><img fh-id="' . $item["id"] . '" src="' . $item['image'] . '"><em class="deleteEnvironImg">删除</em></li></div>';
                                    }
-                                   $cls = 'style="display:none"';
-                                   if (count($banners) < 4) {
+                                   $cls = 'hide';
+                                   if (count($environments) < 4) {
                                       $cls = '';
                                    }
-                                   echo '<li class="img_plus" id="uploadEnvironBtn" ' . $cls . '>
+                                   echo '<li class="img_plus  ' . $cls . '" id="uploadEnvironBtn" >
                                        <p>+</p>
                                        <span>添加照片</span>
                                    </li>';

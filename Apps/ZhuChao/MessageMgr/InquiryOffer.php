@@ -11,6 +11,9 @@ use Cntysoft\Kernel\App\AbstractLib;
 use Cntysoft\Kernel;
 use App\ZhuChao\MessageMgr\Model\Inquiry as InquiryModel;
 use App\ZhuChao\MessageMgr\Model\Offer as OfferModel;
+use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
+use Cntysoft\Framework\Cloud\Ali\Push\Request\CloudPushHighRequest;
+use Cntysoft\Framework\Cloud\Ali\Push\PushClient;
 class InquiryOffer extends AbstractLib
 {
    /**
@@ -21,11 +24,20 @@ class InquiryOffer extends AbstractLib
    public function addInquiry(array $params)
    {
       $this->checkRequireFields($params, array('gid', 'uid', 'expireTime', 'providerId', 'content'));
-      $params['inputTime'] = time();
-      $params['expireTime'] = (int) $params['expireTime'] * 24 * 3600 + time();
-      $inquiry = new InquiryModel();
-      $inquiry->assignBySetter($params);
-      return $inquiry->create();
+      $db = Kernel\get_db_adapter();
+      try {
+         $db->begin();
+         $params['inputTime'] = time();
+         $params['expireTime'] = (int) $params['expireTime'] * 24 * 3600 + time();
+         $inquiry = new InquiryModel();
+         $inquiry->assignBySetter($params);
+         $inquiry->create();
+         $this->pushInquiryNotice($params['providerId'], '客户询价通知！', '你有一条新的询价信息，请尽快处理！');
+         return $db->commit();
+      } catch (\Exception $ex) {
+         $db->rollback();
+         Kernel\throw_exception($ex);
+      }
    }
 
    /**
@@ -121,6 +133,36 @@ class InquiryOffer extends AbstractLib
          );
       }
       return $inquiries;
+   }
+
+   /**
+    * 推送消息给供应商
+    * 
+    * @param int $providerId
+    * @param string $title
+    * @param string $body
+    * @return 
+    */
+   protected function pushInquiryNotice($providerId, $title, $body)
+   {
+      $provider = $this->getAppCaller()->call(
+              PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MANAGER, 'getProvider', array($providerId)
+      );
+      $targetvalue = array($provider->getPhone());
+      $request = new CloudPushHighRequest();
+      $client = new PushClient();
+
+      $request->setBody($body);
+      $request->setDeviceType("3");
+      $request->setRemind("true");
+      $request->setStoreOffline("true");
+      $request->setTarget("account");
+      $request->setTargetValue(implode(',', $targetvalue));
+      $request->setTitle($title);
+//      $request->setAndroidExtParameters('{"id":"' . $orderNum . '"}');
+//      $request->setIosExtParameters('{"id":"' . $orderNum . '"}');
+      $request->setType("1");
+      $client->execute($request);
    }
 
 }

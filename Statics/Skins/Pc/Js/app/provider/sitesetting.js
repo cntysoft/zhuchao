@@ -11,6 +11,48 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'
       init();
       function init()
       {
+         uploaderConfig = {
+            chunked : false,
+            auto : true,
+            threads : 1,
+            duplicate : true,
+            accept : {
+               title : 'Images',
+               extensions : 'gif,jpg,jpeg,bmp,png',
+               mimeTypes : 'image/*'
+            },
+            compress : {
+               // 图片质量，只有type为`image/jpeg`的时候才有效。
+               quality : 90,
+               // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+               allowMagnify : false,
+               // 是否允许裁剪。
+               crop : false,
+               // 是否保留头部meta信息。
+               preserveHeaders : true,
+               // 如果发现压缩后文件大小比原来还大，则使用原来图片
+               // 此属性可能会影响图片自动纠正功能
+               noCompressIfLarger : false,
+               // 单位字节，如果图片大小小于此值，不会采用压缩。
+               compressSize : 1024 * 1024
+            },
+            server : '/front-api-entry',
+            formData : {
+               REQUEST_META : Cntysoft.Json.encode({
+                  cls : "Uploader",
+                  method : "process"
+               }),
+               REQUEST_DATA : Cntysoft.Json.encode({
+                  uploadDir : "/Data/UploadFiles/Apps/ZhuChao/YunZhan",
+                  overwrite : true,
+                  randomize : true,
+                  createSubDir : true,
+                  enableFileRef : true,
+                  useOss : true
+               }),
+               REQUEST_SECURITY : Cntysoft.Json.encode({})
+            }
+         };
          //如果上传按钮没隐藏时
          if(!$('.img_banner li.hide').length){
             createProductUpload();
@@ -112,48 +154,6 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'
       }
       //初始化商品图片上传
       function createProductUpload(){
-         uploaderConfig = {
-            chunked : false,
-            auto : true,
-            threads : 1,
-            duplicate : true,
-            accept : {
-               title : 'Images',
-               extensions : 'gif,jpg,jpeg,bmp,png',
-               mimeTypes : 'image/*'
-            },
-            compress : {
-               // 图片质量，只有type为`image/jpeg`的时候才有效。
-               quality : 90,
-               // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
-               allowMagnify : false,
-               // 是否允许裁剪。
-               crop : false,
-               // 是否保留头部meta信息。
-               preserveHeaders : true,
-               // 如果发现压缩后文件大小比原来还大，则使用原来图片
-               // 此属性可能会影响图片自动纠正功能
-               noCompressIfLarger : false,
-               // 单位字节，如果图片大小小于此值，不会采用压缩。
-               compressSize : 1024 * 1024
-            },
-            server : '/front-api-entry',
-            formData : {
-               REQUEST_META : Cntysoft.Json.encode({
-                  cls : "Uploader",
-                  method : "process"
-               }),
-               REQUEST_DATA : Cntysoft.Json.encode({
-                  uploadDir : "/Data/UploadFiles/Apps/ZhuChao/YunZhan",
-                  overwrite : true,
-                  randomize : true,
-                  createSubDir : true,
-                  enableFileRef : true,
-                  useOss : true
-               }),
-               REQUEST_SECURITY : Cntysoft.Json.encode({})
-            }
-         };
          //处理上传
          uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
             pick : {id : '#uploadBtn', multiple : false}
@@ -196,48 +196,6 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'
       }
       //初始化门面图片上传
       function createFacadeUpload(){
-         uploaderConfig = {
-            chunked : false,
-            auto : true,
-            threads : 1,
-            duplicate : true,
-            accept : {
-               title : 'Images',
-               extensions : 'gif,jpg,jpeg,bmp,png',
-               mimeTypes : 'image/*'
-            },
-            compress : {
-               // 图片质量，只有type为`image/jpeg`的时候才有效。
-               quality : 90,
-               // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
-               allowMagnify : false,
-               // 是否允许裁剪。
-               crop : false,
-               // 是否保留头部meta信息。
-               preserveHeaders : true,
-               // 如果发现压缩后文件大小比原来还大，则使用原来图片
-               // 此属性可能会影响图片自动纠正功能
-               noCompressIfLarger : false,
-               // 单位字节，如果图片大小小于此值，不会采用压缩。
-               compressSize : 1024 * 1024
-            },
-            server : '/front-api-entry',
-            formData : {
-               REQUEST_META : Cntysoft.Json.encode({
-                  cls : "Uploader",
-                  method : "process"
-               }),
-               REQUEST_DATA : Cntysoft.Json.encode({
-                  uploadDir : "/Data/UploadFiles/Apps/ZhuChao/YunZhan",
-                  overwrite : true,
-                  randomize : true,
-                  createSubDir : true,
-                  enableFileRef : true,
-                  useOss : true
-               }),
-               REQUEST_SECURITY : Cntysoft.Json.encode({})
-            }
-         };
          //处理上传
          uploadFacadeImg = WebUploader.create($.extend(uploaderConfig, {
             pick : {id : '#uploadFacadeBtn', multiple : false}
@@ -280,48 +238,6 @@ define(['webuploader', 'jquery', 'zh_CN', 'Core', 'Front', 'app/common', 'layer'
       }
       //初始化店铺环境图片上传
       function createEnvironUpload(){
-         uploaderConfig = {
-            chunked : false,
-            auto : true,
-            threads : 1,
-            duplicate : true,
-            accept : {
-               title : 'Images',
-               extensions : 'gif,jpg,jpeg,bmp,png',
-               mimeTypes : 'image/*'
-            },
-            compress : {
-               // 图片质量，只有type为`image/jpeg`的时候才有效。
-               quality : 90,
-               // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
-               allowMagnify : false,
-               // 是否允许裁剪。
-               crop : false,
-               // 是否保留头部meta信息。
-               preserveHeaders : true,
-               // 如果发现压缩后文件大小比原来还大，则使用原来图片
-               // 此属性可能会影响图片自动纠正功能
-               noCompressIfLarger : false,
-               // 单位字节，如果图片大小小于此值，不会采用压缩。
-               compressSize : 1024 * 1024
-            },
-            server : '/front-api-entry',
-            formData : {
-               REQUEST_META : Cntysoft.Json.encode({
-                  cls : "Uploader",
-                  method : "process"
-               }),
-               REQUEST_DATA : Cntysoft.Json.encode({
-                  uploadDir : "/Data/UploadFiles/Apps/ZhuChao/YunZhan",
-                  overwrite : true,
-                  randomize : true,
-                  createSubDir : true,
-                  enableFileRef : true,
-                  useOss : true
-               }),
-               REQUEST_SECURITY : Cntysoft.Json.encode({})
-            }
-         };
          //处理上传
          uploadEnvironImg = WebUploader.create($.extend(uploaderConfig, {
             pick : {id : '#uploadEnvironBtn', multiple : false}

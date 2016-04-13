@@ -1,4 +1,4 @@
-<?php 
+<?php
 Qs::Ds('商城数据源/商城数据', 'site');
 Qs::Ds('内容数据源/企业案例模型', 'info');
 ?>
@@ -35,19 +35,23 @@ Qs::Ds('内容数据源/企业案例模型', 'info');
                         <div class="input_wrap img_uploading">
                             <div class="clearfix">
                                 <?php
-                                    $content = Qs::DsField('info', 'content', true);
-                                    foreach($content as $item) {
-                                       echo '<div class="img_wrap_div">
+                                $content = Qs::DsField('info', 'content', true);
+                                foreach ($content as $item) {
+                                   echo '<div class="img_wrap_div">
                                                       <div class="show_img">
-                                                         <img fh-id="' .  $item['rid'] . '" src="' . $item['src'] . '"> 
+                                                         <img fh-id="' . $item['rid'] . '" src="' . $item['src'] . '"> 
                                                      </div><em class="deleteImg">删除</em>
                                                      <input type="text" placeholder="填写图片的简介" value="' . $item['intro'] . '"></div>';
-                                    }
-                                ?>
-                                <div class="img_plus" id="uploadBtn">
+                                }
+                                $cls = 'hide';
+                                if (count($content) < 10) {
+                                   $cls = '';
+                                }
+                                echo '<div class="img_plus ' . $cls . '" id="uploadBtn">
                                     <p>+</p>
                                     <span>添加照片</span>
-                                </div>
+                                </div>';
+                                ?>                                
                             </div>
                         </div>
                     </div>
