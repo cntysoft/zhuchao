@@ -19,7 +19,7 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'app/common'], fun
             if(!$this.val()){
                layer.tips($this.next('.tip').text(), '#' + $this.attr('id'), {
                   tipsMore : true,
-                  tips : [2, '#0af']
+                  tips : [2, '#63bf82']
                });
                return false;
             }
@@ -29,7 +29,7 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'app/common'], fun
          if($('#postCode').val() && !regPostcode.test($('#postCode').val())){
             layer.tips('请输入正确的邮政编码！', '#postCode', {
                tipsMore : true,
-               tips : [2, '#0af']
+               tips : [2, '#63bf82']
             });
             return false;
          }
@@ -40,7 +40,7 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'app/common'], fun
             if(!regExp.test($this.val())){
                layer.tips($this.attr('tip-value'), $this.attr('tip-target'), {
                   tipsMore : true,
-                  tips : [2, '#0af']
+                  tips : [2, '#63bf82']
                });
                flag = false;
                return false;
@@ -53,7 +53,7 @@ define(['module/address', 'jquery', 'layer', 'Core', 'Front', 'app/common'], fun
          if($('#phone').val() && !reg.test($('#phone').val())){
             layer.tips('请输入正确的手机号码！', '#phone', {
                tipsMore : true,
-               tips : [2, '#0af']
+               tips : [2, '#63bf82']
             });
             return false;
          }

@@ -1,4 +1,4 @@
-define(['validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function (validate, WebUploader){
+define(['app/buyer/validate', 'webuploader', 'jquery', 'Core', 'Front', 'layer', 'app/common'], function (validate, WebUploader){
    $(function (){
       $('.search_btn').click(function (){
          var key = $('.search_key').val();

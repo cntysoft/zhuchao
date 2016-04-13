@@ -1,4 +1,4 @@
-define(['validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (validate){
+define(['app/buyer/validate', 'jquery', 'layer', 'Core', 'Front','app/common'], function (validate){
     $(function (){
         var imgCodeUrl = '/registerchkcode?v_';
         var codeType = 1;
