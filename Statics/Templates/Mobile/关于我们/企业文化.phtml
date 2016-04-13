@@ -11,11 +11,11 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/aboutus.css')); ?>
+        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/index.css')); ?>
     </head>
     <body>
         <!--logo，搜索,名称-->
-        <div class="headbar w clearfix main_bg">
+        <div class="headbar w clearfix main_bg_light">
             <!--logo-->
             <div class="header_left fl">
                 <a href="/">
@@ -38,39 +38,50 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             </div>
         </div>
         <!--联系我们-->
-        <div class="items_box ">
-            <!--标题-->
-            <div class="module_title">
-                <a ><i class="icon-qiyewenhua"></i>企业文化</a>
-            </div>
-            <div class="items_info contact_us">
-                <p>我们想成为为一个与众不同的人，创新是我们的思维方式，技术研发是我们的根骨，专业化的服务是我们的血肉，我们站在巨人的肩膀上，只望比巨人看的更远。</p>
-                <div class="culture_box clearfix">
-                    <div class="culture_ele">
-                        <i class="icon-iconhexin01 main_light"></i>
-                        <p>企业核心</p>
-                        <p>创新与服务</p>
-                    </div>
-                    <div class="culture_ele culture2">
-                        <i class="icon-qiyequn main_light"></i>
-                        <p>企业精神</p>
-                        <p>专业、务实、高效、创新</p>
-                    </div>
-                    <div class="culture_ele">
-                        <i class="icon-sheweijinghua main_light"></i>
-                        <p>企业思想</p>
-                        <p>用信息带动企业发展，用技术推动时代创新</p>
-                    </div>
-                </div>
-                <p>
-                    公司倡导“专业、务实、高效、创新”的企业精神，具有良好的内部机制、优良的工作环境以及良好的激励机制，吸引了一批年轻的、有学识的、具有实干精神的人才。
-                    高素质、高水平、高效率的人才是在当今激烈的市场竞争中立于不败之地的保障。
-                    我们坚持用一颗感恩的心回馈客户，以客户为中心，用我们的专业水平、优质服务、合理价格为客户的成功添砖加瓦。自公司创办以来，得到了广大客户的充分认可，我们将一如既往的为客户提供最优质的服务。
-                </p>
-            </div>
-            <!--百度地图容器-->
+        <div class="module_title">
+            <a ><i class="icon-qiyewenhua"></i>企业文化</a>
         </div>
+        <div class="culture">
+            <p>神恩视创新与服务为企业之根本，倡导专业、务实、高效、
+                创新的企业精神。规范的内部机制、优良的工作环境以及广阔
+                的发展空间，吸引了一批年轻、 有学识、有实干精神的人才。
+                凤凰筑巢是郑州神恩信息技术有限公司开发的主要项目。
+            </p>
+            <ul class="clearfix">
+                <li>
 
+                    <img src="<?php Qs::Sys('loadImage', 'icon/icon_culture1.png') ?>">
+                    <h2>企业核心</h2>
+                    <span>创新与服务</span>
+                </li>
+                <li>
+                    <img src="<?php Qs::Sys('loadImage', 'icon/icon_culture2.png') ?>">
+                    <h2>企业精神</h2>
+                    <span>
+                        专业、务实<br>
+                        高效、创新
+                    </span>
+                </li>
+                <li>
+
+                    <img src="<?php Qs::Sys('loadImage', 'icon/icon_culture3.png') ?>">
+                    <h2>企业思想</h2>
+                    <span>
+                        用信息带动企业发展<br>
+                        用技术推动时代创新</span>
+                </li>
+            </ul>
+            <p>
+                公司倡导“专业、务实、高效、创新”的企业精神，具有
+                良好的内部机制、优良的工作环境以及良好的激励机制，吸引
+                了一批年轻的、有学识的、具有实干精神的人才。高素质、高
+                水平、高效率的人才是在当今激烈的市场竞争中立于不败之地
+                的保障。 我们坚持用一颗感恩的心回馈客户，以客户为中心，
+                用我们的专业水平、优质服务、合理价格为客户的成功添砖加
+                瓦。自公司创办以来，得到了广大客户的充分认可，我们将一
+                如既往的为客户提供最优质的服务。
+            </p>
+        </div>
         <div class="copy">
             <p>增值电信业务经营许可证：豫 B2-20160047<br/>
                 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>

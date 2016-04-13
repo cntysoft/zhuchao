@@ -11,11 +11,11 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/aboutus.css')); ?>
+        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/index.css')); ?>
     </head>
     <body>
         <!--logo，搜索,名称-->
-        <div class="headbar w clearfix main_bg">
+        <div class="headbar w clearfix main_bg_light">
             <!--logo-->
             <div class="header_left fl">
                 <a href="/">
@@ -38,33 +38,32 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             </div>
         </div>
         <!--联系我们-->
-        <div class="items_box ">
-            <!--标题-->
-            <div class="module_title">
-                <a ><i class="icon-info"></i>业务介绍</a>
-            </div>
-            <div class="items_info contact_us">
-                <p>凤凰筑巢是建材及其相关行业产品信息发布与采购的信息平台。为建材行业提供供应商与采购商之间的供求对接，消除中间商，实现信息发布、搜索、数据统计、优质推荐、在线洽谈等服务，让采购商以更低的成本、更多的选择购买到更优质的建材及其相关产品和服务。</p>
-                <div class="service_box">
-                    <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_service.png') ?>" alt="">
-                </div>
-                <div class="clearfix service_detail">
-                    <div class="fl">
-                        <br>
-                        <p>我们为供应商提供</p>
-                        <p>免费开商铺，免费发布信息；</p>
-                        <p>多种推广渠道，提高产品点击率；</p>
-                        <p>推荐意向客户，实现供求高效对接；</p>
-                        <p>提供产品的多种数据统计、排名等，寻找精准客户。</p>
-                        <br>
-                        <p>我们为采购者提供&nbsp;&nbsp;&nbsp;</p>
-                        <p>免费需求发布平台；</p>
-                        <p>所需商品的供应商信息；</p>
-                        <p>发布商品的供应商报价；</p>
-                        <p>行业专家讲解推荐。</p>
-                    </div>
-                </div>
-            </div>
+        <div class="module_title">
+            <a><i class="icon-info"></i>业务介绍</a>
+        </div>
+        <div class="business">
+            <p>凤凰筑巢是建材及其相关行业产品信息
+                发布与采购的信息平台。为建材行业提
+                供供应商与采购商之间的供求对接，消除
+                中间商，实现信息发布、搜索、数据统计、
+                优质推荐、在线洽谈等服务，让采购商以
+                更低的成本、更多的选择购买到更优质的
+                建材及其相关产品和服务。<img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_service.png') ?>" alt=""></p>
+            <p class="clearfix">
+                <span>我们为供应商提供:
+                    免费开商铺，免费发布信息、
+                    多种推广渠道，提高产品点击率、
+                    推荐意向客户，实现供求高效对接、
+                    提供产品的多种数据统计、排名等、
+                    寻找精准客户.</span>
+                <span>
+                    我们为采购者提供:
+                    免费需求发布平台、
+                    所需商品的供应商信息、
+                    发布商品的供应商报价、
+                    行业专家讲解推荐.
+                </span>
+            </p>
             <!--百度地图容器-->
         </div>
 

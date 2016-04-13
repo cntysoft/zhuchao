@@ -11,11 +11,11 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/aboutus.css')); ?>
+        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/index.css')); ?>
     </head>
     <body>
         <!--logo，搜索,名称-->
-        <div class="headbar w clearfix main_bg">
+        <div class="headbar w clearfix main_bg_light">
             <!--logo-->
             <div class="header_left fl">
                 <a href="/">
@@ -37,30 +37,26 @@ Qs::Ds('商城数据源/商城数据', 'sites');
                 <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Mobile_Aboutus',)) ?>
             </div>
         </div>
-        <!--联系我们-->
-        <div class="items_box ">
-            <!--标题-->
-            <div class="module_title">
-                <a ><i class="icon-lianxiwomen"></i>联系我们</a>
-            </div>
-            <div class="items_info contact_us">
-                <div class="connect_left fl">
-                    <p>客服热线：0371-55221883</p>
-                    <p>网址：www.fhzc.com</p>
-                    <p>微信：zzfhzc</p>
-                    <p>邮箱：service@sheneninfo.com</p>
-                    <p>地址：郑州市金水区郑汴路玉凤路凤凰城北城五楼</p>
-                </div>                
-            </div>
-            <div style="width:100%;height:210px;border:#ccc solid 1px;font-size:12px" id="dituContent"></div>
-            <!--百度地图容器-->
+        <!--标题-->
+        <div class="module_title">
+            <a ><i class="icon-lianxiwomen"></i>联系我们</a>
         </div>
-
+        <!--联系我们-->
+        <div class="contact_us">
+            <ul>
+                <li><label>客服热线：</label>0371-55221883</li>
+                <li><label>网址：</label>www.fhzc.com</li>
+                <li><label>微信：</label>zzfhzc</li>
+                <li><label>邮箱：</label>service@sheneninfo.com</li>
+                <li><label>地址：</label>郑州市金水区郑汴路玉凤路凤凰城北城五楼</li>
+            </ul>
+            <!--百度地图容器-->
+            <div style="width:100%;height:210px;border:#ccc solid 1px;font-size:12px" id="dituContent"></div>
+        </div>
         <div class="copy">
             <p>增值电信业务经营许可证：豫 B2-20160047<br/>
                 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
         </div>
-
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BPWH0tb47EkNlH6fGGzh381M&services=&t=20160121161406"></script>
         <?php
         Qs::Sys('loadRequireJs', 'aboutus/connect');

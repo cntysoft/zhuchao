@@ -11,11 +11,11 @@ Qs::Ds('商城数据源/商城数据', 'sites');
         <meta name="viewport" content="initial-scale=1.0,user-scalable=no,width=device-width">
         <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/aboutus.css')); ?>
+        <?php Qs::Sys('loadCss', array('aboutus/style.css', 'aboutus/work_space.css', 'swiper.min.css')); ?>
     </head>
     <body>
         <!--logo，搜索,名称-->
-        <div class="headbar w clearfix main_bg">
+        <div class="headbar w clearfix main_bg_light">
             <!--logo-->
             <div class="header_left fl">
                 <a href="/">
@@ -38,44 +38,91 @@ Qs::Ds('商城数据源/商城数据', 'sites');
             </div>
         </div>
         <!--联系我们-->
-        <div class="items_box ">
-            <!--标题-->
-            <div class="module_title">
-                <a ><i class="icon-fengcai"></i>公司环境</a>
-            </div>
-            <div class="items_info contact_us">
-                <div class="env_ele">
-                    <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env1.jpg') ?>" alt="">
-                    <p>公司环境</p>
-                </div>
-                <div class="env_ele">
-                    <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env2.jpg') ?>" alt="">
-                    <p>工作状态</p>
-                </div>
-                <div class="env_ele">
-                    <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env3.jpg') ?>" alt="">
-                    <p>领导视察</p>
-                </div>
-                <div class="env_ele">
-                    <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env4.jpg') ?>" alt="">
-                    <p>文艺演出</p>
-                </div>
-                <div class="env_ele">
-                    <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env5.jpg') ?>" alt="">
-                    <p>员工风采</p>
-                </div>
-            </div>
-            <!--百度地图容器-->
+        <!--标题-->
+        <div class="module_title">
+            <a ><i class="icon-fengcai"></i>公司环境</a>
         </div>
-
+        <div class="work_space">
+            <div class="module_ad clearfix  swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="module_ad_list swiper-slide">
+                        <a>
+                            <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env1.jpg') ?>">
+                        </a>
+                    </div>
+                </div>
+                <!--进度-->
+                <div class="progress">
+                    公司环境<em></em>/<span></span>
+                </div>
+            </div>
+        </div>
+        <div class="work_space">
+            <div class="module_ad clearfix  swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="module_ad_list swiper-slide">
+                        <a>
+                            <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env2.jpg') ?>">
+                        </a>
+                    </div>
+                </div>
+                <!--进度-->
+                <div class="progress">
+                    工作状态<em></em>/<span></span>
+                </div>
+            </div>
+        </div>
+        <div class="work_space">
+            <div class="module_ad clearfix  swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="module_ad_list swiper-slide">
+                        <a>
+                            <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env3.jpg') ?>">
+                        </a>
+                    </div>
+                </div>
+                <!--进度-->
+                <div class="progress">
+                    领导视察<em></em>/<span></span>
+                </div>
+            </div>
+        </div>
+        <div class="work_space">
+            <div class="module_ad clearfix  swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="module_ad_list swiper-slide">
+                        <a>
+                            <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env4.jpg') ?>">
+                        </a>
+                    </div>
+                </div>
+                <!--进度-->
+                <div class="progress">
+                    文艺演出<em></em>/<span></span>
+                </div>
+            </div>
+        </div>
+        <div class="work_space">
+            <div class="module_ad clearfix  swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="module_ad_list swiper-slide">
+                        <a>
+                            <img src="<?php Qs::Sys('loadImage', 'aboutus/icon/icon_env5.jpg') ?>">
+                        </a>
+                    </div>
+                </div>
+                <!--进度-->
+                <div class="progress">
+                    员工风采<em></em>/<span></span>
+                </div>
+            </div>
+        </div>
         <div class="copy">
             <p>增值电信业务经营许可证：豫 B2-20160047<br/>
                 &copy; 2010-2016 www.fhzc.com All Rights Reserved <br/>豫ICP备14029737号 <?php echo round((microtime(true) - SYS_START_TIME) * 1000, 2) . 'ms'; ?></p>
         </div>
-
-        <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=BPWH0tb47EkNlH6fGGzh381M&services=&t=20160121161406"></script>-->
         <?php
-        Qs::Sys('loadRequireJs', 'aboutus/aboutus');
+        Qs::Sys('loadRequireJs', 'aboutus/work_space');
         ?>
     </body>
 </html>
