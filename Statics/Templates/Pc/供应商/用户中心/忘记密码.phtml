@@ -1,76 +1,79 @@
 <?php Qs::Ds('商城数据源/商城数据', 'sites'); ?>
 <!DOCTYPE html>
-<?php
-Qs::Ds('商城数据源/商城数据', 'site');
-?>
 <html>
     <head lang="en">
         <meta charset="UTF-8">
-        <title>忘记密码-<?php Qs::DsField('sites', 'SiteTitle') ?></title>
+        <title>商家忘记密码</title>
         <meta name="description" content="<?php Qs::DsField('sites', 'SiteDescription') ?>">
         <meta name="keywords" content="<?php Qs::DsField('sites', 'SiteKeywords') ?>">
-        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
-        <?php Qs::Sys('loadCss', array('usercenter/providerstyle.css', 'usercenter/login.css')); ?>
+        <?php Qs::Sys('loadCss', array('kelepc/style.css', 'kelepc/login/login.css')) ?>
     </head>
     <body>
+        <div class="logo_register clearfix">
+            <a href="/">               
+                <div class="icon_logo">
+                </div>
+            </a>
+            <h3>商家忘记密码找回</h3>
+        </div>
         <div class="wrap">
             <div class="wrap_inner">
-                <!--logo-->
-                <div class="logo_register">
-                    <div class="icon_logo fl">
-                        <a href="<?php echo 'http://' .  \Cntysoft\RT_SYS_SITE_NAME ?>">
-                            <img src="<?php Qs::Sys('loadImage', 'login/icon/icon_logo_fff.png') ?>" alt="凤凰筑巢LOGO">
-                        </a>
-                    </div>
-                    <h3 class="fl">供应商</h3>
-                    <a href="register.html" class="register_a fr">还没有筑巢账号？30秒注册</a>
-                </div>
                 <div class="login_box">
                     <div class="login_header">
-                        <h4 class="login_title">忘记密码</h4>
-                        <div class="login_form" id="nameForm">
-                            <form action="">
-                                <div class="login_form_input">
-                                    <input class="form_text" type="text" fh-type="phone" id="username" placeholder="请输入注册时使用的手机号" required>
-                                    <div class="input_code clearfix">
-                                        <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
-                                        <a class="icode_image" >
-                                            <img alt="图片验证码" title="看不清换一张" id="codeImg" src="/">
-                                            <i class="icon-update" id="changeCodeImg"></i>
-                                        </a>
-                                    </div>
+                        <h4 class="login_title">忘记密码
+                        </h4>
+                    </div>
+                    <div class="login_form" id="nameForm">
+                        <form action="">
+                            <div class="login_form_input">
+                                <input class="form_text" type="text" fh-type="phone" id="username" placeholder="请输入注册时使用的手机号" required>
+                                <!--验证码-->
+                                <div class="input_code clearfix">
+                                    <input class="fl code" type="text" fh-type="imgCode" id="imgCode" autocomplete="off" placeholder="图片验证码" required>
+                                    <a class="icode_image" >
+                                        <img alt="图片验证码" title="看不清换一张" id="codeImg" src="/">
+                                        <i class="icon-shuaxin"  id="changeCodeImg"></i>
+                                    </a>
                                 </div>
-                                <!--提交-->
-                                <input class="submit_btn main_bg_light" type="submit" id="nameFormSubmit" value="验证身份"/>
-                            </form>
-                        </div>
-                        <div class="login_form hide" id="passwordForm" >
-                            <form action="">
-                                <div class="login_form_input">
-                                    <input class="fl code" type="text" fh-type="phoneAuthCode" id="phoneAuthCode" autocomplete="off" placeholder="请输入短信验证码" required>
-                                    <input class="form_text" type="password" fh-type="password" id="password" placeholder="请输入新密码" required>
-                                    <input class="form_text" type="password" fh-type="password" id="passwordAgain" placeholder="请再次输入新密码" required>
-                                </div>
-                                <input class="submit_btn main_bg_light" type="submit" id="passwordFormSubmit" value="重置密码"/>
-                            </form>
-                        </div>
-                        <!--成功-->
-                        <div class="login_form tc success hide" id="successForm">
-                            <i class="icon-duihaoyuanquan main_light"></i>
-                            <p>新密码设置成功，请您牢记新密码</p>
-                            <!--返回首页-->
-                            <a class="main_border_light return_btn mainbg_hover_light" href="/">返回首页</a>
-                            <a class="main_border_light return_btn mainbg_hover_light" href="/login.html">立即登录</a>
-                        </div>
+                                <!--短信验证码
+                                <div class="input_code clearfix">
+                                    <input class="fl code" type="text" name="code" autocomplete="off" placeholder="请输入短信验证码">
+                                    <a class="icode_image tc main_bg_light main_border_light" >
+                                        <span>获取短信验证码</span>
+                                    </a>
+                                </div>-->
+
+                            </div>
+                            <!--提交-->
+                            <input class="submit_btn main_bg_light" id="nameFormSubmit"  type="submit" value="找回密码"/>
+                        </form>
+                    </div>
+                    <div class="login_form hide" id="passwordForm" >
+                        <form action="">
+                            <div class="login_form_input">
+                                <!--密码-->
+                                <input class="fl code" type="text" fh-type="phoneAuthCode" id="phoneAuthCode" autocomplete="off" placeholder="请输入短信验证码" required>
+                                <input class="form_text" type="password" fh-type="password" id="password" placeholder="请输入新密码" required>
+                                <input class="form_text" type="password" fh-type="password" id="passwordAgain" placeholder="请再次输入新密码" required>
+                            </div>
+                            <!--提交-->
+                            <input class="submit_btn main_bg_light" id="passwordFormSubmit" type="submit" value="确认"/>
+                        </form>
+                    </div>
+                    <!--成功-->
+                    <div class="login_form tc success hide"  id="successForm">
+                        <i class="icon-duihao1"></i>
+                        <p>新密码设置成功，请您牢记新密码</p>
+                        <!--返回首页-->
+                        <a class="return_btn main_bg_light" href="/login.html">立即登录</a>
                     </div>
                 </div>
             </div>
         </div>
         <!--版权 begin-->
         <?php
-        Qs::Label('静态类/登陆注册网站底部');
-        Qs::Sys('loadRequireJs', 'provider/forget');
+        Qs::Label('静态类/登陆注册网站底部', array('renderTpl' => 'Pc_KeleLoginBottom'));
+        Qs::Sys('loadRequireJs', 'kelepc/forget');
         ?>
     </body>
 </html>

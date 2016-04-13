@@ -1,1 +1,166 @@
-可乐云商首页
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>可乐云商首页</title>
+        <?php Qs::Sys('loadCss', array('kelepc/style.css', 'kelepc/app/index.css', 'slick.css',)) ?>
+    </head>
+    <body>
+        <!--头部-->
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_KeleTop')) ?>
+        <!--banner-->
+        <div class="l_banner">
+            <div>
+                <a href="/" class="" ><img src="<?php Qs::Sys('loadImage', 'kelepc/icon/icon_banner1.jpg') ?>" alt=""></a>
+            </div>
+        </div>
+        <!--解决方案-->
+        <div class="l_case conwidth">
+            <div class="case_title">
+                <h3>解决方案</h3>
+                <p>互联网行业解决方案领导品牌，值得信赖！</p>
+            </div>
+            <div class="case_box">
+                <div class="case_ele">
+                    <div class="case_logo case_logo1">
+                        <i class="icon-gouwulanzin "></i>
+                        <!--<img src="Images/icon/icon_case1.png" alt="">-->
+                    </div>
+                    <h4>农村电商解决方案</h4>
+                    <p>30年前，家庭联产责任承包制，解决了土地上种东西归谁的问题；
+                        现在，农村电商要解决的是这块土地上的东西卖给谁的问题。</p>
+                </div>
+                <div class="case_ele">
+                    <div class="case_logo case_logo2">
+                        <i class="icon-shuiguo "></i>
+                        <!--<img src="Images/icon/icon_case2.png" alt="">-->
+                    </div>
+                    <h4>生鲜水果解决方案</h4>
+                    <p>适用于短时间内保存的食用类产品，如水果、蔬菜、海鲜。线上下单、极速送达，
+                        成就未来城市生鲜水果超市的必然趋势。</p>
+                </div>
+                <div class="case_ele">
+                    <div class="case_logo  case_logo3">
+                        <i class="icon-xihumeizhuang"></i>
+                        <!--<img src="Images/icon/icon_case3.png" alt="">-->
+                    </div>
+                    <h4>美妆洗护解决方案</h4>
+                    <p>线上宣传积累用户；线上下单,线下发货。
+                        电子商务必定是互联网+时代洗护产品的主要销售模式。</p>
+                </div>
+                <div class="case_ele">
+                    <div class="case_logo  case_logo4">
+                        <i class="icon-iconketing"></i>
+                        <!--<img src="Images/icon/icon_case4.png" alt="">-->
+                    </div>
+                    <h4>家具家居解决方案</h4>
+                    <p>减少家具购买的繁琐过程,为家具商家、定制商城缩减用户选购的时间成本,
+                        提升用户体验。</p>
+                </div>
+            </div>
+            <div class="case_prev case_arrow"><i class="icon-arrow_left"></i></div>
+            <div class="case_next case_arrow"> <i class="icon-arrow_right"></i></div>
+        </div>
+        <!--为什么选择可乐云商-->
+        <div class="l_why">
+            <div class="why_content conwidth">
+                <div class="why_title">
+                    <h2>为什么选择可乐云商？</h2>
+                    <div class="why_title_btn">
+                        <span>公司资质</span>
+                        <span>产品优势</span>
+                        <span>服务机制</span>
+                    </div>
+                </div>
+                <div class="why_list clearfix">
+                    <div class="why_ele why_left">
+                        <i class=" fl icon-fuwuqigaikuang"></i>
+                        <h4>拥有强有力的硬件支持</h4>
+                        <p>可乐云商虽起步不早，但对行业的认知却很高，不仅处在具有行业代表性的凤凰城商场......</p>
+                    </div>
+                    <div class="why_ele why_right">
+                        <i class=" fr why_logo2 icon-case"></i>
+                        <h4>拥有实际操作的成功案例</h4>
+                        <p>凤凰筑巢由凤凰城的大环境产生，网站运营完全由公司内部人员操作，保证亲身体验其中......</p>
+                    </div>
+                    <div class="why_ele why_left">
+                        <i class=" fl why_logo3 icon-babiaoxitong"></i>
+                        <h4>业务集中，针对性强</h4>
+                        <p>公司没有杂乱的分散业务，旗下的可乐云商只针对电子商务类型的网站建设。力争做电子......</p>
+                    </div>
+                    <div class="why_ele why_right">
+                        <i class=" fr icon-biaozhunmoban02"></i>
+                        <h4>全程服务，资料齐全</h4>
+                        <p>对于使用可乐云商系统的客户，公司提供全程的建站服务，包括申请域名、备案，帮助上......</p>
+                    </div>
+                    <div class="why_ele why_left">
+                        <i class=" fl icon-wodetuandui"></i>
+                        <h4>团队精良，分工明确</h4>
+                        <p>可乐云商有PHP、H5、IOS、安卓开发等各类专业技术工程师。在快速完成网站建设的......</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--研发动态-->
+        <div class="l_condition conwidth">
+            <div class="case_title">
+                <h3>研发动态</h3>
+                <p>互联网行业解决方案领导品牌，值得信赖！</p>
+            </div>
+            <div class="condition_inner ">
+                <div class="condition_box clearfix">
+                    <div class="condition_ele ">
+                        <h4><i></i><a href="">可乐云商微商城功能启动</a></h4>
+                        <p>在PC商城，手机商城的基础之上，可乐云商推出了专为微信定制开发的可乐云商微商城。
+                            微商城基于微信API接口深度定制开发，是对普通手机商城在微信中的功能......</p>
+                    </div>
+                    <div class="condition_ele ">
+                        <h4><i></i><a href="">可乐云商微商城功能启动</a></h4>
+                        <p>在PC商城，手机商城的基础之上，可乐云商推出了专为微信定制开发的可乐云商微商城。
+                            微商城基于微信API接口深度定制开发，是对普通手机商城在微信中的功能......</p>
+                    </div>
+                    <div class="condition_ele ">
+                        <h4><i></i><a href="">可乐云商微商城功能启动</a></h4>
+                        <p>在PC商城，手机商城的基础之上，可乐云商推出了专为微信定制开发的可乐云商微商城。
+                            微商城基于微信API接口深度定制开发，是对普通手机商城在微信中的功能......</p>
+                    </div>
+                    <div class="condition_ele ">
+                        <h4><i></i><a href="">可乐云商微商城功能启动</a></h4>
+                        <p>在PC商城，手机商城的基础之上，可乐云商推出了专为微信定制开发的可乐云商微商城。
+                            微商城基于微信API接口深度定制开发，是对普通手机商城在微信中的功能......</p>
+                    </div>
+                    <div class="condition_ele ">
+                        <h4><i></i><a href="">可乐云商微商城功能启动</a></h4>
+                        <p>在PC商城，手机商城的基础之上，可乐云商推出了专为微信定制开发的可乐云商微商城。
+                            微商城基于微信API接口深度定制开发，是对普通手机商城在微信中的功能......</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--侧边栏-->
+        <div class="l_right">
+            <div class="right_qq">
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1134902426&site=qq&menu=yes">
+                    <img border="0" src="<?php Qs::Sys('loadImage', 'kelepc/icon/icon_right_qq.png') ?>" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+                    <h3>QQ在线咨询</h3>
+                    <p>24567241123</p>
+                </a>
+            </div>
+            <div class="right_weixin ">
+                <h3><i class="icon-weixin1"></i>微信账号</h3>
+                <p>shenen123456</p>
+            </div>
+            <div class="right_phone ">
+                <h3><i class="icon-dianhua1"></i>公司热线</h3>
+                <p>0371-12345678</p>
+                <p>150-1234-5678</p>
+            </div>
+
+        </div>
+        <!--底部-->
+        <?php
+        Qs::Label('静态类/网站底部', array('renderTpl' => 'Pc_KeleBottom'));
+        Qs::Sys('loadRequireJs', 'kelepc/index')
+        ?>
+    </body>
+</html>
