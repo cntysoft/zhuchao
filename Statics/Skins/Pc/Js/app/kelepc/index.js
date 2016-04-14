@@ -21,5 +21,10 @@ define(['jquery', 'slick', 'app/kelepc/com'], function (){
          prevArrow : ".case_prev",
          nextArrow : '.case_next'
       });
+      $('.why_title_btn span').click(function (){
+         var indexA = $(this).index();
+         $(this).addClass('main_bg').siblings().removeClass('main_bg');
+         $('.why_content').find('.why_list').eq(indexA).removeClass('hide').siblings('.why_list').addClass('hide');
+      });
    });
 });

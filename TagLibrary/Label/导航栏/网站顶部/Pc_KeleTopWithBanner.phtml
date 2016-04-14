@@ -1,0 +1,18 @@
+<?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_KeleTop')) ?>
+<?php
+$out = '';
+$locationId = $this->getAdsLocationId('电脑端', '首页', 'kelebanner');
+$ads = $this->getAds($locationId);
+if (count($ads)) {
+   $out.='<div class="l_banner">';
+   foreach ($ads as $ad) {
+      $url = $ad->getContentUrl();
+      $image = $this->getImageFromCdn($ad->getImage(), 800, 400);
+      $bgcolor = $ad->getBgcolor();
+      $out .= '<div>
+                <a href="' . $url . '" target="_blank" ><img src="' . $image . '" alt=""></a>
+            </div>';
+   }
+   $out .= '</div>';
+}
+echo $out;
