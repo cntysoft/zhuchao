@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader,common){
+define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader, common){
     $(function (){
         var uploadIndex = -1;
         var images = new Array();
@@ -56,7 +56,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 params['keywords'].push($('#keyword3').val());
             }
             params['group'] = $('#proGroup').val();
-            
+
             params['attribute'] = {
                 '基本参数' : {},
                 '自定义属性' : {}
@@ -206,26 +206,11 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 auto : true,
                 dnd : '#uploadBtn',
                 threads : 1,
-                duplicate:true,
+                duplicate : true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',
                     mimeTypes : 'image/*'
-                },
-                compress : {
-                    // 图片质量，只有type为`image/jpeg`的时候才有效。
-                    quality : 90,
-                    // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
-                    allowMagnify : false,
-                    // 是否允许裁剪。
-                    crop : false,
-                    // 是否保留头部meta信息。
-                    preserveHeaders : true,
-                    // 如果发现压缩后文件大小比原来还大，则使用原来图片
-                    // 此属性可能会影响图片自动纠正功能
-                    noCompressIfLarger : false,
-                    // 单位字节，如果图片大小小于此值，不会采用压缩。
-                    compressSize : 1024 * 1024
                 },
                 server : '/front-api-entry',
                 formData : {
@@ -246,7 +231,12 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
             };
             //处理上传
             uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-                pick :{ id: '#uploadBtn',multiple:false}
+                pick : {id : '#uploadBtn', multiple : false},
+                compress : {
+                    width : 1280,
+                    height : 800,
+                    compressSize : 1000000
+                }
             }));
             //上传商品图片
             uploadProductImg.on('beforeFileQueued', function (){
@@ -321,12 +311,17 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         });
         var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
         var $introImg = $(iframeBody).find('img');
-        $.each($introImg,function(index,item){
-            $(item).attr('src',$(item).attr('data-original'));
+        $.each($introImg, function (index, item){
+            $(item).attr('src', $(item).attr('data-original'));
         });
         editor.html($(iframeBody).html());
         var editorUpload = WebUploader.create($.extend(uploaderConfig, {
-            pick : '#editorUpload'
+            pick : '#editorUpload',
+            compress : {
+                width : 1024,
+                height : 5000,
+                compressSize : 1000000
+            }
         }));
         //编辑器上传图片
         editorUpload.on('uploadSuccess', function (file, response){

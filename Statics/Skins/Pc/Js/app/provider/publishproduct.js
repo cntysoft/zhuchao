@@ -121,11 +121,9 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         });
         //上传的默认配置项
         var uploaderConfig = {
-            chunked : false,
             auto : true,
-            dnd : '#uploadBtn',
             threads : 1,
-            duplicate:true,
+            duplicate : true,
             accept : {
                 title : 'Images',
                 extensions : 'gif,jpg,jpeg,bmp,png',
@@ -150,11 +148,15 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         };
         //处理上传
         var uploadProductImg = WebUploader.create($.extend(uploaderConfig, {
-            pick :{ id: '#uploadBtn',multiple:false}
+            pick : {id : '#uploadBtn', multiple : false},
+            compress : {
+                width : 1280,
+                height : 800,
+                compressSize : 1000000
+            }
         }));
         //上传商品图片
         uploadProductImg.on('beforeFileQueued', function (){
-            console.log(uploadProductImg.getFiles());
             if(images.length == 5){
                 layer.alert('最多上传5张图片');
                 return false;
@@ -251,7 +253,12 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         //给img标签添加fh-rid属性
         editor.htmlTags.img = ['src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border', 'fh-rid'];
         var editorUpload = WebUploader.create($.extend(uploaderConfig, {
-            pick : '#editorUpload'
+            pick : '#editorUpload',
+            compress : {
+                width : 1024,
+                height : 5000,
+                compressSize : 1000000
+            }
         }));
         //编辑器上传图片
         editorUpload.on('uploadSuccess', function (file, response){

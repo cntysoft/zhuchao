@@ -1,7 +1,7 @@
 /**
  * Created by wangzan on 2016/3/12.
  */
-define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader,common){
+define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Front'], function (validate, WebUploader, common){
     $(function (){
         var imgRefMap = new Array();
         var fileRefs = new Array();
@@ -75,7 +75,7 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
                 chunked : false,
                 auto : true,
                 threads : 1,
-                duplicate:true,
+                duplicate : true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',
@@ -105,7 +105,12 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
         function createUploader(){
             //处理上传
             uploadImg = WebUploader.create($.extend(uploaderConfig, {
-               pick :{ id:'.img_plus',multiple:false}
+                pick : {id : '.img_plus', multiple : false},
+                compress : {
+                    width : 1280,
+                    height : 800,
+                    compressSize : 1000000
+                }
             }));
             //logo上传成功
             uploadImg.on('uploadSuccess', function (file, response){
@@ -121,7 +126,12 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
         function createEditorUplad(){
             var $editorUpload = $('body').append('<div class="hide" id="editorUpload"></div>');
             var editorUpload = WebUploader.create($.extend(uploaderConfig, {
-                pick : '#editorUpload'
+                pick : '#editorUpload',
+                compress : {
+                    width : 1024,
+                    height : 5000,
+                    compressSize : 1000000
+                }
             }));
             //添加图片上传插件
             $('head').append('<style type="text/css" rel="stylesheet">.ke-icon-upload {background-position: 0px -496px;' +
@@ -144,10 +154,10 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
                     'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
                     'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
                     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat',
-                     'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                    'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
                     'anchor', 'link', 'unlink'],
                 pluginsPath : '/Statics/Skins/Pc/Images/kindeditor/plugins/',
-                 htmlTags : {
+                htmlTags : {
                     font : ['color', 'size', 'face', '.background-color'],
                     span : [
                         '.color', '.background-color', '.font-size', '.font-family', '.background',
@@ -181,7 +191,7 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
                     'br,tbody,tr,strong,b,sub,sup,em,i,u,strike,s,del' : []
                 }
             });
-           
+
 
             //编辑器上传图片
             editorUpload.on('uploadSuccess', function (file, response){
@@ -198,7 +208,7 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
             var params = {
                 imgRefMap : [],
                 fileRefs : [],
-                content:''
+                content : ''
             };
             if($introImg.length){
                 $.each($introImg, function (index, item){

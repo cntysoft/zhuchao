@@ -15,10 +15,10 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 return false;
             }
             params.content = content;
-            $.extend(params,getEditorFileRef(content));
-            Cntysoft.Front.callApi('Site', 'modifyCulture', params, function(response) {
+            $.extend(params, getEditorFileRef(content));
+            Cntysoft.Front.callApi('Site', 'modifyCulture', params, function (response){
                 if(response.status){
-                     layer.msg('信息保存成功!');
+                    layer.msg('信息保存成功!');
                 } else{
                     layer.msg('信息保存失败,请稍候再试');
                 }
@@ -32,7 +32,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
                 chunked : false,
                 auto : true,
                 threads : 1,
-                duplicate:true,
+                duplicate : true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',
@@ -61,7 +61,12 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         function createEditorUplad(){
             var $editorUpload = $('body').append('<div class="hide" id="editorUpload"></div>');
             var editorUpload = WebUploader.create($.extend(uploaderConfig, {
-                pick : '#editorUpload'
+                pick : '#editorUpload',
+                compress : {
+                    width : 1024,
+                    height : 5000,
+                    compressSize : 1000000
+                }
             }));
             //添加图片上传插件
             $('head').append('<style type="text/css" rel="stylesheet">.ke-icon-upload {background-position: 0px -496px;' +
@@ -136,7 +141,7 @@ define(['validate', 'webuploader', 'app/common', 'jquery', 'kindEditor', 'zh_CN'
         }
 
 
-         function getEditorFileRef(){
+        function getEditorFileRef(){
             var iframeBody = $('.ke-edit-iframe')[0].contentWindow.document.body;
             var $introImg = $(iframeBody).find('img');
             var params = {

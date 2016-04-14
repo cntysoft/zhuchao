@@ -76,7 +76,7 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
                 chunked : false,
                 auto : true,
                 threads : 1,
-                duplicate:true,
+                duplicate : true,
                 accept : {
                     title : 'Images',
                     extensions : 'gif,jpg,jpeg,bmp,png',
@@ -108,7 +108,12 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         function createUploader(){
             //处理上传
             uploadImg = WebUploader.create($.extend(uploaderConfig, {
-                pick :{ id:'.img_plus',multiple:false}
+                pick : {id : '.img_plus', multiple : false},
+                compress : {
+                    width : 1028,
+                    height : 800,
+                    compressSize : 1000000
+                }
             }));
             //logo上传成功
             uploadImg.on('uploadSuccess', function (file, response){
@@ -124,7 +129,12 @@ define(['validate', 'webuploader', 'jquery', 'kindEditor', 'zh_CN', 'Core', 'Fro
         function createEditorUplad(){
             var $editorUpload = $('body').append('<div class="hide" id="editorUpload"></div>');
             var editorUpload = WebUploader.create($.extend(uploaderConfig, {
-                pick : '#editorUpload'
+                pick : '#editorUpload',
+                compress : {
+                    width : 1024,
+                    height : 5000,
+                    compressSize : 1000000
+                }
             }));
             //添加图片上传插件
             $('head').append('<style type="text/css" rel="stylesheet">.ke-icon-upload {background-position: 0px -496px;' +
