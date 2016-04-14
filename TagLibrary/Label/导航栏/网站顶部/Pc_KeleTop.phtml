@@ -5,13 +5,25 @@
         </a>
         <div class="header_right" style="float:left; margin-left: 30%">
             <ul>
-                <li><a href="/">首页</a></li>
+                <li class="<?php
+                $routeInfo = $this->getRouteInfo()['action'];
+                echo $routeInfo == 'Index' ? 'main_bg' : ''
+                ?>"><a href="/">首页</a></li>
                 <!--<li><a href="">我要购买</a></li>-->
                 <!--<li><a href="">成功案例</a></li>-->
                 <!--<li><a href="">模板演示</a></li>-->
-                <li><a href="/function.html">功能介绍</a></li>
-                <li><a href="/login.html">登录</a></li>
-                <li><a href="/register.html">立即注册</a></li>
+                <li class="<?php echo $routeInfo == 'function' ? 'main_bg' : '' ?>"><a href="/function.html">功能介绍</a></li>
+                <?php
+                $isLogin = $this->checkProviderLogin();
+                if (!$isLogin) {
+                   echo '<li><a href="/login.html">登录</a></li>                
+                <li><a href="/register.html">立即注册</a></li>';
+                } else {
+                   $curUser = $this->getCurProvider();
+                   $name = $curUser->getName() ? $curUser->getName() : $curUser->getPhone();
+                   echo '<li><a href="/login.html">' . $name . '</a></li><li><a id="providerlogout"> 退出 </a></li>';
+                }
+                ?>
                 <!--<li><a href="">关于我们</a></li>-->
             </ul>
         </div>

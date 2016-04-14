@@ -14,6 +14,7 @@ use App\ZhuChao\MarketMgr\Constant as MAR_CONST;
 use App\Site\Category\Constant as CATEGORY_CONST;
 use App\Site\Content\Constant as CONTENT_CONST;
 use App\ZhuChao\Buyer\Constant as BUYER_CONST;
+use App\ZhuChao\Provider\Constant as PROVIDER_CONST;
 use Cntysoft\Framework\Utils\ChinaArea;
 class Nav extends AbstractLabelScript
 {
@@ -22,6 +23,15 @@ class Nav extends AbstractLabelScript
    public function getCurUser()
    {
       return $this->appCaller->call(BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'getCurUser');
+   }
+
+   /**
+    * 获取当前登录供应商
+    * @return type
+    */
+   public function getCurProvider()
+   {
+      return $this->appCaller->call(PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'getCurUser');
    }
 
    /**
@@ -57,6 +67,16 @@ class Nav extends AbstractLabelScript
    {
       return $this->appCaller->call(
                       BUYER_CONST::MODULE_NAME, BUYER_CONST::APP_NAME, BUYER_CONST::APP_API_BUYER_ACL, 'isLogin');
+   }
+
+   /**
+    * 检查供应商是否登录
+    * @return boolean
+    */
+   public function checkProviderLogin()
+   {
+      return $this->appCaller->call(
+                      PROVIDER_CONST::MODULE_NAME, PROVIDER_CONST::APP_NAME, PROVIDER_CONST::APP_API_MGR, 'isLogin');
    }
 
    /**

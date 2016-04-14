@@ -1,7 +1,7 @@
 /**
  * Created by jiayin on 2016/3/16.
  */
-define(['jquery'], function (){
+define(['jquery', 'Front', 'Core'], function (){
    $(function (){
       $.fn.manhuatoTop = function (options){
          var defaults = {
@@ -36,6 +36,14 @@ define(['jquery'], function (){
       $(window).manhuatoTop({
          showHeight : 500, //设置滚动高度时显示
          speed : 500 //返回顶部的速度以毫秒为单位
+      });
+      $('#providerlogout').click(function (){
+         Cntysoft.Front.callApi('Provider', 'logout', {
+         }, function (response){
+            if(response.status){
+               window.location.reload();
+            }
+         }, true);
       });
    });
 });
