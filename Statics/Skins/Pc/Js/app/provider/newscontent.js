@@ -144,7 +144,7 @@ define(['validate', 'webuploader','app/common', 'jquery', 'kindEditor', 'zh_CN',
                     'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
                     'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
                     'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat',
-                    'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                     'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
                     'anchor', 'link', 'unlink'],
                 pluginsPath : '/Statics/Skins/Pc/Images/kindeditor/plugins/',
                  htmlTags : {

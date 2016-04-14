@@ -22,15 +22,15 @@
                 <div class="form_box">
                     <div class="form_list">
                         <label><em class="main">*</em>招聘职位:</label>
-                        <input type="text" id="title" class="checkfield" reg="^.{2,15}$" tip-value="请输入2-15位职位名称" required>
+                        <input type="text" id="title" class="checkField" reg="^.{2,15}$" tip-value="请输入2-15位职位名称" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>招聘部门:</label>
-                        <input type="text" id="department" class="checkfield"  reg="^.{2,15}$" tip-value="请输入2-15位部门名称" required>
+                        <input type="text" id="department" class="checkField"  reg="^.{2,15}$" tip-value="请输入2-15位部门名称" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>招聘人数:</label>
-                        <input type="text" id="number" class="checkfield middle_input" fh-type="number" required>
+                        <input type="text" id="number" class="checkField middle_input" fh-type="number" required>
                     </div>
                     <div class="form_list clearfix">
                         <label class="fl"><em class="main">*</em>职位描述:</label>
@@ -41,19 +41,19 @@
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>招聘手机:</label>
-                        <input class="phone checkfield" id="phone" type="text" fh-type="phone" required>
+                        <input class="phone checkField" id="phone" type="text" fh-type="phone" required>
                     </div>
                     <div class="form_list">
-                        <label>座机:</label>
-                        <input class="tel_china checkfield" id="telCountry" tip-target="#telNum" type="text" value="86" placeholder="86" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字">
+                        <label><em class="main">*</em>座机:</label>
+                        <input class="tel_china checkField" id="telCountry" tip-target="#telNum" type="text" value="86" placeholder="86" reg="[1-9][0-9]{1,3}" tip-value="国家区号为2-3位数字" required>
                         <span class="tel_line">-</span>
-                        <input class="tel_code checkfield" id="telArea" tip-target="#telNum" type="text" placeholder="区号"  reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数">
+                        <input class="tel_code checkField" id="telArea" tip-target="#telNum" type="text" placeholder="区号"  reg="0[1-9][0-9]{1,2}" tip-value="区号为以0开头3-4位数" required>
                         <span class="tel_line">-</span>
-                        <input class="tel_num checkfield" id="telNum" type="text" placeholder="电话号码" fh-type="tel">
+                        <input class="tel_num checkField" id="telNum" type="text" placeholder="电话号码" fh-type="tel" required>
                     </div>
                     <div class="form_list">
                         <label><em class="main">*</em>截止日期:</label>
-                        <input type="text" id="endTime" class="checkfield" reg="^[1-2][\d]{3}-[0-1][\d]-[0-3][\d]$" fh-toggle="datepicker" style="width:140px;" readonly="true" tip-value="请选择日期" required>
+                        <input type="text" id="endTime" class="checkField" reg="^[1-2][\d]{3}-[0-1][\d]-[0-3][\d]$" fh-toggle="datepicker" style="width:140px;" readonly="true" tip-value="请选择日期" required>
                     </div>
                     <div class="form_list">
                         <div class="action_btn">
