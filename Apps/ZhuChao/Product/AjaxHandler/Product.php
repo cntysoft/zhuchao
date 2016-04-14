@@ -30,7 +30,8 @@ class Product extends AbstractHandler
          $cond[] = "(brand like '%".$params['name']."%' or title like '%".$params['name']."%' or description like '%".$params['name']."%')";         
          $params['start'] = 0;
       }
-      $cid = (int) $params['cid'];
+
+      $cid = isset($params['cid']) ? (int)$params['cid'] : 0;
       $gcategoryTree = $this->getAppCaller()->call(
          CATEGORY_CONST::MODULE_NAME, CATEGORY_CONST::APP_NAME, CATEGORY_CONST::APP_API_MGR,
          'getNodeTree'

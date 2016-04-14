@@ -102,7 +102,7 @@
     "hostName" : true,
     "tplMap" : {
         "site/index" : "企业网站/首页.phtml",
-        "site/404" : "404.phtml",
+        "site/404" : "企业网站\/404.phtml",
         "site/about" : "企业网站/关于我们.phtml",
         "site/search" : "企业网站/搜索页.phtml",
         "site/productlist" : "企业网站/产品列表.phtml",

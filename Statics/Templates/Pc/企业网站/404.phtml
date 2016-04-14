@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<?php
+use App\Yunzhan\Content\Constant;
+Qs::Ds('内容数据源/企业标准内容模型', 'CS', array('newsid' => Constant::INFO_INTRO_ID));
+Qs::Ds('内容数据源/企业信息', 'CP');
+Qs::Ds('内容数据源/店铺设置', 'setting');
+?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title><?php Qs::DsField('CP', 'name') ?>－首页-<?php Qs::DsField('CP', 'description') ?></title>
+        <meta name="description" content="<?php Qs::DsField('setting', 'description') ?>">
+        <meta name="keywords" content="<?php Qs::DsField('setting', 'keywords') ?>">
+        <link rel="icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="/Statics/Skins/Pc/Images/favicon.ico" mce_href="/favicon.ico" type="image/x-icon">
+        <?php Qs::Sys('loadCss', array('company/style.css','mall/404.css')) ?>
+        <style>
+            .conwidth{
+                width: 1300px;
+            }
+            .l_footer { 
+               margin-top: 0;
+            }
+        </style>
+    </head>
+    <body>
+         <!--头部-->
+        <?php Qs::Label('导航栏/网站顶部', array('renderTpl' => 'Pc_Top', 'company' => 'companysite')) ?>
+        <!--公司头部-->
+        <?php Qs::Label('云站/网站顶部', array('renderTpl' => 'Pc_CompanyTop',)) ?>
+        <!--内容-->
+        <div class="content">
+            <div class="content_inner conwidth">
+                <img src="<?php Qs::Sys('loadImage', 'icon_404.jpg') ?>">
+                <div class="content_text">
+                    <p><strong>抱歉！</strong>您所要访问的页面不存在。</p>
+                    <p>您要查看的网址可能已被删除或者暂时不可用。<br>点击以下链接继续浏览网站</p>
+                    <p>
+                        <a href="javascript:history.go(-1)">&gt;&gt;返回上一页</a>
+                        <a href="/">&gt;&gt;返回首页</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--底部-->
+        <?php
+        Qs::Label('云站/网站底部', array('renderTpl' => 'Pc_CompanyBottom',));
+        ?>
+        <div id='totop'><a style="display: none"><i class='icon-jiantou1'></i></a><a><i class='icon-kefu'></i><em>客服</em>
+                <div class='block'><span>电话：<?php Qs::DsField('CP', 'contact') ?></span></div></a></div>
+                <?php Qs::Sys('loadRequireJs', 'company/company_index'); ?>
+        <script>
+           window.BUYER_SITE_NAME = '<?php echo 'http://' . \Cntysoft\RT_BUYER_SITE_NAME; ?>';
+        </script>
+    </body>
+</html>
