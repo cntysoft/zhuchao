@@ -36,10 +36,10 @@ class DomainBinder extends AbstractLib
          }
          $cacher->save(Constant::SITE_DOMAIN_CACHE_KEY, $map);
       }
-      
+
       return isset($map[$name]) ? $map[$name] : -1;
    }
-   
+
    /**
     * 为商家站点绑定自定义的域名
     * 
@@ -49,13 +49,22 @@ class DomainBinder extends AbstractLib
     */
    public function bindDomainToCompany($companyId, $domain)
    {
-      $map = new DomainBinder();
+      $cacher = $this->getAppObject()->getCacheObject();
+      $cacher->delete(Constant::SITE_DOMAIN_CACHE_KEY);
+      $map = MapModel::findFirstByCompanyId($companyId);
+      if ($map) {
+         $map->setDomain($domain);
+         return $map->save();
+      }
+
+
+      $map = new MapModel();
       $map->setCompanyId($companyId);
       $map->setDomain($domain);
-      
+
       return $map->create();
    }
-   
+
    /**
     * 删除域名绑定记录
     * 
@@ -65,12 +74,13 @@ class DomainBinder extends AbstractLib
    public function unbindDomain($id)
    {
       $map = DomainBinder::findFirst($id);
-      
-      if(!$map) {
+
+      if (!$map) {
          $errorType = $this->getErrorType();
          Kernel\throw_exception(new Exception($errorType->msg('E_DOMAIN_MAP_NOT_EXIST'), $errorType->code('E_DOMAIN_MAP_NOT_EXIST'), $this->getErrorTypeContext()));
       }
-      
+
       return $map->delete();
    }
+
 }

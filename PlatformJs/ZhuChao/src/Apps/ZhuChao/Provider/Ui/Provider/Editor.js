@@ -8,7 +8,7 @@
 /**
  * 供应商信息编辑器
  */
-Ext.define('App.ZhuChao.Provider.Ui.Editor', {
+Ext.define('App.ZhuChao.Provider.Ui.Provider.Editor', {
     extend : 'Ext.form.Panel',
     requires : [
         'App.ZhuChao.Provider.Const'

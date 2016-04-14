@@ -24,6 +24,10 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
          COMPANY : {
             WIDGET_TITLE : '欢迎使用企业管理程序',
             TASK_BTN_TEXT : '企业管理'
+         },
+         DOMAIN : {
+            WIDGET_TITLE : '欢迎使用自定义域名管理程序',
+            TASK_BTN_TEXT : '自定义域名'
          }
       },
       ENTRY : {
@@ -201,6 +205,48 @@ Ext.define('App.ZhuChao.Provider.Lang.zh_CN', {
                   10001 : '手机号码已经存在！',
                   10002 : '用户名称已经存在！',
                   10015 : '店铺二级域名已经存在'
+               }
+            }
+         }
+      },
+      DOMAIN : {
+         LIST_VIEW : {
+            TITLE : '供应商自定义域名列表',
+            COLS : {
+               ID : 'ID',
+               NAME : '企业名称',
+               SITENAME : '供货商站内域名',
+               INTIME : '录入时间',
+               DOMAIN : '自定义域名',
+               STATUS : '状态'
+            },
+            STATUS : {
+               NORMAL : '正常',
+               LOCK : '锁定'
+            },
+            TBAR : {
+               QUERY : '搜索',
+               TIP : '输入企业名称搜索'
+            },
+            MENU : {
+               MODIFY : '修改企业信息'
+            }
+         },
+         EDITOR : {
+            TITLE : '供应商自定义域名编辑器',
+            FIELD : {
+               ID : '企业ID',
+               NAME : '企业名',
+               SITENAME : '站内域名',
+               DOMAIN : '自定义域名'
+            },
+            MSG : {
+               SAVE_OK : '企业信息保存成功！',
+               NOT_DIRTY : '没有任何修改'
+            },
+            ERROR_MAP : {
+               "App/ZhuChao/Provider/Mgr" : {
+                   
                }
             }
          }

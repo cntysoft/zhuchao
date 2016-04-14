@@ -9,21 +9,22 @@
  * 这个文件为了包含css打包
  */
 Ext.define('AppRegs', {
-   requires : [
-      'App.Sys.Login.Main',
-      'Daemon.Init.Main',
-      'App.Site.Category.Main',
-      'App.Site.Content.Main',
-      'App.Site.CmMgr.Main',
-      'App.Site.Setting.Main',
-      'App.Sys.AppInstaller.Main',
-      'App.Sys.User.Main',
-      'App.Sys.Searcher.Main',
-      'App.ZhuChao.CategoryMgr.Main',
-      'App.ZhuChao.Provider.Main',
-      'App.ZhuChao.MessageMgr.Main',
-      'App.ZhuChao.Product.Main',
-      'App.ZhuChao.Buyer.Main',
-		'App.ZhuChao.MarketMgr.Main'
-   ]
+    requires : [
+        'App.Sys.Login.Main',
+        'Daemon.Init.Main',
+        'App.Site.Category.Main',
+        'App.Site.Content.Main',
+        'App.Site.CmMgr.Main',
+        'App.Site.Setting.Main',
+        'App.Sys.AppInstaller.Main',
+        'App.Sys.User.Main',
+        'App.Sys.Searcher.Main',
+        'App.ZhuChao.CategoryMgr.Main',
+        'App.ZhuChao.Provider.Main',
+        'App.ZhuChao.MessageMgr.Main',
+        'App.ZhuChao.Product.Main',
+        'App.ZhuChao.Buyer.Main',
+        'App.ZhuChao.MarketMgr.Main',
+        'App.ZhuChao.Service.Main'
+    ]
 });

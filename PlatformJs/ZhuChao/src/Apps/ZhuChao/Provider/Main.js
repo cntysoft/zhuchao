@@ -14,7 +14,8 @@ Ext.define('App.ZhuChao.Provider.Main', {
       'App.ZhuChao.Provider.Lang.zh_CN',
       'App.ZhuChao.Provider.Const',
       'App.ZhuChao.Provider.Widget.ProviderMgr',
-      'App.ZhuChao.Provider.Widget.ComMgr'
+      'App.ZhuChao.Provider.Widget.ComMgr',
+      'App.ZhuChao.Provider.Widget.DomainMgr'
    ],
    /**
     * @inheritdoc
@@ -26,7 +27,8 @@ Ext.define('App.ZhuChao.Provider.Main', {
    widgetMap : {
       Entry : 'App.ZhuChao.Provider.Widget.Entry',
       ProviderMgr : 'App.ZhuChao.Provider.Widget.ProviderMgr',
-      ComMgr : 'App.ZhuChao.Provider.Widget.ComMgr'
+      ComMgr : 'App.ZhuChao.Provider.Widget.ComMgr',
+      DomainMgr : 'App.ZhuChao.Provider.Widget.DomainMgr'
    },
    createProvider : function (values, callback, scope)
    {
@@ -84,6 +86,19 @@ Ext.define('App.ZhuChao.Provider.Main', {
    {
       this.callApp('ComMgr/getArea', {
          code : value
+      }, callback, scope);
+   },
+   getCompanyDomainInfo : function(id, callback, scope)
+   {
+      this.callApp('DomainMgr/getCompanyInfo', {
+         id : id
+      }, callback, scope);
+   },
+   saveDomain : function(id, domain, callback, scope)
+   {
+      this.callApp('DomainMgr/setCompanyDomain', {
+         id : id,
+         domain : domain
       }, callback, scope);
    }
 });

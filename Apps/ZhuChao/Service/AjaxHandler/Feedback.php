@@ -25,20 +25,31 @@ class Feedback extends AbstractHandler
       );
       foreach ($feedbacks['item'] as $feedback) {
          $child = array(
-            'id' => $feedback->getId(),
-            'type' => $feedback->getType(),
-            'text' => $feedback->getText(),
-            'name' => $feedback->getName(),
-            'phone' => $feedback->getPhone(),
-            'email' => $feedback->getEmail(),
-            'qq' => $feedback->getQq(),
+            'id'        => $feedback->getId(),
+            'type'      => $feedback->getType(),
+            'text'      => $feedback->getText(),
+            'name'      => $feedback->getName(),
+            'phone'     => $feedback->getPhone(),
+            'email'     => $feedback->getEmail(),
+            'qq'        => $feedback->getQq(),
             'inputTime' => date('Y-m-d', $feedback->getInputTime()),
-            'status' => $feedback->getStatus(),
-            'identify' => $feedback->getIdentify()
+            'status'    => $feedback->getStatus(),
+            'identify'  => $feedback->getIdentify()
          );
          $ret['items'][] = $child;
       }
       return $ret;
+   }
+
+   /**
+    * 设置反馈信息状态
+    * @param array $params
+    * @return type
+    */
+   public function changFeedbackStatus(array $params)
+   {
+      return $this->getAppCaller()->call(
+                      SERVICE_CONST::MODULE_NAME, SERVICE_CONST::APP_NAME, SERVICE_CONST::APP_API_FEEDBACK_MGR, 'changeStatus', array(array($params['id']), $params['status']));
    }
 
 }

@@ -15,6 +15,7 @@ class Constant
    const APP_API_MGR= 'Acl';
    const APP_API_MANAGER = 'Mgr';
    const APP_API_LIST = 'ListView';
+   const APP_API_DOMAIN_BINDER = 'DomainBinder';
 
    const PK_PROVIDER_MANAGE = 'ProviderMgr';
    //节点排序权限

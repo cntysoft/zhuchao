@@ -8,7 +8,7 @@
 /**
  * 供应商列表
  */
-Ext.define('App.ZhuChao.Provider.Ui.ListView', {
+Ext.define('App.ZhuChao.Provider.Ui.Domain.ListView', {
     extend : 'Ext.grid.Panel',
     requires : [
         'App.ZhuChao.Provider.Const'
@@ -33,9 +33,7 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
     contextMenuRef : null,
     statics : {
         A_CODES : {
-            MODIFY : 1,
-            LOCK_USER : 2,
-            UNLOCK_USER : 3
+            MODIFY : 1
         }
     },
     /**
@@ -46,7 +44,7 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
     constructor : function (config)
     {
         config = config || {};
-        this.LANG_TEXT = this.GET_LANG_TEXT('UI.LIST_VIEW');
+        this.LANG_TEXT = this.GET_LANG_TEXT('DOMAIN.LIST_VIEW');
         this.applyConstraintConfig(config);
         this.callParent([config]);
     },
@@ -67,9 +65,8 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
             columns : [
                 {text : COLS.ID, dataIndex : 'id', width : 80, resizable : false, menuDisabled : true},
                 {text : COLS.NAME, dataIndex : 'name', flex : 1, resizable : false, sortable : false, menuDisabled : true},
-                {text : COLS.PHONE, dataIndex : 'phone', width : 300, resizable : false, sortable : false, menuDisabled : true},
-                {text : COLS.REGTIME, dataIndex : 'regsterTime', width : 240, resizable : false, sortable : false, menuDisabled : true},
-                {text : COLS.LAST_LOGIN_TIME, dataIndex : 'lastLoginTime', width : 240, resizable : false, sortable : false, menuDisabled : true},
+                {text : COLS.SITENAME, dataIndex : 'siteName', width : 400, resizable : false, sortable : false, menuDisabled : true},
+                {text : COLS.DOMAIN, dataIndex : 'domain', width : 300, resizable : false, sortable : false, menuDisabled : true},
                 {text : COLS.STATUS, dataIndex : 'status', width : 140, resizable : false, sortable : false, menuDisabled : true, renderer : Ext.bind(this.statusRenderer, this)}
             ],
             store : store,
@@ -93,19 +90,6 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
     {
         var L = this.LANG_TEXT.TBAR;
         return [{
-                xtype : 'button',
-                text : L.ADD,
-                listeners : {
-                    click : function ()
-                    {
-                        this.mainPanelRef.renderPanel('Editor', {
-                            mode : WebOs.Const.NEW_MODE,
-                            appRef : this.mainPanelRef.appRef
-                        });
-                    },
-                    scope : this
-                }
-            }, {
                 xtype : 'tbfill'
             }, {
                 xtype : 'textfield',
@@ -148,7 +132,7 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
                 invokeMetaInfo : {
                     module : 'ZhuChao',
                     name : 'Provider',
-                    method : 'ListView/getProviderList'
+                    method : 'DomainMgr/getProviderShopList'
                 },
                 reader : {
                     type : 'json',
@@ -204,12 +188,6 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
             var items = [{
                     text : L.MODIFY,
                     code : CODE.MODIFY
-                }, {
-                    text : L.LOCK,
-                    code : CODE.LOCK_USER
-                }, {
-                    text : L.UNLOCK,
-                    code : CODE.UNLOCK_USER
                 }];
             
             this.contextMenuRef = new Ext.menu.Menu({
@@ -222,31 +200,8 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
             });
         }
 
-        var status = record.get('status');
-        if(C.PROVIDER_STATUS_NORMAL == status) {
-            this.contextMenuRef.items.getAt(1).setDisabled(false);
-            this.contextMenuRef.items.getAt(2).setDisabled(true);
-        }else {
-            this.contextMenuRef.items.getAt(1).setDisabled(true);
-            this.contextMenuRef.items.getAt(2).setDisabled(false);
-        }
         this.contextMenuRef.record = record;
         return this.contextMenuRef;
-    },
-    /**
-     * 更改用户的状态
-     */
-    changUserStatus : function (record, status)
-    {
-        this.setLoading(Cntysoft.GET_LANG_TEXT('MSG.SAVE'));
-        this.mainPanelRef.appRef.changProviderStatus(record.get('id'), status, function (response){
-            this.loadMask.hide();
-            if(response.status){
-                record.set('status', status);
-            } else{
-                Cntysoft.Kernel.Utils.processApiError(response);
-            }
-        }, this);
     },
     menuItemClickHandler : function (menu, item)
     {
@@ -260,12 +215,6 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
                         mode : WebOs.Kernel.Const.MODIFY_MODE,
                         targetLoadId : menu.record.get('id')
                     });
-                    break;
-                case C.UNLOCK_USER:
-                    this.changUserStatus(menu.record, CONST.PROVIDER_STATUS_NORMAL);
-                    break;
-                case C.LOCK_USER:
-                    this.changUserStatus(menu.record, CONST.PROVIDER_STATUS_LOCK);
                     break;
             }
         }
@@ -281,7 +230,6 @@ Ext.define('App.ZhuChao.Provider.Ui.ListView', {
     {
         var condRef = btn.previousSibling('textfield');
         if(condRef.isValid()) {
-            console.log();
             this.loadUsers(condRef.getValue());
         }
     },

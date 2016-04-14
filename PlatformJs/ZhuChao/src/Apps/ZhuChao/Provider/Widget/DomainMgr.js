@@ -8,18 +8,18 @@
 /**
  * 供应商管理入口WIDGET
  */
-Ext.define('App.ZhuChao.Provider.Widget.ProviderMgr', {
+Ext.define('App.ZhuChao.Provider.Widget.DomainMgr', {
    extend : 'WebOs.Kernel.ProcessModel.AbstractWidget',
    requires : [
-      'App.ZhuChao.Provider.Ui.Provider.ListView',
-      'App.ZhuChao.Provider.Ui.Provider.Editor'
+      'App.ZhuChao.Provider.Ui.Domain.ListView',
+      'App.ZhuChao.Provider.Ui.Domain.Editor'
    ],
    mixins : {
       multiTabPanel : 'SenchaExt.Mixin.MultiTabPanel'
    },
    panelClsMap : {
-      ListView : 'App.ZhuChao.Provider.Ui.Provider.ListView',
-      Editor : 'App.ZhuChao.Provider.Ui.Provider.Editor'
+      ListView : 'App.ZhuChao.Provider.Ui.Domain.ListView',
+      Editor : 'App.ZhuChao.Provider.Ui.Domain.Editor'
    },
    /**
     * {@link WebOs.Mixin.MultiTabPanel#initPanelType initPanelType}
@@ -28,11 +28,7 @@ Ext.define('App.ZhuChao.Provider.Widget.ProviderMgr', {
    initPanelType : 'ListView',
    initPmTextRef : function ()
    {
-      this.pmText = this.GET_PM_TEXT('PROVIDER');
-   },
-   initLangTextRef : function ()
-   {
-      this.LANG_TEXT = this.GET_LANG_TEXT('ENTRY');
+      this.pmText = this.GET_PM_TEXT('DOMAIN');
    },
    applyConstraintConfig : function (config)
    {
