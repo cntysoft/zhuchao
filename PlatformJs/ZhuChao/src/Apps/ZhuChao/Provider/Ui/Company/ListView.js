@@ -69,7 +69,7 @@ Ext.define('App.ZhuChao.Provider.Ui.Company.ListView', {
             {text : COLS.NAME, dataIndex : 'name', flex : 1, resizable : false, sortable : false, menuDisabled : true},
             {text : COLS.PROVIDER, dataIndex : 'provider', width : 300, resizable : false, sortable : false, menuDisabled : true},
             {text : COLS.INTIME, dataIndex : 'inputTime', width : 240, resizable : false, sortable : false, menuDisabled : true},
-            {text : COLS.STATUS, dataIndex : 'status', width : 140, resizable : false, sortable : false, menuDisabled : true}
+            {text : COLS.STATUS, dataIndex : 'status', width : 140, resizable : false, sortable : false, menuDisabled : true, renderer : Ext.bind(this.statusRenderer, this)}
          ],
          store : store,
          bbar : Ext.create('Ext.PagingToolbar', {
