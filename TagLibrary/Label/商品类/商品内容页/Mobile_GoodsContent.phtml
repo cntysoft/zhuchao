@@ -9,7 +9,7 @@ $images = $goodsDetail->getImages();
 foreach ($images as $image) {
    $out .= '<div class="module_ad_list swiper-slide">
 				<a>
-					 <div class="module_ad_img" style="background: url(' . $this->getImageFromCdn($image[0], 332, 331) . ') no-repeat center;">
+					 <div class="module_ad_img" style="background: url(' . $this->getImageFromCdn($image[0], 332, 331) . ') no-repeat center/100%;">
 						  <div class="module_ad_box"></div>
 					 </div>
 				</a>
