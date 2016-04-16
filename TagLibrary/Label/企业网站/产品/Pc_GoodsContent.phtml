@@ -55,31 +55,43 @@ $out.='<div class="content conwidth clearfix">
         <div class="company_info">
             <div class="company_name">
                 <h1>编号：' . $goodsInfo->getNumber() . '</h1>
+                <p>';
+$price = $goodsInfo->getPrice();
+$out.=$price > 0 ? '￥<em>' . $price . '</em>' : '面议';
+$out.='</p>
             </div>
             <div class="company_intro">
                 <dl>
-                    <dt>经营模式</dt>
-                    <dd>';
-?><?php
-$trade = array(1 => '销售型', '生产型', '设计型', '服务型', '综合型');
-$out.= $trade[Qs::DsField('CP', 'tradeMode', true)]
-?><?php
-$out.='</dd>
-                </dl>
-                <dl>
-                    <dt>所在地区</dt>
+                    <dt>发 货 地：</dt>
                     <dd>';
 ?><?php $out.=implode(' ', Qs::DsField('CP', 'PCD', true)) ?><?php
 $out.='</dd>
                 </dl>
-            </div>            
+                <dl>
+                    <dt>主营产品：</dt>
+                    <dd>';
+?><?php $out.=str_replace(',', ' ', Qs::DsField('CP', 'products', true)) ?><?php
+$out.='</dd>
+                </dl>
+            </div>
         </div>
         <div class="company_erweima">
-                <p>' . $name . '</p>
-                <div class="qrcode" id="qrcode2" style="    text-align: center;    height: 160px;">                                    
+            <p>' . $name . '</p>
+            <div class="qrcode" id="qrcode2" style="    text-align: center;    height: 160px;">                                    
                  </div>
-            </div>
-    </div>
+            <a class="a_link contact">
+                <i class="icon-lianxiwomen"></i>
+                <span class="contact_us">联系方式</span>
+                <span class="contact_tel">电话：';
+?><?php $out.= Qs::DsField('CP', 'contact', true) ?><?php
+$out.='</span>
+            </a>
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=';
+?><?php $out.=Qs::DsField('CP', 'providerqq', true) ?><?php
+$out.='&site=qq&menu=yes" target="_blank" class="a_link"><i
+                    class="icon-tubiao"></i>在线询价</a>
+        </div>
+    </div>    
 
 </div>
 <!--产品描述-->

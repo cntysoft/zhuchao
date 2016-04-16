@@ -29,6 +29,7 @@ class CompanyInfo extends AbstractDsScript
             'name'             => '',
             'type'             => '',
             'tradeMode'        => '',
+            'products'         => '',
             'province'         => '',
             'city'             => '',
             'district'         => '',

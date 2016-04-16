@@ -106,5 +106,10 @@ define(['jquery', 'slick', 'app/company/common'], function (){
          }
          , this);
       }
+      $('.company_erweima').find('.contact').hover(function (){
+         $(this).find('.icon-lianxiwomen , .contact_us').hide().end().find('.contact_tel').show();
+      }, function (){
+         $(this).find('.icon-lianxiwomen , .contact_us').show().end().find('.contact_tel').hide();
+      });
    });
 });
